@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, Pressable, Alert } from 'react-native';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { FlashcardComponent } from '@/components/FlashcardComponent';
@@ -25,7 +25,11 @@ export default function FlashcardsScreen() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [flashcards, setFlashcards] = useState<Flashcard[]>([]);
   const [incorrectCards, setIncorrectCards] = useState<string[]>([]);
+  
+  // Track which cards have been reviewed to prevent duplicate increments
+  const reviewedCardsRef = useRef<Set<string>>(new Set());
 
+  // Initialize flashcards only once when component mounts or topic changes
   useEffect(() => {
     let cards = topic ? getFlashcardsByTopic(topic) : allFlashcards;
     
@@ -33,13 +37,23 @@ export default function FlashcardsScreen() {
     cards = [...cards].sort(() => Math.random() - 0.5);
     
     setFlashcards(cards);
-  }, [topic, allFlashcards]);
+    setCurrentIndex(0);
+    reviewedCardsRef.current.clear(); // Reset reviewed cards when flashcards change
+  }, [topic]); // Only depend on topic, not allFlashcards
 
+  // Increment review count only when moving to a new card
   useEffect(() => {
-    if (flashcards.length > 0) {
-      incrementReviewCount(flashcards[currentIndex].id);
+    if (flashcards.length > 0 && currentIndex < flashcards.length) {
+      const currentCard = flashcards[currentIndex];
+      const cardId = currentCard.id;
+      
+      // Only increment if we haven't reviewed this card yet in this session
+      if (!reviewedCardsRef.current.has(cardId)) {
+        incrementReviewCount(cardId);
+        reviewedCardsRef.current.add(cardId);
+      }
     }
-  }, [currentIndex, flashcards]);
+  }, [currentIndex]); // Only depend on currentIndex
 
   const handleNext = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -60,6 +74,7 @@ export default function FlashcardsScreen() {
                 setFlashcards(cardsToReview);
                 setCurrentIndex(0);
                 setIncorrectCards([]);
+                reviewedCardsRef.current.clear(); // Reset for new review session
               },
             },
           ]
