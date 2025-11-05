@@ -1,161 +1,275 @@
-import React from "react";
-import { Stack, Link } from "expo-router";
-import { FlatList, Pressable, StyleSheet, View, Text, Alert, Platform } from "react-native";
-import { IconSymbol } from "@/components/IconSymbol";
-import { GlassView } from "expo-glass-effect";
-import { useTheme } from "@react-navigation/native";
 
-const ICON_COLOR = "#007AFF";
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, Pressable, Platform } from 'react-native';
+import { Stack, useRouter } from 'expo-router';
+import { IconSymbol } from '@/components/IconSymbol';
+import { colors, commonStyles } from '@/styles/commonStyles';
+import { useFlashcards } from '@/hooks/useFlashcards';
+import * as Haptics from 'expo-haptics';
 
 export default function HomeScreen() {
-  const theme = useTheme();
-  const modalDemos = [
-    {
-      title: "Standard Modal",
-      description: "Full screen modal presentation",
-      route: "/modal",
-      color: "#007AFF",
-    },
-    {
-      title: "Form Sheet",
-      description: "Bottom sheet with detents and grabber",
-      route: "/formsheet",
-      color: "#34C759",
-    },
-    {
-      title: "Transparent Modal",
-      description: "Overlay without obscuring background",
-      route: "/transparent-modal",
-      color: "#FF9500",
-    }
+  const router = useRouter();
+  const { flashcards, getFlashcardsByTopic, getBookmarkedFlashcards, getFavoriteFlashcards } = useFlashcards();
+
+  const topics = [
+    { name: 'Arrhythmias', icon: 'waveform.path.ecg', color: colors.primary },
+    { name: 'Heart Failure', icon: 'heart.fill', color: colors.error },
+    { name: 'Ischemic Heart Disease', icon: 'bolt.heart.fill', color: colors.warning },
+    { name: 'Valvular Disease', icon: 'heart.circle', color: colors.secondary },
   ];
 
-  const renderModalDemo = ({ item }: { item: (typeof modalDemos)[0] }) => (
-    <GlassView style={[
-      styles.demoCard,
-      Platform.OS !== 'ios' && { backgroundColor: theme.dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }
-    ]} glassEffectStyle="regular">
-      <View style={[styles.demoIcon, { backgroundColor: item.color }]}>
-        <IconSymbol name="square.grid.3x3" color="white" size={24} />
-      </View>
-      <View style={styles.demoContent}>
-        <Text style={[styles.demoTitle, { color: theme.colors.text }]}>{item.title}</Text>
-        <Text style={[styles.demoDescription, { color: theme.dark ? '#98989D' : '#666' }]}>{item.description}</Text>
-      </View>
-      <Link href={item.route as any} asChild>
-        <Pressable>
-          <GlassView style={[
-            styles.tryButton,
-            Platform.OS !== 'ios' && { backgroundColor: theme.dark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.08)' }
-          ]} glassEffectStyle="clear">
-            <Text style={[styles.tryButtonText, { color: theme.colors.primary }]}>Try It</Text>
-          </GlassView>
-        </Pressable>
-      </Link>
-    </GlassView>
-  );
+  const stats = [
+    { label: 'Total Cards', value: flashcards.length, icon: 'square.stack.3d.up.fill', color: colors.primary },
+    { label: 'Bookmarked', value: getBookmarkedFlashcards().length, icon: 'bookmark.fill', color: colors.secondary },
+    { label: 'Favorites', value: getFavoriteFlashcards().length, icon: 'heart.fill', color: colors.error },
+    { label: 'Reviewed', value: flashcards.filter(c => c.reviewCount > 0).length, icon: 'checkmark.circle.fill', color: colors.success },
+  ];
 
-  const renderHeaderRight = () => (
-    <Pressable
-      onPress={() => Alert.alert("Not Implemented", "This feature is not implemented yet")}
-      style={styles.headerButtonContainer}
-    >
-      <IconSymbol name="plus" color={theme.colors.primary} />
-    </Pressable>
-  );
+  const handleTopicPress = (topicName: string) => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    router.push({
+      pathname: '/(tabs)/(home)/flashcards',
+      params: { topic: topicName }
+    });
+  };
 
-  const renderHeaderLeft = () => (
-    <Pressable
-      onPress={() => Alert.alert("Not Implemented", "This feature is not implemented yet")}
-      style={styles.headerButtonContainer}
-    >
-      <IconSymbol
-        name="gear"
-        color={theme.colors.primary}
-      />
-    </Pressable>
-  );
+  const handleQuickStart = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    router.push('/(tabs)/(home)/flashcards');
+  };
+
+  const handleQuizMode = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    router.push('/(tabs)/(home)/quiz');
+  };
+
+  const handleAdminPanel = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    router.push('/(tabs)/(home)/admin');
+  };
 
   return (
     <>
       {Platform.OS === 'ios' && (
         <Stack.Screen
           options={{
-            title: "Building the app...",
-            headerRight: renderHeaderRight,
-            headerLeft: renderHeaderLeft,
+            title: 'MedLearn Cardiology',
+            headerRight: () => (
+              <Pressable onPress={handleAdminPanel} style={styles.headerButton}>
+                <IconSymbol name="gear" color={colors.primary} size={24} />
+              </Pressable>
+            ),
           }}
         />
       )}
-      <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-        <FlatList
-          data={modalDemos}
-          renderItem={renderModalDemo}
-          keyExtractor={(item) => item.route}
-          contentContainerStyle={[
-            styles.listContainer,
-            Platform.OS !== 'ios' && styles.listContainerWithTabBar
-          ]}
-          contentInsetAdjustmentBehavior="automatic"
-          showsVerticalScrollIndicator={false}
-        />
-      </View>
+      <ScrollView 
+        style={commonStyles.container}
+        contentContainerStyle={[
+          styles.scrollContent,
+          Platform.OS !== 'ios' && styles.scrollContentWithTabBar
+        ]}
+      >
+        <View style={styles.header}>
+          <Text style={styles.title}>MedLearn</Text>
+          <Text style={styles.subtitle}>Cardiology Flashcards</Text>
+          <Text style={styles.description}>
+            Master cardiology concepts with high-yield flashcards and clinical pearls
+          </Text>
+        </View>
+
+        <View style={styles.statsContainer}>
+          {stats.map((stat, index) => (
+            <View key={index} style={styles.statCard}>
+              <IconSymbol name={stat.icon as any} size={28} color={stat.color} />
+              <Text style={styles.statValue}>{stat.value}</Text>
+              <Text style={styles.statLabel}>{stat.label}</Text>
+            </View>
+          ))}
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Quick Actions</Text>
+          <View style={styles.actionButtons}>
+            <Pressable onPress={handleQuickStart} style={[styles.actionButton, { backgroundColor: colors.primary }]}>
+              <IconSymbol name="play.fill" size={24} color={colors.card} />
+              <Text style={styles.actionButtonText}>Start Review</Text>
+            </Pressable>
+            <Pressable onPress={handleQuizMode} style={[styles.actionButton, { backgroundColor: colors.secondary }]}>
+              <IconSymbol name="questionmark.circle.fill" size={24} color={colors.card} />
+              <Text style={styles.actionButtonText}>Quiz Mode</Text>
+            </Pressable>
+          </View>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Topics</Text>
+          <View style={styles.topicsGrid}>
+            {topics.map((topic, index) => (
+              <Pressable
+                key={index}
+                onPress={() => handleTopicPress(topic.name)}
+                style={styles.topicCard}
+              >
+                <View style={[styles.topicIcon, { backgroundColor: topic.color }]}>
+                  <IconSymbol name={topic.icon as any} size={32} color={colors.card} />
+                </View>
+                <Text style={styles.topicName}>{topic.name}</Text>
+                <Text style={styles.topicCount}>
+                  {getFlashcardsByTopic(topic.name).length} cards
+                </Text>
+              </Pressable>
+            ))}
+          </View>
+        </View>
+
+        {Platform.OS !== 'ios' && (
+          <View style={styles.section}>
+            <Pressable onPress={handleAdminPanel} style={styles.adminButton}>
+              <IconSymbol name="gear" size={20} color={colors.primary} />
+              <Text style={styles.adminButtonText}>Admin Panel</Text>
+            </Pressable>
+          </View>
+        )}
+      </ScrollView>
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  scrollContent: {
+    padding: 20,
+  },
+  scrollContentWithTabBar: {
+    paddingBottom: 100,
+  },
+  header: {
+    marginBottom: 24,
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: '800',
+    color: colors.text,
+    marginBottom: 4,
+  },
+  subtitle: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: colors.primary,
+    marginBottom: 8,
+  },
+  description: {
+    fontSize: 16,
+    color: colors.textSecondary,
+    lineHeight: 22,
+  },
+  statsContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 12,
+    marginBottom: 24,
+  },
+  statCard: {
     flex: 1,
-    // backgroundColor handled dynamically
-  },
-  listContainer: {
-    paddingVertical: 16,
-    paddingHorizontal: 16,
-  },
-  listContainerWithTabBar: {
-    paddingBottom: 100, // Extra padding for floating tab bar
-  },
-  demoCard: {
+    minWidth: '45%',
+    backgroundColor: colors.card,
     borderRadius: 12,
     padding: 16,
+    alignItems: 'center',
+    boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
+    elevation: 3,
+  },
+  statValue: {
+    fontSize: 28,
+    fontWeight: '700',
+    color: colors.text,
+    marginTop: 8,
+  },
+  statLabel: {
+    fontSize: 12,
+    color: colors.textSecondary,
+    marginTop: 4,
+    textAlign: 'center',
+  },
+  section: {
+    marginBottom: 24,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: colors.text,
     marginBottom: 12,
+  },
+  actionButtons: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+  actionButton: {
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
+    padding: 16,
+    borderRadius: 12,
+    gap: 8,
+    boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
+    elevation: 3,
   },
-  demoIcon: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+  actionButtonText: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: colors.card,
+  },
+  topicsGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 12,
+  },
+  topicCard: {
+    flex: 1,
+    minWidth: '45%',
+    backgroundColor: colors.card,
+    borderRadius: 12,
+    padding: 16,
+    alignItems: 'center',
+    boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
+    elevation: 3,
+  },
+  topicIcon: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 16,
+    marginBottom: 12,
   },
-  demoContent: {
-    flex: 1,
-  },
-  demoTitle: {
-    fontSize: 18,
+  topicName: {
+    fontSize: 14,
     fontWeight: '600',
+    color: colors.text,
+    textAlign: 'center',
     marginBottom: 4,
-    // color handled dynamically
   },
-  demoDescription: {
-    fontSize: 14,
-    lineHeight: 18,
-    // color handled dynamically
+  topicCount: {
+    fontSize: 12,
+    color: colors.textSecondary,
   },
-  headerButtonContainer: {
-    padding: 6,
+  headerButton: {
+    padding: 8,
   },
-  tryButton: {
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 6,
+  adminButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.card,
+    padding: 12,
+    borderRadius: 8,
+    gap: 8,
+    borderWidth: 1,
+    borderColor: colors.primary,
   },
-  tryButtonText: {
-    fontSize: 14,
+  adminButtonText: {
+    fontSize: 16,
     fontWeight: '600',
-    // color handled dynamically
+    color: colors.primary,
   },
 });

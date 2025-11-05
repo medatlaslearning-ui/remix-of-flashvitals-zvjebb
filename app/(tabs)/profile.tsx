@@ -1,91 +1,307 @@
-import React from "react";
-import { View, Text, StyleSheet, ScrollView, Platform } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { IconSymbol } from "@/components/IconSymbol";
-import { GlassView } from "expo-glass-effect";
-import { useTheme } from "@react-navigation/native";
+
+import React from 'react';
+import { View, Text, StyleSheet, ScrollView, Platform } from 'react-native';
+import { Stack } from 'expo-router';
+import { colors, commonStyles } from '@/styles/commonStyles';
+import { useFlashcards } from '@/hooks/useFlashcards';
+import { IconSymbol } from '@/components/IconSymbol';
 
 export default function ProfileScreen() {
-  const theme = useTheme();
+  const { flashcards, getBookmarkedFlashcards, getFavoriteFlashcards } = useFlashcards();
+
+  const totalReviews = flashcards.reduce((sum, card) => sum + card.reviewCount, 0);
+  const reviewedCards = flashcards.filter(c => c.reviewCount > 0).length;
+  const averageReviews = reviewedCards > 0 ? Math.round(totalReviews / reviewedCards) : 0;
+
+  const stats = [
+    {
+      label: 'Total Cards',
+      value: flashcards.length,
+      icon: 'square.stack.3d.up.fill',
+      color: colors.primary,
+    },
+    {
+      label: 'Cards Reviewed',
+      value: reviewedCards,
+      icon: 'checkmark.circle.fill',
+      color: colors.success,
+    },
+    {
+      label: 'Total Reviews',
+      value: totalReviews,
+      icon: 'arrow.clockwise',
+      color: colors.secondary,
+    },
+    {
+      label: 'Avg Reviews/Card',
+      value: averageReviews,
+      icon: 'chart.bar.fill',
+      color: colors.warning,
+    },
+    {
+      label: 'Bookmarked',
+      value: getBookmarkedFlashcards().length,
+      icon: 'bookmark.fill',
+      color: colors.primary,
+    },
+    {
+      label: 'Favorites',
+      value: getFavoriteFlashcards().length,
+      icon: 'heart.fill',
+      color: colors.error,
+    },
+  ];
+
+  const topicBreakdown = [
+    { name: 'Arrhythmias', count: flashcards.filter(c => c.topic === 'Arrhythmias').length },
+    { name: 'Heart Failure', count: flashcards.filter(c => c.topic === 'Heart Failure').length },
+    { name: 'Ischemic Heart Disease', count: flashcards.filter(c => c.topic === 'Ischemic Heart Disease').length },
+    { name: 'Valvular Disease', count: flashcards.filter(c => c.topic === 'Valvular Disease').length },
+  ];
 
   return (
-    <SafeAreaView style={[styles.safeArea, { backgroundColor: theme.colors.background }]} edges={['top']}>
-      <ScrollView
-        style={styles.container}
+    <>
+      {Platform.OS === 'ios' && (
+        <Stack.Screen
+          options={{
+            title: 'Profile & Stats',
+          }}
+        />
+      )}
+      <ScrollView 
+        style={commonStyles.container}
         contentContainerStyle={[
-          styles.contentContainer,
-          Platform.OS !== 'ios' && styles.contentContainerWithTabBar
+          styles.scrollContent,
+          Platform.OS !== 'ios' && styles.scrollContentWithTabBar
         ]}
       >
-        <GlassView style={[
-          styles.profileHeader,
-          Platform.OS !== 'ios' && { backgroundColor: theme.dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }
-        ]} glassEffectStyle="regular">
-          <IconSymbol name="person.circle.fill" size={80} color={theme.colors.primary} />
-          <Text style={[styles.name, { color: theme.colors.text }]}>John Doe</Text>
-          <Text style={[styles.email, { color: theme.dark ? '#98989D' : '#666' }]}>john.doe@example.com</Text>
-        </GlassView>
+        <View style={styles.header}>
+          <View style={styles.avatarContainer}>
+            <IconSymbol name="person.circle.fill" size={80} color={colors.primary} />
+          </View>
+          <Text style={styles.name}>Medical Learner</Text>
+          <Text style={styles.specialty}>Cardiology Student</Text>
+        </View>
 
-        <GlassView style={[
-          styles.section,
-          Platform.OS !== 'ios' && { backgroundColor: theme.dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }
-        ]} glassEffectStyle="regular">
-          <View style={styles.infoRow}>
-            <IconSymbol name="phone.fill" size={20} color={theme.dark ? '#98989D' : '#666'} />
-            <Text style={[styles.infoText, { color: theme.colors.text }]}>+1 (555) 123-4567</Text>
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Your Progress</Text>
+          <View style={styles.statsGrid}>
+            {stats.map((stat, index) => (
+              <View key={index} style={styles.statCard}>
+                <IconSymbol name={stat.icon as any} size={32} color={stat.color} />
+                <Text style={styles.statValue}>{stat.value}</Text>
+                <Text style={styles.statLabel}>{stat.label}</Text>
+              </View>
+            ))}
           </View>
-          <View style={styles.infoRow}>
-            <IconSymbol name="location.fill" size={20} color={theme.dark ? '#98989D' : '#666'} />
-            <Text style={[styles.infoText, { color: theme.colors.text }]}>San Francisco, CA</Text>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Topic Breakdown</Text>
+          <View style={styles.topicList}>
+            {topicBreakdown.map((topic, index) => {
+              const percentage = flashcards.length > 0 
+                ? Math.round((topic.count / flashcards.length) * 100) 
+                : 0;
+              
+              return (
+                <View key={index} style={styles.topicItem}>
+                  <View style={styles.topicInfo}>
+                    <Text style={styles.topicName}>{topic.name}</Text>
+                    <Text style={styles.topicCount}>{topic.count} cards</Text>
+                  </View>
+                  <View style={styles.progressBarContainer}>
+                    <View style={[styles.progressBarFill, { width: `${percentage}%` }]} />
+                  </View>
+                  <Text style={styles.percentageText}>{percentage}%</Text>
+                </View>
+              );
+            })}
           </View>
-        </GlassView>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Study Streak</Text>
+          <View style={styles.streakCard}>
+            <IconSymbol name="flame.fill" size={48} color={colors.warning} />
+            <Text style={styles.streakValue}>Coming Soon</Text>
+            <Text style={styles.streakLabel}>Track your daily study streak</Text>
+          </View>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Achievements</Text>
+          <View style={styles.achievementsGrid}>
+            <View style={styles.achievementCard}>
+              <IconSymbol name="star.fill" size={32} color={colors.warning} />
+              <Text style={styles.achievementName}>First Review</Text>
+              <Text style={styles.achievementStatus}>
+                {reviewedCards > 0 ? '✓ Unlocked' : 'Locked'}
+              </Text>
+            </View>
+            <View style={styles.achievementCard}>
+              <IconSymbol name="trophy.fill" size={32} color={colors.warning} />
+              <Text style={styles.achievementName}>Quiz Master</Text>
+              <Text style={styles.achievementStatus}>Coming Soon</Text>
+            </View>
+            <View style={styles.achievementCard}>
+              <IconSymbol name="bolt.fill" size={32} color={colors.warning} />
+              <Text style={styles.achievementName}>Speed Learner</Text>
+              <Text style={styles.achievementStatus}>Coming Soon</Text>
+            </View>
+          </View>
+        </View>
       </ScrollView>
-    </SafeAreaView>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    // backgroundColor handled dynamically
-  },
-  container: {
-    flex: 1,
-  },
-  contentContainer: {
+  scrollContent: {
     padding: 20,
   },
-  contentContainerWithTabBar: {
-    paddingBottom: 100, // Extra padding for floating tab bar
+  scrollContentWithTabBar: {
+    paddingBottom: 100,
   },
-  profileHeader: {
+  header: {
     alignItems: 'center',
-    borderRadius: 12,
-    padding: 32,
+    marginBottom: 32,
+  },
+  avatarContainer: {
     marginBottom: 16,
-    gap: 12,
   },
   name: {
     fontSize: 24,
-    fontWeight: 'bold',
-    // color handled dynamically
+    fontWeight: '700',
+    color: colors.text,
+    marginBottom: 4,
   },
-  email: {
+  specialty: {
     fontSize: 16,
-    // color handled dynamically
+    color: colors.textSecondary,
   },
   section: {
-    borderRadius: 12,
-    padding: 20,
-    gap: 12,
+    marginBottom: 32,
   },
-  infoRow: {
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: colors.text,
+    marginBottom: 16,
+  },
+  statsGrid: {
     flexDirection: 'row',
-    alignItems: 'center',
+    flexWrap: 'wrap',
     gap: 12,
   },
-  infoText: {
+  statCard: {
+    flex: 1,
+    minWidth: '30%',
+    backgroundColor: colors.card,
+    borderRadius: 12,
+    padding: 16,
+    alignItems: 'center',
+    boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
+    elevation: 3,
+  },
+  statValue: {
+    fontSize: 24,
+    fontWeight: '700',
+    color: colors.text,
+    marginTop: 8,
+  },
+  statLabel: {
+    fontSize: 11,
+    color: colors.textSecondary,
+    marginTop: 4,
+    textAlign: 'center',
+  },
+  topicList: {
+    gap: 16,
+  },
+  topicItem: {
+    backgroundColor: colors.card,
+    borderRadius: 12,
+    padding: 16,
+    boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
+    elevation: 3,
+  },
+  topicInfo: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  topicName: {
     fontSize: 16,
-    // color handled dynamically
+    fontWeight: '600',
+    color: colors.text,
+  },
+  topicCount: {
+    fontSize: 14,
+    color: colors.textSecondary,
+  },
+  progressBarContainer: {
+    height: 8,
+    backgroundColor: colors.highlight,
+    borderRadius: 4,
+    overflow: 'hidden',
+    marginBottom: 4,
+  },
+  progressBarFill: {
+    height: '100%',
+    backgroundColor: colors.primary,
+    borderRadius: 4,
+  },
+  percentageText: {
+    fontSize: 12,
+    color: colors.textSecondary,
+    textAlign: 'right',
+  },
+  streakCard: {
+    backgroundColor: colors.card,
+    borderRadius: 12,
+    padding: 32,
+    alignItems: 'center',
+    boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
+    elevation: 3,
+  },
+  streakValue: {
+    fontSize: 32,
+    fontWeight: '700',
+    color: colors.text,
+    marginTop: 12,
+  },
+  streakLabel: {
+    fontSize: 14,
+    color: colors.textSecondary,
+    marginTop: 4,
+  },
+  achievementsGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 12,
+  },
+  achievementCard: {
+    flex: 1,
+    minWidth: '30%',
+    backgroundColor: colors.card,
+    borderRadius: 12,
+    padding: 16,
+    alignItems: 'center',
+    boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
+    elevation: 3,
+  },
+  achievementName: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: colors.text,
+    marginTop: 8,
+    textAlign: 'center',
+  },
+  achievementStatus: {
+    fontSize: 10,
+    color: colors.textSecondary,
+    marginTop: 4,
   },
 });
