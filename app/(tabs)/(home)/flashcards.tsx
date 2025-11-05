@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, Pressable, Alert } from 'react-native';
+import { View, Text, StyleSheet, Pressable, Alert, Platform } from 'react-native';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { FlashcardComponent } from '@/components/FlashcardComponent';
 import { colors, commonStyles } from '@/styles/commonStyles';
@@ -219,6 +219,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 16,
+    paddingBottom: Platform.OS === 'ios' ? 100 : 110,
     backgroundColor: colors.card,
     boxShadow: '0px -2px 4px rgba(0, 0, 0, 0.1)',
     elevation: 2,
