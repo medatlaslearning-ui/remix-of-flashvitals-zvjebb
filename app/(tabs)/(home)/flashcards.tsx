@@ -90,12 +90,20 @@ export default function FlashcardsScreen() {
 
   if (flashcards.length === 0) {
     return (
-      <View style={[commonStyles.container, commonStyles.center]}>
-        <Text style={styles.emptyText}>No flashcards available</Text>
-        <Pressable onPress={() => router.back()} style={styles.backButton}>
-          <Text style={styles.backButtonText}>Go Back</Text>
-        </Pressable>
-      </View>
+      <>
+        <Stack.Screen
+          options={{
+            title: topic || 'All Cards',
+            headerBackTitle: 'Back',
+          }}
+        />
+        <View style={[commonStyles.container, commonStyles.center]}>
+          <Text style={styles.emptyText}>No flashcards available</Text>
+          <Pressable onPress={() => router.back()} style={styles.backButton}>
+            <Text style={styles.backButtonText}>Go Back</Text>
+          </Pressable>
+        </View>
+      </>
     );
   }
 
