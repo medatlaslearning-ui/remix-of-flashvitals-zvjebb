@@ -328,5 +328,87 @@ export const cardiologyFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0,
     difficulty: 'medium'
+  },
+
+  // NEW Heart Failure Flashcards
+  {
+    id: '21',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'What is the defining feature of systolic heart failure (HFrEF)?',
+    back: {
+      definition: 'Systolic HF is characterized by reduced left ventricular ejection fraction (LVEF < 40%), indicating impaired contraction.',
+      high_yield: '↓ EF, thin ventricular walls, dilated LV on echo.',
+      clinical_pearl: 'Most common cause is ischemic heart disease. Patients often have fatigue, dyspnea, and volume overload.'
+    },
+    tags: ['Heart Failure', 'HFrEF', 'Systolic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '22',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'What is the main pathophysiology of diastolic heart failure (HFpEF)?',
+    back: {
+      definition: 'HFpEF occurs when the heart contracts normally but has impaired relaxation and filling during diastole.',
+      high_yield: 'Preserved EF (>50%), stiff LV, normal ventricular size.',
+      clinical_pearl: 'Common in older adults, hypertensive patients, and those with diabetes. Often presents with exertional dyspnea.'
+    },
+    tags: ['Heart Failure', 'HFpEF', 'Diastolic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '23',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'What are the classic symptoms of heart failure?',
+    back: {
+      definition: 'Heart failure causes symptoms due to congestion (fluid backup) and low cardiac output.',
+      high_yield: 'Dyspnea on exertion, orthopnea, paroxysmal nocturnal dyspnea, edema, fatigue.',
+      clinical_pearl: 'Weight gain over days may indicate fluid retention and worsening HF.'
+    },
+    tags: ['Heart Failure', 'Symptoms', 'Clinical Presentation'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '24',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'Which labs and imaging findings support a diagnosis of heart failure?',
+    back: {
+      definition: 'HF diagnosis is supported by elevated biomarkers and structural changes on imaging.',
+      high_yield: '↑ BNP/NT-proBNP, CXR: cardiomegaly, pulmonary congestion; Echo: reduced EF (HFrEF) or normal EF with diastolic dysfunction (HFpEF).',
+      clinical_pearl: 'BNP helps differentiate dyspnea from HF vs. lung disease.'
+    },
+    tags: ['Heart Failure', 'Diagnosis', 'Labs', 'Imaging'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '25',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'What are first-line medications for systolic heart failure (HFrEF)?',
+    back: {
+      definition: 'Pharmacologic therapy improves survival and symptoms in HFrEF.',
+      high_yield: 'ACE inhibitors/ARBs/ARNIs, beta-blockers, mineralocorticoid receptor antagonists, SGLT2 inhibitors.',
+      clinical_pearl: 'Start low and titrate carefully; monitor kidney function and electrolytes.'
+    },
+    tags: ['Heart Failure', 'HFrEF', 'Medications', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
   }
 ];
