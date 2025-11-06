@@ -2309,6 +2309,118 @@ export const cardiologyFlashcards: Flashcard[] = [
     reviewCount: 0,
     difficulty: 'difficult'
   },
+  {
+    id: '149',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'Coronary microvascular disease?',
+    back: {
+      definition: 'Small vessel dysfunction',
+      high_yield: 'Normal angiogram',
+      clinical_pearl: 'Common in women'
+    },
+    tags: ['Microvascular Disease', 'IHD', 'Women'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '150',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'Left main disease clue?',
+    back: {
+      definition: 'Diffuse ST depression + aVR elevation',
+      high_yield: 'High mortality',
+      clinical_pearl: 'Urgent revascularization'
+    },
+    tags: ['Left Main Disease', 'ECG', 'Emergency'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '151',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'Wellens syndrome?',
+    back: {
+      definition: 'Deep T-wave inversions V2–V3',
+      high_yield: 'Critical LAD stenosis',
+      clinical_pearl: 'Do NOT stress test'
+    },
+    tags: ['Wellens Syndrome', 'LAD', 'ECG'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '152',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'De Winter pattern?',
+    back: {
+      definition: 'Up-sloping ST depression V1–V3 + tall T waves',
+      high_yield: 'LAD occlusion',
+      clinical_pearl: 'STEMI equivalent'
+    },
+    tags: ['De Winter Pattern', 'LAD', 'STEMI Equivalent'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '153',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'Posterior MI clues?',
+    back: {
+      definition: 'ST depression V1–V3',
+      high_yield: 'Tall R waves',
+      clinical_pearl: 'Get posterior leads'
+    },
+    tags: ['Posterior MI', 'ECG', 'MI'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '154',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'Type 2 MI?',
+    back: {
+      definition: 'Supply–demand mismatch',
+      high_yield: 'Sepsis, anemia, tachycardia',
+      clinical_pearl: 'Not plaque rupture'
+    },
+    tags: ['Type 2 MI', 'MI', 'Pathophysiology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '155',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'Takotsubo mimic?',
+    back: {
+      definition: 'Stress-induced cardiomyopathy',
+      high_yield: 'Apical ballooning',
+      clinical_pearl: 'Normal coronaries'
+    },
+    tags: ['Takotsubo', 'Stress Cardiomyopathy', 'MI Mimic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
 
   // Valvular Disease
   {
