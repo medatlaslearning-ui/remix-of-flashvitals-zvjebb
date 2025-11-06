@@ -84,6 +84,200 @@ export const cardiologyFlashcards: Flashcard[] = [
     difficulty: 'hard'
   },
 
+  // NEW Arrhythmias Flashcards (Cards #6-17)
+  {
+    id: '26',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What ECG pattern defines atrial flutter?',
+    back: {
+      definition: 'Atrial flutter shows sawtooth "F-waves" due to rapid atrial activity.',
+      high_yield: 'Atrial rate 250–350 bpm; fixed AV conduction (2:1 or 4:1).',
+      clinical_pearl: 'Flutter may convert to AFib; radiofrequency ablation is highly effective.'
+    },
+    tags: ['Atrial Flutter', 'ECG', 'Arrhythmia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '27',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What causes AV nodal reentrant tachycardia (AVNRT)?',
+    back: {
+      definition: 'Reentry circuit within the AV node using slow and fast pathways.',
+      high_yield: 'Regular narrow-complex tachycardia 150–250 bpm.',
+      clinical_pearl: 'Vagal maneuvers or adenosine terminate most episodes.'
+    },
+    tags: ['AVNRT', 'Arrhythmia', 'Mechanism'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '28',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What defines atrioventricular reentrant tachycardia (AVRT)?',
+    back: {
+      definition: 'A reentry circuit involving an accessory pathway (e.g., WPW).',
+      high_yield: 'Orthodromic = narrow QRS; Antidromic = wide QRS.',
+      clinical_pearl: 'Avoid AV nodal blockers in WPW with AF — use procainamide.'
+    },
+    tags: ['AVRT', 'WPW', 'Arrhythmia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: '29',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What are the classic ECG findings of WPW?',
+    back: {
+      definition: 'WPW involves a congenital accessory pathway (Bundle of Kent).',
+      high_yield: 'Short PR interval, delta wave, wide QRS.',
+      clinical_pearl: 'Risk of rapid conduction in AF → unstable ventricular response.'
+    },
+    tags: ['WPW', 'ECG', 'Arrhythmia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '30',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What is the hallmark of paroxysmal supraventricular tachycardia (PSVT)?',
+    back: {
+      definition: 'Abrupt onset and termination of narrow-complex tachycardia.',
+      high_yield: 'HR 150–250; usually AVNRT.',
+      clinical_pearl: 'Vagal maneuvers and adenosine are first-line.'
+    },
+    tags: ['PSVT', 'SVT', 'Arrhythmia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '31',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What suggests VT instead of SVT with aberrancy?',
+    back: {
+      definition: 'VT originates from the ventricles with wide QRS.',
+      high_yield: 'AV dissociation, fusion beats, capture beats.',
+      clinical_pearl: 'If unsure → treat as VT for safety.'
+    },
+    tags: ['VT', 'SVT', 'Differential Diagnosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: '32',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What defines ventricular tachycardia (VT)?',
+    back: {
+      definition: '≥3 consecutive ventricular beats at >100 bpm.',
+      high_yield: 'Wide QRS; monomorphic vs polymorphic.',
+      clinical_pearl: 'Most common after MI due to scar reentry.'
+    },
+    tags: ['VT', 'Arrhythmia', 'Definition'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '33',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What increases risk of Torsades de Pointes?',
+    back: {
+      definition: 'Polymorphic VT associated with prolonged QT interval.',
+      high_yield: 'Hypokalemia, hypomagnesemia, medications (e.g., sotalol).',
+      clinical_pearl: 'Treat acute torsades with IV magnesium.'
+    },
+    tags: ['Torsades', 'QT', 'Risk Factors'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: '34',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What defines a bradyarrhythmia?',
+    back: {
+      definition: 'HR < 60 bpm with symptomatic beats or conduction issues.',
+      high_yield: 'Sinus bradycardia, AV block, junctional rhythms.',
+      clinical_pearl: 'Evaluate medications (BB, CCB), hypothyroidism.'
+    },
+    tags: ['Bradycardia', 'Arrhythmia', 'Definition'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '35',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What characterizes first-degree AV block?',
+    back: {
+      definition: 'Prolonged PR interval > 200 ms.',
+      high_yield: 'All P waves conducted; usually benign.',
+      clinical_pearl: 'Can worsen with AV nodal–blocking medications.'
+    },
+    tags: ['AV Block', 'First-Degree', 'ECG'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '36',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What defines Mobitz I?',
+    back: {
+      definition: 'Progressive PR lengthening → dropped QRS.',
+      high_yield: 'Usually at AV node; usually benign.',
+      clinical_pearl: 'Often vagally mediated; improves with exercise.'
+    },
+    tags: ['AV Block', 'Mobitz I', 'Wenckebach'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '37',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What defines Mobitz II?',
+    back: {
+      definition: 'Intermittent dropped QRS without PR changes.',
+      high_yield: 'Typically below AV node; unstable.',
+      clinical_pearl: 'High risk of complete heart block → needs pacemaker.'
+    },
+    tags: ['AV Block', 'Mobitz II', 'Pacemaker'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+
   // Heart Failure
   {
     id: '6',
@@ -160,6 +354,86 @@ export const cardiologyFlashcards: Flashcard[] = [
       clinical_pearl: 'Wait 40 days post-MI and 90 days post-revascularization before ICD for primary prevention. CRT-D if QRS ≥150ms with LBBB.'
     },
     tags: ['Heart Failure', 'ICD', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: '21',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'What is the defining feature of systolic heart failure (HFrEF)?',
+    back: {
+      definition: 'Systolic HF is characterized by reduced left ventricular ejection fraction (LVEF < 40%), indicating impaired contraction.',
+      high_yield: '↓ EF, thin ventricular walls, dilated LV on echo.',
+      clinical_pearl: 'Most common cause is ischemic heart disease. Patients often have fatigue, dyspnea, and volume overload.'
+    },
+    tags: ['Heart Failure', 'HFrEF', 'Systolic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '22',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'What is the main pathophysiology of diastolic heart failure (HFpEF)?',
+    back: {
+      definition: 'HFpEF occurs when the heart contracts normally but has impaired relaxation and filling during diastole.',
+      high_yield: 'Preserved EF (>50%), stiff LV, normal ventricular size.',
+      clinical_pearl: 'Common in older adults, hypertensive patients, and those with diabetes. Often presents with exertional dyspnea.'
+    },
+    tags: ['Heart Failure', 'HFpEF', 'Diastolic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '23',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'What are the classic symptoms of heart failure?',
+    back: {
+      definition: 'Heart failure causes symptoms due to congestion (fluid backup) and low cardiac output.',
+      high_yield: 'Dyspnea on exertion, orthopnea, paroxysmal nocturnal dyspnea, edema, fatigue.',
+      clinical_pearl: 'Weight gain over days may indicate fluid retention and worsening HF.'
+    },
+    tags: ['Heart Failure', 'Symptoms', 'Clinical Presentation'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '24',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'Which labs and imaging findings support a diagnosis of heart failure?',
+    back: {
+      definition: 'HF diagnosis is supported by elevated biomarkers and structural changes on imaging.',
+      high_yield: '↑ BNP/NT-proBNP, CXR: cardiomegaly, pulmonary congestion; Echo: reduced EF (HFrEF) or normal EF with diastolic dysfunction (HFpEF).',
+      clinical_pearl: 'BNP helps differentiate dyspnea from HF vs. lung disease.'
+    },
+    tags: ['Heart Failure', 'Diagnosis', 'Labs', 'Imaging'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '25',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'What are first-line medications for systolic heart failure (HFrEF)?',
+    back: {
+      definition: 'Pharmacologic therapy improves survival and symptoms in HFrEF.',
+      high_yield: 'ACE inhibitors/ARBs/ARNIs, beta-blockers, mineralocorticoid receptor antagonists, SGLT2 inhibitors.',
+      clinical_pearl: 'Start low and titrate carefully; monitor kidney function and electrolytes.'
+    },
+    tags: ['Heart Failure', 'HFrEF', 'Medications', 'Treatment'],
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
@@ -328,87 +602,5 @@ export const cardiologyFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0,
     difficulty: 'medium'
-  },
-
-  // NEW Heart Failure Flashcards
-  {
-    id: '21',
-    system: 'Cardiology',
-    topic: 'Heart Failure',
-    front: 'What is the defining feature of systolic heart failure (HFrEF)?',
-    back: {
-      definition: 'Systolic HF is characterized by reduced left ventricular ejection fraction (LVEF < 40%), indicating impaired contraction.',
-      high_yield: '↓ EF, thin ventricular walls, dilated LV on echo.',
-      clinical_pearl: 'Most common cause is ischemic heart disease. Patients often have fatigue, dyspnea, and volume overload.'
-    },
-    tags: ['Heart Failure', 'HFrEF', 'Systolic'],
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    difficulty: 'medium'
-  },
-  {
-    id: '22',
-    system: 'Cardiology',
-    topic: 'Heart Failure',
-    front: 'What is the main pathophysiology of diastolic heart failure (HFpEF)?',
-    back: {
-      definition: 'HFpEF occurs when the heart contracts normally but has impaired relaxation and filling during diastole.',
-      high_yield: 'Preserved EF (>50%), stiff LV, normal ventricular size.',
-      clinical_pearl: 'Common in older adults, hypertensive patients, and those with diabetes. Often presents with exertional dyspnea.'
-    },
-    tags: ['Heart Failure', 'HFpEF', 'Diastolic'],
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    difficulty: 'medium'
-  },
-  {
-    id: '23',
-    system: 'Cardiology',
-    topic: 'Heart Failure',
-    front: 'What are the classic symptoms of heart failure?',
-    back: {
-      definition: 'Heart failure causes symptoms due to congestion (fluid backup) and low cardiac output.',
-      high_yield: 'Dyspnea on exertion, orthopnea, paroxysmal nocturnal dyspnea, edema, fatigue.',
-      clinical_pearl: 'Weight gain over days may indicate fluid retention and worsening HF.'
-    },
-    tags: ['Heart Failure', 'Symptoms', 'Clinical Presentation'],
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    difficulty: 'easy'
-  },
-  {
-    id: '24',
-    system: 'Cardiology',
-    topic: 'Heart Failure',
-    front: 'Which labs and imaging findings support a diagnosis of heart failure?',
-    back: {
-      definition: 'HF diagnosis is supported by elevated biomarkers and structural changes on imaging.',
-      high_yield: '↑ BNP/NT-proBNP, CXR: cardiomegaly, pulmonary congestion; Echo: reduced EF (HFrEF) or normal EF with diastolic dysfunction (HFpEF).',
-      clinical_pearl: 'BNP helps differentiate dyspnea from HF vs. lung disease.'
-    },
-    tags: ['Heart Failure', 'Diagnosis', 'Labs', 'Imaging'],
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    difficulty: 'medium'
-  },
-  {
-    id: '25',
-    system: 'Cardiology',
-    topic: 'Heart Failure',
-    front: 'What are first-line medications for systolic heart failure (HFrEF)?',
-    back: {
-      definition: 'Pharmacologic therapy improves survival and symptoms in HFrEF.',
-      high_yield: 'ACE inhibitors/ARBs/ARNIs, beta-blockers, mineralocorticoid receptor antagonists, SGLT2 inhibitors.',
-      clinical_pearl: 'Start low and titrate carefully; monitor kidney function and electrolytes.'
-    },
-    tags: ['Heart Failure', 'HFrEF', 'Medications', 'Treatment'],
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    difficulty: 'hard'
   }
 ];
