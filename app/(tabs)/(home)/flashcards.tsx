@@ -23,23 +23,28 @@ export default function FlashcardsScreen() {
   } = useFlashcards();
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [flashcards, setFlashcards] = useState<Flashcard[]>([]);
+  const [flashcardIds, setFlashcardIds] = useState<string[]>([]);
   const [incorrectCards, setIncorrectCards] = useState<string[]>([]);
   
   // Track which cards have been reviewed to prevent duplicate increments
   const reviewedCardsRef = useRef<Set<string>>(new Set());
 
-  // Initialize flashcards only once when component mounts or topic changes
+  // Initialize flashcard IDs only once when component mounts or topic changes
   useEffect(() => {
     let cards = topic ? getFlashcardsByTopic(topic) : allFlashcards;
     
     // Shuffle cards for variety
     cards = [...cards].sort(() => Math.random() - 0.5);
     
-    setFlashcards(cards);
+    setFlashcardIds(cards.map(c => c.id));
     setCurrentIndex(0);
     reviewedCardsRef.current.clear(); // Reset reviewed cards when flashcards change
-  }, [topic]); // Only depend on topic, not allFlashcards
+  }, [topic]); // Only depend on topic
+
+  // Get current flashcards from the global state using the IDs
+  const flashcards = flashcardIds
+    .map(id => allFlashcards.find(card => card.id === id))
+    .filter((card): card is Flashcard => card !== undefined);
 
   // Increment review count only when moving to a new card
   useEffect(() => {
@@ -53,7 +58,7 @@ export default function FlashcardsScreen() {
         reviewedCardsRef.current.add(cardId);
       }
     }
-  }, [currentIndex]); // Only depend on currentIndex
+  }, [currentIndex, flashcards.length]); // Depend on currentIndex and flashcards.length
 
   const handleNext = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -70,8 +75,7 @@ export default function FlashcardsScreen() {
             {
               text: 'Review Again',
               onPress: () => {
-                const cardsToReview = flashcards.filter(c => incorrectCards.includes(c.id));
-                setFlashcards(cardsToReview);
+                setFlashcardIds(incorrectCards);
                 setCurrentIndex(0);
                 setIncorrectCards([]);
                 reviewedCardsRef.current.clear(); // Reset for new review session
