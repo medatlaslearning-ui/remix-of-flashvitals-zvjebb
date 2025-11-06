@@ -278,6 +278,264 @@ export const cardiologyFlashcards: Flashcard[] = [
     difficulty: 'hard'
   },
 
+  // NEW Arrhythmias Flashcards (Cards #18-33)
+  {
+    id: '38',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What defines complete heart block?',
+    back: {
+      definition: 'No atrial impulses conduct; atria and ventricles beat independently.',
+      high_yield: 'Slow junctional or ventricular escape rhythm.',
+      clinical_pearl: 'Requires urgent pacing.'
+    },
+    tags: ['AV Block', 'Third-Degree', 'Complete Heart Block'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: '39',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What is sick sinus syndrome?',
+    back: {
+      definition: 'Dysfunction of SA node causing bradycardia or pauses.',
+      high_yield: 'Brady-tachy syndrome common.',
+      clinical_pearl: 'Often requires permanent pacemaker.'
+    },
+    tags: ['Sick Sinus Syndrome', 'Bradycardia', 'Pacemaker'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '40',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What are premature atrial contractions (PACs)?',
+    back: {
+      definition: 'Early atrial beats originating outside the SA node.',
+      high_yield: 'Abnormal P-wave morphology.',
+      clinical_pearl: 'Common and usually benign.'
+    },
+    tags: ['PACs', 'Arrhythmia', 'Atrial'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '41',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What defines a premature ventricular contraction (PVC)?',
+    back: {
+      definition: 'Early beat originating from ventricles.',
+      high_yield: 'Wide, bizarre QRS not preceded by P wave.',
+      clinical_pearl: 'Evaluate for structural heart disease if frequent.'
+    },
+    tags: ['PVCs', 'Arrhythmia', 'Ventricular'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '42',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What is ventricular bigeminy?',
+    back: {
+      definition: 'PVC every other beat.',
+      high_yield: 'May occur with ischemia or electrolyte imbalance.',
+      clinical_pearl: 'Check magnesium and potassium.'
+    },
+    tags: ['Bigeminy', 'PVCs', 'Arrhythmia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '43',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What is trigeminy?',
+    back: {
+      definition: 'PVC every third beat.',
+      high_yield: 'Patterned ventricular irritability.',
+      clinical_pearl: 'Consider Holter monitor for burden.'
+    },
+    tags: ['Trigeminy', 'PVCs', 'Arrhythmia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '44',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What rate defines a junctional escape rhythm?',
+    back: {
+      definition: 'AV junction pacemaker takes over.',
+      high_yield: 'HR 40–60 bpm.',
+      clinical_pearl: 'Often occurs with sick sinus syndrome.'
+    },
+    tags: ['Junctional Rhythm', 'Bradycardia', 'Escape Rhythm'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '45',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What is accelerated junctional rhythm?',
+    back: {
+      definition: 'Junctional rhythm faster than escape but <100 bpm.',
+      high_yield: 'HR 60–100 bpm; narrow QRS.',
+      clinical_pearl: 'Seen with digoxin toxicity.'
+    },
+    tags: ['Junctional Rhythm', 'Digoxin Toxicity', 'Arrhythmia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '46',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What defines atrial tachycardia?',
+    back: {
+      definition: 'Ectopic atrial focus firing rapidly.',
+      high_yield: 'HR 150–250; abnormal P waves.',
+      clinical_pearl: 'May be triggered by stimulants or infection.'
+    },
+    tags: ['Atrial Tachycardia', 'Arrhythmia', 'Tachycardia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '47',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What defines MAT?',
+    back: {
+      definition: '≥3 P-wave morphologies and irregular rhythm.',
+      high_yield: 'Seen in COPD.',
+      clinical_pearl: 'Treat underlying pulmonary disease.'
+    },
+    tags: ['MAT', 'Multifocal Atrial Tachycardia', 'COPD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '48',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What is wandering atrial pacemaker?',
+    back: {
+      definition: 'Multiple atrial pacemaker sites.',
+      high_yield: 'Irregular rhythm with varying P waves.',
+      clinical_pearl: 'MAT precursor in COPD.'
+    },
+    tags: ['Wandering Atrial Pacemaker', 'Arrhythmia', 'COPD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '49',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What defines sinus tachycardia?',
+    back: {
+      definition: 'SA node firing >100 bpm.',
+      high_yield: 'Upright P waves before each QRS.',
+      clinical_pearl: 'Treat underlying cause, not the rhythm.'
+    },
+    tags: ['Sinus Tachycardia', 'Tachycardia', 'Arrhythmia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '50',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What defines sinus bradycardia?',
+    back: {
+      definition: 'SA node firing <60 bpm.',
+      high_yield: 'Normal P-QRS-T pattern.',
+      clinical_pearl: 'Common in athletes.'
+    },
+    tags: ['Sinus Bradycardia', 'Bradycardia', 'Arrhythmia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '51',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What is a sinus pause?',
+    back: {
+      definition: 'Temporary failure of SA node to fire.',
+      high_yield: 'Pause >2 seconds.',
+      clinical_pearl: 'Can cause dizziness or syncope.'
+    },
+    tags: ['Sinus Pause', 'Bradycardia', 'SA Node'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '52',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What is sinus arrest?',
+    back: {
+      definition: 'Prolonged SA node cessation.',
+      high_yield: 'Pause >3 seconds.',
+      clinical_pearl: 'Consider pacemaker.'
+    },
+    tags: ['Sinus Arrest', 'Bradycardia', 'Pacemaker'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '53',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What is an escape beat?',
+    back: {
+      definition: 'Backup pacemaker fires after a pause.',
+      high_yield: 'Junctional or ventricular.',
+      clinical_pearl: 'Protective mechanism.'
+    },
+    tags: ['Escape Beat', 'Arrhythmia', 'Bradycardia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+
   // Heart Failure
   {
     id: '6',
