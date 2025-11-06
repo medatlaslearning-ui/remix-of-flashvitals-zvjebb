@@ -2422,7 +2422,7 @@ export const cardiologyFlashcards: Flashcard[] = [
     difficulty: 'difficult'
   },
 
-  // Valvular Disease
+  // Valvular Disease (Original 5 cards: IDs 16-20)
   {
     id: '16',
     system: 'Cardiology',
@@ -2502,5 +2502,647 @@ export const cardiologyFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0,
     difficulty: 'medium'
+  },
+
+  // NEW Valvular Disease Flashcards (40 cards / IDs 156-195)
+  {
+    id: '156',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'What is a systolic murmur?',
+    back: {
+      definition: 'Occurs between S1–S2',
+      high_yield: 'Seen in AS/MR',
+      clinical_pearl: 'Timing narrows diagnosis'
+    },
+    tags: ['Murmur', 'Systolic', 'Valvular Disease'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '157',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'What is a diastolic murmur?',
+    back: {
+      definition: 'Occurs between S2–S1',
+      high_yield: 'AR/MS common',
+      clinical_pearl: 'Always pathologic'
+    },
+    tags: ['Murmur', 'Diastolic', 'Valvular Disease'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '158',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'Classic AS murmur?',
+    back: {
+      definition: 'Harsh crescendo–decrescendo',
+      high_yield: 'Radiates to carotids',
+      clinical_pearl: 'Best at RUSB'
+    },
+    tags: ['Aortic Stenosis', 'Murmur', 'AS'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '159',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'Classic MR murmur?',
+    back: {
+      definition: 'Holosystolic blowing',
+      high_yield: 'Radiates to axilla',
+      clinical_pearl: 'Best at apex'
+    },
+    tags: ['Mitral Regurgitation', 'Murmur', 'MR'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '160',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'Classic MS murmur?',
+    back: {
+      definition: 'Opening snap + diastolic rumble',
+      high_yield: 'Loud S1',
+      clinical_pearl: 'Rheumatic disease'
+    },
+    tags: ['Mitral Stenosis', 'Murmur', 'MS'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '161',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'Classic AR murmur?',
+    back: {
+      definition: 'Early diastolic decrescendo',
+      high_yield: 'High-pitched',
+      clinical_pearl: 'Best at LSB leaning forward'
+    },
+    tags: ['Aortic Regurgitation', 'Murmur', 'AR'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '162',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'TR murmur clue?',
+    back: {
+      definition: 'Holosystolic increasing with inspiration',
+      high_yield: 'Carvallo sign',
+      clinical_pearl: 'Right-sided regurg'
+    },
+    tags: ['Tricuspid Regurgitation', 'Murmur', 'TR'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '163',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'PS murmur?',
+    back: {
+      definition: 'Systolic ejection',
+      high_yield: 'Fixed split S2',
+      clinical_pearl: 'Congenital'
+    },
+    tags: ['Pulmonic Stenosis', 'Murmur', 'PS'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '164',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'AS triad?',
+    back: {
+      definition: 'Angina, syncope, dyspnea',
+      high_yield: 'Severe obstruction',
+      clinical_pearl: 'High mortality untreated'
+    },
+    tags: ['Aortic Stenosis', 'Symptoms', 'AS'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '165',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'Signs of severe AS?',
+    back: {
+      definition: 'Small pulse pressure',
+      high_yield: 'Late peaking murmur',
+      clinical_pearl: 'Paradoxical split S2'
+    },
+    tags: ['Aortic Stenosis', 'Severity', 'AS'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '166',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'MR causes?',
+    back: {
+      definition: 'MVP, ischemia, DCM',
+      high_yield: 'Regurg increases preload',
+      clinical_pearl: 'Echo essential'
+    },
+    tags: ['Mitral Regurgitation', 'Etiology', 'MR'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '167',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'AR causes?',
+    back: {
+      definition: 'Aortic root dilation, bicuspid valve',
+      high_yield: 'Wide pulse pressure',
+      clinical_pearl: 'Bounding pulses'
+    },
+    tags: ['Aortic Regurgitation', 'Etiology', 'AR'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '168',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'MS symptoms?',
+    back: {
+      definition: 'DOE, fatigue',
+      high_yield: '↑ LA pressure',
+      clinical_pearl: 'AF common complication'
+    },
+    tags: ['Mitral Stenosis', 'Symptoms', 'MS'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '169',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'TR causes?',
+    back: {
+      definition: 'RV dilation, pulmonary HTN',
+      high_yield: 'Holosystolic murmur',
+      clinical_pearl: 'JVD prominent'
+    },
+    tags: ['Tricuspid Regurgitation', 'Etiology', 'TR'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '170',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'PR cause?',
+    back: {
+      definition: 'Pulmonary HTN',
+      high_yield: 'High-pitched decrescendo',
+      clinical_pearl: 'Graham-Steell murmur'
+    },
+    tags: ['Pulmonic Regurgitation', 'Etiology', 'PR'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '171',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'MVP hallmark?',
+    back: {
+      definition: 'Mid-systolic click',
+      high_yield: 'Late systolic murmur',
+      clinical_pearl: 'Young females common'
+    },
+    tags: ['Mitral Valve Prolapse', 'MVP', 'Murmur'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '172',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'Austin Flint murmur?',
+    back: {
+      definition: 'Mid-diastolic murmur from severe AR',
+      high_yield: 'Functional MS',
+      clinical_pearl: 'Displacement of mitral leaflets'
+    },
+    tags: ['Austin Flint', 'Murmur', 'AR'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '173',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'Quincke sign?',
+    back: {
+      definition: 'Nailbed pulsations',
+      high_yield: 'AR hallmark',
+      clinical_pearl: 'Wide PP clue'
+    },
+    tags: ['Quincke Sign', 'AR', 'Physical Exam'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '174',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'Water hammer pulse?',
+    back: {
+      definition: 'Rapid upstroke/downstroke',
+      high_yield: 'Severe AR',
+      clinical_pearl: 'Also called Corrigan pulse'
+    },
+    tags: ['Water Hammer Pulse', 'AR', 'Physical Exam'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '175',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'MS severity clues?',
+    back: {
+      definition: 'Short A2–OS interval',
+      high_yield: 'Loud S1',
+      clinical_pearl: '↑ severity = ↑ symptoms'
+    },
+    tags: ['Mitral Stenosis', 'Severity', 'MS'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '176',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'AS severity?',
+    back: {
+      definition: 'Valve area <1.0 cm²',
+      high_yield: 'Mean gradient >40',
+      clinical_pearl: 'Jet velocity >4.0'
+    },
+    tags: ['Aortic Stenosis', 'Severity', 'AS'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '177',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'MR severity clues?',
+    back: {
+      definition: 'Large V wave',
+      high_yield: 'Regurg fraction high',
+      clinical_pearl: 'Flail leaflet severe'
+    },
+    tags: ['Mitral Regurgitation', 'Severity', 'MR'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '178',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'AR severity clues?',
+    back: {
+      definition: 'Holodiastolic murmur',
+      high_yield: 'Pressure half-time <200',
+      clinical_pearl: 'Wide PP'
+    },
+    tags: ['Aortic Regurgitation', 'Severity', 'AR'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '179',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'TR severity clues?',
+    back: {
+      definition: 'Pulsatile liver',
+      high_yield: 'Severe JVD',
+      clinical_pearl: 'RV failure signs'
+    },
+    tags: ['Tricuspid Regurgitation', 'Severity', 'TR'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '180',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'Prosthetic valve types?',
+    back: {
+      definition: 'Mechanical vs bioprosthetic',
+      high_yield: 'Mechanical durable',
+      clinical_pearl: 'Bioprosthetic less thrombotic'
+    },
+    tags: ['Prosthetic Valve', 'Treatment', 'Valvular Disease'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '181',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'Mechanical valve anticoag?',
+    back: {
+      definition: 'Requires lifelong warfarin',
+      high_yield: 'INR 2.5–3.5 depending',
+      clinical_pearl: 'Risk of thrombosis if not'
+    },
+    tags: ['Mechanical Valve', 'Anticoagulation', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '182',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'Bioprosthetic valve benefit?',
+    back: {
+      definition: 'Less anticoagulation',
+      high_yield: 'Shorter durability',
+      clinical_pearl: 'Used in older pts'
+    },
+    tags: ['Bioprosthetic Valve', 'Treatment', 'Valvular Disease'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '183',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'TAVR indication?',
+    back: {
+      definition: 'Severe AS not surgical candidate',
+      high_yield: 'Older/high-risk',
+      clinical_pearl: 'Growing first-line use'
+    },
+    tags: ['TAVR', 'Treatment', 'AS'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '184',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'Mitral clip use?',
+    back: {
+      definition: 'Severe MR high-risk surgery',
+      high_yield: 'Edge-to-edge repair',
+      clinical_pearl: 'Improves symptoms'
+    },
+    tags: ['Mitral Clip', 'Treatment', 'MR'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '185',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'Pulmonary HTN effect on valves?',
+    back: {
+      definition: 'Causes TR/PR',
+      high_yield: 'RV dilation',
+      clinical_pearl: 'Functional disease'
+    },
+    tags: ['Pulmonary HTN', 'TR', 'PR'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '186',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'Low-flow, low-gradient AS?',
+    back: {
+      definition: 'Severe AS with low stroke volume',
+      high_yield: 'EF often low',
+      clinical_pearl: 'Needs dobutamine stress echo'
+    },
+    tags: ['Aortic Stenosis', 'Low-flow', 'AS'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '187',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'Paradoxical low-flow AS?',
+    back: {
+      definition: 'Low-flow despite preserved EF',
+      high_yield: 'Concentric LVH',
+      clinical_pearl: 'Difficult diagnosis'
+    },
+    tags: ['Aortic Stenosis', 'Paradoxical', 'AS'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '188',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'Rheumatic MS hallmark?',
+    back: {
+      definition: 'Leaflet thickening + fusion',
+      high_yield: 'Doming leaflets',
+      clinical_pearl: 'High LA pressure'
+    },
+    tags: ['Mitral Stenosis', 'Rheumatic', 'MS'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '189',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'Carcinoid heart disease?',
+    back: {
+      definition: 'Right-sided valve fibrosis',
+      high_yield: 'TR/PR',
+      clinical_pearl: 'Serotonin mediated'
+    },
+    tags: ['Carcinoid', 'TR', 'PR'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '190',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'Endocarditis murmur change?',
+    back: {
+      definition: 'New regurgitant murmur',
+      high_yield: 'Acute MR/AR',
+      clinical_pearl: 'Emergency surgery sometimes needed'
+    },
+    tags: ['Endocarditis', 'Murmur', 'Valvular Disease'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '191',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'Acute MR hallmark?',
+    back: {
+      definition: 'Flash pulmonary edema',
+      high_yield: 'Holosystolic but soft',
+      clinical_pearl: 'Papillary muscle rupture'
+    },
+    tags: ['Mitral Regurgitation', 'Acute', 'MR'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '192',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'Acute AR hallmark?',
+    back: {
+      definition: 'Pulmonary edema + hypotension',
+      high_yield: 'Short murmur',
+      clinical_pearl: 'Aortic dissection cause'
+    },
+    tags: ['Aortic Regurgitation', 'Acute', 'AR'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '193',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'Bicuspid aortic valve risk?',
+    back: {
+      definition: 'Early AS',
+      high_yield: 'Aortic dilation',
+      clinical_pearl: 'Family screening advised'
+    },
+    tags: ['Bicuspid Valve', 'AS', 'Congenital'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '194',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'HOCM murmur changes?',
+    back: {
+      definition: 'Decreases with squatting',
+      high_yield: 'Increases with Valsalva',
+      clinical_pearl: 'Due to LVOT obstruction'
+    },
+    tags: ['HOCM', 'Murmur', 'Cardiomyopathy'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '195',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'AS murmur with maneuvers?',
+    back: {
+      definition: 'Increases with squatting',
+      high_yield: 'Decreases with Valsalva',
+      clinical_pearl: 'Opposite of HOCM'
+    },
+    tags: ['Aortic Stenosis', 'Maneuvers', 'AS'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
   }
 ];
