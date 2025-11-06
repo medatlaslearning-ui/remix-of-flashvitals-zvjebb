@@ -43,7 +43,8 @@ export default function FlashcardsScreen() {
   const flashcards = useMemo(() => {
     let cards: Flashcard[] = [];
     
-    console.log('Filtering flashcards. Filter:', filter, 'Topic:', topic);
+    console.log('=== Filtering flashcards ===');
+    console.log('Filter:', filter, 'Topic:', topic);
     console.log('Total flashcards:', allFlashcards.length);
     
     if (filter === 'bookmarked') {
@@ -59,14 +60,13 @@ export default function FlashcardsScreen() {
       cards = allFlashcards;
     }
     
-    // Shuffle cards for variety
-    const shuffled = [...cards].sort(() => Math.random() - 0.5);
-    return shuffled;
+    console.log('=== End filtering ===');
+    return cards;
   }, [allFlashcards, topic, filter, getBookmarkedFlashcards, getFavoriteFlashcards, getFlashcardsByTopic]);
 
   // Reset current index when flashcards change
   useEffect(() => {
-    console.log('Flashcards changed, resetting index');
+    console.log('Flashcards array changed, resetting to index 0');
     setCurrentIndex(0);
     reviewedCardsRef.current.clear();
   }, [flashcards.length, filter, topic]);
@@ -79,6 +79,7 @@ export default function FlashcardsScreen() {
       
       // Only increment if we haven't reviewed this card yet in this session
       if (!reviewedCardsRef.current.has(cardId)) {
+        console.log('Incrementing review count for card:', cardId);
         incrementReviewCount(cardId);
         reviewedCardsRef.current.add(cardId);
       }
@@ -100,7 +101,6 @@ export default function FlashcardsScreen() {
             {
               text: 'Review Again',
               onPress: () => {
-                // This would need to be implemented to filter by incorrectCards
                 setCurrentIndex(0);
                 setIncorrectCards([]);
                 reviewedCardsRef.current.clear();
@@ -133,12 +133,16 @@ export default function FlashcardsScreen() {
   };
 
   const handleBookmark = (id: string) => {
-    console.log('Bookmark button pressed for card:', id);
+    console.log('=== handleBookmark pressed ===');
+    console.log('Card ID:', id);
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     toggleBookmark(id);
   };
 
   const handleFavorite = (id: string) => {
-    console.log('Favorite button pressed for card:', id);
+    console.log('=== handleFavorite pressed ===');
+    console.log('Card ID:', id);
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     toggleFavorite(id);
   };
 
@@ -206,6 +210,7 @@ export default function FlashcardsScreen() {
           showsVerticalScrollIndicator={false}
         >
           <FlashcardComponent
+            key={currentCard.id}
             flashcard={currentCard}
             onBookmark={() => handleBookmark(currentCard.id)}
             onFavorite={() => handleFavorite(currentCard.id)}

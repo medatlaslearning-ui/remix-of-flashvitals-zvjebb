@@ -1,10 +1,10 @@
 
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Pressable, Animated, ScrollView } from 'react-native';
-import { Flashcard } from '@/types/flashcard';
-import { colors } from '@/styles/commonStyles';
 import { IconSymbol } from './IconSymbol';
 import * as Haptics from 'expo-haptics';
+import { colors } from '@/styles/commonStyles';
+import { Flashcard } from '@/types/flashcard';
 
 interface FlashcardComponentProps {
   flashcard: Flashcard;
@@ -13,253 +13,272 @@ interface FlashcardComponentProps {
   showActions?: boolean;
 }
 
-export const FlashcardComponent: React.FC<FlashcardComponentProps> = ({
-  flashcard,
-  onBookmark,
+export function FlashcardComponent({ 
+  flashcard, 
+  onBookmark, 
   onFavorite,
-  showActions = true,
-}) => {
+  showActions = true 
+}: FlashcardComponentProps) {
   const [isFlipped, setIsFlipped] = useState(false);
-  const [flipAnimation] = useState(new Animated.Value(0));
 
-  const flipCard = () => {
+  const handleFlip = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    
-    Animated.spring(flipAnimation, {
-      toValue: isFlipped ? 0 : 180,
-      friction: 8,
-      tension: 10,
-      useNativeDriver: true,
-    }).start();
-
     setIsFlipped(!isFlipped);
   };
 
-  const frontInterpolate = flipAnimation.interpolate({
-    inputRange: [0, 180],
-    outputRange: ['0deg', '180deg'],
-  });
-
-  const backInterpolate = flipAnimation.interpolate({
-    inputRange: [0, 180],
-    outputRange: ['180deg', '360deg'],
-  });
-
-  const frontOpacity = flipAnimation.interpolate({
-    inputRange: [0, 90, 90, 180],
-    outputRange: [1, 1, 0, 0],
-  });
-
-  const backOpacity = flipAnimation.interpolate({
-    inputRange: [0, 90, 90, 180],
-    outputRange: [0, 0, 1, 1],
-  });
-
-  const handleBookmark = () => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+  const handleBookmarkPress = () => {
+    console.log('FlashcardComponent: Bookmark button pressed');
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     onBookmark();
   };
 
-  const handleFavorite = () => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+  const handleFavoritePress = () => {
+    console.log('FlashcardComponent: Favorite button pressed');
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     onFavorite();
   };
 
   return (
     <View style={styles.container}>
-      <Pressable onPress={flipCard} style={styles.cardContainer}>
-        {/* Front of card */}
-        <Animated.View
-          style={[
-            styles.card,
-            styles.cardFront,
-            {
-              transform: [{ rotateY: frontInterpolate }],
-              opacity: frontOpacity,
-            },
-          ]}
-        >
-          <View style={styles.topicBadge}>
-            <Text style={styles.topicText}>{flashcard.topic}</Text>
-          </View>
-          <View style={styles.cardContent}>
-            <Text style={styles.questionText}>{flashcard.front}</Text>
-          </View>
-          <Text style={styles.tapHint}>Tap to flip</Text>
-        </Animated.View>
-
-        {/* Back of card */}
-        <Animated.View
-          style={[
-            styles.card,
-            styles.cardBack,
-            {
-              transform: [{ rotateY: backInterpolate }],
-              opacity: backOpacity,
-            },
-          ]}
-        >
-          <View style={styles.topicBadge}>
-            <Text style={styles.topicText}>{flashcard.topic}</Text>
-          </View>
-          <ScrollView style={styles.cardContent} showsVerticalScrollIndicator={false}>
-            <View style={styles.answerSection}>
-              <Text style={styles.sectionLabel}>Definition</Text>
-              <Text style={styles.answerText}>{flashcard.back.definition}</Text>
-            </View>
-            <View style={styles.answerSection}>
-              <Text style={styles.sectionLabel}>High-Yield</Text>
-              <Text style={styles.answerText}>{flashcard.back.high_yield}</Text>
-            </View>
-            <View style={styles.answerSection}>
-              <Text style={styles.sectionLabel}>Clinical Pearl 💎</Text>
-              <Text style={styles.answerText}>{flashcard.back.clinical_pearl}</Text>
-            </View>
-          </ScrollView>
-          <Text style={styles.tapHint}>Tap to flip</Text>
-        </Animated.View>
-      </Pressable>
-
-      {/* Tags displayed above actions */}
-      <View style={styles.tagsContainer}>
-        {flashcard.tags.map((tag, index) => (
-          <View key={index} style={styles.tag}>
-            <Text style={styles.tagText}>{tag}</Text>
-          </View>
-        ))}
-      </View>
-
+      {/* Action Buttons */}
       {showActions && (
-        <View style={styles.actionsContainer}>
-          <Pressable onPress={handleBookmark} style={styles.actionButton}>
+        <View style={styles.actionButtons}>
+          <Pressable 
+            onPress={handleBookmarkPress} 
+            style={styles.actionButton}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+          >
             <IconSymbol
               name={flashcard.bookmarked ? 'bookmark.fill' : 'bookmark'}
               size={24}
               color={flashcard.bookmarked ? colors.primary : colors.textSecondary}
             />
-            <Text style={styles.actionText}>Bookmark</Text>
           </Pressable>
-
-          <Pressable onPress={handleFavorite} style={styles.actionButton}>
+          <Pressable 
+            onPress={handleFavoritePress} 
+            style={styles.actionButton}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+          >
             <IconSymbol
               name={flashcard.favorite ? 'heart.fill' : 'heart'}
               size={24}
               color={flashcard.favorite ? colors.error : colors.textSecondary}
             />
-            <Text style={styles.actionText}>Favorite</Text>
           </Pressable>
         </View>
       )}
+
+      {/* Card */}
+      <Pressable onPress={handleFlip} style={styles.card}>
+        <ScrollView 
+          style={styles.cardScroll}
+          contentContainerStyle={styles.cardContent}
+          showsVerticalScrollIndicator={false}
+        >
+          {!isFlipped ? (
+            // Front of card
+            <View style={styles.cardFace}>
+              <Text style={styles.label}>Question</Text>
+              <Text style={styles.frontText}>{flashcard.front}</Text>
+              <View style={styles.tags}>
+                {flashcard.tags.map((tag, index) => (
+                  <View key={index} style={styles.tag}>
+                    <Text style={styles.tagText}>{tag}</Text>
+                  </View>
+                ))}
+              </View>
+            </View>
+          ) : (
+            // Back of card
+            <View style={styles.cardFace}>
+              <View style={styles.backSection}>
+                <Text style={styles.backLabel}>Definition</Text>
+                <Text style={styles.backText}>{flashcard.back.definition}</Text>
+              </View>
+              
+              <View style={styles.backSection}>
+                <Text style={styles.backLabel}>High-Yield</Text>
+                <Text style={styles.backText}>{flashcard.back.high_yield}</Text>
+              </View>
+              
+              <View style={styles.backSection}>
+                <Text style={styles.backLabel}>Clinical Pearl</Text>
+                <Text style={styles.backText}>{flashcard.back.clinical_pearl}</Text>
+              </View>
+
+              <View style={styles.tags}>
+                {flashcard.tags.map((tag, index) => (
+                  <View key={index} style={styles.tag}>
+                    <Text style={styles.tagText}>{tag}</Text>
+                  </View>
+                ))}
+              </View>
+            </View>
+          )}
+        </ScrollView>
+
+        {/* Flip indicator */}
+        <View style={styles.flipIndicator}>
+          <IconSymbol 
+            name="arrow.triangle.2.circlepath" 
+            size={16} 
+            color={colors.textSecondary} 
+          />
+          <Text style={styles.flipText}>Tap to flip</Text>
+        </View>
+      </Pressable>
+
+      {/* Metadata */}
+      <View style={styles.metadata}>
+        <View style={styles.metadataItem}>
+          <IconSymbol name="eye" size={16} color={colors.textSecondary} />
+          <Text style={styles.metadataText}>Reviewed {flashcard.reviewCount} times</Text>
+        </View>
+        <View style={[styles.difficultyBadge, getDifficultyStyle(flashcard.difficulty)]}>
+          <Text style={styles.difficultyText}>{flashcard.difficulty}</Text>
+        </View>
+      </View>
     </View>
   );
+}
+
+const getDifficultyStyle = (difficulty: string) => {
+  switch (difficulty) {
+    case 'easy':
+      return { backgroundColor: colors.success + '20', borderColor: colors.success };
+    case 'medium':
+      return { backgroundColor: colors.warning + '20', borderColor: colors.warning };
+    case 'hard':
+    case 'difficult':
+      return { backgroundColor: colors.error + '20', borderColor: colors.error };
+    default:
+      return { backgroundColor: colors.highlight, borderColor: colors.textSecondary };
+  }
 };
 
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    alignItems: 'center',
   },
-  cardContainer: {
-    width: '100%',
-    height: 400,
-    position: 'relative',
-    marginBottom: 16,
+  actionButtons: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    gap: 16,
+    marginBottom: 12,
+  },
+  actionButton: {
+    padding: 8,
+    borderRadius: 8,
+    backgroundColor: colors.card,
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
+    elevation: 2,
   },
   card: {
-    width: '100%',
-    height: '100%',
     backgroundColor: colors.card,
     borderRadius: 16,
     padding: 24,
-    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
-    elevation: 5,
-    backfaceVisibility: 'hidden',
-    position: 'absolute',
+    minHeight: 300,
+    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
+    elevation: 4,
   },
-  cardFront: {
-    justifyContent: 'space-between',
-  },
-  cardBack: {
-    justifyContent: 'space-between',
-  },
-  topicBadge: {
-    backgroundColor: colors.highlight,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 20,
-    alignSelf: 'flex-start',
-  },
-  topicText: {
-    fontSize: 12,
-    fontWeight: '600',
-    color: colors.primary,
+  cardScroll: {
+    flex: 1,
   },
   cardContent: {
+    flexGrow: 1,
+  },
+  cardFace: {
     flex: 1,
-    paddingVertical: 20,
   },
-  questionText: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: colors.text,
-    textAlign: 'center',
-    lineHeight: 32,
-  },
-  answerSection: {
-    marginBottom: 16,
-  },
-  sectionLabel: {
-    fontSize: 14,
+  label: {
+    fontSize: 12,
     fontWeight: '700',
     color: colors.primary,
-    marginBottom: 6,
     textTransform: 'uppercase',
+    letterSpacing: 1,
+    marginBottom: 12,
   },
-  answerText: {
+  frontText: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: colors.text,
+    lineHeight: 28,
+    marginBottom: 20,
+  },
+  backSection: {
+    marginBottom: 20,
+  },
+  backLabel: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: colors.accent,
+    textTransform: 'uppercase',
+    letterSpacing: 1,
+    marginBottom: 8,
+  },
+  backText: {
     fontSize: 16,
     color: colors.text,
     lineHeight: 24,
   },
-  tapHint: {
-    fontSize: 14,
-    color: colors.textSecondary,
-    textAlign: 'center',
-    fontStyle: 'italic',
-  },
-  tagsContainer: {
+  tags: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'center',
-    marginTop: 8,
-    marginBottom: 12,
     gap: 8,
-    paddingHorizontal: 16,
+    marginTop: 16,
   },
   tag: {
-    backgroundColor: colors.accent,
+    backgroundColor: colors.highlight,
     paddingHorizontal: 12,
     paddingVertical: 6,
-    borderRadius: 16,
+    borderRadius: 12,
   },
   tagText: {
     fontSize: 12,
-    color: colors.card,
-    fontWeight: '500',
+    fontWeight: '600',
+    color: colors.primary,
   },
-  actionsContainer: {
+  flipIndicator: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    width: '100%',
-    marginTop: 8,
-    paddingHorizontal: 40,
-  },
-  actionButton: {
     alignItems: 'center',
-    padding: 8,
+    justifyContent: 'center',
+    gap: 6,
+    marginTop: 16,
+    paddingTop: 16,
+    borderTopWidth: 1,
+    borderTopColor: colors.highlight,
   },
-  actionText: {
+  flipText: {
     fontSize: 12,
     color: colors.textSecondary,
-    marginTop: 4,
+    fontWeight: '500',
+  },
+  metadata: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 12,
+    paddingHorizontal: 4,
+  },
+  metadataItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
+  metadataText: {
+    fontSize: 12,
+    color: colors.textSecondary,
+  },
+  difficultyBadge: {
+    paddingHorizontal: 12,
+    paddingVertical: 4,
+    borderRadius: 12,
+    borderWidth: 1,
+  },
+  difficultyText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: colors.text,
+    textTransform: 'capitalize',
   },
 });

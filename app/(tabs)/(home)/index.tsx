@@ -1,7 +1,7 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, Pressable, Platform } from 'react-native';
-import { Stack, useRouter } from 'expo-router';
+import { Stack, useRouter, useFocusEffect } from 'expo-router';
 import { colors, commonStyles } from '@/styles/commonStyles';
 import { useFlashcards } from '@/hooks/useFlashcards';
 import { IconSymbol } from '@/components/IconSymbol';
@@ -14,9 +14,25 @@ export default function HomeScreen() {
   // Get unique topics
   const topics = Array.from(new Set(allFlashcards.map(card => card.topic)));
 
-  // Get counts
+  // Get counts - recalculate on every render to ensure they're up to date
   const bookmarkedCount = getBookmarkedFlashcards().length;
   const favoritesCount = getFavoriteFlashcards().length;
+
+  // Log counts for debugging
+  useEffect(() => {
+    console.log('=== Home Screen Counts ===');
+    console.log('Total flashcards:', allFlashcards.length);
+    console.log('Bookmarked:', bookmarkedCount);
+    console.log('Favorites:', favoritesCount);
+    console.log('=========================');
+  }, [allFlashcards.length, bookmarkedCount, favoritesCount]);
+
+  // Refresh counts when screen comes into focus
+  useFocusEffect(
+    React.useCallback(() => {
+      console.log('Home screen focused - refreshing counts');
+    }, [])
+  );
 
   const handleTopicPress = (topicName: string) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);

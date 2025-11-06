@@ -32,7 +32,7 @@ export const useFlashcards = () => {
       const storedStates = await AsyncStorage.getItem(STORAGE_KEY);
       if (storedStates) {
         const states: FlashcardStates = JSON.parse(storedStates);
-        console.log('Loaded states:', states);
+        console.log('Loaded states:', Object.keys(states).length, 'cards');
         
         // Merge stored states with default flashcards
         const updatedFlashcards = cardiologyFlashcards.map(card => {
@@ -49,13 +49,17 @@ export const useFlashcards = () => {
           return card;
         });
         
-        console.log('Updated flashcards with states:', updatedFlashcards.filter(c => c.bookmarked || c.favorite));
+        const bookmarkedCount = updatedFlashcards.filter(c => c.bookmarked).length;
+        const favoriteCount = updatedFlashcards.filter(c => c.favorite).length;
+        console.log('Loaded flashcards:', updatedFlashcards.length, 'total,', bookmarkedCount, 'bookmarked,', favoriteCount, 'favorites');
         setFlashcards(updatedFlashcards);
       } else {
-        console.log('No stored states found');
+        console.log('No stored states found, using defaults');
+        setFlashcards(cardiologyFlashcards);
       }
     } catch (error) {
       console.error('Error loading flashcard states:', error);
+      setFlashcards(cardiologyFlashcards);
     } finally {
       setLoading(false);
     }
@@ -74,7 +78,9 @@ export const useFlashcards = () => {
         };
       });
       
-      console.log('Saving flashcard states:', states);
+      const bookmarkedCount = updatedFlashcards.filter(c => c.bookmarked).length;
+      const favoriteCount = updatedFlashcards.filter(c => c.favorite).length;
+      console.log('Saving flashcard states:', updatedFlashcards.length, 'total,', bookmarkedCount, 'bookmarked,', favoriteCount, 'favorites');
       await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(states));
       console.log('States saved successfully');
     } catch (error) {
@@ -99,7 +105,6 @@ export const useFlashcards = () => {
       const updatedFlashcards = prev.map(card => 
         card.id === id ? { ...card, ...updates } : card
       );
-      // Save immediately after updating
       saveFlashcardStates(updatedFlashcards);
       return updatedFlashcards;
     });
@@ -114,7 +119,7 @@ export const useFlashcards = () => {
   }, []);
 
   const toggleBookmark = useCallback((id: string) => {
-    console.log('Toggling bookmark for card:', id);
+    console.log('toggleBookmark called for card:', id);
     setFlashcards(prev => {
       const card = prev.find(c => c.id === id);
       if (!card) {
@@ -129,14 +134,14 @@ export const useFlashcards = () => {
         c.id === id ? { ...c, bookmarked: newBookmarkedState } : c
       );
       
-      // Save immediately after updating
+      // Save immediately
       saveFlashcardStates(updatedFlashcards);
       return updatedFlashcards;
     });
   }, []);
 
   const toggleFavorite = useCallback((id: string) => {
-    console.log('Toggling favorite for card:', id);
+    console.log('toggleFavorite called for card:', id);
     setFlashcards(prev => {
       const card = prev.find(c => c.id === id);
       if (!card) {
@@ -151,7 +156,7 @@ export const useFlashcards = () => {
         c.id === id ? { ...c, favorite: newFavoriteState } : c
       );
       
-      // Save immediately after updating
+      // Save immediately
       saveFlashcardStates(updatedFlashcards);
       return updatedFlashcards;
     });
@@ -176,7 +181,9 @@ export const useFlashcards = () => {
   }, []);
 
   const getFlashcardsByTopic = useCallback((topic: string) => {
-    return flashcards.filter(card => card.topic === topic);
+    const filtered = flashcards.filter(card => card.topic === topic);
+    console.log('getFlashcardsByTopic:', topic, '- found', filtered.length, 'cards');
+    return filtered;
   }, [flashcards]);
 
   const getFlashcardsBySystem = useCallback((system: string) => {
@@ -185,13 +192,13 @@ export const useFlashcards = () => {
 
   const getBookmarkedFlashcards = useCallback(() => {
     const bookmarked = flashcards.filter(card => card.bookmarked);
-    console.log('Getting bookmarked flashcards:', bookmarked.length);
+    console.log('getBookmarkedFlashcards: found', bookmarked.length, 'cards');
     return bookmarked;
   }, [flashcards]);
 
   const getFavoriteFlashcards = useCallback(() => {
     const favorites = flashcards.filter(card => card.favorite);
-    console.log('Getting favorite flashcards:', favorites.length);
+    console.log('getFavoriteFlashcards: found', favorites.length, 'cards');
     return favorites;
   }, [flashcards]);
 
