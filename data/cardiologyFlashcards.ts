@@ -974,7 +974,7 @@ export const cardiologyFlashcards: Flashcard[] = [
     difficulty: 'hard'
   },
 
-  // NEW Heart Failure Flashcards
+  // NEW Heart Failure Flashcards (Cards 1-5 already added as IDs 71-75)
   {
     id: '71',
     system: 'Cardiology',
@@ -1054,6 +1054,568 @@ export const cardiologyFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0,
     difficulty: 'easy'
+  },
+
+  // NEW Heart Failure Flashcards (Cards 6-40 / IDs 76-110)
+  {
+    id: '76',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'CXR findings in HF?',
+    back: {
+      definition: 'Cardiomegaly + pulmonary edema',
+      high_yield: 'Kerley B lines',
+      clinical_pearl: 'Pleural effusions common'
+    },
+    tags: ['Heart Failure', 'CXR', 'Imaging'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '77',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'What is NICM?',
+    back: {
+      definition: 'HF not caused by ischemia',
+      high_yield: 'Dilated cardiomyopathy pattern',
+      clinical_pearl: 'Often reversible'
+    },
+    tags: ['Heart Failure', 'NICM', 'Cardiomyopathy'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '78',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'Causes of NICM?',
+    back: {
+      definition: 'Viral, alcohol, chemo',
+      high_yield: 'Tachycardia-induced',
+      clinical_pearl: 'Check for myocarditis'
+    },
+    tags: ['Heart Failure', 'NICM', 'Etiology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '79',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'Main HF imaging test?',
+    back: {
+      definition: 'Echocardiogram',
+      high_yield: 'EF, wall motion',
+      clinical_pearl: 'Detect valve disease'
+    },
+    tags: ['Heart Failure', 'Echo', 'Imaging'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '80',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'HF physical signs?',
+    back: {
+      definition: 'JVD, rales, edema',
+      high_yield: 'Hepatomegaly',
+      clinical_pearl: 'S3 in HFrEF'
+    },
+    tags: ['Heart Failure', 'Physical Exam', 'Signs'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '81',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'Acute HF treatment?',
+    back: {
+      definition: 'IV diuretics, O2, nitrates',
+      high_yield: 'Avoid fluids',
+      clinical_pearl: 'Check for cardiogenic shock'
+    },
+    tags: ['Heart Failure', 'Acute', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '82',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'HFpEF management?',
+    back: {
+      definition: 'Treat BP, diuretics',
+      high_yield: 'SGLT2i useful',
+      clinical_pearl: 'Avoid tachycardia'
+    },
+    tags: ['Heart Failure', 'HFpEF', 'Management'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '83',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'Cardiorenal syndrome?',
+    back: {
+      definition: 'HF worsens renal function',
+      high_yield: 'Reduced perfusion',
+      clinical_pearl: 'Adjust diuretics carefully'
+    },
+    tags: ['Heart Failure', 'Cardiorenal', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '84',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'HF risk stratification tool?',
+    back: {
+      definition: 'NYHA class',
+      high_yield: 'I–IV functional limits',
+      clinical_pearl: 'Prognosis worsens with class'
+    },
+    tags: ['Heart Failure', 'NYHA', 'Classification'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '85',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'Stages of HF?',
+    back: {
+      definition: 'A–D disease progression',
+      high_yield: 'A risk, D refractory',
+      clinical_pearl: 'Earlier stages reversible'
+    },
+    tags: ['Heart Failure', 'Staging', 'Classification'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '86',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'SGLT2i benefit?',
+    back: {
+      definition: 'Reduce HF hospitalization',
+      high_yield: 'Work independent of diabetes',
+      clinical_pearl: 'Renal protective'
+    },
+    tags: ['Heart Failure', 'SGLT2i', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '87',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'Beta-blocker choices?',
+    back: {
+      definition: 'Metoprolol succ, carvedilol, bisoprolol',
+      high_yield: 'Mortality benefit',
+      clinical_pearl: 'Start post-euvolemia'
+    },
+    tags: ['Heart Failure', 'Beta-blockers', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '88',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'MRA uses?',
+    back: {
+      definition: 'Spironolactone/eplerenone',
+      high_yield: 'Reduce mortality',
+      clinical_pearl: 'Monitor K+'
+    },
+    tags: ['Heart Failure', 'MRA', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '89',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'GDMT definition?',
+    back: {
+      definition: 'Guideline-directed medical therapy',
+      high_yield: 'Combo HF meds',
+      clinical_pearl: 'Improves survival'
+    },
+    tags: ['Heart Failure', 'GDMT', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '90',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'HF lifestyle changes?',
+    back: {
+      definition: 'Low-sodium diet, daily weights',
+      high_yield: 'Fluid control',
+      clinical_pearl: 'Exercise improves symptoms'
+    },
+    tags: ['Heart Failure', 'Lifestyle', 'Management'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '91',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'What is dilated cardiomyopathy?',
+    back: {
+      definition: 'LV dilation + systolic dysfunction',
+      high_yield: 'Large LV cavity',
+      clinical_pearl: 'Alcohol major cause'
+    },
+    tags: ['Heart Failure', 'Cardiomyopathy', 'DCM'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '92',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'Hypertrophic cardiomyopathy key?',
+    back: {
+      definition: 'LV hypertrophy with obstruction',
+      high_yield: 'Systolic anterior motion',
+      clinical_pearl: 'Syncope risk'
+    },
+    tags: ['Heart Failure', 'Cardiomyopathy', 'HCM'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '93',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'Restrictive cardiomyopathy?',
+    back: {
+      definition: 'Stiff myocardium',
+      high_yield: 'Normal EF',
+      clinical_pearl: 'Amyloidosis common cause'
+    },
+    tags: ['Heart Failure', 'Cardiomyopathy', 'Restrictive'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '94',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'Alcoholic cardiomyopathy?',
+    back: {
+      definition: 'Direct toxin effect',
+      high_yield: 'Dilated LV',
+      clinical_pearl: 'Improves with cessation'
+    },
+    tags: ['Heart Failure', 'Cardiomyopathy', 'Alcohol'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '95',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'Peripartum cardiomyopathy?',
+    back: {
+      definition: 'Late pregnancy HF',
+      high_yield: 'Dilated LV',
+      clinical_pearl: 'Risk of recurrence'
+    },
+    tags: ['Heart Failure', 'Cardiomyopathy', 'Peripartum'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '96',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'Differentiating HFpEF vs COPD exacerbation?',
+    back: {
+      definition: 'BNP elevated in HF',
+      high_yield: 'CXR congestion',
+      clinical_pearl: 'HF = preserved EF'
+    },
+    tags: ['Heart Failure', 'Differential', 'COPD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '97',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'Low-output HF?',
+    back: {
+      definition: 'Poor cardiac output',
+      high_yield: 'Cold extremities',
+      clinical_pearl: 'Consider in shock'
+    },
+    tags: ['Heart Failure', 'Low-output', 'Hemodynamics'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '98',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'High-output HF?',
+    back: {
+      definition: 'Normal heart overwhelmed',
+      high_yield: 'Thyrotoxicosis, anemia',
+      clinical_pearl: 'Warm extremities'
+    },
+    tags: ['Heart Failure', 'High-output', 'Hemodynamics'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '99',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'Tachycardia-induced cardiomyopathy?',
+    back: {
+      definition: 'Chronic rapid HR weakens LV',
+      high_yield: 'Reversible',
+      clinical_pearl: 'Treat arrhythmia'
+    },
+    tags: ['Heart Failure', 'Cardiomyopathy', 'Tachycardia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '100',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'Cardiac amyloidosis clue?',
+    back: {
+      definition: 'Thick walls + low voltage ECG',
+      high_yield: 'Restrictive pattern',
+      clinical_pearl: 'Apical sparing on strain'
+    },
+    tags: ['Heart Failure', 'Amyloidosis', 'Cardiomyopathy'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '101',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'Sarcoid cardiomyopathy?',
+    back: {
+      definition: 'Granulomas disrupt conduction',
+      high_yield: 'VT risk',
+      clinical_pearl: 'Cardiac MRI helpful'
+    },
+    tags: ['Heart Failure', 'Sarcoidosis', 'Cardiomyopathy'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '102',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'Chemotherapy-induced HF?',
+    back: {
+      definition: 'Anthracyclines cause toxicity',
+      high_yield: 'Dilated cardiomyopathy',
+      clinical_pearl: 'Monitor EF during chemo'
+    },
+    tags: ['Heart Failure', 'Chemotherapy', 'Cardiomyopathy'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '103',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'Chagas cardiomyopathy?',
+    back: {
+      definition: 'Trypanosoma infection',
+      high_yield: 'Apical aneurysm',
+      clinical_pearl: 'Latin America risk'
+    },
+    tags: ['Heart Failure', 'Chagas', 'Cardiomyopathy'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '104',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'Genetic DCM genes?',
+    back: {
+      definition: 'TTN most common',
+      high_yield: 'Autosomal dominant',
+      clinical_pearl: 'Consider family screening'
+    },
+    tags: ['Heart Failure', 'Genetics', 'DCM'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '105',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'What is pulsus alternans?',
+    back: {
+      definition: 'Alternating pulse strength',
+      high_yield: 'Advanced HF',
+      clinical_pearl: 'Indicates poor prognosis'
+    },
+    tags: ['Heart Failure', 'Physical Exam', 'Pulsus Alternans'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '106',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'LV thrombus risk in HF?',
+    back: {
+      definition: 'Low EF promotes stasis',
+      high_yield: 'Seen post-MI',
+      clinical_pearl: 'Anticoagulate if present'
+    },
+    tags: ['Heart Failure', 'Thrombus', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '107',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'HF and hyponatremia?',
+    back: {
+      definition: 'High ADH from low perfusion',
+      high_yield: 'Poor prognosis',
+      clinical_pearl: 'Correct slowly'
+    },
+    tags: ['Heart Failure', 'Hyponatremia', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '108',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'Cardiogenic shock sign?',
+    back: {
+      definition: 'Hypotension + hypoperfusion',
+      high_yield: 'Cool, clammy',
+      clinical_pearl: 'Urgent inotropes/mechanical support'
+    },
+    tags: ['Heart Failure', 'Cardiogenic Shock', 'Emergency'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '109',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'Advanced HF therapies?',
+    back: {
+      definition: 'LVAD, transplant',
+      high_yield: 'For stage D',
+      clinical_pearl: 'Consider early referral'
+    },
+    tags: ['Heart Failure', 'Advanced', 'LVAD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '110',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'NICM vs ICM clue?',
+    back: {
+      definition: 'NICM = global hypokinesis',
+      high_yield: 'ICM = regional defects',
+      clinical_pearl: 'Use echo to differentiate'
+    },
+    tags: ['Heart Failure', 'Differential', 'Echo'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
   },
 
   // Ischemic Heart Disease
