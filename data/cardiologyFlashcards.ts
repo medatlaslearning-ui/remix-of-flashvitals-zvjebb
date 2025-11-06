@@ -536,6 +536,248 @@ export const cardiologyFlashcards: Flashcard[] = [
     difficulty: 'easy'
   },
 
+  // NEW Arrhythmias Flashcards (Cards #36-50 / IDs 54-68)
+  {
+    id: '54',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What is the hallmark of right bundle branch block?',
+    back: {
+      definition: 'Delayed right ventricular activation.',
+      high_yield: 'rsR\' pattern in V1–V2.',
+      clinical_pearl: 'Often benign in young adults.'
+    },
+    tags: ['RBBB', 'Bundle Branch Block', 'ECG'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '55',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What defines left bundle branch block?',
+    back: {
+      definition: 'Delayed left ventricular activation.',
+      high_yield: 'Broad notched R in I, V6; deep S in V1.',
+      clinical_pearl: 'New LBBB with chest pain = possible MI.'
+    },
+    tags: ['LBBB', 'Bundle Branch Block', 'ECG'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '56',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What defines a ventricular escape rhythm?',
+    back: {
+      definition: 'Ventricles fire at 20–40 bpm.',
+      high_yield: 'Wide QRS; regular rhythm.',
+      clinical_pearl: 'Indicates failure of higher pacemakers.'
+    },
+    tags: ['Ventricular Escape', 'Bradycardia', 'Escape Rhythm'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '57',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What characterizes polymorphic VT?',
+    back: {
+      definition: 'VT with varying QRS morphology.',
+      high_yield: 'Often associated with ischemia.',
+      clinical_pearl: 'Differentiate from torsades (QT prolongation).'
+    },
+    tags: ['Polymorphic VT', 'VT', 'Arrhythmia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: '58',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What defines idioventricular rhythm?',
+    back: {
+      definition: 'Ventricular rhythm <40 bpm.',
+      high_yield: 'Wide QRS without P waves.',
+      clinical_pearl: 'Common post-reperfusion rhythm.'
+    },
+    tags: ['Idioventricular Rhythm', 'Bradycardia', 'Ventricular'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '59',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What is AIVR?',
+    back: {
+      definition: 'Ventricular rhythm 40–100 bpm.',
+      high_yield: 'Wide but stable.',
+      clinical_pearl: 'Seen after MI reperfusion; usually benign.'
+    },
+    tags: ['AIVR', 'Accelerated Idioventricular Rhythm', 'Post-MI'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '60',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What defines ventricular fibrillation (VF)?',
+    back: {
+      definition: 'Chaotic ventricular activity → no cardiac output.',
+      high_yield: 'Irregular, disorganized waves.',
+      clinical_pearl: 'Immediate defibrillation required.'
+    },
+    tags: ['VF', 'Ventricular Fibrillation', 'Cardiac Arrest'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: '61',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What defines asystole?',
+    back: {
+      definition: 'Absence of electrical activity.',
+      high_yield: 'Straight-line ECG.',
+      clinical_pearl: 'Check leads; poor prognosis.'
+    },
+    tags: ['Asystole', 'Cardiac Arrest', 'ECG'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: '62',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What is pulseless electrical activity?',
+    back: {
+      definition: 'ECG activity without perfusing pulse.',
+      high_yield: 'Caused by Hs and Ts.',
+      clinical_pearl: 'Start CPR and fix underlying cause.'
+    },
+    tags: ['PEA', 'Pulseless Electrical Activity', 'Cardiac Arrest'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: '63',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What arrhythmia is most specific for digoxin toxicity?',
+    back: {
+      definition: 'Ectopic atrial tachycardia with AV block.',
+      high_yield: '"Scooped" ST segments.',
+      clinical_pearl: 'Treat with digoxin-immune Fab if severe.'
+    },
+    tags: ['Digoxin Toxicity', 'Arrhythmia', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: '64',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What ECG finding suggests right atrial enlargement?',
+    back: {
+      definition: 'Tall peaked P waves.',
+      high_yield: 'P pulmonale in II.',
+      clinical_pearl: 'Often seen in pulmonary hypertension.'
+    },
+    tags: ['Right Atrial Enlargement', 'P-wave', 'ECG'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '65',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What indicates left atrial enlargement?',
+    back: {
+      definition: 'Broad, notched P waves.',
+      high_yield: 'P mitrale in II; biphasic P in V1.',
+      clinical_pearl: 'Common in mitral valve disease.'
+    },
+    tags: ['Left Atrial Enlargement', 'P-wave', 'ECG'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '66',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What is early repolarization?',
+    back: {
+      definition: 'Benign ST elevation variant.',
+      high_yield: 'J-point notching; concave ST elevation.',
+      clinical_pearl: 'Important to differentiate from STEMI.'
+    },
+    tags: ['Early Repolarization', 'ST Elevation', 'ECG'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '67',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What defines atrial standstill?',
+    back: {
+      definition: 'Absence of atrial electrical activity.',
+      high_yield: 'No P waves; junctional or ventricular rhythm.',
+      clinical_pearl: 'Rare; associated with hyperkalemia.'
+    },
+    tags: ['Atrial Standstill', 'Hyperkalemia', 'ECG'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: '68',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What is the ECG progression of hyperkalemia?',
+    back: {
+      definition: 'Progressive changes with rising potassium.',
+      high_yield: 'Peaked T waves → PR prolongation → wide QRS → sine wave.',
+      clinical_pearl: 'Treat immediately with IV calcium.'
+    },
+    tags: ['Hyperkalemia', 'ECG', 'Electrolytes'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+
   // Heart Failure
   {
     id: '6',
