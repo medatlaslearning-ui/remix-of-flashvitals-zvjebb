@@ -974,6 +974,88 @@ export const cardiologyFlashcards: Flashcard[] = [
     difficulty: 'hard'
   },
 
+  // NEW Heart Failure Flashcards
+  {
+    id: '71',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'What is HFrEF?',
+    back: {
+      definition: 'EF <40% with impaired contraction',
+      high_yield: 'Dilated LV',
+      clinical_pearl: 'Ischemic disease common'
+    },
+    tags: ['Heart Failure', 'HFrEF', 'Definition'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '72',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'What is HFpEF?',
+    back: {
+      definition: 'Preserved EF with impaired relaxation',
+      high_yield: 'Stiff LV',
+      clinical_pearl: 'HTN and aging related'
+    },
+    tags: ['Heart Failure', 'HFpEF', 'Definition'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '73',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'Main HF symptoms?',
+    back: {
+      definition: 'DOE, orthopnea, PND',
+      high_yield: 'Volume overload signs',
+      clinical_pearl: 'Weight gain = early clue'
+    },
+    tags: ['Heart Failure', 'Symptoms', 'Clinical Presentation'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '74',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'Key HF labs?',
+    back: {
+      definition: 'BNP/NT-proBNP elevation',
+      high_yield: 'Rule out pulmonary causes',
+      clinical_pearl: 'Higher BNP = worse prognosis'
+    },
+    tags: ['Heart Failure', 'Labs', 'BNP'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '75',
+    system: 'Cardiology',
+    topic: 'Heart Failure',
+    front: 'First-line HFrEF meds?',
+    back: {
+      definition: 'ARNI/ACEI/ARB + BB',
+      high_yield: 'Add MRA, SGLT2i',
+      clinical_pearl: 'Start low and titrate'
+    },
+    tags: ['Heart Failure', 'HFrEF', 'Treatment', 'Medications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+
   // Ischemic Heart Disease
   {
     id: '11',
