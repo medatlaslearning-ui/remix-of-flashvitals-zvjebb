@@ -2504,7 +2504,7 @@ export const cardiologyFlashcards: Flashcard[] = [
     difficulty: 'medium'
   },
 
-  // NEW Valvular Disease Flashcards (40 cards / IDs 156-195)
+  // NEW Valvular Disease Flashcards (45 cards / IDs 156-200)
   {
     id: '156',
     system: 'Cardiology',
@@ -3140,6 +3140,86 @@ export const cardiologyFlashcards: Flashcard[] = [
       clinical_pearl: 'Opposite of HOCM'
     },
     tags: ['Aortic Stenosis', 'Maneuvers', 'AS'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '196',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'MR murmur with handgrip?',
+    back: {
+      definition: 'Increases with afterload',
+      high_yield: 'Stronger murmur',
+      clinical_pearl: 'AR also increases'
+    },
+    tags: ['Mitral Regurgitation', 'Maneuvers', 'MR'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '197',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'AR murmur with handgrip?',
+    back: {
+      definition: 'Increases regurg',
+      high_yield: 'Diastolic murmur louder',
+      clinical_pearl: 'Afterload effect'
+    },
+    tags: ['Aortic Regurgitation', 'Maneuvers', 'AR'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '198',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'AS prognosis factor?',
+    back: {
+      definition: 'Symptoms indicate high mortality',
+      high_yield: 'Intervention recommended',
+      clinical_pearl: 'Monitor asymptomatic closely'
+    },
+    tags: ['Aortic Stenosis', 'Prognosis', 'AS'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '199',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'MS AF risk?',
+    back: {
+      definition: 'Stasis in LA',
+      high_yield: 'High thrombus risk',
+      clinical_pearl: 'Consider anticoagulation'
+    },
+    tags: ['Mitral Stenosis', 'AF', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '200',
+    system: 'Cardiology',
+    topic: 'Valvular Disease',
+    front: 'Severe TR signs?',
+    back: {
+      definition: 'Hepatic congestion',
+      high_yield: 'Ascites/peripheral edema',
+      clinical_pearl: 'Consider valve repair'
+    },
+    tags: ['Tricuspid Regurgitation', 'Severe', 'TR'],
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
