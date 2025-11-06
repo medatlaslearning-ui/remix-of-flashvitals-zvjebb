@@ -1700,6 +1700,616 @@ export const cardiologyFlashcards: Flashcard[] = [
     difficulty: 'hard'
   },
 
+  // NEW Ischemic Heart Disease Flashcards (38 cards / IDs 111-148)
+  {
+    id: '111',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'What is stable angina?',
+    back: {
+      definition: 'Predictable chest pain with exertion',
+      high_yield: 'Fixed plaque',
+      clinical_pearl: 'Relieved by rest/nitro'
+    },
+    tags: ['Angina', 'Stable Angina', 'IHD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '112',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'What is unstable angina?',
+    back: {
+      definition: 'New or worsening angina',
+      high_yield: 'No troponin rise',
+      clinical_pearl: 'ACS spectrum'
+    },
+    tags: ['Angina', 'Unstable Angina', 'ACS'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '113',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'What is NSTEMI?',
+    back: {
+      definition: 'Ischemia with troponin elevation',
+      high_yield: 'ST depression/T-wave changes',
+      clinical_pearl: 'Subendocardial infarct'
+    },
+    tags: ['NSTEMI', 'ACS', 'MI'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '114',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'What is STEMI?',
+    back: {
+      definition: 'Acute transmural MI',
+      high_yield: 'ST elevation in contiguous leads',
+      clinical_pearl: 'Urgent PCI needed'
+    },
+    tags: ['STEMI', 'ACS', 'MI'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '115',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'Main MI symptoms?',
+    back: {
+      definition: 'Chest pressure, diaphoresis',
+      high_yield: 'Radiation to arm/jaw',
+      clinical_pearl: 'Atypical in women/elderly'
+    },
+    tags: ['MI', 'Symptoms', 'ACS'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '116',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'MI cardiac biomarker?',
+    back: {
+      definition: 'Troponin I/T',
+      high_yield: 'Rises 3–4 hrs',
+      clinical_pearl: 'Peak 24 hrs'
+    },
+    tags: ['MI', 'Troponin', 'Biomarkers'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '117',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'Immediate ACS meds?',
+    back: {
+      definition: 'Aspirin + nitrates',
+      high_yield: 'O2 if hypoxic',
+      clinical_pearl: 'Statin early'
+    },
+    tags: ['ACS', 'Treatment', 'Medications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '118',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'What is angina decubitus?',
+    back: {
+      definition: 'Chest pain at rest when lying down',
+      high_yield: 'Increased preload',
+      clinical_pearl: 'Seen in HF + IHD'
+    },
+    tags: ['Angina', 'Angina Decubitus', 'IHD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '119',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'What relieves stable angina?',
+    back: {
+      definition: 'Rest and nitroglycerin',
+      high_yield: '↓ O2 demand',
+      clinical_pearl: 'Predictable pattern'
+    },
+    tags: ['Angina', 'Stable Angina', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '120',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'Exercise stress test use?',
+    back: {
+      definition: 'Diagnose ischemia',
+      high_yield: 'ST depression',
+      clinical_pearl: 'Avoid in STEMI'
+    },
+    tags: ['Stress Test', 'Diagnosis', 'IHD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: '121',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'Coronary artery supplying anterior wall?',
+    back: {
+      definition: 'LAD',
+      high_yield: 'Most lethal MI',
+      clinical_pearl: 'Causes cardiogenic shock'
+    },
+    tags: ['Coronary Anatomy', 'LAD', 'MI'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '122',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'Inferior wall MI vessel?',
+    back: {
+      definition: 'RCA',
+      high_yield: 'Bradyarrhythmias common',
+      clinical_pearl: 'Check for RV infarct'
+    },
+    tags: ['Coronary Anatomy', 'RCA', 'MI'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '123',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'Circumflex MI trait?',
+    back: {
+      definition: 'Lateral ST elevation',
+      high_yield: 'Leads I, aVL, V5–V6',
+      clinical_pearl: 'May be subtle'
+    },
+    tags: ['Coronary Anatomy', 'Circumflex', 'MI'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '124',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'When to avoid nitrates?',
+    back: {
+      definition: 'RV infarction',
+      high_yield: 'Preload dependent',
+      clinical_pearl: 'Use fluids instead'
+    },
+    tags: ['Treatment', 'Nitrates', 'RV Infarct'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '125',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'Goal door-to-balloon time?',
+    back: {
+      definition: '<90 minutes',
+      high_yield: 'PCI preferred',
+      clinical_pearl: 'Better outcomes'
+    },
+    tags: ['STEMI', 'PCI', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '126',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'Dual antiplatelet therapy?',
+    back: {
+      definition: 'Aspirin + P2Y12 inhibitor',
+      high_yield: 'Post-PCI standard',
+      clinical_pearl: 'Reduces stent thrombosis'
+    },
+    tags: ['Treatment', 'Antiplatelet', 'PCI'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '127',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'TIMI risk score use?',
+    back: {
+      definition: 'ACS risk stratification',
+      high_yield: 'Age, risk factors, ECG',
+      clinical_pearl: 'Higher score = worse outcomes'
+    },
+    tags: ['Risk Stratification', 'TIMI', 'ACS'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '128',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'GRACE score use?',
+    back: {
+      definition: 'Mortality prediction in ACS',
+      high_yield: 'Troponin, vitals',
+      clinical_pearl: 'Guides invasive strategy'
+    },
+    tags: ['Risk Stratification', 'GRACE', 'ACS'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '129',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'STEMI ECG rule?',
+    back: {
+      definition: '≥1 mm ST elevation in 2 contiguous leads',
+      high_yield: 'Except V2–V3 higher cutoff',
+      clinical_pearl: 'New LBBB equivalent'
+    },
+    tags: ['STEMI', 'ECG', 'Diagnosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '130',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'MI complications timeline?',
+    back: {
+      definition: 'Arrhythmias early',
+      high_yield: 'Rupture 3–7 days',
+      clinical_pearl: 'Dressler weeks later'
+    },
+    tags: ['MI', 'Complications', 'Timeline'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '131',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'What is Prinzmetal angina?',
+    back: {
+      definition: 'Coronary vasospasm',
+      high_yield: 'ST elevation during pain',
+      clinical_pearl: 'Treat with CCBs'
+    },
+    tags: ['Angina', 'Prinzmetal', 'Vasospasm'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '132',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'Risk factors for IHD?',
+    back: {
+      definition: 'HTN, DM, smoking, lipids',
+      high_yield: 'Age, family history',
+      clinical_pearl: 'Smoking biggest modifiable'
+    },
+    tags: ['Risk Factors', 'IHD', 'Prevention'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '133',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'Coronary steal phenomenon?',
+    back: {
+      definition: 'Vasodilators divert blood',
+      high_yield: 'Worse ischemia',
+      clinical_pearl: 'Seen with dipyridamole'
+    },
+    tags: ['Pathophysiology', 'Coronary Steal', 'IHD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '134',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'Ischemia mechanism?',
+    back: {
+      definition: 'O2 demand > supply',
+      high_yield: 'Atherosclerosis common',
+      clinical_pearl: 'Spasm, anemia other causes'
+    },
+    tags: ['Pathophysiology', 'Ischemia', 'IHD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '135',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'Silent ischemia?',
+    back: {
+      definition: 'Ischemia without symptoms',
+      high_yield: 'Common in diabetics',
+      clinical_pearl: 'Detected on ECG/stress test'
+    },
+    tags: ['Ischemia', 'Silent Ischemia', 'Diabetes'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '136',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'Troponin trend importance?',
+    back: {
+      definition: 'Rise and fall confirms MI',
+      high_yield: 'Isolated elevation not enough',
+      clinical_pearl: 'Repeat testing needed'
+    },
+    tags: ['Troponin', 'Diagnosis', 'MI'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '137',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'ST depression meaning?',
+    back: {
+      definition: 'Subendocardial ischemia',
+      high_yield: 'NSTEMI/UA',
+      clinical_pearl: 'Horizontal worst'
+    },
+    tags: ['ECG', 'ST Depression', 'Ischemia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '138',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'T-wave inversion meaning?',
+    back: {
+      definition: 'Ischemia or reperfusion',
+      high_yield: 'Dynamic changes',
+      clinical_pearl: 'Compare to old ECG'
+    },
+    tags: ['ECG', 'T-wave', 'Ischemia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '139',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'When to use fibrinolysis?',
+    back: {
+      definition: 'If PCI unavailable <120 min',
+      high_yield: 'STEMI only',
+      clinical_pearl: 'Contraindications strict'
+    },
+    tags: ['Treatment', 'Fibrinolysis', 'STEMI'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '140',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'Ventricular septal rupture sign?',
+    back: {
+      definition: 'Acute HF + new murmur',
+      high_yield: 'Post-MI day 3–5',
+      clinical_pearl: 'Emergency surgery'
+    },
+    tags: ['Complications', 'VSD', 'Post-MI'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '141',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'Free wall rupture clue?',
+    back: {
+      definition: 'Sudden tamponade',
+      high_yield: 'Electromechanical dissociation',
+      clinical_pearl: 'Usually fatal'
+    },
+    tags: ['Complications', 'Free Wall Rupture', 'Post-MI'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '142',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'Papillary muscle rupture?',
+    back: {
+      definition: 'Acute MR',
+      high_yield: 'Severe pulmonary edema',
+      clinical_pearl: 'Posteromedial muscle vulnerable'
+    },
+    tags: ['Complications', 'Papillary Muscle', 'Post-MI'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '143',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'Cardiogenic shock pathophys?',
+    back: {
+      definition: 'LV failure → low output',
+      high_yield: 'Hypotension, cold extremities',
+      clinical_pearl: 'Needs inotropes or support'
+    },
+    tags: ['Complications', 'Cardiogenic Shock', 'MI'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '144',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'No-reflow phenomenon?',
+    back: {
+      definition: 'Poor flow post-PCI',
+      high_yield: 'Microvascular obstruction',
+      clinical_pearl: 'Worse prognosis'
+    },
+    tags: ['Complications', 'No-reflow', 'PCI'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '145',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'MINOCA?',
+    back: {
+      definition: 'MI with non-obstructive coronaries',
+      high_yield: 'Spasm, dissection, emboli',
+      clinical_pearl: 'Needs MRI/advanced imaging'
+    },
+    tags: ['MINOCA', 'MI', 'Diagnosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '146',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'SCAD?',
+    back: {
+      definition: 'Spontaneous coronary artery dissection',
+      high_yield: 'Young women',
+      clinical_pearl: 'Associated with pregnancy'
+    },
+    tags: ['SCAD', 'Dissection', 'MI'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '147',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'Reperfusion arrhythmia?',
+    back: {
+      definition: 'AIVR common',
+      high_yield: 'Usually benign',
+      clinical_pearl: 'Seen post-PCI'
+    },
+    tags: ['Arrhythmia', 'Reperfusion', 'Post-PCI'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+  {
+    id: '148',
+    system: 'Cardiology',
+    topic: 'Ischemic Heart Disease',
+    front: 'Hibernating myocardium?',
+    back: {
+      definition: 'Chronically underperfused but viable',
+      high_yield: 'Improves with revascularization',
+      clinical_pearl: 'Detect with stress echo or PET'
+    },
+    tags: ['Hibernating Myocardium', 'Viability', 'IHD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'difficult'
+  },
+
   // Valvular Disease
   {
     id: '16',
