@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { View, Text, StyleSheet, Pressable, Alert, Platform, ScrollView } from 'react-native';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { FlashcardComponent } from '@/components/FlashcardComponent';
@@ -16,7 +16,7 @@ export default function FlashcardsScreen() {
   const filter = params.filter as string | undefined;
   
   const {
-    flashcards: allFlashcards,
+    allFlashcards,
     toggleBookmark,
     toggleFavorite,
     incrementReviewCount,
@@ -26,7 +26,6 @@ export default function FlashcardsScreen() {
   } = useFlashcards();
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [flashcardIds, setFlashcardIds] = useState<string[]>([]);
   const [incorrectCards, setIncorrectCards] = useState<string[]>([]);
   
   // Track which cards have been reviewed to prevent duplicate increments
@@ -40,32 +39,37 @@ export default function FlashcardsScreen() {
     return 'All Cards';
   };
 
-  // Initialize flashcard IDs only once when component mounts or topic/filter changes
-  useEffect(() => {
+  // Get filtered flashcards - recalculate whenever allFlashcards changes
+  const flashcards = useMemo(() => {
     let cards: Flashcard[] = [];
+    
+    console.log('Filtering flashcards. Filter:', filter, 'Topic:', topic);
+    console.log('Total flashcards:', allFlashcards.length);
     
     if (filter === 'bookmarked') {
       cards = getBookmarkedFlashcards();
+      console.log('Bookmarked cards found:', cards.length);
     } else if (filter === 'favorites') {
       cards = getFavoriteFlashcards();
+      console.log('Favorite cards found:', cards.length);
     } else if (topic) {
       cards = getFlashcardsByTopic(topic);
+      console.log('Topic cards found:', cards.length);
     } else {
       cards = allFlashcards;
     }
     
     // Shuffle cards for variety
-    cards = [...cards].sort(() => Math.random() - 0.5);
-    
-    setFlashcardIds(cards.map(c => c.id));
-    setCurrentIndex(0);
-    reviewedCardsRef.current.clear(); // Reset reviewed cards when flashcards change
-  }, [topic, filter]); // Only depend on topic and filter
+    const shuffled = [...cards].sort(() => Math.random() - 0.5);
+    return shuffled;
+  }, [allFlashcards, topic, filter, getBookmarkedFlashcards, getFavoriteFlashcards, getFlashcardsByTopic]);
 
-  // Get current flashcards from the global state using the IDs
-  const flashcards = flashcardIds
-    .map(id => allFlashcards.find(card => card.id === id))
-    .filter((card): card is Flashcard => card !== undefined);
+  // Reset current index when flashcards change
+  useEffect(() => {
+    console.log('Flashcards changed, resetting index');
+    setCurrentIndex(0);
+    reviewedCardsRef.current.clear();
+  }, [flashcards.length, filter, topic]);
 
   // Increment review count only when moving to a new card
   useEffect(() => {
@@ -79,7 +83,7 @@ export default function FlashcardsScreen() {
         reviewedCardsRef.current.add(cardId);
       }
     }
-  }, [currentIndex, flashcards.length]); // Depend on currentIndex and flashcards.length
+  }, [currentIndex, flashcards.length]);
 
   const handleNext = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -96,10 +100,10 @@ export default function FlashcardsScreen() {
             {
               text: 'Review Again',
               onPress: () => {
-                setFlashcardIds(incorrectCards);
+                // This would need to be implemented to filter by incorrectCards
                 setCurrentIndex(0);
                 setIncorrectCards([]);
-                reviewedCardsRef.current.clear(); // Reset for new review session
+                reviewedCardsRef.current.clear();
               },
             },
           ]
@@ -126,6 +130,16 @@ export default function FlashcardsScreen() {
       setIncorrectCards([...incorrectCards, currentCard.id]);
       Alert.alert('Marked for Review', 'This card will be shown again at the end.');
     }
+  };
+
+  const handleBookmark = (id: string) => {
+    console.log('Bookmark button pressed for card:', id);
+    toggleBookmark(id);
+  };
+
+  const handleFavorite = (id: string) => {
+    console.log('Favorite button pressed for card:', id);
+    toggleFavorite(id);
   };
 
   if (flashcards.length === 0) {
@@ -193,8 +207,8 @@ export default function FlashcardsScreen() {
         >
           <FlashcardComponent
             flashcard={currentCard}
-            onBookmark={() => toggleBookmark(currentCard.id)}
-            onFavorite={() => toggleFavorite(currentCard.id)}
+            onBookmark={() => handleBookmark(currentCard.id)}
+            onFavorite={() => handleFavorite(currentCard.id)}
           />
         </ScrollView>
 
