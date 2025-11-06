@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, Pressable, Alert, Platform } from 'react-native';
+import { View, Text, StyleSheet, Pressable, Alert, Platform, ScrollView } from 'react-native';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { FlashcardComponent } from '@/components/FlashcardComponent';
 import { colors, commonStyles } from '@/styles/commonStyles';
@@ -143,13 +143,17 @@ export default function FlashcardsScreen() {
           </View>
         </View>
 
-        <View style={styles.cardContainer}>
+        <ScrollView 
+          style={styles.scrollContainer}
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+        >
           <FlashcardComponent
             flashcard={currentCard}
             onBookmark={() => toggleBookmark(currentCard.id)}
             onFavorite={() => toggleFavorite(currentCard.id)}
           />
-        </View>
+        </ScrollView>
 
         <View style={styles.controls}>
           <Pressable
@@ -209,10 +213,12 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     borderRadius: 3,
   },
-  cardContainer: {
+  scrollContainer: {
     flex: 1,
-    justifyContent: 'center',
+  },
+  scrollContent: {
     padding: 20,
+    paddingBottom: 40,
   },
   controls: {
     flexDirection: 'row',

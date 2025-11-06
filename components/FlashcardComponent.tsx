@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Pressable, Animated } from 'react-native';
+import { View, Text, StyleSheet, Pressable, Animated, ScrollView } from 'react-native';
 import { Flashcard } from '@/types/flashcard';
 import { colors } from '@/styles/commonStyles';
 import { IconSymbol } from './IconSymbol';
@@ -102,7 +102,7 @@ export const FlashcardComponent: React.FC<FlashcardComponentProps> = ({
           <View style={styles.topicBadge}>
             <Text style={styles.topicText}>{flashcard.topic}</Text>
           </View>
-          <View style={styles.cardContent}>
+          <ScrollView style={styles.cardContent} showsVerticalScrollIndicator={false}>
             <View style={styles.answerSection}>
               <Text style={styles.sectionLabel}>Definition</Text>
               <Text style={styles.answerText}>{flashcard.back.definition}</Text>
@@ -115,10 +115,19 @@ export const FlashcardComponent: React.FC<FlashcardComponentProps> = ({
               <Text style={styles.sectionLabel}>Clinical Pearl 💎</Text>
               <Text style={styles.answerText}>{flashcard.back.clinical_pearl}</Text>
             </View>
-          </View>
+          </ScrollView>
           <Text style={styles.tapHint}>Tap to flip</Text>
         </Animated.View>
       </Pressable>
+
+      {/* Tags displayed above actions */}
+      <View style={styles.tagsContainer}>
+        {flashcard.tags.map((tag, index) => (
+          <View key={index} style={styles.tag}>
+            <Text style={styles.tagText}>{tag}</Text>
+          </View>
+        ))}
+      </View>
 
       {showActions && (
         <View style={styles.actionsContainer}>
@@ -141,14 +150,6 @@ export const FlashcardComponent: React.FC<FlashcardComponentProps> = ({
           </Pressable>
         </View>
       )}
-
-      <View style={styles.tagsContainer}>
-        {flashcard.tags.map((tag, index) => (
-          <View key={index} style={styles.tag}>
-            <Text style={styles.tagText}>{tag}</Text>
-          </View>
-        ))}
-      </View>
     </View>
   );
 };
@@ -160,8 +161,9 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     width: '100%',
-    height: 450,
+    height: 400,
     position: 'relative',
+    marginBottom: 16,
   },
   card: {
     width: '100%',
@@ -194,7 +196,6 @@ const styles = StyleSheet.create({
   },
   cardContent: {
     flex: 1,
-    justifyContent: 'center',
     paddingVertical: 20,
   },
   questionText: {
@@ -225,28 +226,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontStyle: 'italic',
   },
-  actionsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    width: '100%',
-    marginTop: 20,
-    paddingHorizontal: 40,
-  },
-  actionButton: {
-    alignItems: 'center',
-    padding: 8,
-  },
-  actionText: {
-    fontSize: 12,
-    color: colors.textSecondary,
-    marginTop: 4,
-  },
   tagsContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    marginTop: 16,
+    marginTop: 8,
+    marginBottom: 12,
     gap: 8,
+    paddingHorizontal: 16,
   },
   tag: {
     backgroundColor: colors.accent,
@@ -258,5 +245,21 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: colors.card,
     fontWeight: '500',
+  },
+  actionsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%',
+    marginTop: 8,
+    paddingHorizontal: 40,
+  },
+  actionButton: {
+    alignItems: 'center',
+    padding: 8,
+  },
+  actionText: {
+    fontSize: 12,
+    color: colors.textSecondary,
+    marginTop: 4,
   },
 });
