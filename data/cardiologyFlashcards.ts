@@ -536,6 +536,40 @@ export const cardiologyFlashcards: Flashcard[] = [
     difficulty: 'easy'
   },
 
+  // NEW Arrhythmias Flashcards (Cards #34-35 - MISSING CARDS NOW ADDED!)
+  {
+    id: '69',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What is the difference between LBBB and RBBB?',
+    back: {
+      definition: 'LBBB affects left bundle; RBBB affects right bundle.',
+      high_yield: 'LBBB: wide R in I, V6; RBBB: rsR\' in V1.',
+      clinical_pearl: 'New LBBB may indicate acute MI; RBBB often benign.'
+    },
+    tags: ['Bundle Branch Block', 'LBBB', 'RBBB'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: '70',
+    system: 'Cardiology',
+    topic: 'Arrhythmias',
+    front: 'What is the clinical significance of bundle branch blocks?',
+    back: {
+      definition: 'BBBs indicate conduction system disease.',
+      high_yield: 'RBBB often benign; LBBB suggests structural heart disease.',
+      clinical_pearl: 'New LBBB with chest pain = STEMI equivalent.'
+    },
+    tags: ['Bundle Branch Block', 'Clinical Significance', 'ECG'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+
   // NEW Arrhythmias Flashcards (Cards #36-50 / IDs 54-68)
   {
     id: '54',
