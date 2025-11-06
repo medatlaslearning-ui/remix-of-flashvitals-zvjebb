@@ -18,11 +18,14 @@ export default function HomeScreen() {
     { name: 'Valvular Disease', icon: 'heart.circle', color: colors.secondary },
   ];
 
+  const bookmarkedCount = getBookmarkedFlashcards().length;
+  const favoritesCount = getFavoriteFlashcards().length;
+
   const stats = [
-    { label: 'Total Cards', value: flashcards.length, icon: 'square.stack.3d.up.fill', color: colors.primary },
-    { label: 'Bookmarked', value: getBookmarkedFlashcards().length, icon: 'bookmark.fill', color: colors.secondary },
-    { label: 'Favorites', value: getFavoriteFlashcards().length, icon: 'heart.fill', color: colors.error },
-    { label: 'Reviewed', value: flashcards.filter(c => c.reviewCount > 0).length, icon: 'checkmark.circle.fill', color: colors.success },
+    { label: 'Total Cards', value: flashcards.length, icon: 'square.stack.3d.up.fill', color: colors.primary, onPress: null },
+    { label: 'Bookmarked', value: bookmarkedCount, icon: 'bookmark.fill', color: colors.secondary, onPress: () => handleBookmarkedPress() },
+    { label: 'Favorites', value: favoritesCount, icon: 'heart.fill', color: colors.error, onPress: () => handleFavoritesPress() },
+    { label: 'Reviewed', value: flashcards.filter(c => c.reviewCount > 0).length, icon: 'checkmark.circle.fill', color: colors.success, onPress: null },
   ];
 
   const handleTopicPress = (topicName: string) => {
@@ -30,6 +33,28 @@ export default function HomeScreen() {
     router.push({
       pathname: '/(tabs)/(home)/flashcards',
       params: { topic: topicName }
+    });
+  };
+
+  const handleBookmarkedPress = () => {
+    if (bookmarkedCount === 0) {
+      return;
+    }
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    router.push({
+      pathname: '/(tabs)/(home)/flashcards',
+      params: { filter: 'bookmarked' }
+    });
+  };
+
+  const handleFavoritesPress = () => {
+    if (favoritesCount === 0) {
+      return;
+    }
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    router.push({
+      pathname: '/(tabs)/(home)/flashcards',
+      params: { filter: 'favorites' }
     });
   };
 
@@ -79,11 +104,24 @@ export default function HomeScreen() {
 
         <View style={styles.statsContainer}>
           {stats.map((stat, index) => (
-            <View key={index} style={styles.statCard}>
+            <Pressable
+              key={index}
+              style={[
+                styles.statCard,
+                stat.onPress && stat.value > 0 && styles.statCardClickable
+              ]}
+              onPress={stat.onPress || undefined}
+              disabled={!stat.onPress || stat.value === 0}
+            >
               <IconSymbol name={stat.icon as any} size={28} color={stat.color} />
               <Text style={styles.statValue}>{stat.value}</Text>
               <Text style={styles.statLabel}>{stat.label}</Text>
-            </View>
+              {stat.onPress && stat.value > 0 && (
+                <View style={styles.statCardIndicator}>
+                  <IconSymbol name="chevron.right" size={12} color={colors.textSecondary} />
+                </View>
+              )}
+            </Pressable>
           ))}
         </View>
 
@@ -177,6 +215,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
     elevation: 3,
+    position: 'relative',
+  },
+  statCardClickable: {
+    opacity: 1,
+  },
+  statCardIndicator: {
+    position: 'absolute',
+    top: 8,
+    right: 8,
   },
   statValue: {
     fontSize: 28,

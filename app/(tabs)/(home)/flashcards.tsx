@@ -13,6 +13,7 @@ export default function FlashcardsScreen() {
   const router = useRouter();
   const params = useLocalSearchParams();
   const topic = params.topic as string | undefined;
+  const filter = params.filter as string | undefined;
   
   const {
     flashcards: allFlashcards,
@@ -20,6 +21,8 @@ export default function FlashcardsScreen() {
     toggleFavorite,
     incrementReviewCount,
     getFlashcardsByTopic,
+    getBookmarkedFlashcards,
+    getFavoriteFlashcards,
   } = useFlashcards();
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -29,9 +32,27 @@ export default function FlashcardsScreen() {
   // Track which cards have been reviewed to prevent duplicate increments
   const reviewedCardsRef = useRef<Set<string>>(new Set());
 
-  // Initialize flashcard IDs only once when component mounts or topic changes
+  // Get screen title based on filter or topic
+  const getScreenTitle = () => {
+    if (filter === 'bookmarked') return 'Bookmarked Cards';
+    if (filter === 'favorites') return 'Favorite Cards';
+    if (topic) return topic;
+    return 'All Cards';
+  };
+
+  // Initialize flashcard IDs only once when component mounts or topic/filter changes
   useEffect(() => {
-    let cards = topic ? getFlashcardsByTopic(topic) : allFlashcards;
+    let cards: Flashcard[] = [];
+    
+    if (filter === 'bookmarked') {
+      cards = getBookmarkedFlashcards();
+    } else if (filter === 'favorites') {
+      cards = getFavoriteFlashcards();
+    } else if (topic) {
+      cards = getFlashcardsByTopic(topic);
+    } else {
+      cards = allFlashcards;
+    }
     
     // Shuffle cards for variety
     cards = [...cards].sort(() => Math.random() - 0.5);
@@ -39,7 +60,7 @@ export default function FlashcardsScreen() {
     setFlashcardIds(cards.map(c => c.id));
     setCurrentIndex(0);
     reviewedCardsRef.current.clear(); // Reset reviewed cards when flashcards change
-  }, [topic]); // Only depend on topic
+  }, [topic, filter]); // Only depend on topic and filter
 
   // Get current flashcards from the global state using the IDs
   const flashcards = flashcardIds
@@ -112,12 +133,30 @@ export default function FlashcardsScreen() {
       <>
         <Stack.Screen
           options={{
-            title: topic || 'All Cards',
+            title: getScreenTitle(),
             headerBackTitle: 'Back',
           }}
         />
         <View style={[commonStyles.container, commonStyles.center]}>
-          <Text style={styles.emptyText}>No flashcards available</Text>
+          <IconSymbol 
+            name={filter === 'bookmarked' ? 'bookmark' : filter === 'favorites' ? 'heart' : 'square.stack.3d.up'} 
+            size={64} 
+            color={colors.textSecondary} 
+          />
+          <Text style={styles.emptyText}>
+            {filter === 'bookmarked' 
+              ? 'No bookmarked cards yet' 
+              : filter === 'favorites' 
+              ? 'No favorite cards yet' 
+              : 'No flashcards available'}
+          </Text>
+          <Text style={styles.emptySubtext}>
+            {filter === 'bookmarked' 
+              ? 'Tap the bookmark icon on any card to save it here' 
+              : filter === 'favorites' 
+              ? 'Tap the heart icon on any card to mark it as favorite' 
+              : 'Start by adding some flashcards'}
+          </Text>
           <Pressable onPress={() => router.back()} style={styles.backButton}>
             <Text style={styles.backButtonText}>Go Back</Text>
           </Pressable>
@@ -133,7 +172,7 @@ export default function FlashcardsScreen() {
     <>
       <Stack.Screen
         options={{
-          title: topic || 'All Cards',
+          title: getScreenTitle(),
           headerBackTitle: 'Back',
         }}
       />
@@ -266,9 +305,20 @@ const styles = StyleSheet.create({
     color: colors.warning,
   },
   emptyText: {
-    fontSize: 18,
+    fontSize: 20,
+    fontWeight: '600',
+    color: colors.text,
+    marginTop: 16,
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  emptySubtext: {
+    fontSize: 16,
     color: colors.textSecondary,
-    marginBottom: 20,
+    marginBottom: 24,
+    textAlign: 'center',
+    paddingHorizontal: 32,
+    lineHeight: 22,
   },
   backButton: {
     backgroundColor: colors.primary,
