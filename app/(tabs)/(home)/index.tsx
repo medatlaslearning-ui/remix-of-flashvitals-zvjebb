@@ -17,18 +17,18 @@ export default function HomeScreen() {
   // Get unique topics
   const topics = Array.from(new Set(allFlashcards.map(card => card.topic)));
 
-  // Calculate counts - these will update when allFlashcards or refreshKey changes
+  // Calculate counts directly from allFlashcards - this will update immediately when state changes
   const bookmarkedCount = React.useMemo(() => {
-    const count = getBookmarkedFlashcards().length;
+    const count = allFlashcards.filter(card => card.bookmarked).length;
     console.log('Bookmarked count recalculated:', count);
     return count;
-  }, [allFlashcards, refreshKey, getBookmarkedFlashcards]);
+  }, [allFlashcards, refreshKey]);
 
   const favoritesCount = React.useMemo(() => {
-    const count = getFavoriteFlashcards().length;
+    const count = allFlashcards.filter(card => card.favorite).length;
     console.log('Favorites count recalculated:', count);
     return count;
-  }, [allFlashcards, refreshKey, getFavoriteFlashcards]);
+  }, [allFlashcards, refreshKey]);
 
   // Log counts for debugging
   useEffect(() => {
