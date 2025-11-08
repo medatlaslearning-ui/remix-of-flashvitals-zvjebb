@@ -66,10 +66,24 @@ export default function FlashcardsScreen() {
 
   // Reset current index when flashcards change
   useEffect(() => {
-    console.log('Flashcards array changed, resetting to index 0');
+    console.log('Flashcards array changed, length:', flashcards.length);
+    
+    // If we're viewing filtered lists and the current card is removed, adjust index
+    if (currentIndex >= flashcards.length && flashcards.length > 0) {
+      console.log('Current index out of bounds, adjusting to:', flashcards.length - 1);
+      setCurrentIndex(flashcards.length - 1);
+    } else if (flashcards.length === 0) {
+      console.log('No cards left, resetting to 0');
+      setCurrentIndex(0);
+    }
+  }, [flashcards.length]);
+
+  // Reset when filter or topic changes
+  useEffect(() => {
+    console.log('Filter or topic changed, resetting to index 0');
     setCurrentIndex(0);
     reviewedCardsRef.current.clear();
-  }, [flashcards.length, filter, topic]);
+  }, [filter, topic]);
 
   // Increment review count only when moving to a new card
   useEffect(() => {
@@ -137,6 +151,9 @@ export default function FlashcardsScreen() {
     console.log('Card ID:', id);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     toggleBookmark(id);
+    
+    // If we're in bookmarked filter and user unbookmarks, the card will be removed
+    // The useEffect will handle adjusting the index
   };
 
   const handleFavorite = (id: string) => {
@@ -144,6 +161,9 @@ export default function FlashcardsScreen() {
     console.log('Card ID:', id);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     toggleFavorite(id);
+    
+    // If we're in favorites filter and user unfavorites, the card will be removed
+    // The useEffect will handle adjusting the index
   };
 
   if (flashcards.length === 0) {

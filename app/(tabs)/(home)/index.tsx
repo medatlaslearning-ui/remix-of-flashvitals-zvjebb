@@ -11,12 +11,24 @@ export default function HomeScreen() {
   const router = useRouter();
   const { allFlashcards, getBookmarkedFlashcards, getFavoriteFlashcards } = useFlashcards();
 
+  // Use state to force re-renders when screen comes into focus
+  const [refreshKey, setRefreshKey] = useState(0);
+
   // Get unique topics
   const topics = Array.from(new Set(allFlashcards.map(card => card.topic)));
 
-  // Get counts - recalculate on every render to ensure they're up to date
-  const bookmarkedCount = getBookmarkedFlashcards().length;
-  const favoritesCount = getFavoriteFlashcards().length;
+  // Calculate counts - these will update when allFlashcards or refreshKey changes
+  const bookmarkedCount = React.useMemo(() => {
+    const count = getBookmarkedFlashcards().length;
+    console.log('Bookmarked count recalculated:', count);
+    return count;
+  }, [allFlashcards, refreshKey, getBookmarkedFlashcards]);
+
+  const favoritesCount = React.useMemo(() => {
+    const count = getFavoriteFlashcards().length;
+    console.log('Favorites count recalculated:', count);
+    return count;
+  }, [allFlashcards, refreshKey, getFavoriteFlashcards]);
 
   // Log counts for debugging
   useEffect(() => {
@@ -31,6 +43,7 @@ export default function HomeScreen() {
   useFocusEffect(
     React.useCallback(() => {
       console.log('Home screen focused - refreshing counts');
+      setRefreshKey(prev => prev + 1);
     }, [])
   );
 
