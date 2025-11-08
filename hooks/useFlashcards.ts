@@ -20,6 +20,7 @@ interface FlashcardStates {
 export const useFlashcards = () => {
   const [flashcards, setFlashcards] = useState<Flashcard[]>(cardiologyFlashcards);
   const [loading, setLoading] = useState(true);
+  const [updateTrigger, setUpdateTrigger] = useState(0);
 
   // Load persisted states from AsyncStorage on mount
   useEffect(() => {
@@ -98,6 +99,7 @@ export const useFlashcards = () => {
       saveFlashcardStates(updatedFlashcards);
       return updatedFlashcards;
     });
+    setUpdateTrigger(prev => prev + 1);
   }, []);
 
   const updateFlashcard = useCallback((id: string, updates: Partial<Flashcard>) => {
@@ -108,6 +110,7 @@ export const useFlashcards = () => {
       saveFlashcardStates(updatedFlashcards);
       return updatedFlashcards;
     });
+    setUpdateTrigger(prev => prev + 1);
   }, []);
 
   const deleteFlashcard = useCallback((id: string) => {
@@ -116,6 +119,7 @@ export const useFlashcards = () => {
       saveFlashcardStates(updatedFlashcards);
       return updatedFlashcards;
     });
+    setUpdateTrigger(prev => prev + 1);
   }, []);
 
   const toggleBookmark = useCallback((id: string) => {
@@ -123,29 +127,35 @@ export const useFlashcards = () => {
     console.log('Card ID:', id);
     
     setFlashcards(prev => {
-      const card = prev.find(c => c.id === id);
-      if (!card) {
+      const cardIndex = prev.findIndex(c => c.id === id);
+      if (cardIndex === -1) {
         console.log('Card not found:', id);
         return prev;
       }
       
+      const card = prev[cardIndex];
       const newBookmarkedState = !card.bookmarked;
       console.log(`Card ${id} bookmark: ${card.bookmarked} -> ${newBookmarkedState}`);
       
-      // Create a completely new array with new card objects to ensure React detects the change
-      const updatedFlashcards = prev.map(c => 
-        c.id === id ? { ...c, bookmarked: newBookmarkedState } : { ...c }
-      );
+      // Create a completely new array with a new card object
+      const updatedFlashcards = [
+        ...prev.slice(0, cardIndex),
+        { ...card, bookmarked: newBookmarkedState },
+        ...prev.slice(cardIndex + 1)
+      ];
       
       const bookmarkedCount = updatedFlashcards.filter(c => c.bookmarked).length;
       console.log('New bookmarked count:', bookmarkedCount);
       
-      // Save to AsyncStorage
+      // Save to AsyncStorage asynchronously
       saveFlashcardStates(updatedFlashcards);
       
       console.log('=== toggleBookmark END ===');
       return updatedFlashcards;
     });
+    
+    // Force update trigger
+    setUpdateTrigger(prev => prev + 1);
   }, []);
 
   const toggleFavorite = useCallback((id: string) => {
@@ -153,29 +163,35 @@ export const useFlashcards = () => {
     console.log('Card ID:', id);
     
     setFlashcards(prev => {
-      const card = prev.find(c => c.id === id);
-      if (!card) {
+      const cardIndex = prev.findIndex(c => c.id === id);
+      if (cardIndex === -1) {
         console.log('Card not found:', id);
         return prev;
       }
       
+      const card = prev[cardIndex];
       const newFavoriteState = !card.favorite;
       console.log(`Card ${id} favorite: ${card.favorite} -> ${newFavoriteState}`);
       
-      // Create a completely new array with new card objects to ensure React detects the change
-      const updatedFlashcards = prev.map(c => 
-        c.id === id ? { ...c, favorite: newFavoriteState } : { ...c }
-      );
+      // Create a completely new array with a new card object
+      const updatedFlashcards = [
+        ...prev.slice(0, cardIndex),
+        { ...card, favorite: newFavoriteState },
+        ...prev.slice(cardIndex + 1)
+      ];
       
       const favoriteCount = updatedFlashcards.filter(c => c.favorite).length;
       console.log('New favorite count:', favoriteCount);
       
-      // Save to AsyncStorage
+      // Save to AsyncStorage asynchronously
       saveFlashcardStates(updatedFlashcards);
       
       console.log('=== toggleFavorite END ===');
       return updatedFlashcards;
     });
+    
+    // Force update trigger
+    setUpdateTrigger(prev => prev + 1);
   }, []);
 
   const incrementReviewCount = useCallback((id: string) => {
@@ -194,6 +210,7 @@ export const useFlashcards = () => {
       saveFlashcardStates(updatedFlashcards);
       return updatedFlashcards;
     });
+    setUpdateTrigger(prev => prev + 1);
   }, []);
 
   const getFlashcardsByTopic = useCallback((topic: string) => {
@@ -222,6 +239,7 @@ export const useFlashcards = () => {
     flashcards,
     allFlashcards: flashcards,
     loading,
+    updateTrigger,
     addFlashcard,
     updateFlashcard,
     deleteFlashcard,

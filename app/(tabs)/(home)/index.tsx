@@ -9,7 +9,7 @@ import * as Haptics from 'expo-haptics';
 
 export default function HomeScreen() {
   const router = useRouter();
-  const { allFlashcards } = useFlashcards();
+  const { allFlashcards, updateTrigger } = useFlashcards();
 
   // Use state to force re-renders when screen comes into focus
   const [refreshKey, setRefreshKey] = useState(0);
@@ -19,18 +19,18 @@ export default function HomeScreen() {
     return Array.from(new Set(allFlashcards.map(card => card.topic)));
   }, [allFlashcards]);
 
-  // Calculate counts directly from allFlashcards - this will update immediately when state changes
+  // Calculate counts directly from allFlashcards - depend on updateTrigger to force recalculation
   const bookmarkedCount = useMemo(() => {
     const count = allFlashcards.filter(card => card.bookmarked).length;
     console.log('HomeScreen: Bookmarked count recalculated:', count);
     return count;
-  }, [allFlashcards, refreshKey]);
+  }, [allFlashcards, updateTrigger, refreshKey]);
 
   const favoritesCount = useMemo(() => {
     const count = allFlashcards.filter(card => card.favorite).length;
     console.log('HomeScreen: Favorites count recalculated:', count);
     return count;
-  }, [allFlashcards, refreshKey]);
+  }, [allFlashcards, updateTrigger, refreshKey]);
 
   // Log counts for debugging
   useEffect(() => {
@@ -38,9 +38,10 @@ export default function HomeScreen() {
     console.log('Total flashcards:', allFlashcards.length);
     console.log('Bookmarked:', bookmarkedCount);
     console.log('Favorites:', favoritesCount);
+    console.log('Update trigger:', updateTrigger);
     console.log('Refresh key:', refreshKey);
     console.log('================================');
-  }, [allFlashcards, bookmarkedCount, favoritesCount, refreshKey]);
+  }, [allFlashcards, bookmarkedCount, favoritesCount, updateTrigger, refreshKey]);
 
   // Refresh counts when screen comes into focus
   useFocusEffect(

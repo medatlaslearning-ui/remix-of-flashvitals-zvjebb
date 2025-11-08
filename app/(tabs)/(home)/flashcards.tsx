@@ -17,6 +17,7 @@ export default function FlashcardsScreen() {
   
   const {
     allFlashcards,
+    updateTrigger,
     toggleBookmark,
     toggleFavorite,
     incrementReviewCount,
@@ -39,13 +40,14 @@ export default function FlashcardsScreen() {
     return 'All Cards';
   };
 
-  // Get filtered flashcards - recalculate whenever allFlashcards changes
+  // Get filtered flashcards - recalculate whenever allFlashcards or updateTrigger changes
   const flashcards = useMemo(() => {
     let cards: Flashcard[] = [];
     
     console.log('=== FlashcardsScreen: Filtering flashcards ===');
     console.log('Filter:', filter, 'Topic:', topic);
     console.log('Total flashcards:', allFlashcards.length);
+    console.log('Update trigger:', updateTrigger);
     
     if (filter === 'bookmarked') {
       cards = getBookmarkedFlashcards();
@@ -62,7 +64,7 @@ export default function FlashcardsScreen() {
     
     console.log('=== End filtering ===');
     return cards;
-  }, [allFlashcards, topic, filter, getBookmarkedFlashcards, getFavoriteFlashcards, getFlashcardsByTopic]);
+  }, [allFlashcards, topic, filter, updateTrigger, getBookmarkedFlashcards, getFavoriteFlashcards, getFlashcardsByTopic]);
 
   // Reset current index when flashcards change
   useEffect(() => {
