@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { View, Text, StyleSheet, ScrollView, Pressable, Platform } from 'react-native';
 import { Stack, useRouter, useFocusEffect } from 'expo-router';
 import { colors, commonStyles } from '@/styles/commonStyles';
@@ -9,40 +9,43 @@ import * as Haptics from 'expo-haptics';
 
 export default function HomeScreen() {
   const router = useRouter();
-  const { allFlashcards, getBookmarkedFlashcards, getFavoriteFlashcards } = useFlashcards();
+  const { allFlashcards } = useFlashcards();
 
   // Use state to force re-renders when screen comes into focus
   const [refreshKey, setRefreshKey] = useState(0);
 
   // Get unique topics
-  const topics = Array.from(new Set(allFlashcards.map(card => card.topic)));
+  const topics = useMemo(() => {
+    return Array.from(new Set(allFlashcards.map(card => card.topic)));
+  }, [allFlashcards]);
 
   // Calculate counts directly from allFlashcards - this will update immediately when state changes
-  const bookmarkedCount = React.useMemo(() => {
+  const bookmarkedCount = useMemo(() => {
     const count = allFlashcards.filter(card => card.bookmarked).length;
-    console.log('Bookmarked count recalculated:', count);
+    console.log('HomeScreen: Bookmarked count recalculated:', count);
     return count;
   }, [allFlashcards, refreshKey]);
 
-  const favoritesCount = React.useMemo(() => {
+  const favoritesCount = useMemo(() => {
     const count = allFlashcards.filter(card => card.favorite).length;
-    console.log('Favorites count recalculated:', count);
+    console.log('HomeScreen: Favorites count recalculated:', count);
     return count;
   }, [allFlashcards, refreshKey]);
 
   // Log counts for debugging
   useEffect(() => {
-    console.log('=== Home Screen Counts ===');
+    console.log('=== Home Screen Counts Update ===');
     console.log('Total flashcards:', allFlashcards.length);
     console.log('Bookmarked:', bookmarkedCount);
     console.log('Favorites:', favoritesCount);
-    console.log('=========================');
-  }, [allFlashcards.length, bookmarkedCount, favoritesCount]);
+    console.log('Refresh key:', refreshKey);
+    console.log('================================');
+  }, [allFlashcards, bookmarkedCount, favoritesCount, refreshKey]);
 
   // Refresh counts when screen comes into focus
   useFocusEffect(
     React.useCallback(() => {
-      console.log('Home screen focused - refreshing counts');
+      console.log('Home screen focused - triggering refresh');
       setRefreshKey(prev => prev + 1);
     }, [])
   );

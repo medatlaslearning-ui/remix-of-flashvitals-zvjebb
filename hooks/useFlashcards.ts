@@ -82,7 +82,7 @@ export const useFlashcards = () => {
       const favoriteCount = updatedFlashcards.filter(c => c.favorite).length;
       console.log('Saving flashcard states:', updatedFlashcards.length, 'total,', bookmarkedCount, 'bookmarked,', favoriteCount, 'favorites');
       await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(states));
-      console.log('States saved successfully');
+      console.log('States saved successfully to AsyncStorage');
     } catch (error) {
       console.error('Error saving flashcard states:', error);
     }
@@ -119,7 +119,9 @@ export const useFlashcards = () => {
   }, []);
 
   const toggleBookmark = useCallback((id: string) => {
-    console.log('toggleBookmark called for card:', id);
+    console.log('=== toggleBookmark START ===');
+    console.log('Card ID:', id);
+    
     setFlashcards(prev => {
       const card = prev.find(c => c.id === id);
       if (!card) {
@@ -130,18 +132,26 @@ export const useFlashcards = () => {
       const newBookmarkedState = !card.bookmarked;
       console.log(`Card ${id} bookmark: ${card.bookmarked} -> ${newBookmarkedState}`);
       
+      // Create a completely new array with new card objects to ensure React detects the change
       const updatedFlashcards = prev.map(c => 
-        c.id === id ? { ...c, bookmarked: newBookmarkedState } : c
+        c.id === id ? { ...c, bookmarked: newBookmarkedState } : { ...c }
       );
       
-      // Save immediately
+      const bookmarkedCount = updatedFlashcards.filter(c => c.bookmarked).length;
+      console.log('New bookmarked count:', bookmarkedCount);
+      
+      // Save to AsyncStorage
       saveFlashcardStates(updatedFlashcards);
+      
+      console.log('=== toggleBookmark END ===');
       return updatedFlashcards;
     });
   }, []);
 
   const toggleFavorite = useCallback((id: string) => {
-    console.log('toggleFavorite called for card:', id);
+    console.log('=== toggleFavorite START ===');
+    console.log('Card ID:', id);
+    
     setFlashcards(prev => {
       const card = prev.find(c => c.id === id);
       if (!card) {
@@ -152,12 +162,18 @@ export const useFlashcards = () => {
       const newFavoriteState = !card.favorite;
       console.log(`Card ${id} favorite: ${card.favorite} -> ${newFavoriteState}`);
       
+      // Create a completely new array with new card objects to ensure React detects the change
       const updatedFlashcards = prev.map(c => 
-        c.id === id ? { ...c, favorite: newFavoriteState } : c
+        c.id === id ? { ...c, favorite: newFavoriteState } : { ...c }
       );
       
-      // Save immediately
+      const favoriteCount = updatedFlashcards.filter(c => c.favorite).length;
+      console.log('New favorite count:', favoriteCount);
+      
+      // Save to AsyncStorage
       saveFlashcardStates(updatedFlashcards);
+      
+      console.log('=== toggleFavorite END ===');
       return updatedFlashcards;
     });
   }, []);

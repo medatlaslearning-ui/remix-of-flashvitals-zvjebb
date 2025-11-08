@@ -43,7 +43,7 @@ export default function FlashcardsScreen() {
   const flashcards = useMemo(() => {
     let cards: Flashcard[] = [];
     
-    console.log('=== Filtering flashcards ===');
+    console.log('=== FlashcardsScreen: Filtering flashcards ===');
     console.log('Filter:', filter, 'Topic:', topic);
     console.log('Total flashcards:', allFlashcards.length);
     
@@ -66,7 +66,7 @@ export default function FlashcardsScreen() {
 
   // Reset current index when flashcards change
   useEffect(() => {
-    console.log('Flashcards array changed, length:', flashcards.length);
+    console.log('FlashcardsScreen: Flashcards array changed, length:', flashcards.length);
     
     // If we're viewing filtered lists and the current card is removed, adjust index
     if (currentIndex >= flashcards.length && flashcards.length > 0) {
@@ -76,7 +76,7 @@ export default function FlashcardsScreen() {
       console.log('No cards left, resetting to 0');
       setCurrentIndex(0);
     }
-  }, [flashcards.length]);
+  }, [flashcards.length, currentIndex]);
 
   // Reset when filter or topic changes
   useEffect(() => {
@@ -98,7 +98,7 @@ export default function FlashcardsScreen() {
         reviewedCardsRef.current.add(cardId);
       }
     }
-  }, [currentIndex, flashcards.length]);
+  }, [currentIndex, flashcards.length, incrementReviewCount]);
 
   const handleNext = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -147,7 +147,7 @@ export default function FlashcardsScreen() {
   };
 
   const handleBookmark = (id: string) => {
-    console.log('=== handleBookmark pressed ===');
+    console.log('=== FlashcardsScreen: handleBookmark pressed ===');
     console.log('Card ID:', id);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     toggleBookmark(id);
@@ -157,7 +157,7 @@ export default function FlashcardsScreen() {
   };
 
   const handleFavorite = (id: string) => {
-    console.log('=== handleFavorite pressed ===');
+    console.log('=== FlashcardsScreen: handleFavorite pressed ===');
     console.log('Card ID:', id);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     toggleFavorite(id);
