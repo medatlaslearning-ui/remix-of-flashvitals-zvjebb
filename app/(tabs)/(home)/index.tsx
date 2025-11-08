@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { View, Text, StyleSheet, ScrollView, Pressable, Platform } from 'react-native';
 import { Stack, useRouter, useFocusEffect } from 'expo-router';
 import { colors, commonStyles } from '@/styles/commonStyles';
@@ -22,13 +22,13 @@ export default function HomeScreen() {
   // Calculate counts directly from allFlashcards - depend on updateTrigger to force recalculation
   const bookmarkedCount = useMemo(() => {
     const count = allFlashcards.filter(card => card.bookmarked).length;
-    console.log('HomeScreen: Bookmarked count recalculated:', count);
+    console.log('HomeScreen: Bookmarked count recalculated:', count, 'updateTrigger:', updateTrigger, 'refreshKey:', refreshKey);
     return count;
   }, [allFlashcards, updateTrigger, refreshKey]);
 
   const favoritesCount = useMemo(() => {
     const count = allFlashcards.filter(card => card.favorite).length;
-    console.log('HomeScreen: Favorites count recalculated:', count);
+    console.log('HomeScreen: Favorites count recalculated:', count, 'updateTrigger:', updateTrigger, 'refreshKey:', refreshKey);
     return count;
   }, [allFlashcards, updateTrigger, refreshKey]);
 
@@ -45,7 +45,7 @@ export default function HomeScreen() {
 
   // Refresh counts when screen comes into focus
   useFocusEffect(
-    React.useCallback(() => {
+    useCallback(() => {
       console.log('Home screen focused - triggering refresh');
       setRefreshKey(prev => prev + 1);
     }, [])

@@ -94,6 +94,7 @@ export const useFlashcards = () => {
       ...flashcard,
       id: Date.now().toString(),
     };
+    
     setFlashcards(prev => {
       const updatedFlashcards = [...prev, newFlashcard];
       saveFlashcardStates(updatedFlashcards);
@@ -147,7 +148,7 @@ export const useFlashcards = () => {
       const bookmarkedCount = updatedFlashcards.filter(c => c.bookmarked).length;
       console.log('New bookmarked count:', bookmarkedCount);
       
-      // Save to AsyncStorage asynchronously
+      // Save to AsyncStorage
       saveFlashcardStates(updatedFlashcards);
       
       console.log('=== toggleBookmark END ===');
@@ -155,7 +156,11 @@ export const useFlashcards = () => {
     });
     
     // Force update trigger
-    setUpdateTrigger(prev => prev + 1);
+    setUpdateTrigger(prev => {
+      const newValue = prev + 1;
+      console.log('Update trigger incremented to:', newValue);
+      return newValue;
+    });
   }, []);
 
   const toggleFavorite = useCallback((id: string) => {
@@ -183,7 +188,7 @@ export const useFlashcards = () => {
       const favoriteCount = updatedFlashcards.filter(c => c.favorite).length;
       console.log('New favorite count:', favoriteCount);
       
-      // Save to AsyncStorage asynchronously
+      // Save to AsyncStorage
       saveFlashcardStates(updatedFlashcards);
       
       console.log('=== toggleFavorite END ===');
@@ -191,7 +196,11 @@ export const useFlashcards = () => {
     });
     
     // Force update trigger
-    setUpdateTrigger(prev => prev + 1);
+    setUpdateTrigger(prev => {
+      const newValue = prev + 1;
+      console.log('Update trigger incremented to:', newValue);
+      return newValue;
+    });
   }, []);
 
   const incrementReviewCount = useCallback((id: string) => {
