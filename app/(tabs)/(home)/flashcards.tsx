@@ -2,133 +2,100 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { View, Text, StyleSheet, Pressable, Alert, Platform, ScrollView } from 'react-native';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
-import { FlashcardComponent } from '@/components/FlashcardComponent';
 import { colors, commonStyles } from '@/styles/commonStyles';
 import { useFlashcards } from '@/hooks/useFlashcards';
-import { IconSymbol } from '@/components/IconSymbol';
 import { Flashcard } from '@/types/flashcard';
+import { FlashcardComponent } from '@/components/FlashcardComponent';
+import { IconSymbol } from '@/components/IconSymbol';
 import * as Haptics from 'expo-haptics';
 
 export default function FlashcardsScreen() {
-  const router = useRouter();
   const params = useLocalSearchParams();
-  const topic = params.topic as string | undefined;
-  const filter = params.filter as string | undefined;
-  
-  const {
-    allFlashcards,
-    updateTrigger,
-    toggleBookmark,
-    toggleFavorite,
+  const router = useRouter();
+  const { 
+    allFlashcards, 
+    toggleBookmark, 
+    toggleFavorite, 
     incrementReviewCount,
-    getFlashcardsByTopic,
     getBookmarkedFlashcards,
     getFavoriteFlashcards,
   } = useFlashcards();
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [incorrectCards, setIncorrectCards] = useState<string[]>([]);
-  
-  // Track which cards have been reviewed to prevent duplicate increments
-  const reviewedCardsRef = useRef<Set<string>>(new Set());
+  const hasIncrementedReview = useRef(false);
 
-  // Get screen title based on filter or topic
+  const topic = params.topic as string | undefined;
+  const filter = params.filter as string | undefined;
+  const system = params.system as string | undefined;
+
+  // Filter flashcards based on params
+  const flashcards = useMemo(() => {
+    console.log('Filtering flashcards with params:', { topic, filter, system });
+    
+    if (filter === 'bookmarked') {
+      const bookmarked = getBookmarkedFlashcards();
+      console.log('Bookmarked flashcards:', bookmarked.length);
+      return bookmarked;
+    }
+    
+    if (filter === 'favorites') {
+      const favorites = getFavoriteFlashcards();
+      console.log('Favorite flashcards:', favorites.length);
+      return favorites;
+    }
+    
+    if (topic) {
+      let filtered = allFlashcards.filter(card => card.topic === topic);
+      
+      // If system is specified, also filter by system
+      if (system) {
+        filtered = filtered.filter(card => card.system === system);
+      }
+      
+      console.log('Topic flashcards:', filtered.length, 'for topic:', topic, 'system:', system);
+      return filtered;
+    }
+    
+    console.log('All flashcards:', allFlashcards.length);
+    return allFlashcards;
+  }, [topic, filter, system, allFlashcards, getBookmarkedFlashcards, getFavoriteFlashcards]);
+
+  // Reset index when flashcards change
+  useEffect(() => {
+    setCurrentIndex(0);
+    hasIncrementedReview.current = false;
+  }, [flashcards.length, topic, filter]);
+
+  // Increment review count for current card (only once per card)
+  useEffect(() => {
+    if (flashcards.length > 0 && currentIndex < flashcards.length && !hasIncrementedReview.current) {
+      const currentCard = flashcards[currentIndex];
+      console.log('Incrementing review count for card:', currentCard.id);
+      incrementReviewCount(currentCard.id);
+      hasIncrementedReview.current = true;
+    }
+  }, [currentIndex, flashcards.length, incrementReviewCount]);
+
   const getScreenTitle = () => {
     if (filter === 'bookmarked') return 'Bookmarked Cards';
     if (filter === 'favorites') return 'Favorite Cards';
     if (topic) return topic;
-    return 'All Cards';
+    return 'All Flashcards';
   };
-
-  // Get filtered flashcards - recalculate whenever allFlashcards or updateTrigger changes
-  const flashcards = useMemo(() => {
-    let cards: Flashcard[] = [];
-    
-    console.log('=== FlashcardsScreen: Filtering flashcards ===');
-    console.log('Filter:', filter, 'Topic:', topic);
-    console.log('Total flashcards:', allFlashcards.length);
-    console.log('Update trigger:', updateTrigger);
-    
-    if (filter === 'bookmarked') {
-      cards = getBookmarkedFlashcards();
-      console.log('Bookmarked cards found:', cards.length);
-    } else if (filter === 'favorites') {
-      cards = getFavoriteFlashcards();
-      console.log('Favorite cards found:', cards.length);
-    } else if (topic) {
-      cards = getFlashcardsByTopic(topic);
-      console.log('Topic cards found:', cards.length);
-    } else {
-      cards = allFlashcards;
-    }
-    
-    console.log('=== End filtering ===');
-    return cards;
-  }, [allFlashcards, topic, filter, updateTrigger, getBookmarkedFlashcards, getFavoriteFlashcards, getFlashcardsByTopic]);
-
-  // Reset current index when flashcards change
-  useEffect(() => {
-    console.log('FlashcardsScreen: Flashcards array changed, length:', flashcards.length);
-    
-    // If we're viewing filtered lists and the current card is removed, adjust index
-    if (currentIndex >= flashcards.length && flashcards.length > 0) {
-      console.log('Current index out of bounds, adjusting to:', flashcards.length - 1);
-      setCurrentIndex(flashcards.length - 1);
-    } else if (flashcards.length === 0) {
-      console.log('No cards left, resetting to 0');
-      setCurrentIndex(0);
-    }
-  }, [flashcards.length, currentIndex]);
-
-  // Reset when filter or topic changes
-  useEffect(() => {
-    console.log('Filter or topic changed, resetting to index 0');
-    setCurrentIndex(0);
-    reviewedCardsRef.current.clear();
-  }, [filter, topic]);
-
-  // Increment review count only when moving to a new card
-  useEffect(() => {
-    if (flashcards.length > 0 && currentIndex < flashcards.length) {
-      const currentCard = flashcards[currentIndex];
-      const cardId = currentCard.id;
-      
-      // Only increment if we haven't reviewed this card yet in this session
-      if (!reviewedCardsRef.current.has(cardId)) {
-        console.log('Incrementing review count for card:', cardId);
-        incrementReviewCount(cardId);
-        reviewedCardsRef.current.add(cardId);
-      }
-    }
-  }, [currentIndex, flashcards.length, incrementReviewCount]);
 
   const handleNext = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     if (currentIndex < flashcards.length - 1) {
       setCurrentIndex(currentIndex + 1);
+      hasIncrementedReview.current = false;
     } else {
-      // Check if there are incorrect cards to review
-      if (incorrectCards.length > 0) {
-        Alert.alert(
-          'Review Complete',
-          `You have ${incorrectCards.length} cards to review again. Would you like to review them now?`,
-          [
-            { text: 'Exit', onPress: () => router.back() },
-            {
-              text: 'Review Again',
-              onPress: () => {
-                setCurrentIndex(0);
-                setIncorrectCards([]);
-                reviewedCardsRef.current.clear();
-              },
-            },
-          ]
-        );
-      } else {
-        Alert.alert('Great Job!', 'You have reviewed all cards.', [
-          { text: 'OK', onPress: () => router.back() },
-        ]);
-      }
+      Alert.alert('End of Cards', 'You have reviewed all cards in this set!', [
+        { text: 'Restart', onPress: () => {
+          setCurrentIndex(0);
+          hasIncrementedReview.current = false;
+        }},
+        { text: 'Go Back', onPress: () => router.back() }
+      ]);
     }
   };
 
@@ -136,36 +103,25 @@ export default function FlashcardsScreen() {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
+      hasIncrementedReview.current = false;
     }
   };
 
   const handleMarkDifficult = () => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    const currentCard = flashcards[currentIndex];
-    if (!incorrectCards.includes(currentCard.id)) {
-      setIncorrectCards([...incorrectCards, currentCard.id]);
-      Alert.alert('Marked for Review', 'This card will be shown again at the end.');
-    }
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
+    Alert.alert('Mark as Difficult', 'This feature will be available in a future update.');
   };
 
   const handleBookmark = (id: string) => {
-    console.log('=== FlashcardsScreen: handleBookmark pressed ===');
-    console.log('Card ID:', id);
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    console.log('Toggling bookmark for card:', id);
     toggleBookmark(id);
-    
-    // If we're in bookmarked filter and user unbookmarks, the card will be removed
-    // The useEffect will handle adjusting the index
   };
 
   const handleFavorite = (id: string) => {
-    console.log('=== FlashcardsScreen: handleFavorite pressed ===');
-    console.log('Card ID:', id);
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    console.log('Toggling favorite for card:', id);
     toggleFavorite(id);
-    
-    // If we're in favorites filter and user unfavorites, the card will be removed
-    // The useEffect will handle adjusting the index
   };
 
   if (flashcards.length === 0) {
@@ -177,27 +133,15 @@ export default function FlashcardsScreen() {
             headerBackTitle: 'Back',
           }}
         />
-        <View style={[commonStyles.container, commonStyles.center]}>
-          <IconSymbol 
-            name={filter === 'bookmarked' ? 'bookmark' : filter === 'favorites' ? 'heart' : 'square.stack.3d.up'} 
-            size={64} 
-            color={colors.textSecondary} 
-          />
-          <Text style={styles.emptyText}>
-            {filter === 'bookmarked' 
-              ? 'No bookmarked cards yet' 
-              : filter === 'favorites' 
-              ? 'No favorite cards yet' 
-              : 'No flashcards available'}
-          </Text>
+        <View style={[commonStyles.container, styles.emptyContainer]}>
+          <IconSymbol name="tray" size={64} color={colors.textSecondary} />
+          <Text style={styles.emptyText}>No flashcards available</Text>
           <Text style={styles.emptySubtext}>
-            {filter === 'bookmarked' 
-              ? 'Tap the bookmark icon on any card to save it here' 
-              : filter === 'favorites' 
-              ? 'Tap the heart icon on any card to mark it as favorite' 
-              : 'Start by adding some flashcards'}
+            {filter === 'bookmarked' && 'You haven&apos;t bookmarked any cards yet.'}
+            {filter === 'favorites' && 'You haven&apos;t favorited any cards yet.'}
+            {!filter && 'No flashcards found for this topic.'}
           </Text>
-          <Pressable onPress={() => router.back()} style={styles.backButton}>
+          <Pressable style={styles.backButton} onPress={() => router.back()}>
             <Text style={styles.backButtonText}>Go Back</Text>
           </Pressable>
         </View>
@@ -206,7 +150,6 @@ export default function FlashcardsScreen() {
   }
 
   const currentCard = flashcards[currentIndex];
-  const progress = ((currentIndex + 1) / flashcards.length) * 100;
 
   return (
     <>
@@ -216,134 +159,151 @@ export default function FlashcardsScreen() {
           headerBackTitle: 'Back',
         }}
       />
-      <View style={commonStyles.container}>
+      <ScrollView style={commonStyles.container} contentContainerStyle={styles.content}>
+        {/* Progress Indicator */}
         <View style={styles.progressContainer}>
           <Text style={styles.progressText}>
             Card {currentIndex + 1} of {flashcards.length}
           </Text>
           <View style={styles.progressBar}>
-            <View style={[styles.progressFill, { width: `${progress}%` }]} />
+            <View 
+              style={[
+                styles.progressFill, 
+                { width: `${((currentIndex + 1) / flashcards.length) * 100}%` }
+              ]} 
+            />
           </View>
         </View>
 
-        <ScrollView 
-          style={styles.scrollContainer}
-          contentContainerStyle={styles.scrollContent}
-          showsVerticalScrollIndicator={false}
-        >
-          <FlashcardComponent
-            key={currentCard.id}
-            flashcard={currentCard}
-            onBookmark={() => handleBookmark(currentCard.id)}
-            onFavorite={() => handleFavorite(currentCard.id)}
-          />
-        </ScrollView>
+        {/* Flashcard */}
+        <FlashcardComponent
+          flashcard={currentCard}
+          onBookmark={() => handleBookmark(currentCard.id)}
+          onFavorite={() => handleFavorite(currentCard.id)}
+          showActions={true}
+        />
 
-        <View style={styles.controls}>
+        {/* Navigation Buttons */}
+        <View style={styles.navigationContainer}>
           <Pressable
+            style={[styles.navButton, currentIndex === 0 && styles.navButtonDisabled]}
             onPress={handlePrevious}
-            style={[styles.controlButton, currentIndex === 0 && styles.controlButtonDisabled]}
             disabled={currentIndex === 0}
           >
-            <IconSymbol
-              name="chevron.left"
-              size={24}
-              color={currentIndex === 0 ? colors.textSecondary : colors.primary}
+            <IconSymbol 
+              name="chevron.left" 
+              size={24} 
+              color={currentIndex === 0 ? colors.textSecondary : colors.primary} 
             />
-            <Text style={[styles.controlButtonText, currentIndex === 0 && styles.controlButtonTextDisabled]}>
+            <Text style={[
+              styles.navButtonText,
+              currentIndex === 0 && styles.navButtonTextDisabled
+            ]}>
               Previous
             </Text>
           </Pressable>
 
-          <Pressable onPress={handleMarkDifficult} style={styles.difficultButton}>
-            <IconSymbol name="exclamationmark.triangle" size={20} color={colors.warning} />
-            <Text style={styles.difficultButtonText}>Review Again</Text>
-          </Pressable>
-
-          <Pressable onPress={handleNext} style={styles.controlButton}>
-            <Text style={styles.controlButtonText}>
+          <Pressable
+            style={styles.navButton}
+            onPress={handleNext}
+          >
+            <Text style={styles.navButtonText}>
               {currentIndex === flashcards.length - 1 ? 'Finish' : 'Next'}
             </Text>
             <IconSymbol name="chevron.right" size={24} color={colors.primary} />
           </Pressable>
         </View>
-      </View>
+
+        {/* Additional Actions */}
+        <View style={styles.actionsContainer}>
+          <Pressable style={styles.actionButton} onPress={handleMarkDifficult}>
+            <IconSymbol name="exclamationmark.triangle" size={20} color={colors.error} />
+            <Text style={styles.actionButtonText}>Mark Difficult</Text>
+          </Pressable>
+        </View>
+      </ScrollView>
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  progressContainer: {
+  content: {
     padding: 16,
-    backgroundColor: colors.card,
-    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
-    elevation: 2,
+    paddingBottom: Platform.OS === 'ios' ? 100 : 110,
+  },
+  progressContainer: {
+    marginBottom: 16,
   },
   progressText: {
     fontSize: 14,
-    fontWeight: '600',
-    color: colors.text,
-    textAlign: 'center',
+    color: colors.textSecondary,
     marginBottom: 8,
+    textAlign: 'center',
   },
   progressBar: {
-    height: 6,
+    height: 4,
     backgroundColor: colors.highlight,
-    borderRadius: 3,
+    borderRadius: 2,
     overflow: 'hidden',
   },
   progressFill: {
     height: '100%',
     backgroundColor: colors.primary,
-    borderRadius: 3,
+    borderRadius: 2,
   },
-  scrollContainer: {
-    flex: 1,
-  },
-  scrollContent: {
-    padding: 20,
-    paddingBottom: 40,
-  },
-  controls: {
+  navigationContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 16,
-    paddingBottom: Platform.OS === 'ios' ? 100 : 110,
-    backgroundColor: colors.card,
-    boxShadow: '0px -2px 4px rgba(0, 0, 0, 0.1)',
-    elevation: 2,
+    marginTop: 24,
+    gap: 12,
   },
-  controlButton: {
+  navButton: {
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 12,
-    gap: 4,
+    justifyContent: 'center',
+    backgroundColor: colors.card,
+    padding: 16,
+    borderRadius: 12,
+    gap: 8,
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
+    elevation: 2,
   },
-  controlButtonDisabled: {
-    opacity: 0.3,
+  navButtonDisabled: {
+    opacity: 0.5,
   },
-  controlButtonText: {
+  navButtonText: {
     fontSize: 16,
     fontWeight: '600',
     color: colors.primary,
   },
-  controlButtonTextDisabled: {
+  navButtonTextDisabled: {
     color: colors.textSecondary,
   },
-  difficultButton: {
+  actionsContainer: {
+    marginTop: 16,
+  },
+  actionButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.highlight,
-    paddingHorizontal: 16,
-    paddingVertical: 10,
-    borderRadius: 8,
-    gap: 6,
+    justifyContent: 'center',
+    backgroundColor: colors.card,
+    padding: 12,
+    borderRadius: 12,
+    gap: 8,
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
+    elevation: 2,
   },
-  difficultButtonText: {
+  actionButtonText: {
     fontSize: 14,
     fontWeight: '600',
-    color: colors.warning,
+    color: colors.error,
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 32,
   },
   emptyText: {
     fontSize: 20,
@@ -351,15 +311,12 @@ const styles = StyleSheet.create({
     color: colors.text,
     marginTop: 16,
     marginBottom: 8,
-    textAlign: 'center',
   },
   emptySubtext: {
-    fontSize: 16,
+    fontSize: 14,
     color: colors.textSecondary,
-    marginBottom: 24,
     textAlign: 'center',
-    paddingHorizontal: 32,
-    lineHeight: 22,
+    marginBottom: 24,
   },
   backButton: {
     backgroundColor: colors.primary,

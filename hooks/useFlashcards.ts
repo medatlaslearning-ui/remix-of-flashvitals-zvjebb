@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Flashcard } from '@/types/flashcard';
 import { cardiologyFlashcards } from '@/data/cardiologyFlashcards';
+import { pulmonaryFlashcards } from '@/data/pulmonaryFlashcards';
 
 const STORAGE_KEY = '@flashcard_states';
 
@@ -17,8 +18,14 @@ interface FlashcardStates {
   [id: string]: FlashcardState;
 }
 
+// Combine all flashcards from different systems
+const allSystemFlashcards = [
+  ...cardiologyFlashcards,
+  ...pulmonaryFlashcards,
+];
+
 export const useFlashcards = () => {
-  const [flashcards, setFlashcards] = useState<Flashcard[]>(cardiologyFlashcards);
+  const [flashcards, setFlashcards] = useState<Flashcard[]>(allSystemFlashcards);
   const [loading, setLoading] = useState(true);
   const [updateTrigger, setUpdateTrigger] = useState(0);
 
@@ -36,7 +43,7 @@ export const useFlashcards = () => {
         console.log('Loaded states:', Object.keys(states).length, 'cards');
         
         // Merge stored states with default flashcards
-        const updatedFlashcards = cardiologyFlashcards.map(card => {
+        const updatedFlashcards = allSystemFlashcards.map(card => {
           const state = states[card.id];
           if (state) {
             return {
@@ -56,11 +63,11 @@ export const useFlashcards = () => {
         setFlashcards(updatedFlashcards);
       } else {
         console.log('No stored states found, using defaults');
-        setFlashcards(cardiologyFlashcards);
+        setFlashcards(allSystemFlashcards);
       }
     } catch (error) {
       console.error('Error loading flashcard states:', error);
-      setFlashcards(cardiologyFlashcards);
+      setFlashcards(allSystemFlashcards);
     } finally {
       setLoading(false);
     }

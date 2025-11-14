@@ -11,9 +11,22 @@ export default function HomeScreen() {
   const router = useRouter();
   const { allFlashcards, updateTrigger } = useFlashcards();
 
-  // Get unique topics
-  const topics = useMemo(() => {
-    return Array.from(new Set(allFlashcards.map(card => card.topic)));
+  // Get unique topics for Cardiology
+  const cardiologyTopics = useMemo(() => {
+    return Array.from(new Set(
+      allFlashcards
+        .filter(card => card.system === 'Cardiology')
+        .map(card => card.topic)
+    ));
+  }, [allFlashcards]);
+
+  // Get unique topics for Pulmonary
+  const pulmonaryTopics = useMemo(() => {
+    return Array.from(new Set(
+      allFlashcards
+        .filter(card => card.system === 'Pulmonary')
+        .map(card => card.topic)
+    ));
   }, [allFlashcards]);
 
   const handleTopicPress = (topicName: string) => {
@@ -23,6 +36,14 @@ export default function HomeScreen() {
       pathname: '/(tabs)/(home)/flashcards',
       params: { topic: topicName }
     });
+  };
+
+  const handleSystemPress = (system: string) => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    console.log('Navigating to system:', system);
+    if (system === 'Pulmonary') {
+      router.push('/(tabs)/(home)/pulmonary-topics');
+    }
   };
 
   const handleBookmarkedPress = () => {
@@ -95,35 +116,73 @@ export default function HomeScreen() {
           </View>
         </View>
 
-        {/* Topics */}
+        {/* Medical Systems */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Cardiology Topics</Text>
-          {topics.map((topicName, index) => {
-            const topicCards = allFlashcards.filter(card => card.topic === topicName);
-            const reviewedCount = topicCards.filter(card => card.reviewCount > 0).length;
-            const progress = topicCards.length > 0 ? (reviewedCount / topicCards.length) * 100 : 0;
+          <Text style={styles.sectionTitle}>Medical Systems</Text>
+          
+          {/* Cardiology System */}
+          <View style={styles.systemCard}>
+            <View style={styles.systemHeader}>
+              <View style={styles.systemIconContainer}>
+                <IconSymbol name="heart.fill" size={32} color={colors.primary} />
+              </View>
+              <View style={styles.systemInfo}>
+                <Text style={styles.systemTitle}>Cardiology</Text>
+                <Text style={styles.systemSubtitle}>
+                  {allFlashcards.filter(c => c.system === 'Cardiology').length} cards • {cardiologyTopics.length} topics
+                </Text>
+              </View>
+            </View>
+            <View style={styles.topicsContainer}>
+              {cardiologyTopics.map((topicName, index) => {
+                const topicCards = allFlashcards.filter(
+                  card => card.system === 'Cardiology' && card.topic === topicName
+                );
+                const reviewedCount = topicCards.filter(card => card.reviewCount > 0).length;
+                const progress = topicCards.length > 0 ? (reviewedCount / topicCards.length) * 100 : 0;
 
-            return (
-              <Pressable
-                key={index}
-                style={styles.topicCard}
-                onPress={() => handleTopicPress(topicName)}
-              >
-                <View style={styles.topicHeader}>
-                  <View style={styles.topicInfo}>
-                    <Text style={styles.topicTitle}>{topicName}</Text>
-                    <Text style={styles.topicSubtitle}>
-                      {topicCards.length} cards • {reviewedCount} reviewed
-                    </Text>
-                  </View>
-                  <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
-                </View>
-                <View style={styles.progressBarContainer}>
-                  <View style={[styles.progressBarFill, { width: `${progress}%` }]} />
-                </View>
-              </Pressable>
-            );
-          })}
+                return (
+                  <Pressable
+                    key={index}
+                    style={styles.topicCard}
+                    onPress={() => handleTopicPress(topicName)}
+                  >
+                    <View style={styles.topicHeader}>
+                      <View style={styles.topicInfo}>
+                        <Text style={styles.topicTitle}>{topicName}</Text>
+                        <Text style={styles.topicSubtitle}>
+                          {topicCards.length} cards • {reviewedCount} reviewed
+                        </Text>
+                      </View>
+                      <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
+                    </View>
+                    <View style={styles.progressBarContainer}>
+                      <View style={[styles.progressBarFill, { width: `${progress}%` }]} />
+                    </View>
+                  </Pressable>
+                );
+              })}
+            </View>
+          </View>
+
+          {/* Pulmonary System */}
+          <Pressable 
+            style={styles.systemCard}
+            onPress={() => handleSystemPress('Pulmonary')}
+          >
+            <View style={styles.systemHeader}>
+              <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
+                <IconSymbol name="lungs.fill" size={32} color={colors.accent} />
+              </View>
+              <View style={styles.systemInfo}>
+                <Text style={styles.systemTitle}>Pulmonary System</Text>
+                <Text style={styles.systemSubtitle}>
+                  {allFlashcards.filter(c => c.system === 'Pulmonary').length} cards • {pulmonaryTopics.length} topics
+                </Text>
+              </View>
+              <IconSymbol name="chevron.right" size={24} color={colors.textSecondary} />
+            </View>
+          </Pressable>
         </View>
 
         {/* Admin Access */}
@@ -178,31 +237,66 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
     marginTop: 4,
   },
-  topicCard: {
+  systemCard: {
     backgroundColor: colors.card,
     padding: 16,
     borderRadius: 12,
-    marginBottom: 12,
+    marginBottom: 16,
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
     elevation: 2,
+  },
+  systemHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  systemIconContainer: {
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    backgroundColor: colors.highlight,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 16,
+  },
+  systemInfo: {
+    flex: 1,
+  },
+  systemTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: colors.text,
+    marginBottom: 4,
+  },
+  systemSubtitle: {
+    fontSize: 14,
+    color: colors.textSecondary,
+  },
+  topicsContainer: {
+    gap: 12,
+  },
+  topicCard: {
+    backgroundColor: colors.background,
+    padding: 12,
+    borderRadius: 8,
   },
   topicHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: 8,
   },
   topicInfo: {
     flex: 1,
   },
   topicTitle: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '600',
     color: colors.text,
     marginBottom: 4,
   },
   topicSubtitle: {
-    fontSize: 14,
+    fontSize: 12,
     color: colors.textSecondary,
   },
   progressBarContainer: {
