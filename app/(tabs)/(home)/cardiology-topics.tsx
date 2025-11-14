@@ -7,44 +7,39 @@ import { IconSymbol } from '@/components/IconSymbol';
 import * as Haptics from 'expo-haptics';
 import { useFlashcards } from '@/hooks/useFlashcards';
 
-const PULMONARY_TOPICS = [
+const CARDIOLOGY_TOPICS = [
   {
-    name: 'Airway Disorders',
-    icon: 'wind',
-    description: 'Asthma, COPD, Bronchiectasis'
+    name: 'Arrhythmias',
+    icon: 'waveform.path.ecg',
+    description: 'AFib, VT, Heart Blocks'
   },
   {
-    name: 'Pulmonary Infections',
-    icon: 'bandage',
-    description: 'Pneumonia, TB, Lung Abscess'
+    name: 'Heart Failure',
+    icon: 'heart.fill',
+    description: 'HFrEF, HFpEF, Cardiomyopathy'
   },
   {
-    name: 'Pulmonary Vascular Disorders',
+    name: 'Ischemic Heart Disease',
+    icon: 'bolt.heart',
+    description: 'STEMI, NSTEMI, Angina'
+  },
+  {
+    name: 'Valvular Disease',
     icon: 'heart.circle',
-    description: 'PE, Pulmonary Hypertension'
-  },
-  {
-    name: 'Parenchymal & Interstitial Lung Diseases',
-    icon: 'lungs',
-    description: 'IPF, Sarcoidosis, ARDS'
-  },
-  {
-    name: 'Pleural Disorders',
-    icon: 'drop',
-    description: 'Effusion, Pneumothorax, Empyema'
+    description: 'AS, MR, MS, AR'
   }
 ];
 
-export default function PulmonaryTopicsScreen() {
+export default function CardiologyTopicsScreen() {
   const router = useRouter();
   const { allFlashcards } = useFlashcards();
 
   const handleTopicPress = (topicName: string) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    console.log('Navigating to Pulmonary topic:', topicName);
+    console.log('Navigating to Cardiology topic:', topicName);
     router.push({
       pathname: '/(tabs)/(home)/flashcards',
-      params: { topic: topicName, system: 'Pulmonary' }
+      params: { topic: topicName, system: 'Cardiology' }
     });
   };
 
@@ -57,15 +52,15 @@ export default function PulmonaryTopicsScreen() {
     <>
       <Stack.Screen
         options={{
-          title: 'Pulmonology',
+          title: 'Cardiology',
           headerLargeTitle: true,
         }}
       />
       <ScrollView style={commonStyles.container} contentContainerStyle={styles.content}>
         {/* Header */}
         <View style={styles.header}>
-          <IconSymbol name="lungs.fill" size={48} color={colors.accent} />
-          <Text style={styles.headerTitle}>Pulmonology</Text>
+          <IconSymbol name="heart.fill" size={48} color={colors.primary} />
+          <Text style={styles.headerTitle}>Cardiology</Text>
           <Text style={styles.headerSubtitle}>
             Select a subtopic to begin studying
           </Text>
@@ -73,9 +68,9 @@ export default function PulmonaryTopicsScreen() {
 
         {/* Topics */}
         <View style={styles.section}>
-          {PULMONARY_TOPICS.map((topic, index) => {
+          {CARDIOLOGY_TOPICS.map((topic, index) => {
             const topicCards = allFlashcards.filter(
-              card => card.system === 'Pulmonary' && card.topic === topic.name
+              card => card.system === 'Cardiology' && card.topic === topic.name
             );
             const reviewedCount = topicCards.filter(card => card.reviewCount > 0).length;
             const progress = topicCards.length > 0 ? (reviewedCount / topicCards.length) * 100 : 0;
@@ -87,7 +82,7 @@ export default function PulmonaryTopicsScreen() {
                 onPress={() => handleTopicPress(topic.name)}
               >
                 <View style={styles.topicIconContainer}>
-                  <IconSymbol name={topic.icon} size={32} color={colors.accent} />
+                  <IconSymbol name={topic.icon} size={32} color={colors.primary} />
                 </View>
                 <View style={styles.topicContent}>
                   <View style={styles.topicHeader}>
@@ -200,7 +195,7 @@ const styles = StyleSheet.create({
   },
   progressBarFill: {
     height: '100%',
-    backgroundColor: colors.accent,
+    backgroundColor: colors.primary,
     borderRadius: 2,
   },
   backButton: {

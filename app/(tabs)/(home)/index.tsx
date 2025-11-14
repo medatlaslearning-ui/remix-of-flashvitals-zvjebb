@@ -29,19 +29,12 @@ export default function HomeScreen() {
     ));
   }, [allFlashcards]);
 
-  const handleTopicPress = (topicName: string) => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    console.log('Navigating to topic:', topicName);
-    router.push({
-      pathname: '/(tabs)/(home)/flashcards',
-      params: { topic: topicName }
-    });
-  };
-
   const handleSystemPress = (system: string) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     console.log('Navigating to system:', system);
-    if (system === 'Pulmonary') {
+    if (system === 'Cardiology') {
+      router.push('/(tabs)/(home)/cardiology-topics');
+    } else if (system === 'Pulmonary') {
       router.push('/(tabs)/(home)/pulmonary-topics');
     }
   };
@@ -121,7 +114,10 @@ export default function HomeScreen() {
           <Text style={styles.sectionTitle}>Medical Systems</Text>
           
           {/* Cardiology System */}
-          <View style={styles.systemCard}>
+          <Pressable 
+            style={styles.systemCard}
+            onPress={() => handleSystemPress('Cardiology')}
+          >
             <View style={styles.systemHeader}>
               <View style={styles.systemIconContainer}>
                 <IconSymbol name="heart.fill" size={32} color={colors.primary} />
@@ -132,40 +128,11 @@ export default function HomeScreen() {
                   {allFlashcards.filter(c => c.system === 'Cardiology').length} cards • {cardiologyTopics.length} topics
                 </Text>
               </View>
+              <IconSymbol name="chevron.right" size={24} color={colors.textSecondary} />
             </View>
-            <View style={styles.topicsContainer}>
-              {cardiologyTopics.map((topicName, index) => {
-                const topicCards = allFlashcards.filter(
-                  card => card.system === 'Cardiology' && card.topic === topicName
-                );
-                const reviewedCount = topicCards.filter(card => card.reviewCount > 0).length;
-                const progress = topicCards.length > 0 ? (reviewedCount / topicCards.length) * 100 : 0;
+          </Pressable>
 
-                return (
-                  <Pressable
-                    key={index}
-                    style={styles.topicCard}
-                    onPress={() => handleTopicPress(topicName)}
-                  >
-                    <View style={styles.topicHeader}>
-                      <View style={styles.topicInfo}>
-                        <Text style={styles.topicTitle}>{topicName}</Text>
-                        <Text style={styles.topicSubtitle}>
-                          {topicCards.length} cards • {reviewedCount} reviewed
-                        </Text>
-                      </View>
-                      <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
-                    </View>
-                    <View style={styles.progressBarContainer}>
-                      <View style={[styles.progressBarFill, { width: `${progress}%` }]} />
-                    </View>
-                  </Pressable>
-                );
-              })}
-            </View>
-          </View>
-
-          {/* Pulmonary System */}
+          {/* Pulmonology System */}
           <Pressable 
             style={styles.systemCard}
             onPress={() => handleSystemPress('Pulmonary')}
@@ -175,7 +142,7 @@ export default function HomeScreen() {
                 <IconSymbol name="lungs.fill" size={32} color={colors.accent} />
               </View>
               <View style={styles.systemInfo}>
-                <Text style={styles.systemTitle}>Pulmonary System</Text>
+                <Text style={styles.systemTitle}>Pulmonology</Text>
                 <Text style={styles.systemSubtitle}>
                   {allFlashcards.filter(c => c.system === 'Pulmonary').length} cards • {pulmonaryTopics.length} topics
                 </Text>
@@ -248,7 +215,6 @@ const styles = StyleSheet.create({
   systemHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 16,
   },
   systemIconContainer: {
     width: 56,
@@ -271,44 +237,6 @@ const styles = StyleSheet.create({
   systemSubtitle: {
     fontSize: 14,
     color: colors.textSecondary,
-  },
-  topicsContainer: {
-    gap: 12,
-  },
-  topicCard: {
-    backgroundColor: colors.background,
-    padding: 12,
-    borderRadius: 8,
-  },
-  topicHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 8,
-  },
-  topicInfo: {
-    flex: 1,
-  },
-  topicTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: colors.text,
-    marginBottom: 4,
-  },
-  topicSubtitle: {
-    fontSize: 12,
-    color: colors.textSecondary,
-  },
-  progressBarContainer: {
-    height: 4,
-    backgroundColor: colors.highlight,
-    borderRadius: 2,
-    overflow: 'hidden',
-  },
-  progressBarFill: {
-    height: '100%',
-    backgroundColor: colors.primary,
-    borderRadius: 2,
   },
   adminButton: {
     flexDirection: 'row',
