@@ -119,27 +119,13 @@ export default function HomeScreen() {
             </Pressable>
 
             <Pressable style={styles.quickActionCard} onPress={handleBookmarkedPress}>
-              <View style={styles.badgeContainer}>
-                <IconSymbol name="bookmark.fill" size={32} color={colors.primary} />
-                {bookmarkedCount > 0 && (
-                  <View style={styles.badge}>
-                    <Text style={styles.badgeText}>{bookmarkedCount}</Text>
-                  </View>
-                )}
-              </View>
+              <IconSymbol name="bookmark.fill" size={32} color={colors.primary} />
               <Text style={styles.quickActionTitle}>Bookmarked</Text>
               <Text style={styles.quickActionSubtitle}>{bookmarkedCount} cards</Text>
             </Pressable>
 
             <Pressable style={styles.quickActionCard} onPress={handleFavoritesPress}>
-              <View style={styles.badgeContainer}>
-                <IconSymbol name="heart.fill" size={32} color={colors.error} />
-                {favoritesCount > 0 && (
-                  <View style={styles.badge}>
-                    <Text style={styles.badgeText}>{favoritesCount}</Text>
-                  </View>
-                )}
-              </View>
+              <IconSymbol name="heart.fill" size={32} color={colors.error} />
               <Text style={styles.quickActionTitle}>Favorites</Text>
               <Text style={styles.quickActionSubtitle}>{favoritesCount} cards</Text>
             </Pressable>
@@ -217,26 +203,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
     elevation: 3,
-  },
-  badgeContainer: {
-    position: 'relative',
-  },
-  badge: {
-    position: 'absolute',
-    top: -4,
-    right: -8,
-    backgroundColor: colors.error,
-    borderRadius: 10,
-    minWidth: 20,
-    height: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 6,
-  },
-  badgeText: {
-    color: colors.card,
-    fontSize: 12,
-    fontWeight: '700',
   },
   quickActionTitle: {
     fontSize: 16,
