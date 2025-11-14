@@ -11,43 +11,10 @@ export default function HomeScreen() {
   const router = useRouter();
   const { allFlashcards, updateTrigger } = useFlashcards();
 
-  // Force state to update on focus
-  const [bookmarkedCount, setBookmarkedCount] = useState(0);
-  const [favoritesCount, setFavoritesCount] = useState(0);
-
   // Get unique topics
   const topics = useMemo(() => {
     return Array.from(new Set(allFlashcards.map(card => card.topic)));
   }, [allFlashcards]);
-
-  // Recalculate counts whenever flashcards change or screen is focused
-  const recalculateCounts = useCallback(() => {
-    const bookmarked = allFlashcards.filter(card => card.bookmarked).length;
-    const favorites = allFlashcards.filter(card => card.favorite).length;
-    
-    console.log('=== HomeScreen: Recalculating Counts ===');
-    console.log('Total flashcards:', allFlashcards.length);
-    console.log('Bookmarked cards:', bookmarked);
-    console.log('Favorite cards:', favorites);
-    console.log('Update trigger:', updateTrigger);
-    console.log('=======================================');
-    
-    setBookmarkedCount(bookmarked);
-    setFavoritesCount(favorites);
-  }, [allFlashcards, updateTrigger]);
-
-  // Recalculate on mount and when dependencies change
-  useEffect(() => {
-    recalculateCounts();
-  }, [recalculateCounts]);
-
-  // Recalculate when screen comes into focus
-  useFocusEffect(
-    useCallback(() => {
-      console.log('HomeScreen focused - recalculating counts');
-      recalculateCounts();
-    }, [recalculateCounts])
-  );
 
   const handleTopicPress = (topicName: string) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -60,7 +27,7 @@ export default function HomeScreen() {
 
   const handleBookmarkedPress = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    console.log('Navigating to bookmarked cards. Count:', bookmarkedCount);
+    console.log('Navigating to bookmarked cards');
     router.push({
       pathname: '/(tabs)/(home)/flashcards',
       params: { filter: 'bookmarked' }
@@ -69,7 +36,7 @@ export default function HomeScreen() {
 
   const handleFavoritesPress = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    console.log('Navigating to favorite cards. Count:', favoritesCount);
+    console.log('Navigating to favorite cards');
     router.push({
       pathname: '/(tabs)/(home)/flashcards',
       params: { filter: 'favorites' }
@@ -119,13 +86,11 @@ export default function HomeScreen() {
             <Pressable style={styles.quickActionCard} onPress={handleBookmarkedPress}>
               <IconSymbol name="bookmark.fill" size={32} color={colors.primary} />
               <Text style={styles.quickActionTitle}>Bookmarked</Text>
-              <Text style={styles.quickActionSubtitle}>{bookmarkedCount} cards</Text>
             </Pressable>
 
             <Pressable style={styles.quickActionCard} onPress={handleFavoritesPress}>
               <IconSymbol name="heart.fill" size={32} color={colors.error} />
               <Text style={styles.quickActionTitle}>Favorites</Text>
-              <Text style={styles.quickActionSubtitle}>{favoritesCount} cards</Text>
             </Pressable>
           </View>
         </View>
