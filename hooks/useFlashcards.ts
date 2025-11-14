@@ -95,132 +95,126 @@ export const useFlashcards = () => {
       id: Date.now().toString(),
     };
     
-    setFlashcards(prev => {
-      const updatedFlashcards = [...prev, newFlashcard];
-      saveFlashcardStates(updatedFlashcards);
-      return updatedFlashcards;
-    });
+    const updatedFlashcards = [...flashcards, newFlashcard];
+    setFlashcards(updatedFlashcards);
+    saveFlashcardStates(updatedFlashcards);
     setUpdateTrigger(prev => prev + 1);
-  }, []);
+  }, [flashcards]);
 
   const updateFlashcard = useCallback((id: string, updates: Partial<Flashcard>) => {
-    setFlashcards(prev => {
-      const updatedFlashcards = prev.map(card => 
-        card.id === id ? { ...card, ...updates } : card
-      );
-      saveFlashcardStates(updatedFlashcards);
-      return updatedFlashcards;
-    });
+    const updatedFlashcards = flashcards.map(card => 
+      card.id === id ? { ...card, ...updates } : card
+    );
+    setFlashcards(updatedFlashcards);
+    saveFlashcardStates(updatedFlashcards);
     setUpdateTrigger(prev => prev + 1);
-  }, []);
+  }, [flashcards]);
 
   const deleteFlashcard = useCallback((id: string) => {
-    setFlashcards(prev => {
-      const updatedFlashcards = prev.filter(card => card.id !== id);
-      saveFlashcardStates(updatedFlashcards);
-      return updatedFlashcards;
-    });
+    const updatedFlashcards = flashcards.filter(card => card.id !== id);
+    setFlashcards(updatedFlashcards);
+    saveFlashcardStates(updatedFlashcards);
     setUpdateTrigger(prev => prev + 1);
-  }, []);
+  }, [flashcards]);
 
   const toggleBookmark = useCallback((id: string) => {
     console.log('=== toggleBookmark START ===');
     console.log('Card ID:', id);
+    console.log('Current flashcards count:', flashcards.length);
     
-    setFlashcards(prev => {
-      const cardIndex = prev.findIndex(c => c.id === id);
-      if (cardIndex === -1) {
-        console.log('Card not found:', id);
-        return prev;
-      }
-      
-      const card = prev[cardIndex];
-      const newBookmarkedState = !card.bookmarked;
-      console.log(`Card ${id} bookmark: ${card.bookmarked} -> ${newBookmarkedState}`);
-      
-      // Create a completely new array with a new card object
-      const updatedFlashcards = [
-        ...prev.slice(0, cardIndex),
-        { ...card, bookmarked: newBookmarkedState },
-        ...prev.slice(cardIndex + 1)
-      ];
-      
-      const bookmarkedCount = updatedFlashcards.filter(c => c.bookmarked).length;
-      console.log('New bookmarked count:', bookmarkedCount);
-      
-      // Save to AsyncStorage
-      saveFlashcardStates(updatedFlashcards);
-      
-      console.log('=== toggleBookmark END ===');
-      return updatedFlashcards;
-    });
+    const cardIndex = flashcards.findIndex(c => c.id === id);
+    if (cardIndex === -1) {
+      console.log('Card not found:', id);
+      console.log('=== toggleBookmark END (card not found) ===');
+      return;
+    }
     
-    // Force update trigger
+    const card = flashcards[cardIndex];
+    const newBookmarkedState = !card.bookmarked;
+    console.log(`Card ${id} bookmark: ${card.bookmarked} -> ${newBookmarkedState}`);
+    
+    // Create a completely new array with a new card object
+    const updatedFlashcards = flashcards.map((c, idx) => 
+      idx === cardIndex ? { ...c, bookmarked: newBookmarkedState } : c
+    );
+    
+    const bookmarkedCount = updatedFlashcards.filter(c => c.bookmarked).length;
+    console.log('New bookmarked count:', bookmarkedCount);
+    console.log('Updated flashcards array length:', updatedFlashcards.length);
+    
+    // Update state
+    setFlashcards(updatedFlashcards);
+    
+    // Save to AsyncStorage
+    saveFlashcardStates(updatedFlashcards);
+    
+    // Increment trigger
     setUpdateTrigger(prev => {
       const newValue = prev + 1;
       console.log('Update trigger incremented to:', newValue);
       return newValue;
     });
-  }, []);
+    
+    console.log('=== toggleBookmark END ===');
+  }, [flashcards]);
 
   const toggleFavorite = useCallback((id: string) => {
     console.log('=== toggleFavorite START ===');
     console.log('Card ID:', id);
+    console.log('Current flashcards count:', flashcards.length);
     
-    setFlashcards(prev => {
-      const cardIndex = prev.findIndex(c => c.id === id);
-      if (cardIndex === -1) {
-        console.log('Card not found:', id);
-        return prev;
-      }
-      
-      const card = prev[cardIndex];
-      const newFavoriteState = !card.favorite;
-      console.log(`Card ${id} favorite: ${card.favorite} -> ${newFavoriteState}`);
-      
-      // Create a completely new array with a new card object
-      const updatedFlashcards = [
-        ...prev.slice(0, cardIndex),
-        { ...card, favorite: newFavoriteState },
-        ...prev.slice(cardIndex + 1)
-      ];
-      
-      const favoriteCount = updatedFlashcards.filter(c => c.favorite).length;
-      console.log('New favorite count:', favoriteCount);
-      
-      // Save to AsyncStorage
-      saveFlashcardStates(updatedFlashcards);
-      
-      console.log('=== toggleFavorite END ===');
-      return updatedFlashcards;
-    });
+    const cardIndex = flashcards.findIndex(c => c.id === id);
+    if (cardIndex === -1) {
+      console.log('Card not found:', id);
+      console.log('=== toggleFavorite END (card not found) ===');
+      return;
+    }
     
-    // Force update trigger
+    const card = flashcards[cardIndex];
+    const newFavoriteState = !card.favorite;
+    console.log(`Card ${id} favorite: ${card.favorite} -> ${newFavoriteState}`);
+    
+    // Create a completely new array with a new card object
+    const updatedFlashcards = flashcards.map((c, idx) => 
+      idx === cardIndex ? { ...c, favorite: newFavoriteState } : c
+    );
+    
+    const favoriteCount = updatedFlashcards.filter(c => c.favorite).length;
+    console.log('New favorite count:', favoriteCount);
+    console.log('Updated flashcards array length:', updatedFlashcards.length);
+    
+    // Update state
+    setFlashcards(updatedFlashcards);
+    
+    // Save to AsyncStorage
+    saveFlashcardStates(updatedFlashcards);
+    
+    // Increment trigger
     setUpdateTrigger(prev => {
       const newValue = prev + 1;
       console.log('Update trigger incremented to:', newValue);
       return newValue;
     });
-  }, []);
+    
+    console.log('=== toggleFavorite END ===');
+  }, [flashcards]);
 
   const incrementReviewCount = useCallback((id: string) => {
-    setFlashcards(prev => {
-      const card = prev.find(c => c.id === id);
-      if (!card) return prev;
-      
-      const updatedFlashcards = prev.map(c => 
-        c.id === id ? {
-          ...c,
-          reviewCount: c.reviewCount + 1,
-          lastReviewed: new Date(),
-        } : c
-      );
-      
-      saveFlashcardStates(updatedFlashcards);
-      return updatedFlashcards;
-    });
+    const card = flashcards.find(c => c.id === id);
+    if (!card) return;
+    
+    const updatedFlashcards = flashcards.map(c => 
+      c.id === id ? {
+        ...c,
+        reviewCount: c.reviewCount + 1,
+        lastReviewed: new Date(),
+      } : c
+    );
+    
+    setFlashcards(updatedFlashcards);
+    saveFlashcardStates(updatedFlashcards);
     setUpdateTrigger(prev => prev + 1);
-  }, []);
+  }, [flashcards]);
 
   const getFlashcardsByTopic = useCallback((topic: string) => {
     const filtered = flashcards.filter(card => card.topic === topic);

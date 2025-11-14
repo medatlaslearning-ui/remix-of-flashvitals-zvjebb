@@ -19,16 +19,23 @@ export default function HomeScreen() {
     return Array.from(new Set(allFlashcards.map(card => card.topic)));
   }, [allFlashcards]);
 
-  // Calculate counts directly from allFlashcards - depend on updateTrigger to force recalculation
+  // Calculate counts directly from allFlashcards
+  // The key is to ensure we're creating new values each time allFlashcards changes
   const bookmarkedCount = useMemo(() => {
-    const count = allFlashcards.filter(card => card.bookmarked).length;
-    console.log('HomeScreen: Bookmarked count recalculated:', count, 'updateTrigger:', updateTrigger, 'refreshKey:', refreshKey);
+    const cards = allFlashcards.filter(card => card.bookmarked);
+    const count = cards.length;
+    console.log('HomeScreen: Bookmarked count recalculated:', count);
+    console.log('Bookmarked card IDs:', cards.map(c => c.id));
+    console.log('updateTrigger:', updateTrigger, 'refreshKey:', refreshKey);
     return count;
   }, [allFlashcards, updateTrigger, refreshKey]);
 
   const favoritesCount = useMemo(() => {
-    const count = allFlashcards.filter(card => card.favorite).length;
-    console.log('HomeScreen: Favorites count recalculated:', count, 'updateTrigger:', updateTrigger, 'refreshKey:', refreshKey);
+    const cards = allFlashcards.filter(card => card.favorite);
+    const count = cards.length;
+    console.log('HomeScreen: Favorites count recalculated:', count);
+    console.log('Favorite card IDs:', cards.map(c => c.id));
+    console.log('updateTrigger:', updateTrigger, 'refreshKey:', refreshKey);
     return count;
   }, [allFlashcards, updateTrigger, refreshKey]);
 
