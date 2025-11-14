@@ -21,19 +21,28 @@ export function FlashcardComponent({
 }: FlashcardComponentProps) {
   const [isFlipped, setIsFlipped] = useState(false);
 
+  console.log('FlashcardComponent rendering:', {
+    id: flashcard.id,
+    front: flashcard.front.substring(0, 30) + '...',
+    isFlipped,
+    bookmarked: flashcard.bookmarked,
+    favorite: flashcard.favorite
+  });
+
   const handleFlip = () => {
+    console.log('Flipping card:', flashcard.id);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     setIsFlipped(!isFlipped);
   };
 
   const handleBookmarkPress = () => {
-    console.log('FlashcardComponent: Bookmark button pressed');
+    console.log('FlashcardComponent: Bookmark button pressed for card:', flashcard.id);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     onBookmark();
   };
 
   const handleFavoritePress = () => {
-    console.log('FlashcardComponent: Favorite button pressed');
+    console.log('FlashcardComponent: Favorite button pressed for card:', flashcard.id);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     onFavorite();
   };

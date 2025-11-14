@@ -2,48 +2,288 @@
 import { Flashcard } from '@/types/flashcard';
 
 export const pulmonaryFlashcards: Flashcard[] = [
-  // Airway Disorders - Placeholder cards (5 cards)
+  // Airway Disorders (50 cards)
   {
-    id: 'p1',
+    id: 'p_airway_1',
     system: 'Pulmonary',
     topic: 'Airway Disorders',
-    front: 'What is the classic triad of asthma?',
+    front: 'What is asthma?',
     back: {
-      definition: 'Reversible airway obstruction, airway inflammation, and bronchial hyperresponsiveness.',
-      high_yield: 'Wheezing, dyspnea, chest tightness, and cough (especially at night).',
-      clinical_pearl: 'Peak flow variability >20% suggests asthma. Always assess severity and triggers.'
+      definition: 'Reversible airway inflammation',
+      high_yield: 'Bronchospasm + mucus',
+      clinical_pearl: 'Triggered by allergens'
     },
     tags: ['Asthma', 'Airway', 'Obstruction'],
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'easy'
   },
   {
-    id: 'p2',
+    id: 'p_airway_2',
     system: 'Pulmonary',
     topic: 'Airway Disorders',
     front: 'What is COPD?',
     back: {
-      definition: 'Chronic obstructive pulmonary disease: progressive airflow limitation.',
-      high_yield: 'Chronic bronchitis (productive cough) and emphysema (dyspnea).',
-      clinical_pearl: 'Smoking is the primary risk factor. Spirometry shows FEV1/FVC <0.70.'
+      definition: 'Chronic airflow limitation',
+      high_yield: 'Not fully reversible',
+      clinical_pearl: 'Smoking most common cause'
     },
     tags: ['COPD', 'Airway', 'Chronic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_airway_3',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Asthma hallmark?',
+    back: {
+      definition: 'Reversible obstruction',
+      high_yield: '↑FEV1 post-bronchodilator',
+      clinical_pearl: 'Night symptoms common'
+    },
+    tags: ['Asthma', 'Airway', 'Obstruction'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_airway_4',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'COPD hallmark?',
+    back: {
+      definition: 'Fixed obstruction',
+      high_yield: 'FEV1/FVC <70%',
+      clinical_pearl: 'Progressive decline'
+    },
+    tags: ['COPD', 'Airway', 'Chronic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_airway_5',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Chronic bronchitis?',
+    back: {
+      definition: 'Productive cough ≥3mo/2yr',
+      high_yield: 'Airway inflammation',
+      clinical_pearl: 'Polycythemia possible'
+    },
+    tags: ['Chronic Bronchitis', 'COPD', 'Airway'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_airway_6',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Emphysema?',
+    back: {
+      definition: 'Alveolar destruction',
+      high_yield: '↓DLCO',
+      clinical_pearl: 'Hyperinflation'
+    },
+    tags: ['Emphysema', 'COPD', 'Airway'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_airway_7',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Asthma rescue med?',
+    back: {
+      definition: 'SABA',
+      high_yield: 'Albuterol',
+      clinical_pearl: 'Rapid relief'
+    },
+    tags: ['Asthma', 'Treatment', 'SABA'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_airway_8',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Asthma controller?',
+    back: {
+      definition: 'ICS',
+      high_yield: 'Anti-inflammatory',
+      clinical_pearl: 'Most effective long term'
+    },
+    tags: ['Asthma', 'Treatment', 'ICS'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_airway_9',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Primary COPD therapy?',
+    back: {
+      definition: 'Bronchodilators',
+      high_yield: 'LABA/LAMA',
+      clinical_pearl: 'Smoking cessation essential'
+    },
+    tags: ['COPD', 'Treatment', 'Bronchodilators'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_airway_10',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Smoking cessation benefit?',
+    back: {
+      definition: 'Slows decline',
+      high_yield: 'Core COPD therapy',
+      clinical_pearl: 'Prevents exacerbations'
+    },
+    tags: ['COPD', 'Smoking', 'Prevention'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_airway_11',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Asthma triggers?',
+    back: {
+      definition: 'Allergens, cold air',
+      high_yield: 'Exercise, URIs',
+      clinical_pearl: 'Avoidance improves control'
+    },
+    tags: ['Asthma', 'Triggers', 'Management'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_airway_12',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Wheeze meaning?',
+    back: {
+      definition: 'Airway narrowing',
+      high_yield: 'Expiratory sound',
+      clinical_pearl: 'Obstruction hallmark'
+    },
+    tags: ['Physical Exam', 'Wheeze', 'Airway'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_airway_13',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Peak flow role?',
+    back: {
+      definition: 'Monitors asthma control',
+      high_yield: 'Detects early decline',
+      clinical_pearl: 'Home management'
+    },
+    tags: ['Asthma', 'Peak Flow', 'Monitoring'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_airway_14',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'FEV1 meaning?',
+    back: {
+      definition: 'Volume exhaled in 1 sec',
+      high_yield: '↓ in obstruction',
+      clinical_pearl: 'Tracks severity'
+    },
+    tags: ['PFT', 'FEV1', 'Spirometry'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_airway_15',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'FVC meaning?',
+    back: {
+      definition: 'Forced expiratory volume',
+      high_yield: '↓ in severe COPD',
+      clinical_pearl: 'Usually normal in asthma'
+    },
+    tags: ['PFT', 'FVC', 'Spirometry'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_airway_16',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Status asthmaticus?',
+    back: {
+      definition: 'Severe refractory asthma',
+      high_yield: 'Minimal airflow',
+      clinical_pearl: 'Risk of failure'
+    },
+    tags: ['Asthma', 'Status Asthmaticus', 'Emergency'],
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
     difficulty: 'medium'
   },
   {
-    id: 'p3',
+    id: 'p_airway_17',
     system: 'Pulmonary',
     topic: 'Airway Disorders',
-    front: 'What is bronchiectasis?',
+    front: 'COPD exacerbation cause?',
     back: {
-      definition: 'Permanent dilation of bronchi due to chronic inflammation.',
-      high_yield: 'Chronic productive cough, recurrent infections, hemoptysis.',
-      clinical_pearl: 'CT chest shows dilated airways. Treat underlying cause and prevent infections.'
+      definition: 'Infection common',
+      high_yield: 'Air pollution',
+      clinical_pearl: 'Check for pneumonia'
+    },
+    tags: ['COPD', 'Exacerbation', 'Infection'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_airway_18',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Bronchiectasis?',
+    back: {
+      definition: 'Permanent airway dilation',
+      high_yield: 'Chronic infection',
+      clinical_pearl: 'Purulent sputum'
     },
     tags: ['Bronchiectasis', 'Airway', 'Chronic'],
     bookmarked: false,
@@ -52,363 +292,517 @@ export const pulmonaryFlashcards: Flashcard[] = [
     difficulty: 'medium'
   },
   {
-    id: 'p4',
+    id: 'p_airway_19',
     system: 'Pulmonary',
     topic: 'Airway Disorders',
-    front: 'What is cystic fibrosis?',
+    front: 'Bronchiectasis cause?',
     back: {
-      definition: 'Genetic disorder causing thick mucus production affecting lungs and pancreas.',
-      high_yield: 'Recurrent pulmonary infections, pancreatic insufficiency, elevated sweat chloride.',
-      clinical_pearl: 'Pseudomonas and Staph aureus are common pathogens. Treat with airway clearance and antibiotics.'
+      definition: 'Post-infectious, CF',
+      high_yield: 'Tram-track CT',
+      clinical_pearl: 'Daily airway clearance'
     },
-    tags: ['Cystic Fibrosis', 'Airway', 'Genetic'],
+    tags: ['Bronchiectasis', 'Etiology', 'CT'],
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'hard'
+    difficulty: 'medium'
   },
   {
-    id: 'p5',
+    id: 'p_airway_20',
     system: 'Pulmonary',
     topic: 'Airway Disorders',
-    front: 'What is acute bronchitis?',
+    front: 'Alpha-1 deficiency clue?',
     back: {
-      definition: 'Inflammation of bronchi, usually viral.',
-      high_yield: 'Cough lasting 1-3 weeks, often with sputum production.',
-      clinical_pearl: 'Antibiotics not indicated unless bacterial superinfection suspected. Supportive care.'
+      definition: 'COPD <45 yrs',
+      high_yield: 'Basilar emphysema',
+      clinical_pearl: 'Screen early disease'
     },
-    tags: ['Bronchitis', 'Airway', 'Acute'],
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    difficulty: 'easy'
-  },
-
-  // Pulmonary Infections - Placeholder cards (5 cards)
-  {
-    id: 'p6',
-    system: 'Pulmonary',
-    topic: 'Pulmonary Infections',
-    front: 'What is community-acquired pneumonia (CAP)?',
-    back: {
-      definition: 'Pneumonia acquired outside healthcare settings.',
-      high_yield: 'Strep pneumoniae most common. Fever, cough, dyspnea, pleuritic chest pain.',
-      clinical_pearl: 'Use CURB-65 or PSI to assess severity. Empiric antibiotics based on risk factors.'
-    },
-    tags: ['Pneumonia', 'CAP', 'Infection'],
+    tags: ['Alpha-1', 'COPD', 'Genetic'],
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
     difficulty: 'medium'
   },
   {
-    id: 'p7',
+    id: 'p_airway_21',
     system: 'Pulmonary',
-    topic: 'Pulmonary Infections',
-    front: 'What is hospital-acquired pneumonia (HAP)?',
+    topic: 'Airway Disorders',
+    front: 'Croup?',
     back: {
-      definition: 'Pneumonia occurring ≥48 hours after hospital admission.',
-      high_yield: 'Gram-negative bacteria and MRSA common. Higher mortality than CAP.',
-      clinical_pearl: 'Broad-spectrum antibiotics initially. Adjust based on cultures and local resistance patterns.'
+      definition: 'Viral airway swelling',
+      high_yield: 'Barking cough',
+      clinical_pearl: 'Steeple sign'
     },
-    tags: ['Pneumonia', 'HAP', 'Nosocomial'],
+    tags: ['Croup', 'Pediatric', 'Viral'],
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
     difficulty: 'medium'
   },
   {
-    id: 'p8',
+    id: 'p_airway_22',
     system: 'Pulmonary',
-    topic: 'Pulmonary Infections',
-    front: 'What is tuberculosis (TB)?',
+    topic: 'Airway Disorders',
+    front: 'Epiglottitis?',
     back: {
-      definition: 'Mycobacterium tuberculosis infection, primarily affecting lungs.',
-      high_yield: 'Chronic cough, night sweats, weight loss, hemoptysis. Cavitary lesions on CXR.',
-      clinical_pearl: 'AFB smear and culture. RIPE therapy for active TB. Latent TB needs INH prophylaxis.'
+      definition: 'Rapid airway obstruction',
+      high_yield: 'Drooling/tripod',
+      clinical_pearl: 'Thumb sign'
     },
-    tags: ['TB', 'Tuberculosis', 'Infection'],
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    difficulty: 'hard'
-  },
-  {
-    id: 'p9',
-    system: 'Pulmonary',
-    topic: 'Pulmonary Infections',
-    front: 'What is aspiration pneumonia?',
-    back: {
-      definition: 'Pneumonia from aspiration of oropharyngeal or gastric contents.',
-      high_yield: 'Risk factors: altered consciousness, dysphagia, GERD. Anaerobes common.',
-      clinical_pearl: 'Right lower lobe most common. Treat with antibiotics covering anaerobes.'
-    },
-    tags: ['Pneumonia', 'Aspiration', 'Infection'],
+    tags: ['Epiglottitis', 'Emergency', 'Airway'],
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
     difficulty: 'medium'
   },
   {
-    id: 'p10',
+    id: 'p_airway_23',
     system: 'Pulmonary',
-    topic: 'Pulmonary Infections',
-    front: 'What is lung abscess?',
+    topic: 'Airway Disorders',
+    front: 'ICS side effect?',
     back: {
-      definition: 'Necrotic cavity in lung parenchyma filled with pus.',
-      high_yield: 'Foul-smelling sputum, fever, weight loss. Air-fluid level on CXR.',
-      clinical_pearl: 'Often from aspiration. Prolonged antibiotics (weeks to months). Drainage if large.'
+      definition: 'Oral thrush',
+      high_yield: 'Rinse mouth',
+      clinical_pearl: 'Spacer helps'
     },
-    tags: ['Abscess', 'Infection', 'Pulmonary'],
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    difficulty: 'hard'
-  },
-
-  // Pulmonary Vascular Disorders - Placeholder cards (5 cards)
-  {
-    id: 'p11',
-    system: 'Pulmonary',
-    topic: 'Pulmonary Vascular Disorders',
-    front: 'What is pulmonary embolism (PE)?',
-    back: {
-      definition: 'Blood clot in pulmonary arteries, usually from DVT.',
-      high_yield: 'Sudden dyspnea, pleuritic chest pain, tachycardia. D-dimer elevated.',
-      clinical_pearl: 'Use Wells criteria to assess probability. CTPA is gold standard. Anticoagulate immediately if high suspicion.'
-    },
-    tags: ['PE', 'Embolism', 'Vascular'],
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    difficulty: 'hard'
-  },
-  {
-    id: 'p12',
-    system: 'Pulmonary',
-    topic: 'Pulmonary Vascular Disorders',
-    front: 'What is pulmonary hypertension?',
-    back: {
-      definition: 'Elevated pulmonary artery pressure (mean PAP ≥20 mmHg).',
-      high_yield: 'Dyspnea, fatigue, syncope. Loud P2, RV heave, TR murmur.',
-      clinical_pearl: 'Echo shows elevated RVSP. Right heart cath confirms diagnosis. Treat underlying cause.'
-    },
-    tags: ['Pulmonary Hypertension', 'Vascular', 'RV'],
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    difficulty: 'hard'
-  },
-  {
-    id: 'p13',
-    system: 'Pulmonary',
-    topic: 'Pulmonary Vascular Disorders',
-    front: 'What is pulmonary arterial hypertension (PAH)?',
-    back: {
-      definition: 'Group 1 pulmonary hypertension: precapillary PH without clear cause.',
-      high_yield: 'Progressive dyspnea, right heart failure. Poor prognosis without treatment.',
-      clinical_pearl: 'Vasodilator testing guides therapy. Prostacyclins, ERAs, PDE-5 inhibitors used.'
-    },
-    tags: ['PAH', 'Pulmonary Hypertension', 'Vascular'],
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    difficulty: 'hard'
-  },
-  {
-    id: 'p14',
-    system: 'Pulmonary',
-    topic: 'Pulmonary Vascular Disorders',
-    front: 'What is chronic thromboembolic pulmonary hypertension (CTEPH)?',
-    back: {
-      definition: 'Pulmonary hypertension from chronic organized thrombi.',
-      high_yield: 'History of PE. Progressive dyspnea. V/Q scan shows mismatched defects.',
-      clinical_pearl: 'Potentially curable with pulmonary thromboendarterectomy. Lifelong anticoagulation.'
-    },
-    tags: ['CTEPH', 'Pulmonary Hypertension', 'Chronic'],
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    difficulty: 'hard'
-  },
-  {
-    id: 'p15',
-    system: 'Pulmonary',
-    topic: 'Pulmonary Vascular Disorders',
-    front: 'What is pulmonary arteriovenous malformation (AVM)?',
-    back: {
-      definition: 'Abnormal connection between pulmonary artery and vein.',
-      high_yield: 'Right-to-left shunt causing hypoxemia. Associated with hereditary hemorrhagic telangiectasia.',
-      clinical_pearl: 'Risk of paradoxical embolism and brain abscess. Embolization for large AVMs.'
-    },
-    tags: ['AVM', 'Vascular', 'Shunt'],
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    difficulty: 'hard'
-  },
-
-  // Parenchymal & Interstitial Lung Diseases - Placeholder cards (5 cards)
-  {
-    id: 'p16',
-    system: 'Pulmonary',
-    topic: 'Parenchymal & Interstitial Lung Diseases',
-    front: 'What is idiopathic pulmonary fibrosis (IPF)?',
-    back: {
-      definition: 'Progressive fibrotic lung disease of unknown cause.',
-      high_yield: 'Dry cough, progressive dyspnea, bibasilar crackles. Honeycombing on HRCT.',
-      clinical_pearl: 'Poor prognosis (median survival 3-5 years). Antifibrotics (pirfenidone, nintedanib) slow progression.'
-    },
-    tags: ['IPF', 'Fibrosis', 'ILD'],
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    difficulty: 'hard'
-  },
-  {
-    id: 'p17',
-    system: 'Pulmonary',
-    topic: 'Parenchymal & Interstitial Lung Diseases',
-    front: 'What is sarcoidosis?',
-    back: {
-      definition: 'Multisystem granulomatous disease, commonly affecting lungs and lymph nodes.',
-      high_yield: 'Bilateral hilar lymphadenopathy, non-caseating granulomas. Elevated ACE.',
-      clinical_pearl: 'Often asymptomatic. Steroids for symptomatic disease. Monitor for cardiac and neuro involvement.'
-    },
-    tags: ['Sarcoidosis', 'Granulomatous', 'ILD'],
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    difficulty: 'hard'
-  },
-  {
-    id: 'p18',
-    system: 'Pulmonary',
-    topic: 'Parenchymal & Interstitial Lung Diseases',
-    front: 'What is hypersensitivity pneumonitis?',
-    back: {
-      definition: 'Immune-mediated lung disease from inhaled antigens.',
-      high_yield: 'Acute: flu-like symptoms 4-6 hours after exposure. Chronic: progressive fibrosis.',
-      clinical_pearl: 'Identify and avoid antigen. Farmer&apos;s lung (moldy hay), bird fancier&apos;s lung common.'
-    },
-    tags: ['Hypersensitivity Pneumonitis', 'ILD', 'Immune'],
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    difficulty: 'hard'
-  },
-  {
-    id: 'p19',
-    system: 'Pulmonary',
-    topic: 'Parenchymal & Interstitial Lung Diseases',
-    front: 'What is acute respiratory distress syndrome (ARDS)?',
-    back: {
-      definition: 'Acute diffuse lung injury causing non-cardiogenic pulmonary edema.',
-      high_yield: 'Bilateral infiltrates, hypoxemia (PaO2/FiO2 <300), within 1 week of insult.',
-      clinical_pearl: 'Low tidal volume ventilation (6 mL/kg IBW) improves survival. Prone positioning helps.'
-    },
-    tags: ['ARDS', 'Acute', 'Critical Care'],
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    difficulty: 'hard'
-  },
-  {
-    id: 'p20',
-    system: 'Pulmonary',
-    topic: 'Parenchymal & Interstitial Lung Diseases',
-    front: 'What is cryptogenic organizing pneumonia (COP)?',
-    back: {
-      definition: 'Inflammatory lung disease with granulation tissue in airways.',
-      high_yield: 'Subacute onset dyspnea, cough, fever. Patchy consolidation on CT.',
-      clinical_pearl: 'Responds well to steroids. Formerly called BOOP (bronchiolitis obliterans organizing pneumonia).'
-    },
-    tags: ['COP', 'Organizing Pneumonia', 'ILD'],
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    difficulty: 'hard'
-  },
-
-  // Pleural Disorders - Placeholder cards (5 cards)
-  {
-    id: 'p21',
-    system: 'Pulmonary',
-    topic: 'Pleural Disorders',
-    front: 'What is a pleural effusion?',
-    back: {
-      definition: 'Abnormal accumulation of fluid in pleural space.',
-      high_yield: 'Decreased breath sounds, dullness to percussion. Blunted costophrenic angle on CXR.',
-      clinical_pearl: 'Thoracentesis for diagnosis. Light&apos;s criteria differentiate transudative vs exudative.'
-    },
-    tags: ['Pleural Effusion', 'Pleura', 'Fluid'],
+    tags: ['ICS', 'Side Effects', 'Treatment'],
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
     difficulty: 'medium'
   },
   {
-    id: 'p22',
+    id: 'p_airway_24',
     system: 'Pulmonary',
-    topic: 'Pleural Disorders',
-    front: 'What is pneumothorax?',
+    topic: 'Airway Disorders',
+    front: 'LABA role?',
     back: {
-      definition: 'Air in pleural space causing lung collapse.',
-      high_yield: 'Sudden chest pain, dyspnea, decreased breath sounds, hyperresonance.',
-      clinical_pearl: 'Primary: spontaneous in young tall males. Secondary: underlying lung disease. Tension PTX is emergency.'
+      definition: 'Long bronchodilation',
+      high_yield: 'Use with ICS in asthma',
+      clinical_pearl: 'Improves control'
     },
-    tags: ['Pneumothorax', 'Pleura', 'Emergency'],
+    tags: ['LABA', 'Treatment', 'Asthma'],
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
     difficulty: 'medium'
   },
   {
-    id: 'p23',
+    id: 'p_airway_25',
     system: 'Pulmonary',
-    topic: 'Pleural Disorders',
-    front: 'What is tension pneumothorax?',
+    topic: 'Airway Disorders',
+    front: 'LAMA role?',
     back: {
-      definition: 'Life-threatening pneumothorax with mediastinal shift.',
-      high_yield: 'Hypotension, tracheal deviation, JVD, absent breath sounds.',
-      clinical_pearl: 'Clinical diagnosis - do NOT wait for CXR. Immediate needle decompression (2nd ICS MCL).'
+      definition: 'Anticholinergic bronchodilator',
+      high_yield: 'COPD mainstay',
+      clinical_pearl: '↓Exacerbations'
     },
-    tags: ['Tension Pneumothorax', 'Emergency', 'Pleura'],
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    difficulty: 'hard'
-  },
-  {
-    id: 'p24',
-    system: 'Pulmonary',
-    topic: 'Pleural Disorders',
-    front: 'What is empyema?',
-    back: {
-      definition: 'Pus in pleural space, usually from pneumonia.',
-      high_yield: 'Fever, pleuritic pain, pleural fluid with pH <7.2, glucose <60, LDH >1000.',
-      clinical_pearl: 'Requires drainage (chest tube or VATS). Antibiotics alone insufficient.'
-    },
-    tags: ['Empyema', 'Pleura', 'Infection'],
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    difficulty: 'hard'
-  },
-  {
-    id: 'p25',
-    system: 'Pulmonary',
-    topic: 'Pleural Disorders',
-    front: 'What is hemothorax?',
-    back: {
-      definition: 'Blood in pleural space.',
-      high_yield: 'Trauma most common. Decreased breath sounds, dullness, shock if massive.',
-      clinical_pearl: 'Hematocrit of pleural fluid >50% of blood. Chest tube drainage. Surgery if >1500 mL or ongoing bleeding.'
-    },
-    tags: ['Hemothorax', 'Pleura', 'Trauma'],
+    tags: ['LAMA', 'Treatment', 'COPD'],
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
     difficulty: 'medium'
+  },
+  {
+    id: 'p_airway_26',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Asthma severity scale?',
+    back: {
+      definition: 'Intermittent → severe',
+      high_yield: 'Symptoms + FEV1',
+      clinical_pearl: 'Guides therapy'
+    },
+    tags: ['Asthma', 'Severity', 'Classification'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_airway_27',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'COPD GOLD stages?',
+    back: {
+      definition: 'Based on FEV1',
+      high_yield: '1–4 severity',
+      clinical_pearl: 'Treatment escalation'
+    },
+    tags: ['COPD', 'GOLD', 'Classification'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_airway_28',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Asthma vs COPD reversibility?',
+    back: {
+      definition: 'Asthma improves',
+      high_yield: 'COPD fixed',
+      clinical_pearl: 'Key distinction'
+    },
+    tags: ['Asthma', 'COPD', 'Differential'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_airway_29',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'OSA risk in COPD?',
+    back: {
+      definition: 'Overlap syndrome',
+      high_yield: 'Worse nocturnal hypoxia',
+      clinical_pearl: 'Consider sleep study'
+    },
+    tags: ['COPD', 'OSA', 'Overlap Syndrome'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_airway_30',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Airway hyperreactivity?',
+    back: {
+      definition: 'Exaggerated constriction',
+      high_yield: 'Methacholine positive',
+      clinical_pearl: 'Seen in asthma'
+    },
+    tags: ['Asthma', 'Hyperreactivity', 'Testing'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_airway_31',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'ICS/LABA combo?',
+    back: {
+      definition: 'Moderate-severe asthma',
+      high_yield: 'Better control',
+      clinical_pearl: 'Reduces exacerbations'
+    },
+    tags: ['Asthma', 'Treatment', 'Combination'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_airway_32',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'COPD oxygen goal?',
+    back: {
+      definition: '88–92%',
+      high_yield: 'Avoid hyperoxia',
+      clinical_pearl: 'Hypercapnia risk'
+    },
+    tags: ['COPD', 'Oxygen', 'Management'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_airway_33',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Pursed-lip breathing?',
+    back: {
+      definition: 'Slows expiration',
+      high_yield: '↓Air trapping',
+      clinical_pearl: 'COPD technique'
+    },
+    tags: ['COPD', 'Breathing', 'Technique'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_airway_34',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Mucolytics role?',
+    back: {
+      definition: 'Thin secretions',
+      high_yield: 'Chronic bronchitis',
+      clinical_pearl: 'Modest benefit'
+    },
+    tags: ['Treatment', 'Mucolytics', 'COPD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_airway_35',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Silent chest?',
+    back: {
+      definition: 'No wheeze',
+      high_yield: 'Minimal airflow',
+      clinical_pearl: 'Impending failure'
+    },
+    tags: ['Asthma', 'Emergency', 'Physical Exam'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_airway_36',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Dynamic hyperinflation?',
+    back: {
+      definition: 'Air trapping',
+      high_yield: '↑Work of breathing',
+      clinical_pearl: 'Seen in COPD'
+    },
+    tags: ['COPD', 'Pathophysiology', 'Hyperinflation'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_airway_37',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Pulsus paradoxus in asthma?',
+    back: {
+      definition: 'SBP drop >10',
+      high_yield: 'Severe obstruction',
+      clinical_pearl: 'Severity marker'
+    },
+    tags: ['Asthma', 'Physical Exam', 'Severity'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_airway_38',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Aspirin-exacerbated disease?',
+    back: {
+      definition: 'Asthma + polyps + NSAIDs',
+      high_yield: 'Leukotriene mediated',
+      clinical_pearl: 'Avoid NSAIDs'
+    },
+    tags: ['Asthma', 'AERD', 'NSAIDs'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_airway_39',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Cor pulmonale?',
+    back: {
+      definition: 'Right heart failure from lung disease',
+      high_yield: 'Edema, JVD',
+      clinical_pearl: 'Seen in COPD'
+    },
+    tags: ['COPD', 'Cor Pulmonale', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_airway_40',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Samter&apos;s triad?',
+    back: {
+      definition: 'Asthma, polyps, aspirin reaction',
+      high_yield: 'AERD',
+      clinical_pearl: 'Use leukotriene blockers'
+    },
+    tags: ['Asthma', 'AERD', 'Samter Triad'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_airway_41',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Stridor meaning?',
+    back: {
+      definition: 'Upper airway obstruction',
+      high_yield: 'Inspiratory',
+      clinical_pearl: 'Emergency'
+    },
+    tags: ['Stridor', 'Emergency', 'Airway'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_airway_42',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Foreign body aspiration?',
+    back: {
+      definition: 'Sudden cough/wheeze',
+      high_yield: 'Unilateral findings',
+      clinical_pearl: 'Rigid bronchoscopy'
+    },
+    tags: ['Foreign Body', 'Emergency', 'Aspiration'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_airway_43',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'DLCO in emphysema?',
+    back: {
+      definition: 'Reduced',
+      high_yield: 'Alveolar loss',
+      clinical_pearl: 'Differentiates from bronchitis'
+    },
+    tags: ['Emphysema', 'DLCO', 'PFT'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_airway_44',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'DLCO in asthma?',
+    back: {
+      definition: 'Normal/high',
+      high_yield: '↑Pulmonary blood flow',
+      clinical_pearl: 'Distinguishes emphysema'
+    },
+    tags: ['Asthma', 'DLCO', 'PFT'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_airway_45',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Bronchiolitis obliterans?',
+    back: {
+      definition: 'Small airway fibrosis',
+      high_yield: 'Irreversible',
+      clinical_pearl: 'Post-transplant or toxin'
+    },
+    tags: ['Bronchiolitis Obliterans', 'Fibrosis', 'Airway'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_airway_46',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Plastic bronchitis?',
+    back: {
+      definition: 'Large airway casts',
+      high_yield: 'Severe obstruction',
+      clinical_pearl: 'Associated with CHD'
+    },
+    tags: ['Plastic Bronchitis', 'Airway', 'Rare'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_airway_47',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Tracheomalacia?',
+    back: {
+      definition: 'Airway collapse',
+      high_yield: 'Expiratory stridor',
+      clinical_pearl: 'Dynamic CT helpful'
+    },
+    tags: ['Tracheomalacia', 'Airway', 'Collapse'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_airway_48',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Vocal cord dysfunction?',
+    back: {
+      definition: 'Paradoxical closure',
+      high_yield: 'Inspiratory wheeze',
+      clinical_pearl: 'Asthma mimic'
+    },
+    tags: ['VCD', 'Airway', 'Mimic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_airway_49',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Eosinophilic COPD?',
+    back: {
+      definition: 'High eosinophils',
+      high_yield: 'ICS responsive',
+      clinical_pearl: 'Better ICS benefit'
+    },
+    tags: ['COPD', 'Eosinophilic', 'Phenotype'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_airway_50',
+    system: 'Pulmonary',
+    topic: 'Airway Disorders',
+    front: 'Severe asthma biologics?',
+    back: {
+      definition: 'Anti-IgE/IL-5/IL-4 agents',
+      high_yield: 'Refractory asthma',
+      clinical_pearl: 'Phenotype driven'
+    },
+    tags: ['Asthma', 'Biologics', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
   },
 ];
+
+console.log('Pulmonary flashcards loaded:', pulmonaryFlashcards.length, 'cards');

@@ -28,9 +28,14 @@ export default function FlashcardsScreen() {
   const filter = params.filter as string | undefined;
   const system = params.system as string | undefined;
 
+  console.log('=== FlashcardsScreen Render ===');
+  console.log('Params:', { topic, filter, system });
+  console.log('All flashcards count:', allFlashcards.length);
+
   // Filter flashcards based on params
   const flashcards = useMemo(() => {
     console.log('Filtering flashcards with params:', { topic, filter, system });
+    console.log('Total flashcards available:', allFlashcards.length);
     
     if (filter === 'bookmarked') {
       const bookmarked = getBookmarkedFlashcards();
@@ -46,22 +51,37 @@ export default function FlashcardsScreen() {
     
     if (topic) {
       let filtered = allFlashcards.filter(card => card.topic === topic);
+      console.log(`Cards matching topic "${topic}":`, filtered.length);
       
       // If system is specified, also filter by system
       if (system) {
         filtered = filtered.filter(card => card.system === system);
+        console.log(`Cards matching topic "${topic}" and system "${system}":`, filtered.length);
       }
       
-      console.log('Topic flashcards:', filtered.length, 'for topic:', topic, 'system:', system);
+      // Log first few cards for debugging
+      if (filtered.length > 0) {
+        console.log('First card:', {
+          id: filtered[0].id,
+          front: filtered[0].front,
+          system: filtered[0].system,
+          topic: filtered[0].topic
+        });
+      }
+      
       return filtered;
     }
     
-    console.log('All flashcards:', allFlashcards.length);
+    console.log('Returning all flashcards:', allFlashcards.length);
     return allFlashcards;
   }, [topic, filter, system, allFlashcards, getBookmarkedFlashcards, getFavoriteFlashcards]);
 
+  console.log('Filtered flashcards count:', flashcards.length);
+  console.log('Current index:', currentIndex);
+
   // Reset index when flashcards change
   useEffect(() => {
+    console.log('Flashcards changed, resetting index');
     setCurrentIndex(0);
     hasIncrementedReview.current = false;
   }, [flashcards.length, topic, filter]);
@@ -86,11 +106,13 @@ export default function FlashcardsScreen() {
   const handleNext = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     if (currentIndex < flashcards.length - 1) {
+      console.log('Moving to next card:', currentIndex + 1);
       setCurrentIndex(currentIndex + 1);
       hasIncrementedReview.current = false;
     } else {
       Alert.alert('End of Cards', 'You have reviewed all cards in this set!', [
         { text: 'Restart', onPress: () => {
+          console.log('Restarting flashcards');
           setCurrentIndex(0);
           hasIncrementedReview.current = false;
         }},
@@ -102,6 +124,7 @@ export default function FlashcardsScreen() {
   const handlePrevious = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     if (currentIndex > 0) {
+      console.log('Moving to previous card:', currentIndex - 1);
       setCurrentIndex(currentIndex - 1);
       hasIncrementedReview.current = false;
     }
@@ -125,6 +148,7 @@ export default function FlashcardsScreen() {
   };
 
   if (flashcards.length === 0) {
+    console.log('No flashcards to display - showing empty state');
     return (
       <>
         <Stack.Screen
@@ -150,6 +174,13 @@ export default function FlashcardsScreen() {
   }
 
   const currentCard = flashcards[currentIndex];
+  console.log('Rendering card:', {
+    index: currentIndex,
+    id: currentCard.id,
+    front: currentCard.front.substring(0, 50) + '...',
+    system: currentCard.system,
+    topic: currentCard.topic
+  });
 
   return (
     <>
