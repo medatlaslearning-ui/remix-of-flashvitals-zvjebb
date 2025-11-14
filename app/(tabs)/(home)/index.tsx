@@ -11,51 +11,42 @@ export default function HomeScreen() {
   const router = useRouter();
   const { allFlashcards, updateTrigger } = useFlashcards();
 
-  // Use state to force re-renders when screen comes into focus
-  const [refreshKey, setRefreshKey] = useState(0);
+  // Force state to update on focus
+  const [bookmarkedCount, setBookmarkedCount] = useState(0);
+  const [favoritesCount, setFavoritesCount] = useState(0);
 
   // Get unique topics
   const topics = useMemo(() => {
     return Array.from(new Set(allFlashcards.map(card => card.topic)));
   }, [allFlashcards]);
 
-  // Calculate counts directly from allFlashcards
-  // The key is to ensure we're creating new values each time allFlashcards changes
-  const bookmarkedCount = useMemo(() => {
-    const cards = allFlashcards.filter(card => card.bookmarked);
-    const count = cards.length;
-    console.log('HomeScreen: Bookmarked count recalculated:', count);
-    console.log('Bookmarked card IDs:', cards.map(c => c.id));
-    console.log('updateTrigger:', updateTrigger, 'refreshKey:', refreshKey);
-    return count;
-  }, [allFlashcards, updateTrigger, refreshKey]);
-
-  const favoritesCount = useMemo(() => {
-    const cards = allFlashcards.filter(card => card.favorite);
-    const count = cards.length;
-    console.log('HomeScreen: Favorites count recalculated:', count);
-    console.log('Favorite card IDs:', cards.map(c => c.id));
-    console.log('updateTrigger:', updateTrigger, 'refreshKey:', refreshKey);
-    return count;
-  }, [allFlashcards, updateTrigger, refreshKey]);
-
-  // Log counts for debugging
-  useEffect(() => {
-    console.log('=== Home Screen Counts Update ===');
+  // Recalculate counts whenever flashcards change or screen is focused
+  const recalculateCounts = useCallback(() => {
+    const bookmarked = allFlashcards.filter(card => card.bookmarked).length;
+    const favorites = allFlashcards.filter(card => card.favorite).length;
+    
+    console.log('=== HomeScreen: Recalculating Counts ===');
     console.log('Total flashcards:', allFlashcards.length);
-    console.log('Bookmarked:', bookmarkedCount);
-    console.log('Favorites:', favoritesCount);
+    console.log('Bookmarked cards:', bookmarked);
+    console.log('Favorite cards:', favorites);
     console.log('Update trigger:', updateTrigger);
-    console.log('Refresh key:', refreshKey);
-    console.log('================================');
-  }, [allFlashcards, bookmarkedCount, favoritesCount, updateTrigger, refreshKey]);
+    console.log('=======================================');
+    
+    setBookmarkedCount(bookmarked);
+    setFavoritesCount(favorites);
+  }, [allFlashcards, updateTrigger]);
 
-  // Refresh counts when screen comes into focus
+  // Recalculate on mount and when dependencies change
+  useEffect(() => {
+    recalculateCounts();
+  }, [recalculateCounts]);
+
+  // Recalculate when screen comes into focus
   useFocusEffect(
     useCallback(() => {
-      console.log('Home screen focused - triggering refresh');
-      setRefreshKey(prev => prev + 1);
-    }, [])
+      console.log('HomeScreen focused - recalculating counts');
+      recalculateCounts();
+    }, [recalculateCounts])
   );
 
   const handleTopicPress = (topicName: string) => {
