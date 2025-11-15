@@ -1606,7 +1606,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     difficulty: 'hard'
   },
 
-  // Pulmonary Vascular Disorders (30 cards)
+  // Pulmonary Vascular Disorders (50 cards)
   {
     id: 'p_vascular_1',
     system: 'Pulmonary',
@@ -2086,6 +2086,326 @@ export const pulmonaryFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0,
     difficulty: 'medium'
+  },
+  {
+    id: 'p_vascular_31',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Vascular Disorders',
+    front: 'Pulmonary vasculitis?',
+    back: {
+      definition: 'Inflammatory vessel disease',
+      high_yield: 'Wegener, Churg-Strauss',
+      clinical_pearl: 'Hemoptysis + renal issues'
+    },
+    tags: ['Vasculitis', 'Pulmonary', 'Autoimmune'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_vascular_32',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Vascular Disorders',
+    front: 'Goodpasture syndrome?',
+    back: {
+      definition: 'Anti-GBM disease',
+      high_yield: 'Hemoptysis + renal failure',
+      clinical_pearl: 'Young men'
+    },
+    tags: ['Goodpasture', 'Autoimmune', 'Vasculitis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_vascular_33',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Vascular Disorders',
+    front: 'PE clot migration risk?',
+    back: {
+      definition: 'Free-floating thrombus',
+      high_yield: 'Unstable',
+      clinical_pearl: 'Consider IVC filter'
+    },
+    tags: ['PE', 'DVT', 'IVC Filter'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_vascular_34',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Vascular Disorders',
+    front: 'Hypoxemia mechanism in PE?',
+    back: {
+      definition: 'V/Q mismatch',
+      high_yield: 'Dead space ventilation',
+      clinical_pearl: 'Acute onset'
+    },
+    tags: ['PE', 'Pathophysiology', 'V/Q Mismatch'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_vascular_35',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Vascular Disorders',
+    front: 'Isolated subsegmental PE?',
+    back: {
+      definition: 'Small distal clot',
+      high_yield: 'Often incidental',
+      clinical_pearl: 'May observe in low-risk'
+    },
+    tags: ['PE', 'Subsegmental', 'Management'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_vascular_36',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Vascular Disorders',
+    front: 'IVC filter indication?',
+    back: {
+      definition: 'Contraindication to anticoag',
+      high_yield: 'Recurrent PE',
+      clinical_pearl: 'Temporary preferred'
+    },
+    tags: ['IVC Filter', 'PE', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_vascular_37',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Vascular Disorders',
+    front: 'Chronic hypoxic vasoconstriction?',
+    back: {
+      definition: 'Pulmonary artery muscularization',
+      high_yield: 'Group 3 PH',
+      clinical_pearl: 'Long-term remodeling'
+    },
+    tags: ['Pulmonary Hypertension', 'Hypoxia', 'Pathophysiology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_vascular_38',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Vascular Disorders',
+    front: 'RV failure signs?',
+    back: {
+      definition: 'JVD, edema, hepatomegaly',
+      high_yield: 'Volume overload',
+      clinical_pearl: 'Seen in PH/PE'
+    },
+    tags: ['RV Failure', 'Physical Exam', 'Heart Failure'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_vascular_39',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Vascular Disorders',
+    front: 'Pulmonary artery rupture cause?',
+    back: {
+      definition: 'Catheter complication',
+      high_yield: 'Massive hemoptysis',
+      clinical_pearl: 'High mortality'
+    },
+    tags: ['Complications', 'Iatrogenic', 'Emergency'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_vascular_40',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Vascular Disorders',
+    front: 'Pulmonary AVM?',
+    back: {
+      definition: 'Abnormal vascular connection',
+      high_yield: 'Right-to-left shunt',
+      clinical_pearl: 'Linked with HHT'
+    },
+    tags: ['AVM', 'Shunt', 'Congenital'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_vascular_41',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Vascular Disorders',
+    front: 'PE and troponin?',
+    back: {
+      definition: 'Elevated in RV strain',
+      high_yield: 'Not MI',
+      clinical_pearl: 'Risk stratification tool'
+    },
+    tags: ['PE', 'Troponin', 'Biomarkers'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_vascular_42',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Vascular Disorders',
+    front: 'BMPR2 mutation in PH?',
+    back: {
+      definition: 'Genetic PAH cause',
+      high_yield: 'Heritable',
+      clinical_pearl: 'Poor prognosis'
+    },
+    tags: ['Pulmonary Hypertension', 'Genetics', 'PAH'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_vascular_43',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Vascular Disorders',
+    front: 'Acute chest syndrome (sickle cell)?',
+    back: {
+      definition: 'Pulmonary vaso-occlusion',
+      high_yield: 'Fever, infiltrates',
+      clinical_pearl: 'Common cause of death'
+    },
+    tags: ['Sickle Cell', 'Acute Chest Syndrome', 'Emergency'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_vascular_44',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Vascular Disorders',
+    front: 'Tumor emboli?',
+    back: {
+      definition: 'Cancer cells in pulmonary arteries',
+      high_yield: 'Progressive hypoxemia',
+      clinical_pearl: 'Seen in metastatic disease'
+    },
+    tags: ['Tumor Emboli', 'Cancer', 'Embolism'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_vascular_45',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Vascular Disorders',
+    front: 'Septic pulmonary emboli?',
+    back: {
+      definition: 'Infected thrombi',
+      high_yield: 'Multiple nodules',
+      clinical_pearl: 'IV drug use risk'
+    },
+    tags: ['Septic Emboli', 'Infection', 'IV Drug Use'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_vascular_46',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Vascular Disorders',
+    front: 'Pulmonary infarct sign?',
+    back: {
+      definition: 'Wedge-shaped opacity',
+      high_yield: 'Peripheral',
+      clinical_pearl: 'Seen in PE'
+    },
+    tags: ['PE', 'Imaging', 'Infarction'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_vascular_47',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Vascular Disorders',
+    front: 'Right-to-left shunt effect?',
+    back: {
+      definition: '↓O2 despite room air',
+      high_yield: 'Causes hypoxemia',
+      clinical_pearl: 'Not corrected by oxygen'
+    },
+    tags: ['Shunt', 'Hypoxemia', 'Pathophysiology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_vascular_48',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Vascular Disorders',
+    front: 'Decompensated PH?',
+    back: {
+      definition: 'Syncope, chest pain',
+      high_yield: 'Low cardiac output',
+      clinical_pearl: 'Urgent evaluation'
+    },
+    tags: ['Pulmonary Hypertension', 'Decompensation', 'Emergency'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_vascular_49',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Vascular Disorders',
+    front: 'PAH targeted therapy?',
+    back: {
+      definition: 'Endothelin antagonists, PDE5i, prostacyclins',
+      high_yield: 'Vasodilation',
+      clinical_pearl: 'Specialist-managed'
+    },
+    tags: ['Pulmonary Hypertension', 'PAH', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_vascular_50',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Vascular Disorders',
+    front: 'Reperfusion pulmonary edema?',
+    back: {
+      definition: 'After thrombectomy/endarterectomy',
+      high_yield: 'Capillary leak',
+      clinical_pearl: 'Usually transient'
+    },
+    tags: ['Complications', 'Pulmonary Edema', 'Post-procedure'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
   },
 ];
 
