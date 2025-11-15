@@ -803,6 +803,488 @@ export const pulmonaryFlashcards: Flashcard[] = [
     reviewCount: 0,
     difficulty: 'hard'
   },
+
+  // Pulmonary Infections (30 cards)
+  {
+    id: 'p_infection_1',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Most common cause of CAP?',
+    back: {
+      definition: 'Streptococcus pneumoniae',
+      high_yield: 'Lobar pneumonia',
+      clinical_pearl: 'Rust-colored sputum'
+    },
+    tags: ['CAP', 'Pneumonia', 'S. pneumoniae'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_infection_2',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Atypical pneumonia cause?',
+    back: {
+      definition: 'Mycoplasma pneumoniae',
+      high_yield: 'Diffuse infiltrates',
+      clinical_pearl: 'Dry cough'
+    },
+    tags: ['Atypical Pneumonia', 'Mycoplasma', 'Pneumonia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_infection_3',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'HAP pathogen?',
+    back: {
+      definition: 'Pseudomonas, MRSA',
+      high_yield: 'Hospital exposure',
+      clinical_pearl: 'Broad-spectrum needed'
+    },
+    tags: ['HAP', 'Pneumonia', 'Nosocomial'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_infection_4',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Viral pneumonia hallmark?',
+    back: {
+      definition: 'Diffuse interstitial pattern',
+      high_yield: 'Flu, RSV',
+      clinical_pearl: 'PCR helps diagnose'
+    },
+    tags: ['Viral Pneumonia', 'Influenza', 'RSV'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_infection_5',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Typical pneumonia sign?',
+    back: {
+      definition: 'Fever + productive cough',
+      high_yield: 'Consolidation',
+      clinical_pearl: 'Dullness to percussion'
+    },
+    tags: ['Pneumonia', 'Typical', 'Physical Exam'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_infection_6',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Atypical pneumonia sign?',
+    back: {
+      definition: 'Low-grade fever',
+      high_yield: 'Diffuse crackles',
+      clinical_pearl: 'Gradual onset'
+    },
+    tags: ['Atypical Pneumonia', 'Physical Exam', 'Pneumonia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_infection_7',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'CURB-65 purpose?',
+    back: {
+      definition: 'Pneumonia severity tool',
+      high_yield: '0–1 outpatient',
+      clinical_pearl: '≥2 consider admission'
+    },
+    tags: ['CURB-65', 'Pneumonia', 'Risk Stratification'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_infection_8',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Most common aspiration pneumonia site?',
+    back: {
+      definition: 'Right lower lobe',
+      high_yield: 'Dependent area',
+      clinical_pearl: 'Anaerobic bacteria common'
+    },
+    tags: ['Aspiration Pneumonia', 'Anatomy', 'Pneumonia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_infection_9',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Legionella clue?',
+    back: {
+      definition: 'Hyponatremia + GI symptoms',
+      high_yield: 'Atypical pneumonia',
+      clinical_pearl: 'Contaminated water'
+    },
+    tags: ['Legionella', 'Atypical Pneumonia', 'Pneumonia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_infection_10',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'PCP pneumonia in HIV?',
+    back: {
+      definition: 'Pneumocystis jirovecii',
+      high_yield: 'Ground-glass CT',
+      clinical_pearl: '↑LDH'
+    },
+    tags: ['PCP', 'HIV', 'Opportunistic Infection'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_infection_11',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Influenza pneumonia sign?',
+    back: {
+      definition: 'High fever, myalgias',
+      high_yield: 'Viral pattern',
+      clinical_pearl: 'Risk of bacterial superinfection'
+    },
+    tags: ['Influenza', 'Viral Pneumonia', 'Pneumonia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_infection_12',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'COVID pneumonia hallmark?',
+    back: {
+      definition: 'Bilateral ground-glass opacities',
+      high_yield: 'Peripheral distribution',
+      clinical_pearl: 'Loss of smell'
+    },
+    tags: ['COVID-19', 'Viral Pneumonia', 'Pneumonia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_infection_13',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'TB transmission type?',
+    back: {
+      definition: 'Airborne droplets',
+      high_yield: 'Primary lung infection',
+      clinical_pearl: 'Screen high-risk groups'
+    },
+    tags: ['TB', 'Tuberculosis', 'Transmission'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_infection_14',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Latent TB test?',
+    back: {
+      definition: 'Positive IGRA/PPD',
+      high_yield: 'No symptoms',
+      clinical_pearl: 'Needs prophylaxis'
+    },
+    tags: ['TB', 'Latent TB', 'Screening'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_infection_15',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Active TB symptoms?',
+    back: {
+      definition: 'Fever, night sweats, cough',
+      high_yield: 'Hemoptysis',
+      clinical_pearl: 'Weight loss'
+    },
+    tags: ['TB', 'Active TB', 'Symptoms'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_infection_16',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'ARDS cause?',
+    back: {
+      definition: 'Inflammatory lung injury',
+      high_yield: 'Non-cardiogenic edema',
+      clinical_pearl: 'Refractory hypoxemia'
+    },
+    tags: ['ARDS', 'Critical Care', 'Respiratory Failure'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_infection_17',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'ARDS hallmark on X-ray?',
+    back: {
+      definition: 'Bilateral infiltrates',
+      high_yield: 'Diffuse alveolar damage',
+      clinical_pearl: 'No cardiac cause'
+    },
+    tags: ['ARDS', 'Imaging', 'CXR'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_infection_18',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'HAP treatment start?',
+    back: {
+      definition: 'Empiric broad-spectrum',
+      high_yield: 'Cover MRSA/Pseudomonas',
+      clinical_pearl: 'De-escalate with cultures'
+    },
+    tags: ['HAP', 'Treatment', 'Antibiotics'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_infection_19',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'CAP outpatient therapy?',
+    back: {
+      definition: 'Macrolide or doxycycline',
+      high_yield: 'Add β-lactam if comorbidities',
+      clinical_pearl: 'Follow guidelines'
+    },
+    tags: ['CAP', 'Treatment', 'Outpatient'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_infection_20',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'CAP inpatient therapy?',
+    back: {
+      definition: 'β-lactam + macrolide',
+      high_yield: 'Or respiratory fluoroquinolone',
+      clinical_pearl: 'Based on severity'
+    },
+    tags: ['CAP', 'Treatment', 'Inpatient'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_infection_21',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'PEP for TB exposure?',
+    back: {
+      definition: 'INH or rifampin',
+      high_yield: 'After ruling out active disease',
+      clinical_pearl: 'Prevents reactivation'
+    },
+    tags: ['TB', 'Prophylaxis', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_infection_22',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Aspiration pneumonia pathogens?',
+    back: {
+      definition: 'Anaerobes',
+      high_yield: 'Mixed flora',
+      clinical_pearl: 'Treat with ampicillin-sulbactam'
+    },
+    tags: ['Aspiration Pneumonia', 'Pathogens', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_infection_23',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'What is empyema?',
+    back: {
+      definition: 'Pus in pleural space',
+      high_yield: 'Complicated pneumonia',
+      clinical_pearl: 'Needs drainage'
+    },
+    tags: ['Empyema', 'Complications', 'Pneumonia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_infection_24',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Lung abscess cause?',
+    back: {
+      definition: 'Anaerobic infection',
+      high_yield: 'Cavity with air-fluid level',
+      clinical_pearl: 'Treat prolonged antibiotics'
+    },
+    tags: ['Lung Abscess', 'Complications', 'Pneumonia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_infection_25',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'RSV pneumonia clue?',
+    back: {
+      definition: 'Wheezing + winter season',
+      high_yield: 'Infants/elderly',
+      clinical_pearl: 'Supportive care'
+    },
+    tags: ['RSV', 'Viral Pneumonia', 'Pediatrics'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_infection_26',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Histoplasmosis geography?',
+    back: {
+      definition: 'Ohio/Mississippi River valleys',
+      high_yield: 'Bat/bird droppings',
+      clinical_pearl: 'Can mimic TB'
+    },
+    tags: ['Histoplasmosis', 'Fungal', 'Endemic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_infection_27',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Blastomycosis geography?',
+    back: {
+      definition: 'Midwest/South',
+      high_yield: 'Skin lesions',
+      clinical_pearl: 'Broad-based budding yeast'
+    },
+    tags: ['Blastomycosis', 'Fungal', 'Endemic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_infection_28',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Coccidioidomycosis geography?',
+    back: {
+      definition: 'Southwest US',
+      high_yield: 'Desert soil',
+      clinical_pearl: 'Erythema nodosum'
+    },
+    tags: ['Coccidioidomycosis', 'Fungal', 'Endemic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_infection_29',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Aspergillus infection type?',
+    back: {
+      definition: 'Fungal colonization/invasion',
+      high_yield: 'Halo sign on CT',
+      clinical_pearl: 'High mortality if invasive'
+    },
+    tags: ['Aspergillus', 'Fungal', 'Opportunistic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_infection_30',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Cryptococcus clue?',
+    back: {
+      definition: 'Immunocompromised',
+      high_yield: 'Yeast with capsule',
+      clinical_pearl: 'Causes meningitis'
+    },
+    tags: ['Cryptococcus', 'Fungal', 'Opportunistic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
 ];
 
 console.log('Pulmonary flashcards loaded:', pulmonaryFlashcards.length, 'cards');
