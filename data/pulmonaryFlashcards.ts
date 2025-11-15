@@ -17,7 +17,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_airway_2',
@@ -33,7 +33,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_airway_3',
@@ -49,7 +49,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_airway_4',
@@ -65,7 +65,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_airway_5',
@@ -81,7 +81,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_airway_6',
@@ -97,7 +97,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_airway_7',
@@ -113,7 +113,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_airway_8',
@@ -129,7 +129,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_airway_9',
@@ -145,7 +145,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_airway_10',
@@ -161,7 +161,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_airway_11',
@@ -177,7 +177,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_airway_12',
@@ -193,7 +193,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_airway_13',
@@ -209,7 +209,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_airway_14',
@@ -225,7 +225,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_airway_15',
@@ -241,7 +241,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_airway_16',
@@ -257,7 +257,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_airway_17',
@@ -273,7 +273,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_airway_18',
@@ -289,7 +289,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_airway_19',
@@ -305,7 +305,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_airway_20',
@@ -321,7 +321,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_airway_21',
@@ -337,7 +337,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_airway_22',
@@ -353,7 +353,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_airway_23',
@@ -369,7 +369,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_airway_24',
@@ -385,7 +385,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_airway_25',
@@ -401,7 +401,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_airway_26',
@@ -417,7 +417,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_airway_27',
@@ -433,7 +433,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_airway_28',
@@ -449,7 +449,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_airway_29',
@@ -465,7 +465,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_airway_30',
@@ -481,7 +481,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_airway_31',
@@ -497,7 +497,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_airway_32',
@@ -513,7 +513,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_airway_33',
@@ -529,7 +529,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_airway_34',
@@ -545,7 +545,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_airway_35',
@@ -561,7 +561,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'hard'
+    difficulty: 'D'
   },
   {
     id: 'p_airway_36',
@@ -577,7 +577,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'hard'
+    difficulty: 'D'
   },
   {
     id: 'p_airway_37',
@@ -593,7 +593,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'hard'
+    difficulty: 'D'
   },
   {
     id: 'p_airway_38',
@@ -609,7 +609,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'hard'
+    difficulty: 'D'
   },
   {
     id: 'p_airway_39',
@@ -625,7 +625,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'hard'
+    difficulty: 'D'
   },
   {
     id: 'p_airway_40',
@@ -641,7 +641,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'hard'
+    difficulty: 'D'
   },
   {
     id: 'p_airway_41',
@@ -657,7 +657,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'hard'
+    difficulty: 'D'
   },
   {
     id: 'p_airway_42',
@@ -673,7 +673,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'hard'
+    difficulty: 'D'
   },
   {
     id: 'p_airway_43',
@@ -689,7 +689,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'hard'
+    difficulty: 'D'
   },
   {
     id: 'p_airway_44',
@@ -705,7 +705,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'hard'
+    difficulty: 'D'
   },
   {
     id: 'p_airway_45',
@@ -721,7 +721,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'hard'
+    difficulty: 'D'
   },
   {
     id: 'p_airway_46',
@@ -737,7 +737,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'hard'
+    difficulty: 'D'
   },
   {
     id: 'p_airway_47',
@@ -753,7 +753,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'hard'
+    difficulty: 'D'
   },
   {
     id: 'p_airway_48',
@@ -769,7 +769,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'hard'
+    difficulty: 'D'
   },
   {
     id: 'p_airway_49',
@@ -785,7 +785,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'hard'
+    difficulty: 'D'
   },
   {
     id: 'p_airway_50',
@@ -801,10 +801,10 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'hard'
+    difficulty: 'D'
   },
 
-  // Pulmonary Infections (30 cards)
+  // Pulmonary Infections (50 cards)
   {
     id: 'p_infection_1',
     system: 'Pulmonary',
@@ -819,7 +819,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_infection_2',
@@ -835,7 +835,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_infection_3',
@@ -851,7 +851,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_infection_4',
@@ -867,7 +867,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_infection_5',
@@ -883,7 +883,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_infection_6',
@@ -899,7 +899,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_infection_7',
@@ -915,7 +915,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_infection_8',
@@ -931,7 +931,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_infection_9',
@@ -947,7 +947,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_infection_10',
@@ -963,7 +963,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_infection_11',
@@ -979,7 +979,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_infection_12',
@@ -995,7 +995,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_infection_13',
@@ -1011,7 +1011,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_infection_14',
@@ -1027,7 +1027,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_infection_15',
@@ -1043,7 +1043,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'easy'
+    difficulty: 'E'
   },
   {
     id: 'p_infection_16',
@@ -1059,7 +1059,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_infection_17',
@@ -1075,7 +1075,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_infection_18',
@@ -1091,7 +1091,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_infection_19',
@@ -1107,7 +1107,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_infection_20',
@@ -1123,7 +1123,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_infection_21',
@@ -1139,7 +1139,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_infection_22',
@@ -1155,7 +1155,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_infection_23',
@@ -1171,7 +1171,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_infection_24',
@@ -1187,7 +1187,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_infection_25',
@@ -1203,7 +1203,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_infection_26',
@@ -1219,7 +1219,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_infection_27',
@@ -1235,7 +1235,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_infection_28',
@@ -1251,7 +1251,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_infection_29',
@@ -1267,7 +1267,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
   },
   {
     id: 'p_infection_30',
@@ -1283,7 +1283,327 @@ export const pulmonaryFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    difficulty: 'medium'
+    difficulty: 'M'
+  },
+  {
+    id: 'p_infection_31',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Ventilator-associated pneumonia?',
+    back: {
+      definition: 'Occurs >48 hrs on vent',
+      high_yield: 'Pseudomonas/MRSA',
+      clinical_pearl: 'Requires VAP bundle'
+    },
+    tags: ['VAP', 'Pneumonia', 'Critical Care'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'M'
+  },
+  {
+    id: 'p_infection_32',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Procalcitonin role?',
+    back: {
+      definition: 'Marker of bacterial infection',
+      high_yield: 'Helps guide antibiotics',
+      clinical_pearl: 'Low = viral likely'
+    },
+    tags: ['Procalcitonin', 'Diagnostics', 'Biomarkers'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'M'
+  },
+  {
+    id: 'p_infection_33',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Sputum culture limitation?',
+    back: {
+      definition: 'Often contaminated',
+      high_yield: 'Low diagnostic value',
+      clinical_pearl: 'Better with BAL'
+    },
+    tags: ['Diagnostics', 'Sputum Culture', 'Pneumonia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'M'
+  },
+  {
+    id: 'p_infection_34',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Parapneumonic effusion?',
+    back: {
+      definition: 'Effusion from pneumonia',
+      high_yield: 'May progress to empyema',
+      clinical_pearl: 'Ultrasound helpful'
+    },
+    tags: ['Parapneumonic Effusion', 'Complications', 'Pneumonia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'M'
+  },
+  {
+    id: 'p_infection_35',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Who gets PCP prophylaxis?',
+    back: {
+      definition: 'HIV CD4 <200',
+      high_yield: 'TMP-SMX',
+      clinical_pearl: 'Prevents severe pneumonia'
+    },
+    tags: ['PCP', 'Prophylaxis', 'HIV'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'M'
+  },
+  {
+    id: 'p_infection_36',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Cavitary lesion causes?',
+    back: {
+      definition: 'TB, fungal, abscess',
+      high_yield: 'Necrotizing infection',
+      clinical_pearl: 'Evaluate immune status'
+    },
+    tags: ['Cavitary Lesion', 'Imaging', 'Differential'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'D'
+  },
+  {
+    id: 'p_infection_37',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'MDR-TB clue?',
+    back: {
+      definition: 'Resistance to INH + rifampin',
+      high_yield: 'Requires multi-drug regimen',
+      clinical_pearl: 'Public health issue'
+    },
+    tags: ['MDR-TB', 'TB', 'Resistance'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'D'
+  },
+  {
+    id: 'p_infection_38',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'XDR-TB?',
+    back: {
+      definition: 'Resistant to INH, rifampin, FQ, injectables',
+      high_yield: 'Highly resistant TB',
+      clinical_pearl: 'Poor outcomes'
+    },
+    tags: ['XDR-TB', 'TB', 'Resistance'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'D'
+  },
+  {
+    id: 'p_infection_39',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Nocardiosis clue?',
+    back: {
+      definition: 'Filamentous branching bacteria',
+      high_yield: 'Immunocompromised',
+      clinical_pearl: 'Treat with TMP-SMX'
+    },
+    tags: ['Nocardia', 'Opportunistic', 'Infection'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'D'
+  },
+  {
+    id: 'p_infection_40',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Actinomycosis clue?',
+    back: {
+      definition: 'Chronic draining sinuses',
+      high_yield: 'Sulfur granules',
+      clinical_pearl: 'Treat long-term penicillin'
+    },
+    tags: ['Actinomyces', 'Infection', 'Chronic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'D'
+  },
+  {
+    id: 'p_infection_41',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Histo vs TB clue?',
+    back: {
+      definition: 'Histo = smaller yeast',
+      high_yield: 'TB = caseating granuloma',
+      clinical_pearl: 'Overlap common'
+    },
+    tags: ['Histoplasmosis', 'TB', 'Differential'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'D'
+  },
+  {
+    id: 'p_infection_42',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Fungal ball?',
+    back: {
+      definition: 'Aspergilloma in old cavity',
+      high_yield: 'Hemoptysis risk',
+      clinical_pearl: 'Surgery if severe'
+    },
+    tags: ['Aspergilloma', 'Fungal', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'D'
+  },
+  {
+    id: 'p_infection_43',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'COVID "happy hypoxia"?',
+    back: {
+      definition: 'Severe hypoxemia without distress',
+      high_yield: 'Ventilation mismatch',
+      clinical_pearl: 'Observed early pandemic'
+    },
+    tags: ['COVID-19', 'Hypoxemia', 'Pathophysiology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'D'
+  },
+  {
+    id: 'p_infection_44',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Bronchiolitis obliterans organizing pneumonia (BOOP)?',
+    back: {
+      definition: 'Inflammatory lung disease',
+      high_yield: 'Patchy consolidations',
+      clinical_pearl: 'Steroid responsive'
+    },
+    tags: ['BOOP', 'Inflammatory', 'Lung Disease'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'D'
+  },
+  {
+    id: 'p_infection_45',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Necrotizing pneumonia?',
+    back: {
+      definition: 'Severe lung tissue destruction',
+      high_yield: 'Often MRSA',
+      clinical_pearl: 'Causes cavitation'
+    },
+    tags: ['Necrotizing Pneumonia', 'Complications', 'MRSA'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'D'
+  },
+  {
+    id: 'p_infection_46',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Sepsis-related lung injury?',
+    back: {
+      definition: 'Cytokine storm',
+      high_yield: 'ARDS risk',
+      clinical_pearl: 'Monitor oxygenation closely'
+    },
+    tags: ['Sepsis', 'ARDS', 'Critical Care'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'D'
+  },
+  {
+    id: 'p_infection_47',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'HIV pulmonary infections progression?',
+    back: {
+      definition: 'CD4 decline predicts pathogens',
+      high_yield: 'PCP <200, MAC <50',
+      clinical_pearl: 'Adjust prophylaxis'
+    },
+    tags: ['HIV', 'Opportunistic Infections', 'CD4'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'D'
+  },
+  {
+    id: 'p_infection_48',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'MAC lung disease?',
+    back: {
+      definition: 'Mycobacterium avium complex',
+      high_yield: 'Chronic cough, nodules',
+      clinical_pearl: 'Common in bronchiectasis'
+    },
+    tags: ['MAC', 'Mycobacterium', 'Chronic Infection'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'D'
+  },
+  {
+    id: 'p_infection_49',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Zoonotic pneumonia?',
+    back: {
+      definition: 'Psittacosis, Q fever',
+      high_yield: 'Animal exposure',
+      clinical_pearl: 'Treat with doxycycline'
+    },
+    tags: ['Zoonotic', 'Psittacosis', 'Q Fever'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'D'
+  },
+  {
+    id: 'p_infection_50',
+    system: 'Pulmonary',
+    topic: 'Pulmonary Infections',
+    front: 'Anthrax pulmonary form?',
+    back: {
+      definition: 'Inhalation anthrax',
+      high_yield: 'Widened mediastinum',
+      clinical_pearl: 'High mortality'
+    },
+    tags: ['Anthrax', 'Bioterrorism', 'Infection'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'D'
   },
 ];
 
