@@ -2921,6 +2921,294 @@ export const renalFlashcards: Flashcard[] = [
     reviewCount: 0,
     difficulty: 'medium'
   },
+  {
+    id: 'renal-eab-034',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'RTA type 4?',
+    back: {
+      definition: 'Hyperkalemic RTA',
+      high_yield: 'Hypoaldosterone',
+      clinical_pearl: 'Diabetic nephropathy'
+    },
+    tags: ['Acid-Base', 'RTA', 'Type 4'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-eab-035',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Starvation ketoacidosis?',
+    back: {
+      definition: 'Low insulin',
+      high_yield: 'Mild AGMA',
+      clinical_pearl: 'Treat with glucose'
+    },
+    tags: ['Acid-Base', 'Ketoacidosis', 'Starvation'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-eab-036',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'DKA metabolic picture?',
+    back: {
+      definition: 'High AGMA',
+      high_yield: 'Ketones',
+      clinical_pearl: 'Fluid + insulin therapy'
+    },
+    tags: ['Acid-Base', 'DKA', 'Ketoacidosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-eab-037',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Lactic acidosis cause?',
+    back: {
+      definition: 'Tissue hypoxia',
+      high_yield: 'Shock/sepsis',
+      clinical_pearl: 'High lactate'
+    },
+    tags: ['Acid-Base', 'Lactic Acidosis', 'AGMA'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-eab-038',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Toxic alcohol acidosis?',
+    back: {
+      definition: 'Methanol/ethylene glycol',
+      high_yield: 'High AG + osm gap',
+      clinical_pearl: 'Fomepizole treatment'
+    },
+    tags: ['Acid-Base', 'Toxic Alcohol', 'AGMA'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-eab-039',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Salicylate toxicity acid–base?',
+    back: {
+      definition: 'Mixed disorder',
+      high_yield: 'Resp alkalosis + AGMA',
+      clinical_pearl: 'Check salicylate level'
+    },
+    tags: ['Acid-Base', 'Salicylate', 'Mixed Disorder'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-eab-040',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Transtubular K gradient use?',
+    back: {
+      definition: 'TTKG',
+      high_yield: 'Evaluates aldosterone activity',
+      clinical_pearl: 'Low in hypoaldo states'
+    },
+    tags: ['Electrolytes', 'TTKG', 'Potassium'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-eab-041',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Hyperaldosteronism effect?',
+    back: {
+      definition: 'High Na, low K',
+      high_yield: 'Metabolic alkalosis',
+      clinical_pearl: 'HTN, adrenal causes'
+    },
+    tags: ['Electrolytes', 'Hyperaldosteronism', 'Alkalosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-eab-042',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Hypoaldosteronism effect?',
+    back: {
+      definition: 'Hyperkalemia',
+      high_yield: 'Metabolic acidosis',
+      clinical_pearl: 'Seen in CKD'
+    },
+    tags: ['Electrolytes', 'Hypoaldosteronism', 'Acidosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-eab-043',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Milk-alkali syndrome?',
+    back: {
+      definition: 'Hypercalcemia + alkalosis',
+      high_yield: 'Excess Ca/alkali intake',
+      clinical_pearl: 'Stop supplements'
+    },
+    tags: ['Electrolytes', 'Milk-Alkali', 'Hypercalcemia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-eab-044',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Hyperphosphatemia cause?',
+    back: {
+      definition: 'CKD',
+      high_yield: 'Tumor lysis',
+      clinical_pearl: 'Hypocalcemia risk'
+    },
+    tags: ['Electrolytes', 'Hyperphosphatemia', 'Phosphate'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-eab-045',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Hypophosphatemia cause?',
+    back: {
+      definition: 'Refeeding, alcoholism',
+      high_yield: 'Muscle weakness',
+      clinical_pearl: 'Respiratory failure risk'
+    },
+    tags: ['Electrolytes', 'Hypophosphatemia', 'Phosphate'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-eab-046',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Compensation in resp acidosis?',
+    back: {
+      definition: 'Renal ↑HCO₃',
+      high_yield: 'Hours to days',
+      clinical_pearl: 'Chronic COPD'
+    },
+    tags: ['Acid-Base', 'Respiratory Acidosis', 'Compensation'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-eab-047',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Compensation in resp alkalosis?',
+    back: {
+      definition: 'Renal ↓HCO₃',
+      high_yield: 'Slower process',
+      clinical_pearl: 'Sepsis/pain'
+    },
+    tags: ['Acid-Base', 'Respiratory Alkalosis', 'Compensation'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-eab-048',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Mixed acid–base disorder clue?',
+    back: {
+      definition: 'Normal pH but abnormal CO₂/HCO₃',
+      high_yield: 'Multiple disorders',
+      clinical_pearl: 'Check delta gap'
+    },
+    tags: ['Acid-Base', 'Mixed Disorder', 'Diagnosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-eab-049',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Osmolar gap?',
+    back: {
+      definition: 'Measured – calculated osm',
+      high_yield: 'High in toxic alcohols',
+      clinical_pearl: 'Useful in poisoning'
+    },
+    tags: ['Electrolytes', 'Osmolar Gap', 'Toxicology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-eab-050',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Severe acidosis indication for dialysis?',
+    back: {
+      definition: 'pH <7.1',
+      high_yield: 'Refractory AGMA',
+      clinical_pearl: 'Consider emergently'
+    },
+    tags: ['Acid-Base', 'Dialysis', 'Severe Acidosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-eab-051',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'How do you identify triple acid base disorders?',
+    back: {
+      definition: 'Assess pH, AG, and delta ratios',
+      high_yield: 'Look for conflicting compensations',
+      clinical_pearl: 'Common in critically ill patients'
+    },
+    tags: ['Acid-Base', 'Triple Disorder', 'Diagnosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
   
   // Renal Tubular & Interstitial Disorders - No cards yet
   
