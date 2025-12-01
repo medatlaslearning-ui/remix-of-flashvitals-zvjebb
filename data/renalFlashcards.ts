@@ -2669,7 +2669,7 @@ export const renalFlashcards: Flashcard[] = [
     id: 'renal-eab-017',
     system: 'Renal',
     topic: 'Electrolytes & Acid–Base',
-    front: 'Winter&apos;s formula use?',
+    front: 'Winter's formula use?',
     back: {
       definition: 'Evaluates compensation',
       high_yield: 'PCO₂ = 1.5(HCO₃)+8±2',
