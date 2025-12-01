@@ -515,6 +515,294 @@ export const renalFlashcards: Flashcard[] = [
     reviewCount: 0,
     difficulty: 'medium'
   },
+  {
+    id: 'renal-aki-033',
+    system: 'Renal',
+    topic: 'Acute Kidney Injury (AKI)',
+    front: 'Indications for dialysis (AEIOU)?',
+    back: {
+      definition: 'Acidosis, Electrolytes, Intoxication, Overload, Uremia',
+      high_yield: 'Emergency criteria',
+      clinical_pearl: 'Life-saving'
+    },
+    tags: ['AKI', 'Dialysis', 'Indications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-aki-034',
+    system: 'Renal',
+    topic: 'Acute Kidney Injury (AKI)',
+    front: 'Uremic symptoms?',
+    back: {
+      definition: 'Pericarditis, encephalopathy',
+      high_yield: 'Advanced kidney failure',
+      clinical_pearl: 'Indication for dialysis'
+    },
+    tags: ['AKI', 'Uremia', 'Symptoms'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-aki-035',
+    system: 'Renal',
+    topic: 'Acute Kidney Injury (AKI)',
+    front: 'AKI fluid challenge?',
+    back: {
+      definition: 'Used in prerenal AKI',
+      high_yield: 'Improvement = perfusion problem',
+      clinical_pearl: 'No change suggests intrinsic'
+    },
+    tags: ['AKI', 'Prerenal', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-aki-036',
+    system: 'Renal',
+    topic: 'Acute Kidney Injury (AKI)',
+    front: 'KDIGO criteria?',
+    back: {
+      definition: 'Defines AKI severity',
+      high_yield: 'Cr rise or ↓urine output',
+      clinical_pearl: 'Standard classification'
+    },
+    tags: ['AKI', 'Classification', 'KDIGO'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-aki-037',
+    system: 'Renal',
+    topic: 'Acute Kidney Injury (AKI)',
+    front: 'ATN phases?',
+    back: {
+      definition: 'Initiation → maintenance → recovery',
+      high_yield: 'Variable urine output',
+      clinical_pearl: 'Watch electrolytes'
+    },
+    tags: ['AKI', 'ATN', 'Phases'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-aki-038',
+    system: 'Renal',
+    topic: 'Acute Kidney Injury (AKI)',
+    front: 'Ischemic ATN cause?',
+    back: {
+      definition: 'Low renal perfusion',
+      high_yield: 'Shock, sepsis',
+      clinical_pearl: 'Tubular necrosis'
+    },
+    tags: ['AKI', 'ATN', 'Ischemic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-aki-039',
+    system: 'Renal',
+    topic: 'Acute Kidney Injury (AKI)',
+    front: 'Nephrotoxic ATN cause?',
+    back: {
+      definition: 'Aminoglycosides, contrast',
+      high_yield: 'Direct injury',
+      clinical_pearl: 'Monitor drug levels'
+    },
+    tags: ['AKI', 'ATN', 'Nephrotoxic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-aki-040',
+    system: 'Renal',
+    topic: 'Acute Kidney Injury (AKI)',
+    front: 'Tumor lysis syndrome AKI?',
+    back: {
+      definition: 'Uric acid crystals',
+      high_yield: 'Chemo complication',
+      clinical_pearl: 'Prevent with hydration/allopurinol'
+    },
+    tags: ['AKI', 'Tumor Lysis', 'Oncology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-aki-041',
+    system: 'Renal',
+    topic: 'Acute Kidney Injury (AKI)',
+    front: 'Multiple myeloma AKI?',
+    back: {
+      definition: 'Light-chain cast nephropathy',
+      high_yield: 'Protein "casts" obstruct',
+      clinical_pearl: 'Bence Jones proteins'
+    },
+    tags: ['AKI', 'Multiple Myeloma', 'Cast Nephropathy'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-aki-042',
+    system: 'Renal',
+    topic: 'Acute Kidney Injury (AKI)',
+    front: 'Thrombotic microangiopathy?',
+    back: {
+      definition: 'Endothelial injury',
+      high_yield: 'HUS/TTP',
+      clinical_pearl: 'Schistocytes on smear'
+    },
+    tags: ['AKI', 'TMA', 'HUS', 'TTP'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-aki-043',
+    system: 'Renal',
+    topic: 'Acute Kidney Injury (AKI)',
+    front: 'Atheroembolic AKI?',
+    back: {
+      definition: 'Cholesterol emboli',
+      high_yield: 'Blue toe, livedo',
+      clinical_pearl: 'Post-vascular procedure'
+    },
+    tags: ['AKI', 'Atheroembolic', 'Vascular'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-aki-044',
+    system: 'Renal',
+    topic: 'Acute Kidney Injury (AKI)',
+    front: 'Renal artery stenosis AKI?',
+    back: {
+      definition: 'Poor perfusion',
+      high_yield: 'Worse with ACEI/ARB',
+      clinical_pearl: 'Flash pulmonary edema'
+    },
+    tags: ['AKI', 'Renal Artery Stenosis', 'Vascular'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-aki-045',
+    system: 'Renal',
+    topic: 'Acute Kidney Injury (AKI)',
+    front: 'Renal vein thrombosis?',
+    back: {
+      definition: 'Hypercoagulable states',
+      high_yield: 'Flank pain + hematuria',
+      clinical_pearl: 'Nephrotic syndrome risk'
+    },
+    tags: ['AKI', 'Renal Vein Thrombosis', 'Vascular'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-aki-046',
+    system: 'Renal',
+    topic: 'Acute Kidney Injury (AKI)',
+    front: 'Calcineurin inhibitor AKI?',
+    back: {
+      definition: 'Vasoconstriction',
+      high_yield: 'Seen in transplant pts',
+      clinical_pearl: 'Drug level monitoring'
+    },
+    tags: ['AKI', 'Calcineurin Inhibitor', 'Transplant'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-aki-047',
+    system: 'Renal',
+    topic: 'Acute Kidney Injury (AKI)',
+    front: 'Oliguric vs non-oliguric ATN?',
+    back: {
+      definition: 'Low vs normal urine volume',
+      high_yield: 'Both intrinsic injury',
+      clinical_pearl: 'Different fluid strategies'
+    },
+    tags: ['AKI', 'ATN', 'Oliguria'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-aki-048',
+    system: 'Renal',
+    topic: 'Acute Kidney Injury (AKI)',
+    front: 'AKI in pregnancy?',
+    back: {
+      definition: 'Preeclampsia, HELLP',
+      high_yield: 'Microangiopathy',
+      clinical_pearl: 'Monitor BP closely'
+    },
+    tags: ['AKI', 'Pregnancy', 'Preeclampsia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-aki-049',
+    system: 'Renal',
+    topic: 'Acute Kidney Injury (AKI)',
+    front: 'Myeloma cast nephropathy clue?',
+    back: {
+      definition: 'Elevated total protein gap',
+      high_yield: 'Light chains',
+      clinical_pearl: 'Needs chemo-based treatment'
+    },
+    tags: ['AKI', 'Multiple Myeloma', 'Cast Nephropathy'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-aki-050',
+    system: 'Renal',
+    topic: 'Acute Kidney Injury (AKI)',
+    front: 'Poor AKI prognosis indicator?',
+    back: {
+      definition: 'Persistent oliguria',
+      high_yield: 'Multi-organ failure',
+      clinical_pearl: 'Higher mortality'
+    },
+    tags: ['AKI', 'Prognosis', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
   
   // Chronic Kidney Disease (CKD) - No cards yet
   
