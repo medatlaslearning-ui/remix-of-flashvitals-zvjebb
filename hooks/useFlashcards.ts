@@ -5,6 +5,7 @@ import { Flashcard } from '@/types/flashcard';
 import { cardiologyFlashcards } from '@/data/cardiologyFlashcards';
 import { pulmonaryFlashcards } from '@/data/pulmonaryFlashcards';
 import { renalFlashcards } from '@/data/renalFlashcards';
+import { gastroenterologyFlashcards } from '@/data/gastroenterologyFlashcards';
 
 const STORAGE_KEY = '@flashcard_states';
 
@@ -24,6 +25,7 @@ const allSystemFlashcards = [
   ...cardiologyFlashcards,
   ...pulmonaryFlashcards,
   ...renalFlashcards,
+  ...gastroenterologyFlashcards,
 ];
 
 export const useFlashcards = () => {
