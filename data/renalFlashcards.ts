@@ -2119,6 +2119,294 @@ export const renalFlashcards: Flashcard[] = [
     reviewCount: 0,
     difficulty: 'medium'
   },
+  {
+    id: 'renal-gd-033',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Granulomatosis with polyangiitis GN?',
+    back: {
+      definition: 'C-ANCA positive',
+      high_yield: 'Necrotizing vasculitis',
+      clinical_pearl: 'Lung + kidney'
+    },
+    tags: ['Glomerular Diseases', 'GPA', 'Vasculitis', 'ANCA'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-gd-034',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Microscopic polyangiitis GN?',
+    back: {
+      definition: 'P-ANCA',
+      high_yield: 'No granulomas',
+      clinical_pearl: 'Pulmonary involvement'
+    },
+    tags: ['Glomerular Diseases', 'MPA', 'Vasculitis', 'ANCA'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-gd-035',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Churg-Strauss GN?',
+    back: {
+      definition: 'Eosinophilic vasculitis',
+      high_yield: 'Asthma',
+      clinical_pearl: 'P-ANCA'
+    },
+    tags: ['Glomerular Diseases', 'EGPA', 'Vasculitis', 'Eosinophilic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-gd-036',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'RPGN type I?',
+    back: {
+      definition: 'Anti-GBM disease',
+      high_yield: 'Linear staining',
+      clinical_pearl: 'Goodpasture'
+    },
+    tags: ['Glomerular Diseases', 'RPGN', 'Anti-GBM', 'Type I'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-gd-037',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'RPGN type II?',
+    back: {
+      definition: 'Immune complex',
+      high_yield: 'Lupus, IgA',
+      clinical_pearl: 'Granular staining'
+    },
+    tags: ['Glomerular Diseases', 'RPGN', 'Immune Complex', 'Type II'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-gd-038',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'RPGN type III?',
+    back: {
+      definition: 'Pauci-immune',
+      high_yield: 'ANCA-associated',
+      clinical_pearl: 'No deposits'
+    },
+    tags: ['Glomerular Diseases', 'RPGN', 'Pauci-immune', 'Type III'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-gd-039',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Dense deposit disease?',
+    back: {
+      definition: 'Alternative complement disorder',
+      high_yield: 'Ribbon-like deposits',
+      clinical_pearl: 'Persistent low C3'
+    },
+    tags: ['Glomerular Diseases', 'Dense Deposit Disease', 'Complement'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-gd-040',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Fibrillary GN?',
+    back: {
+      definition: 'IgG deposition',
+      high_yield: 'Congo-red negative',
+      clinical_pearl: 'Poor prognosis'
+    },
+    tags: ['Glomerular Diseases', 'Fibrillary GN', 'Rare'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-gd-041',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Immunotactoid GN?',
+    back: {
+      definition: 'Paraprotein-related',
+      high_yield: 'Microtubular deposits',
+      clinical_pearl: 'Associated with malignancy'
+    },
+    tags: ['Glomerular Diseases', 'Immunotactoid GN', 'Rare'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-gd-042',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Lupus nephritis class IV?',
+    back: {
+      definition: 'Diffuse proliferative',
+      high_yield: 'Most severe',
+      clinical_pearl: 'Aggressive treatment needed'
+    },
+    tags: ['Glomerular Diseases', 'Lupus Nephritis', 'Class IV'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-gd-043',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Lupus nephritis class V?',
+    back: {
+      definition: 'Membranous',
+      high_yield: 'Nephrotic-range proteinuria',
+      clinical_pearl: 'Better renal survival'
+    },
+    tags: ['Glomerular Diseases', 'Lupus Nephritis', 'Class V'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-gd-044',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Infection-related GN?',
+    back: {
+      definition: 'Immune complexes',
+      high_yield: 'Endocarditis, abscess',
+      clinical_pearl: 'Low complement'
+    },
+    tags: ['Glomerular Diseases', 'Infection-Related GN', 'Immune Complex'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-gd-045',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'HIV-associated nephropathy?',
+    back: {
+      definition: 'Collapsing FSGS',
+      high_yield: 'Proteinuria',
+      clinical_pearl: 'African descent risk↑'
+    },
+    tags: ['Glomerular Diseases', 'HIV', 'FSGS'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-gd-046',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Drug-induced membranous nephropathy?',
+    back: {
+      definition: 'NSAIDs, gold, penicillamine',
+      high_yield: 'Immune-mediated',
+      clinical_pearl: 'Stop drug'
+    },
+    tags: ['Glomerular Diseases', 'Drug-Induced', 'Membranous Nephropathy'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-gd-047',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Bacterial endocarditis GN?',
+    back: {
+      definition: 'Immune complex',
+      high_yield: 'Hematuria + low C3',
+      clinical_pearl: 'Treat infection'
+    },
+    tags: ['Glomerular Diseases', 'Endocarditis', 'Infection'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-gd-048',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Paraneoplastic GN?',
+    back: {
+      definition: 'Associated with malignancy',
+      high_yield: 'Membranous common',
+      clinical_pearl: 'Search for cancer'
+    },
+    tags: ['Glomerular Diseases', 'Paraneoplastic', 'Malignancy'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-gd-049',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Chronic GN outcome?',
+    back: {
+      definition: 'Progression to CKD',
+      high_yield: 'Glomerular scarring',
+      clinical_pearl: 'Early treatment helps'
+    },
+    tags: ['Glomerular Diseases', 'Chronic GN', 'Prognosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-gd-050',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Best test for GN diagnosis?',
+    back: {
+      definition: 'Kidney biopsy',
+      high_yield: 'Defines pattern',
+      clinical_pearl: 'Guides management'
+    },
+    tags: ['Glomerular Diseases', 'Diagnosis', 'Biopsy'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
   
   // Electrolytes & Acid–Base - No cards yet
   
