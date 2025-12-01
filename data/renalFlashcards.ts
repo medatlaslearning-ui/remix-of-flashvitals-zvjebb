@@ -4012,7 +4012,519 @@ export const renalFlashcards: Flashcard[] = [
     difficulty: 'hard'
   },
   
-  // Renal Stones & Infections - No cards yet
+  // Renal Stones & Infections
+  {
+    id: 'renal-rsi-001',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Most common kidney stone type?',
+    back: {
+      definition: 'Calcium oxalate',
+      high_yield: 'Radiopaque',
+      clinical_pearl: 'Hypercalciuria risk'
+    },
+    tags: ['Renal Stones', 'Calcium Oxalate', 'Nephrolithiasis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rsi-002',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Classic stone symptom?',
+    back: {
+      definition: 'Flank pain radiating to groin',
+      high_yield: 'Colicky pain',
+      clinical_pearl: 'Hematuria common'
+    },
+    tags: ['Renal Stones', 'Symptoms', 'Clinical Presentation'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rsi-003',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Best initial test for stones?',
+    back: {
+      definition: 'Non-contrast CT',
+      high_yield: 'Most sensitive',
+      clinical_pearl: 'Detects all types'
+    },
+    tags: ['Renal Stones', 'Imaging', 'Diagnosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rsi-004',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Calcium oxalate risk factors?',
+    back: {
+      definition: 'Dehydration, high oxalate',
+      high_yield: 'Low citrate',
+      clinical_pearl: 'Most common stone'
+    },
+    tags: ['Renal Stones', 'Calcium Oxalate', 'Risk Factors'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rsi-005',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Struvite stone cause?',
+    back: {
+      definition: 'Urease-producing bacteria',
+      high_yield: 'Proteus, Klebsiella',
+      clinical_pearl: 'Staghorn calculi'
+    },
+    tags: ['Renal Stones', 'Struvite', 'Infection'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rsi-006',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Uric acid stone hallmark?',
+    back: {
+      definition: 'Radiolucent',
+      high_yield: 'Seen with low urine pH',
+      clinical_pearl: 'Associated with gout'
+    },
+    tags: ['Renal Stones', 'Uric Acid', 'Radiolucent'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rsi-007',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Cystine stone clue?',
+    back: {
+      definition: 'Hexagonal crystals',
+      high_yield: 'Hereditary disorder',
+      clinical_pearl: 'Recurrent stones'
+    },
+    tags: ['Renal Stones', 'Cystine', 'Genetic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rsi-008',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Hydronephrosis definition?',
+    back: {
+      definition: 'Dilation of collecting system',
+      high_yield: 'Obstruction',
+      clinical_pearl: 'Seen on ultrasound'
+    },
+    tags: ['Renal Stones', 'Hydronephrosis', 'Obstruction'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rsi-009',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Stone <5 mm treatment?',
+    back: {
+      definition: 'Hydration + analgesia',
+      high_yield: 'Likely to pass',
+      clinical_pearl: 'Medical expulsive therapy'
+    },
+    tags: ['Renal Stones', 'Treatment', 'Conservative'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rsi-010',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Best medication to pass stones?',
+    back: {
+      definition: 'Tamsulosin',
+      high_yield: 'Relaxes ureter',
+      clinical_pearl: 'Helpful for mid/lower stones'
+    },
+    tags: ['Renal Stones', 'Treatment', 'Tamsulosin'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rsi-011',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'UTI vs pyelo symptom difference?',
+    back: {
+      definition: 'UTI = dysuria',
+      high_yield: 'Pyelo = flank pain + fever',
+      clinical_pearl: 'WBC casts in pyelo'
+    },
+    tags: ['Infections', 'UTI', 'Pyelonephritis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rsi-012',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Most common UTI pathogen?',
+    back: {
+      definition: 'E. coli',
+      high_yield: 'Enterobacteriaceae',
+      clinical_pearl: 'From ascending infection'
+    },
+    tags: ['Infections', 'UTI', 'E. coli'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rsi-013',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Cystitis symptoms?',
+    back: {
+      definition: 'Dysuria, frequency, urgency',
+      high_yield: 'Suprapubic pain',
+      clinical_pearl: 'No fever'
+    },
+    tags: ['Infections', 'Cystitis', 'UTI'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rsi-014',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Pyelonephritis hallmark?',
+    back: {
+      definition: 'Fever + flank pain',
+      high_yield: 'Systemic symptoms',
+      clinical_pearl: 'WBC casts'
+    },
+    tags: ['Infections', 'Pyelonephritis', 'Clinical Presentation'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rsi-015',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Asymptomatic bacteriuria treat?',
+    back: {
+      definition: 'Pregnancy or urologic procedures',
+      high_yield: 'Otherwise avoid',
+      clinical_pearl: 'Prevents overtreatment'
+    },
+    tags: ['Infections', 'Asymptomatic Bacteriuria', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rsi-016',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Recurrent UTI definition?',
+    back: {
+      definition: '≥2 in 6 months or ≥3/year',
+      high_yield: 'Common in women',
+      clinical_pearl: 'Consider prophylaxis'
+    },
+    tags: ['Infections', 'Recurrent UTI', 'Definition'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rsi-017',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Complicated UTI?',
+    back: {
+      definition: 'Structural/functional abnormality',
+      high_yield: 'Male, catheter, diabetes',
+      clinical_pearl: 'Needs broader coverage'
+    },
+    tags: ['Infections', 'Complicated UTI', 'Definition'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rsi-018',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Acute prostatitis clue?',
+    back: {
+      definition: 'Pelvic pain + fever',
+      high_yield: 'Boggy tender prostate',
+      clinical_pearl: 'Avoid prostate massage'
+    },
+    tags: ['Infections', 'Prostatitis', 'Clinical Presentation'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rsi-019',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Urinalysis infection findings?',
+    back: {
+      definition: 'Positive nitrites/leukocyte esterase',
+      high_yield: 'Pyuria',
+      clinical_pearl: 'Bacteriuria'
+    },
+    tags: ['Infections', 'Urinalysis', 'Diagnosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rsi-020',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'First-line cystitis treatment?',
+    back: {
+      definition: 'Nitrofurantoin or TMP-SMX',
+      high_yield: 'Fosfomycin alternative',
+      clinical_pearl: 'Short-course therapy'
+    },
+    tags: ['Infections', 'Cystitis', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rsi-021',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Struvite stone imaging clue?',
+    back: {
+      definition: 'Large staghorn shape',
+      high_yield: 'Radiopaque',
+      clinical_pearl: 'Associated with chronic infection'
+    },
+    tags: ['Renal Stones', 'Struvite', 'Imaging'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rsi-022',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Uric acid stone treatment?',
+    back: {
+      definition: 'Alkalinize urine',
+      high_yield: 'Potassium citrate',
+      clinical_pearl: 'Dissolves stones'
+    },
+    tags: ['Renal Stones', 'Uric Acid', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rsi-023',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Hypercalciuria treatment?',
+    back: {
+      definition: 'Thiazides',
+      high_yield: 'Reduce Ca excretion',
+      clinical_pearl: 'Prevents recurrence'
+    },
+    tags: ['Renal Stones', 'Hypercalciuria', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rsi-024',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Hypocitraturia cause?',
+    back: {
+      definition: 'Low citrate',
+      high_yield: 'High acid load',
+      clinical_pearl: 'Citrate prevents stones'
+    },
+    tags: ['Renal Stones', 'Hypocitraturia', 'Risk Factors'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rsi-025',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Stone prevention fluid goal?',
+    back: {
+      definition: '>2 liters urine/day',
+      high_yield: 'Most effective prevention',
+      clinical_pearl: 'Hydration key'
+    },
+    tags: ['Renal Stones', 'Prevention', 'Hydration'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rsi-026',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Acute pyelo treatment?',
+    back: {
+      definition: 'Fluoroquinolones or ceftriaxone',
+      high_yield: 'Target Gram-negatives',
+      clinical_pearl: 'Adjust per cultures'
+    },
+    tags: ['Infections', 'Pyelonephritis', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rsi-027',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Pregnancy UTI treatment?',
+    back: {
+      definition: 'Beta-lactams',
+      high_yield: 'Avoid fluoroquinolones/TMP-SMX',
+      clinical_pearl: 'Safe therapy required'
+    },
+    tags: ['Infections', 'Pregnancy', 'UTI Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rsi-028',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Emphysematous pyelo?',
+    back: {
+      definition: 'Gas-forming infection',
+      high_yield: 'Diabetics',
+      clinical_pearl: 'Emergent condition'
+    },
+    tags: ['Infections', 'Emphysematous Pyelonephritis', 'Emergency'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rsi-029',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Renal abscess sign?',
+    back: {
+      definition: 'Persistent fever after pyelo treatment',
+      high_yield: 'Localized pain',
+      clinical_pearl: 'Requires imaging and drainage'
+    },
+    tags: ['Infections', 'Renal Abscess', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rsi-030',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Xanthogranulomatous pyelo?',
+    back: {
+      definition: 'Chronic destructive infection',
+      high_yield: 'Obstructing stone',
+      clinical_pearl: 'Requires nephrectomy'
+    },
+    tags: ['Infections', 'Xanthogranulomatous Pyelonephritis', 'Chronic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rsi-031',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Stones in acidic urine?',
+    back: {
+      definition: 'Uric acid, cystine',
+      high_yield: 'Low pH',
+      clinical_pearl: 'Increase alkalinization'
+    },
+    tags: ['Renal Stones', 'Urine pH', 'Acidic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rsi-032',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Stones in alkaline urine?',
+    back: {
+      definition: 'Struvite, calcium phosphate',
+      high_yield: 'High pH',
+      clinical_pearl: 'Infection or metabolic'
+    },
+    tags: ['Renal Stones', 'Urine pH', 'Alkaline'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
 ];
 
 console.log('Renal flashcards loaded:', renalFlashcards.length, 'cards');
