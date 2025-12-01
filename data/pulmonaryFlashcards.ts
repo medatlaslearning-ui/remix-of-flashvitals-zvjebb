@@ -2937,6 +2937,278 @@ export const pulmonaryFlashcards: Flashcard[] = [
     reviewCount: 0,
     difficulty: 'medium'
   },
+  {
+    id: 'p_ild_34',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'ILD with hemoptysis?',
+    back: {
+      definition: 'Vasculitis or DAH',
+      high_yield: 'Consider Goodpasture',
+      clinical_pearl: 'Urgent evaluation'
+    },
+    tags: ['ILD', 'Hemoptysis', 'Vasculitis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_ild_35',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'ILD with eosinophilia?',
+    back: {
+      definition: 'Eosinophilic pneumonia',
+      high_yield: 'Peripheral infiltrates',
+      clinical_pearl: 'Steroid responsive'
+    },
+    tags: ['ILD', 'Eosinophilia', 'Eosinophilic Pneumonia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_ild_36',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'ILD and clubbing?',
+    back: {
+      definition: 'Hypertrophic osteoarthropathy',
+      high_yield: 'Common in IPF',
+      clinical_pearl: 'Chronic hypoxia'
+    },
+    tags: ['ILD', 'Clubbing', 'IPF'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_ild_37',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Acute exacerbation of IPF?',
+    back: {
+      definition: 'Rapid fibrosis progression',
+      high_yield: 'Diffuse ground glass',
+      clinical_pearl: 'High mortality'
+    },
+    tags: ['IPF', 'Acute Exacerbation', 'Emergency'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_ild_38',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Granulomatosis with polyangiitis lung signs?',
+    back: {
+      definition: 'Cavitating nodules',
+      high_yield: 'Hemoptysis',
+      clinical_pearl: 'ANCA positive'
+    },
+    tags: ['GPA', 'Vasculitis', 'Granulomatosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_ild_39',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Churg-Strauss lung sign?',
+    back: {
+      definition: 'Asthma + eosinophilia',
+      high_yield: 'Vasculitis',
+      clinical_pearl: 'Mononeuritis multiplex'
+    },
+    tags: ['Churg-Strauss', 'EGPA', 'Vasculitis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_ild_40',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Goodpasture radiology?',
+    back: {
+      definition: 'Diffuse alveolar hemorrhage',
+      high_yield: 'Bilateral infiltrates',
+      clinical_pearl: 'Anti-GBM antibodies'
+    },
+    tags: ['Goodpasture', 'DAH', 'Vasculitis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_ild_41',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Alveolar proteinosis?',
+    back: {
+      definition: 'Surfactant accumulation',
+      high_yield: 'Crazy-paving CT',
+      clinical_pearl: 'Whole lung lavage'
+    },
+    tags: ['Alveolar Proteinosis', 'PAP', 'ILD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_ild_42',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'LAM disease?',
+    back: {
+      definition: 'Lymphangioleiomyomatosis',
+      high_yield: 'Thin-walled cysts',
+      clinical_pearl: 'Seen in women'
+    },
+    tags: ['LAM', 'Cystic Lung Disease', 'ILD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_ild_43',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Pulmonary Langerhans cell histiocytosis?',
+    back: {
+      definition: 'Nodules + cysts',
+      high_yield: 'Smokers',
+      clinical_pearl: 'Upper-lobe disease'
+    },
+    tags: ['PLCH', 'Langerhans Cell', 'ILD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_ild_44',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Tuberous sclerosis lung involvement?',
+    back: {
+      definition: 'LAM development',
+      high_yield: 'Cysts + pneumothorax',
+      clinical_pearl: 'Seen in young women'
+    },
+    tags: ['Tuberous Sclerosis', 'LAM', 'Genetic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_ild_45',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Idiopathic DAH?',
+    back: {
+      definition: 'Diffuse bleeding into alveoli',
+      high_yield: 'Hemoptysis may be absent',
+      clinical_pearl: 'Requires bronchoscopy'
+    },
+    tags: ['DAH', 'Diffuse Alveolar Hemorrhage', 'ILD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_ild_46',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'ILD + pulmonary hypertension?',
+    back: {
+      definition: 'Late-stage ILD',
+      high_yield: 'Poor prognosis',
+      clinical_pearl: 'Assess RV function'
+    },
+    tags: ['ILD', 'Pulmonary Hypertension', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_ild_47',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'ILD transplant indication?',
+    back: {
+      definition: 'Progressive hypoxia',
+      high_yield: 'Declining DLCO',
+      clinical_pearl: 'Failure of medical therapy'
+    },
+    tags: ['ILD', 'Lung Transplant', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_ild_48',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Ventilation issue in ILD?',
+    back: {
+      definition: 'Low compliance',
+      high_yield: 'High work of breathing',
+      clinical_pearl: 'Small tidal volumes'
+    },
+    tags: ['ILD', 'Ventilation', 'Pathophysiology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_ild_49',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'ILD vs COPD PFTs?',
+    back: {
+      definition: 'ILD = restrictive',
+      high_yield: 'COPD = obstructive',
+      clinical_pearl: 'Opposite patterns'
+    },
+    tags: ['ILD', 'COPD', 'PFT'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_ild_50',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'ILD hallmark on exam?',
+    back: {
+      definition: 'Fine inspiratory crackles',
+      high_yield: 'Velcro-like',
+      clinical_pearl: 'Strong predictor of fibrosis'
+    },
+    tags: ['ILD', 'Physical Exam', 'Crackles'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
 ];
 
 console.log('Pulmonary flashcards loaded:', pulmonaryFlashcards.length, 'cards');
