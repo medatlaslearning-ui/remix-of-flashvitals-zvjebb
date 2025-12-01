@@ -3210,7 +3210,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     difficulty: 'hard'
   },
 
-  // Pleural Disorders (32 cards)
+  // Pleural Disorders (50 cards)
   {
     id: 'p_pleural_1',
     system: 'Pulmonary',
@@ -3722,6 +3722,294 @@ export const pulmonaryFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0,
     difficulty: 'medium'
+  },
+  {
+    id: 'p_pleural_33',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Thoracic duct injury cause?',
+    back: {
+      definition: 'Trauma or surgery',
+      high_yield: 'Leads to chylothorax',
+      clinical_pearl: 'High TG'
+    },
+    tags: ['Thoracic Duct', 'Chylothorax', 'Trauma'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_pleural_34',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Pleural plaques?',
+    back: {
+      definition: 'Asbestos exposure',
+      high_yield: 'Calcified lesions',
+      clinical_pearl: 'Marker of exposure'
+    },
+    tags: ['Pleural Plaques', 'Asbestos', 'Occupational'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_pleural_35',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Pleural thickening?',
+    back: {
+      definition: 'Chronic inflammation',
+      high_yield: 'Fibrosis',
+      clinical_pearl: 'Seen in TB or asbestos disease'
+    },
+    tags: ['Pleural Thickening', 'Fibrosis', 'Chronic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_pleural_36',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Pseudochylothorax?',
+    back: {
+      definition: 'Chronic effusion w/ cholesterol crystals',
+      high_yield: 'Long-standing inflammation',
+      clinical_pearl: 'Different from chylothorax'
+    },
+    tags: ['Pseudochylothorax', 'Pleural Effusion', 'Chronic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_pleural_37',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Effusion in pancreatitis?',
+    back: {
+      definition: 'Left-sided predominant',
+      high_yield: 'Exudate',
+      clinical_pearl: 'High amylase'
+    },
+    tags: ['Pancreatitis', 'Pleural Effusion', 'Amylase'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_pleural_38',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Urinary tract–related effusion?',
+    back: {
+      definition: 'Urinothorax',
+      high_yield: 'Transudate',
+      clinical_pearl: 'Low pH'
+    },
+    tags: ['Urinothorax', 'Pleural Effusion', 'Urinary Tract'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_pleural_39',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Drug-induced pleural disease?',
+    back: {
+      definition: 'Nitrofurantoin, amiodarone',
+      high_yield: 'Inflammatory effusion',
+      clinical_pearl: 'Rare but important'
+    },
+    tags: ['Drug-induced', 'Pleural Disease', 'Medications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_pleural_40',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Viral pleuritis?',
+    back: {
+      definition: 'Inflamed pleura',
+      high_yield: 'Sharp pain',
+      clinical_pearl: 'Self-limited'
+    },
+    tags: ['Viral Pleuritis', 'Pleuritis', 'Viral'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_pleural_41',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Fungal pleural disease?',
+    back: {
+      definition: 'Histoplasma, coccidioides',
+      high_yield: 'Exudative',
+      clinical_pearl: 'Travel history key'
+    },
+    tags: ['Fungal', 'Pleural Disease', 'Endemic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_pleural_42',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Empyema stages?',
+    back: {
+      definition: 'Exudative → fibrinopurulent → organized',
+      high_yield: 'Progressive loculations',
+      clinical_pearl: 'May need surgery'
+    },
+    tags: ['Empyema', 'Stages', 'Progression'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_pleural_43',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Bronchopleural fistula?',
+    back: {
+      definition: 'Air leak between bronchi and pleura',
+      high_yield: 'Persistent pneumothorax',
+      clinical_pearl: 'Post-surgery complication'
+    },
+    tags: ['Bronchopleural Fistula', 'Complications', 'Surgery'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_pleural_44',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Iatrogenic pneumothorax cause?',
+    back: {
+      definition: 'Procedures (central line, biopsy)',
+      high_yield: 'Air entry',
+      clinical_pearl: 'Prevent with US guidance'
+    },
+    tags: ['Iatrogenic', 'Pneumothorax', 'Procedures'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_pleural_45',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Catamenial pneumothorax?',
+    back: {
+      definition: 'Related to menstruation',
+      high_yield: 'Thoracic endometriosis',
+      clinical_pearl: 'Recurrent'
+    },
+    tags: ['Catamenial Pneumothorax', 'Endometriosis', 'Recurrent'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_pleural_46',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Loculated effusion?',
+    back: {
+      definition: 'Divided compartments',
+      high_yield: 'Seen in empyema',
+      clinical_pearl: 'Poor drainage'
+    },
+    tags: ['Loculated Effusion', 'Empyema', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_pleural_47',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Hemothorax immediate action?',
+    back: {
+      definition: 'Chest tube drainage',
+      high_yield: 'Monitor blood loss',
+      clinical_pearl: 'May require surgery'
+    },
+    tags: ['Hemothorax', 'Emergency', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_pleural_48',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Massive pleural effusion?',
+    back: {
+      definition: '>1.5 L drained',
+      high_yield: 'May cause reexpansion edema',
+      clinical_pearl: 'Drain slowly'
+    },
+    tags: ['Massive Effusion', 'Complications', 'Thoracentesis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_pleural_49',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Reexpansion pulmonary edema?',
+    back: {
+      definition: 'After rapid lung reexpansion',
+      high_yield: 'Hypoxemia',
+      clinical_pearl: 'Avoid rapid drainage'
+    },
+    tags: ['Reexpansion Edema', 'Complications', 'Thoracentesis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'p_pleural_50',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Key pleural rule?',
+    back: {
+      definition: 'Transudate = systemic causes',
+      high_yield: 'Exudate = local pathology',
+      clinical_pearl: 'Use Light&apos;s criteria'
+    },
+    tags: ['Pleural Effusion', 'Differential', 'Light Criteria'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
   },
 ];
 
