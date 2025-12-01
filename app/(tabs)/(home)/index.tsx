@@ -29,6 +29,15 @@ export default function HomeScreen() {
     ));
   }, [allFlashcards]);
 
+  // Get unique topics for Renal
+  const renalTopics = useMemo(() => {
+    return Array.from(new Set(
+      allFlashcards
+        .filter(card => card.system === 'Renal')
+        .map(card => card.topic)
+    ));
+  }, [allFlashcards]);
+
   const handleSystemPress = (system: string) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     console.log('Navigating to system:', system);
@@ -36,6 +45,8 @@ export default function HomeScreen() {
       router.push('/(tabs)/(home)/cardiology-topics');
     } else if (system === 'Pulmonary') {
       router.push('/(tabs)/(home)/pulmonary-topics');
+    } else if (system === 'Renal') {
+      router.push('/(tabs)/(home)/renal-topics');
     }
   };
 
@@ -145,6 +156,25 @@ export default function HomeScreen() {
                 <Text style={styles.systemTitle}>Pulmonology</Text>
                 <Text style={styles.systemSubtitle}>
                   {allFlashcards.filter(c => c.system === 'Pulmonary').length} cards • {pulmonaryTopics.length} topics
+                </Text>
+              </View>
+              <IconSymbol name="chevron.right" size={24} color={colors.textSecondary} />
+            </View>
+          </Pressable>
+
+          {/* Renal System */}
+          <Pressable 
+            style={styles.systemCard}
+            onPress={() => handleSystemPress('Renal')}
+          >
+            <View style={styles.systemHeader}>
+              <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
+                <IconSymbol name="drop.fill" size={32} color={colors.accent} />
+              </View>
+              <View style={styles.systemInfo}>
+                <Text style={styles.systemTitle}>Renal</Text>
+                <Text style={styles.systemSubtitle}>
+                  {allFlashcards.filter(c => c.system === 'Renal').length} cards • {renalTopics.length} topics
                 </Text>
               </View>
               <IconSymbol name="chevron.right" size={24} color={colors.textSecondary} />

@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Flashcard } from '@/types/flashcard';
 import { cardiologyFlashcards } from '@/data/cardiologyFlashcards';
 import { pulmonaryFlashcards } from '@/data/pulmonaryFlashcards';
+import { renalFlashcards } from '@/data/renalFlashcards';
 
 const STORAGE_KEY = '@flashcard_states';
 
@@ -22,6 +23,7 @@ interface FlashcardStates {
 const allSystemFlashcards = [
   ...cardiologyFlashcards,
   ...pulmonaryFlashcards,
+  ...renalFlashcards,
 ];
 
 export const useFlashcards = () => {
