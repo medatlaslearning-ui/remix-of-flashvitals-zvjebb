@@ -1606,7 +1606,519 @@ export const renalFlashcards: Flashcard[] = [
     difficulty: 'hard'
   },
   
-  // Glomerular Diseases - No cards yet
+  // Glomerular Diseases
+  {
+    id: 'renal-gd-001',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'What is nephritic syndrome?',
+    back: {
+      definition: 'Glomerular inflammation',
+      high_yield: 'Hematuria + RBC casts',
+      clinical_pearl: 'HTN and mild proteinuria'
+    },
+    tags: ['Glomerular Diseases', 'Nephritic Syndrome', 'Renal'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-gd-002',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'What is nephrotic syndrome?',
+    back: {
+      definition: 'Heavy proteinuria',
+      high_yield: '>3.5 g/day + edema',
+      clinical_pearl: 'Hypoalbuminemia'
+    },
+    tags: ['Glomerular Diseases', 'Nephrotic Syndrome', 'Renal'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-gd-003',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'RBC cast significance?',
+    back: {
+      definition: 'Glomerulonephritis',
+      high_yield: 'Bleeding in nephron',
+      clinical_pearl: 'Urgent evaluation'
+    },
+    tags: ['Glomerular Diseases', 'RBC Casts', 'Urinalysis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-gd-004',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Most common nephrotic cause in adults?',
+    back: {
+      definition: 'Membranous nephropathy',
+      high_yield: 'Immune complex disease',
+      clinical_pearl: 'Associated with cancer/Hep B'
+    },
+    tags: ['Glomerular Diseases', 'Nephrotic Syndrome', 'Membranous Nephropathy'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-gd-005',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Most common nephrotic cause in children?',
+    back: {
+      definition: 'Minimal change disease',
+      high_yield: 'Podocyte effacement',
+      clinical_pearl: 'Responds to steroids'
+    },
+    tags: ['Glomerular Diseases', 'Nephrotic Syndrome', 'Minimal Change Disease'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-gd-006',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Most common GN worldwide?',
+    back: {
+      definition: 'IgA nephropathy',
+      high_yield: 'Post-URI hematuria',
+      clinical_pearl: 'Berger disease'
+    },
+    tags: ['Glomerular Diseases', 'IgA Nephropathy', 'Glomerulonephritis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-gd-007',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Post-strep GN hallmark?',
+    back: {
+      definition: 'Hematuria after strep infection',
+      high_yield: 'Low C3',
+      clinical_pearl: 'Coca-cola urine'
+    },
+    tags: ['Glomerular Diseases', 'Post-Strep GN', 'Glomerulonephritis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-gd-008',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Nephrotic syndrome signs?',
+    back: {
+      definition: 'Proteinuria, edema',
+      high_yield: 'Hyperlipidemia',
+      clinical_pearl: 'Lipiduria'
+    },
+    tags: ['Glomerular Diseases', 'Nephrotic Syndrome', 'Clinical Presentation'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-gd-009',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Nephritic syndrome signs?',
+    back: {
+      definition: 'Hematuria, RBC casts',
+      high_yield: 'HTN, oliguria',
+      clinical_pearl: 'Inflammation driven'
+    },
+    tags: ['Glomerular Diseases', 'Nephritic Syndrome', 'Clinical Presentation'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-gd-010',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Lupus nephritis mechanism?',
+    back: {
+      definition: 'Immune complex deposition',
+      high_yield: '"Full house" immunofluorescence',
+      clinical_pearl: 'Needs biopsy'
+    },
+    tags: ['Glomerular Diseases', 'Lupus Nephritis', 'Autoimmune'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-gd-011',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Goodpasture hallmark?',
+    back: {
+      definition: 'Anti-GBM antibodies',
+      high_yield: 'Lung + kidney',
+      clinical_pearl: 'Pulmonary hemorrhage'
+    },
+    tags: ['Glomerular Diseases', 'Goodpasture', 'Anti-GBM'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-gd-012',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'ANCA-associated GN?',
+    back: {
+      definition: 'Small-vessel vasculitis',
+      high_yield: 'Rapid injury',
+      clinical_pearl: 'MPO or PR3 positive'
+    },
+    tags: ['Glomerular Diseases', 'ANCA', 'Vasculitis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-gd-013',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Rapidly progressive GN (RPGN)?',
+    back: {
+      definition: 'Crescent formation',
+      high_yield: 'Rapid renal decline',
+      clinical_pearl: 'Medical emergency'
+    },
+    tags: ['Glomerular Diseases', 'RPGN', 'Glomerulonephritis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-gd-014',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'FSGS cause?',
+    back: {
+      definition: 'Segmental scarring',
+      high_yield: 'Proteinuria',
+      clinical_pearl: 'Common in African Americans'
+    },
+    tags: ['Glomerular Diseases', 'FSGS', 'Nephrotic Syndrome'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-gd-015',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Membranous nephropathy clue?',
+    back: {
+      definition: 'PLA2R antibodies',
+      high_yield: 'Subepithelial deposits',
+      clinical_pearl: 'Spike and dome pattern'
+    },
+    tags: ['Glomerular Diseases', 'Membranous Nephropathy', 'Pathology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-gd-016',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Minimal change disease clue?',
+    back: {
+      definition: 'Normal light microscopy',
+      high_yield: 'Foot process effacement',
+      clinical_pearl: 'Steroid responsive'
+    },
+    tags: ['Glomerular Diseases', 'Minimal Change Disease', 'Pathology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-gd-017',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Diabetic nephropathy hallmark?',
+    back: {
+      definition: 'Kimmelstiel-Wilson nodules',
+      high_yield: 'Proteinuria',
+      clinical_pearl: 'Leading ESRD cause'
+    },
+    tags: ['Glomerular Diseases', 'Diabetic Nephropathy', 'Pathology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-gd-018',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Hepatitis B/C GN?',
+    back: {
+      definition: 'Immune complex deposition',
+      high_yield: 'Cryoglobulinemia',
+      clinical_pearl: 'Check viral serologies'
+    },
+    tags: ['Glomerular Diseases', 'Hepatitis', 'Viral'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-gd-019',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Nephrotic hypercoagulability?',
+    back: {
+      definition: 'Loss of antithrombin III',
+      high_yield: 'PE/DVT risk',
+      clinical_pearl: 'Especially in membranous'
+    },
+    tags: ['Glomerular Diseases', 'Nephrotic Syndrome', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-gd-020',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Primary treatment of proteinuria?',
+    back: {
+      definition: 'ACEI/ARB',
+      high_yield: '↓Intraglomerular pressure',
+      clinical_pearl: 'Slows progression'
+    },
+    tags: ['Glomerular Diseases', 'Treatment', 'Proteinuria'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-gd-021',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'IgA nephropathy timing?',
+    back: {
+      definition: 'Hematuria within 48 hrs of URI',
+      high_yield: 'Synpharyngitic',
+      clinical_pearl: 'Not post-infectious'
+    },
+    tags: ['Glomerular Diseases', 'IgA Nephropathy', 'Timing'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-gd-022',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Post-strep GN timing?',
+    back: {
+      definition: '2–4 weeks after infection',
+      high_yield: 'Complement low',
+      clinical_pearl: 'Self-limited in children'
+    },
+    tags: ['Glomerular Diseases', 'Post-Strep GN', 'Timing'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-gd-023',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'C3 nephritic factor?',
+    back: {
+      definition: 'Alternative complement activation',
+      high_yield: 'Dense deposit disease',
+      clinical_pearl: 'Persistent low C3'
+    },
+    tags: ['Glomerular Diseases', 'C3 Nephritic Factor', 'Complement'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-gd-024',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'MPGN hallmark?',
+    back: {
+      definition: 'Tram-track appearance',
+      high_yield: 'Immune complex or complement',
+      clinical_pearl: 'Mixed nephritic/nephrotic'
+    },
+    tags: ['Glomerular Diseases', 'MPGN', 'Pathology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-gd-025',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Alport syndrome cause?',
+    back: {
+      definition: 'Type IV collagen defect',
+      high_yield: 'Hearing loss',
+      clinical_pearl: 'X-linked'
+    },
+    tags: ['Glomerular Diseases', 'Alport Syndrome', 'Genetic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-gd-026',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Thin basement membrane disease?',
+    back: {
+      definition: 'Benign hematuria',
+      high_yield: 'Normal kidney function',
+      clinical_pearl: 'Family history common'
+    },
+    tags: ['Glomerular Diseases', 'Thin Basement Membrane', 'Benign'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-gd-027',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Cryoglobulinemic GN?',
+    back: {
+      definition: 'Immune complexes',
+      high_yield: 'Hepatitis C',
+      clinical_pearl: 'Low complement'
+    },
+    tags: ['Glomerular Diseases', 'Cryoglobulinemia', 'Hepatitis C'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-gd-028',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Hypertensive nephrosclerosis GN?',
+    back: {
+      definition: 'Long-standing HTN',
+      high_yield: 'Arteriolar sclerosis',
+      clinical_pearl: 'Small kidneys'
+    },
+    tags: ['Glomerular Diseases', 'Hypertensive Nephrosclerosis', 'HTN'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-gd-029',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Amyloidosis kidney effect?',
+    back: {
+      definition: 'Massive proteinuria',
+      high_yield: 'Congo red positive',
+      clinical_pearl: 'Systemic involvement'
+    },
+    tags: ['Glomerular Diseases', 'Amyloidosis', 'Nephrotic Syndrome'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-gd-030',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'Monoclonal gammopathy kidney injury?',
+    back: {
+      definition: 'Light-chain deposition',
+      high_yield: 'Protein gap high',
+      clinical_pearl: 'Check serum free light chains'
+    },
+    tags: ['Glomerular Diseases', 'Monoclonal Gammopathy', 'Light Chain'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-gd-031',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'HUS cause?',
+    back: {
+      definition: 'Shiga toxin (E. coli)',
+      high_yield: 'MAHA + AKI',
+      clinical_pearl: 'Children after diarrhea'
+    },
+    tags: ['Glomerular Diseases', 'HUS', 'Microangiopathy'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-gd-032',
+    system: 'Renal',
+    topic: 'Glomerular Diseases',
+    front: 'TTP cause?',
+    back: {
+      definition: 'ADAMTS13 deficiency',
+      high_yield: 'MAHA + thrombocytopenia',
+      clinical_pearl: 'Neurologic signs'
+    },
+    tags: ['Glomerular Diseases', 'TTP', 'Microangiopathy'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
   
   // Electrolytes & Acid–Base - No cards yet
   
