@@ -804,7 +804,535 @@ export const renalFlashcards: Flashcard[] = [
     difficulty: 'hard'
   },
   
-  // Chronic Kidney Disease (CKD) - No cards yet
+  // Chronic Kidney Disease (CKD)
+  {
+    id: 'renal-ckd-001',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'What is CKD?',
+    back: {
+      definition: 'Progressive ↓ kidney function ≥3 months',
+      high_yield: 'GFR <60 or kidney damage',
+      clinical_pearl: 'Often irreversible'
+    },
+    tags: ['CKD', 'Renal', 'Definition'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-ckd-002',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'Top CKD cause?',
+    back: {
+      definition: 'Diabetes',
+      high_yield: 'Glomerular sclerosis',
+      clinical_pearl: 'Screen annually'
+    },
+    tags: ['CKD', 'Diabetes', 'Causes'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-ckd-003',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'Second most common CKD cause?',
+    back: {
+      definition: 'Hypertension',
+      high_yield: 'Nephrosclerosis',
+      clinical_pearl: 'Control BP early'
+    },
+    tags: ['CKD', 'Hypertension', 'Causes'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-ckd-004',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'CKD staging tool?',
+    back: {
+      definition: 'eGFR',
+      high_yield: 'Stages 1–5',
+      clinical_pearl: '<15 = ESRD'
+    },
+    tags: ['CKD', 'Staging', 'eGFR'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-ckd-005',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'What is ESRD?',
+    back: {
+      definition: 'End-stage renal disease',
+      high_yield: 'eGFR <15',
+      clinical_pearl: 'Requires dialysis/transplant'
+    },
+    tags: ['CKD', 'ESRD', 'Definition'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-ckd-006',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'CKD symptom onset?',
+    back: {
+      definition: 'Usually late',
+      high_yield: 'Fatigue, edema',
+      clinical_pearl: 'Often silent early'
+    },
+    tags: ['CKD', 'Symptoms', 'Clinical Presentation'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-ckd-007',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'Albuminuria significance?',
+    back: {
+      definition: 'Marker of kidney damage',
+      high_yield: 'Predicts progression',
+      clinical_pearl: 'Measured with UACR'
+    },
+    tags: ['CKD', 'Albuminuria', 'Lab Values'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-ckd-008',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'Normal UACR?',
+    back: {
+      definition: '<30 mg/g',
+      high_yield: '30–300 = microalbumin',
+      clinical_pearl: '>300 = macroalbumin'
+    },
+    tags: ['CKD', 'UACR', 'Lab Values'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-ckd-009',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'Best BP med for CKD?',
+    back: {
+      definition: 'ACEI/ARB',
+      high_yield: 'Reduces proteinuria',
+      clinical_pearl: 'Protects kidneys'
+    },
+    tags: ['CKD', 'Treatment', 'ACEI', 'ARB'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-ckd-010',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'ACEI/ARB monitoring?',
+    back: {
+      definition: 'Check Cr + K',
+      high_yield: 'Mild Cr rise expected',
+      clinical_pearl: 'Stop if severe jump'
+    },
+    tags: ['CKD', 'ACEI', 'ARB', 'Monitoring'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-ckd-011',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'CKD mineral disorder?',
+    back: {
+      definition: 'High phosphate + low Ca',
+      high_yield: '↑PTH (secondary hyperparathyroidism)',
+      clinical_pearl: 'Bone disease risk'
+    },
+    tags: ['CKD', 'Mineral Disorder', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-ckd-012',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'Anemia of CKD cause?',
+    back: {
+      definition: '↓EPO production',
+      high_yield: 'Normocytic anemia',
+      clinical_pearl: 'Treat with ESAs'
+    },
+    tags: ['CKD', 'Anemia', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-ckd-013',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'CKD metabolic acidosis?',
+    back: {
+      definition: '↓Bicarb retention',
+      high_yield: 'AGMA/NAGMA',
+      clinical_pearl: 'Treat with sodium bicarbonate'
+    },
+    tags: ['CKD', 'Metabolic Acidosis', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-ckd-014',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'Most common CKD electrolyte issue?',
+    back: {
+      definition: 'Hyperkalemia',
+      high_yield: '↓Renal excretion',
+      clinical_pearl: 'Monitor ECG'
+    },
+    tags: ['CKD', 'Hyperkalemia', 'Electrolytes'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-ckd-015',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'GFR equation used?',
+    back: {
+      definition: 'CKD-EPI',
+      high_yield: 'Most accurate',
+      clinical_pearl: 'Based on Cr, age, sex'
+    },
+    tags: ['CKD', 'GFR', 'Lab Values'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-ckd-016',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'CKD diet advice?',
+    back: {
+      definition: 'Low Na, K, phosphate',
+      high_yield: 'Protein control',
+      clinical_pearl: 'Helps slow progression'
+    },
+    tags: ['CKD', 'Diet', 'Management'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-ckd-017',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'CKD vaccination need?',
+    back: {
+      definition: 'Hepatitis B',
+      high_yield: 'Higher infection risk',
+      clinical_pearl: 'Before dialysis'
+    },
+    tags: ['CKD', 'Vaccination', 'Prevention'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-ckd-018',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'Definition of rapid CKD progression?',
+    back: {
+      definition: 'Decline >5 mL/min/yr',
+      high_yield: 'High risk',
+      clinical_pearl: 'Aggressive management needed'
+    },
+    tags: ['CKD', 'Progression', 'Definition'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-ckd-019',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'Leading cause of ESRD in U.S.?',
+    back: {
+      definition: 'Diabetes',
+      high_yield: 'Microvascular damage',
+      clinical_pearl: 'Preventable with control'
+    },
+    tags: ['CKD', 'ESRD', 'Diabetes'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-ckd-020',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'Diabetic nephropathy hallmark?',
+    back: {
+      definition: 'Proteinuria + retinopathy',
+      high_yield: 'Kimmelstiel-Wilson lesions',
+      clinical_pearl: 'Early ACEI therapy'
+    },
+    tags: ['CKD', 'Diabetic Nephropathy', 'Pathology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-ckd-021',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'Hypertensive nephrosclerosis?',
+    back: {
+      definition: 'Chronic HTN → scarring',
+      high_yield: 'Small kidneys',
+      clinical_pearl: 'African American risk higher'
+    },
+    tags: ['CKD', 'Hypertensive Nephrosclerosis', 'Pathology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-ckd-022',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'CKD complications?',
+    back: {
+      definition: 'Anemia, acidosis, bone disease',
+      high_yield: 'Electrolyte issues',
+      clinical_pearl: 'Multisystem involvement'
+    },
+    tags: ['CKD', 'Complications', 'Overview'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-ckd-023',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'Renal osteodystrophy?',
+    back: {
+      definition: 'Bone disease from CKD',
+      high_yield: 'High PTH',
+      clinical_pearl: 'Fracture risk ↑'
+    },
+    tags: ['CKD', 'Renal Osteodystrophy', 'Bone Disease'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-ckd-024',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'Treat high phosphate?',
+    back: {
+      definition: 'Phosphate binders',
+      high_yield: 'Take with meals',
+      clinical_pearl: 'Avoid aluminum binders'
+    },
+    tags: ['CKD', 'Hyperphosphatemia', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-ckd-025',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'Treat low Ca in CKD?',
+    back: {
+      definition: 'Calcitriol or vitamin D',
+      high_yield: 'Corrects hypocalcemia',
+      clinical_pearl: 'Monitor Ca/P'
+    },
+    tags: ['CKD', 'Hypocalcemia', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-ckd-026',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'When to use ESAs?',
+    back: {
+      definition: 'Hgb <10',
+      high_yield: 'Correct anemia',
+      clinical_pearl: 'Avoid overly high Hgb'
+    },
+    tags: ['CKD', 'Anemia', 'ESA', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-ckd-027',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'Uremic symptoms?',
+    back: {
+      definition: 'Nausea, confusion',
+      high_yield: 'Pericarditis possible',
+      clinical_pearl: 'Dialysis indicated'
+    },
+    tags: ['CKD', 'Uremia', 'Symptoms'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-ckd-028',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'Uremic pericarditis clue?',
+    back: {
+      definition: 'Chest pain + friction rub',
+      high_yield: 'Occurs in advanced CKD',
+      clinical_pearl: 'Urgent dialysis'
+    },
+    tags: ['CKD', 'Uremic Pericarditis', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-ckd-029',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'Proteinuria reduction benefit?',
+    back: {
+      definition: 'Slows CKD progression',
+      high_yield: 'ACEI/ARB essential',
+      clinical_pearl: 'Titrate doses'
+    },
+    tags: ['CKD', 'Proteinuria', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-ckd-030',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'Analgesic nephropathy?',
+    back: {
+      definition: 'Chronic NSAID use',
+      high_yield: 'Papillary necrosis',
+      clinical_pearl: 'Avoid NSAIDs in CKD'
+    },
+    tags: ['CKD', 'Analgesic Nephropathy', 'NSAIDs'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-ckd-031',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'CKD + diabetes goal A1c?',
+    back: {
+      definition: '<7%',
+      high_yield: 'Avoid hypoglycemia',
+      clinical_pearl: 'Use SGLT2 inhibitors'
+    },
+    tags: ['CKD', 'Diabetes', 'Management'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-ckd-032',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'SGLT2 inhibitor benefit?',
+    back: {
+      definition: 'Slows CKD progression',
+      high_yield: 'Cardiorenal protection',
+      clinical_pearl: 'Use if eGFR adequate'
+    },
+    tags: ['CKD', 'SGLT2 Inhibitor', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-ckd-033',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'CKD fluid overload cause?',
+    back: {
+      definition: 'Salt/water retention',
+      high_yield: 'Edema + HTN',
+      clinical_pearl: 'Use loop diuretics'
+    },
+    tags: ['CKD', 'Fluid Overload', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
   
   // Glomerular Diseases - No cards yet
   
