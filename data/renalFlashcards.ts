@@ -1333,6 +1333,278 @@ export const renalFlashcards: Flashcard[] = [
     reviewCount: 0,
     difficulty: 'medium'
   },
+  {
+    id: 'renal-ckd-034',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'CKD and cardiovascular disease?',
+    back: {
+      definition: 'High risk',
+      high_yield: 'Leading cause of death',
+      clinical_pearl: 'Control BP + lipids'
+    },
+    tags: ['CKD', 'Cardiovascular Disease', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-ckd-035',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'Indication for nephrology referral?',
+    back: {
+      definition: 'GFR <30 or rapid decline',
+      high_yield: 'Persistent proteinuria',
+      clinical_pearl: 'Complex electrolyte disorders'
+    },
+    tags: ['CKD', 'Nephrology Referral', 'Management'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-ckd-036',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'Renal ultrasound in CKD?',
+    back: {
+      definition: 'Small echogenic kidneys',
+      high_yield: 'Chronic scarring',
+      clinical_pearl: 'Helps differentiate chronic vs acute'
+    },
+    tags: ['CKD', 'Imaging', 'Ultrasound'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-ckd-037',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'ADPKD cause?',
+    back: {
+      definition: 'Genetic cystic disease',
+      high_yield: 'Large kidneys',
+      clinical_pearl: 'HTN + hematuria'
+    },
+    tags: ['CKD', 'ADPKD', 'Genetic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-ckd-038',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'ADPKD complications?',
+    back: {
+      definition: 'Cysts, pain, infections',
+      high_yield: 'Berry aneurysms',
+      clinical_pearl: 'Screen if symptomatic'
+    },
+    tags: ['CKD', 'ADPKD', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-ckd-039',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'HUS in CKD?',
+    back: {
+      definition: 'Microangiopathy',
+      high_yield: 'Hemolysis + AKI',
+      clinical_pearl: 'E. coli O157:H7 in children'
+    },
+    tags: ['CKD', 'HUS', 'Microangiopathy'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-ckd-040',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'TTP clue?',
+    back: {
+      definition: 'Neurologic signs + thrombocytopenia',
+      high_yield: 'Microangiopathy',
+      clinical_pearl: 'Plasma exchange'
+    },
+    tags: ['CKD', 'TTP', 'Microangiopathy'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-ckd-041',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'Amyloidosis kidney involvement?',
+    back: {
+      definition: 'Nephrotic syndrome',
+      high_yield: 'Massive proteinuria',
+      clinical_pearl: 'Congo red positive'
+    },
+    tags: ['CKD', 'Amyloidosis', 'Nephrotic Syndrome'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-ckd-042',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'Multiple myeloma renal injury?',
+    back: {
+      definition: 'Light-chain nephropathy',
+      high_yield: 'Protein gap high',
+      clinical_pearl: 'Requires chemo'
+    },
+    tags: ['CKD', 'Multiple Myeloma', 'Light Chain'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-ckd-043',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'Obstructive uropathy CKD?',
+    back: {
+      definition: 'Chronic obstruction',
+      high_yield: 'Hydronephrosis',
+      clinical_pearl: 'Relieve obstruction early'
+    },
+    tags: ['CKD', 'Obstructive Uropathy', 'Causes'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-ckd-044',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'HIV-associated nephropathy?',
+    back: {
+      definition: 'Collapsing FSGS',
+      high_yield: 'Proteinuria',
+      clinical_pearl: 'ART improves outcomes'
+    },
+    tags: ['CKD', 'HIV', 'FSGS'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-ckd-045',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'CKD + metabolic bone disease labs?',
+    back: {
+      definition: '↑PTH, ↑Phos, ↓Ca',
+      high_yield: 'Secondary hyperparathyroidism',
+      clinical_pearl: 'Treat underlying CKD-MBD'
+    },
+    tags: ['CKD', 'Bone Disease', 'Lab Values'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-ckd-046',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'CKD with refractory hyperkalemia?',
+    back: {
+      definition: 'Indication for dialysis',
+      high_yield: 'Life-threatening',
+      clinical_pearl: 'Monitor ECG'
+    },
+    tags: ['CKD', 'Hyperkalemia', 'Dialysis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-ckd-047',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'CKD acid-base disorder?',
+    back: {
+      definition: 'NAGMA initially',
+      high_yield: 'AGMA late',
+      clinical_pearl: 'Monitor bicarbonate levels'
+    },
+    tags: ['CKD', 'Acid-Base', 'Metabolic Acidosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-ckd-048',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'Indication for dialysis: volume?',
+    back: {
+      definition: 'Pulmonary edema',
+      high_yield: 'Refractory to diuretics',
+      clinical_pearl: 'Immediate dialysis'
+    },
+    tags: ['CKD', 'Dialysis', 'Volume Overload'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-ckd-049',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'Indication for dialysis: uremia?',
+    back: {
+      definition: 'Encephalopathy, pericarditis',
+      high_yield: 'Nausea/vomiting',
+      clinical_pearl: 'Absolute indication'
+    },
+    tags: ['CKD', 'Dialysis', 'Uremia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-ckd-050',
+    system: 'Renal',
+    topic: 'Chronic Kidney Disease (CKD)',
+    front: 'CKD prognosis factor?',
+    back: {
+      definition: 'Degree of proteinuria',
+      high_yield: 'Major driver of progression',
+      clinical_pearl: 'Intensive BP control slows disease'
+    },
+    tags: ['CKD', 'Prognosis', 'Proteinuria'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
   
   // Glomerular Diseases - No cards yet
   
