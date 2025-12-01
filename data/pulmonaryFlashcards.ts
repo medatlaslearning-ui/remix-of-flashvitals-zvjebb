@@ -2407,6 +2407,536 @@ export const pulmonaryFlashcards: Flashcard[] = [
     reviewCount: 0,
     difficulty: 'hard'
   },
+
+  // Parenchymal & Interstitial Lung Diseases (33 cards)
+  {
+    id: 'p_ild_1',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'What is ILD?',
+    back: {
+      definition: 'Diseases causing lung scarring',
+      high_yield: 'Impaired gas exchange',
+      clinical_pearl: 'Progressive dyspnea'
+    },
+    tags: ['ILD', 'Interstitial Lung Disease', 'Fibrosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_ild_2',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Main ILD symptom?',
+    back: {
+      definition: 'Exertional dyspnea',
+      high_yield: 'Dry cough',
+      clinical_pearl: 'Insidious onset'
+    },
+    tags: ['ILD', 'Symptoms', 'Dyspnea'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_ild_3',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Common ILD exam finding?',
+    back: {
+      definition: 'Bibasilar crackles',
+      high_yield: 'Velcro-like',
+      clinical_pearl: 'Suggests fibrosis'
+    },
+    tags: ['ILD', 'Physical Exam', 'Crackles'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_ild_4',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Key ILD imaging test?',
+    back: {
+      definition: 'High-resolution CT',
+      high_yield: 'Reticulation + honeycombing',
+      clinical_pearl: 'Gold standard'
+    },
+    tags: ['ILD', 'Imaging', 'HRCT'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_ild_5',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Restrictive pattern hallmark?',
+    back: {
+      definition: '↓TLC + ↓FVC',
+      high_yield: 'Normal/↑FEV1/FVC',
+      clinical_pearl: 'Seen in ILD'
+    },
+    tags: ['ILD', 'PFT', 'Restrictive'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_ild_6',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'What is pulmonary fibrosis?',
+    back: {
+      definition: 'Chronic lung scarring',
+      high_yield: 'Stiff lungs',
+      clinical_pearl: 'Poor diffusion'
+    },
+    tags: ['Pulmonary Fibrosis', 'ILD', 'Scarring'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_ild_7',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'DLCO in ILD?',
+    back: {
+      definition: 'Decreased',
+      high_yield: 'Impaired gas exchange',
+      clinical_pearl: 'Useful for monitoring'
+    },
+    tags: ['ILD', 'DLCO', 'PFT'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_ild_8',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'What is IPF?',
+    back: {
+      definition: 'Idiopathic pulmonary fibrosis',
+      high_yield: 'Progressive scarring',
+      clinical_pearl: 'Older adults'
+    },
+    tags: ['IPF', 'Pulmonary Fibrosis', 'ILD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_ild_9',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'IPF CT finding?',
+    back: {
+      definition: 'Basilar honeycombing',
+      high_yield: 'Subpleural reticulation',
+      clinical_pearl: 'Usual interstitial pneumonia pattern'
+    },
+    tags: ['IPF', 'CT', 'UIP'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_ild_10',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Sarcoidosis hallmark?',
+    back: {
+      definition: 'Noncaseating granulomas',
+      high_yield: 'Multisystem',
+      clinical_pearl: 'Young adults'
+    },
+    tags: ['Sarcoidosis', 'Granulomas', 'ILD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_ild_11',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Sarcoid CXR stages?',
+    back: {
+      definition: '0–4 classification',
+      high_yield: 'Bilateral hilar adenopathy',
+      clinical_pearl: 'Upper-lobe predominance'
+    },
+    tags: ['Sarcoidosis', 'CXR', 'Staging'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_ild_12',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Hypersensitivity pneumonitis cause?',
+    back: {
+      definition: 'Immune reaction to inhaled antigen',
+      high_yield: 'Birds, mold',
+      clinical_pearl: 'Reversible early'
+    },
+    tags: ['Hypersensitivity Pneumonitis', 'HP', 'ILD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_ild_13',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Pneumoconiosis cause?',
+    back: {
+      definition: 'Inhaled mineral dust',
+      high_yield: 'Occupation-related',
+      clinical_pearl: 'Asbestos/silica/coal'
+    },
+    tags: ['Pneumoconiosis', 'Occupational', 'ILD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_ild_14',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Asbestosis hallmark?',
+    back: {
+      definition: 'Pleural plaques',
+      high_yield: 'Lower-lobe fibrosis',
+      clinical_pearl: 'Linked to mesothelioma'
+    },
+    tags: ['Asbestosis', 'Pneumoconiosis', 'Occupational'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_ild_15',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Silicosis hallmark?',
+    back: {
+      definition: 'Calcified "eggshell" nodes',
+      high_yield: 'Upper-lobe fibrosis',
+      clinical_pearl: 'Mining exposure'
+    },
+    tags: ['Silicosis', 'Pneumoconiosis', 'Occupational'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_ild_16',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Coal worker&apos;s pneumoconiosis?',
+    back: {
+      definition: 'Coal dust fibrosis',
+      high_yield: 'Upper-lobe nodules',
+      clinical_pearl: 'May progress to massive fibrosis'
+    },
+    tags: ['Coal Workers Pneumoconiosis', 'Pneumoconiosis', 'Occupational'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_ild_17',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'What is BOOP/OP?',
+    back: {
+      definition: 'Organizing pneumonia',
+      high_yield: 'Patchy infiltrates',
+      clinical_pearl: 'Steroid responsive'
+    },
+    tags: ['BOOP', 'Organizing Pneumonia', 'ILD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_ild_18',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Drug-induced ILD cause?',
+    back: {
+      definition: 'Amiodarone, methotrexate',
+      high_yield: 'Lung toxicity',
+      clinical_pearl: 'Stop offending agent'
+    },
+    tags: ['Drug-induced ILD', 'Toxicity', 'ILD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_ild_19',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Radiation pneumonitis?',
+    back: {
+      definition: 'Post-radiation inflammation',
+      high_yield: 'Dyspnea + cough',
+      clinical_pearl: 'Leads to fibrosis'
+    },
+    tags: ['Radiation Pneumonitis', 'Iatrogenic', 'ILD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_ild_20',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Connective tissue ILD?',
+    back: {
+      definition: 'Autoimmune-related',
+      high_yield: 'RA, scleroderma',
+      clinical_pearl: 'Screen with serologies'
+    },
+    tags: ['Connective Tissue Disease', 'Autoimmune', 'ILD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_ild_21',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'UIP pattern?',
+    back: {
+      definition: 'Usual interstitial pneumonia',
+      high_yield: 'Honeycomb + traction bronchiectasis',
+      clinical_pearl: 'Poor prognosis'
+    },
+    tags: ['UIP', 'IPF', 'CT Pattern'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_ild_22',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'NSIP pattern?',
+    back: {
+      definition: 'Nonspecific interstitial pneumonia',
+      high_yield: 'Ground-glass opacities',
+      clinical_pearl: 'Better prognosis than UIP'
+    },
+    tags: ['NSIP', 'CT Pattern', 'ILD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_ild_23',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'HP CT pattern?',
+    back: {
+      definition: 'Centrilobular nodules',
+      high_yield: 'Air-trapping',
+      clinical_pearl: '"Head cheese" pattern'
+    },
+    tags: ['Hypersensitivity Pneumonitis', 'CT Pattern', 'HP'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_ild_24',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Scleroderma lung disease?',
+    back: {
+      definition: 'Fibrosis + PH',
+      high_yield: 'Restrictive PFTs',
+      clinical_pearl: 'Leading cause of death'
+    },
+    tags: ['Scleroderma', 'Connective Tissue Disease', 'ILD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_ild_25',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'RA-associated ILD?',
+    back: {
+      definition: 'NSIP or UIP',
+      high_yield: 'Smokers at higher risk',
+      clinical_pearl: 'Monitor DLCO'
+    },
+    tags: ['Rheumatoid Arthritis', 'RA-ILD', 'Connective Tissue Disease'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_ild_26',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Lupus pneumonitis?',
+    back: {
+      definition: 'Autoimmune lung inflammation',
+      high_yield: 'Ground-glass opacities',
+      clinical_pearl: 'Responds to steroids'
+    },
+    tags: ['Lupus', 'SLE', 'Connective Tissue Disease'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_ild_27',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Sjogren lung disease?',
+    back: {
+      definition: 'Lymphocytic interstitial pneumonia',
+      high_yield: 'Cystic changes',
+      clinical_pearl: 'Autoimmune marker'
+    },
+    tags: ['Sjogren', 'Connective Tissue Disease', 'ILD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_ild_28',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Ankylosing spondylitis lung disease?',
+    back: {
+      definition: 'Upper-lobe fibrosis',
+      high_yield: 'Restrictive pattern',
+      clinical_pearl: 'Rare'
+    },
+    tags: ['Ankylosing Spondylitis', 'Connective Tissue Disease', 'ILD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_ild_29',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'IPF treatment?',
+    back: {
+      definition: 'Antifibrotics',
+      high_yield: 'Nintedanib/pirfenidone',
+      clinical_pearl: 'Slow progression'
+    },
+    tags: ['IPF', 'Treatment', 'Antifibrotics'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_ild_30',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Sarcoidosis treatment?',
+    back: {
+      definition: 'Corticosteroids',
+      high_yield: 'Immunosuppression for relapse',
+      clinical_pearl: 'Monitor calcium'
+    },
+    tags: ['Sarcoidosis', 'Treatment', 'Steroids'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_ild_31',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'HP treatment?',
+    back: {
+      definition: 'Antigen avoidance',
+      high_yield: 'Steroids if severe',
+      clinical_pearl: 'Prevention key'
+    },
+    tags: ['Hypersensitivity Pneumonitis', 'Treatment', 'HP'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_ild_32',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Asbestosis cancer risk?',
+    back: {
+      definition: 'Mesothelioma',
+      high_yield: 'Pleural malignancy',
+      clinical_pearl: 'Not smoking-related'
+    },
+    tags: ['Asbestosis', 'Mesothelioma', 'Cancer'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_ild_33',
+    system: 'Pulmonary',
+    topic: 'Parenchymal & Interstitial Lung Diseases',
+    front: 'Silicosis complication?',
+    back: {
+      definition: 'TB risk↑',
+      high_yield: 'Silica impairs macrophages',
+      clinical_pearl: 'Annual screening'
+    },
+    tags: ['Silicosis', 'TB', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
 ];
 
 console.log('Pulmonary flashcards loaded:', pulmonaryFlashcards.length, 'cards');
