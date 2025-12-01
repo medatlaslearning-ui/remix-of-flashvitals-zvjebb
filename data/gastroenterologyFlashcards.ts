@@ -804,8 +804,519 @@ export const gastroenterologyFlashcards: Flashcard[] = [
     reviewCount: 0
   },
 
-  // Gastric Disorders - Placeholder for future flashcards
-  // This section will contain flashcards related to gastric disorders
+  // Gastric Disorders
+  {
+    id: 'gastro-gastric-1',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'easy',
+    front: 'What is gastritis?',
+    back: {
+      definition: 'Inflammation of the stomach lining',
+      high_yield: 'Acute or chronic',
+      clinical_pearl: 'Often asymptomatic'
+    },
+    tags: ['Gastritis', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-2',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'easy',
+    front: 'Most common cause of chronic gastritis?',
+    back: {
+      definition: 'H. pylori infection',
+      high_yield: 'Antral-predominant',
+      clinical_pearl: 'Diagnose with stool antigen'
+    },
+    tags: ['Gastritis', 'H. pylori', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-3',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'easy',
+    front: 'Autoimmune gastritis cause?',
+    back: {
+      definition: 'Destruction of parietal cells',
+      high_yield: 'Pernicious anemia',
+      clinical_pearl: 'High gastrin levels'
+    },
+    tags: ['Gastritis', 'Autoimmune', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-4',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'easy',
+    front: 'H. pylori symptoms?',
+    back: {
+      definition: 'Epigastric pain',
+      high_yield: 'Dyspepsia',
+      clinical_pearl: 'Improved with food'
+    },
+    tags: ['H. pylori', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-5',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'easy',
+    front: 'Best test for active H. pylori?',
+    back: {
+      definition: 'Stool antigen or urea breath test',
+      high_yield: 'High accuracy',
+      clinical_pearl: 'Avoid PPIs before testing'
+    },
+    tags: ['H. pylori', 'Diagnosis', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-6',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'easy',
+    front: 'Treatment for H. pylori?',
+    back: {
+      definition: 'Triple or quadruple therapy',
+      high_yield: 'PPI + 2–3 antibiotics',
+      clinical_pearl: '14 days'
+    },
+    tags: ['H. pylori', 'Treatment', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-7',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'easy',
+    front: 'Peptic ulcer disease cause?',
+    back: {
+      definition: 'H. pylori or NSAIDs',
+      high_yield: 'Breakdown of mucosal barrier',
+      clinical_pearl: 'Epigastric pain'
+    },
+    tags: ['PUD', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-8',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'easy',
+    front: 'Duodenal ulcer pain pattern?',
+    back: {
+      definition: 'Better with meals',
+      high_yield: 'Gastric = worse with meals',
+      clinical_pearl: 'Most caused by H. pylori'
+    },
+    tags: ['PUD', 'Ulcers', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-9',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'easy',
+    front: 'Gastric ulcer cause?',
+    back: {
+      definition: 'NSAIDs',
+      high_yield: 'Breaks protective barrier',
+      clinical_pearl: 'Higher malignancy risk'
+    },
+    tags: ['PUD', 'Ulcers', 'NSAIDs', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-10',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'easy',
+    front: 'PUD complication?',
+    back: {
+      definition: 'Bleeding',
+      high_yield: 'Hematemesis or melena',
+      clinical_pearl: 'Can cause anemia'
+    },
+    tags: ['PUD', 'Complications', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-11',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'easy',
+    front: 'Upper GI bleed signs?',
+    back: {
+      definition: 'Melena',
+      high_yield: 'Coffee-ground emesis',
+      clinical_pearl: 'Peptic ulcer common cause'
+    },
+    tags: ['GI Bleed', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-12',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'easy',
+    front: 'Stress ulcer cause?',
+    back: {
+      definition: 'Critical illness',
+      high_yield: 'ICU patients',
+      clinical_pearl: 'Prophylax with PPIs'
+    },
+    tags: ['Stress ulcer', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-13',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'easy',
+    front: 'Gastroparesis cause?',
+    back: {
+      definition: 'Delayed gastric emptying',
+      high_yield: 'Diabetes common',
+      clinical_pearl: 'Postprandial fullness'
+    },
+    tags: ['Gastroparesis', 'Motility', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-14',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'easy',
+    front: 'Gastroparesis treatment?',
+    back: {
+      definition: 'Diet modification',
+      high_yield: 'Prokinetics',
+      clinical_pearl: 'Avoid opioids'
+    },
+    tags: ['Gastroparesis', 'Treatment', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-15',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'easy',
+    front: 'Gastric outlet obstruction cause?',
+    back: {
+      definition: 'Chronic PUD scarring',
+      high_yield: 'Obstruction symptoms',
+      clinical_pearl: 'Large-volume vomiting'
+    },
+    tags: ['Obstruction', 'PUD', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-16',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'easy',
+    front: 'Zollinger-Ellison syndrome?',
+    back: {
+      definition: 'Gastrinoma producing acid',
+      high_yield: 'Refractory ulcers',
+      clinical_pearl: 'MEN1 association'
+    },
+    tags: ['ZES', 'Gastrinoma', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-17',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'easy',
+    front: 'Gastrin level clue?',
+    back: {
+      definition: 'Very high gastrin',
+      high_yield: 'ZES',
+      clinical_pearl: 'Confirm with secretin test'
+    },
+    tags: ['ZES', 'Diagnosis', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-18',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'easy',
+    front: 'Menetrier disease?',
+    back: {
+      definition: 'Hypertrophic gastric folds',
+      high_yield: 'Protein loss',
+      clinical_pearl: 'Precancerous'
+    },
+    tags: ['Menetrier', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-19',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'easy',
+    front: 'NSAID ulcer mechanism?',
+    back: {
+      definition: 'Prostaglandin inhibition',
+      high_yield: 'Less mucosal protection',
+      clinical_pearl: 'Gastric ulcers'
+    },
+    tags: ['NSAIDs', 'Ulcers', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-20',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'easy',
+    front: 'Major PUD risk factors?',
+    back: {
+      definition: 'H. pylori, NSAIDs',
+      high_yield: 'Smoking',
+      clinical_pearl: 'Stress illness'
+    },
+    tags: ['PUD', 'Risk factors', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-21',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'medium',
+    front: 'H. pylori recurrence cause?',
+    back: {
+      definition: 'Incomplete eradication',
+      high_yield: 'Resistance',
+      clinical_pearl: 'Confirm cure post-treatment'
+    },
+    tags: ['H. pylori', 'Treatment', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-22',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'medium',
+    front: 'Autoimmune gastritis labs?',
+    back: {
+      definition: 'Low B12, high gastrin',
+      high_yield: 'Intrinsic factor antibodies',
+      clinical_pearl: 'Pernicious anemia'
+    },
+    tags: ['Autoimmune', 'Gastritis', 'Diagnosis', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-23',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'medium',
+    front: 'PUD perforation sign?',
+    back: {
+      definition: 'Severe sudden pain',
+      high_yield: 'Free air on X-ray',
+      clinical_pearl: 'Surgical emergency'
+    },
+    tags: ['PUD', 'Complications', 'Emergency', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-24',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'medium',
+    front: 'PUD penetration sign?',
+    back: {
+      definition: 'Back pain',
+      high_yield: 'Ulcer into pancreas',
+      clinical_pearl: 'Persistent symptoms'
+    },
+    tags: ['PUD', 'Complications', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-25',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'medium',
+    front: 'PUD obstruction symptom?',
+    back: {
+      definition: 'Vomiting of undigested food',
+      high_yield: 'Succussion splash',
+      clinical_pearl: 'Needs endoscopy'
+    },
+    tags: ['PUD', 'Obstruction', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-26',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'medium',
+    front: 'Gastric cancer risk factors?',
+    back: {
+      definition: 'H. pylori, smoked foods',
+      high_yield: 'Autoimmune gastritis',
+      clinical_pearl: 'Chronic inflammation'
+    },
+    tags: ['Cancer', 'Risk factors', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-27',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'medium',
+    front: 'Gastric cancer symptoms?',
+    back: {
+      definition: 'Weight loss, early satiety',
+      high_yield: 'Epigastric pain',
+      clinical_pearl: 'Late presentation'
+    },
+    tags: ['Cancer', 'Symptoms', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-28',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'medium',
+    front: 'Virchow node?',
+    back: {
+      definition: 'Left supraclavicular node',
+      high_yield: 'Gastric cancer metastasis',
+      clinical_pearl: 'Poor prognosis'
+    },
+    tags: ['Cancer', 'Metastasis', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-29',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'medium',
+    front: 'Sister Mary Joseph nodule?',
+    back: {
+      definition: 'Periumbilical metastasis',
+      high_yield: 'GI cancers',
+      clinical_pearl: 'Advanced disease'
+    },
+    tags: ['Cancer', 'Metastasis', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-30',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'medium',
+    front: 'Krukenberg tumor?',
+    back: {
+      definition: 'Ovarian metastasis from stomach',
+      high_yield: 'Signet-ring cells',
+      clinical_pearl: 'Aggressive disease'
+    },
+    tags: ['Cancer', 'Metastasis', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-31',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'medium',
+    front: 'Gastric lymphoma cause?',
+    back: {
+      definition: 'MALT lymphoma',
+      high_yield: 'H. pylori related',
+      clinical_pearl: 'Treat H. pylori first'
+    },
+    tags: ['Lymphoma', 'H. pylori', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-32',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'medium',
+    front: 'EGD for dyspepsia age cutoff?',
+    back: {
+      definition: '>60 years or alarm symptoms',
+      high_yield: 'Rule out cancer',
+      clinical_pearl: 'First-line evaluation'
+    },
+    tags: ['Dyspepsia', 'Diagnosis', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
 
   // Small Bowel Disorders - Placeholder for future flashcards
   // This section will contain flashcards related to small bowel disorders
