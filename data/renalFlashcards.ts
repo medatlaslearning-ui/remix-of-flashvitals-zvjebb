@@ -3210,7 +3210,519 @@ export const renalFlashcards: Flashcard[] = [
     difficulty: 'hard'
   },
   
-  // Renal Tubular & Interstitial Disorders - No cards yet
+  // Renal Tubular & Interstitial Disorders
+  {
+    id: 'renal-rtid-001',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'What is acute tubular necrosis?',
+    back: {
+      definition: 'Tubular cell injury',
+      high_yield: 'Ischemic or toxic',
+      clinical_pearl: 'Muddy brown casts'
+    },
+    tags: ['Tubular Disorders', 'ATN', 'AKI'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rtid-002',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'ATN phases?',
+    back: {
+      definition: 'Initiation, maintenance, recovery',
+      high_yield: 'Variable urine output',
+      clinical_pearl: 'Monitor electrolytes'
+    },
+    tags: ['Tubular Disorders', 'ATN', 'Phases'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rtid-003',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Most common intrinsic AKI?',
+    back: {
+      definition: 'ATN',
+      high_yield: 'Tubular damage',
+      clinical_pearl: 'Often from ischemia'
+    },
+    tags: ['Tubular Disorders', 'ATN', 'AKI'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rtid-004',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'What is acute interstitial nephritis?',
+    back: {
+      definition: 'Interstitial inflammation',
+      high_yield: 'Drug-induced',
+      clinical_pearl: 'Eosinophils in urine'
+    },
+    tags: ['Interstitial Disorders', 'AIN', 'Drug-Induced'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rtid-005',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Classic AIN triad?',
+    back: {
+      definition: 'Fever, rash, eosinophilia',
+      high_yield: 'Hypersensitivity reaction',
+      clinical_pearl: 'Not always present'
+    },
+    tags: ['Interstitial Disorders', 'AIN', 'Clinical Presentation'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rtid-006',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Common AIN drug causes?',
+    back: {
+      definition: 'NSAIDs, antibiotics, PPIs',
+      high_yield: 'Immune-mediated',
+      clinical_pearl: 'Stop offending agent'
+    },
+    tags: ['Interstitial Disorders', 'AIN', 'Drugs'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rtid-007',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'What is RTA?',
+    back: {
+      definition: 'Renal tubular acidosis',
+      high_yield: 'Impaired acid handling',
+      clinical_pearl: 'Normal anion gap acidosis'
+    },
+    tags: ['Tubular Disorders', 'RTA', 'Acid-Base'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rtid-008',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'RTA type 1?',
+    back: {
+      definition: 'Distal RTA',
+      high_yield: 'High urine pH',
+      clinical_pearl: 'Hypokalemia common'
+    },
+    tags: ['Tubular Disorders', 'RTA', 'Type 1'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rtid-009',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'RTA type 2?',
+    back: {
+      definition: 'Proximal RTA',
+      high_yield: 'Bicarbonate wasting',
+      clinical_pearl: 'Fanconi association'
+    },
+    tags: ['Tubular Disorders', 'RTA', 'Type 2'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rtid-010',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'RTA type 4?',
+    back: {
+      definition: 'Hypoaldosterone RTA',
+      high_yield: 'Hyperkalemic',
+      clinical_pearl: 'Common in CKD'
+    },
+    tags: ['Tubular Disorders', 'RTA', 'Type 4'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rtid-011',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'What is Fanconi syndrome?',
+    back: {
+      definition: 'Global proximal tubule defect',
+      high_yield: 'Glucose, phosphate, amino acid loss',
+      clinical_pearl: 'Can cause rickets'
+    },
+    tags: ['Tubular Disorders', 'Fanconi Syndrome', 'Proximal Tubule'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rtid-012',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Fanconi causes?',
+    back: {
+      definition: 'Multiple myeloma, meds',
+      high_yield: 'Ifosfamide, tenofovir',
+      clinical_pearl: 'Inherited or acquired'
+    },
+    tags: ['Tubular Disorders', 'Fanconi Syndrome', 'Causes'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rtid-013',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Most common cause of rhabdo-AKI?',
+    back: {
+      definition: 'Myoglobin toxicity',
+      high_yield: 'Cr kinase high',
+      clinical_pearl: 'Aggressive fluids needed'
+    },
+    tags: ['Tubular Disorders', 'Rhabdomyolysis', 'AKI'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rtid-014',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Contrast nephropathy cause?',
+    back: {
+      definition: 'Iodinated contrast',
+      high_yield: 'Direct tubular toxicity',
+      clinical_pearl: 'Worse with CKD'
+    },
+    tags: ['Tubular Disorders', 'Contrast Nephropathy', 'ATN'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rtid-015',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Prevention of contrast injury?',
+    back: {
+      definition: 'Hydration',
+      high_yield: 'Avoid nephrotoxins',
+      clinical_pearl: 'Low-contrast volume'
+    },
+    tags: ['Tubular Disorders', 'Contrast Nephropathy', 'Prevention'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rtid-016',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'What is pyelonephritis?',
+    back: {
+      definition: 'Kidney infection',
+      high_yield: 'Flank pain + fever',
+      clinical_pearl: 'WBC casts present'
+    },
+    tags: ['Interstitial Disorders', 'Pyelonephritis', 'Infection'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rtid-017',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Papillary necrosis causes?',
+    back: {
+      definition: 'NSAIDs, diabetes, sickle cell',
+      high_yield: 'Sloughing papillae',
+      clinical_pearl: 'Gross hematuria'
+    },
+    tags: ['Tubular Disorders', 'Papillary Necrosis', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rtid-018',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Acute vs chronic interstitial nephritis?',
+    back: {
+      definition: 'Acute = inflammatory',
+      high_yield: 'Chronic = fibrosis',
+      clinical_pearl: 'Chronic from toxins'
+    },
+    tags: ['Interstitial Disorders', 'Nephritis', 'Classification'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rtid-019',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'What is medullary sponge kidney?',
+    back: {
+      definition: 'Cystic dilation of collecting ducts',
+      high_yield: 'Recurrent stones',
+      clinical_pearl: 'Often incidental'
+    },
+    tags: ['Tubular Disorders', 'Medullary Sponge Kidney', 'Congenital'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rtid-020',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Renal glycosuria?',
+    back: {
+      definition: 'Isolated glucose loss',
+      high_yield: 'Normal serum glucose',
+      clinical_pearl: 'Benign tubular defect'
+    },
+    tags: ['Tubular Disorders', 'Glycosuria', 'Benign'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-rtid-021',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Nephrogenic diabetes insipidus cause?',
+    back: {
+      definition: 'Tubular unresponsiveness to ADH',
+      high_yield: 'Lithium, hyperCa',
+      clinical_pearl: 'Polyuria + dilute urine'
+    },
+    tags: ['Tubular Disorders', 'Nephrogenic DI', 'ADH'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rtid-022',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Lithium kidney toxicity?',
+    back: {
+      definition: 'Collecting duct damage',
+      high_yield: 'Nephrogenic DI',
+      clinical_pearl: 'Monitor levels'
+    },
+    tags: ['Tubular Disorders', 'Lithium', 'Toxicity'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rtid-023',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Hypercalcemia renal effect?',
+    back: {
+      definition: 'Impaired concentrating ability',
+      high_yield: 'Polyuria',
+      clinical_pearl: 'Contributes to stones'
+    },
+    tags: ['Tubular Disorders', 'Hypercalcemia', 'Concentrating Defect'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rtid-024',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Hypokalemia effect on kidney?',
+    back: {
+      definition: 'Impaired concentrating ability',
+      high_yield: 'Metabolic alkalosis',
+      clinical_pearl: 'May cause cysts'
+    },
+    tags: ['Tubular Disorders', 'Hypokalemia', 'Concentrating Defect'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rtid-025',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Drug-induced tubulopathy?',
+    back: {
+      definition: 'Ifosfamide, cisplatin',
+      high_yield: 'Fanconi-like syndrome',
+      clinical_pearl: 'Monitor electrolytes'
+    },
+    tags: ['Tubular Disorders', 'Drug-Induced', 'Tubulopathy'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rtid-026',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'AIN UA findings?',
+    back: {
+      definition: 'WBCs, WBC casts',
+      high_yield: 'Eosinophiluria',
+      clinical_pearl: 'Sterile pyuria'
+    },
+    tags: ['Interstitial Disorders', 'AIN', 'Urinalysis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rtid-027',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'ATN UA findings?',
+    back: {
+      definition: 'Granular casts',
+      high_yield: 'Epithelial cells',
+      clinical_pearl: 'Muddy brown appearance'
+    },
+    tags: ['Tubular Disorders', 'ATN', 'Urinalysis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rtid-028',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Chronic interstitial nephritis causes?',
+    back: {
+      definition: 'Analgesics, lithium, reflux',
+      high_yield: 'Slow progressive CKD',
+      clinical_pearl: 'Small kidneys'
+    },
+    tags: ['Interstitial Disorders', 'Chronic Nephritis', 'CKD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rtid-029',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Analgesic nephropathy?',
+    back: {
+      definition: 'Chronic NSAID use',
+      high_yield: 'Papillary necrosis',
+      clinical_pearl: 'Interstitial fibrosis'
+    },
+    tags: ['Interstitial Disorders', 'Analgesic Nephropathy', 'NSAIDs'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rtid-030',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Reflux nephropathy?',
+    back: {
+      definition: 'Chronic VUR',
+      high_yield: 'Scarring',
+      clinical_pearl: 'Can lead to CKD'
+    },
+    tags: ['Interstitial Disorders', 'Reflux Nephropathy', 'VUR'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rtid-031',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Myeloma kidney injury?',
+    back: {
+      definition: 'Light-chain deposition',
+      high_yield: 'Tubular obstruction',
+      clinical_pearl: 'Protein gap high'
+    },
+    tags: ['Tubular Disorders', 'Myeloma', 'Cast Nephropathy'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rtid-032',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Uric acid nephropathy?',
+    back: {
+      definition: 'Tumor lysis',
+      high_yield: 'Crystal precipitation',
+      clinical_pearl: 'Prevent with hydration'
+    },
+    tags: ['Tubular Disorders', 'Uric Acid Nephropathy', 'Tumor Lysis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
   
   // Renal Stones & Infections - No cards yet
 ];
