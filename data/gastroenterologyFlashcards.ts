@@ -499,6 +499,310 @@ export const gastroenterologyFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0
   },
+  {
+    id: 'gastro-eso-32',
+    system: 'Gastroenterology',
+    topic: 'Esophageal Disorders',
+    difficulty: 'medium',
+    front: 'Manometry purpose?',
+    back: {
+      definition: 'Evaluates motility disorders',
+      high_yield: 'Achalasia, spasm',
+      clinical_pearl: 'Gold standard for motility'
+    },
+    tags: ['Motility', 'Diagnosis', 'Esophageal Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-eso-33',
+    system: 'Gastroenterology',
+    topic: 'Esophageal Disorders',
+    difficulty: 'medium',
+    front: 'pH monitoring use?',
+    back: {
+      definition: 'Assess reflux severity',
+      high_yield: 'GERD diagnosis',
+      clinical_pearl: 'For refractory symptoms'
+    },
+    tags: ['GERD', 'Diagnosis', 'Esophageal Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-eso-34',
+    system: 'Gastroenterology',
+    topic: 'Esophageal Disorders',
+    difficulty: 'medium',
+    front: 'Peptic stricture clue?',
+    back: {
+      definition: 'History of GERD',
+      high_yield: 'Progressive solid dysphagia',
+      clinical_pearl: 'Endoscopic dilation'
+    },
+    tags: ['Stricture', 'GERD', 'Esophageal Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-eso-35',
+    system: 'Gastroenterology',
+    topic: 'Esophageal Disorders',
+    difficulty: 'medium',
+    front: 'Eosinophilic esophagitis endoscopy?',
+    back: {
+      definition: 'Rings, furrows, white plaques',
+      high_yield: 'Trachealization appearance',
+      clinical_pearl: 'Biopsy to confirm'
+    },
+    tags: ['EoE', 'Diagnosis', 'Esophageal Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-eso-36',
+    system: 'Gastroenterology',
+    topic: 'Esophageal Disorders',
+    difficulty: 'medium',
+    front: 'Candida vs EoE difference?',
+    back: {
+      definition: 'Odynophagia = candida',
+      high_yield: 'Dysphagia predominant in EoE',
+      clinical_pearl: 'Immune status important'
+    },
+    tags: ['Candida', 'EoE', 'Diagnosis', 'Esophageal Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-eso-37',
+    system: 'Gastroenterology',
+    topic: 'Esophageal Disorders',
+    difficulty: 'hard',
+    front: 'Esophageal varices cause?',
+    back: {
+      definition: 'Portal hypertension',
+      high_yield: 'Cirrhosis',
+      clinical_pearl: 'Risk of massive bleeding'
+    },
+    tags: ['Varices', 'Portal hypertension', 'Esophageal Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-eso-38',
+    system: 'Gastroenterology',
+    topic: 'Esophageal Disorders',
+    difficulty: 'hard',
+    front: 'Variceal bleed treatment?',
+    back: {
+      definition: 'Octreotide + banding',
+      high_yield: 'Stabilize airway',
+      clinical_pearl: 'Antibiotics too'
+    },
+    tags: ['Varices', 'Emergency', 'Management', 'Esophageal Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-eso-39',
+    system: 'Gastroenterology',
+    topic: 'Esophageal Disorders',
+    difficulty: 'hard',
+    front: 'Variceal prophylaxis?',
+    back: {
+      definition: 'Nonselective beta-blockers',
+      high_yield: 'Nadolol/propranolol',
+      clinical_pearl: 'Reduce portal pressure'
+    },
+    tags: ['Varices', 'Management', 'Esophageal Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-eso-40',
+    system: 'Gastroenterology',
+    topic: 'Esophageal Disorders',
+    difficulty: 'hard',
+    front: 'Esophageal webs?',
+    back: {
+      definition: 'Thin mucosal membranes',
+      high_yield: 'Plummer-Vinson syndrome',
+      clinical_pearl: 'Iron deficiency association'
+    },
+    tags: ['Structural', 'Plummer-Vinson', 'Esophageal Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-eso-41',
+    system: 'Gastroenterology',
+    topic: 'Esophageal Disorders',
+    difficulty: 'hard',
+    front: 'Plummer-Vinson triad?',
+    back: {
+      definition: 'Dysphagia, iron deficiency, webs',
+      high_yield: 'Esophageal cancer risk',
+      clinical_pearl: 'Treat iron deficiency'
+    },
+    tags: ['Plummer-Vinson', 'Cancer', 'Esophageal Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-eso-42',
+    system: 'Gastroenterology',
+    topic: 'Esophageal Disorders',
+    difficulty: 'hard',
+    front: 'Caustic ingestion injury?',
+    back: {
+      definition: 'Liquefaction necrosis',
+      high_yield: 'Strictures later',
+      clinical_pearl: 'Avoid inducing vomiting'
+    },
+    tags: ['Trauma', 'Emergency', 'Esophageal Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-eso-43',
+    system: 'Gastroenterology',
+    topic: 'Esophageal Disorders',
+    difficulty: 'hard',
+    front: 'Chagas disease esophageal effect?',
+    back: {
+      definition: 'Secondary achalasia',
+      high_yield: 'T. cruzi infection',
+      clinical_pearl: 'Predominant in endemic areas'
+    },
+    tags: ['Achalasia', 'Infectious', 'Esophageal Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-eso-44',
+    system: 'Gastroenterology',
+    topic: 'Esophageal Disorders',
+    difficulty: 'hard',
+    front: 'Post-surgical esophageal leak?',
+    back: {
+      definition: 'Fever + tachycardia',
+      high_yield: 'Contrast esophagram',
+      clinical_pearl: 'Urgent management'
+    },
+    tags: ['Trauma', 'Emergency', 'Esophageal Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-eso-45',
+    system: 'Gastroenterology',
+    topic: 'Esophageal Disorders',
+    difficulty: 'hard',
+    front: 'Esophagitis dissecans?',
+    back: {
+      definition: 'Sloughing esophagitis',
+      high_yield: 'Associated with meds',
+      clinical_pearl: 'Typically benign'
+    },
+    tags: ['Esophagitis', 'Esophageal Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-eso-46',
+    system: 'Gastroenterology',
+    topic: 'Esophageal Disorders',
+    difficulty: 'hard',
+    front: 'Severe GERD complication?',
+    back: {
+      definition: 'Peptic ulceration',
+      high_yield: 'Bleeding or stricture',
+      clinical_pearl: 'Requires PPI therapy'
+    },
+    tags: ['GERD', 'Complications', 'Esophageal Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-eso-47',
+    system: 'Gastroenterology',
+    topic: 'Esophageal Disorders',
+    difficulty: 'hard',
+    front: 'Esophageal spasm treatment?',
+    back: {
+      definition: 'CCBs or nitrates',
+      high_yield: 'Reduce contractions',
+      clinical_pearl: 'Can mimic angina'
+    },
+    tags: ['Motility', 'Management', 'Esophageal Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-eso-48',
+    system: 'Gastroenterology',
+    topic: 'Esophageal Disorders',
+    difficulty: 'hard',
+    front: 'Food impaction cause?',
+    back: {
+      definition: 'EoE or stricture',
+      high_yield: 'Acute dysphagia',
+      clinical_pearl: 'Requires EGD removal'
+    },
+    tags: ['EoE', 'Stricture', 'Emergency', 'Esophageal Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-eso-49',
+    system: 'Gastroenterology',
+    topic: 'Esophageal Disorders',
+    difficulty: 'hard',
+    front: 'Esophageal candidiasis in healthy person?',
+    back: {
+      definition: 'Rare',
+      high_yield: 'Suggests immunocompromise',
+      clinical_pearl: 'Check HIV'
+    },
+    tags: ['Candida', 'Infectious', 'Diagnosis', 'Esophageal Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-eso-50',
+    system: 'Gastroenterology',
+    topic: 'Esophageal Disorders',
+    difficulty: 'hard',
+    front: 'Most dangerous esophageal emergency?',
+    back: {
+      definition: 'Boerhaave syndrome',
+      high_yield: 'Full-thickness rupture',
+      clinical_pearl: 'High mortality'
+    },
+    tags: ['Trauma', 'Emergency', 'Esophageal Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
 
   // Gastric Disorders - Placeholder for future flashcards
   // This section will contain flashcards related to gastric disorders
