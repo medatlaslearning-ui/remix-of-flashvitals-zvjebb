@@ -2408,7 +2408,535 @@ export const renalFlashcards: Flashcard[] = [
     difficulty: 'hard'
   },
   
-  // Electrolytes & Acid–Base - No cards yet
+  // Electrolytes & Acid–Base
+  {
+    id: 'renal-eab-001',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Normal sodium range?',
+    back: {
+      definition: '135–145 mEq/L',
+      high_yield: 'Major extracellular cation',
+      clinical_pearl: 'Maintains volume status'
+    },
+    tags: ['Electrolytes', 'Sodium', 'Lab Values'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-eab-002',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Hyponatremia definition?',
+    back: {
+      definition: 'Na <135',
+      high_yield: 'Water excess or Na loss',
+      clinical_pearl: 'Assess volume status'
+    },
+    tags: ['Electrolytes', 'Hyponatremia', 'Sodium'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-eab-003',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Hypernatremia definition?',
+    back: {
+      definition: 'Na >145',
+      high_yield: 'Water deficit',
+      clinical_pearl: 'Treat with free water'
+    },
+    tags: ['Electrolytes', 'Hypernatremia', 'Sodium'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-eab-004',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Hypokalemia definition?',
+    back: {
+      definition: 'K <3.5',
+      high_yield: 'GI loss, diuretics',
+      clinical_pearl: 'Weakness + arrhythmias'
+    },
+    tags: ['Electrolytes', 'Hypokalemia', 'Potassium'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-eab-005',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Hyperkalemia definition?',
+    back: {
+      definition: 'K >5.0',
+      high_yield: 'AKI/CKD',
+      clinical_pearl: 'Risk of cardiac arrest'
+    },
+    tags: ['Electrolytes', 'Hyperkalemia', 'Potassium'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-eab-006',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Hypocalcemia definition?',
+    back: {
+      definition: 'Ca <8.5',
+      high_yield: 'Low PTH/Vit D',
+      clinical_pearl: 'Tetany, seizures'
+    },
+    tags: ['Electrolytes', 'Hypocalcemia', 'Calcium'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-eab-007',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Hypercalcemia definition?',
+    back: {
+      definition: 'Ca >10.5',
+      high_yield: 'Hyperparathyroidism, cancer',
+      clinical_pearl: 'Stones, bones, groans'
+    },
+    tags: ['Electrolytes', 'Hypercalcemia', 'Calcium'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-eab-008',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Hypomagnesemia cause?',
+    back: {
+      definition: 'Alcoholism, diarrhea',
+      high_yield: 'Arrhythmias',
+      clinical_pearl: 'Torsades risk'
+    },
+    tags: ['Electrolytes', 'Hypomagnesemia', 'Magnesium'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-eab-009',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Hypermagnesemia cause?',
+    back: {
+      definition: 'CKD, Mg-containing meds',
+      high_yield: 'Loss of reflexes',
+      clinical_pearl: 'Can cause respiratory depression'
+    },
+    tags: ['Electrolytes', 'Hypermagnesemia', 'Magnesium'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-eab-010',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Normal chloride range?',
+    back: {
+      definition: '96–106',
+      high_yield: 'Follows sodium',
+      clinical_pearl: 'Helps acid–base balance'
+    },
+    tags: ['Electrolytes', 'Chloride', 'Lab Values'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-eab-011',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Metabolic acidosis definition?',
+    back: {
+      definition: 'Low HCO₃',
+      high_yield: 'AGMA or NAGMA',
+      clinical_pearl: 'Compensatory hyperventilation'
+    },
+    tags: ['Acid-Base', 'Metabolic Acidosis', 'Bicarbonate'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-eab-012',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Metabolic alkalosis definition?',
+    back: {
+      definition: 'High HCO₃',
+      high_yield: 'Vomiting/diuretics',
+      clinical_pearl: 'Hypoventilation compensation'
+    },
+    tags: ['Acid-Base', 'Metabolic Alkalosis', 'Bicarbonate'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-eab-013',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Respiratory acidosis?',
+    back: {
+      definition: 'Elevated CO₂',
+      high_yield: 'Hypoventilation',
+      clinical_pearl: 'Narcosis, COPD'
+    },
+    tags: ['Acid-Base', 'Respiratory Acidosis', 'CO2'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-eab-014',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Respiratory alkalosis?',
+    back: {
+      definition: 'Low CO₂',
+      high_yield: 'Hyperventilation',
+      clinical_pearl: 'Pain, anxiety, sepsis'
+    },
+    tags: ['Acid-Base', 'Respiratory Alkalosis', 'CO2'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-eab-015',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Main AGMA causes?',
+    back: {
+      definition: 'MUDPILES',
+      high_yield: 'Toxins, renal failure',
+      clinical_pearl: 'High anion gap'
+    },
+    tags: ['Acid-Base', 'AGMA', 'Anion Gap'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-eab-016',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'What is anion gap?',
+    back: {
+      definition: 'Na – (Cl + HCO₃)',
+      high_yield: 'Normal 8–12',
+      clinical_pearl: 'Detects metabolic acidosis'
+    },
+    tags: ['Acid-Base', 'Anion Gap', 'Lab Values'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-eab-017',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Winter&apos;s formula use?',
+    back: {
+      definition: 'Evaluates compensation',
+      high_yield: 'PCO₂ = 1.5(HCO₃)+8±2',
+      clinical_pearl: 'For metabolic acidosis'
+    },
+    tags: ['Acid-Base', 'Winters Formula', 'Compensation'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'renal-eab-018',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Hypovolemic hyponatremia?',
+    back: {
+      definition: 'Loss of Na+H₂O',
+      high_yield: 'Vomiting/diuretics',
+      clinical_pearl: 'Treat with isotonic fluids'
+    },
+    tags: ['Electrolytes', 'Hyponatremia', 'Volume Status'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-eab-019',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Euvolemic hyponatremia?',
+    back: {
+      definition: 'Normal volume',
+      high_yield: 'SIADH',
+      clinical_pearl: 'Treat underlying cause'
+    },
+    tags: ['Electrolytes', 'Hyponatremia', 'SIADH'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-eab-020',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Hypervolemic hyponatremia?',
+    back: {
+      definition: 'Fluid overload',
+      high_yield: 'HF, cirrhosis, CKD',
+      clinical_pearl: 'Diuretics + fluid restriction'
+    },
+    tags: ['Electrolytes', 'Hyponatremia', 'Volume Overload'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-eab-021',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'SIADH labs?',
+    back: {
+      definition: 'Low serum osmol',
+      high_yield: 'High urine osmol',
+      clinical_pearl: 'Euvolemic'
+    },
+    tags: ['Electrolytes', 'SIADH', 'Lab Values'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-eab-022',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Osmotic demyelination risk?',
+    back: {
+      definition: 'Rapid Na correction',
+      high_yield: '>8 mEq/24 hr',
+      clinical_pearl: 'Severe neurologic injury'
+    },
+    tags: ['Electrolytes', 'Hyponatremia', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-eab-023',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Hypokalemia ECG changes?',
+    back: {
+      definition: 'U waves',
+      high_yield: 'Flattened T waves',
+      clinical_pearl: 'Risk of arrhythmias'
+    },
+    tags: ['Electrolytes', 'Hypokalemia', 'ECG'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-eab-024',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Hyperkalemia ECG changes?',
+    back: {
+      definition: 'Peaked T waves',
+      high_yield: 'Wide QRS',
+      clinical_pearl: 'Sine wave = arrest'
+    },
+    tags: ['Electrolytes', 'Hyperkalemia', 'ECG'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-eab-025',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Hyperkalemia emergency tx?',
+    back: {
+      definition: 'Calcium + insulin',
+      high_yield: 'Shifts K intracellular',
+      clinical_pearl: 'Add β-agonist'
+    },
+    tags: ['Electrolytes', 'Hyperkalemia', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-eab-026',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Hypocalcemia signs?',
+    back: {
+      definition: 'Chvostek + Trousseau',
+      high_yield: 'Low Ca',
+      clinical_pearl: 'Check Mg too'
+    },
+    tags: ['Electrolytes', 'Hypocalcemia', 'Clinical Signs'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-eab-027',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Hypercalcemia cause?',
+    back: {
+      definition: 'Primary hyperparathyroidism',
+      high_yield: 'Malignancy',
+      clinical_pearl: 'Treat with fluids'
+    },
+    tags: ['Electrolytes', 'Hypercalcemia', 'Causes'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-eab-028',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Hypercalcemia ECG?',
+    back: {
+      definition: 'Short QT interval',
+      high_yield: 'Increased Ca conductivity',
+      clinical_pearl: 'Risk of arrhythmias'
+    },
+    tags: ['Electrolytes', 'Hypercalcemia', 'ECG'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-eab-029',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Metabolic alkalosis causes?',
+    back: {
+      definition: 'Vomiting',
+      high_yield: 'Diuretics',
+      clinical_pearl: 'Volume responsive'
+    },
+    tags: ['Acid-Base', 'Metabolic Alkalosis', 'Causes'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-eab-030',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Metabolic acidosis causes?',
+    back: {
+      definition: 'Renal failure',
+      high_yield: 'Lactic acidosis',
+      clinical_pearl: 'Check AG'
+    },
+    tags: ['Acid-Base', 'Metabolic Acidosis', 'Causes'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-eab-031',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'Delta gap use?',
+    back: {
+      definition: 'Mixed disorder detection',
+      high_yield: 'ΔAG – ΔHCO₃',
+      clinical_pearl: 'Helps diagnose overlap'
+    },
+    tags: ['Acid-Base', 'Delta Gap', 'Mixed Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-eab-032',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'RTA type 1?',
+    back: {
+      definition: 'Distal RTA',
+      high_yield: 'Hypokalemia',
+      clinical_pearl: 'High urine pH'
+    },
+    tags: ['Acid-Base', 'RTA', 'Type 1'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-eab-033',
+    system: 'Renal',
+    topic: 'Electrolytes & Acid–Base',
+    front: 'RTA type 2?',
+    back: {
+      definition: 'Proximal RTA',
+      high_yield: 'Bicarbonate loss',
+      clinical_pearl: 'Associated with Fanconi'
+    },
+    tags: ['Acid-Base', 'RTA', 'Type 2'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
   
   // Renal Tubular & Interstitial Disorders - No cards yet
   
