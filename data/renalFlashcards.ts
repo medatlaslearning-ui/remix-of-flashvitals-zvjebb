@@ -4525,6 +4525,294 @@ export const renalFlashcards: Flashcard[] = [
     reviewCount: 0,
     difficulty: 'medium'
   },
+  {
+    id: 'renal-rsi-033',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'When to admit kidney stone?',
+    back: {
+      definition: 'Fever, obstruction',
+      high_yield: 'Solitary kidney',
+      clinical_pearl: 'Uncontrolled pain'
+    },
+    tags: ['Renal Stones', 'Admission Criteria', 'Management'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rsi-034',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Urine culture significance?',
+    back: {
+      definition: 'Confirms pathogen',
+      high_yield: 'Guides therapy',
+      clinical_pearl: 'Repeat if persistent'
+    },
+    tags: ['Infections', 'Urine Culture', 'Diagnosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rsi-035',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'When to treat asymptomatic bacteriuria?',
+    back: {
+      definition: 'Pregnancy',
+      high_yield: 'Before invasive GU procedures',
+      clinical_pearl: 'Otherwise avoid'
+    },
+    tags: ['Infections', 'Asymptomatic Bacteriuria', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rsi-036',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Chronic pyelo cause?',
+    back: {
+      definition: 'Reflux nephropathy',
+      high_yield: 'Scarring',
+      clinical_pearl: 'Associated with CKD'
+    },
+    tags: ['Infections', 'Chronic Pyelonephritis', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rsi-037',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Proteus UTI clue?',
+    back: {
+      definition: 'Alkaline urine',
+      high_yield: 'Struvite risk',
+      clinical_pearl: 'Urease activity'
+    },
+    tags: ['Infections', 'Proteus', 'UTI'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rsi-038',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Cystinuria mechanism?',
+    back: {
+      definition: 'Defective amino acid transport',
+      high_yield: 'Cystine precipitation',
+      clinical_pearl: 'Recurrent stones'
+    },
+    tags: ['Renal Stones', 'Cystinuria', 'Genetic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-rsi-039',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Primary hyperoxaluria?',
+    back: {
+      definition: 'Oxalate overproduction',
+      high_yield: 'Severe stones',
+      clinical_pearl: 'Kidney failure risk'
+    },
+    tags: ['Renal Stones', 'Hyperoxaluria', 'Genetic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-rsi-040',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Drug-induced stones?',
+    back: {
+      definition: 'Indinavir, topiramate',
+      high_yield: 'Crystalluria',
+      clinical_pearl: 'Variable radiodensity'
+    },
+    tags: ['Renal Stones', 'Drug-Induced', 'Medications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-rsi-041',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Obstructive pyelonephritis?',
+    back: {
+      definition: 'Infected urine behind obstruction',
+      high_yield: 'Medical emergency',
+      clinical_pearl: 'Requires drainage + antibiotics'
+    },
+    tags: ['Infections', 'Obstructive Pyelonephritis', 'Emergency'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-rsi-042',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Stent vs nephrostomy?',
+    back: {
+      definition: 'Stent for ureteral obstruction',
+      high_yield: 'Nephrostomy for complex cases',
+      clinical_pearl: 'Both relieve obstruction'
+    },
+    tags: ['Renal Stones', 'Procedures', 'Obstruction'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-rsi-043',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Shock wave lithotripsy?',
+    back: {
+      definition: 'Fragment stones noninvasively',
+      high_yield: 'Works best <2 cm',
+      clinical_pearl: 'Avoid in pregnancy'
+    },
+    tags: ['Renal Stones', 'Lithotripsy', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-rsi-044',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Percutaneous nephrolithotomy?',
+    back: {
+      definition: 'Large or staghorn stones',
+      high_yield: 'Definitive surgery',
+      clinical_pearl: 'High success rate'
+    },
+    tags: ['Renal Stones', 'Nephrolithotomy', 'Surgery'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-rsi-045',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Ureteroscopy?',
+    back: {
+      definition: 'Endoscopic stone removal',
+      high_yield: 'Laser fragmentation',
+      clinical_pearl: 'For mid/lower stones'
+    },
+    tags: ['Renal Stones', 'Ureteroscopy', 'Procedure'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-rsi-046',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Staghorn stone organism?',
+    back: {
+      definition: 'Proteus',
+      high_yield: 'Urease positive',
+      clinical_pearl: 'Chronic infection'
+    },
+    tags: ['Renal Stones', 'Staghorn', 'Proteus'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-rsi-047',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Fournier infection risk from GU?',
+    back: {
+      definition: 'Necrotizing fasciitis',
+      high_yield: 'Rapid progression',
+      clinical_pearl: 'Urgent surgery'
+    },
+    tags: ['Infections', 'Fournier Gangrene', 'Emergency'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-rsi-048',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Hematogenous pyelo cause?',
+    back: {
+      definition: 'Staph aureus',
+      high_yield: 'Bacteremia spread',
+      clinical_pearl: 'Consider in IV drug use'
+    },
+    tags: ['Infections', 'Hematogenous Pyelonephritis', 'Bacteremia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-rsi-049',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Renal papillary necrosis causes?',
+    back: {
+      definition: 'NSAIDs, diabetes, sickle cell',
+      high_yield: 'Flank pain',
+      clinical_pearl: 'Sloughed papillae on imaging'
+    },
+    tags: ['Infections', 'Papillary Necrosis', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-rsi-050',
+    system: 'Renal',
+    topic: 'Renal Stones & Infections',
+    front: 'Post-obstructive diuresis?',
+    back: {
+      definition: 'Polyuria after obstruction relief',
+      high_yield: 'Fluid + electrolyte loss',
+      clinical_pearl: 'Monitor closely'
+    },
+    tags: ['Renal Stones', 'Post-Obstructive Diuresis', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
 ];
 
 console.log('Renal flashcards loaded:', renalFlashcards.length, 'cards');
