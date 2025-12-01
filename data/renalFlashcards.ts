@@ -3723,6 +3723,294 @@ export const renalFlashcards: Flashcard[] = [
     reviewCount: 0,
     difficulty: 'medium'
   },
+  {
+    id: 'renal-rtid-033',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Oxalate nephropathy?',
+    back: {
+      definition: 'High oxalate load',
+      high_yield: 'Ethylene glycol, malabsorption',
+      clinical_pearl: 'Calcium oxalate crystals'
+    },
+    tags: ['Tubular Disorders', 'Oxalate Nephropathy', 'Crystals'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rtid-034',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Crystals in ethylene glycol poisoning?',
+    back: {
+      definition: 'Envelope-shaped crystals',
+      high_yield: 'Calcium oxalate',
+      clinical_pearl: 'High anion gap acidosis'
+    },
+    tags: ['Tubular Disorders', 'Ethylene Glycol', 'Crystals'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rtid-035',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Medullary cystic kidney disease?',
+    back: {
+      definition: 'Inherited tubulointerstitial disease',
+      high_yield: 'Salt wasting',
+      clinical_pearl: 'Progressive CKD'
+    },
+    tags: ['Tubular Disorders', 'Medullary Cystic Disease', 'Genetic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rtid-036',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Renal tubular chloride loss?',
+    back: {
+      definition: 'Bartter/Gitelman syndromes',
+      high_yield: 'Metabolic alkalosis',
+      clinical_pearl: 'Salt craving'
+    },
+    tags: ['Tubular Disorders', 'Bartter', 'Gitelman'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rtid-037',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Bartter syndrome?',
+    back: {
+      definition: 'Loop defect',
+      high_yield: 'Hypokalemia, alkalosis',
+      clinical_pearl: 'High renin/aldosterone'
+    },
+    tags: ['Tubular Disorders', 'Bartter Syndrome', 'Electrolytes'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rtid-038',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Gitelman syndrome?',
+    back: {
+      definition: 'Thiazide-like defect',
+      high_yield: 'Hypomagnesemia',
+      clinical_pearl: 'Muscle cramps'
+    },
+    tags: ['Tubular Disorders', 'Gitelman Syndrome', 'Electrolytes'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rtid-039',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Liddle syndrome?',
+    back: {
+      definition: 'ENaC overactivity',
+      high_yield: 'Hypertension, hypokalemia',
+      clinical_pearl: 'Treat with amiloride'
+    },
+    tags: ['Tubular Disorders', 'Liddle Syndrome', 'Hypertension'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'renal-rtid-040',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Aminoglycoside nephrotoxicity?',
+    back: {
+      definition: 'Proximal tubular injury',
+      high_yield: 'Non-oliguric AKI',
+      clinical_pearl: 'Monitor drug levels'
+    },
+    tags: ['Tubular Disorders', 'Aminoglycoside', 'Nephrotoxicity'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-rtid-041',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Cisplatin nephrotoxicity?',
+    back: {
+      definition: 'Tubular apoptosis',
+      high_yield: 'Severe magnesium wasting',
+      clinical_pearl: 'Prevent with hydration'
+    },
+    tags: ['Tubular Disorders', 'Cisplatin', 'Nephrotoxicity'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-rtid-042',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Tenofovir toxicity?',
+    back: {
+      definition: 'Proximal tubule dysfunction',
+      high_yield: 'Fanconi + low phosphate',
+      clinical_pearl: 'Seen in HIV treatment'
+    },
+    tags: ['Tubular Disorders', 'Tenofovir', 'Nephrotoxicity'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-rtid-043',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Amphotericin B toxicity?',
+    back: {
+      definition: 'Distal tubular injury',
+      high_yield: 'RTA + K/Mg wasting',
+      clinical_pearl: 'Use liposomal form'
+    },
+    tags: ['Tubular Disorders', 'Amphotericin B', 'Nephrotoxicity'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-rtid-044',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Aristolochic acid nephropathy?',
+    back: {
+      definition: 'Herbal toxin',
+      high_yield: 'Interstitial fibrosis',
+      clinical_pearl: 'High cancer risk'
+    },
+    tags: ['Interstitial Disorders', 'Aristolochic Acid', 'Toxicity'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-rtid-045',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Light-chain cast nephropathy?',
+    back: {
+      definition: 'Myeloma proteins clog tubules',
+      high_yield: 'AKI',
+      clinical_pearl: 'Treat underlying myeloma'
+    },
+    tags: ['Tubular Disorders', 'Light-Chain', 'Myeloma'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-rtid-046',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Chronic lithium toxicity finding?',
+    back: {
+      definition: 'Small, echogenic kidneys',
+      high_yield: 'Interstitial fibrosis',
+      clinical_pearl: 'Nephrogenic DI'
+    },
+    tags: ['Interstitial Disorders', 'Lithium', 'Chronic Toxicity'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-rtid-047',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'AIN with NSAIDs specifics?',
+    back: {
+      definition: 'Often minimal proteinuria',
+      high_yield: 'Slow onset',
+      clinical_pearl: 'Occurs even without eosinophilia'
+    },
+    tags: ['Interstitial Disorders', 'AIN', 'NSAIDs'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-rtid-048',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Recurrent pyelonephritis risk?',
+    back: {
+      definition: 'VUR, obstruction',
+      high_yield: 'Scarring',
+      clinical_pearl: 'Can lead to CKD'
+    },
+    tags: ['Interstitial Disorders', 'Pyelonephritis', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-rtid-049',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Prolonged hypokalemia kidney effect?',
+    back: {
+      definition: 'Cystic kidney changes',
+      high_yield: 'Interstitial fibrosis',
+      clinical_pearl: 'Reversible early'
+    },
+    tags: ['Tubular Disorders', 'Hypokalemia', 'Chronic Effects'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
+  {
+    id: 'renal-rtid-050',
+    system: 'Renal',
+    topic: 'Renal Tubular & Interstitial Disorders',
+    front: 'Heavy metal nephropathy?',
+    back: {
+      definition: 'Lead, cadmium',
+      high_yield: 'Proximal tubular injury',
+      clinical_pearl: 'Chronic interstitial disease'
+    },
+    tags: ['Tubular Disorders', 'Heavy Metals', 'Toxicity'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'hard'
+  },
   
   // Renal Stones & Infections - No cards yet
 ];
