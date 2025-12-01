@@ -2408,7 +2408,7 @@ export const pulmonaryFlashcards: Flashcard[] = [
     difficulty: 'hard'
   },
 
-  // Parenchymal & Interstitial Lung Diseases (33 cards)
+  // Parenchymal & Interstitial Lung Diseases (50 cards)
   {
     id: 'p_ild_1',
     system: 'Pulmonary',
@@ -3208,6 +3208,520 @@ export const pulmonaryFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0,
     difficulty: 'hard'
+  },
+
+  // Pleural Disorders (32 cards)
+  {
+    id: 'p_pleural_1',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'What is a pleural effusion?',
+    back: {
+      definition: 'Fluid in pleural space',
+      high_yield: 'Transudative or exudative',
+      clinical_pearl: 'CXR blunting of costophrenic angle'
+    },
+    tags: ['Pleural Effusion', 'Pleura', 'Fluid'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_pleural_2',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Most common transudative cause?',
+    back: {
+      definition: 'Heart failure',
+      high_yield: 'Low protein',
+      clinical_pearl: 'Responds to diuretics'
+    },
+    tags: ['Pleural Effusion', 'Transudate', 'Heart Failure'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_pleural_3',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Most common exudative cause?',
+    back: {
+      definition: 'Pneumonia',
+      high_yield: 'High protein',
+      clinical_pearl: 'Parapneumonic effusion'
+    },
+    tags: ['Pleural Effusion', 'Exudate', 'Pneumonia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_pleural_4',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Light&apos;s criteria purpose?',
+    back: {
+      definition: 'Differentiate exudate from transudate',
+      high_yield: 'Protein/LDH ratios',
+      clinical_pearl: 'Exudate if any criteria positive'
+    },
+    tags: ['Pleural Effusion', 'Light Criteria', 'Diagnostics'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_pleural_5',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'What is empyema?',
+    back: {
+      definition: 'Pus in pleural space',
+      high_yield: 'Complicated pneumonia',
+      clinical_pearl: 'Requires drainage'
+    },
+    tags: ['Empyema', 'Pleura', 'Infection'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_pleural_6',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Parapneumonic effusion?',
+    back: {
+      definition: 'Effusion from pneumonia',
+      high_yield: 'May progress to empyema',
+      clinical_pearl: 'Early thoracentesis important'
+    },
+    tags: ['Parapneumonic Effusion', 'Pleura', 'Pneumonia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_pleural_7',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Hydrothorax?',
+    back: {
+      definition: 'Simple serous fluid',
+      high_yield: 'Usually transudate',
+      clinical_pearl: 'Seen in HF or cirrhosis'
+    },
+    tags: ['Hydrothorax', 'Pleura', 'Transudate'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_pleural_8',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Hemothorax definition?',
+    back: {
+      definition: 'Blood in pleural space',
+      high_yield: 'Trauma or vessel rupture',
+      clinical_pearl: 'Needs chest tube'
+    },
+    tags: ['Hemothorax', 'Pleura', 'Trauma'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_pleural_9',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Chylothorax?',
+    back: {
+      definition: 'Lymphatic fluid leak',
+      high_yield: 'Milky appearance',
+      clinical_pearl: 'High triglycerides'
+    },
+    tags: ['Chylothorax', 'Pleura', 'Lymphatic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_pleural_10',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Pneumothorax definition?',
+    back: {
+      definition: 'Air in pleural space',
+      high_yield: 'Lung collapse',
+      clinical_pearl: 'Sudden dyspnea'
+    },
+    tags: ['Pneumothorax', 'Pleura', 'Air'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_pleural_11',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Primary spontaneous pneumothorax?',
+    back: {
+      definition: 'No lung disease',
+      high_yield: 'Tall, thin males',
+      clinical_pearl: 'Smoking risk'
+    },
+    tags: ['Pneumothorax', 'Primary', 'Spontaneous'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_pleural_12',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Secondary spontaneous pneumothorax?',
+    back: {
+      definition: 'Underlying lung disease',
+      high_yield: 'COPD/ILD',
+      clinical_pearl: 'More severe'
+    },
+    tags: ['Pneumothorax', 'Secondary', 'COPD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_pleural_13',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Tension pneumothorax?',
+    back: {
+      definition: 'Air trapping under pressure',
+      high_yield: 'Tracheal deviation',
+      clinical_pearl: 'Immediate needle decompression'
+    },
+    tags: ['Pneumothorax', 'Tension', 'Emergency'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_pleural_14',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Thoracentesis purpose?',
+    back: {
+      definition: 'Remove pleural fluid',
+      high_yield: 'Diagnostic or therapeutic',
+      clinical_pearl: 'US guidance preferred'
+    },
+    tags: ['Thoracentesis', 'Procedure', 'Pleura'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_pleural_15',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Pleural friction rub?',
+    back: {
+      definition: 'Inflamed pleura',
+      high_yield: 'Creaking sound',
+      clinical_pearl: 'Heard in pleuritis'
+    },
+    tags: ['Pleural Friction Rub', 'Physical Exam', 'Pleuritis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_pleural_16',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Pleuritic chest pain?',
+    back: {
+      definition: 'Sharp pain on inspiration',
+      high_yield: 'Inflamed pleura',
+      clinical_pearl: 'Seen in PE/pneumonia'
+    },
+    tags: ['Pleuritic Pain', 'Symptoms', 'Pleura'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_pleural_17',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Most common pleural infection cause?',
+    back: {
+      definition: 'Bacterial pneumonia',
+      high_yield: 'Strep/Staph',
+      clinical_pearl: 'Can become empyema'
+    },
+    tags: ['Pleural Infection', 'Pneumonia', 'Bacteria'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_pleural_18',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'TB pleural effusion?',
+    back: {
+      definition: 'Lymphocyte-predominant',
+      high_yield: 'Exudative',
+      clinical_pearl: 'Chronic course'
+    },
+    tags: ['TB', 'Pleural Effusion', 'Tuberculosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_pleural_19',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Malignant effusion?',
+    back: {
+      definition: 'Cancer in pleura',
+      high_yield: 'Recurrent',
+      clinical_pearl: 'May need pleurodesis'
+    },
+    tags: ['Malignant Effusion', 'Cancer', 'Pleura'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_pleural_20',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Pleurodesis purpose?',
+    back: {
+      definition: 'Adhere pleura to prevent fluid',
+      high_yield: 'Used in malignant effusions',
+      clinical_pearl: 'Talc common agent'
+    },
+    tags: ['Pleurodesis', 'Procedure', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'easy'
+  },
+  {
+    id: 'p_pleural_21',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Exudate protein level?',
+    back: {
+      definition: 'High protein',
+      high_yield: 'Protein ratio >0.5',
+      clinical_pearl: 'From inflammation'
+    },
+    tags: ['Exudate', 'Pleural Fluid', 'Diagnostics'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_pleural_22',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Exudate LDH level?',
+    back: {
+      definition: 'LDH ratio >0.6',
+      high_yield: 'High inflammation',
+      clinical_pearl: 'Seen in pneumonia, cancer'
+    },
+    tags: ['Exudate', 'LDH', 'Diagnostics'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_pleural_23',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Trapped lung syndrome?',
+    back: {
+      definition: 'Lung unable to expand',
+      high_yield: 'Chronic pleural peel',
+      clinical_pearl: 'Limits thoracentesis benefit'
+    },
+    tags: ['Trapped Lung', 'Pleura', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_pleural_24',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Complicated parapneumonic effusion?',
+    back: {
+      definition: 'pH <7.2',
+      high_yield: 'Low glucose',
+      clinical_pearl: 'Drainage indicated'
+    },
+    tags: ['Parapneumonic Effusion', 'Complicated', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_pleural_25',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Pleural manometry use?',
+    back: {
+      definition: 'Detect trapped lung',
+      high_yield: 'Pressure monitoring',
+      clinical_pearl: 'Useful during thoracentesis'
+    },
+    tags: ['Pleural Manometry', 'Procedure', 'Diagnostics'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_pleural_26',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Fibrothorax?',
+    back: {
+      definition: 'Thick fibrous pleura',
+      high_yield: 'Restricts lung expansion',
+      clinical_pearl: 'Sequela of infection/bleeding'
+    },
+    tags: ['Fibrothorax', 'Pleura', 'Fibrosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_pleural_27',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Pleural fluid pH meaning?',
+    back: {
+      definition: 'Low pH = infection or malignancy',
+      high_yield: '<7.2 concerning',
+      clinical_pearl: 'Indicates drainage need'
+    },
+    tags: ['Pleural Fluid', 'pH', 'Diagnostics'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_pleural_28',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Pleural fluid amylase?',
+    back: {
+      definition: 'Elevated in esophageal rupture',
+      high_yield: 'Or pancreatitis',
+      clinical_pearl: 'Rare cause of effusion'
+    },
+    tags: ['Pleural Fluid', 'Amylase', 'Diagnostics'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_pleural_29',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Rheumatoid pleural effusion?',
+    back: {
+      definition: 'Low glucose',
+      high_yield: 'Exudative',
+      clinical_pearl: 'May mimic infection'
+    },
+    tags: ['Rheumatoid Arthritis', 'Pleural Effusion', 'Autoimmune'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_pleural_30',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Eosinophilic pleural effusion?',
+    back: {
+      definition: '>10% eosinophils',
+      high_yield: 'Air/blood in pleura',
+      clinical_pearl: 'Trauma or parasitic disease'
+    },
+    tags: ['Eosinophilic Effusion', 'Pleural Fluid', 'Diagnostics'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_pleural_31',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Post-cardiac injury syndrome?',
+    back: {
+      definition: 'Immune pleuritis',
+      high_yield: 'After MI',
+      clinical_pearl: 'Responds to NSAIDs'
+    },
+    tags: ['Post-cardiac Injury', 'Pleuritis', 'Autoimmune'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
+  },
+  {
+    id: 'p_pleural_32',
+    system: 'Pulmonary',
+    topic: 'Pleural Disorders',
+    front: 'Mesothelioma clue?',
+    back: {
+      definition: 'Occupational asbestos',
+      high_yield: 'Bloody exudative effusion',
+      clinical_pearl: 'Poor prognosis'
+    },
+    tags: ['Mesothelioma', 'Cancer', 'Asbestos'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    difficulty: 'medium'
   },
 ];
 
