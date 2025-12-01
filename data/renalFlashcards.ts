@@ -2666,22 +2666,6 @@ export const renalFlashcards: Flashcard[] = [
     difficulty: 'easy'
   },
   {
-    id: 'renal-eab-017',
-    system: 'Renal',
-    topic: 'Electrolytes & Acid–Base',
-    front: 'Winter's formula use?',
-    back: {
-      definition: 'Evaluates compensation',
-      high_yield: 'PCO₂ = 1.5(HCO₃)+8±2',
-      clinical_pearl: 'For metabolic acidosis'
-    },
-    tags: ['Acid-Base', 'Winters Formula', 'Compensation'],
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    difficulty: 'easy'
-  },
-  {
     id: 'renal-eab-018',
     system: 'Renal',
     topic: 'Electrolytes & Acid–Base',
