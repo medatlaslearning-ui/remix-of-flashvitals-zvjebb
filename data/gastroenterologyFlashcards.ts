@@ -1606,8 +1606,519 @@ export const gastroenterologyFlashcards: Flashcard[] = [
     reviewCount: 0
   },
 
-  // Small Bowel Disorders - Placeholder for future flashcards
-  // This section will contain flashcards related to small bowel disorders
+  // Small Bowel Disorders
+  {
+    id: 'gastro-small-1',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Primary function of the small intestine?',
+    back: {
+      definition: 'Absorption of nutrients',
+      high_yield: 'Most absorption occurs in jejunum',
+      clinical_pearl: 'Critical to nutrition'
+    },
+    tags: ['Small Bowel', 'Anatomy', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-2',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Celiac disease cause?',
+    back: {
+      definition: 'Gluten sensitivity',
+      high_yield: 'Autoimmune villous atrophy',
+      clinical_pearl: 'DIgA-tTG antibodies'
+    },
+    tags: ['Celiac', 'Autoimmune', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-3',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Classic celiac symptoms?',
+    back: {
+      definition: 'Diarrhea + weight loss',
+      high_yield: 'Iron deficiency',
+      clinical_pearl: 'Dermatitis herpetiformis'
+    },
+    tags: ['Celiac', 'Symptoms', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-4',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Best initial test for celiac?',
+    back: {
+      definition: 'IgA tissue transglutaminase (tTG)',
+      high_yield: 'High sensitivity',
+      clinical_pearl: 'Must be on gluten diet'
+    },
+    tags: ['Celiac', 'Diagnosis', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-5',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Confirmatory test for celiac?',
+    back: {
+      definition: 'Duodenal biopsy',
+      high_yield: 'Villous atrophy',
+      clinical_pearl: 'Crypt hyperplasia'
+    },
+    tags: ['Celiac', 'Diagnosis', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-6',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Crohn small-bowel hallmark?',
+    back: {
+      definition: 'Skip lesions',
+      high_yield: 'Transmural inflammation',
+      clinical_pearl: 'Terminal ileum common'
+    },
+    tags: ['Crohn', 'IBD', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-7',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Crohn symptoms?',
+    back: {
+      definition: 'Diarrhea + weight loss',
+      high_yield: 'RLQ pain',
+      clinical_pearl: 'Perianal disease'
+    },
+    tags: ['Crohn', 'IBD', 'Symptoms', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-8',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Crohn complication?',
+    back: {
+      definition: 'Fistulas + strictures',
+      high_yield: 'Transmural disease',
+      clinical_pearl: 'High recurrence'
+    },
+    tags: ['Crohn', 'IBD', 'Complications', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-9',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Small bowel obstruction (SBO) cause?',
+    back: {
+      definition: 'Adhesions',
+      high_yield: 'Hernias second most',
+      clinical_pearl: 'High-pitched bowel sounds'
+    },
+    tags: ['SBO', 'Obstruction', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-10',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'easy',
+    front: 'SBO symptoms?',
+    back: {
+      definition: 'Crampy abdominal pain',
+      high_yield: 'Vomiting',
+      clinical_pearl: 'Distention'
+    },
+    tags: ['SBO', 'Obstruction', 'Symptoms', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-11',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'easy',
+    front: 'SBO imaging clue?',
+    back: {
+      definition: 'Air-fluid levels',
+      high_yield: 'Dilated loops',
+      clinical_pearl: 'Step-ladder pattern'
+    },
+    tags: ['SBO', 'Obstruction', 'Imaging', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-12',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Volvulus definition?',
+    back: {
+      definition: 'Twisting of bowel',
+      high_yield: 'Obstruction + ischemia',
+      clinical_pearl: 'Coffee-bean sign'
+    },
+    tags: ['Volvulus', 'Obstruction', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-13',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Intussusception hallmark?',
+    back: {
+      definition: 'Telescoping bowel',
+      high_yield: 'Sausage-shaped mass',
+      clinical_pearl: 'Currant jelly stool'
+    },
+    tags: ['Intussusception', 'Obstruction', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-14',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Lactose intolerance cause?',
+    back: {
+      definition: 'Lactase deficiency',
+      high_yield: 'Osmotic diarrhea',
+      clinical_pearl: 'Hydrogen breath test positive'
+    },
+    tags: ['Lactose intolerance', 'Malabsorption', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-15',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'easy',
+    front: 'SIBO cause?',
+    back: {
+      definition: 'Excess bacteria in small intestine',
+      high_yield: 'Bloating + diarrhea',
+      clinical_pearl: 'Common after surgery'
+    },
+    tags: ['SIBO', 'Bacterial', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-16',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Whipple disease cause?',
+    back: {
+      definition: 'Tropheryma whipplei',
+      high_yield: 'Malabsorption',
+      clinical_pearl: 'PAS-positive macrophages'
+    },
+    tags: ['Whipple', 'Infectious', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-17',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Tropical sprue?',
+    back: {
+      definition: 'Post-infectious malabsorption',
+      high_yield: 'Travel exposure',
+      clinical_pearl: 'Treat with antibiotics + folate'
+    },
+    tags: ['Tropical sprue', 'Malabsorption', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-18',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Mesenteric ischemia hallmark?',
+    back: {
+      definition: 'Severe pain out of proportion',
+      high_yield: 'Embolic or thrombotic',
+      clinical_pearl: 'High lactate'
+    },
+    tags: ['Mesenteric ischemia', 'Vascular', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-19',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Short bowel syndrome cause?',
+    back: {
+      definition: 'Small bowel resection',
+      high_yield: 'Malabsorption',
+      clinical_pearl: 'Requires TPN early'
+    },
+    tags: ['Short bowel syndrome', 'Malabsorption', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-20',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Bile acid malabsorption?',
+    back: {
+      definition: 'Terminal ileum disease/resection',
+      high_yield: 'Chronic diarrhea',
+      clinical_pearl: 'Treat with bile acid binders'
+    },
+    tags: ['Bile acid malabsorption', 'Malabsorption', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-21',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'medium',
+    front: 'Preferred SBO treatment?',
+    back: {
+      definition: 'Bowel rest + NG tube',
+      high_yield: 'Fluids',
+      clinical_pearl: 'Surgery if strangulated'
+    },
+    tags: ['SBO', 'Treatment', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-22',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'medium',
+    front: 'Strangulated bowel signs?',
+    back: {
+      definition: 'Fever + hypotension',
+      high_yield: 'Peritonitis',
+      clinical_pearl: 'Surgical emergency'
+    },
+    tags: ['SBO', 'Emergency', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-23',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'medium',
+    front: 'Celiac diet treatment?',
+    back: {
+      definition: 'Strict gluten avoidance',
+      high_yield: 'Lifelong',
+      clinical_pearl: 'Monitor nutritional deficiencies'
+    },
+    tags: ['Celiac', 'Treatment', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-24',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'medium',
+    front: 'Celiac associations?',
+    back: {
+      definition: 'Autoimmune diseases',
+      high_yield: 'T1 diabetes',
+      clinical_pearl: 'Thyroid disorders'
+    },
+    tags: ['Celiac', 'Associations', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-25',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'medium',
+    front: 'Crohn imaging finding?',
+    back: {
+      definition: 'String sign',
+      high_yield: 'Narrowed terminal ileum',
+      clinical_pearl: 'Seen on barium studies'
+    },
+    tags: ['Crohn', 'IBD', 'Imaging', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-26',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'medium',
+    front: 'Crohn vs UC small bowel involvement?',
+    back: {
+      definition: 'Crohn = yes',
+      high_yield: 'UC = no',
+      clinical_pearl: 'Helps distinguish'
+    },
+    tags: ['Crohn', 'UC', 'IBD', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-27',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'medium',
+    front: 'Whipple symptoms triad?',
+    back: {
+      definition: 'Arthralgias, weight loss, diarrhea',
+      high_yield: 'Systemic disease',
+      clinical_pearl: 'Fatal without treatment'
+    },
+    tags: ['Whipple', 'Symptoms', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-28',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'medium',
+    front: 'Intussusception cause adults?',
+    back: {
+      definition: 'Lead point (tumor/polyp)',
+      high_yield: 'Requires evaluation',
+      clinical_pearl: 'Unlike children'
+    },
+    tags: ['Intussusception', 'Adults', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-29',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'medium',
+    front: 'SIBO diagnosis?',
+    back: {
+      definition: 'Breath test',
+      high_yield: 'Elevated hydrogen/methane',
+      clinical_pearl: 'Trial of antibiotics'
+    },
+    tags: ['SIBO', 'Diagnosis', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-30',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'medium',
+    front: 'SIBO complications?',
+    back: {
+      definition: 'B12 deficiency',
+      high_yield: 'Fat malabsorption',
+      clinical_pearl: 'Neuropathy'
+    },
+    tags: ['SIBO', 'Complications', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-31',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'medium',
+    front: 'Mesenteric ischemia risk factors?',
+    back: {
+      definition: 'A-fib, HF, atherosclerosis',
+      high_yield: 'Cardiac origin',
+      clinical_pearl: 'Elderly at higher risk'
+    },
+    tags: ['Mesenteric ischemia', 'Risk factors', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-32',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'medium',
+    front: 'Mesenteric ischemia imaging?',
+    back: {
+      definition: 'CTA abdomen',
+      high_yield: 'Best test',
+      clinical_pearl: 'Shows vascular compromise'
+    },
+    tags: ['Mesenteric ischemia', 'Imaging', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
 
   // Large Bowel Disorders - Placeholder for future flashcards
   // This section will contain flashcards related to large bowel disorders
