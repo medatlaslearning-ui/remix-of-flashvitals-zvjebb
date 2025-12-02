@@ -2921,6 +2921,294 @@ export const gastroenterologyFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0
   },
+  {
+    id: 'gastro-large-33',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'medium',
+    front: 'Large bowel obstruction cause?',
+    back: {
+      definition: 'Cancer',
+      high_yield: 'Volvulus second most',
+      clinical_pearl: 'Distention + vomiting'
+    },
+    tags: ['Obstruction', 'Cancer', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-34',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'medium',
+    front: 'Sigmoid volvulus sign?',
+    back: {
+      definition: 'Coffee-bean shape',
+      high_yield: 'Elderly',
+      clinical_pearl: 'Endoscopic detorsion'
+    },
+    tags: ['Volvulus', 'Obstruction', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-35',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'medium',
+    front: 'Cecal volvulus?',
+    back: {
+      definition: 'Twisting of right colon',
+      high_yield: 'Younger patients',
+      clinical_pearl: 'Often surgical'
+    },
+    tags: ['Volvulus', 'Obstruction', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-36',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'medium',
+    front: 'Hemorrhoids cause?',
+    back: {
+      definition: 'Venous dilation',
+      high_yield: 'Bleeding or pain',
+      clinical_pearl: 'Fiber first-line'
+    },
+    tags: ['Hemorrhoids', 'Anorectal', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-37',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'medium',
+    front: 'Anal fissure hallmark?',
+    back: {
+      definition: 'Painful rectal bleeding',
+      high_yield: 'Pain with BM',
+      clinical_pearl: 'Posterior midline'
+    },
+    tags: ['Anal fissure', 'Anorectal', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-38',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'hard',
+    front: 'Hirschsprung disease?',
+    back: {
+      definition: 'Lack of ganglion cells',
+      high_yield: 'Failure to pass meconium',
+      clinical_pearl: 'Seen in children'
+    },
+    tags: ['Hirschsprung', 'Pediatric', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-39',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'hard',
+    front: 'Angiodysplasia colon?',
+    back: {
+      definition: 'Vascular malformation',
+      high_yield: 'Right-sided bleeding',
+      clinical_pearl: 'More common in elderly'
+    },
+    tags: ['Angiodysplasia', 'GI Bleed', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-40',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'hard',
+    front: 'Steroid use in IBD?',
+    back: {
+      definition: 'For flares only',
+      high_yield: 'Not maintenance',
+      clinical_pearl: 'Risk of complications'
+    },
+    tags: ['IBD', 'Treatment', 'Steroids', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-41',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'hard',
+    front: 'Biologics in IBD?',
+    back: {
+      definition: 'Anti-TNF agents',
+      high_yield: 'Crohn and UC',
+      clinical_pearl: 'Used in moderate-severe disease'
+    },
+    tags: ['IBD', 'Treatment', 'Biologics', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-42',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'hard',
+    front: 'Colon perforation sign?',
+    back: {
+      definition: 'Peritonitis + free air',
+      high_yield: 'Surgical emergency',
+      clinical_pearl: 'Often due to diverticulitis'
+    },
+    tags: ['Perforation', 'Emergency', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-43',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'hard',
+    front: 'Colovaginal fistula cause?',
+    back: {
+      definition: 'Complicated diverticulitis',
+      high_yield: 'Passage of stool via vagina',
+      clinical_pearl: 'Needs surgery'
+    },
+    tags: ['Fistula', 'Diverticulitis', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-44',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'hard',
+    front: 'Colovesical fistula?',
+    back: {
+      definition: 'Air in urine',
+      high_yield: 'Recurrent UTIs',
+      clinical_pearl: 'Diverticulitis common cause'
+    },
+    tags: ['Fistula', 'Diverticulitis', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-45',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'hard',
+    front: 'Megacolon definition?',
+    back: {
+      definition: 'Colon >6 cm dilation',
+      high_yield: 'Toxic or obstructive',
+      clinical_pearl: 'Life-threatening'
+    },
+    tags: ['Megacolon', 'Emergency', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-46',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'hard',
+    front: 'Fulminant UC?',
+    back: {
+      definition: 'Severe bloody diarrhea',
+      high_yield: 'Systemic toxicity',
+      clinical_pearl: 'Hospitalization required'
+    },
+    tags: ['UC', 'IBD', 'Emergency', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-47',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'hard',
+    front: 'Melanosis coli?',
+    back: {
+      definition: 'Laxative overuse',
+      high_yield: 'Pigmented colon lining',
+      clinical_pearl: 'Benign finding'
+    },
+    tags: ['Melanosis coli', 'Laxatives', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-48',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'hard',
+    front: 'Radiation colitis?',
+    back: {
+      definition: 'Post-radiation damage',
+      high_yield: 'Chronic bleeding',
+      clinical_pearl: 'Strictures possible'
+    },
+    tags: ['Radiation colitis', 'Iatrogenic', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-49',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'hard',
+    front: 'Post-infectious IBS?',
+    back: {
+      definition: 'After bacterial gastroenteritis',
+      high_yield: 'Altered gut motility',
+      clinical_pearl: 'Improves slowly'
+    },
+    tags: ['IBS', 'Post-infectious', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-50',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'hard',
+    front: 'Most common site of colon cancer?',
+    back: {
+      definition: 'Rectosigmoid region',
+      high_yield: 'Left-sided symptoms earlier',
+      clinical_pearl: 'Right-sided = occult anemia'
+    },
+    tags: ['Colorectal cancer', 'Cancer', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
 
   // Hepatology (Liver Disorders) - Placeholder for future flashcards
   // This section will contain flashcards related to liver disorders
