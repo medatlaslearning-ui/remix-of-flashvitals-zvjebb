@@ -2408,8 +2408,519 @@ export const gastroenterologyFlashcards: Flashcard[] = [
     reviewCount: 0
   },
 
-  // Large Bowel Disorders - Placeholder for future flashcards
-  // This section will contain flashcards related to large bowel disorders
+  // Large Bowel Disorders
+  {
+    id: 'gastro-large-1',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Most common cause of large bowel bleeding?',
+    back: {
+      definition: 'Diverticulosis',
+      high_yield: 'Painless bleeding',
+      clinical_pearl: 'Often self-limited'
+    },
+    tags: ['Diverticulosis', 'GI Bleed', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-2',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Diverticulosis definition?',
+    back: {
+      definition: 'Outpouchings in colon',
+      high_yield: 'Often asymptomatic',
+      clinical_pearl: 'Linked to low-fiber diet'
+    },
+    tags: ['Diverticulosis', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-3',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Diverticulitis symptoms?',
+    back: {
+      definition: 'LLQ pain',
+      high_yield: 'Fever + leukocytosis',
+      clinical_pearl: 'Needs antibiotics'
+    },
+    tags: ['Diverticulitis', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-4',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Complicated diverticulitis?',
+    back: {
+      definition: 'Abscess, perforation',
+      high_yield: 'Fistula',
+      clinical_pearl: 'Needs CT + possible surgery'
+    },
+    tags: ['Diverticulitis', 'Complications', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-5',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Classic UC location?',
+    back: {
+      definition: 'Rectum first',
+      high_yield: 'Continuous lesions',
+      clinical_pearl: 'Mucosal inflammation only'
+    },
+    tags: ['UC', 'IBD', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-6',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'easy',
+    front: 'UC symptoms?',
+    back: {
+      definition: 'Bloody diarrhea',
+      high_yield: 'Tenesmus',
+      clinical_pearl: 'Lower abdominal pain'
+    },
+    tags: ['UC', 'IBD', 'Symptoms', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-7',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Crohn colitis hallmark?',
+    back: {
+      definition: 'Skip lesions',
+      high_yield: 'Transmural',
+      clinical_pearl: 'Perianal disease common'
+    },
+    tags: ['Crohn', 'IBD', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-8',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'easy',
+    front: 'IBS symptoms?',
+    back: {
+      definition: 'Abdominal pain + altered stool',
+      high_yield: 'Improves with defecation',
+      clinical_pearl: 'Normal colonoscopy'
+    },
+    tags: ['IBS', 'Functional', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-9',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Ischemic colitis cause?',
+    back: {
+      definition: 'Poor blood flow',
+      high_yield: 'Crampy pain + bloody diarrhea',
+      clinical_pearl: 'Elderly risk'
+    },
+    tags: ['Ischemic colitis', 'Vascular', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-10',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Toxic megacolon cause?',
+    back: {
+      definition: 'Severe UC or C. diff',
+      high_yield: 'Colonic dilation',
+      clinical_pearl: 'Life-threatening'
+    },
+    tags: ['Toxic megacolon', 'Emergency', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-11',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Colorectal cancer symptoms?',
+    back: {
+      definition: 'Iron deficiency anemia',
+      high_yield: 'Change in bowel habits',
+      clinical_pearl: 'Weight loss'
+    },
+    tags: ['Colorectal cancer', 'Cancer', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-12',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Colon cancer screening age?',
+    back: {
+      definition: 'Age 45',
+      high_yield: 'Earlier if high risk',
+      clinical_pearl: 'Colonoscopy gold standard'
+    },
+    tags: ['Colorectal cancer', 'Screening', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-13',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Hyperplastic polyp significance?',
+    back: {
+      definition: 'Benign',
+      high_yield: 'Low malignancy risk',
+      clinical_pearl: 'Often left-sided'
+    },
+    tags: ['Polyps', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-14',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Adenomatous polyp significance?',
+    back: {
+      definition: 'Precancerous',
+      high_yield: 'Tubular vs villous',
+      clinical_pearl: 'Villous highest risk'
+    },
+    tags: ['Polyps', 'Cancer', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-15',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'easy',
+    front: 'FAP syndrome?',
+    back: {
+      definition: 'APC mutation',
+      high_yield: '100% cancer risk',
+      clinical_pearl: 'Prophylactic colectomy'
+    },
+    tags: ['FAP', 'Cancer', 'Genetic', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-16',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Lynch syndrome?',
+    back: {
+      definition: 'Mismatch repair defect',
+      high_yield: 'Early colon cancer',
+      clinical_pearl: 'Right-sided predominance'
+    },
+    tags: ['Lynch syndrome', 'Cancer', 'Genetic', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-17',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Microscopic colitis?',
+    back: {
+      definition: 'Chronic watery diarrhea',
+      high_yield: 'Normal colonoscopy',
+      clinical_pearl: 'Seen on biopsy'
+    },
+    tags: ['Microscopic colitis', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-18',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Ogilvie syndrome?',
+    back: {
+      definition: 'Acute colonic pseudo-obstruction',
+      high_yield: 'Massive dilation',
+      clinical_pearl: 'Supportive care'
+    },
+    tags: ['Ogilvie syndrome', 'Obstruction', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-19',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Constipation causes?',
+    back: {
+      definition: 'Low fiber, meds',
+      high_yield: 'Dehydration',
+      clinical_pearl: 'Slow transit common'
+    },
+    tags: ['Constipation', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-20',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'easy',
+    front: 'Best test for diverticulitis?',
+    back: {
+      definition: 'CT abdomen with contrast',
+      high_yield: 'Shows inflammation',
+      clinical_pearl: 'Avoid colonoscopy acutely'
+    },
+    tags: ['Diverticulitis', 'Diagnosis', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-21',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'medium',
+    front: 'UC colonoscopy finding?',
+    back: {
+      definition: 'Continuous friable mucosa',
+      high_yield: 'Starts at rectum',
+      clinical_pearl: 'Pseudopolyps possible'
+    },
+    tags: ['UC', 'IBD', 'Diagnosis', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-22',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'medium',
+    front: 'Crohn colonoscopy finding?',
+    back: {
+      definition: 'Cobblestoning',
+      high_yield: 'Skip lesions',
+      clinical_pearl: 'Sparing of rectum common'
+    },
+    tags: ['Crohn', 'IBD', 'Diagnosis', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-23',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'medium',
+    front: 'UC complication?',
+    back: {
+      definition: 'Toxic megacolon',
+      high_yield: 'Colonic dilation',
+      clinical_pearl: 'Requires urgent management'
+    },
+    tags: ['UC', 'IBD', 'Complications', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-24',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'medium',
+    front: 'Crohn complication?',
+    back: {
+      definition: 'Fistulas + strictures',
+      high_yield: 'Transmural disease',
+      clinical_pearl: 'May need surgery'
+    },
+    tags: ['Crohn', 'IBD', 'Complications', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-25',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'medium',
+    front: 'UC cancer surveillance?',
+    back: {
+      definition: 'Every 1–3 yrs after 8 yrs disease',
+      high_yield: 'High cancer risk',
+      clinical_pearl: 'Especially with pancolitis'
+    },
+    tags: ['UC', 'IBD', 'Cancer', 'Surveillance', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-26',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'medium',
+    front: 'Key UC marker?',
+    back: {
+      definition: 'p-ANCA positive',
+      high_yield: 'Not diagnostic',
+      clinical_pearl: 'Helps differentiate'
+    },
+    tags: ['UC', 'IBD', 'Diagnosis', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-27',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'medium',
+    front: 'Key Crohn marker?',
+    back: {
+      definition: 'ASCA positive',
+      high_yield: 'Not diagnostic',
+      clinical_pearl: 'Suggestive of Crohn'
+    },
+    tags: ['Crohn', 'IBD', 'Diagnosis', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-28',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'medium',
+    front: 'IBS subtypes?',
+    back: {
+      definition: 'IBS-D, IBS-C, mixed',
+      high_yield: 'Functional disorder',
+      clinical_pearl: 'No red flags'
+    },
+    tags: ['IBS', 'Functional', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-29',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'medium',
+    front: 'IBS treatment?',
+    back: {
+      definition: 'Fiber, antispasmodics',
+      high_yield: 'SSRIs/TCAs',
+      clinical_pearl: 'Low FODMAP diet helpful'
+    },
+    tags: ['IBS', 'Treatment', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-30',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'medium',
+    front: 'Ischemic colitis imaging?',
+    back: {
+      definition: 'Thumbprinting on CT',
+      high_yield: 'Mucosal edema',
+      clinical_pearl: 'Often resolves with fluids'
+    },
+    tags: ['Ischemic colitis', 'Imaging', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-31',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'medium',
+    front: 'C. diff colitis symptoms?',
+    back: {
+      definition: 'Profuse watery diarrhea',
+      high_yield: 'Toxic megacolon risk',
+      clinical_pearl: 'Treat with fidaxomicin/vancomycin'
+    },
+    tags: ['C. diff', 'Infectious', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-large-32',
+    system: 'Gastroenterology',
+    topic: 'Large Bowel Disorders',
+    difficulty: 'medium',
+    front: 'Stercoral colitis?',
+    back: {
+      definition: 'Pressure necrosis from fecal impaction',
+      high_yield: 'Severe constipation',
+      clinical_pearl: 'Risk of perforation'
+    },
+    tags: ['Stercoral colitis', 'Constipation', 'Large Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
 
   // Hepatology (Liver Disorders) - Placeholder for future flashcards
   // This section will contain flashcards related to liver disorders
