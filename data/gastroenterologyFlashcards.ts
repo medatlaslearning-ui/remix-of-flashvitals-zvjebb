@@ -1317,6 +1317,294 @@ export const gastroenterologyFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0
   },
+  {
+    id: 'gastro-gastric-33',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'medium',
+    front: 'Functional dyspepsia?',
+    back: {
+      definition: 'Chronic upper GI pain',
+      high_yield: 'No structural cause',
+      clinical_pearl: 'Treat with PPI/TCA'
+    },
+    tags: ['Dyspepsia', 'Functional', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-34',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'medium',
+    front: 'Gastric varices cause?',
+    back: {
+      definition: 'Portal hypertension',
+      high_yield: 'Cirrhosis',
+      clinical_pearl: 'Risk of severe bleeding'
+    },
+    tags: ['Varices', 'Portal hypertension', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-35',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'medium',
+    front: 'Dumping syndrome cause?',
+    back: {
+      definition: 'Post-gastrectomy',
+      high_yield: 'Rapid emptying',
+      clinical_pearl: 'Hypoglycemia + diarrhea'
+    },
+    tags: ['Dumping syndrome', 'Post-surgical', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-36',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'medium',
+    front: 'Dumping syndrome treatment?',
+    back: {
+      definition: 'Low-carb diet',
+      high_yield: 'Small frequent meals',
+      clinical_pearl: 'Octreotide occasionally'
+    },
+    tags: ['Dumping syndrome', 'Treatment', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-37',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'hard',
+    front: 'Dieulafoy lesion?',
+    back: {
+      definition: 'Large-caliber artery near mucosa',
+      high_yield: 'Massive GI bleed',
+      clinical_pearl: 'Endoscopic therapy'
+    },
+    tags: ['Dieulafoy', 'GI Bleed', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-38',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'hard',
+    front: 'GAVE (watermelon stomach)?',
+    back: {
+      definition: 'Dilated gastric vessels',
+      high_yield: 'Chronic bleeding',
+      clinical_pearl: 'Seen in cirrhosis'
+    },
+    tags: ['GAVE', 'GI Bleed', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-39',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'hard',
+    front: 'Linitis plastica?',
+    back: {
+      definition: 'Diffuse gastric cancer',
+      high_yield: 'Rigid stomach',
+      clinical_pearl: 'Poor prognosis'
+    },
+    tags: ['Cancer', 'Linitis plastica', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-40',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'hard',
+    front: 'Gastric bezoar?',
+    back: {
+      definition: 'Indigestible mass',
+      high_yield: 'Trichobezoar or phytobezoar',
+      clinical_pearl: 'Cause obstruction'
+    },
+    tags: ['Bezoar', 'Obstruction', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-41',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'hard',
+    front: 'ZES association?',
+    back: {
+      definition: 'MEN1 syndrome',
+      high_yield: 'Multiple endocrine tumors',
+      clinical_pearl: 'Check prolactin + PTH'
+    },
+    tags: ['ZES', 'MEN1', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-42',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'hard',
+    front: 'H. pylori virulence factor?',
+    back: {
+      definition: 'CagA and VacA proteins',
+      high_yield: 'Increase cancer risk',
+      clinical_pearl: 'More inflammation'
+    },
+    tags: ['H. pylori', 'Pathophysiology', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-43',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'hard',
+    front: 'Hypersecretory states PUD?',
+    back: {
+      definition: 'ZES, mastocytosis',
+      high_yield: 'Refractory ulcers',
+      clinical_pearl: 'Requires specialized workup'
+    },
+    tags: ['PUD', 'Hypersecretory', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-44',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'hard',
+    front: 'NSAID ulcer prevention?',
+    back: {
+      definition: 'Misoprostol or PPIs',
+      high_yield: 'Restore protection',
+      clinical_pearl: 'Avoid in pregnancy'
+    },
+    tags: ['NSAIDs', 'Prevention', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-45',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'hard',
+    front: 'Gastric volvulus?',
+    back: {
+      definition: 'Twisting of stomach',
+      high_yield: 'Severe pain + retching',
+      clinical_pearl: 'Surgical emergency'
+    },
+    tags: ['Volvulus', 'Emergency', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-46',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'hard',
+    front: 'Portal hypertensive gastropathy?',
+    back: {
+      definition: 'Mucosal mosaic pattern',
+      high_yield: 'Seen in cirrhosis',
+      clinical_pearl: 'May cause chronic bleed'
+    },
+    tags: ['Portal hypertension', 'Gastropathy', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-47',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'hard',
+    front: 'Gastric antral vascular ectasia clue?',
+    back: {
+      definition: '"Watermelon stomach"',
+      high_yield: 'Chronic bleeding',
+      clinical_pearl: 'Endoscopic therapy'
+    },
+    tags: ['GAVE', 'GI Bleed', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-48',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'hard',
+    front: 'Diabetic gastroparesis hallmark?',
+    back: {
+      definition: 'Early satiety + bloating',
+      high_yield: 'Poor glycemic control',
+      clinical_pearl: 'Optimize diabetes'
+    },
+    tags: ['Gastroparesis', 'Diabetes', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-49',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'hard',
+    front: 'H. pylori test false negative?',
+    back: {
+      definition: 'Recent PPI use',
+      high_yield: 'Hold PPIs 2 weeks',
+      clinical_pearl: 'Improves accuracy'
+    },
+    tags: ['H. pylori', 'Diagnosis', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-gastric-50',
+    system: 'Gastroenterology',
+    topic: 'Gastric Disorders',
+    difficulty: 'hard',
+    front: 'Test for gastric emptying?',
+    back: {
+      definition: 'Gastric emptying study',
+      high_yield: 'Confirms gastroparesis',
+      clinical_pearl: '4-hour test preferred'
+    },
+    tags: ['Gastroparesis', 'Diagnosis', 'Gastric Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
 
   // Small Bowel Disorders - Placeholder for future flashcards
   // This section will contain flashcards related to small bowel disorders
