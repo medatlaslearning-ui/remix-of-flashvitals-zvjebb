@@ -2119,6 +2119,294 @@ export const gastroenterologyFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0
   },
+  {
+    id: 'gastro-small-33',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'medium',
+    front: 'Bowel infarction sign?',
+    back: {
+      definition: 'Peritonitis',
+      high_yield: 'Rebound tenderness',
+      clinical_pearl: 'Urgent surgery'
+    },
+    tags: ['Bowel infarction', 'Emergency', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-34',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'medium',
+    front: 'Carcinoid syndrome cause?',
+    back: {
+      definition: 'Serotonin-producing tumor',
+      high_yield: 'Flushing + diarrhea',
+      clinical_pearl: 'Elevated 5-HIAA'
+    },
+    tags: ['Carcinoid', 'Tumor', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-35',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'medium',
+    front: 'Carcinoid tumor location?',
+    back: {
+      definition: 'Terminal ileum',
+      high_yield: 'Metastasizes to liver',
+      clinical_pearl: 'Causes systemic symptoms'
+    },
+    tags: ['Carcinoid', 'Tumor', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-36',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'hard',
+    front: 'Zollinger-Ellison small bowel effect?',
+    back: {
+      definition: 'Acid overload',
+      high_yield: 'Inactivates enzymes',
+      clinical_pearl: 'Causes diarrhea'
+    },
+    tags: ['ZES', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-37',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'hard',
+    front: 'Abetalipoproteinemia?',
+    back: {
+      definition: 'Fat malabsorption',
+      high_yield: 'Acanthocytes',
+      clinical_pearl: 'Vitamin E deficiency'
+    },
+    tags: ['Abetalipoproteinemia', 'Malabsorption', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-38',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'hard',
+    front: 'Protein-losing enteropathy?',
+    back: {
+      definition: 'Loss of protein in stool',
+      high_yield: 'Edema',
+      clinical_pearl: 'Seen in IBD/CHF'
+    },
+    tags: ['Protein-losing enteropathy', 'Malabsorption', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-39',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'hard',
+    front: 'Small-bowel lymphoma risk?',
+    back: {
+      definition: 'Celiac disease',
+      high_yield: 'Chronic inflammation',
+      clinical_pearl: 'T-cell lymphoma'
+    },
+    tags: ['Lymphoma', 'Celiac', 'Cancer', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-40',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'hard',
+    front: 'Angiodysplasia small bowel?',
+    back: {
+      definition: 'Vascular malformation',
+      high_yield: 'Occult GI bleeding',
+      clinical_pearl: 'More common in elderly'
+    },
+    tags: ['Angiodysplasia', 'GI Bleed', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-41',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'hard',
+    front: 'Radiation enteritis?',
+    back: {
+      definition: 'Post-radiation damage',
+      high_yield: 'Chronic diarrhea',
+      clinical_pearl: 'Strictures'
+    },
+    tags: ['Radiation enteritis', 'Iatrogenic', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-42',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'hard',
+    front: 'Post-bariatric surgery SBO?',
+    back: {
+      definition: 'Internal hernia',
+      high_yield: 'Intermittent pain',
+      clinical_pearl: 'Urgent CT'
+    },
+    tags: ['SBO', 'Post-surgical', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-43',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'hard',
+    front: 'Superior mesenteric artery syndrome?',
+    back: {
+      definition: 'Duodenum compression',
+      high_yield: 'Severe weight loss',
+      clinical_pearl: 'Postprandial pain'
+    },
+    tags: ['SMA syndrome', 'Obstruction', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-44',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'hard',
+    front: 'Blind loop syndrome?',
+    back: {
+      definition: 'Stasis → SIBO',
+      high_yield: 'Malabsorption',
+      clinical_pearl: 'Occurs after surgery'
+    },
+    tags: ['Blind loop syndrome', 'SIBO', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-45',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'hard',
+    front: 'Small bowel diverticulosis?',
+    back: {
+      definition: 'Rare outpouchings',
+      high_yield: 'Usually asymptomatic',
+      clinical_pearl: 'Can cause stasis or SIBO'
+    },
+    tags: ['Diverticulosis', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-46',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'hard',
+    front: 'Chronic mesenteric ischemia?',
+    back: {
+      definition: 'Intestinal angina',
+      high_yield: 'Pain after eating',
+      clinical_pearl: 'Weight loss'
+    },
+    tags: ['Mesenteric ischemia', 'Chronic', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-47',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'hard',
+    front: 'Arteriovenous malformation symptom?',
+    back: {
+      definition: 'Intermittent GI bleeding',
+      high_yield: 'Anemia',
+      clinical_pearl: 'May require endoscopic therapy'
+    },
+    tags: ['AVM', 'GI Bleed', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-48',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'hard',
+    front: 'Tropical sprue clue?',
+    back: {
+      definition: 'Traveler with malabsorption',
+      high_yield: 'Chronic diarrhea',
+      clinical_pearl: 'Responds to folate'
+    },
+    tags: ['Tropical sprue', 'Malabsorption', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-49',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'hard',
+    front: 'Whipple disease risk?',
+    back: {
+      definition: 'Untreated → fatal',
+      high_yield: 'Cardiac/neurologic involvement',
+      clinical_pearl: 'Early treatment essential'
+    },
+    tags: ['Whipple', 'Complications', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-small-50',
+    system: 'Gastroenterology',
+    topic: 'Small Bowel Disorders',
+    difficulty: 'hard',
+    front: 'SBO complication?',
+    back: {
+      definition: 'Perforation',
+      high_yield: 'Peritonitis',
+      clinical_pearl: 'High mortality without surgery'
+    },
+    tags: ['SBO', 'Complications', 'Emergency', 'Small Bowel Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
 
   // Large Bowel Disorders - Placeholder for future flashcards
   // This section will contain flashcards related to large bowel disorders
