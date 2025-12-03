@@ -24,6 +24,11 @@ const ENDOCRINE_TOPICS = [
     description: 'Cushing, Addison, adrenal insufficiency'
   },
   {
+    name: 'Pituitary Disorders',
+    icon: 'brain.head.profile',
+    description: 'Prolactinoma, acromegaly, DI, SIADH'
+  },
+  {
     name: 'Calcium and Bone Metabolism',
     icon: 'square.grid.3x3',
     description: 'Hypercalcemia, osteoporosis, PTH disorders'
