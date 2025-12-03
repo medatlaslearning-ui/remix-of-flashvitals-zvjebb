@@ -29,7 +29,7 @@ const ENDOCRINE_TOPICS = [
     description: 'Prolactinoma, acromegaly, DI, SIADH'
   },
   {
-    name: 'Calcium and Bone Metabolism',
+    name: 'Calcium & Bone Metabolism',
     icon: 'square.grid.3x3',
     description: 'Hypercalcemia, osteoporosis, PTH disorders'
   },
