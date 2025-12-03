@@ -324,7 +324,7 @@ export const endocrineFlashcards: Flashcard[] = [
     reviewCount: 0
   },
   
-  // Diabetes Mellitus - Medium Difficulty (21-32)
+  // Diabetes Mellitus - Medium Difficulty (21-35)
   {
     id: 'endo-diabetes-21',
     system: 'Endocrine',
@@ -513,6 +513,296 @@ export const endocrineFlashcards: Flashcard[] = [
       clinical_pearl: 'Painless deformity'
     },
     tags: ['Diabetes', 'Neuropathy', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-diabetes-33',
+    system: 'Endocrine',
+    topic: 'Diabetes Mellitus',
+    difficulty: 'medium',
+    front: 'Diabetic gastroparesis?',
+    back: {
+      definition: 'Delayed gastric emptying',
+      high_yield: 'Nausea + early satiety',
+      clinical_pearl: 'Treat with metoclopramide'
+    },
+    tags: ['Diabetes', 'Gastroparesis', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-diabetes-34',
+    system: 'Endocrine',
+    topic: 'Diabetes Mellitus',
+    difficulty: 'medium',
+    front: 'Foot ulcer risk factors?',
+    back: {
+      definition: 'Neuropathy + vascular disease',
+      high_yield: 'Poor wound healing',
+      clinical_pearl: 'Requires daily foot checks'
+    },
+    tags: ['Diabetes', 'Foot Care', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-diabetes-35',
+    system: 'Endocrine',
+    topic: 'Diabetes Mellitus',
+    difficulty: 'medium',
+    front: 'Insulin pump used for?',
+    back: {
+      definition: 'T1DM with variable control',
+      high_yield: 'Continuous delivery',
+      clinical_pearl: 'Reduces hypoglycemia'
+    },
+    tags: ['Diabetes', 'Insulin Pump', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+
+  // Diabetes Mellitus - Hard Difficulty (36-50)
+  {
+    id: 'endo-diabetes-36',
+    system: 'Endocrine',
+    topic: 'Diabetes Mellitus',
+    difficulty: 'hard',
+    front: 'Euglycemic DKA cause?',
+    back: {
+      definition: 'SGLT2 inhibitors',
+      high_yield: 'Normal glucose',
+      clinical_pearl: 'Still high anion gap'
+    },
+    tags: ['Diabetes', 'DKA', 'SGLT2', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-diabetes-37',
+    system: 'Endocrine',
+    topic: 'Diabetes Mellitus',
+    difficulty: 'hard',
+    front: 'LADA?',
+    back: {
+      definition: 'Latent autoimmune diabetes adults',
+      high_yield: 'Slow-onset T1DM',
+      clinical_pearl: 'Often misdiagnosed as T2DM'
+    },
+    tags: ['Diabetes', 'LADA', 'Diagnosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-diabetes-38',
+    system: 'Endocrine',
+    topic: 'Diabetes Mellitus',
+    difficulty: 'hard',
+    front: 'MODY?',
+    back: {
+      definition: 'Monogenic diabetes',
+      high_yield: 'Young non-obese adults',
+      clinical_pearl: 'Autosomal dominant'
+    },
+    tags: ['Diabetes', 'MODY', 'Genetics'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-diabetes-39',
+    system: 'Endocrine',
+    topic: 'Diabetes Mellitus',
+    difficulty: 'hard',
+    front: 'Honeymoon phase in T1DM?',
+    back: {
+      definition: 'Temporary low insulin need',
+      high_yield: 'Residual β-cell function',
+      clinical_pearl: 'Transient'
+    },
+    tags: ['Diabetes', 'T1DM', 'Pathophysiology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-diabetes-40',
+    system: 'Endocrine',
+    topic: 'Diabetes Mellitus',
+    difficulty: 'hard',
+    front: 'Dawn phenomenon?',
+    back: {
+      definition: 'Morning hyperglycemia',
+      high_yield: 'Early AM hormone surge',
+      clinical_pearl: 'Increase basal insulin'
+    },
+    tags: ['Diabetes', 'Hyperglycemia', 'Management'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-diabetes-41',
+    system: 'Endocrine',
+    topic: 'Diabetes Mellitus',
+    difficulty: 'hard',
+    front: 'Somogyi effect?',
+    back: {
+      definition: 'Rebound hyperglycemia',
+      high_yield: 'Due to nighttime hypoglycemia',
+      clinical_pearl: 'Lower evening insulin'
+    },
+    tags: ['Diabetes', 'Hyperglycemia', 'Management'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-diabetes-42',
+    system: 'Endocrine',
+    topic: 'Diabetes Mellitus',
+    difficulty: 'hard',
+    front: 'Insulin resistance signs?',
+    back: {
+      definition: 'Acanthosis nigricans',
+      high_yield: 'Skin tags',
+      clinical_pearl: 'Metabolic syndrome'
+    },
+    tags: ['Diabetes', 'Insulin Resistance', 'Physical Exam'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-diabetes-43',
+    system: 'Endocrine',
+    topic: 'Diabetes Mellitus',
+    difficulty: 'hard',
+    front: 'Diabetic amyotrophy?',
+    back: {
+      definition: 'Proximal muscle weakness',
+      high_yield: 'Painful',
+      clinical_pearl: 'Improves slowly'
+    },
+    tags: ['Diabetes', 'Neuropathy', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-diabetes-44',
+    system: 'Endocrine',
+    topic: 'Diabetes Mellitus',
+    difficulty: 'hard',
+    front: 'Pancreatogenic diabetes (Type 3c)?',
+    back: {
+      definition: 'From pancreatic disease',
+      high_yield: 'Loss of insulin + glucagon',
+      clinical_pearl: 'Difficult control'
+    },
+    tags: ['Diabetes', 'Type 3c', 'Pathophysiology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-diabetes-45',
+    system: 'Endocrine',
+    topic: 'Diabetes Mellitus',
+    difficulty: 'hard',
+    front: 'Hypoglycemia unawareness?',
+    back: {
+      definition: 'Loss of warning symptoms',
+      high_yield: 'Autonomic neuropathy',
+      clinical_pearl: 'Higher risk of severe events'
+    },
+    tags: ['Diabetes', 'Hypoglycemia', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-diabetes-46',
+    system: 'Endocrine',
+    topic: 'Diabetes Mellitus',
+    difficulty: 'hard',
+    front: 'DKA trigger causes?',
+    back: {
+      definition: 'Infection, MI, missed insulin',
+      high_yield: 'Stress hormones',
+      clinical_pearl: 'Common preventable triggers'
+    },
+    tags: ['Diabetes', 'DKA', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-diabetes-47',
+    system: 'Endocrine',
+    topic: 'Diabetes Mellitus',
+    difficulty: 'hard',
+    front: 'Insulin stacking?',
+    back: {
+      definition: 'Repeated doses too close',
+      high_yield: 'Severe hypoglycemia',
+      clinical_pearl: 'Educate timing'
+    },
+    tags: ['Diabetes', 'Insulin', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-diabetes-48',
+    system: 'Endocrine',
+    topic: 'Diabetes Mellitus',
+    difficulty: 'hard',
+    front: 'HHS fluid requirement?',
+    back: {
+      definition: 'Very high volume depletion',
+      high_yield: 'Large fluid deficits',
+      clinical_pearl: 'Correct slowly'
+    },
+    tags: ['Diabetes', 'HHS', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-diabetes-49',
+    system: 'Endocrine',
+    topic: 'Diabetes Mellitus',
+    difficulty: 'hard',
+    front: 'When to start insulin in T2DM?',
+    back: {
+      definition: 'A1c >10% or glucose >300',
+      high_yield: 'Symptomatic',
+      clinical_pearl: 'Or failure of oral agents'
+    },
+    tags: ['Diabetes', 'T2DM', 'Insulin', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-diabetes-50',
+    system: 'Endocrine',
+    topic: 'Diabetes Mellitus',
+    difficulty: 'hard',
+    front: 'Diabetic kidney disease hallmark?',
+    back: {
+      definition: 'Persistent albuminuria',
+      high_yield: 'Progressive CKD',
+      clinical_pearl: 'ACEi/ARB protective'
+    },
+    tags: ['Diabetes', 'Nephropathy', 'Complications'],
     bookmarked: false,
     favorite: false,
     reviewCount: 0
