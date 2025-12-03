@@ -98,6 +98,8 @@ const MAPPING = {
   "square": "square",
   "square.grid.3x3": "apps",
   "circle": "circle",
+  "circle.hexagongrid": "hexagon",
+  "circle.grid.cross": "grid-view",
   "triangle.fill": "change-history",
   "star.fill": "star",
   "star": "star-border",
@@ -168,6 +170,7 @@ const MAPPING = {
   "lungs.fill": "air",
   "drop.fill": "water-drop",
   "cross.case.fill": "medical-services",
+  "waveform.path.ecg": "monitor-heart",
 } as Partial<
   Record<
     import("expo-symbols").SymbolViewProps["name"],

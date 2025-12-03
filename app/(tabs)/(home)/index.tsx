@@ -47,6 +47,15 @@ export default function HomeScreen() {
     ));
   }, [allFlashcards]);
 
+  // Get unique topics for Endocrine
+  const endocrineTopics = useMemo(() => {
+    return Array.from(new Set(
+      allFlashcards
+        .filter(card => card.system === 'Endocrine')
+        .map(card => card.topic)
+    ));
+  }, [allFlashcards]);
+
   const handleSystemPress = (system: string) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     console.log('Navigating to system:', system);
@@ -58,6 +67,8 @@ export default function HomeScreen() {
       router.push('/(tabs)/(home)/renal-topics');
     } else if (system === 'Gastroenterology') {
       router.push('/(tabs)/(home)/gastroenterology-topics');
+    } else if (system === 'Endocrine') {
+      router.push('/(tabs)/(home)/endocrine-topics');
     }
   };
 
@@ -205,6 +216,25 @@ export default function HomeScreen() {
                 <Text style={styles.systemTitle}>Gastroenterology</Text>
                 <Text style={styles.systemSubtitle}>
                   {allFlashcards.filter(c => c.system === 'Gastroenterology').length} cards • {gastroenterologyTopics.length} topics
+                </Text>
+              </View>
+              <IconSymbol name="chevron.right" size={24} color={colors.textSecondary} />
+            </View>
+          </Pressable>
+
+          {/* Endocrine System */}
+          <Pressable 
+            style={styles.systemCard}
+            onPress={() => handleSystemPress('Endocrine')}
+          >
+            <View style={styles.systemHeader}>
+              <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
+                <IconSymbol name="waveform.path.ecg" size={32} color={colors.secondary} />
+              </View>
+              <View style={styles.systemInfo}>
+                <Text style={styles.systemTitle}>Endocrine</Text>
+                <Text style={styles.systemSubtitle}>
+                  {allFlashcards.filter(c => c.system === 'Endocrine').length} cards • {endocrineTopics.length} topics
                 </Text>
               </View>
               <IconSymbol name="chevron.right" size={24} color={colors.textSecondary} />
