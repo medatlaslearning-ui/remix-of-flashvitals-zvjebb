@@ -1612,5 +1612,505 @@ export const endocrineFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0
+  },
+
+  // Adrenal Disorders - Easy Difficulty (1-20)
+  {
+    id: 'endo-adrenal-1',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'easy',
+    front: 'What is Addison disease?',
+    back: {
+      definition: 'Primary adrenal insufficiency',
+      high_yield: 'Low cortisol + aldosterone',
+      clinical_pearl: 'Hyperpigmentation common'
+    },
+    tags: ['Adrenal', 'Addison', 'Insufficiency'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-2',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'easy',
+    front: 'Symptoms of adrenal insufficiency?',
+    back: {
+      definition: 'Fatigue, weight loss',
+      high_yield: 'Hypotension',
+      clinical_pearl: 'Salt craving'
+    },
+    tags: ['Adrenal', 'Insufficiency', 'Symptoms'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-3',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'easy',
+    front: 'Most common cause of Addison disease?',
+    back: {
+      definition: 'Autoimmune destruction',
+      high_yield: 'Chronic adrenal failure',
+      clinical_pearl: 'High ACTH'
+    },
+    tags: ['Adrenal', 'Addison', 'Etiology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-4',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'easy',
+    front: 'Adrenal crisis?',
+    back: {
+      definition: 'Acute deficiency of cortisol',
+      high_yield: 'Shock + vomiting',
+      clinical_pearl: 'Medical emergency'
+    },
+    tags: ['Adrenal', 'Crisis', 'Emergency'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-5',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'easy',
+    front: 'Best screening test for adrenal insufficiency?',
+    back: {
+      definition: 'AM cortisol',
+      high_yield: 'Low level suspicious',
+      clinical_pearl: 'Confirm with ACTH stim test'
+    },
+    tags: ['Adrenal', 'Insufficiency', 'Diagnosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-6',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'easy',
+    front: 'Cosyntropin test purpose?',
+    back: {
+      definition: 'Evaluates adrenal cortisol response',
+      high_yield: 'No rise = primary insufficiency',
+      clinical_pearl: 'Rise = secondary'
+    },
+    tags: ['Adrenal', 'Diagnosis', 'Testing'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-7',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'easy',
+    front: 'Primary vs secondary adrenal insufficiency clue?',
+    back: {
+      definition: 'Primary = high ACTH',
+      high_yield: 'Secondary = low ACTH',
+      clinical_pearl: 'Hyperpigmentation only in primary'
+    },
+    tags: ['Adrenal', 'Insufficiency', 'Diagnosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-8',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'easy',
+    front: 'Treatment of adrenal crisis?',
+    back: {
+      definition: 'IV hydrocortisone',
+      high_yield: 'Large-volume fluids',
+      clinical_pearl: 'Correct electrolytes'
+    },
+    tags: ['Adrenal', 'Crisis', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-9',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'easy',
+    front: 'Cushing syndrome definition?',
+    back: {
+      definition: 'Excess cortisol',
+      high_yield: 'Various causes',
+      clinical_pearl: 'Weight gain + striae'
+    },
+    tags: ['Adrenal', 'Cushing', 'Definition'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-10',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'easy',
+    front: 'Most common cause of Cushing syndrome?',
+    back: {
+      definition: 'Iatrogenic steroids',
+      high_yield: 'Exogenous cortisol',
+      clinical_pearl: 'Suppresses ACTH'
+    },
+    tags: ['Adrenal', 'Cushing', 'Etiology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-11',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'easy',
+    front: 'Best initial test for Cushing&apos;s?',
+    back: {
+      definition: '1 mg dex suppression',
+      high_yield: 'No suppression = abnormal',
+      clinical_pearl: 'First step in workup'
+    },
+    tags: ['Adrenal', 'Cushing', 'Diagnosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-12',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'easy',
+    front: '24-hour urine cortisol use?',
+    back: {
+      definition: 'Confirms hypercortisolism',
+      high_yield: 'High sensitivity',
+      clinical_pearl: 'Second-line test'
+    },
+    tags: ['Adrenal', 'Cushing', 'Diagnosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-13',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'easy',
+    front: 'Midnight salivary cortisol?',
+    back: {
+      definition: 'Screening tool',
+      high_yield: 'Should be low',
+      clinical_pearl: 'Elevated = Cushing&apos;s'
+    },
+    tags: ['Adrenal', 'Cushing', 'Diagnosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-14',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'easy',
+    front: 'Cushing disease?',
+    back: {
+      definition: 'Pituitary ACTH hypersecretion',
+      high_yield: 'Bilateral adrenal stimulation',
+      clinical_pearl: 'Responsive to surgery'
+    },
+    tags: ['Adrenal', 'Cushing', 'Pituitary'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-15',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'easy',
+    front: 'Adrenal adenoma cause?',
+    back: {
+      definition: 'Cortisol-producing tumor',
+      high_yield: 'Low ACTH',
+      clinical_pearl: 'Unilateral removal'
+    },
+    tags: ['Adrenal', 'Adenoma', 'Cushing'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-16',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'easy',
+    front: 'Symptoms of hypercortisolism?',
+    back: {
+      definition: 'Central obesity',
+      high_yield: 'Purple striae',
+      clinical_pearl: 'Proximal muscle weakness'
+    },
+    tags: ['Adrenal', 'Cushing', 'Symptoms'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-17',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'easy',
+    front: 'Primary hyperaldosteronism cause?',
+    back: {
+      definition: 'Adrenal adenoma or hyperplasia',
+      high_yield: 'Excess aldosterone',
+      clinical_pearl: 'HTN + hypokalemia'
+    },
+    tags: ['Adrenal', 'Hyperaldosteronism', 'Etiology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-18',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'easy',
+    front: 'Classic hyperaldosteronism labs?',
+    back: {
+      definition: 'High aldosterone',
+      high_yield: 'Low renin',
+      clinical_pearl: 'Metabolic alkalosis'
+    },
+    tags: ['Adrenal', 'Hyperaldosteronism', 'Labs'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-19',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'easy',
+    front: 'Conn syndrome?',
+    back: {
+      definition: 'Aldosterone-producing adenoma',
+      high_yield: 'Surgical cure',
+      clinical_pearl: 'Hypokalemia hallmark'
+    },
+    tags: ['Adrenal', 'Conn', 'Hyperaldosteronism'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-20',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'easy',
+    front: 'Pheochromocytoma origin?',
+    back: {
+      definition: 'Chromaffin cells',
+      high_yield: 'Catecholamine tumor',
+      clinical_pearl: 'Headache + sweating + palpitations'
+    },
+    tags: ['Adrenal', 'Pheochromocytoma', 'Tumor'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-21',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'easy',
+    front: 'Best initial test for pheochromocytoma?',
+    back: {
+      definition: 'Plasma metanephrines',
+      high_yield: 'High sensitivity',
+      clinical_pearl: 'Confirm with urine metanephrines'
+    },
+    tags: ['Adrenal', 'Pheochromocytoma', 'Diagnosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-22',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'easy',
+    front: 'Pheochromocytoma treatment?',
+    back: {
+      definition: 'α-blocker first',
+      high_yield: 'Then β-blocker',
+      clinical_pearl: 'Then surgery'
+    },
+    tags: ['Adrenal', 'Pheochromocytoma', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-23',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'easy',
+    front: 'Adrenal incidentaloma?',
+    back: {
+      definition: 'Adrenal mass found on imaging',
+      high_yield: 'Evaluate hormones',
+      clinical_pearl: 'Assess malignancy risk'
+    },
+    tags: ['Adrenal', 'Incidentaloma', 'Diagnosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-24',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'easy',
+    front: 'Congenital adrenal hyperplasia cause?',
+    back: {
+      definition: '21-hydroxylase deficiency',
+      high_yield: 'Low cortisol + aldosterone',
+      clinical_pearl: 'High androgens'
+    },
+    tags: ['Adrenal', 'CAH', 'Genetics'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-25',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'easy',
+    front: 'CAH symptoms?',
+    back: {
+      definition: 'Virilization',
+      high_yield: 'Salt-wasting',
+      clinical_pearl: 'Newborn screening important'
+    },
+    tags: ['Adrenal', 'CAH', 'Symptoms'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-26',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'easy',
+    front: 'Steroid withdrawal risk?',
+    back: {
+      definition: 'Adrenal suppression',
+      high_yield: 'Low endogenous cortisol',
+      clinical_pearl: 'Gradual taper required'
+    },
+    tags: ['Adrenal', 'Steroids', 'Withdrawal'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+
+  // Adrenal Disorders - Medium Difficulty (27-31)
+  {
+    id: 'endo-adrenal-27',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'medium',
+    front: 'Cushing physical signs?',
+    back: {
+      definition: 'Moon facies',
+      high_yield: 'Buffalo hump',
+      clinical_pearl: 'Easy bruising'
+    },
+    tags: ['Adrenal', 'Cushing', 'Physical Exam'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-28',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'medium',
+    front: 'Hyperaldosteronism hypertension?',
+    back: {
+      definition: 'Resistant HTN',
+      high_yield: 'Usually moderate-severe',
+      clinical_pearl: 'Low renin confirms'
+    },
+    tags: ['Adrenal', 'Hyperaldosteronism', 'Hypertension'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-29',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'medium',
+    front: 'Spironolactone use?',
+    back: {
+      definition: 'Aldosterone antagonist',
+      high_yield: 'Treats hyperaldosteronism',
+      clinical_pearl: 'Gynecomastia side effect'
+    },
+    tags: ['Adrenal', 'Hyperaldosteronism', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-30',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'medium',
+    front: 'Adrenal carcinoma clue?',
+    back: {
+      definition: 'Large irregular mass',
+      high_yield: 'Hormone excess',
+      clinical_pearl: 'Poor prognosis'
+    },
+    tags: ['Adrenal', 'Carcinoma', 'Cancer'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-31',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'medium',
+    front: 'Secondary adrenal insufficiency cause?',
+    back: {
+      definition: 'Pituitary disease',
+      high_yield: 'Low ACTH',
+      clinical_pearl: 'No hyperpigmentation'
+    },
+    tags: ['Adrenal', 'Insufficiency', 'Secondary'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
   }
 ];
