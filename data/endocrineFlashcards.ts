@@ -3738,5 +3738,295 @@ export const endocrineFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0
+  },
+
+  // Calcium & Bone Metabolism - Medium/Hard Difficulty (33-50) - THE MISSING 18 FLASHCARDS
+  {
+    id: 'endo-calcium-33',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'medium',
+    front: 'Hypomagnesemia effect on Ca?',
+    back: {
+      definition: 'Causes hypocalcemia',
+      high_yield: 'Impaired PTH secretion',
+      clinical_pearl: 'Correct Mg first'
+    },
+    tags: ['Calcium', 'Hypocalcemia', 'Magnesium'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-34',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'medium',
+    front: 'CKD mineral bone disorder?',
+    back: {
+      definition: 'Secondary hyperparathyroidism',
+      high_yield: 'High phosphate',
+      clinical_pearl: 'Low vitamin D'
+    },
+    tags: ['Calcium', 'CKD', 'Bone'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-35',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'medium',
+    front: 'Calcium correction for albumin?',
+    back: {
+      definition: 'Corrected Ca = measured + 0.8(4 – albumin)',
+      high_yield: 'Important in low albumin states',
+      clinical_pearl: 'Identifies true Ca level'
+    },
+    tags: ['Calcium', 'Labs', 'Albumin'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-36',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'medium',
+    front: 'Phosphate in hyperparathyroidism?',
+    back: {
+      definition: 'Low',
+      high_yield: 'Due to renal wasting',
+      clinical_pearl: 'PTH effect'
+    },
+    tags: ['Calcium', 'Hyperparathyroidism', 'Phosphate'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-37',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'hard',
+    front: 'Pseudohypoparathyroidism?',
+    back: {
+      definition: 'End-organ resistance to PTH',
+      high_yield: 'High PTH',
+      clinical_pearl: 'Low Ca, high phosphate'
+    },
+    tags: ['Calcium', 'Pseudohypoparathyroidism', 'PTH'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-38',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'hard',
+    front: 'Albright hereditary osteodystrophy?',
+    back: {
+      definition: 'Short stature + round face',
+      high_yield: 'Associated with pseudohypoparathyroidism',
+      clinical_pearl: 'Maternal inheritance'
+    },
+    tags: ['Calcium', 'Albright', 'Genetic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-39',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'hard',
+    front: 'Tumor lysis syndrome calcium?',
+    back: {
+      definition: 'Low Ca',
+      high_yield: 'High phosphate',
+      clinical_pearl: 'Occurs after chemo'
+    },
+    tags: ['Calcium', 'Tumor Lysis', 'Oncology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-40',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'hard',
+    front: 'Immobilization hypercalcemia?',
+    back: {
+      definition: 'Increased bone resorption',
+      high_yield: 'Common in young immobilized patients',
+      clinical_pearl: 'Treat with mobilization + bisphosphonates'
+    },
+    tags: ['Calcium', 'Hypercalcemia', 'Immobilization'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-41',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'hard',
+    front: 'Sarcoidosis + calcium?',
+    back: {
+      definition: 'High Ca',
+      high_yield: 'High vitamin D activity',
+      clinical_pearl: 'Noncaseating granulomas produce vitamin D'
+    },
+    tags: ['Calcium', 'Sarcoidosis', 'Hypercalcemia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-42',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'hard',
+    front: 'Thiazide diuretics calcium effect?',
+    back: {
+      definition: 'Increase Ca reabsorption',
+      high_yield: 'Risk hypercalcemia',
+      clinical_pearl: 'Useful in kidney stones'
+    },
+    tags: ['Calcium', 'Thiazides', 'Medications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-43',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'hard',
+    front: 'Loop diuretics calcium effect?',
+    back: {
+      definition: 'Increase Ca excretion',
+      high_yield: 'Can treat hypercalcemia',
+      clinical_pearl: 'Opposite of thiazides'
+    },
+    tags: ['Calcium', 'Loop Diuretics', 'Medications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-44',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'hard',
+    front: 'Calciphylaxis?',
+    back: {
+      definition: 'Vascular calcification',
+      high_yield: 'Painful necrotic skin lesions',
+      clinical_pearl: 'Seen in ESRD'
+    },
+    tags: ['Calcium', 'Calciphylaxis', 'CKD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-45',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'hard',
+    front: 'Osteogenesis imperfecta?',
+    back: {
+      definition: 'Type I collagen defect',
+      high_yield: 'Fragile bones',
+      clinical_pearl: 'Blue sclera'
+    },
+    tags: ['Bone', 'Osteogenesis Imperfecta', 'Genetic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-46',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'hard',
+    front: 'Multiple myeloma calcium effect?',
+    back: {
+      definition: 'High Ca',
+      high_yield: 'Bone pain',
+      clinical_pearl: 'Elevated protein gap'
+    },
+    tags: ['Calcium', 'Multiple Myeloma', 'Hypercalcemia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-47',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'hard',
+    front: 'Hypocalcemia in pancreatitis?',
+    back: {
+      definition: 'Fat saponification',
+      high_yield: 'Low Ca',
+      clinical_pearl: 'Poor prognostic sign'
+    },
+    tags: ['Calcium', 'Pancreatitis', 'Hypocalcemia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-48',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'hard',
+    front: 'Phosphate in tumor-induced osteomalacia?',
+    back: {
+      definition: 'Low phosphate',
+      high_yield: 'FGF23 mediated',
+      clinical_pearl: 'Leads to bone pain'
+    },
+    tags: ['Bone', 'Osteomalacia', 'Tumor'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-49',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'hard',
+    front: 'Bisphosphonate holiday?',
+    back: {
+      definition: 'After 3–5 years',
+      high_yield: 'Reduce jaw necrosis/atypical fractures',
+      clinical_pearl: 'For low-risk patients'
+    },
+    tags: ['Bone', 'Bisphosphonates', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-50',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'hard',
+    front: 'Dexa scan frequency?',
+    back: {
+      definition: 'Every 2 yrs',
+      high_yield: 'Monitor treatment',
+      clinical_pearl: 'Earlier if high risk'
+    },
+    tags: ['Bone', 'Osteoporosis', 'Screening'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
   }
 ];
