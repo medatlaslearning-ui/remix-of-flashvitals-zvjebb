@@ -1,3 +1,4 @@
+
 // This file is a fallback for using MaterialIcons on Android and web.
 
 import React from "react";
@@ -78,6 +79,7 @@ const MAPPING = {
   "speaker.wave.2.fill": "volume-up",
   "speaker.slash.fill": "volume-off",
   "play.fill": "play-arrow",
+  "play.circle.fill": "play-circle-filled",
   "pause.fill": "pause",
   "stop.fill": "stop",
 
@@ -161,6 +163,11 @@ const MAPPING = {
   "lightbulb.fill": "lightbulb",
   "moon.fill": "dark-mode",
   "sun.max.fill": "light-mode",
+
+  // Medical & Health Icons (for MedCards app)
+  "lungs.fill": "air",
+  "drop.fill": "water-drop",
+  "cross.case.fill": "medical-services",
 } as Partial<
   Record<
     import("expo-symbols").SymbolViewProps["name"],
@@ -187,11 +194,14 @@ export function IconSymbol({
   style?: StyleProp<ViewStyle>;
   weight?: SymbolWeight;
 }) {
+  // Fallback to a default icon if mapping doesn't exist
+  const iconName = MAPPING[name] || "help-outline";
+  
   return (
     <MaterialIcons
       color={color}
       size={size}
-      name={MAPPING[name]}
+      name={iconName}
       style={style as StyleProp<TextStyle>}
     />
   );
