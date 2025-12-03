@@ -7,20 +7,16 @@ import { useFlashcards } from '@/hooks/useFlashcards';
 import { IconSymbol } from '@/components/IconSymbol';
 
 export default function ProfileScreen() {
-  console.log('ProfileScreen rendering...');
-  const { allFlashcards } = useFlashcards();
+  const { flashcards, getBookmarkedFlashcards, getFavoriteFlashcards } = useFlashcards();
 
-  const getBookmarkedFlashcards = () => allFlashcards.filter(card => card.bookmarked);
-  const getFavoriteFlashcards = () => allFlashcards.filter(card => card.favorite);
-
-  const totalReviews = allFlashcards.reduce((sum, card) => sum + (card.reviewCount || 0), 0);
-  const reviewedCards = allFlashcards.filter(c => (c.reviewCount || 0) > 0).length;
+  const totalReviews = flashcards.reduce((sum, card) => sum + card.reviewCount, 0);
+  const reviewedCards = flashcards.filter(c => c.reviewCount > 0).length;
   const averageReviews = reviewedCards > 0 ? Math.round(totalReviews / reviewedCards) : 0;
 
   const stats = [
     {
       label: 'Total Cards',
-      value: allFlashcards.length,
+      value: flashcards.length,
       icon: 'square.stack.3d.up.fill',
       color: colors.primary,
     },
@@ -57,10 +53,10 @@ export default function ProfileScreen() {
   ];
 
   const topicBreakdown = [
-    { name: 'Arrhythmias', count: allFlashcards.filter(c => c.topic === 'Arrhythmias').length },
-    { name: 'Heart Failure', count: allFlashcards.filter(c => c.topic === 'Heart Failure').length },
-    { name: 'Ischemic Heart Disease', count: allFlashcards.filter(c => c.topic === 'Ischemic Heart Disease').length },
-    { name: 'Valvular Disease', count: allFlashcards.filter(c => c.topic === 'Valvular Disease').length },
+    { name: 'Arrhythmias', count: flashcards.filter(c => c.topic === 'Arrhythmias').length },
+    { name: 'Heart Failure', count: flashcards.filter(c => c.topic === 'Heart Failure').length },
+    { name: 'Ischemic Heart Disease', count: flashcards.filter(c => c.topic === 'Ischemic Heart Disease').length },
+    { name: 'Valvular Disease', count: flashcards.filter(c => c.topic === 'Valvular Disease').length },
   ];
 
   return (
@@ -104,8 +100,8 @@ export default function ProfileScreen() {
           <Text style={styles.sectionTitle}>Topic Breakdown</Text>
           <View style={styles.topicList}>
             {topicBreakdown.map((topic, index) => {
-              const percentage = allFlashcards.length > 0 
-                ? Math.round((topic.count / allFlashcards.length) * 100) 
+              const percentage = flashcards.length > 0 
+                ? Math.round((topic.count / flashcards.length) * 100) 
                 : 0;
               
               return (

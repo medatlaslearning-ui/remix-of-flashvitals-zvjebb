@@ -2,7 +2,7 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { NativeTabs, Icon, Label } from 'expo-router/unstable-native-tabs';
-import { Tabs } from 'expo-router';
+import { Stack } from 'expo-router';
 import FloatingTabBar, { TabBarItem } from '@/components/FloatingTabBar';
 import { colors } from '@/styles/commonStyles';
 
@@ -41,28 +41,18 @@ export default function TabLayout() {
     );
   }
 
-  // For Android and Web, use Tabs with custom tab bar
   return (
     <>
-      <Tabs
+      <Stack
         screenOptions={{
           headerShown: false,
+          animation: 'none',
         }}
-        tabBar={() => <FloatingTabBar tabs={tabs} />}
       >
-        <Tabs.Screen
-          name="(home)"
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Tabs.Screen
-          name="profile"
-          options={{
-            headerShown: false,
-          }}
-        />
-      </Tabs>
+        <Stack.Screen name="(home)" />
+        <Stack.Screen name="profile" />
+      </Stack>
+      <FloatingTabBar tabs={tabs} />
     </>
   );
 }

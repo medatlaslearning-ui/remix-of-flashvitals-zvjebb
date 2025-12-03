@@ -1,4 +1,3 @@
-
 // This file is a fallback for using MaterialIcons on Android and web.
 
 import React from "react";
@@ -79,7 +78,6 @@ const MAPPING = {
   "speaker.wave.2.fill": "volume-up",
   "speaker.slash.fill": "volume-off",
   "play.fill": "play-arrow",
-  "play.circle.fill": "play-circle-filled",
   "pause.fill": "pause",
   "stop.fill": "stop",
 
@@ -97,16 +95,12 @@ const MAPPING = {
   // Shapes & Symbols
   "square": "square",
   "square.grid.3x3": "apps",
-  "square.stack.3d.up.fill": "layers",
   "circle": "circle",
   "triangle.fill": "change-history",
   "star.fill": "star",
   "star": "star-border",
   "bookmark.fill": "bookmark",
   "bookmark": "bookmark-border",
-  "flame.fill": "local-fire-department",
-  "trophy.fill": "emoji-events",
-  "bolt.fill": "bolt",
 
   // Technology & Code
   "chevron.left.forwardslash.chevron.right": "code",
@@ -167,13 +161,6 @@ const MAPPING = {
   "lightbulb.fill": "lightbulb",
   "moon.fill": "dark-mode",
   "sun.max.fill": "light-mode",
-
-  // Medical & Health Icons
-  "lungs.fill": "air",
-  "drop.fill": "water-drop",
-  "cross.case.fill": "medical-services",
-  "waveform.path.ecg": "monitor-heart",
-  "chart.bar.fill": "bar-chart",
 } as Partial<
   Record<
     import("expo-symbols").SymbolViewProps["name"],

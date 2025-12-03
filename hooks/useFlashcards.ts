@@ -16,7 +16,6 @@ export function useFlashcards() {
 
   // Load flashcards from storage on mount
   useEffect(() => {
-    console.log('useFlashcards: Loading flashcards...');
     loadFlashcards();
   }, []);
 
@@ -24,7 +23,6 @@ export function useFlashcards() {
     try {
       const stored = await AsyncStorage.getItem(STORAGE_KEY);
       if (stored) {
-        console.log('useFlashcards: Found stored flashcards');
         const storedCards = JSON.parse(stored);
         // Merge stored state with base flashcards
         const merged = mergeFlashcards([
@@ -34,30 +32,25 @@ export function useFlashcards() {
           ...gastroenterologyFlashcards,
           ...endocrineFlashcards
         ], storedCards);
-        console.log('useFlashcards: Merged flashcards count:', merged.length);
         setAllFlashcards(merged);
       } else {
-        console.log('useFlashcards: No stored flashcards, using defaults');
-        const defaultCards = [
+        setAllFlashcards([
           ...cardiologyFlashcards,
           ...pulmonaryFlashcards,
           ...renalFlashcards,
           ...gastroenterologyFlashcards,
           ...endocrineFlashcards
-        ];
-        console.log('useFlashcards: Default flashcards count:', defaultCards.length);
-        setAllFlashcards(defaultCards);
+        ]);
       }
     } catch (error) {
       console.error('Error loading flashcards:', error);
-      const defaultCards = [
+      setAllFlashcards([
         ...cardiologyFlashcards,
         ...pulmonaryFlashcards,
         ...renalFlashcards,
         ...gastroenterologyFlashcards,
         ...endocrineFlashcards
-      ];
-      setAllFlashcards(defaultCards);
+      ]);
     }
   };
 
@@ -80,14 +73,12 @@ export function useFlashcards() {
   const saveFlashcards = async (cards: Flashcard[]) => {
     try {
       await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(cards));
-      console.log('useFlashcards: Saved flashcards to storage');
     } catch (error) {
       console.error('Error saving flashcards:', error);
     }
   };
 
   const updateFlashcard = async (id: string, updates: Partial<Flashcard>) => {
-    console.log('useFlashcards: Updating flashcard', id, updates);
     const updated = allFlashcards.map(card =>
       card.id === id ? { ...card, ...updates } : card
     );
