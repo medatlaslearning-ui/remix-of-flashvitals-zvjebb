@@ -806,5 +806,521 @@ export const endocrineFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0
+  },
+
+  // Thyroid Disorders - Easy Difficulty (1-20)
+  {
+    id: 'endo-thyroid-1',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'easy',
+    front: 'Most common cause of hypothyroidism in U.S.?',
+    back: {
+      definition: 'Hashimoto thyroiditis',
+      high_yield: 'Autoimmune destruction',
+      clinical_pearl: 'High TSH, low free T4'
+    },
+    tags: ['Thyroid', 'Hypothyroidism', 'Hashimoto'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-2',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'easy',
+    front: 'Most common cause of hyperthyroidism?',
+    back: {
+      definition: 'Graves disease',
+      high_yield: 'TSH-receptor antibodies',
+      clinical_pearl: 'Diffuse goiter + symptoms'
+    },
+    tags: ['Thyroid', 'Hyperthyroidism', 'Graves'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-3',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'easy',
+    front: 'Symptoms of hypothyroidism?',
+    back: {
+      definition: 'Fatigue, weight gain',
+      high_yield: 'Cold intolerance',
+      clinical_pearl: 'Constipation'
+    },
+    tags: ['Thyroid', 'Hypothyroidism', 'Symptoms'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-4',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'easy',
+    front: 'Symptoms of hyperthyroidism?',
+    back: {
+      definition: 'Weight loss + heat intolerance',
+      high_yield: 'Tremor + tachycardia',
+      clinical_pearl: 'Anxiety'
+    },
+    tags: ['Thyroid', 'Hyperthyroidism', 'Symptoms'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-5',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'easy',
+    front: 'Best screening test for thyroid disease?',
+    back: {
+      definition: 'TSH',
+      high_yield: 'High = hypo',
+      clinical_pearl: 'Low = hyper'
+    },
+    tags: ['Thyroid', 'Diagnosis', 'TSH'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-6',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'easy',
+    front: 'Hashimoto hallmark antibody?',
+    back: {
+      definition: 'Anti-TPO antibodies',
+      high_yield: 'Hypothyroidism',
+      clinical_pearl: 'Painless goiter'
+    },
+    tags: ['Thyroid', 'Hashimoto', 'Antibodies'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-7',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'easy',
+    front: 'Graves hallmark findings?',
+    back: {
+      definition: 'Exophthalmos',
+      high_yield: 'Pretibial myxedema',
+      clinical_pearl: 'Diffuse toxic goiter'
+    },
+    tags: ['Thyroid', 'Graves', 'Physical Exam'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-8',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'easy',
+    front: 'Graves stimulating antibody?',
+    back: {
+      definition: 'TSI (thyroid-stimulating immunoglobulin)',
+      high_yield: 'Overstimulates TSH receptor',
+      clinical_pearl: 'Primary hyperthyroidism'
+    },
+    tags: ['Thyroid', 'Graves', 'Antibodies'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-9',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'easy',
+    front: 'Subclinical hypothyroidism?',
+    back: {
+      definition: 'High TSH, normal T4',
+      high_yield: 'Mild thyroid failure',
+      clinical_pearl: 'Monitor or treat if symptomatic'
+    },
+    tags: ['Thyroid', 'Hypothyroidism', 'Diagnosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-10',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'easy',
+    front: 'Thyroid nodule first test?',
+    back: {
+      definition: 'TSH level',
+      high_yield: 'Helps decide imaging',
+      clinical_pearl: 'Low TSH → scan'
+    },
+    tags: ['Thyroid', 'Nodule', 'Diagnosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-11',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'easy',
+    front: 'Nodule with low TSH next step?',
+    back: {
+      definition: 'Radionuclide uptake scan',
+      high_yield: 'Hot vs cold nodule',
+      clinical_pearl: 'Cold more suspicious'
+    },
+    tags: ['Thyroid', 'Nodule', 'Imaging'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-12',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'easy',
+    front: 'Most suspicious nodule finding?',
+    back: {
+      definition: 'Hypoechoic, solid',
+      high_yield: 'Microcalcifications',
+      clinical_pearl: 'Irregular margins'
+    },
+    tags: ['Thyroid', 'Nodule', 'Ultrasound'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-13',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'easy',
+    front: 'Most common thyroid cancer?',
+    back: {
+      definition: 'Papillary carcinoma',
+      high_yield: 'Excellent prognosis',
+      clinical_pearl: 'Orphan Annie nuclei'
+    },
+    tags: ['Thyroid', 'Cancer', 'Papillary'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-14',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'easy',
+    front: 'Medullary thyroid cancer marker?',
+    back: {
+      definition: 'Calcitonin',
+      high_yield: 'MEN2 association',
+      clinical_pearl: 'Neuroendocrine tumor'
+    },
+    tags: ['Thyroid', 'Cancer', 'Medullary'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-15',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'easy',
+    front: 'Anaplastic thyroid cancer?',
+    back: {
+      definition: 'Highly aggressive',
+      high_yield: 'Rapid growth',
+      clinical_pearl: 'Poor prognosis'
+    },
+    tags: ['Thyroid', 'Cancer', 'Anaplastic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-16',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'easy',
+    front: 'Thyroid storm symptoms?',
+    back: {
+      definition: 'Fever + tachycardia',
+      high_yield: 'AMS + hyperthyroid state',
+      clinical_pearl: 'Life-threatening'
+    },
+    tags: ['Thyroid', 'Thyroid Storm', 'Emergency'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-17',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'easy',
+    front: 'Myxedema coma symptoms?',
+    back: {
+      definition: 'Severe hypothyroidism',
+      high_yield: 'Hypothermia + bradycardia',
+      clinical_pearl: 'AMS'
+    },
+    tags: ['Thyroid', 'Myxedema Coma', 'Emergency'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-18',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'easy',
+    front: 'First-line Graves treatment?',
+    back: {
+      definition: 'Methimazole',
+      high_yield: 'Except in pregnancy',
+      clinical_pearl: 'Blocks hormone synthesis'
+    },
+    tags: ['Thyroid', 'Graves', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-19',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'easy',
+    front: 'Treatment for hypothyroidism?',
+    back: {
+      definition: 'Levothyroxine',
+      high_yield: 'Daily dosing',
+      clinical_pearl: 'Adjust by TSH'
+    },
+    tags: ['Thyroid', 'Hypothyroidism', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-20',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'easy',
+    front: 'Postpartum thyroiditis?',
+    back: {
+      definition: 'Transient hyper → hypo',
+      high_yield: 'Autoimmune',
+      clinical_pearl: 'Self-limited'
+    },
+    tags: ['Thyroid', 'Thyroiditis', 'Postpartum'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+
+  // Thyroid Disorders - Medium Difficulty (21-32)
+  {
+    id: 'endo-thyroid-21',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'medium',
+    front: 'TSH in primary hypothyroidism?',
+    back: {
+      definition: 'High',
+      high_yield: 'Low T4',
+      clinical_pearl: 'Thyroid gland failure'
+    },
+    tags: ['Thyroid', 'Hypothyroidism', 'Labs'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-22',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'medium',
+    front: 'TSH in secondary hypothyroidism?',
+    back: {
+      definition: 'Low or inappropriately normal',
+      high_yield: 'Low T4',
+      clinical_pearl: 'Pituitary failure'
+    },
+    tags: ['Thyroid', 'Hypothyroidism', 'Labs'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-23',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'medium',
+    front: 'Radioactive iodine uptake in Graves?',
+    back: {
+      definition: 'Diffuse high uptake',
+      high_yield: 'Hyperfunctioning gland',
+      clinical_pearl: 'Diagnostic'
+    },
+    tags: ['Thyroid', 'Graves', 'Imaging'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-24',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'medium',
+    front: 'Toxic multinodular goiter?',
+    back: {
+      definition: 'Multiple hyperfunctioning nodules',
+      high_yield: 'Elderly',
+      clinical_pearl: 'High uptake in patches'
+    },
+    tags: ['Thyroid', 'Goiter', 'Hyperthyroidism'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-25',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'medium',
+    front: 'Thyroiditis uptake pattern?',
+    back: {
+      definition: 'Low uptake',
+      high_yield: 'Inflammation',
+      clinical_pearl: 'Not hyperfunctioning'
+    },
+    tags: ['Thyroid', 'Thyroiditis', 'Imaging'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-26',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'medium',
+    front: 'Thyroid storm treatment?',
+    back: {
+      definition: 'Beta-blocker, PTU',
+      high_yield: 'Steroids + cooling',
+      clinical_pearl: 'Life-threatening emergency'
+    },
+    tags: ['Thyroid', 'Thyroid Storm', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-27',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'medium',
+    front: 'Myxedema coma treatment?',
+    back: {
+      definition: 'IV levothyroxine',
+      high_yield: 'Warm fluids',
+      clinical_pearl: 'ICU care'
+    },
+    tags: ['Thyroid', 'Myxedema Coma', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-28',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'medium',
+    front: 'Hoarseness and thyroid nodule?',
+    back: {
+      definition: 'Recurrent laryngeal nerve involvement',
+      high_yield: 'Cancer concern',
+      clinical_pearl: 'Needs urgent evaluation'
+    },
+    tags: ['Thyroid', 'Nodule', 'Cancer'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-29',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'medium',
+    front: 'Goiter cause?',
+    back: {
+      definition: 'TSH stimulation',
+      high_yield: 'Iodine deficiency',
+      clinical_pearl: 'Autoimmune disease'
+    },
+    tags: ['Thyroid', 'Goiter', 'Pathophysiology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-30',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'medium',
+    front: 'Iodine deficiency effect?',
+    back: {
+      definition: 'Goiter',
+      high_yield: 'Hypothyroidism',
+      clinical_pearl: 'Common worldwide'
+    },
+    tags: ['Thyroid', 'Iodine', 'Goiter'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-31',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'medium',
+    front: 'Subacute (de Quervain) thyroiditis?',
+    back: {
+      definition: 'Painful thyroid',
+      high_yield: 'Viral cause',
+      clinical_pearl: 'Elevated ESR'
+    },
+    tags: ['Thyroid', 'Thyroiditis', 'Subacute'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-32',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'medium',
+    front: 'Riedel thyroiditis?',
+    back: {
+      definition: 'Fibrous replacement',
+      high_yield: 'Hard "woody" thyroid',
+      clinical_pearl: 'Compresses structures'
+    },
+    tags: ['Thyroid', 'Thyroiditis', 'Riedel'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
   }
 ];
