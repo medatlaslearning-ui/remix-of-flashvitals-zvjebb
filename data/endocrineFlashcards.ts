@@ -2418,5 +2418,521 @@ export const endocrineFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0
+  },
+
+  // Pituitary Disorders - Easy Difficulty (1-20)
+  {
+    id: 'endo-pituitary-1',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'easy',
+    front: 'Most common pituitary adenoma?',
+    back: {
+      definition: 'Prolactinoma',
+      high_yield: 'High prolactin',
+      clinical_pearl: 'Galactorrhea + amenorrhea'
+    },
+    tags: ['Pituitary', 'Prolactinoma', 'Adenoma'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-2',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'easy',
+    front: 'Prolactinoma symptoms in men?',
+    back: {
+      definition: 'Low libido',
+      high_yield: 'Erectile dysfunction',
+      clinical_pearl: 'Gynecomastia sometimes'
+    },
+    tags: ['Pituitary', 'Prolactinoma', 'Symptoms'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-3',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'easy',
+    front: 'Prolactinoma treatment?',
+    back: {
+      definition: 'Dopamine agonists',
+      high_yield: 'Cabergoline preferred',
+      clinical_pearl: 'Shrinks tumor'
+    },
+    tags: ['Pituitary', 'Prolactinoma', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-4',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'easy',
+    front: 'Acromegaly cause?',
+    back: {
+      definition: 'GH-secreting adenoma',
+      high_yield: 'High IGF-1',
+      clinical_pearl: 'Large hands/feet'
+    },
+    tags: ['Pituitary', 'Acromegaly', 'GH'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-5',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'easy',
+    front: 'Best test for acromegaly?',
+    back: {
+      definition: 'IGF-1 level',
+      high_yield: 'Confirm with glucose suppression test',
+      clinical_pearl: 'Fails to suppress GH'
+    },
+    tags: ['Pituitary', 'Acromegaly', 'Diagnosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-6',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'easy',
+    front: 'Acromegaly symptoms?',
+    back: {
+      definition: 'Coarse facial features',
+      high_yield: 'Joint pain',
+      clinical_pearl: 'Organ enlargement'
+    },
+    tags: ['Pituitary', 'Acromegaly', 'Symptoms'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-7',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'easy',
+    front: 'Central diabetes insipidus?',
+    back: {
+      definition: 'Low ADH production',
+      high_yield: 'Polyuria + polydipsia',
+      clinical_pearl: 'High serum Na'
+    },
+    tags: ['Pituitary', 'Diabetes Insipidus', 'ADH'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-8',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'easy',
+    front: 'Nephrogenic DI?',
+    back: {
+      definition: 'Kidneys unresponsive to ADH',
+      high_yield: 'Normal ADH',
+      clinical_pearl: 'Caused by lithium'
+    },
+    tags: ['Pituitary', 'Diabetes Insipidus', 'Nephrogenic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-9',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'easy',
+    front: 'DI best initial test?',
+    back: {
+      definition: 'Water deprivation test',
+      high_yield: 'Urine stays dilute',
+      clinical_pearl: 'Distinguish central vs nephrogenic'
+    },
+    tags: ['Pituitary', 'Diabetes Insipidus', 'Diagnosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-10',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'easy',
+    front: 'DI treatment?',
+    back: {
+      definition: 'Central = desmopressin',
+      high_yield: 'Nephrogenic = thiazides',
+      clinical_pearl: 'Low solute diet'
+    },
+    tags: ['Pituitary', 'Diabetes Insipidus', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-11',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'easy',
+    front: 'SIADH cause?',
+    back: {
+      definition: 'Excess ADH',
+      high_yield: 'Hyponatremia',
+      clinical_pearl: 'Low serum osmolality'
+    },
+    tags: ['Pituitary', 'SIADH', 'ADH'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-12',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'easy',
+    front: 'SIADH treatment?',
+    back: {
+      definition: 'Fluid restriction',
+      high_yield: 'Salt tablets',
+      clinical_pearl: 'Vaptans if severe'
+    },
+    tags: ['Pituitary', 'SIADH', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-13',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'easy',
+    front: 'Cushing disease cause?',
+    back: {
+      definition: 'Pituitary ACTH overproduction',
+      high_yield: 'Leads to hypercortisolism',
+      clinical_pearl: 'Treat with surgery'
+    },
+    tags: ['Pituitary', 'Cushing Disease', 'ACTH'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-14',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'easy',
+    front: 'Hypopituitarism?',
+    back: {
+      definition: 'Low pituitary hormones',
+      high_yield: 'Fatigue + amenorrhea',
+      clinical_pearl: 'Multiple deficiencies'
+    },
+    tags: ['Pituitary', 'Hypopituitarism', 'Insufficiency'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-15',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'easy',
+    front: 'Sheehan syndrome?',
+    back: {
+      definition: 'Postpartum pituitary necrosis',
+      high_yield: 'Failure to lactate',
+      clinical_pearl: 'Hypotension during delivery'
+    },
+    tags: ['Pituitary', 'Sheehan Syndrome', 'Postpartum'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-16',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'easy',
+    front: 'Pituitary apoplexy?',
+    back: {
+      definition: 'Acute hemorrhage into adenoma',
+      high_yield: 'Severe headache',
+      clinical_pearl: 'Ophthalmoplegia'
+    },
+    tags: ['Pituitary', 'Apoplexy', 'Emergency'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-17',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'easy',
+    front: 'Pituitary apoplexy treatment?',
+    back: {
+      definition: 'High-dose steroids',
+      high_yield: 'Neurosurgery if needed',
+      clinical_pearl: 'ICU monitoring'
+    },
+    tags: ['Pituitary', 'Apoplexy', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-18',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'easy',
+    front: 'Empty sella syndrome?',
+    back: {
+      definition: 'Flattened pituitary',
+      high_yield: 'Often asymptomatic',
+      clinical_pearl: 'Seen on MRI'
+    },
+    tags: ['Pituitary', 'Empty Sella', 'MRI'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-19',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'easy',
+    front: 'GH deficiency adults?',
+    back: {
+      definition: 'Low energy + decreased muscle mass',
+      high_yield: 'Low IGF-1',
+      clinical_pearl: 'Confirmed with stimulation test'
+    },
+    tags: ['Pituitary', 'GH Deficiency', 'Adults'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-20',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'easy',
+    front: 'TSH-secreting adenoma?',
+    back: {
+      definition: 'High T4 + unsuppressed TSH',
+      high_yield: 'Rare',
+      clinical_pearl: 'Causes hyperthyroidism'
+    },
+    tags: ['Pituitary', 'TSH Adenoma', 'Hyperthyroidism'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+
+  // Pituitary Disorders - Medium Difficulty (21-32)
+  {
+    id: 'endo-pituitary-21',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'medium',
+    front: 'Prolactin level in prolactinoma?',
+    back: {
+      definition: 'Often >200 ng/mL',
+      high_yield: 'Very high',
+      clinical_pearl: 'Large tumors'
+    },
+    tags: ['Pituitary', 'Prolactinoma', 'Labs'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-22',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'medium',
+    front: 'Causes of elevated prolactin (non-tumor)?',
+    back: {
+      definition: 'Pregnancy, hypothyroidism, meds',
+      high_yield: 'Antipsychotics common',
+      clinical_pearl: 'Check TSH'
+    },
+    tags: ['Pituitary', 'Prolactin', 'Hyperprolactinemia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-23',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'medium',
+    front: 'Visual defects in pituitary tumors?',
+    back: {
+      definition: 'Bitemporal hemianopsia',
+      high_yield: 'Optic chiasm compression',
+      clinical_pearl: 'Classic finding'
+    },
+    tags: ['Pituitary', 'Tumor', 'Visual Defects'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-24',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'medium',
+    front: 'Macroadenoma definition?',
+    back: {
+      definition: '>1 cm',
+      high_yield: 'May cause mass effect',
+      clinical_pearl: 'Vision changes'
+    },
+    tags: ['Pituitary', 'Macroadenoma', 'Tumor'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-25',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'medium',
+    front: 'Treatment for GH-secreting adenoma?',
+    back: {
+      definition: 'Transsphenoidal surgery',
+      high_yield: 'Somatostatin analogs if persistent',
+      clinical_pearl: 'Pegvisomant option'
+    },
+    tags: ['Pituitary', 'Acromegaly', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-26',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'medium',
+    front: 'DI lab findings?',
+    back: {
+      definition: 'High serum osmolality',
+      high_yield: 'Low urine osmolality',
+      clinical_pearl: 'Hypernatremia'
+    },
+    tags: ['Pituitary', 'Diabetes Insipidus', 'Labs'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-27',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'medium',
+    front: 'SIADH labs?',
+    back: {
+      definition: 'Low serum osmolality',
+      high_yield: 'High urine osmolality',
+      clinical_pearl: 'Euvolemia'
+    },
+    tags: ['Pituitary', 'SIADH', 'Labs'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-28',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'medium',
+    front: 'SIADH causes?',
+    back: {
+      definition: 'Cancer, CNS disease, meds',
+      high_yield: 'Small cell cancer',
+      clinical_pearl: 'SSRIs common'
+    },
+    tags: ['Pituitary', 'SIADH', 'Etiology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-29',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'medium',
+    front: 'Salt-wasting vs SIADH difference?',
+    back: {
+      definition: 'Salt-wasting = hypovolemic',
+      high_yield: 'SIADH = euvolemic',
+      clinical_pearl: 'Different treatment'
+    },
+    tags: ['Pituitary', 'SIADH', 'Salt-Wasting'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-30',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'medium',
+    front: 'ACTH deficiency symptoms?',
+    back: {
+      definition: 'Hypotension',
+      high_yield: 'Fatigue',
+      clinical_pearl: 'Low cortisol'
+    },
+    tags: ['Pituitary', 'ACTH Deficiency', 'Hypopituitarism'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-31',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'medium',
+    front: 'LH/FSH deficiency?',
+    back: {
+      definition: 'Infertility',
+      high_yield: 'Low libido',
+      clinical_pearl: 'Amenorrhea'
+    },
+    tags: ['Pituitary', 'LH/FSH Deficiency', 'Hypopituitarism'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-32',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'medium',
+    front: 'Pituitary stalk compression?',
+    back: {
+      definition: 'Disrupts dopamine inhibition',
+      high_yield: 'Mild ↑prolactin',
+      clinical_pearl: 'Not true prolactinoma'
+    },
+    tags: ['Pituitary', 'Stalk Compression', 'Prolactin'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
   }
 ];
