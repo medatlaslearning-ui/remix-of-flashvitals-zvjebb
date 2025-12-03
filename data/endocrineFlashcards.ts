@@ -1322,5 +1322,295 @@ export const endocrineFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-33',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'medium',
+    front: 'Which drug causes hypothyroidism?',
+    back: {
+      definition: 'Amiodarone',
+      high_yield: 'High iodine load',
+      clinical_pearl: 'Check TSH regularly'
+    },
+    tags: ['Thyroid', 'Hypothyroidism', 'Amiodarone'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-34',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'medium',
+    front: 'Which drug causes hyperthyroidism?',
+    back: {
+      definition: 'Amiodarone or iodine',
+      high_yield: 'Type I or II',
+      clinical_pearl: 'Different mechanisms'
+    },
+    tags: ['Thyroid', 'Hyperthyroidism', 'Amiodarone'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-35',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'medium',
+    front: 'Thyroid cancer risk factor?',
+    back: {
+      definition: 'Radiation exposure',
+      high_yield: 'Childhood risk highest',
+      clinical_pearl: 'Papillary most common'
+    },
+    tags: ['Thyroid', 'Cancer', 'Risk Factors'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+
+  // Thyroid Disorders - Hard Difficulty (36-50)
+  {
+    id: 'endo-thyroid-36',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'hard',
+    front: 'MEN2A thyroid association?',
+    back: {
+      definition: 'Medullary carcinoma',
+      high_yield: 'RET mutation',
+      clinical_pearl: 'Screen early'
+    },
+    tags: ['Thyroid', 'Cancer', 'MEN2A'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-37',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'hard',
+    front: 'MEN2B thyroid association?',
+    back: {
+      definition: 'Medullary carcinoma',
+      high_yield: 'Marfanoid habitus',
+      clinical_pearl: 'Aggressive course'
+    },
+    tags: ['Thyroid', 'Cancer', 'MEN2B'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-38',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'hard',
+    front: 'Follicular thyroid cancer spread?',
+    back: {
+      definition: 'Hematogenous',
+      high_yield: 'Bone & lung mets',
+      clinical_pearl: 'Requires radioactive iodine'
+    },
+    tags: ['Thyroid', 'Cancer', 'Follicular'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-39',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'hard',
+    front: 'Thyroid lymphoma?',
+    back: {
+      definition: 'Associated with Hashimoto',
+      high_yield: 'Rapid enlargement',
+      clinical_pearl: 'Treat with chemo'
+    },
+    tags: ['Thyroid', 'Cancer', 'Lymphoma'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-40',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'hard',
+    front: 'Euthyroid sick syndrome?',
+    back: {
+      definition: 'Low T3',
+      high_yield: 'Normal or low TSH',
+      clinical_pearl: 'Non-thyroidal illness'
+    },
+    tags: ['Thyroid', 'Euthyroid Sick Syndrome'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-41',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'hard',
+    front: 'TSH-secreting pituitary tumor?',
+    back: {
+      definition: 'High TSH + high T4',
+      high_yield: 'Rare',
+      clinical_pearl: 'MRI pituitary'
+    },
+    tags: ['Thyroid', 'Pituitary', 'TSH'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-42',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'hard',
+    front: 'Graves ophthalmopathy treatment?',
+    back: {
+      definition: 'Steroids for inflammation',
+      high_yield: 'RAI may worsen',
+      clinical_pearl: 'Consider surgery'
+    },
+    tags: ['Thyroid', 'Graves', 'Ophthalmopathy'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-43',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'hard',
+    front: 'T3 vs T4 use?',
+    back: {
+      definition: 'T4 (levothyroxine) preferred',
+      high_yield: 'Stable long half-life',
+      clinical_pearl: 'Avoid T3 alone'
+    },
+    tags: ['Thyroid', 'Treatment', 'Levothyroxine'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-44',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'hard',
+    front: 'TSH suppression therapy?',
+    back: {
+      definition: 'Used after thyroid cancer',
+      high_yield: 'Lower recurrence',
+      clinical_pearl: 'Monitor for bone loss'
+    },
+    tags: ['Thyroid', 'Cancer', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-45',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'hard',
+    front: 'Thyroid nodule >1 cm with risk factors?',
+    back: {
+      definition: 'Needs FNA biopsy',
+      high_yield: 'Ultrasound guided',
+      clinical_pearl: 'Standard evaluation'
+    },
+    tags: ['Thyroid', 'Nodule', 'Biopsy'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-46',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'hard',
+    front: 'Hot thyroid nodule significance?',
+    back: {
+      definition: 'Hyperfunctioning',
+      high_yield: 'Usually benign',
+      clinical_pearl: 'Low cancer risk'
+    },
+    tags: ['Thyroid', 'Nodule', 'Hot Nodule'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-47',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'hard',
+    front: 'Cold nodule significance?',
+    back: {
+      definition: 'Nonfunctioning',
+      high_yield: 'Higher malignancy risk',
+      clinical_pearl: 'Needs biopsy'
+    },
+    tags: ['Thyroid', 'Nodule', 'Cold Nodule'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-48',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'hard',
+    front: 'Amiodarone: Type I hyperthyroidism?',
+    back: {
+      definition: 'Iodine-induced excess',
+      high_yield: 'High uptake',
+      clinical_pearl: 'Treat with thionamides'
+    },
+    tags: ['Thyroid', 'Hyperthyroidism', 'Amiodarone'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-49',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'hard',
+    front: 'Amiodarone: Type II hyperthyroidism?',
+    back: {
+      definition: 'Destructive thyroiditis',
+      high_yield: 'Low uptake',
+      clinical_pearl: 'Treat with steroids'
+    },
+    tags: ['Thyroid', 'Hyperthyroidism', 'Amiodarone'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-thyroid-50',
+    system: 'Endocrine',
+    topic: 'Thyroid Disorders',
+    difficulty: 'hard',
+    front: 'Thyroid hormone resistance?',
+    back: {
+      definition: 'High T4 + normal/high TSH',
+      high_yield: 'Inherited',
+      clinical_pearl: 'Clinically variable'
+    },
+    tags: ['Thyroid', 'Hormone Resistance'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
   }
 ];
