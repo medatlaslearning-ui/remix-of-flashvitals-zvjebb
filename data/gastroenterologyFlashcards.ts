@@ -4525,6 +4525,294 @@ export const gastroenterologyFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0
   },
+  {
+    id: 'gastro-pancreas-33',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'medium',
+    front: 'Pancreatic ascites cause?',
+    back: {
+      definition: 'Duct leak',
+      high_yield: 'High amylase ascites',
+      clinical_pearl: 'Requires stent or surgery'
+    },
+    tags: ['Pancreatic ascites', 'Complications', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-34',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'medium',
+    front: 'Whipple procedure?',
+    back: {
+      definition: 'Pancreaticoduodenectomy',
+      high_yield: 'For head tumors',
+      clinical_pearl: 'Curative potential'
+    },
+    tags: ['Whipple', 'Surgery', 'Pancreatic cancer', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-35',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'hard',
+    front: 'Pancreatic endocrine tumors?',
+    back: {
+      definition: 'Islet cell tumors',
+      high_yield: 'Insulinoma, gastrinoma',
+      clinical_pearl: 'Rare but important'
+    },
+    tags: ['Endocrine tumors', 'Islet cell', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-36',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'hard',
+    front: 'Insulinoma clue?',
+    back: {
+      definition: 'Hypoglycemia',
+      high_yield: 'High insulin + C-peptide',
+      clinical_pearl: 'Whipple triad'
+    },
+    tags: ['Insulinoma', 'Endocrine tumors', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-37',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'hard',
+    front: 'Gastrinoma clue?',
+    back: {
+      definition: 'Refractory ulcers',
+      high_yield: 'High gastrin',
+      clinical_pearl: 'Associated with MEN1'
+    },
+    tags: ['Gastrinoma', 'Endocrine tumors', 'ZES', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-38',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'hard',
+    front: 'VIPoma?',
+    back: {
+      definition: 'Watery diarrhea',
+      high_yield: 'Electrolyte loss',
+      clinical_pearl: 'Flushing possible'
+    },
+    tags: ['VIPoma', 'Endocrine tumors', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-39',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'hard',
+    front: 'Glucagonoma?',
+    back: {
+      definition: 'Hyperglycemia',
+      high_yield: 'Necrolytic rash',
+      clinical_pearl: 'Weight loss'
+    },
+    tags: ['Glucagonoma', 'Endocrine tumors', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-40',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'hard',
+    front: 'Somatostatinoma?',
+    back: {
+      definition: 'Diabetes + gallstones',
+      high_yield: 'Steatorrhea',
+      clinical_pearl: 'Pancreatic head tumor'
+    },
+    tags: ['Somatostatinoma', 'Endocrine tumors', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-41',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'hard',
+    front: 'Pancreatic divisum?',
+    back: {
+      definition: 'Congenital duct variant',
+      high_yield: 'Recurrent pancreatitis',
+      clinical_pearl: 'Seen on MRCP'
+    },
+    tags: ['Pancreatic divisum', 'Congenital', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-42',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'hard',
+    front: 'Hereditary pancreatitis?',
+    back: {
+      definition: 'PRSS1 mutation',
+      high_yield: 'Early onset',
+      clinical_pearl: 'High pancreatic cancer risk'
+    },
+    tags: ['Hereditary pancreatitis', 'Genetic', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-43',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'hard',
+    front: 'Autoimmune pancreatitis?',
+    back: {
+      definition: 'IgG4-related',
+      high_yield: 'Diffuse enlargement',
+      clinical_pearl: 'Responds to steroids'
+    },
+    tags: ['Autoimmune pancreatitis', 'IgG4', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-44',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'hard',
+    front: 'Pancreatic trauma?',
+    back: {
+      definition: 'Blunt force',
+      high_yield: 'Duct injury',
+      clinical_pearl: 'May require surgery'
+    },
+    tags: ['Pancreatic trauma', 'Trauma', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-45',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'hard',
+    front: 'Infected pseudocyst clue?',
+    back: {
+      definition: 'Fever + rising WBC',
+      high_yield: 'Gas on imaging',
+      clinical_pearl: 'Drainage needed'
+    },
+    tags: ['Pseudocyst', 'Infection', 'Complications', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-46',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'hard',
+    front: 'Pancreatic fistula?',
+    back: {
+      definition: 'Abnormal enzyme drainage',
+      high_yield: 'Post-surgical',
+      clinical_pearl: 'High amylase fluid'
+    },
+    tags: ['Pancreatic fistula', 'Complications', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-47',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'hard',
+    front: 'Splenic vein thrombosis in pancreatitis?',
+    back: {
+      definition: 'Gastric varices',
+      high_yield: 'Left-sided portal HTN',
+      clinical_pearl: 'Risk of bleeding'
+    },
+    tags: ['Splenic vein thrombosis', 'Varices', 'Complications', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-48',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'hard',
+    front: 'Pancreatic cancer marker?',
+    back: {
+      definition: 'CA 19-9',
+      high_yield: 'Not for screening',
+      clinical_pearl: 'Useful for follow-up'
+    },
+    tags: ['Pancreatic cancer', 'CA 19-9', 'Tumor marker', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-49',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'hard',
+    front: 'Courvoisier sign?',
+    back: {
+      definition: 'Palpable nontender gallbladder',
+      high_yield: 'Pancreatic cancer',
+      clinical_pearl: 'Biliary obstruction'
+    },
+    tags: ['Courvoisier sign', 'Pancreatic cancer', 'Physical exam', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-50',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'hard',
+    front: 'Most lethal GI cancer?',
+    back: {
+      definition: 'Pancreatic adenocarcinoma',
+      high_yield: 'Late diagnosis',
+      clinical_pearl: 'Poor prognosis'
+    },
+    tags: ['Pancreatic cancer', 'Adenocarcinoma', 'Prognosis', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
 ];
 
 console.log('Gastroenterology flashcards loaded:', gastroenterologyFlashcards.length, 'cards');
