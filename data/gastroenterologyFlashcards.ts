@@ -3723,6 +3723,294 @@ export const gastroenterologyFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0
   },
+  {
+    id: 'gastro-hepato-33',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'medium',
+    front: 'NASH progression?',
+    back: {
+      definition: 'Steatosis → inflammation → fibrosis',
+      high_yield: 'Cirrhosis risk',
+      clinical_pearl: 'Lifestyle key'
+    },
+    tags: ['NASH', 'Fatty liver', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-34',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'medium',
+    front: 'Cholestatic liver pattern?',
+    back: {
+      definition: 'High ALP + GGT',
+      high_yield: 'PSC or PBC',
+      clinical_pearl: 'Jaundice'
+    },
+    tags: ['Cholestatic disease', 'Liver enzymes', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-35',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'medium',
+    front: 'Hepatitis B serology: HBsAg?',
+    back: {
+      definition: 'Active infection',
+      high_yield: 'Chronic if >6 months',
+      clinical_pearl: 'Screen newborns'
+    },
+    tags: ['Hepatitis B', 'Serology', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-36',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'medium',
+    front: 'Hepatitis B serology: anti-HBs?',
+    back: {
+      definition: 'Immunity',
+      high_yield: 'Vaccine or recovery',
+      clinical_pearl: 'Protective'
+    },
+    tags: ['Hepatitis B', 'Serology', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-37',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'medium',
+    front: 'Hepatitis C extrahepatic signs?',
+    back: {
+      definition: 'Cryoglobulinemia',
+      high_yield: 'Renal disease',
+      clinical_pearl: 'Vasculitis'
+    },
+    tags: ['Hepatitis C', 'Extrahepatic', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-38',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'hard',
+    front: 'Wilson disease labs?',
+    back: {
+      definition: 'Low ceruloplasmin',
+      high_yield: 'High urinary copper',
+      clinical_pearl: 'Treat with chelation'
+    },
+    tags: ['Wilson disease', 'Labs', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-39',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'hard',
+    front: 'Hemochromatosis labs?',
+    back: {
+      definition: 'High ferritin + transferrin saturation',
+      high_yield: 'DNA testing',
+      clinical_pearl: 'Treat with phlebotomy'
+    },
+    tags: ['Hemochromatosis', 'Labs', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-40',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'hard',
+    front: 'Alpha-1 antitrypsin deficiency?',
+    back: {
+      definition: 'Liver + lung disease',
+      high_yield: 'Misfolded protein',
+      clinical_pearl: 'Pediatric hepatitis'
+    },
+    tags: ['Alpha-1 antitrypsin', 'Genetic', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-41',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'hard',
+    front: 'Budd-Chiari syndrome?',
+    back: {
+      definition: 'Hepatic vein thrombosis',
+      high_yield: 'RUQ pain + ascites',
+      clinical_pearl: 'Hypercoagulable states'
+    },
+    tags: ['Budd-Chiari', 'Vascular', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-42',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'hard',
+    front: 'Hepatic adenoma risk?',
+    back: {
+      definition: 'Oral contraceptives',
+      high_yield: 'Benign tumor',
+      clinical_pearl: 'Risk of rupture'
+    },
+    tags: ['Hepatic adenoma', 'Tumor', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-43',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'hard',
+    front: 'Acalculous cholecystitis liver effect?',
+    back: {
+      definition: 'Critical illness',
+      high_yield: 'Inflammation',
+      clinical_pearl: 'Often with high LFTs'
+    },
+    tags: ['Cholecystitis', 'Critical illness', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-44',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'hard',
+    front: 'Cholangiocarcinoma risk?',
+    back: {
+      definition: 'PSC',
+      high_yield: 'Chronic inflammation',
+      clinical_pearl: 'Poor prognosis'
+    },
+    tags: ['Cholangiocarcinoma', 'Cancer', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-45',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'hard',
+    front: 'Hepatic hydatid cyst?',
+    back: {
+      definition: 'Echinococcus tapeworm',
+      high_yield: 'Cystic liver lesions',
+      clinical_pearl: 'Avoid rupture'
+    },
+    tags: ['Hydatid cyst', 'Parasitic', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-46',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'hard',
+    front: 'Massive transfusion liver injury?',
+    back: {
+      definition: 'Hypoperfusion',
+      high_yield: 'Ischemic hepatitis',
+      clinical_pearl: 'Very high AST/ALT'
+    },
+    tags: ['Ischemic hepatitis', 'Shock liver', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-47',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'hard',
+    front: 'Drug-induced liver injury?',
+    back: {
+      definition: 'Acetaminophen most common',
+      high_yield: 'Dose-dependent toxicity',
+      clinical_pearl: 'N-acetylcysteine antidote'
+    },
+    tags: ['DILI', 'Acetaminophen', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-48',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'hard',
+    front: 'Reye syndrome?',
+    back: {
+      definition: 'Kids with viral illness + aspirin',
+      high_yield: 'Encephalopathy + liver failure',
+      clinical_pearl: 'Avoid aspirin in children'
+    },
+    tags: ['Reye syndrome', 'Pediatric', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-49',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'hard',
+    front: 'Cirrhosis prognosis score?',
+    back: {
+      definition: 'Child-Pugh',
+      high_yield: 'Class A–C',
+      clinical_pearl: 'Determines transplant need'
+    },
+    tags: ['Child-Pugh', 'Cirrhosis', 'Prognosis', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-50',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'hard',
+    front: 'Liver transplant indications?',
+    back: {
+      definition: 'ESLD, HCC',
+      high_yield: 'Refractory complications',
+      clinical_pearl: 'MELD score used'
+    },
+    tags: ['Liver transplant', 'ESLD', 'MELD', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
 
   // Pancreatic Disorders - Placeholder for future flashcards
   // This section will contain flashcards related to pancreatic disorders
