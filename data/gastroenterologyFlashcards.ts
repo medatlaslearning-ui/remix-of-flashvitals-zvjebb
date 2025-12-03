@@ -3210,8 +3210,519 @@ export const gastroenterologyFlashcards: Flashcard[] = [
     reviewCount: 0
   },
 
-  // Hepatology (Liver Disorders) - Placeholder for future flashcards
-  // This section will contain flashcards related to liver disorders
+  // Hepatology (Liver Disorders)
+  {
+    id: 'gastro-hepato-1',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'easy',
+    front: 'Most common cause of chronic liver disease in U.S.?',
+    back: {
+      definition: 'NAFLD/NASH',
+      high_yield: 'Metabolic syndrome',
+      clinical_pearl: 'Often asymptomatic'
+    },
+    tags: ['NAFLD', 'Chronic liver disease', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-2',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'easy',
+    front: 'Most sensitive test for liver injury?',
+    back: {
+      definition: 'ALT',
+      high_yield: 'Marker of hepatocellular injury',
+      clinical_pearl: 'Higher in hepatitis'
+    },
+    tags: ['ALT', 'Liver enzymes', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-3',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'easy',
+    front: 'Most common cause of cirrhosis worldwide?',
+    back: {
+      definition: 'Alcohol',
+      high_yield: 'Chronic inflammation',
+      clinical_pearl: 'Reversible if early'
+    },
+    tags: ['Cirrhosis', 'Alcohol', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-4',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'easy',
+    front: 'Ascites definition?',
+    back: {
+      definition: 'Fluid accumulation in peritoneum',
+      high_yield: 'Cirrhosis most common cause',
+      clinical_pearl: 'Evaluate with paracentesis'
+    },
+    tags: ['Ascites', 'Cirrhosis', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-5',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'easy',
+    front: 'SAAG meaning?',
+    back: {
+      definition: 'Serum-ascites albumin gradient',
+      high_yield: '≥1.1 = portal hypertension',
+      clinical_pearl: 'Key diagnostic tool'
+    },
+    tags: ['SAAG', 'Ascites', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-6',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'easy',
+    front: 'Hepatic encephalopathy cause?',
+    back: {
+      definition: 'Ammonia accumulation',
+      high_yield: 'Confusion + asterixis',
+      clinical_pearl: 'Treat with lactulose'
+    },
+    tags: ['Hepatic encephalopathy', 'Cirrhosis', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-7',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'easy',
+    front: 'Portal hypertension signs?',
+    back: {
+      definition: 'Splenomegaly, varices',
+      high_yield: 'Ascites',
+      clinical_pearl: 'Caput medusae'
+    },
+    tags: ['Portal hypertension', 'Cirrhosis', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-8',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'easy',
+    front: 'Hepatitis A transmission?',
+    back: {
+      definition: 'Fecal–oral',
+      high_yield: 'Self-limited',
+      clinical_pearl: 'Vaccine available'
+    },
+    tags: ['Hepatitis A', 'Viral hepatitis', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-9',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'easy',
+    front: 'Hepatitis B transmission?',
+    back: {
+      definition: 'Blood/body fluids',
+      high_yield: 'Chronic infection possible',
+      clinical_pearl: 'Vaccine available'
+    },
+    tags: ['Hepatitis B', 'Viral hepatitis', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-10',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'easy',
+    front: 'Hepatitis C transmission?',
+    back: {
+      definition: 'Bloodborne',
+      high_yield: 'Often chronic',
+      clinical_pearl: 'Curable with antivirals'
+    },
+    tags: ['Hepatitis C', 'Viral hepatitis', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-11',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'easy',
+    front: 'Acute alcohol hepatitis signs?',
+    back: {
+      definition: 'AST>ALT (2:1)',
+      high_yield: 'Jaundice + fever',
+      clinical_pearl: 'Painful hepatomegaly'
+    },
+    tags: ['Alcoholic hepatitis', 'Alcohol', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-12',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'easy',
+    front: 'NAFLD hallmark?',
+    back: {
+      definition: 'Fatty liver on imaging',
+      high_yield: 'Associated with obesity',
+      clinical_pearl: 'Can progress to NASH'
+    },
+    tags: ['NAFLD', 'Fatty liver', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-13',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'easy',
+    front: 'Autoimmune hepatitis clue?',
+    back: {
+      definition: 'Young women',
+      high_yield: 'High IgG',
+      clinical_pearl: 'Positive ANA or SMA'
+    },
+    tags: ['Autoimmune hepatitis', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-14',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'easy',
+    front: 'Primary biliary cholangitis?',
+    back: {
+      definition: 'Autoimmune bile duct destruction',
+      high_yield: 'Pruritus + jaundice',
+      clinical_pearl: 'Positive AMA'
+    },
+    tags: ['PBC', 'Cholestatic disease', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-15',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'easy',
+    front: 'Primary sclerosing cholangitis?',
+    back: {
+      definition: 'Bile duct fibrosis',
+      high_yield: 'Associated with UC',
+      clinical_pearl: 'Beading on ERCP'
+    },
+    tags: ['PSC', 'Cholestatic disease', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-16',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'easy',
+    front: 'Hepatocellular carcinoma risk?',
+    back: {
+      definition: 'Cirrhosis',
+      high_yield: 'Chronic hepatitis',
+      clinical_pearl: 'Screen with ultrasound'
+    },
+    tags: ['HCC', 'Liver cancer', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-17',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'easy',
+    front: 'Liver synthetic failure markers?',
+    back: {
+      definition: 'Low albumin, high INR',
+      high_yield: 'Cirrhosis',
+      clinical_pearl: 'Poor prognosis'
+    },
+    tags: ['Liver failure', 'Cirrhosis', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-18',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'easy',
+    front: 'Wilson disease cause?',
+    back: {
+      definition: 'Copper accumulation',
+      high_yield: 'Kayser-Fleischer rings',
+      clinical_pearl: 'Young patients'
+    },
+    tags: ['Wilson disease', 'Metabolic', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-19',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'easy',
+    front: 'Hemochromatosis cause?',
+    back: {
+      definition: 'Iron overload',
+      high_yield: 'Bronze skin + diabetes',
+      clinical_pearl: 'High ferritin'
+    },
+    tags: ['Hemochromatosis', 'Metabolic', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-20',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'easy',
+    front: 'Hepatitis D requirement?',
+    back: {
+      definition: 'Needs hepatitis B',
+      high_yield: 'Co-infection',
+      clinical_pearl: 'More severe disease'
+    },
+    tags: ['Hepatitis D', 'Viral hepatitis', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-21',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'medium',
+    front: 'Most common cause of ascites?',
+    back: {
+      definition: 'Portal hypertension',
+      high_yield: 'Cirrhosis',
+      clinical_pearl: 'SAAG ≥1.1'
+    },
+    tags: ['Ascites', 'Portal hypertension', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-22',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'medium',
+    front: 'Spontaneous bacterial peritonitis (SBP)?',
+    back: {
+      definition: 'Infection of ascitic fluid',
+      high_yield: 'PMN ≥250',
+      clinical_pearl: 'Treat with cefotaxime'
+    },
+    tags: ['SBP', 'Ascites', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-23',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'medium',
+    front: 'SBP prophylaxis?',
+    back: {
+      definition: 'Cirrhosis + low protein ascites',
+      high_yield: 'Norfloxacin',
+      clinical_pearl: 'Reduces recurrence'
+    },
+    tags: ['SBP', 'Prophylaxis', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-24',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'medium',
+    front: 'Hepatorenal syndrome?',
+    back: {
+      definition: 'Renal failure in cirrhosis',
+      high_yield: 'Vasoconstriction',
+      clinical_pearl: 'Poor prognosis'
+    },
+    tags: ['Hepatorenal syndrome', 'Cirrhosis', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-25',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'medium',
+    front: 'Lactulose purpose?',
+    back: {
+      definition: 'Converts NH3 → NH4',
+      high_yield: 'Treats encephalopathy',
+      clinical_pearl: 'Titrate to 2–3 stools/day'
+    },
+    tags: ['Lactulose', 'Hepatic encephalopathy', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-26',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'medium',
+    front: 'Rifaximin use?',
+    back: {
+      definition: 'Adjunct for encephalopathy',
+      high_yield: 'Reduces gut bacteria',
+      clinical_pearl: 'Add if recurrent'
+    },
+    tags: ['Rifaximin', 'Hepatic encephalopathy', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-27',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'medium',
+    front: 'Acute liver failure signs?',
+    back: {
+      definition: 'Encephalopathy + coagulopathy',
+      high_yield: 'Often from acetaminophen',
+      clinical_pearl: 'Needs ICU'
+    },
+    tags: ['Acute liver failure', 'Emergency', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-28',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'medium',
+    front: 'Cirrhosis physical signs?',
+    back: {
+      definition: 'Spider angiomas',
+      high_yield: 'Palmar erythema',
+      clinical_pearl: 'Gynecomastia'
+    },
+    tags: ['Cirrhosis', 'Physical exam', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-29',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'medium',
+    front: 'Portal vein thrombosis risk?',
+    back: {
+      definition: 'Cirrhosis',
+      high_yield: 'Hypercoagulability',
+      clinical_pearl: 'Requires imaging'
+    },
+    tags: ['Portal vein thrombosis', 'Cirrhosis', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-30',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'medium',
+    front: 'Variceal prophylaxis?',
+    back: {
+      definition: 'Nonselective beta-blockers',
+      high_yield: 'Nadolol/propranolol',
+      clinical_pearl: 'Reduces bleed risk'
+    },
+    tags: ['Varices', 'Prophylaxis', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-31',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'medium',
+    front: 'Variceal bleeding treatment?',
+    back: {
+      definition: 'Octreotide + banding',
+      high_yield: 'Resuscitate',
+      clinical_pearl: 'Antibiotics too'
+    },
+    tags: ['Varices', 'GI Bleed', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-hepato-32',
+    system: 'Gastroenterology',
+    topic: 'Hepatology (Liver Disorders)',
+    difficulty: 'medium',
+    front: 'Alcohol hepatitis score?',
+    back: {
+      definition: 'Maddrey score',
+      high_yield: 'Determines steroid use',
+      clinical_pearl: 'Severe ≥32'
+    },
+    tags: ['Alcoholic hepatitis', 'Maddrey score', 'Hepatology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
 
   // Pancreatic Disorders - Placeholder for future flashcards
   // This section will contain flashcards related to pancreatic disorders
