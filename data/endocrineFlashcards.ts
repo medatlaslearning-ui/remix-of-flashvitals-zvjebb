@@ -4028,5 +4028,521 @@ export const endocrineFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0
+  },
+
+  // Reproductive Endocrinology - Easy Difficulty (1-20)
+  {
+    id: 'endo-repro-1',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'easy',
+    front: 'Most common cause of infertility in women?',
+    back: {
+      definition: 'PCOS',
+      high_yield: 'Ovulatory dysfunction',
+      clinical_pearl: 'Hyperandrogenism'
+    },
+    tags: ['Reproductive', 'PCOS', 'Infertility'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-2',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'easy',
+    front: 'PCOS symptoms?',
+    back: {
+      definition: 'Irregular menses',
+      high_yield: 'Hirsutism',
+      clinical_pearl: 'Obesity common'
+    },
+    tags: ['Reproductive', 'PCOS', 'Symptoms'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-3',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'easy',
+    front: 'Rotterdam criteria for PCOS?',
+    back: {
+      definition: 'Two of: oligo-ovulation, hyperandrogenism, polycystic ovaries',
+      high_yield: 'Diagnosis of exclusion',
+      clinical_pearl: 'Most widely used'
+    },
+    tags: ['Reproductive', 'PCOS', 'Diagnosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-4',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'easy',
+    front: 'First-line treatment for PCOS?',
+    back: {
+      definition: 'Lifestyle + weight loss',
+      high_yield: 'Improves ovulation',
+      clinical_pearl: 'Metformin adjunctive'
+    },
+    tags: ['Reproductive', 'PCOS', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-5',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'easy',
+    front: 'Hirsutism cause in PCOS?',
+    back: {
+      definition: 'Elevated androgens',
+      high_yield: 'Theca cell overactivity',
+      clinical_pearl: 'Treat with OCPs'
+    },
+    tags: ['Reproductive', 'PCOS', 'Hirsutism'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-6',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'easy',
+    front: 'Primary amenorrhea definition?',
+    back: {
+      definition: 'No menses by age 15',
+      high_yield: 'Normal secondary sex characteristics',
+      clinical_pearl: 'Or 13 without development'
+    },
+    tags: ['Reproductive', 'Amenorrhea', 'Definition'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-7',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'easy',
+    front: 'Secondary amenorrhea definition?',
+    back: {
+      definition: 'No menses >3 months',
+      high_yield: 'Previously menstruating',
+      clinical_pearl: 'Rule out pregnancy first'
+    },
+    tags: ['Reproductive', 'Amenorrhea', 'Definition'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-8',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'easy',
+    front: 'Hyperprolactinemia effect?',
+    back: {
+      definition: 'Suppresses GnRH',
+      high_yield: 'Causes amenorrhea',
+      clinical_pearl: 'Galactorrhea common'
+    },
+    tags: ['Reproductive', 'Hyperprolactinemia', 'Amenorrhea'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-9',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'easy',
+    front: 'Most common cause of hyperprolactinemia?',
+    back: {
+      definition: 'Pituitary prolactinoma',
+      high_yield: 'High prolactin',
+      clinical_pearl: 'Dopamine agonists treat'
+    },
+    tags: ['Reproductive', 'Hyperprolactinemia', 'Prolactinoma'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-10',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'easy',
+    front: 'Hypogonadism definition?',
+    back: {
+      definition: 'Low sex steroids',
+      high_yield: 'Due to gonadal or pituitary failure',
+      clinical_pearl: 'Symptoms vary by sex'
+    },
+    tags: ['Reproductive', 'Hypogonadism', 'Definition'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-11',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'easy',
+    front: 'Primary ovarian insufficiency?',
+    back: {
+      definition: 'Early ovarian failure',
+      high_yield: 'High FSH',
+      clinical_pearl: 'Women <40 yrs'
+    },
+    tags: ['Reproductive', 'Ovarian Insufficiency', 'Menopause'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-12',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'easy',
+    front: 'Menopause definition?',
+    back: {
+      definition: '12 months no menses',
+      high_yield: 'Typically age 50–52',
+      clinical_pearl: 'Low estrogen, high FSH'
+    },
+    tags: ['Reproductive', 'Menopause', 'Definition'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-13',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'easy',
+    front: 'Menopause symptoms?',
+    back: {
+      definition: 'Hot flashes',
+      high_yield: 'Night sweats',
+      clinical_pearl: 'Mood + sleep changes'
+    },
+    tags: ['Reproductive', 'Menopause', 'Symptoms'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-14',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'easy',
+    front: 'HRT benefit?',
+    back: {
+      definition: 'Reduces vasomotor symptoms',
+      high_yield: 'Short-term use recommended',
+      clinical_pearl: 'Risk/benefit individualized'
+    },
+    tags: ['Reproductive', 'Menopause', 'HRT'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-15',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'easy',
+    front: 'Contraindication to estrogen therapy?',
+    back: {
+      definition: 'History of VTE',
+      high_yield: 'Breast cancer',
+      clinical_pearl: 'Liver disease'
+    },
+    tags: ['Reproductive', 'HRT', 'Contraindications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-16',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'easy',
+    front: 'Klinefelter syndrome (47,XXY)?',
+    back: {
+      definition: 'Male hypogonadism',
+      high_yield: 'Small testes',
+      clinical_pearl: 'High FSH/LH, low testosterone'
+    },
+    tags: ['Reproductive', 'Klinefelter', 'Hypogonadism'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-17',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'easy',
+    front: 'Turner syndrome (45,XO)?',
+    back: {
+      definition: 'Premature ovarian failure',
+      high_yield: 'Short stature',
+      clinical_pearl: 'Streak ovaries'
+    },
+    tags: ['Reproductive', 'Turner', 'Ovarian Failure'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-18',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'easy',
+    front: 'Testosterone deficiency symptoms?',
+    back: {
+      definition: 'Low libido',
+      high_yield: 'Fatigue',
+      clinical_pearl: 'Loss of muscle mass'
+    },
+    tags: ['Reproductive', 'Hypogonadism', 'Testosterone'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-19',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'easy',
+    front: 'FSH and LH in primary hypogonadism?',
+    back: {
+      definition: 'High',
+      high_yield: 'Gonadal failure',
+      clinical_pearl: 'Low sex steroids'
+    },
+    tags: ['Reproductive', 'Hypogonadism', 'Labs'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-20',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'easy',
+    front: 'FSH and LH in secondary hypogonadism?',
+    back: {
+      definition: 'Low',
+      high_yield: 'Pituitary or hypothalamic cause',
+      clinical_pearl: 'Check prolactin & MRI'
+    },
+    tags: ['Reproductive', 'Hypogonadism', 'Labs'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+
+  // Reproductive Endocrinology - Medium Difficulty (21-32)
+  {
+    id: 'endo-repro-21',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'medium',
+    front: 'FSH role?',
+    back: {
+      definition: 'Stimulates follicle development',
+      high_yield: 'Ovarian estrogen production',
+      clinical_pearl: 'In males: spermatogenesis'
+    },
+    tags: ['Reproductive', 'FSH', 'Physiology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-22',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'medium',
+    front: 'LH role?',
+    back: {
+      definition: 'Triggers ovulation',
+      high_yield: 'Corpus luteum formation',
+      clinical_pearl: 'In males: testosterone production'
+    },
+    tags: ['Reproductive', 'LH', 'Physiology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-23',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'medium',
+    front: 'Androgen insensitivity syndrome?',
+    back: {
+      definition: '46 XY',
+      high_yield: 'Female phenotype',
+      clinical_pearl: 'Testes present internally'
+    },
+    tags: ['Reproductive', 'AIS', 'Genetic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-24',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'medium',
+    front: 'Endometriosis hormone pattern?',
+    back: {
+      definition: 'Normal labs',
+      high_yield: 'Estrogen-dependent',
+      clinical_pearl: 'Pelvic pain + infertility'
+    },
+    tags: ['Reproductive', 'Endometriosis', 'Diagnosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-25',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'medium',
+    front: 'Ovarian torsion risk factor?',
+    back: {
+      definition: 'Enlarged ovary',
+      high_yield: 'Sudden unilateral pain',
+      clinical_pearl: 'Surgical emergency'
+    },
+    tags: ['Reproductive', 'Ovarian Torsion', 'Emergency'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-26',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'medium',
+    front: 'Primary dysmenorrhea cause?',
+    back: {
+      definition: 'Prostaglandin release',
+      high_yield: 'Painful periods',
+      clinical_pearl: 'NSAIDs effective'
+    },
+    tags: ['Reproductive', 'Dysmenorrhea', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-27',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'medium',
+    front: 'Hyperthecosis?',
+    back: {
+      definition: 'Severe PCOS variant',
+      high_yield: 'High testosterone',
+      clinical_pearl: 'Marked virilization'
+    },
+    tags: ['Reproductive', 'PCOS', 'Hyperthecosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-28',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'medium',
+    front: 'Functional hypothalamic amenorrhea?',
+    back: {
+      definition: 'Stress, weight loss, exercise',
+      high_yield: 'Low GnRH',
+      clinical_pearl: 'Low FSH/LH'
+    },
+    tags: ['Reproductive', 'Amenorrhea', 'Hypothalamic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-29',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'medium',
+    front: 'Asherman syndrome?',
+    back: {
+      definition: 'Uterine scarring',
+      high_yield: 'Post-procedural',
+      clinical_pearl: 'Causes secondary amenorrhea'
+    },
+    tags: ['Reproductive', 'Amenorrhea', 'Asherman'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-30',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'medium',
+    front: 'Hypogonadotropic hypogonadism?',
+    back: {
+      definition: 'Low GnRH',
+      high_yield: 'Pituitary or hypothalamic',
+      clinical_pearl: 'Functional or structural'
+    },
+    tags: ['Reproductive', 'Hypogonadism', 'Hypogonadotropic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-31',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'medium',
+    front: 'Delayed puberty?',
+    back: {
+      definition: 'No puberty by 13 (girls) or 14 (boys)',
+      high_yield: 'Causes vary',
+      clinical_pearl: 'Check LH/FSH levels'
+    },
+    tags: ['Reproductive', 'Puberty', 'Delayed'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-32',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'medium',
+    front: 'Precocious puberty?',
+    back: {
+      definition: 'Puberty <8 girls, <9 boys',
+      high_yield: 'Central or peripheral',
+      clinical_pearl: 'Treat based on cause'
+    },
+    tags: ['Reproductive', 'Puberty', 'Precocious'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
   }
 ];
