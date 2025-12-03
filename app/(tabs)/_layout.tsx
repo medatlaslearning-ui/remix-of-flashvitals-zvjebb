@@ -25,14 +25,18 @@ export default function TabLayout() {
   if (Platform.OS === 'ios') {
     return (
       <NativeTabs>
-        <NativeTabs.Trigger name="(home)">
-          <Icon sf="house.fill" drawable="ic_home" />
-          <Label>Home</Label>
-        </NativeTabs.Trigger>
-        <NativeTabs.Trigger name="profile">
-          <Icon sf="person.fill" drawable="ic_profile" />
-          <Label>Profile</Label>
-        </NativeTabs.Trigger>
+        <NativeTabs.Screen name="(home)" options={{ headerShown: false }}>
+          <NativeTabs.Trigger>
+            <Icon sf="house.fill" drawable="ic_home" />
+            <Label>Home</Label>
+          </NativeTabs.Trigger>
+        </NativeTabs.Screen>
+        <NativeTabs.Screen name="profile" options={{ headerShown: false }}>
+          <NativeTabs.Trigger>
+            <Icon sf="person.fill" drawable="ic_profile" />
+            <Label>Profile</Label>
+          </NativeTabs.Trigger>
+        </NativeTabs.Screen>
       </NativeTabs>
     );
   }
