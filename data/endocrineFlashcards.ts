@@ -3222,5 +3222,521 @@ export const endocrineFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0
+  },
+
+  // Calcium & Bone Metabolism - Easy Difficulty (1-20)
+  {
+    id: 'endo-calcium-1',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'easy',
+    front: 'Most common cause of hypercalcemia?',
+    back: {
+      definition: 'Primary hyperparathyroidism',
+      high_yield: 'Increased PTH',
+      clinical_pearl: 'Often asymptomatic'
+    },
+    tags: ['Calcium', 'Hypercalcemia', 'Hyperparathyroidism'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-2',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'easy',
+    front: 'Most common cause of inpatient hypercalcemia?',
+    back: {
+      definition: 'Malignancy',
+      high_yield: 'PTHrP or bone mets',
+      clinical_pearl: 'Rapid onset'
+    },
+    tags: ['Calcium', 'Hypercalcemia', 'Malignancy'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-3',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'easy',
+    front: 'Symptoms of hypercalcemia?',
+    back: {
+      definition: 'Stones, bones, groans',
+      high_yield: 'Psychic moans',
+      clinical_pearl: 'Constipation common'
+    },
+    tags: ['Calcium', 'Hypercalcemia', 'Symptoms'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-4',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'easy',
+    front: 'Primary hyperparathyroidism labs?',
+    back: {
+      definition: 'High Ca',
+      high_yield: 'High or inappropriately normal PTH',
+      clinical_pearl: 'Low phosphate'
+    },
+    tags: ['Calcium', 'Hyperparathyroidism', 'Labs'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-5',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'easy',
+    front: 'Secondary hyperparathyroidism cause?',
+    back: {
+      definition: 'Chronic kidney disease',
+      high_yield: 'Low vitamin D',
+      clinical_pearl: 'High phosphate'
+    },
+    tags: ['Calcium', 'Hyperparathyroidism', 'CKD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-6',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'easy',
+    front: 'Hypocalcemia symptoms?',
+    back: {
+      definition: 'Tetany + cramps',
+      high_yield: 'Perioral numbness',
+      clinical_pearl: 'Chvostek & Trousseau signs'
+    },
+    tags: ['Calcium', 'Hypocalcemia', 'Symptoms'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-7',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'easy',
+    front: 'Chvostek sign?',
+    back: {
+      definition: 'Facial twitch with tapping',
+      high_yield: 'Hypocalcemia',
+      clinical_pearl: 'Neuromuscular irritability'
+    },
+    tags: ['Calcium', 'Hypocalcemia', 'Physical Exam'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-8',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'easy',
+    front: 'Trousseau sign?',
+    back: {
+      definition: 'Carpopedal spasm with BP cuff',
+      high_yield: 'Hypocalcemia',
+      clinical_pearl: 'More sensitive'
+    },
+    tags: ['Calcium', 'Hypocalcemia', 'Physical Exam'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-9',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'easy',
+    front: 'Hypoparathyroidism labs?',
+    back: {
+      definition: 'Low Ca',
+      high_yield: 'Low PTH',
+      clinical_pearl: 'High phosphate'
+    },
+    tags: ['Calcium', 'Hypoparathyroidism', 'Labs'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-10',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'easy',
+    front: 'Vitamin D deficiency symptoms?',
+    back: {
+      definition: 'Bone pain',
+      high_yield: 'Low Ca + low phosphate',
+      clinical_pearl: 'Elevated PTH'
+    },
+    tags: ['Calcium', 'Vitamin D', 'Deficiency'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-11',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'easy',
+    front: 'Osteoporosis definition?',
+    back: {
+      definition: 'Low bone mass',
+      high_yield: 'Normal Ca/P',
+      clinical_pearl: 'Fragility fractures'
+    },
+    tags: ['Bone', 'Osteoporosis', 'Definition'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-12',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'easy',
+    front: 'Best test for osteoporosis?',
+    back: {
+      definition: 'DEXA scan',
+      high_yield: 'T-score ≤ –2.5',
+      clinical_pearl: 'Screen postmenopausal women'
+    },
+    tags: ['Bone', 'Osteoporosis', 'Diagnosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-13',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'easy',
+    front: 'Paget disease hallmark?',
+    back: {
+      definition: 'Disordered bone remodeling',
+      high_yield: 'Elevated ALP',
+      clinical_pearl: 'Normal Ca/P'
+    },
+    tags: ['Bone', 'Paget Disease', 'Labs'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-14',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'easy',
+    front: 'Paget symptoms?',
+    back: {
+      definition: 'Bone pain',
+      high_yield: 'Skull enlargement',
+      clinical_pearl: 'Hearing loss'
+    },
+    tags: ['Bone', 'Paget Disease', 'Symptoms'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-15',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'easy',
+    front: 'Osteomalacia cause?',
+    back: {
+      definition: 'Vitamin D deficiency',
+      high_yield: 'Soft bones',
+      clinical_pearl: 'Low Ca + low phosphate'
+    },
+    tags: ['Bone', 'Osteomalacia', 'Vitamin D'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-16',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'easy',
+    front: 'Rickets definition?',
+    back: {
+      definition: 'Osteomalacia in children',
+      high_yield: 'Growth plate abnormalities',
+      clinical_pearl: 'Bow legs'
+    },
+    tags: ['Bone', 'Rickets', 'Pediatrics'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-17',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'easy',
+    front: 'Hyperparathyroidism bone effect?',
+    back: {
+      definition: 'Subperiosteal resorption',
+      high_yield: 'Osteitis fibrosa cystica',
+      clinical_pearl: 'Brown tumors'
+    },
+    tags: ['Calcium', 'Hyperparathyroidism', 'Bone'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-18',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'easy',
+    front: 'Milk-alkali syndrome?',
+    back: {
+      definition: 'High Ca + metabolic alkalosis',
+      high_yield: 'Excess calcium intake',
+      clinical_pearl: 'Supplements overuse'
+    },
+    tags: ['Calcium', 'Hypercalcemia', 'Milk-Alkali'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-19',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'easy',
+    front: 'Familial hypocalciuric hypercalcemia?',
+    back: {
+      definition: 'Benign',
+      high_yield: 'Low urine calcium',
+      clinical_pearl: 'PTH normal/slightly high'
+    },
+    tags: ['Calcium', 'Hypercalcemia', 'FHH'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-20',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'easy',
+    front: 'Calcitonin role?',
+    back: {
+      definition: 'Lowers calcium',
+      high_yield: 'Secreted from thyroid C cells',
+      clinical_pearl: 'Minor effect'
+    },
+    tags: ['Calcium', 'Calcitonin', 'Physiology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+
+  // Calcium & Bone Metabolism - Medium Difficulty (21-32)
+  {
+    id: 'endo-calcium-21',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'medium',
+    front: 'Treatment of severe hypercalcemia?',
+    back: {
+      definition: 'IV fluids',
+      high_yield: 'Bisphosphonates',
+      clinical_pearl: 'Calcitonin for rapid effect'
+    },
+    tags: ['Calcium', 'Hypercalcemia', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-22',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'medium',
+    front: 'PTH function on kidney?',
+    back: {
+      definition: 'Increases Ca reabsorption',
+      high_yield: 'Decreases phosphate reabsorption',
+      clinical_pearl: 'Stimulates vitamin D'
+    },
+    tags: ['Calcium', 'PTH', 'Physiology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-23',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'medium',
+    front: 'PTH function on bone?',
+    back: {
+      definition: 'Increases resorption',
+      high_yield: 'Raises serum calcium',
+      clinical_pearl: 'Chronic elevation causes bone loss'
+    },
+    tags: ['Calcium', 'PTH', 'Bone'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-24',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'medium',
+    front: 'Active vitamin D form?',
+    back: {
+      definition: '1,25-OH vitamin D (calcitriol)',
+      high_yield: 'Converted in kidney',
+      clinical_pearl: 'Low in CKD'
+    },
+    tags: ['Calcium', 'Vitamin D', 'Physiology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-25',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'medium',
+    front: 'Vitamin D deficiency labs?',
+    back: {
+      definition: 'Low Ca',
+      high_yield: 'Low phosphate',
+      clinical_pearl: 'High PTH'
+    },
+    tags: ['Calcium', 'Vitamin D', 'Labs'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-26',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'medium',
+    front: 'Osteoporosis risk factors?',
+    back: {
+      definition: 'Postmenopause',
+      high_yield: 'Steroids',
+      clinical_pearl: 'Smoking + alcohol'
+    },
+    tags: ['Bone', 'Osteoporosis', 'Risk Factors'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-27',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'medium',
+    front: 'Bisphosphonate mechanism?',
+    back: {
+      definition: 'Inhibit osteoclasts',
+      high_yield: 'Increase bone density',
+      clinical_pearl: 'Risk of jaw necrosis'
+    },
+    tags: ['Bone', 'Osteoporosis', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-28',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'medium',
+    front: 'Denosumab mechanism?',
+    back: {
+      definition: 'RANKL inhibitor',
+      high_yield: 'Blocks osteoclast formation',
+      clinical_pearl: 'Used in osteoporosis'
+    },
+    tags: ['Bone', 'Osteoporosis', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-29',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'medium',
+    front: 'Teriparatide mechanism?',
+    back: {
+      definition: 'PTH analog',
+      high_yield: 'Stimulates bone formation',
+      clinical_pearl: 'Intermittent dosing only'
+    },
+    tags: ['Bone', 'Osteoporosis', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-30',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'medium',
+    front: 'Paget disease treatment?',
+    back: {
+      definition: 'Bisphosphonates',
+      high_yield: 'Reduce ALP',
+      clinical_pearl: 'Relieves bone pain'
+    },
+    tags: ['Bone', 'Paget Disease', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-31',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'medium',
+    front: 'Hungry bone syndrome?',
+    back: {
+      definition: 'Post-parathyroidectomy',
+      high_yield: 'Severe hypocalcemia',
+      clinical_pearl: 'High bone uptake'
+    },
+    tags: ['Calcium', 'Hypocalcemia', 'Surgery'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-calcium-32',
+    system: 'Endocrine',
+    topic: 'Calcium & Bone Metabolism',
+    difficulty: 'medium',
+    front: 'Hypervitaminosis D?',
+    back: {
+      definition: 'High Ca + high phosphate',
+      high_yield: 'Low PTH',
+      clinical_pearl: 'Excess supplements'
+    },
+    tags: ['Calcium', 'Vitamin D', 'Toxicity'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
   }
 ];
