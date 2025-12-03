@@ -1,9 +1,10 @@
 
 import React from 'react';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform } from 'react-native';
 import { NativeTabs, Icon, Label } from 'expo-router/unstable-native-tabs';
-import { Slot } from 'expo-router';
+import { Tabs } from 'expo-router';
 import FloatingTabBar, { TabBarItem } from '@/components/FloatingTabBar';
+import { colors } from '@/styles/commonStyles';
 
 export default function TabLayout() {
   const tabs: TabBarItem[] = [
@@ -40,12 +41,28 @@ export default function TabLayout() {
     );
   }
 
-  // For Android and Web, use Slot to render the current route
-  // and overlay the FloatingTabBar
+  // For Android and Web, use Tabs with custom tab bar
   return (
     <>
-      <Slot />
-      <FloatingTabBar tabs={tabs} />
+      <Tabs
+        screenOptions={{
+          headerShown: false,
+        }}
+        tabBar={() => <FloatingTabBar tabs={tabs} />}
+      >
+        <Tabs.Screen
+          name="(home)"
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Tabs.Screen
+          name="profile"
+          options={{
+            headerShown: false,
+          }}
+        />
+      </Tabs>
     </>
   );
 }
