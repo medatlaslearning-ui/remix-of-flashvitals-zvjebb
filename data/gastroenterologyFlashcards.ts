@@ -4012,11 +4012,519 @@ export const gastroenterologyFlashcards: Flashcard[] = [
     reviewCount: 0
   },
 
-  // Pancreatic Disorders - Placeholder for future flashcards
-  // This section will contain flashcards related to pancreatic disorders
-
-  // Biliary Disorders - Placeholder for future flashcards
-  // This section will contain flashcards related to biliary disorders
+  // Pancreatic Disorders
+  {
+    id: 'gastro-pancreas-1',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'easy',
+    front: 'Most common cause of acute pancreatitis?',
+    back: {
+      definition: 'Gallstones',
+      high_yield: 'Second: alcohol',
+      clinical_pearl: 'Sudden epigastric pain'
+    },
+    tags: ['Pancreatitis', 'Acute', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-2',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'easy',
+    front: 'Classic pancreatitis pain?',
+    back: {
+      definition: 'Epigastric pain radiating to back',
+      high_yield: 'Worse after meals',
+      clinical_pearl: 'Better leaning forward'
+    },
+    tags: ['Pancreatitis', 'Symptoms', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-3',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'easy',
+    front: 'Diagnostic labs for pancreatitis?',
+    back: {
+      definition: 'Elevated lipase',
+      high_yield: 'More specific than amylase',
+      clinical_pearl: '3× upper limit'
+    },
+    tags: ['Pancreatitis', 'Diagnosis', 'Labs', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-4',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'easy',
+    front: 'Pancreatitis imaging?',
+    back: {
+      definition: 'CT abdomen',
+      high_yield: 'Best for complications',
+      clinical_pearl: 'Not always needed early'
+    },
+    tags: ['Pancreatitis', 'Imaging', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-5',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'easy',
+    front: 'Gallstone pancreatitis clue?',
+    back: {
+      definition: 'Elevated ALT',
+      high_yield: 'Suggests biliary cause',
+      clinical_pearl: 'Check ultrasound'
+    },
+    tags: ['Pancreatitis', 'Gallstones', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-6',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'easy',
+    front: 'Alcoholic pancreatitis mechanism?',
+    back: {
+      definition: 'Direct toxicity',
+      high_yield: 'Recurrent episodes',
+      clinical_pearl: 'Chronic forms common'
+    },
+    tags: ['Pancreatitis', 'Alcohol', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-7',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'easy',
+    front: 'Hypertriglyceridemia pancreatitis?',
+    back: {
+      definition: 'TG >1000',
+      high_yield: 'Milky serum',
+      clinical_pearl: 'Needs insulin or plasmapheresis'
+    },
+    tags: ['Pancreatitis', 'Hypertriglyceridemia', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-8',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'easy',
+    front: 'Pancreatitis complication?',
+    back: {
+      definition: 'Pseudocyst',
+      high_yield: 'Fluid collection',
+      clinical_pearl: 'Usually weeks after attack'
+    },
+    tags: ['Pancreatitis', 'Complications', 'Pseudocyst', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-9',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'easy',
+    front: 'Pancreatic pseudocyst symptoms?',
+    back: {
+      definition: 'Persistent pain',
+      high_yield: 'Early satiety',
+      clinical_pearl: 'May require drainage'
+    },
+    tags: ['Pseudocyst', 'Complications', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-10',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'easy',
+    front: 'Necrotizing pancreatitis?',
+    back: {
+      definition: 'Pancreatic necrosis',
+      high_yield: 'Severe disease',
+      clinical_pearl: 'High mortality'
+    },
+    tags: ['Pancreatitis', 'Necrosis', 'Complications', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-11',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'easy',
+    front: 'SIRS in pancreatitis?',
+    back: {
+      definition: 'Systemic inflammation',
+      high_yield: 'Predicts severity',
+      clinical_pearl: 'Early fluids critical'
+    },
+    tags: ['Pancreatitis', 'SIRS', 'Severity', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-12',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'easy',
+    front: 'Initial pancreatitis management?',
+    back: {
+      definition: 'Aggressive IV fluids',
+      high_yield: 'Pain control',
+      clinical_pearl: 'NPO'
+    },
+    tags: ['Pancreatitis', 'Management', 'Treatment', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-13',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'easy',
+    front: 'Pancreatitis hypocalcemia cause?',
+    back: {
+      definition: 'Fat saponification',
+      high_yield: 'Calcium binding',
+      clinical_pearl: 'Poor prognostic sign'
+    },
+    tags: ['Pancreatitis', 'Hypocalcemia', 'Complications', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-14',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'easy',
+    front: 'Chronic pancreatitis cause?',
+    back: {
+      definition: 'Alcohol',
+      high_yield: 'Recurrent inflammation',
+      clinical_pearl: 'Exocrine insufficiency'
+    },
+    tags: ['Chronic pancreatitis', 'Alcohol', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-15',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'easy',
+    front: 'Chronic pancreatitis imaging?',
+    back: {
+      definition: 'Calcifications',
+      high_yield: 'Dilated ducts',
+      clinical_pearl: 'Atrophy'
+    },
+    tags: ['Chronic pancreatitis', 'Imaging', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-16',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'easy',
+    front: 'Steatorrhea cause in chronic pancreatitis?',
+    back: {
+      definition: 'Fat malabsorption',
+      high_yield: 'Lack of enzymes',
+      clinical_pearl: 'Treat with enzyme replacement'
+    },
+    tags: ['Chronic pancreatitis', 'Steatorrhea', 'Malabsorption', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-17',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'easy',
+    front: 'Best test for chronic pancreatitis?',
+    back: {
+      definition: 'CT or MRI',
+      high_yield: 'Shows calcifications',
+      clinical_pearl: 'Diagnosis often clinical'
+    },
+    tags: ['Chronic pancreatitis', 'Diagnosis', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-18',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'easy',
+    front: 'Pancreatic cancer risk factors?',
+    back: {
+      definition: 'Smoking, chronic pancreatitis',
+      high_yield: 'Age',
+      clinical_pearl: 'Diabetes'
+    },
+    tags: ['Pancreatic cancer', 'Risk factors', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-19',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'easy',
+    front: 'Pancreatic cancer symptoms?',
+    back: {
+      definition: 'Painless jaundice',
+      high_yield: 'Weight loss',
+      clinical_pearl: 'Courvoisier sign'
+    },
+    tags: ['Pancreatic cancer', 'Symptoms', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-20',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'easy',
+    front: 'Pancreatic cancer location most common?',
+    back: {
+      definition: 'Head of pancreas',
+      high_yield: 'Obstructs bile duct',
+      clinical_pearl: 'Jaundice early'
+    },
+    tags: ['Pancreatic cancer', 'Anatomy', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-21',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'medium',
+    front: 'Ranson criteria use?',
+    back: {
+      definition: 'Predict severity',
+      high_yield: 'Uses early labs',
+      clinical_pearl: 'Higher score = worse prognosis'
+    },
+    tags: ['Pancreatitis', 'Ranson criteria', 'Severity', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-22',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'medium',
+    front: 'BISAP score?',
+    back: {
+      definition: 'Bedside severity score',
+      high_yield: 'Predicts mortality',
+      clinical_pearl: 'Useful alternative to Ranson'
+    },
+    tags: ['Pancreatitis', 'BISAP', 'Severity', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-23',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'medium',
+    front: 'Pancreatic necrosis infection?',
+    back: {
+      definition: 'Worsening fever',
+      high_yield: 'Leukocytosis',
+      clinical_pearl: 'Gas on CT'
+    },
+    tags: ['Pancreatitis', 'Necrosis', 'Infection', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-24',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'medium',
+    front: 'Antibiotics in pancreatitis?',
+    back: {
+      definition: 'Only for infected necrosis',
+      high_yield: 'Not for routine use',
+      clinical_pearl: 'Culture-guided'
+    },
+    tags: ['Pancreatitis', 'Antibiotics', 'Treatment', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-25',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'medium',
+    front: 'ERCP use in pancreatitis?',
+    back: {
+      definition: 'For gallstone pancreatitis',
+      high_yield: 'With cholangitis',
+      clinical_pearl: 'Urgent decompression'
+    },
+    tags: ['Pancreatitis', 'ERCP', 'Treatment', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-26',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'medium',
+    front: 'Cholangitis triad?',
+    back: {
+      definition: 'Fever, jaundice, RUQ pain',
+      high_yield: 'Charcot triad',
+      clinical_pearl: 'Urgent ERCP needed'
+    },
+    tags: ['Cholangitis', 'ERCP', 'Emergency', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-27',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'medium',
+    front: 'Acute pancreatitis electrolyte issue?',
+    back: {
+      definition: 'Hypocalcemia',
+      high_yield: 'Due to fat necrosis',
+      clinical_pearl: 'Monitor closely'
+    },
+    tags: ['Pancreatitis', 'Hypocalcemia', 'Complications', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-28',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'medium',
+    front: 'Chronic pancreatitis diabetes?',
+    back: {
+      definition: 'Loss of endocrine function',
+      high_yield: 'Type 3c diabetes',
+      clinical_pearl: 'Brittle control'
+    },
+    tags: ['Chronic pancreatitis', 'Diabetes', 'Complications', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-29',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'medium',
+    front: 'Pancreatic insufficiency test?',
+    back: {
+      definition: 'Fecal elastase',
+      high_yield: 'Low in insufficiency',
+      clinical_pearl: 'Reflects enzyme deficiency'
+    },
+    tags: ['Chronic pancreatitis', 'Insufficiency', 'Diagnosis', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-30',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'medium',
+    front: 'Pancreatitis pleural effusion?',
+    back: {
+      definition: 'Left-sided',
+      high_yield: 'Exudative',
+      clinical_pearl: 'Amylase rich'
+    },
+    tags: ['Pancreatitis', 'Pleural effusion', 'Complications', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-31',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'medium',
+    front: 'Grey Turner sign?',
+    back: {
+      definition: 'Flank bruising',
+      high_yield: 'Retroperitoneal bleed',
+      clinical_pearl: 'Severe pancreatitis'
+    },
+    tags: ['Pancreatitis', 'Grey Turner', 'Physical exam', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-pancreas-32',
+    system: 'Gastroenterology',
+    topic: 'Pancreatic Disorders',
+    difficulty: 'medium',
+    front: 'Cullen sign?',
+    back: {
+      definition: 'Periumbilical bruising',
+      high_yield: 'Intraperitoneal bleed',
+      clinical_pearl: 'Poor prognosis'
+    },
+    tags: ['Pancreatitis', 'Cullen sign', 'Physical exam', 'Pancreatic Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
 ];
 
 console.log('Gastroenterology flashcards loaded:', gastroenterologyFlashcards.length, 'cards');
