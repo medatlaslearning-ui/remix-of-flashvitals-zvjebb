@@ -4813,6 +4813,520 @@ export const gastroenterologyFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0
   },
+
+  // Biliary Disorders
+  {
+    id: 'gastro-biliary-1',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'easy',
+    front: 'What are gallstones?',
+    back: {
+      definition: 'Solid stones in gallbladder',
+      high_yield: 'Cholesterol most common',
+      clinical_pearl: 'Often asymptomatic'
+    },
+    tags: ['Gallstones', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-2',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'easy',
+    front: 'Biliary colic symptoms?',
+    back: {
+      definition: 'RUQ pain after fatty meals',
+      high_yield: 'Intermittent',
+      clinical_pearl: 'Due to transient obstruction'
+    },
+    tags: ['Biliary colic', 'Gallstones', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-3',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'easy',
+    front: 'Acute cholecystitis cause?',
+    back: {
+      definition: 'Cystic duct obstruction',
+      high_yield: 'Inflamed gallbladder',
+      clinical_pearl: 'Constant RUQ pain'
+    },
+    tags: ['Cholecystitis', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-4',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'easy',
+    front: 'Cholecystitis sign?',
+    back: {
+      definition: 'Positive Murphy sign',
+      high_yield: 'Pain with inspiration',
+      clinical_pearl: 'Fever common'
+    },
+    tags: ['Cholecystitis', 'Murphy sign', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-5',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'easy',
+    front: 'Best initial test for gallstones?',
+    back: {
+      definition: 'Ultrasound',
+      high_yield: 'Detects stones',
+      clinical_pearl: 'Noninvasive'
+    },
+    tags: ['Gallstones', 'Diagnosis', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-6',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'easy',
+    front: 'Cholecystitis ultrasound sign?',
+    back: {
+      definition: 'Gallbladder wall thickening',
+      high_yield: 'Pericholecystic fluid',
+      clinical_pearl: 'Sonographic Murphy sign'
+    },
+    tags: ['Cholecystitis', 'Ultrasound', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-7',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'easy',
+    front: 'HIDA scan use?',
+    back: {
+      definition: 'Diagnoses cholecystitis',
+      high_yield: 'Non-filling = obstruction',
+      clinical_pearl: 'Highly sensitive'
+    },
+    tags: ['HIDA scan', 'Cholecystitis', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-8',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'easy',
+    front: 'Choledocholithiasis?',
+    back: {
+      definition: 'Common bile duct stone',
+      high_yield: 'Causes jaundice',
+      clinical_pearl: '↑Alk phos, ↑bilirubin'
+    },
+    tags: ['Choledocholithiasis', 'CBD stone', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-9',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'easy',
+    front: 'Cholangitis triad?',
+    back: {
+      definition: 'Fever, RUQ pain, jaundice',
+      high_yield: 'Charcot triad',
+      clinical_pearl: 'Medical emergency'
+    },
+    tags: ['Cholangitis', 'Charcot triad', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-10',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'easy',
+    front: 'Reynolds pentad?',
+    back: {
+      definition: 'Charcot triad + hypotension + confusion',
+      high_yield: 'Severe cholangitis',
+      clinical_pearl: 'High mortality'
+    },
+    tags: ['Cholangitis', 'Reynolds pentad', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-11',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'easy',
+    front: 'Cholangitis treatment?',
+    back: {
+      definition: 'Antibiotics + ERCP',
+      high_yield: 'Biliary drainage',
+      clinical_pearl: 'Urgent'
+    },
+    tags: ['Cholangitis', 'Treatment', 'ERCP', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-12',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'easy',
+    front: 'Gallstone pancreatitis cause?',
+    back: {
+      definition: 'CBD stone blocks pancreatic duct',
+      high_yield: 'Elevated lipase',
+      clinical_pearl: 'Treat obstruction'
+    },
+    tags: ['Gallstone pancreatitis', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-13',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'easy',
+    front: 'Pigment stones cause?',
+    back: {
+      definition: 'Hemolysis',
+      high_yield: 'Bilirubin precipitation',
+      clinical_pearl: 'Seen in sickle cell'
+    },
+    tags: ['Pigment stones', 'Gallstones', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-14',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'easy',
+    front: 'Risk factors for gallstones?',
+    back: {
+      definition: 'Female, fat, fertile, forty',
+      high_yield: 'Estrogen effect',
+      clinical_pearl: 'Rapid weight loss risk'
+    },
+    tags: ['Gallstones', 'Risk factors', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-15',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'easy',
+    front: 'Acalculous cholecystitis?',
+    back: {
+      definition: 'Inflamed gallbladder without stones',
+      high_yield: 'Critically ill',
+      clinical_pearl: 'High mortality'
+    },
+    tags: ['Acalculous cholecystitis', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-16',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'easy',
+    front: 'Primary biliary cholangitis?',
+    back: {
+      definition: 'Autoimmune bile duct destruction',
+      high_yield: 'Middle-aged women',
+      clinical_pearl: 'Positive AMA'
+    },
+    tags: ['PBC', 'Autoimmune', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-17',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'easy',
+    front: 'Primary sclerosing cholangitis?',
+    back: {
+      definition: 'Inflammation of bile ducts',
+      high_yield: 'Associated with UC',
+      clinical_pearl: 'Beading on ERCP'
+    },
+    tags: ['PSC', 'IBD', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-18',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'easy',
+    front: 'PSC complication?',
+    back: {
+      definition: 'Cholangiocarcinoma',
+      high_yield: 'High cancer risk',
+      clinical_pearl: 'Monitor closely'
+    },
+    tags: ['PSC', 'Cholangiocarcinoma', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-19',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'easy',
+    front: 'PBC symptoms?',
+    back: {
+      definition: 'Pruritus + fatigue',
+      high_yield: 'Cholestatic labs',
+      clinical_pearl: 'Osteoporosis risk'
+    },
+    tags: ['PBC', 'Symptoms', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-20',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'easy',
+    front: 'PSC symptoms?',
+    back: {
+      definition: 'Fatigue + pruritus',
+      high_yield: 'Cholestatic LFTs',
+      clinical_pearl: 'Jaundice late'
+    },
+    tags: ['PSC', 'Symptoms', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-21',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'medium',
+    front: 'Cholecystitis labs?',
+    back: {
+      definition: 'Leukocytosis',
+      high_yield: 'Mild LFT elevation',
+      clinical_pearl: 'Inflammatory pattern'
+    },
+    tags: ['Cholecystitis', 'Labs', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-22',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'medium',
+    front: 'Choledocholithiasis labs?',
+    back: {
+      definition: 'High bilirubin + alk phos',
+      high_yield: 'CBD obstruction',
+      clinical_pearl: 'RUQ pain + jaundice'
+    },
+    tags: ['Choledocholithiasis', 'Labs', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-23',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'medium',
+    front: 'Cholangitis antibiotics?',
+    back: {
+      definition: 'Cover Gram-negatives',
+      high_yield: 'Pip-tazo or ceftriaxone+metronidazole',
+      clinical_pearl: 'Start early'
+    },
+    tags: ['Cholangitis', 'Antibiotics', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-24',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'medium',
+    front: 'ERCP use?',
+    back: {
+      definition: 'Removes CBD stones',
+      high_yield: 'Urgent in cholangitis',
+      clinical_pearl: 'Definitive therapy'
+    },
+    tags: ['ERCP', 'Treatment', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-25',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'medium',
+    front: 'Gallbladder polyp concern?',
+    back: {
+      definition: '>1 cm risk of cancer',
+      high_yield: 'Cholecystectomy recommended',
+      clinical_pearl: 'Monitor smaller ones'
+    },
+    tags: ['Gallbladder polyp', 'Cancer', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-26',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'medium',
+    front: 'Porcelain gallbladder?',
+    back: {
+      definition: 'Calcified gallbladder',
+      high_yield: 'Cancer risk',
+      clinical_pearl: 'Remove gallbladder'
+    },
+    tags: ['Porcelain gallbladder', 'Cancer', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-27',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'medium',
+    front: 'Gallbladder carcinoma risk?',
+    back: {
+      definition: 'Chronic inflammation',
+      high_yield: 'Gallstones',
+      clinical_pearl: 'Porcelain gallbladder'
+    },
+    tags: ['Gallbladder carcinoma', 'Cancer', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-28',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'medium',
+    front: 'Biliary dyskinesia?',
+    back: {
+      definition: 'Poor gallbladder emptying',
+      high_yield: 'HIDA EF <35%',
+      clinical_pearl: 'Causes RUQ pain'
+    },
+    tags: ['Biliary dyskinesia', 'Functional', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-29',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'medium',
+    front: 'Post-cholecystectomy syndrome?',
+    back: {
+      definition: 'Persistent RUQ pain',
+      high_yield: 'Sphincter dysfunction',
+      clinical_pearl: 'Requires evaluation'
+    },
+    tags: ['Post-cholecystectomy syndrome', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-30',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'medium',
+    front: 'Ascending cholangitis clue?',
+    back: {
+      definition: 'Septic + jaundiced',
+      high_yield: 'CBD obstruction',
+      clinical_pearl: 'Needs ERCP'
+    },
+    tags: ['Cholangitis', 'Emergency', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-31',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'medium',
+    front: 'Gallstone ileus?',
+    back: {
+      definition: 'Stone erodes into bowel',
+      high_yield: 'Air in biliary tree',
+      clinical_pearl: 'Small bowel obstruction'
+    },
+    tags: ['Gallstone ileus', 'Obstruction', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-32',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'medium',
+    front: 'Mirizzi syndrome?',
+    back: {
+      definition: 'Stone compresses CBD',
+      high_yield: 'Jaundice',
+      clinical_pearl: 'Inflammatory narrowing'
+    },
+    tags: ['Mirizzi syndrome', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
 ];
 
 console.log('Gastroenterology flashcards loaded:', gastroenterologyFlashcards.length, 'cards');
