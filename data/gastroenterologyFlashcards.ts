@@ -5327,6 +5327,294 @@ export const gastroenterologyFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0
   },
+  {
+    id: 'gastro-biliary-33',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'medium',
+    front: 'Emphysematous cholecystitis?',
+    back: {
+      definition: 'Gas-forming infection',
+      high_yield: 'Diabetics',
+      clinical_pearl: 'Life-threatening'
+    },
+    tags: ['Emphysematous cholecystitis', 'Emergency', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-34',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'medium',
+    front: 'Bile leak after surgery?',
+    back: {
+      definition: 'RUQ pain + fever',
+      high_yield: 'High bilirubin',
+      clinical_pearl: 'Needs imaging'
+    },
+    tags: ['Bile leak', 'Post-surgical', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-35',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'medium',
+    front: 'Pancreaticobiliary maljunction?',
+    back: {
+      definition: 'Abnormal duct union',
+      high_yield: 'Risk of cancer',
+      clinical_pearl: 'Often congenital'
+    },
+    tags: ['Pancreaticobiliary maljunction', 'Congenital', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-36',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'hard',
+    front: 'PSC association?',
+    back: {
+      definition: 'Ulcerative colitis',
+      high_yield: 'Autoimmune',
+      clinical_pearl: 'Monitor for CRC'
+    },
+    tags: ['PSC', 'IBD', 'Associations', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-37',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'hard',
+    front: 'PBC treatment?',
+    back: {
+      definition: 'Ursodeoxycholic acid',
+      high_yield: 'Slows progression',
+      clinical_pearl: 'Improves survival'
+    },
+    tags: ['PBC', 'Treatment', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-38',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'hard',
+    front: 'PSC treatment?',
+    back: {
+      definition: 'No cure',
+      high_yield: 'Manage complications',
+      clinical_pearl: 'Liver transplant definitive'
+    },
+    tags: ['PSC', 'Treatment', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-39',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'hard',
+    front: 'Cholangiocarcinoma signs?',
+    back: {
+      definition: 'Jaundice + weight loss',
+      high_yield: 'Progressive obstruction',
+      clinical_pearl: 'Poor prognosis'
+    },
+    tags: ['Cholangiocarcinoma', 'Cancer', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-40',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'hard',
+    front: 'Hepaticojejunostomy complication?',
+    back: {
+      definition: 'Stricture',
+      high_yield: 'Recurrent cholangitis',
+      clinical_pearl: 'Requires intervention'
+    },
+    tags: ['Hepaticojejunostomy', 'Post-surgical', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-41',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'hard',
+    front: 'Post-ERCP pancreatitis?',
+    back: {
+      definition: 'Common complication',
+      high_yield: 'Abdominal pain',
+      clinical_pearl: 'Prevent with rectal NSAIDs'
+    },
+    tags: ['ERCP', 'Pancreatitis', 'Complications', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-42',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'hard',
+    front: 'Biliary atresia?',
+    back: {
+      definition: 'Neonatal obstruction',
+      high_yield: 'Persistent jaundice',
+      clinical_pearl: 'Needs early surgery'
+    },
+    tags: ['Biliary atresia', 'Pediatric', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-43',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'hard',
+    front: 'Sphincter of Oddi dysfunction?',
+    back: {
+      definition: 'Biliary-type pain',
+      high_yield: 'Manometry diagnosis',
+      clinical_pearl: 'Rare'
+    },
+    tags: ['Sphincter of Oddi dysfunction', 'Functional', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-44',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'hard',
+    front: 'Biliary colic duration?',
+    back: {
+      definition: 'Minutes to hours',
+      high_yield: 'Intermittent obstruction',
+      clinical_pearl: 'Normal labs'
+    },
+    tags: ['Biliary colic', 'Symptoms', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-45',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'hard',
+    front: 'Cholecystitis pain duration?',
+    back: {
+      definition: 'Constant severe RUQ pain',
+      high_yield: 'Inflammation',
+      clinical_pearl: 'Fever common'
+    },
+    tags: ['Cholecystitis', 'Symptoms', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-46',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'hard',
+    front: 'Painless jaundice cause?',
+    back: {
+      definition: 'CBD obstruction',
+      high_yield: 'Often pancreatic cancer',
+      clinical_pearl: 'Needs CT/MRCP'
+    },
+    tags: ['Jaundice', 'CBD obstruction', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-47',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'hard',
+    front: 'LFTs in cholestasis?',
+    back: {
+      definition: 'High ALP + GGT',
+      high_yield: 'Obstruction or PBC/PSC',
+      clinical_pearl: 'Pattern recognition important'
+    },
+    tags: ['Cholestasis', 'Labs', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-48',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'hard',
+    front: 'Hydropic gallbladder?',
+    back: {
+      definition: 'Overdistention',
+      high_yield: 'Prolonged obstruction',
+      clinical_pearl: 'Painful RUQ mass'
+    },
+    tags: ['Hydropic gallbladder', 'Obstruction', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-49',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'hard',
+    front: 'Recurrent cholangitis cause?',
+    back: {
+      definition: 'Stricture or residual stones',
+      high_yield: 'Intermittent pain + fever',
+      clinical_pearl: 'Evaluate with MRCP'
+    },
+    tags: ['Cholangitis', 'Recurrent', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'gastro-biliary-50',
+    system: 'Gastroenterology',
+    topic: 'Biliary Disorders',
+    difficulty: 'hard',
+    front: 'Best test for CBD stone confirmation?',
+    back: {
+      definition: 'MRCP or EUS',
+      high_yield: 'Noninvasive',
+      clinical_pearl: 'Highly sensitive'
+    },
+    tags: ['CBD stone', 'Diagnosis', 'Imaging', 'Biliary Disorders'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
 ];
 
 console.log('Gastroenterology flashcards loaded:', gastroenterologyFlashcards.length, 'cards');
