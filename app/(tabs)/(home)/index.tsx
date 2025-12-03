@@ -8,8 +8,11 @@ import { IconSymbol } from '@/components/IconSymbol';
 import * as Haptics from 'expo-haptics';
 
 export default function HomeScreen() {
+  console.log('HomeScreen rendering...');
   const router = useRouter();
   const { allFlashcards, updateTrigger } = useFlashcards();
+
+  console.log('Total flashcards loaded:', allFlashcards.length);
 
   // Get unique topics for Cardiology
   const cardiologyTopics = useMemo(() => {

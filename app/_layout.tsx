@@ -1,3 +1,4 @@
+
 import "react-native-reanimated";
 import React, { useEffect } from "react";
 import { useFonts } from "expo-font";
@@ -25,6 +26,7 @@ export const unstable_settings = {
 };
 
 export default function RootLayout() {
+  console.log('RootLayout rendering...');
   const colorScheme = useColorScheme();
   const networkState = useNetworkState();
   const [loaded] = useFonts({
@@ -32,6 +34,7 @@ export default function RootLayout() {
   });
 
   useEffect(() => {
+    console.log('Fonts loaded:', loaded);
     if (loaded) {
       SplashScreen.hideAsync();
     }
@@ -50,6 +53,7 @@ export default function RootLayout() {
   }, [networkState.isConnected, networkState.isInternetReachable]);
 
   if (!loaded) {
+    console.log('Waiting for fonts to load...');
     return null;
   }
 
@@ -77,6 +81,9 @@ export default function RootLayout() {
       notification: "rgb(255, 69, 58)", // System Red (Dark Mode)
     },
   };
+
+  console.log('RootLayout rendering with theme:', colorScheme);
+
   return (
     <>
       <StatusBar style="auto" animated />

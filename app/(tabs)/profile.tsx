@@ -7,6 +7,7 @@ import { useFlashcards } from '@/hooks/useFlashcards';
 import { IconSymbol } from '@/components/IconSymbol';
 
 export default function ProfileScreen() {
+  console.log('ProfileScreen rendering...');
   const { allFlashcards } = useFlashcards();
 
   const getBookmarkedFlashcards = () => allFlashcards.filter(card => card.bookmarked);
