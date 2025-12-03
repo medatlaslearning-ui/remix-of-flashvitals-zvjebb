@@ -2934,5 +2934,293 @@ export const endocrineFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-33',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'medium',
+    front: 'Craniopharyngioma?',
+    back: {
+      definition: 'Benign tumor',
+      high_yield: 'Hypopituitarism + vision loss',
+      clinical_pearl: 'Calcifications on imaging'
+    },
+    tags: ['Pituitary', 'Craniopharyngioma', 'Tumor'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-34',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'medium',
+    front: 'Langerhans cell histiocytosis pituitary effect?',
+    back: {
+      definition: 'Central DI',
+      high_yield: 'Pituitary involvement',
+      clinical_pearl: 'Children often'
+    },
+    tags: ['Pituitary', 'Langerhans Cell Histiocytosis', 'DI'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-35',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'medium',
+    front: 'Pituitary radiation side effect?',
+    back: {
+      definition: 'Hypopituitarism',
+      high_yield: 'Gradual onset',
+      clinical_pearl: 'Lifelong monitoring'
+    },
+    tags: ['Pituitary', 'Radiation', 'Hypopituitarism'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-36',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'hard',
+    front: 'Ectopic ADH tumor?',
+    back: {
+      definition: 'Small cell lung cancer',
+      high_yield: 'Paraneoplastic SIADH',
+      clinical_pearl: 'Severe hyponatremia'
+    },
+    tags: ['Pituitary', 'SIADH', 'Ectopic ADH'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-37',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'hard',
+    front: 'Osmotic demyelination risk?',
+    back: {
+      definition: 'Overcorrecting hyponatremia',
+      high_yield: 'Central pontine myelinolysis',
+      clinical_pearl: 'Correct slowly'
+    },
+    tags: ['Pituitary', 'SIADH', 'Osmotic Demyelination'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-38',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'hard',
+    front: 'Triphasic response after pituitary surgery?',
+    back: {
+      definition: 'DI → SIADH → DI',
+      high_yield: 'Water balance instability',
+      clinical_pearl: 'Monitor closely'
+    },
+    tags: ['Pituitary', 'Surgery', 'Triphasic Response'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-39',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'hard',
+    front: 'Panhypopituitarism?',
+    back: {
+      definition: 'Complete pituitary failure',
+      high_yield: 'Multiple hormone deficits',
+      clinical_pearl: 'Life-long replacement'
+    },
+    tags: ['Pituitary', 'Panhypopituitarism', 'Hypopituitarism'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-40',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'hard',
+    front: 'Adipsic DI?',
+    back: {
+      definition: 'Hypothalamic damage',
+      high_yield: 'Lack of thirst',
+      clinical_pearl: 'Severe hypernatremia risk'
+    },
+    tags: ['Pituitary', 'Diabetes Insipidus', 'Adipsic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-41',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'hard',
+    front: 'High-dose dexamethasone test?',
+    back: {
+      definition: 'Differentiates Cushing disease',
+      high_yield: 'Pituitary suppresses; ectopic does not',
+      clinical_pearl: 'Second-level testing'
+    },
+    tags: ['Pituitary', 'Cushing Disease', 'Dexamethasone Test'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-42',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'hard',
+    front: 'Pituitary metastases?',
+    back: {
+      definition: 'Breast/lung cancer',
+      high_yield: 'Posterior pituitary affected',
+      clinical_pearl: 'DI common'
+    },
+    tags: ['Pituitary', 'Metastases', 'Cancer'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-43',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'hard',
+    front: 'Pituitary cyst (Rathke cleft)?',
+    back: {
+      definition: 'Benign cyst',
+      high_yield: 'Headache + vision issues',
+      clinical_pearl: 'May mimic adenoma'
+    },
+    tags: ['Pituitary', 'Rathke Cleft Cyst', 'Cyst'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-44',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'hard',
+    front: 'Invasive pituitary adenoma?',
+    back: {
+      definition: 'Invades cavernous sinus',
+      high_yield: 'Cranial nerve palsies',
+      clinical_pearl: 'Complex surgery'
+    },
+    tags: ['Pituitary', 'Adenoma', 'Invasive'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-45',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'hard',
+    front: 'Kallmann syndrome?',
+    back: {
+      definition: 'Hypogonadotropic hypogonadism',
+      high_yield: 'Anosmia',
+      clinical_pearl: 'Delayed puberty'
+    },
+    tags: ['Pituitary', 'Kallmann Syndrome', 'Hypogonadism'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-46',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'hard',
+    front: 'Laron syndrome?',
+    back: {
+      definition: 'GH receptor defect',
+      high_yield: 'High GH, low IGF-1',
+      clinical_pearl: 'Dwarfism'
+    },
+    tags: ['Pituitary', 'Laron Syndrome', 'GH'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-47',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'hard',
+    front: 'Pituitary gigantism?',
+    back: {
+      definition: 'Excess GH in childhood',
+      high_yield: 'Tall stature',
+      clinical_pearl: 'Open growth plates'
+    },
+    tags: ['Pituitary', 'Gigantism', 'GH'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-48',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'hard',
+    front: 'Hyperprolactinemia in men?',
+    back: {
+      definition: 'Low testosterone',
+      high_yield: 'Infertility',
+      clinical_pearl: 'Often late diagnosis'
+    },
+    tags: ['Pituitary', 'Hyperprolactinemia', 'Men'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-49',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'hard',
+    front: 'Empty sella secondary cause?',
+    back: {
+      definition: 'ICP elevation',
+      high_yield: 'CSF compresses pituitary',
+      clinical_pearl: 'Seen in obese women'
+    },
+    tags: ['Pituitary', 'Empty Sella', 'ICP'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-pituitary-50',
+    system: 'Endocrine',
+    topic: 'Pituitary Disorders',
+    difficulty: 'hard',
+    front: 'Postoperative DI clue?',
+    back: {
+      definition: 'Excessive urine output',
+      high_yield: 'High serum sodium',
+      clinical_pearl: 'Responds to desmopressin'
+    },
+    tags: ['Pituitary', 'Diabetes Insipidus', 'Postoperative'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
   }
 ];
