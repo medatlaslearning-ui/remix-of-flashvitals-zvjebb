@@ -10,7 +10,7 @@ import * as Haptics from 'expo-haptics';
 
 export default function AdminScreen() {
   const router = useRouter();
-  const { flashcards, addFlashcard, updateFlashcard, deleteFlashcard } = useFlashcards();
+  const { flashcards } = useFlashcards();
   const [selectedCard, setSelectedCard] = useState<Flashcard | null>(null);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -61,8 +61,8 @@ export default function AdminScreen() {
           text: 'Delete',
           style: 'destructive',
           onPress: () => {
-            deleteFlashcard(card.id);
-            Alert.alert('Success', 'Flashcard deleted successfully');
+            console.log('Delete flashcard:', card.id);
+            Alert.alert('Info', 'Delete functionality coming soon');
           },
         },
       ]
@@ -75,30 +75,8 @@ export default function AdminScreen() {
       return;
     }
 
-    const flashcardData = {
-      system,
-      topic,
-      front,
-      back: {
-        definition,
-        high_yield: highYield,
-        clinical_pearl: clinicalPearl,
-      },
-      tags: tags.split(',').map(t => t.trim()).filter(t => t),
-      bookmarked: selectedCard?.bookmarked || false,
-      favorite: selectedCard?.favorite || false,
-      reviewCount: selectedCard?.reviewCount || 0,
-      difficulty: (selectedCard?.difficulty || 'medium') as 'easy' | 'medium' | 'hard',
-    };
-
-    if (isEditing && selectedCard) {
-      updateFlashcard(selectedCard.id, flashcardData);
-      Alert.alert('Success', 'Flashcard updated successfully');
-    } else {
-      addFlashcard(flashcardData);
-      Alert.alert('Success', 'Flashcard added successfully');
-    }
-
+    console.log('Save flashcard:', { system, topic, front, definition, highYield, clinicalPearl, tags });
+    Alert.alert('Info', 'Add/Edit functionality coming soon');
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     resetForm();
   };
@@ -106,6 +84,10 @@ export default function AdminScreen() {
   const getTopicStats = (topicName: string) => {
     return flashcards.filter(c => c.topic === topicName).length;
   };
+
+  const totalReviews = flashcards.reduce((sum, card) => sum + card.reviewCount, 0);
+  const reviewedCards = flashcards.filter(c => c.reviewCount > 0).length;
+  const averageReviews = reviewedCards > 0 ? Math.round(totalReviews / reviewedCards) : 0;
 
   return (
     <>
@@ -135,15 +117,11 @@ export default function AdminScreen() {
               <Text style={styles.statLabel}>Total Cards</Text>
             </View>
             <View style={styles.statItem}>
-              <Text style={styles.statValue}>
-                {flashcards.filter(c => c.reviewCount > 0).length}
-              </Text>
+              <Text style={styles.statValue}>{reviewedCards}</Text>
               <Text style={styles.statLabel}>Reviewed</Text>
             </View>
             <View style={styles.statItem}>
-              <Text style={styles.statValue}>
-                {Math.round(flashcards.reduce((sum, c) => sum + c.reviewCount, 0) / flashcards.length) || 0}
-              </Text>
+              <Text style={styles.statValue}>{averageReviews}</Text>
               <Text style={styles.statLabel}>Avg Reviews</Text>
             </View>
           </View>

@@ -104,12 +104,23 @@ export function useFlashcards() {
     }
   };
 
+  const getBookmarkedFlashcards = () => {
+    return allFlashcards.filter(card => card.bookmarked);
+  };
+
+  const getFavoriteFlashcards = () => {
+    return allFlashcards.filter(card => card.favorite);
+  };
+
   return {
+    flashcards: allFlashcards,
     allFlashcards,
     updateFlashcard,
     toggleBookmark,
     toggleFavorite,
     incrementReviewCount,
+    getBookmarkedFlashcards,
+    getFavoriteFlashcards,
     updateTrigger,
   };
 }
