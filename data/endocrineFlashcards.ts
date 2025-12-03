@@ -2032,7 +2032,7 @@ export const endocrineFlashcards: Flashcard[] = [
     reviewCount: 0
   },
 
-  // Adrenal Disorders - Medium Difficulty (27-31)
+  // Adrenal Disorders - Medium Difficulty (27-39)
   {
     id: 'endo-adrenal-27',
     system: 'Endocrine',
@@ -2109,6 +2109,312 @@ export const endocrineFlashcards: Flashcard[] = [
       clinical_pearl: 'No hyperpigmentation'
     },
     tags: ['Adrenal', 'Insufficiency', 'Secondary'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-32',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'medium',
+    front: 'Tertiary adrenal insufficiency cause?',
+    back: {
+      definition: 'Chronic steroid use withdrawal',
+      high_yield: 'Suppressed CRH',
+      clinical_pearl: 'Gradual taper needed'
+    },
+    tags: ['Adrenal', 'Insufficiency', 'Tertiary'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-33',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'medium',
+    front: 'Pheochromocytoma rule of 10s?',
+    back: {
+      definition: '10% malignant',
+      high_yield: '10% bilateral',
+      clinical_pearl: '10% extra-adrenal'
+    },
+    tags: ['Adrenal', 'Pheochromocytoma', 'Rule of 10s'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-34',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'medium',
+    front: 'Pheo imaging?',
+    back: {
+      definition: 'MRI preferred',
+      high_yield: 'T2 bright',
+      clinical_pearl: 'After biochemical confirmation'
+    },
+    tags: ['Adrenal', 'Pheochromocytoma', 'Imaging'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-35',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'medium',
+    front: 'Nelson syndrome?',
+    back: {
+      definition: 'Pituitary tumor enlargement',
+      high_yield: 'After adrenalectomy',
+      clinical_pearl: 'High ACTH + hyperpigmentation'
+    },
+    tags: ['Adrenal', 'Nelson Syndrome', 'Pituitary'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-36',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'medium',
+    front: 'Adrenal hemorrhage cause?',
+    back: {
+      definition: 'Sepsis, trauma, anticoagulants',
+      high_yield: 'Acute adrenal crisis',
+      clinical_pearl: 'Waterhouse-Friderichsen syndrome'
+    },
+    tags: ['Adrenal', 'Hemorrhage', 'Crisis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-37',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'medium',
+    front: '11β-hydroxylase deficiency?',
+    back: {
+      definition: 'High androgens + HTN',
+      high_yield: 'Low renin',
+      clinical_pearl: 'Low aldosterone'
+    },
+    tags: ['Adrenal', 'CAH', '11β-hydroxylase'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-38',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'medium',
+    front: '17α-hydroxylase deficiency?',
+    back: {
+      definition: 'Low androgens',
+      high_yield: 'Hypertension',
+      clinical_pearl: 'No puberty'
+    },
+    tags: ['Adrenal', 'CAH', '17α-hydroxylase'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-39',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'medium',
+    front: 'Cushing ACTH level clue?',
+    back: {
+      definition: 'High ACTH = pituitary or ectopic',
+      high_yield: 'Low ACTH = adrenal tumor',
+      clinical_pearl: 'Guides next steps'
+    },
+    tags: ['Adrenal', 'Cushing', 'ACTH', 'Diagnosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+
+  // Adrenal Disorders - Hard Difficulty (40-50)
+  {
+    id: 'endo-adrenal-40',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'hard',
+    front: 'Ectopic ACTH tumor?',
+    back: {
+      definition: 'Small cell lung cancer',
+      high_yield: 'Severe hypercortisolism',
+      clinical_pearl: 'Hypokalemic alkalosis'
+    },
+    tags: ['Adrenal', 'Cushing', 'Ectopic ACTH'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-41',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'hard',
+    front: 'Ectopic CRH tumor?',
+    back: {
+      definition: 'Rare',
+      high_yield: 'Leads to ACTH excess',
+      clinical_pearl: 'Same presentation as Cushing disease'
+    },
+    tags: ['Adrenal', 'Cushing', 'Ectopic CRH'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-42',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'hard',
+    front: 'Malignant pheochromocytoma clue?',
+    back: {
+      definition: 'Persistent symptoms after surgery',
+      high_yield: 'Elevated chromogranin A',
+      clinical_pearl: 'Rare but aggressive'
+    },
+    tags: ['Adrenal', 'Pheochromocytoma', 'Malignancy'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-43',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'hard',
+    front: 'Laparoscopic adrenalectomy contraindication?',
+    back: {
+      definition: 'Large invasive mass',
+      high_yield: 'Suspicion for carcinoma',
+      clinical_pearl: 'Needs open approach'
+    },
+    tags: ['Adrenal', 'Surgery', 'Adrenalectomy'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-44',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'hard',
+    front: 'Primary adrenal lymphoma?',
+    back: {
+      definition: 'Rare malignancy',
+      high_yield: 'Bilaterally enlarged glands',
+      clinical_pearl: 'Adrenal insufficiency common'
+    },
+    tags: ['Adrenal', 'Lymphoma', 'Cancer'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-45',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'hard',
+    front: 'Adrenal vein sampling use?',
+    back: {
+      definition: 'Distinguish unilateral vs bilateral hyperaldosteronism',
+      high_yield: 'Guides surgery',
+      clinical_pearl: ''
+    },
+    tags: ['Adrenal', 'Hyperaldosteronism', 'Diagnosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-46',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'hard',
+    front: 'ACTH-independent Cushing labs?',
+    back: {
+      definition: 'Low ACTH',
+      high_yield: 'High cortisol',
+      clinical_pearl: 'Adrenal source'
+    },
+    tags: ['Adrenal', 'Cushing', 'Labs'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-47',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'hard',
+    front: 'MEN2 and pheochromocytoma?',
+    back: {
+      definition: 'RET mutation',
+      high_yield: 'Screen early',
+      clinical_pearl: 'Operate pheo before thyroidectomy'
+    },
+    tags: ['Adrenal', 'Pheochromocytoma', 'MEN2'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-48',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'hard',
+    front: 'Carney complex?',
+    back: {
+      definition: 'Myxomas + endocrine tumors',
+      high_yield: 'Pigmented nodules',
+      clinical_pearl: 'Rare adrenal involvement'
+    },
+    tags: ['Adrenal', 'Carney Complex', 'Syndrome'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-49',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'hard',
+    front: 'Glucocorticoid-remediable hyperaldosteronism?',
+    back: {
+      definition: 'Genetic',
+      high_yield: 'ACTH-driven aldosterone',
+      clinical_pearl: 'Treat with steroids'
+    },
+    tags: ['Adrenal', 'Hyperaldosteronism', 'Genetic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-adrenal-50',
+    system: 'Endocrine',
+    topic: 'Adrenal Disorders',
+    difficulty: 'hard',
+    front: 'Adrenal metastases?',
+    back: {
+      definition: 'Common site for mets',
+      high_yield: 'Lung, breast',
+      clinical_pearl: 'Often bilateral'
+    },
+    tags: ['Adrenal', 'Metastases', 'Cancer'],
     bookmarked: false,
     favorite: false,
     reviewCount: 0
