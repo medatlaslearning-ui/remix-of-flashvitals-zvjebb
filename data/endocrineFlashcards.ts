@@ -5334,5 +5334,309 @@ export const endocrineFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-32',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'medium',
+    front: 'Medullary thyroid carcinoma spread pattern?',
+    back: {
+      definition: 'Lymphatic first',
+      high_yield: 'METs to liver/lung',
+      clinical_pearl: 'Screen for RET mutation'
+    },
+    tags: ['Endocrine Tumors', 'Medullary Thyroid', 'Metastasis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-33',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'medium',
+    front: 'Calcitonin stimulation test?',
+    back: {
+      definition: 'Used for medullary thyroid cancer',
+      high_yield: 'Monitors recurrence',
+      clinical_pearl: 'Not commonly needed today'
+    },
+    tags: ['Endocrine Tumors', 'Medullary Thyroid', 'Calcitonin'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-34',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'medium',
+    front: 'Pancreatic NET prognosis?',
+    back: {
+      definition: 'Indolent but metastatic risk',
+      high_yield: 'Depends on type',
+      clinical_pearl: 'Gastrinomas often malignant'
+    },
+    tags: ['Endocrine Tumors', 'Pancreatic', 'NET'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-35',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'medium',
+    front: 'Ectopic insulin secretion?',
+    back: {
+      definition: 'Insulinoma',
+      high_yield: 'Causes hypoglycemia',
+      clinical_pearl: 'Rare but classic'
+    },
+    tags: ['Endocrine Tumors', 'Insulinoma', 'Ectopic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-36',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'medium',
+    front: 'Ectopic PTHrP tumor?',
+    back: {
+      definition: 'Squamous cell lung cancer',
+      high_yield: 'Hypercalcemia of malignancy',
+      clinical_pearl: 'Low PTH'
+    },
+    tags: ['Endocrine Tumors', 'PTHrP', 'Hypercalcemia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-37',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'hard',
+    front: 'Multiple NET syndrome?',
+    back: {
+      definition: 'MEN1',
+      high_yield: 'Pancreas + pituitary + parathyroid',
+      clinical_pearl: 'Familial screening needed'
+    },
+    tags: ['Endocrine Tumors', 'MEN1', 'NET'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-38',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'hard',
+    front: 'RET mutation testing recommended for?',
+    back: {
+      definition: 'All medullary thyroid cancer patients',
+      high_yield: 'Identify MEN2',
+      clinical_pearl: 'Family counseling essential'
+    },
+    tags: ['Endocrine Tumors', 'RET', 'MEN2'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-39',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'hard',
+    front: 'Pheochromocytoma inheritance?',
+    back: {
+      definition: 'Up to 25% hereditary',
+      high_yield: 'RET, NF1, VHL',
+      clinical_pearl: 'Genetic testing recommended'
+    },
+    tags: ['Endocrine Tumors', 'Pheochromocytoma', 'Genetics'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-40',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'hard',
+    front: 'VHL syndrome tumors?',
+    back: {
+      definition: 'Pheochromocytoma',
+      high_yield: 'Hemangioblastomas',
+      clinical_pearl: 'Renal cell carcinoma'
+    },
+    tags: ['Endocrine Tumors', 'VHL', 'Syndrome'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-41',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'hard',
+    front: 'Neurofibromatosis endocrine tumors?',
+    back: {
+      definition: 'Pheochromocytoma',
+      high_yield: 'Somatostatinoma',
+      clinical_pearl: 'Rare but recognized'
+    },
+    tags: ['Endocrine Tumors', 'Neurofibromatosis', 'NF1'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-42',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'hard',
+    front: 'MEN2 prophylactic thyroidectomy timing?',
+    back: {
+      definition: 'Early childhood',
+      high_yield: 'Based on RET mutation',
+      clinical_pearl: 'Prevents medullary carcinoma'
+    },
+    tags: ['Endocrine Tumors', 'MEN2', 'Surgery'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-43',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'hard',
+    front: 'Atypical carcinoid tumor?',
+    back: {
+      definition: 'More aggressive lung NET',
+      high_yield: 'Intermediate malignancy',
+      clinical_pearl: 'Requires closer monitoring'
+    },
+    tags: ['Endocrine Tumors', 'Carcinoid', 'Lung'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-44',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'hard',
+    front: 'Adrenal cortical carcinoma?',
+    back: {
+      definition: 'Rare aggressive tumor',
+      high_yield: 'Produces multiple hormones',
+      clinical_pearl: 'Large heterogeneous mass'
+    },
+    tags: ['Endocrine Tumors', 'Adrenal', 'Carcinoma'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-45',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'hard',
+    front: 'Parathyroid hyperplasia vs adenoma?',
+    back: {
+      definition: 'Hyperplasia = 4 glands',
+      high_yield: 'MEN1 and MEN2A',
+      clinical_pearl: 'Adenoma = single gland'
+    },
+    tags: ['Endocrine Tumors', 'Parathyroid', 'Hyperplasia'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-46',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'hard',
+    front: 'Thymic carcinoid?',
+    back: {
+      definition: 'Associated with MEN1',
+      high_yield: 'Aggressive',
+      clinical_pearl: 'Anterior mediastinum mass'
+    },
+    tags: ['Endocrine Tumors', 'Carcinoid', 'Thymic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-47',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'hard',
+    front: 'GI NET metastasis pattern?',
+    back: {
+      definition: 'Liver mets common',
+      high_yield: 'Cause carcinoid syndrome',
+      clinical_pearl: 'Monitor with imaging'
+    },
+    tags: ['Endocrine Tumors', 'NET', 'Metastasis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-48',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'hard',
+    front: 'Glioma-like tumors in MEN1?',
+    back: {
+      definition: 'Pituitary + pancreatic NETs',
+      high_yield: 'Less common',
+      clinical_pearl: 'Require surveillance'
+    },
+    tags: ['Endocrine Tumors', 'MEN1', 'Glioma'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-49',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'hard',
+    front: 'Pancreatic polypeptide tumor?',
+    back: {
+      definition: 'PPoma',
+      high_yield: 'Very rare',
+      clinical_pearl: 'Causes mild symptoms, mass effect'
+    },
+    tags: ['Endocrine Tumors', 'PPoma', 'Pancreatic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-50',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'hard',
+    front: 'Most lethal endocrine tumor?',
+    back: {
+      definition: 'Anaplastic thyroid carcinoma',
+      high_yield: 'Fast-growing',
+      clinical_pearl: 'Poor prognosis'
+    },
+    tags: ['Endocrine Tumors', 'Anaplastic Thyroid', 'Cancer'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
   }
 ];
