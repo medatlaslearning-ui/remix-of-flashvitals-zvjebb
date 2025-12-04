@@ -4544,5 +4544,295 @@ export const endocrineFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0
+  },
+
+  // Reproductive Endocrinology - Hard Difficulty (33-50)
+  {
+    id: 'endo-repro-33',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'hard',
+    front: 'Congenital adrenal hyperplasia impact on puberty?',
+    back: {
+      definition: 'High androgens',
+      high_yield: 'Early virilization',
+      clinical_pearl: '21-hydroxylase most common'
+    },
+    tags: ['Reproductive', 'CAH', 'Puberty'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-34',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'hard',
+    front: 'Ovarian hyperthecosis?',
+    back: {
+      definition: 'Severe androgen overproduction',
+      high_yield: 'Postmenopausal virilization',
+      clinical_pearl: 'Often requires oophorectomy'
+    },
+    tags: ['Reproductive', 'Hyperthecosis', 'Androgens'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-35',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'hard',
+    front: 'Hyperandrogenism with high DHEAS?',
+    back: {
+      definition: 'Adrenal source',
+      high_yield: 'Adrenal tumor possible',
+      clinical_pearl: 'Order CT/MRI'
+    },
+    tags: ['Reproductive', 'Hyperandrogenism', 'DHEAS'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-36',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'hard',
+    front: 'Hyperandrogenism with high testosterone?',
+    back: {
+      definition: 'Ovarian source',
+      high_yield: 'Ovarian tumor possible',
+      clinical_pearl: 'Ultrasound next'
+    },
+    tags: ['Reproductive', 'Hyperandrogenism', 'Testosterone'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-37',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'hard',
+    front: 'Ovarian failure labs?',
+    back: {
+      definition: 'High FSH',
+      high_yield: 'Low estrogen',
+      clinical_pearl: 'Think primary ovarian insufficiency'
+    },
+    tags: ['Reproductive', 'Ovarian Failure', 'Labs'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-38',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'hard',
+    front: 'Testosterone therapy risks?',
+    back: {
+      definition: 'Polycythemia',
+      high_yield: 'Infertility',
+      clinical_pearl: 'Check hematocrit'
+    },
+    tags: ['Reproductive', 'Testosterone', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-39',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'hard',
+    front: 'PCOS infertility treatment?',
+    back: {
+      definition: 'Letrozole first line',
+      high_yield: 'Ovulation induction',
+      clinical_pearl: 'Better than clomiphene'
+    },
+    tags: ['Reproductive', 'PCOS', 'Infertility'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-40',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'hard',
+    front: 'Clomiphene mechanism?',
+    back: {
+      definition: 'Selective estrogen receptor modulator',
+      high_yield: 'Increases FSH/LH',
+      clinical_pearl: 'Used for ovulation induction'
+    },
+    tags: ['Reproductive', 'Clomiphene', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-41',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'hard',
+    front: 'Male infertility common cause?',
+    back: {
+      definition: 'Varicocele',
+      high_yield: 'Impaired sperm production',
+      clinical_pearl: 'Feels like "bag of worms"'
+    },
+    tags: ['Reproductive', 'Male Infertility', 'Varicocele'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-42',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'hard',
+    front: 'Male hypogonadism cause?',
+    back: {
+      definition: 'Testicular failure',
+      high_yield: 'Mumps orchitis',
+      clinical_pearl: 'Chemotherapy'
+    },
+    tags: ['Reproductive', 'Male Hypogonadism', 'Etiology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-43',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'hard',
+    front: 'Pituitary cause of amenorrhea?',
+    back: {
+      definition: 'Prolactinoma',
+      high_yield: 'Low GnRH',
+      clinical_pearl: 'High prolactin'
+    },
+    tags: ['Reproductive', 'Amenorrhea', 'Prolactinoma'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-44',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'hard',
+    front: 'Hypergonadotropic hypogonadism?',
+    back: {
+      definition: 'High FSH/LH',
+      high_yield: 'Gonadal failure',
+      clinical_pearl: 'Turner, Klinefelter'
+    },
+    tags: ['Reproductive', 'Hypogonadism', 'Hypergonadotropic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-45',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'hard',
+    front: 'Hypogonadotropic hypogonadism?',
+    back: {
+      definition: 'Low FSH/LH',
+      high_yield: 'Low GnRH',
+      clinical_pearl: 'Functional or pituitary disease'
+    },
+    tags: ['Reproductive', 'Hypogonadism', 'Hypogonadotropic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-46',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'hard',
+    front: 'Premature ovarian insufficiency cause?',
+    back: {
+      definition: 'Autoimmune or genetic',
+      high_yield: '<40 yrs',
+      clinical_pearl: 'Intermittent ovarian activity'
+    },
+    tags: ['Reproductive', 'Ovarian Insufficiency', 'Etiology'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-47',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'hard',
+    front: 'Ovarian cancer risk increases with?',
+    back: {
+      definition: 'Infertility drugs',
+      high_yield: 'Family history',
+      clinical_pearl: 'BRCA mutations'
+    },
+    tags: ['Reproductive', 'Ovarian Cancer', 'Risk Factors'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-48',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'hard',
+    front: 'Endometrial cancer risk increases with?',
+    back: {
+      definition: 'Unopposed estrogen',
+      high_yield: 'Obesity',
+      clinical_pearl: 'PCOS'
+    },
+    tags: ['Reproductive', 'Endometrial Cancer', 'Risk Factors'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-49',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'hard',
+    front: 'Müllerian agenesis?',
+    back: {
+      definition: 'Absence of uterus/vagina',
+      high_yield: 'Normal ovarian function',
+      clinical_pearl: 'Primary amenorrhea'
+    },
+    tags: ['Reproductive', 'Müllerian Agenesis', 'Amenorrhea'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-repro-50',
+    system: 'Endocrine',
+    topic: 'Reproductive Endocrinology',
+    difficulty: 'hard',
+    front: 'Hyperprolactinemia in men effect?',
+    back: {
+      definition: 'Low testosterone',
+      high_yield: 'Infertility',
+      clinical_pearl: 'Reduced facial hair'
+    },
+    tags: ['Reproductive', 'Hyperprolactinemia', 'Men'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
   }
 ];
