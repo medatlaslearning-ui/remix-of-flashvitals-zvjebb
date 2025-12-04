@@ -56,6 +56,15 @@ export default function HomeScreen() {
     ));
   }, [allFlashcards]);
 
+  // Get unique topics for Hematology
+  const hematologyTopics = useMemo(() => {
+    return Array.from(new Set(
+      allFlashcards
+        .filter(card => card.system === 'Hematology')
+        .map(card => card.topic)
+    ));
+  }, [allFlashcards]);
+
   const handleSystemPress = (system: string) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     console.log('Navigating to system:', system);
@@ -69,6 +78,8 @@ export default function HomeScreen() {
       router.push('/(tabs)/(home)/gastroenterology-topics');
     } else if (system === 'Endocrine') {
       router.push('/(tabs)/(home)/endocrine-topics');
+    } else if (system === 'Hematology') {
+      router.push('/(tabs)/(home)/hematology-topics');
     }
   };
 
@@ -235,6 +246,25 @@ export default function HomeScreen() {
                 <Text style={styles.systemTitle}>Endocrine</Text>
                 <Text style={styles.systemSubtitle}>
                   {allFlashcards.filter(c => c.system === 'Endocrine').length} cards • {endocrineTopics.length} topics
+                </Text>
+              </View>
+              <IconSymbol name="chevron.right" size={24} color={colors.textSecondary} />
+            </View>
+          </Pressable>
+
+          {/* Hematology System */}
+          <Pressable 
+            style={styles.systemCard}
+            onPress={() => handleSystemPress('Hematology')}
+          >
+            <View style={styles.systemHeader}>
+              <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
+                <IconSymbol name="drop.fill" size={32} color={colors.error} />
+              </View>
+              <View style={styles.systemInfo}>
+                <Text style={styles.systemTitle}>Hematology</Text>
+                <Text style={styles.systemSubtitle}>
+                  {allFlashcards.filter(c => c.system === 'Hematology').length} cards • {hematologyTopics.length} topics
                 </Text>
               </View>
               <IconSymbol name="chevron.right" size={24} color={colors.textSecondary} />

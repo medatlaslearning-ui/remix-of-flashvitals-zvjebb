@@ -7,6 +7,7 @@ import { pulmonaryFlashcards } from '@/data/pulmonaryFlashcards';
 import { renalFlashcards } from '@/data/renalFlashcards';
 import { gastroenterologyFlashcards } from '@/data/gastroenterologyFlashcards';
 import { endocrineFlashcards } from '@/data/endocrineFlashcards';
+import { hematologyFlashcards } from '@/data/hematologyFlashcards';
 
 const STORAGE_KEY = '@flashcards_state';
 
@@ -30,7 +31,8 @@ export function useFlashcards() {
           ...pulmonaryFlashcards,
           ...renalFlashcards,
           ...gastroenterologyFlashcards,
-          ...endocrineFlashcards
+          ...endocrineFlashcards,
+          ...hematologyFlashcards
         ], storedCards);
         setAllFlashcards(merged);
       } else {
@@ -39,7 +41,8 @@ export function useFlashcards() {
           ...pulmonaryFlashcards,
           ...renalFlashcards,
           ...gastroenterologyFlashcards,
-          ...endocrineFlashcards
+          ...endocrineFlashcards,
+          ...hematologyFlashcards
         ]);
       }
     } catch (error) {
@@ -49,7 +52,8 @@ export function useFlashcards() {
         ...pulmonaryFlashcards,
         ...renalFlashcards,
         ...gastroenterologyFlashcards,
-        ...endocrineFlashcards
+        ...endocrineFlashcards,
+        ...hematologyFlashcards
       ]);
     }
   };
