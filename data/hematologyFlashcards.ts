@@ -1318,5 +1318,294 @@ export const hematologyFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0,
     tags: ['Hematology', 'Hemoglobinopathies', 'Sickle Cell', 'Crisis']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-33',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'M',
+    front: 'Transfusion complication in SCD?',
+    back: {
+      definition: 'Iron overload',
+      high_yield: 'Requires chelation',
+      clinical_pearl: 'Long-term management'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Sickle Cell', 'Complications']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-34',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'M',
+    front: 'Thalassemia treatment?',
+    back: {
+      definition: 'Transfusions in severe cases',
+      high_yield: 'Chelation therapy',
+      clinical_pearl: 'Splenectomy sometimes'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Thalassemia', 'Treatment']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-35',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'M',
+    front: 'HbH disease electrophoresis?',
+    back: {
+      definition: 'Presence of HbH',
+      high_yield: 'β4 tetramers',
+      clinical_pearl: 'Seen in α-thalassemia'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Thalassemia', 'Labs']
+  },
+  // Hemoglobinopathies - Difficult
+  {
+    id: 'hematology-hemoglobinopathies-36',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'D',
+    front: 'Unstable hemoglobin disease?',
+    back: {
+      definition: 'Hemoglobin denatures easily',
+      high_yield: 'Heinz bodies',
+      clinical_pearl: 'Causes hemolysis'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Unstable Hemoglobin']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-37',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'D',
+    front: 'Sickle cell renal complication?',
+    back: {
+      definition: 'Papillary necrosis',
+      high_yield: 'Hematuria',
+      clinical_pearl: 'Impaired concentration ability'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Sickle Cell', 'Complications']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-38',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'D',
+    front: 'Sickle cell avascular necrosis?',
+    back: {
+      definition: 'Femoral head',
+      high_yield: 'Bone infarction',
+      clinical_pearl: 'Chronic pain'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Sickle Cell', 'Complications']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-39',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'D',
+    front: 'Sickle retinopathy?',
+    back: {
+      definition: 'Proliferative retinopathy',
+      high_yield: 'Vision loss risk',
+      clinical_pearl: 'Especially in HbSC'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Sickle Cell', 'Complications']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-40',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'D',
+    front: 'Thalassemia bone complications?',
+    back: {
+      definition: 'Marrow expansion',
+      high_yield: 'Skeletal deformities',
+      clinical_pearl: 'Frontal bossing'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Thalassemia', 'Complications']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-41',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'D',
+    front: 'Methemoglobinemia electrophoresis?',
+    back: {
+      definition: 'Normal pattern',
+      high_yield: 'Functional hemoglobin issue',
+      clinical_pearl: 'Causes cyanosis'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Methemoglobinemia', 'Labs']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-42',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'D',
+    front: 'Congenital sideroblastic anemia?',
+    back: {
+      definition: 'Ring sideroblasts',
+      high_yield: 'Defective heme synthesis',
+      clinical_pearl: 'X-linked or acquired'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Sideroblastic Anemia']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-43',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'D',
+    front: 'Sickle cell infection risk?',
+    back: {
+      definition: 'Salmonella osteomyelitis',
+      high_yield: 'Encapsulated bacteria',
+      clinical_pearl: 'Due to asplenia'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Sickle Cell', 'Complications']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-44',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'D',
+    front: 'Oxidative stress hemoglobinopathy?',
+    back: {
+      definition: 'G6PD deficiency',
+      high_yield: 'Heinz bodies + bite cells',
+      clinical_pearl: 'X-linked'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'G6PD']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-45',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'D',
+    front: 'High altitude effect on sickle trait?',
+    back: {
+      definition: 'Rare exertional complications',
+      high_yield: 'Splenic infarct possible',
+      clinical_pearl: 'Hydrate well'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Sickle Cell Trait']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-46',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'D',
+    front: 'β-thalassemia major cardiac risk?',
+    back: {
+      definition: 'Iron overload cardiomyopathy',
+      high_yield: 'Leading cause of death',
+      clinical_pearl: 'Chelation essential'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Thalassemia', 'Complications']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-47',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'D',
+    front: 'Hb Lepore?',
+    back: {
+      definition: 'Fusion hemoglobin',
+      high_yield: 'Thalassemia-like phenotype',
+      clinical_pearl: 'Rare'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Hb Lepore']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-48',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'D',
+    front: 'Hemoglobin M disease?',
+    back: {
+      definition: 'Methemoglobinemia',
+      high_yield: 'Cyanosis',
+      clinical_pearl: 'Benign but persistent'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Hemoglobin M']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-49',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'D',
+    front: 'HbE/β-thalassemia?',
+    back: {
+      definition: 'Common in SE Asia',
+      high_yield: 'Moderate anemia',
+      clinical_pearl: 'Variable severity'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Thalassemia', 'HbE']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-50',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'D',
+    front: 'Most protective factor in SCD severity?',
+    back: {
+      definition: 'High HbF',
+      high_yield: 'Reduces sickling',
+      clinical_pearl: 'Hydroxyurea increases HbF'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Sickle Cell', 'Prognosis']
   }
 ];
