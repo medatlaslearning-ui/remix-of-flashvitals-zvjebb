@@ -804,5 +804,519 @@ export const hematologyFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0,
     tags: ['Hematology', 'Anemias', 'Workup', 'Labs']
+  },
+  // Hemoglobinopathies - Easy
+  {
+    id: 'hematology-hemoglobinopathies-1',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'E',
+    front: 'Most common hemoglobinopathy in U.S.?',
+    back: {
+      definition: 'Sickle cell disease',
+      high_yield: 'HbS mutation',
+      clinical_pearl: 'Autosomal recessive'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Sickle Cell']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-2',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'E',
+    front: 'Cause of sickling?',
+    back: {
+      definition: 'Deoxygenated HbS polymerizes',
+      high_yield: 'Distorts RBC shape',
+      clinical_pearl: 'Triggers crises'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Sickle Cell', 'Pathophysiology']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-3',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'E',
+    front: 'Classic sickle cell smear finding?',
+    back: {
+      definition: 'Sickled RBCs',
+      high_yield: 'Howell-Jolly bodies if asplenic',
+      clinical_pearl: 'Target cells possible'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Sickle Cell', 'Smear']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-4',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'E',
+    front: 'Most common sickle cell crisis?',
+    back: {
+      definition: 'Vaso-occlusive crisis',
+      high_yield: 'Severe pain',
+      clinical_pearl: 'Triggered by dehydration, infection'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Sickle Cell', 'Crisis']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-5',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'E',
+    front: 'Acute chest syndrome?',
+    back: {
+      definition: 'Pulmonary vaso-occlusion',
+      high_yield: 'Chest pain + hypoxia',
+      clinical_pearl: 'Medical emergency'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Sickle Cell', 'Emergency']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-6',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'E',
+    front: 'Sickle cell splenic effect?',
+    back: {
+      definition: 'Functional asplenia',
+      high_yield: 'Increased infection risk',
+      clinical_pearl: 'Especially encapsulated organisms'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Sickle Cell', 'Complications']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-7',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'E',
+    front: 'Best test for hemoglobinopathies?',
+    back: {
+      definition: 'Hemoglobin electrophoresis',
+      high_yield: 'Identifies Hb types',
+      clinical_pearl: 'Diagnostic standard'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Labs']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-8',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'E',
+    front: 'Hydroxyurea benefit in SCD?',
+    back: {
+      definition: 'Increases HbF',
+      high_yield: 'Reduces crises',
+      clinical_pearl: 'Improves survival'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Sickle Cell', 'Treatment']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-9',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'E',
+    front: 'Sickle cell trait symptoms?',
+    back: {
+      definition: 'Usually asymptomatic',
+      high_yield: 'No anemia',
+      clinical_pearl: 'May see hematuria'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Sickle Cell Trait']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-10',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'E',
+    front: 'Triggers for sickle crises?',
+    back: {
+      definition: 'Dehydration, infection',
+      high_yield: 'Cold exposure',
+      clinical_pearl: 'Hypoxia'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Sickle Cell', 'Crisis']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-11',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'E',
+    front: 'Beta-thalassemia major hallmark?',
+    back: {
+      definition: 'Severe anemia in infancy',
+      high_yield: 'Transfusion-dependent',
+      clinical_pearl: 'Chipmunk facies'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Thalassemia']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-12',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'E',
+    front: 'Beta-thalassemia minor finding?',
+    back: {
+      definition: 'Mild microcytosis',
+      high_yield: 'Normal iron studies',
+      clinical_pearl: 'No treatment needed'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Thalassemia']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-13',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'E',
+    front: 'Alpha-thalassemia trait?',
+    back: {
+      definition: 'Two-gene deletion',
+      high_yield: 'Mild anemia',
+      clinical_pearl: 'Normal electrophoresis'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Thalassemia']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-14',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'E',
+    front: 'Hemoglobin H disease?',
+    back: {
+      definition: 'Three-gene deletion',
+      high_yield: 'HbH (β4)',
+      clinical_pearl: 'Moderate hemolysis'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Thalassemia']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-15',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'E',
+    front: 'Hydrops fetalis cause?',
+    back: {
+      definition: 'Four-gene α deletion',
+      high_yield: 'Hb Bart\'s (γ4)',
+      clinical_pearl: 'Incompatible with life'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Thalassemia']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-16',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'E',
+    front: 'Thalassemia peripheral smear?',
+    back: {
+      definition: 'Target cells',
+      high_yield: 'Microcytosis',
+      clinical_pearl: 'Basophilic stippling possible'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Thalassemia', 'Smear']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-17',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'E',
+    front: 'RDW in thalassemia?',
+    back: {
+      definition: 'Normal',
+      high_yield: 'Unlike iron deficiency',
+      clinical_pearl: 'Useful distinction'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Thalassemia', 'Labs']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-18',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'E',
+    front: 'Hemoglobin C disease finding?',
+    back: {
+      definition: 'HbC crystals',
+      high_yield: 'Target cells',
+      clinical_pearl: 'Mild hemolysis'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'HbC']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-19',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'E',
+    front: 'Hemoglobin E trait/disease?',
+    back: {
+      definition: 'Common in SE Asia',
+      high_yield: 'Microcytosis',
+      clinical_pearl: 'Mild anemia'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'HbE']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-20',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'E',
+    front: 'HbSC disease?',
+    back: {
+      definition: 'Combination HbS + HbC',
+      high_yield: 'Milder than SCD',
+      clinical_pearl: 'Risk of retinopathy'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Sickle Cell']
+  },
+  // Hemoglobinopathies - Medium
+  {
+    id: 'hematology-hemoglobinopathies-21',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'M',
+    front: 'Sickle cell pain crisis treatment?',
+    back: {
+      definition: 'Hydration + opioids',
+      high_yield: 'Treat infection',
+      clinical_pearl: 'Oxygen if hypoxic'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Sickle Cell', 'Treatment']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-22',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'M',
+    front: 'Sickle cell prophylaxis for children?',
+    back: {
+      definition: 'Penicillin',
+      high_yield: 'Until age 5',
+      clinical_pearl: 'Prevent pneumococcal infection'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Sickle Cell', 'Prophylaxis']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-23',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'M',
+    front: 'Vaccines needed in SCD?',
+    back: {
+      definition: 'Pneumococcus, meningococcus',
+      high_yield: 'Hib',
+      clinical_pearl: 'Due to functional asplenia'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Sickle Cell', 'Prevention']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-24',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'M',
+    front: 'Hemoglobin electrophoresis SCD pattern?',
+    back: {
+      definition: 'HbS↑, HbF↑',
+      high_yield: 'No HbA',
+      clinical_pearl: 'Diagnostic'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Sickle Cell', 'Labs']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-25',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'M',
+    front: 'Electrophoresis sickle trait?',
+    back: {
+      definition: 'HbA > HbS',
+      high_yield: 'Usually 60:40',
+      clinical_pearl: 'Benign condition'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Sickle Cell Trait', 'Labs']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-26',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'M',
+    front: 'Electrophoresis β-thal major?',
+    back: {
+      definition: 'HbF↑↑',
+      high_yield: 'No HbA',
+      clinical_pearl: 'HbA2 variable'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Thalassemia', 'Labs']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-27',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'M',
+    front: 'Electrophoresis β-thal minor?',
+    back: {
+      definition: 'HbA2↑ (>3.5%)',
+      high_yield: 'Mild microcytosis',
+      clinical_pearl: 'Diagnostic hallmark'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Thalassemia', 'Labs']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-28',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'M',
+    front: 'Iron studies in thalassemia?',
+    back: {
+      definition: 'Normal iron',
+      high_yield: 'Normal or high ferritin',
+      clinical_pearl: 'Do NOT give iron unnecessarily'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Thalassemia', 'Labs']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-29',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'M',
+    front: 'SCD stroke risk?',
+    back: {
+      definition: 'High in children',
+      high_yield: 'Screen with transcranial Doppler',
+      clinical_pearl: 'Treat with chronic transfusions'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Sickle Cell', 'Complications']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-30',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'M',
+    front: 'Aplastic crisis cause in SCD?',
+    back: {
+      definition: 'Parvovirus B19',
+      high_yield: 'Low retic count',
+      clinical_pearl: 'Sudden severe anemia'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Sickle Cell', 'Crisis']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-31',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'M',
+    front: 'Sequestration crisis?',
+    back: {
+      definition: 'Splenic pooling of RBCs',
+      high_yield: 'Acute anemia',
+      clinical_pearl: 'Pediatric emergency'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Sickle Cell', 'Crisis']
+  },
+  {
+    id: 'hematology-hemoglobinopathies-32',
+    system: 'Hematology',
+    topic: 'Hemoglobinopathies',
+    difficulty: 'M',
+    front: 'Hemolytic crisis in SCD?',
+    back: {
+      definition: 'Increased hemolysis',
+      high_yield: 'High retic count',
+      clinical_pearl: 'Often triggered by infection'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Hemoglobinopathies', 'Sickle Cell', 'Crisis']
   }
 ];
