@@ -2121,5 +2121,294 @@ export const hematologyFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0,
     tags: ['Hematology', 'Leukemias', 'CML', 'Labs']
+  },
+  {
+    id: 'hematology-leukemias-33',
+    system: 'Hematology',
+    topic: 'Leukemias',
+    difficulty: 'M',
+    front: 'What is leukemoid reaction?',
+    back: {
+      definition: 'Benign high WBC',
+      high_yield: 'High LAP',
+      clinical_pearl: 'Left shift from infection/stress'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Leukemias', 'Labs']
+  },
+  // Leukemias - Difficult
+  {
+    id: 'hematology-leukemias-34',
+    system: 'Hematology',
+    topic: 'Leukemias',
+    difficulty: 'D',
+    front: 'APL DIC complication?',
+    back: {
+      definition: 'Procoagulant granules',
+      high_yield: 'Life-threatening bleeding',
+      clinical_pearl: 'Treat with ATRA early'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Leukemias', 'APL', 'Complications']
+  },
+  {
+    id: 'hematology-leukemias-35',
+    system: 'Hematology',
+    topic: 'Leukemias',
+    difficulty: 'D',
+    front: 'Early death in leukemia often due to?',
+    back: {
+      definition: 'Infection',
+      high_yield: 'Bleeding',
+      clinical_pearl: 'Metabolic complications'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Leukemias', 'Complications']
+  },
+  {
+    id: 'hematology-leukemias-36',
+    system: 'Hematology',
+    topic: 'Leukemias',
+    difficulty: 'D',
+    front: 'T-cell ALL clue?',
+    back: {
+      definition: 'Mediastinal mass',
+      high_yield: 'Teen males',
+      clinical_pearl: 'SVC syndrome risk'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Leukemias', 'ALL', 'Diagnosis']
+  },
+  {
+    id: 'hematology-leukemias-37',
+    system: 'Hematology',
+    topic: 'Leukemias',
+    difficulty: 'D',
+    front: 'AML with t(8;21)?',
+    back: {
+      definition: 'Good prognosis',
+      high_yield: 'Myeloblasts with perinuclear clearing',
+      clinical_pearl: 'Specific subtype'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Leukemias', 'AML', 'Genetics']
+  },
+  {
+    id: 'hematology-leukemias-38',
+    system: 'Hematology',
+    topic: 'Leukemias',
+    difficulty: 'D',
+    front: 'Inversion 16 AML?',
+    back: {
+      definition: 'Abnormal eosinophils',
+      high_yield: 'Good prognosis',
+      clinical_pearl: 'Core-binding factor leukemia'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Leukemias', 'AML', 'Genetics']
+  },
+  {
+    id: 'hematology-leukemias-39',
+    system: 'Hematology',
+    topic: 'Leukemias',
+    difficulty: 'D',
+    front: 'Mixed phenotype leukemia?',
+    back: {
+      definition: 'Features of myeloid + lymphoid',
+      high_yield: 'Very high risk',
+      clinical_pearl: 'Rare'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Leukemias', 'Diagnosis']
+  },
+  {
+    id: 'hematology-leukemias-40',
+    system: 'Hematology',
+    topic: 'Leukemias',
+    difficulty: 'D',
+    front: 'Paraneoplastic complication of CLL?',
+    back: {
+      definition: 'Autoimmune hemolysis',
+      high_yield: 'Positive Coombs',
+      clinical_pearl: 'Steroid responsive'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Leukemias', 'CLL', 'Complications']
+  },
+  {
+    id: 'hematology-leukemias-41',
+    system: 'Hematology',
+    topic: 'Leukemias',
+    difficulty: 'D',
+    front: 'Hyperleukocytosis treatment?',
+    back: {
+      definition: 'Leukapheresis',
+      high_yield: 'Hydration',
+      clinical_pearl: 'Urgent cytoreduction'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Leukemias', 'Emergency', 'Treatment']
+  },
+  {
+    id: 'hematology-leukemias-42',
+    system: 'Hematology',
+    topic: 'Leukemias',
+    difficulty: 'D',
+    front: 'Major complication of ALL therapy?',
+    back: {
+      definition: 'Tumor lysis syndrome',
+      high_yield: 'High uric acid',
+      clinical_pearl: 'Prevent with allopurinol'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Leukemias', 'ALL', 'Complications']
+  },
+  {
+    id: 'hematology-leukemias-43',
+    system: 'Hematology',
+    topic: 'Leukemias',
+    difficulty: 'D',
+    front: 'Blasts crossing blood-brain barrier?',
+    back: {
+      definition: 'Leptomeningeal leukemia',
+      high_yield: 'Requires intrathecal therapy',
+      clinical_pearl: 'CNS symptoms'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Leukemias', 'Complications']
+  },
+  {
+    id: 'hematology-leukemias-44',
+    system: 'Hematology',
+    topic: 'Leukemias',
+    difficulty: 'D',
+    front: 'JAK2 mutation leukemia association?',
+    back: {
+      definition: 'Seen in myeloproliferative neoplasms',
+      high_yield: 'Polycythemia vera, ET, MF',
+      clinical_pearl: 'Not leukemia-specific'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Leukemias', 'Genetics']
+  },
+  {
+    id: 'hematology-leukemias-45',
+    system: 'Hematology',
+    topic: 'Leukemias',
+    difficulty: 'D',
+    front: 'Adult ALL prognosis factor?',
+    back: {
+      definition: 'Philadelphia chromosome',
+      high_yield: 'Worse outcomes',
+      clinical_pearl: 'TKIs improve survival'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Leukemias', 'ALL', 'Prognosis']
+  },
+  {
+    id: 'hematology-leukemias-46',
+    system: 'Hematology',
+    topic: 'Leukemias',
+    difficulty: 'D',
+    front: 'AML cytopenias mechanism?',
+    back: {
+      definition: 'Bone marrow replacement',
+      high_yield: 'Low RBC/WBC/platelets',
+      clinical_pearl: 'Blasts dominate marrow'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Leukemias', 'AML', 'Pathophysiology']
+  },
+  {
+    id: 'hematology-leukemias-47',
+    system: 'Hematology',
+    topic: 'Leukemias',
+    difficulty: 'D',
+    front: 'CLL treatment indications?',
+    back: {
+      definition: 'Symptoms, bulky nodes',
+      high_yield: 'Rapid lymphocyte doubling',
+      clinical_pearl: 'Anemia/thrombocytopenia'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Leukemias', 'CLL', 'Treatment']
+  },
+  {
+    id: 'hematology-leukemias-48',
+    system: 'Hematology',
+    topic: 'Leukemias',
+    difficulty: 'D',
+    front: 'Targeted therapy for CLL?',
+    back: {
+      definition: 'Ibrutinib',
+      high_yield: 'BTK inhibitor',
+      clinical_pearl: 'Replaces chemo in most cases'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Leukemias', 'CLL', 'Treatment']
+  },
+  {
+    id: 'hematology-leukemias-49',
+    system: 'Hematology',
+    topic: 'Leukemias',
+    difficulty: 'D',
+    front: 'Monocytic AML smear?',
+    back: {
+      definition: 'Folded nuclei',
+      high_yield: 'Gingival infiltration',
+      clinical_pearl: 'Higher DIC risk'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Leukemias', 'AML', 'Smear']
+  },
+  {
+    id: 'hematology-leukemias-50',
+    system: 'Hematology',
+    topic: 'Leukemias',
+    difficulty: 'D',
+    front: 'Most important distinction in leukemia classification?',
+    back: {
+      definition: 'Acute vs chronic',
+      high_yield: 'Based on cell maturity',
+      clinical_pearl: 'Blast count critical'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Leukemias', 'Diagnosis']
   }
 ];
