@@ -4834,5 +4834,505 @@ export const endocrineFlashcards: Flashcard[] = [
     bookmarked: false,
     favorite: false,
     reviewCount: 0
+  },
+
+  // Endocrine Tumors - Easy Difficulty (1-21)
+  {
+    id: 'endo-tumors-1',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'easy',
+    front: 'What is MEN1?',
+    back: {
+      definition: 'Multiple endocrine neoplasia type 1',
+      high_yield: 'Pituitary, parathyroid, pancreas',
+      clinical_pearl: '"3 Ps"'
+    },
+    tags: ['Endocrine Tumors', 'MEN1', 'Syndrome'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-2',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'easy',
+    front: 'MEN1 genetic mutation?',
+    back: {
+      definition: 'MEN1 gene',
+      high_yield: 'Menin protein',
+      clinical_pearl: 'Autosomal dominant'
+    },
+    tags: ['Endocrine Tumors', 'MEN1', 'Genetics'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-3',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'easy',
+    front: 'Most common MEN1 tumor?',
+    back: {
+      definition: 'Primary hyperparathyroidism',
+      high_yield: 'Multiglandular',
+      clinical_pearl: 'Hypercalcemia'
+    },
+    tags: ['Endocrine Tumors', 'MEN1', 'Hyperparathyroidism'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-4',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'easy',
+    front: 'Pancreatic tumors in MEN1?',
+    back: {
+      definition: 'Gastrinoma most common',
+      high_yield: 'Also insulinoma',
+      clinical_pearl: 'Multiple tumors common'
+    },
+    tags: ['Endocrine Tumors', 'MEN1', 'Pancreatic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-5',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'easy',
+    front: 'MEN2A triad?',
+    back: {
+      definition: 'Medullary thyroid cancer, pheochromocytoma, hyperparathyroidism',
+      high_yield: 'RET mutation',
+      clinical_pearl: 'Autosomal dominant'
+    },
+    tags: ['Endocrine Tumors', 'MEN2A', 'Syndrome'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-6',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'easy',
+    front: 'MEN2B classic features?',
+    back: {
+      definition: 'Medullary thyroid cancer',
+      high_yield: 'Pheochromocytoma',
+      clinical_pearl: 'Marfanoid habitus + mucosal neuromas'
+    },
+    tags: ['Endocrine Tumors', 'MEN2B', 'Syndrome'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-7',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'easy',
+    front: 'RET mutation significance?',
+    back: {
+      definition: 'MEN2 syndromes',
+      high_yield: 'Aggressive thyroid cancer',
+      clinical_pearl: 'Requires early thyroidectomy'
+    },
+    tags: ['Endocrine Tumors', 'MEN2', 'RET'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-8',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'easy',
+    front: 'Medullary thyroid cancer marker?',
+    back: {
+      definition: 'Calcitonin',
+      high_yield: 'From C cells',
+      clinical_pearl: 'Part of MEN2 syndromes'
+    },
+    tags: ['Endocrine Tumors', 'Medullary Thyroid', 'Calcitonin'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-9',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'easy',
+    front: 'Pheochromocytoma symptoms?',
+    back: {
+      definition: 'Headache, sweating, palpitations',
+      high_yield: 'Catecholamine excess',
+      clinical_pearl: 'Hypertension'
+    },
+    tags: ['Endocrine Tumors', 'Pheochromocytoma', 'Symptoms'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-10',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'easy',
+    front: 'Best test for pheochromocytoma?',
+    back: {
+      definition: 'Plasma metanephrines',
+      high_yield: 'High sensitivity',
+      clinical_pearl: 'Confirm with 24hr urine'
+    },
+    tags: ['Endocrine Tumors', 'Pheochromocytoma', 'Diagnosis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-11',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'easy',
+    front: 'Pheo pre-op treatment?',
+    back: {
+      definition: 'Alpha-blockade first',
+      high_yield: 'Then beta-blockade',
+      clinical_pearl: 'Prevent hypertensive crisis'
+    },
+    tags: ['Endocrine Tumors', 'Pheochromocytoma', 'Treatment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-12',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'easy',
+    front: 'Insulinoma hallmark?',
+    back: {
+      definition: 'Hypoglycemia',
+      high_yield: 'High insulin + C-peptide',
+      clinical_pearl: 'Whipple triad'
+    },
+    tags: ['Endocrine Tumors', 'Insulinoma', 'Pancreatic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-13',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'easy',
+    front: 'Gastrinoma hallmark?',
+    back: {
+      definition: 'Refractory ulcers',
+      high_yield: 'High gastrin',
+      clinical_pearl: 'Zollinger–Ellison syndrome'
+    },
+    tags: ['Endocrine Tumors', 'Gastrinoma', 'Pancreatic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-14',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'easy',
+    front: 'Glucagonoma symptoms?',
+    back: {
+      definition: 'Hyperglycemia',
+      high_yield: 'Necrolytic migratory erythema',
+      clinical_pearl: 'Weight loss'
+    },
+    tags: ['Endocrine Tumors', 'Glucagonoma', 'Pancreatic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-15',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'easy',
+    front: 'VIPoma symptoms?',
+    back: {
+      definition: 'Watery diarrhea',
+      high_yield: 'Hypokalemia',
+      clinical_pearl: 'Achlorhydria ("WDHA syndrome")'
+    },
+    tags: ['Endocrine Tumors', 'VIPoma', 'Pancreatic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-16',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'easy',
+    front: 'Somatostatinoma symptoms?',
+    back: {
+      definition: 'Diabetes + gallstones',
+      high_yield: 'Steatorrhea',
+      clinical_pearl: 'Rare'
+    },
+    tags: ['Endocrine Tumors', 'Somatostatinoma', 'Pancreatic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-17',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'easy',
+    front: 'Carcinoid tumor hormone?',
+    back: {
+      definition: 'Serotonin',
+      high_yield: 'Flushing + diarrhea',
+      clinical_pearl: 'Increased 5-HIAA'
+    },
+    tags: ['Endocrine Tumors', 'Carcinoid', 'NET'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-18',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'easy',
+    front: 'Carcinoid syndrome cause?',
+    back: {
+      definition: 'Liver metastases',
+      high_yield: 'Hormones bypass liver metabolism',
+      clinical_pearl: 'Systemic symptoms'
+    },
+    tags: ['Endocrine Tumors', 'Carcinoid', 'NET'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-19',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'easy',
+    front: 'Carcinoid crisis trigger?',
+    back: {
+      definition: 'Anesthesia or surgery',
+      high_yield: 'Massive mediator release',
+      clinical_pearl: 'Treat with octreotide'
+    },
+    tags: ['Endocrine Tumors', 'Carcinoid', 'Emergency'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-20',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'easy',
+    front: 'Parathyroid carcinoma clue?',
+    back: {
+      definition: 'Very high Ca',
+      high_yield: 'Very high PTH',
+      clinical_pearl: 'Palpable neck mass'
+    },
+    tags: ['Endocrine Tumors', 'Parathyroid', 'Cancer'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-21',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'easy',
+    front: 'Pituitary tumors in MEN1?',
+    back: {
+      definition: 'Prolactinomas most common',
+      high_yield: 'Also GH tumors',
+      clinical_pearl: 'Evaluate with MRI'
+    },
+    tags: ['Endocrine Tumors', 'MEN1', 'Pituitary'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+
+  // Endocrine Tumors - Medium Difficulty (22-31)
+  {
+    id: 'endo-tumors-22',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'medium',
+    front: 'Neuroendocrine tumors marker?',
+    back: {
+      definition: 'Chromogranin A',
+      high_yield: 'General NET marker',
+      clinical_pearl: 'Elevated in many tumors'
+    },
+    tags: ['Endocrine Tumors', 'NET', 'Markers'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-23',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'medium',
+    front: 'Imaging for NETs?',
+    back: {
+      definition: 'Octreotide scan',
+      high_yield: 'Somatostatin receptor imaging',
+      clinical_pearl: 'Useful for carcinoid, gastrinoma'
+    },
+    tags: ['Endocrine Tumors', 'NET', 'Imaging'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-24',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'medium',
+    front: 'Paraganglioma?',
+    back: {
+      definition: 'Extra-adrenal pheochromocytoma',
+      high_yield: 'Often in head/neck',
+      clinical_pearl: 'Same catecholamine physiology'
+    },
+    tags: ['Endocrine Tumors', 'Paraganglioma', 'Pheochromocytoma'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-25',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'medium',
+    front: 'Adrenal incidentaloma evaluation?',
+    back: {
+      definition: 'Hormonal testing',
+      high_yield: 'Assess malignancy risk',
+      clinical_pearl: '>4 cm consider removal'
+    },
+    tags: ['Endocrine Tumors', 'Adrenal', 'Incidentaloma'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-26',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'medium',
+    front: 'Most common adrenal incidentaloma type?',
+    back: {
+      definition: 'Nonfunctioning adenoma',
+      high_yield: 'Benign',
+      clinical_pearl: 'Monitor size'
+    },
+    tags: ['Endocrine Tumors', 'Adrenal', 'Incidentaloma'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-27',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'medium',
+    front: 'Functional adrenal tumors?',
+    back: {
+      definition: 'Cortisol, aldosterone, or catecholamine secreting',
+      high_yield: 'Identify by labs',
+      clinical_pearl: 'Treat based on type'
+    },
+    tags: ['Endocrine Tumors', 'Adrenal', 'Functional'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-28',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'medium',
+    front: 'Ectopic ACTH tumor?',
+    back: {
+      definition: 'Small cell lung cancer',
+      high_yield: 'Severe hypercortisolism',
+      clinical_pearl: 'Hypokalemic alkalosis'
+    },
+    tags: ['Endocrine Tumors', 'Ectopic ACTH', 'Lung'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-29',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'medium',
+    front: 'Pancreatic NET types?',
+    back: {
+      definition: 'Gastrinoma, insulinoma, glucagonoma, VIPoma, somatostatinoma',
+      high_yield: 'Vary by hormone',
+      clinical_pearl: 'MEN1 association'
+    },
+    tags: ['Endocrine Tumors', 'Pancreatic', 'NET'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-30',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'medium',
+    front: 'Ovarian carcinoid?',
+    back: {
+      definition: 'NET arising in ovary',
+      high_yield: 'Can produce serotonin',
+      clinical_pearl: 'Rare but similar physiology'
+    },
+    tags: ['Endocrine Tumors', 'Carcinoid', 'Ovarian'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
+  },
+  {
+    id: 'endo-tumors-31',
+    system: 'Endocrine',
+    topic: 'Endocrine Tumors',
+    difficulty: 'medium',
+    front: 'Bronchial carcinoid?',
+    back: {
+      definition: 'Lung NET',
+      high_yield: 'Can cause carcinoid syndrome',
+      clinical_pearl: 'Less aggressive than small cell'
+    },
+    tags: ['Endocrine Tumors', 'Carcinoid', 'Lung'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0
   }
 ];
