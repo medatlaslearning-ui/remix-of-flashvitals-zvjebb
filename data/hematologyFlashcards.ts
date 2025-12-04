@@ -2410,5 +2410,519 @@ export const hematologyFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0,
     tags: ['Hematology', 'Leukemias', 'Diagnosis']
+  },
+  // Lymphomas - Easy
+  {
+    id: 'hematology-lymphomas-1',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'E',
+    front: 'Two major categories of lymphoma?',
+    back: {
+      definition: 'Hodgkin & Non-Hodgkin',
+      high_yield: 'Different biology',
+      clinical_pearl: 'Different prognosis'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas']
+  },
+  {
+    id: 'hematology-lymphomas-2',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'E',
+    front: 'Classic Hodgkin hallmark cell?',
+    back: {
+      definition: 'Reed–Sternberg cell',
+      high_yield: 'Binucleate "owl\'s eyes"',
+      clinical_pearl: 'CD15+, CD30+'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'Hodgkin']
+  },
+  {
+    id: 'hematology-lymphomas-3',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'E',
+    front: 'Most common Hodgkin subtype?',
+    back: {
+      definition: 'Nodular sclerosis',
+      high_yield: 'Younger patients',
+      clinical_pearl: 'Mediastinal mass'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'Hodgkin']
+  },
+  {
+    id: 'hematology-lymphomas-4',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'E',
+    front: 'B symptoms?',
+    back: {
+      definition: 'Fever',
+      high_yield: 'Night sweats',
+      clinical_pearl: 'Weight loss'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'Symptoms']
+  },
+  {
+    id: 'hematology-lymphomas-5',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'E',
+    front: 'Typical Hodgkin presentation?',
+    back: {
+      definition: 'Painless lymphadenopathy',
+      high_yield: 'Mediastinal mass',
+      clinical_pearl: 'B symptoms possible'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'Hodgkin', 'Symptoms']
+  },
+  {
+    id: 'hematology-lymphomas-6',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'E',
+    front: 'Most common NHL subtype?',
+    back: {
+      definition: 'Diffuse large B-cell lymphoma (DLBCL)',
+      high_yield: 'Aggressive',
+      clinical_pearl: 'Rapidly enlarging mass'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'DLBCL']
+  },
+  {
+    id: 'hematology-lymphomas-7',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'E',
+    front: 'Follicular lymphoma hallmark?',
+    back: {
+      definition: 't(14;18)',
+      high_yield: 'BCL2 overexpression',
+      clinical_pearl: 'Indolent'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'Follicular']
+  },
+  {
+    id: 'hematology-lymphomas-8',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'E',
+    front: 'Burkitt lymphoma hallmark?',
+    back: {
+      definition: 't(8;14)',
+      high_yield: 'c-MYC activation',
+      clinical_pearl: '"Starry sky" appearance'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'Burkitt']
+  },
+  {
+    id: 'hematology-lymphomas-9',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'E',
+    front: 'Endemic Burkitt association?',
+    back: {
+      definition: 'EBV',
+      high_yield: 'Jaw lesion',
+      clinical_pearl: 'Africa'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'Burkitt']
+  },
+  {
+    id: 'hematology-lymphomas-10',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'E',
+    front: 'Mantle cell lymphoma hallmark?',
+    back: {
+      definition: 't(11;14)',
+      high_yield: 'Cyclin D1',
+      clinical_pearl: 'Aggressive'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'Mantle Cell']
+  },
+  {
+    id: 'hematology-lymphomas-11',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'E',
+    front: 'Marginal zone lymphoma cause?',
+    back: {
+      definition: 'Chronic inflammation',
+      high_yield: 'H. pylori infection',
+      clinical_pearl: 'MALT lymphoma'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'MALT']
+  },
+  {
+    id: 'hematology-lymphomas-12',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'E',
+    front: 'Cutaneous T-cell lymphoma name?',
+    back: {
+      definition: 'Mycosis fungoides',
+      high_yield: 'Skin plaques',
+      clinical_pearl: 'Sézary syndrome in blood'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'T-cell']
+  },
+  {
+    id: 'hematology-lymphomas-13',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'E',
+    front: 'DLBCL treatment?',
+    back: {
+      definition: 'R-CHOP',
+      high_yield: 'Rituximab-based',
+      clinical_pearl: 'Most common regimen'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'DLBCL', 'Treatment']
+  },
+  {
+    id: 'hematology-lymphomas-14',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'E',
+    front: 'Hodgkin lymphoma treatment?',
+    back: {
+      definition: 'ABVD',
+      high_yield: 'Adriamycin, bleomycin, vinblastine, dacarbazine',
+      clinical_pearl: 'Highly curable'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'Hodgkin', 'Treatment']
+  },
+  {
+    id: 'hematology-lymphomas-15',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'E',
+    front: 'Hodgkin spread pattern?',
+    back: {
+      definition: 'Contiguous',
+      high_yield: 'Predictable',
+      clinical_pearl: 'Different from NHL'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'Hodgkin']
+  },
+  {
+    id: 'hematology-lymphomas-16',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'E',
+    front: 'NHL spread pattern?',
+    back: {
+      definition: 'Non-contiguous',
+      high_yield: 'Extranodal common',
+      clinical_pearl: 'Less predictable'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL']
+  },
+  {
+    id: 'hematology-lymphomas-17',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'E',
+    front: 'Lymphoma staging system?',
+    back: {
+      definition: 'Ann Arbor staging',
+      high_yield: 'I–IV',
+      clinical_pearl: 'Includes B symptoms'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'Staging']
+  },
+  {
+    id: 'hematology-lymphomas-18',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'E',
+    front: 'Most common extranodal site in NHL?',
+    back: {
+      definition: 'GI tract',
+      high_yield: 'Especially ileocecal',
+      clinical_pearl: 'MALT common'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL']
+  },
+  {
+    id: 'hematology-lymphomas-19',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'E',
+    front: '"Starry sky" biopsy pattern seen in?',
+    back: {
+      definition: 'Burkitt lymphoma',
+      high_yield: 'Macrophages among lymphocytes',
+      clinical_pearl: 'Very high mitotic rate'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'Burkitt', 'Pathology']
+  },
+  {
+    id: 'hematology-lymphomas-20',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'E',
+    front: 't(14;18) effect?',
+    back: {
+      definition: 'BCL2 overexpression',
+      high_yield: 'Inhibits apoptosis',
+      clinical_pearl: 'Follicular lymphoma'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'Follicular', 'Genetics']
+  },
+  // Lymphomas - Medium
+  {
+    id: 'hematology-lymphomas-21',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'M',
+    front: 'Reed–Sternberg origin cell?',
+    back: {
+      definition: 'Germinal center B cell',
+      high_yield: 'Lost typical markers',
+      clinical_pearl: 'CD15+, CD30+'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'Hodgkin', 'Pathology']
+  },
+  {
+    id: 'hematology-lymphomas-22',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'M',
+    front: 'Alcohol-induced lymph node pain?',
+    back: {
+      definition: 'Seen in Hodgkin',
+      high_yield: 'Rare but classic',
+      clinical_pearl: 'Due to vasodilation'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'Hodgkin', 'Symptoms']
+  },
+  {
+    id: 'hematology-lymphomas-23',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'M',
+    front: 'Risk factor for Hodgkin?',
+    back: {
+      definition: 'EBV infection',
+      high_yield: 'Young adults',
+      clinical_pearl: 'Bimodal age distribution'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'Hodgkin', 'Risk Factors']
+  },
+  {
+    id: 'hematology-lymphomas-24',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'M',
+    front: 'High-grade vs low-grade lymphoma?',
+    back: {
+      definition: 'High-grade = aggressive',
+      high_yield: 'Low-grade = indolent',
+      clinical_pearl: 'Different treatment urgency'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'Classification']
+  },
+  {
+    id: 'hematology-lymphomas-25',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'M',
+    front: 'Symptoms of mediastinal mass in Hodgkin?',
+    back: {
+      definition: 'Cough',
+      high_yield: 'Chest pain',
+      clinical_pearl: 'Dyspnea'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'Hodgkin', 'Symptoms']
+  },
+  {
+    id: 'hematology-lymphomas-26',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'M',
+    front: 'Richter transformation from CLL?',
+    back: {
+      definition: 'Transforms to DLBCL',
+      high_yield: 'Aggressive lymphoma',
+      clinical_pearl: 'Rapidly enlarging nodes'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'DLBCL', 'CLL']
+  },
+  {
+    id: 'hematology-lymphomas-27',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'M',
+    front: 'Primary CNS lymphoma association?',
+    back: {
+      definition: 'AIDS',
+      high_yield: 'EBV',
+      clinical_pearl: 'Brain mass'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'CNS']
+  },
+  {
+    id: 'hematology-lymphomas-28',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'M',
+    front: 'Adult T-cell leukemia/lymphoma cause?',
+    back: {
+      definition: 'HTLV-1 infection',
+      high_yield: 'Japan/Caribbean',
+      clinical_pearl: 'Skin lesions + hypercalcemia'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'T-cell']
+  },
+  {
+    id: 'hematology-lymphomas-29',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'M',
+    front: 'Sézary syndrome features?',
+    back: {
+      definition: 'Diffuse erythroderma',
+      high_yield: 'Sézary cells in blood',
+      clinical_pearl: 'Leukemic phase of mycosis fungoides'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'T-cell']
+  },
+  {
+    id: 'hematology-lymphomas-30',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'M',
+    front: 'Hairy cell lymphoma phenotype?',
+    back: {
+      definition: 'Indolent B-cell neoplasm',
+      high_yield: 'Massive splenomegaly',
+      clinical_pearl: 'TRAP positive'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'Hairy Cell']
+  },
+  {
+    id: 'hematology-lymphomas-31',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'M',
+    front: 'Waldenström macroglobulinemia?',
+    back: {
+      definition: 'IgM overproduction',
+      high_yield: 'Hyperviscosity',
+      clinical_pearl: 'Visual changes'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'Waldenström']
+  },
+  {
+    id: 'hematology-lymphomas-32',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'M',
+    front: 'Hyperviscosity symptoms?',
+    back: {
+      definition: 'Headache',
+      high_yield: 'Blurred vision',
+      clinical_pearl: 'Sluggish blood flow'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'Symptoms', 'Waldenström']
   }
 ];
