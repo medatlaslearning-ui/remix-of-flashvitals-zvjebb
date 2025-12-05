@@ -3680,6 +3680,343 @@ export const hematologyFlashcards: Flashcard[] = [
     reviewCount: 0,
     tags: ['Hematology', 'Coagulation Disorders', 'Thrombophilia']
   },
+  {
+    id: 'hematology-coagulation-30',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'M',
+    front: 'Protein C deficiency?',
+    back: {
+      definition: 'Reduced natural anticoagulant',
+      high_yield: 'Risk of skin necrosis with warfarin',
+      clinical_pearl: 'Hypercoagulable state'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Thrombophilia']
+  },
+  {
+    id: 'hematology-coagulation-31',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'M',
+    front: 'Protein S deficiency?',
+    back: {
+      definition: 'Low cofactor for protein C',
+      high_yield: 'Increased clot risk',
+      clinical_pearl: 'Inherited thrombophilia'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Thrombophilia']
+  },
+  {
+    id: 'hematology-coagulation-32',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'M',
+    front: 'Antithrombin deficiency?',
+    back: {
+      definition: 'Low inhibition of thrombin',
+      high_yield: 'Heparin resistance',
+      clinical_pearl: 'High VTE risk'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Thrombophilia']
+  },
+  {
+    id: 'hematology-coagulation-33',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'M',
+    front: 'What causes prolonged thrombin time?',
+    back: {
+      definition: 'Low fibrinogen or direct thrombin inhibitors',
+      high_yield: 'Measures final step of coagulation',
+      clinical_pearl: 'Useful in DOAC monitoring'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Labs']
+  },
+  {
+    id: 'hematology-coagulation-34',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'M',
+    front: 'What is TTP?',
+    back: {
+      definition: 'Microangiopathic hemolysis + thrombocytopenia',
+      high_yield: 'ADAMTS13 deficiency',
+      clinical_pearl: 'Medical emergency'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'TTP']
+  },
+  {
+    id: 'hematology-coagulation-35',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'M',
+    front: 'Classic TTP triad?',
+    back: {
+      definition: 'MAHA',
+      high_yield: 'Thrombocytopenia',
+      clinical_pearl: 'Neurologic symptoms'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'TTP']
+  },
+  {
+    id: 'hematology-coagulation-36',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'M',
+    front: 'HUS cause?',
+    back: {
+      definition: 'Shiga toxin',
+      high_yield: 'MAHA + renal failure',
+      clinical_pearl: 'Often after diarrheal illness'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'HUS']
+  },
+  {
+    id: 'hematology-coagulation-37',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'M',
+    front: 'HUS vs TTP difference?',
+    back: {
+      definition: 'HUS more renal',
+      high_yield: 'TTP more neurologic',
+      clinical_pearl: 'Both MAHA syndromes'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'TTP', 'HUS']
+  },
+  // Coagulation Disorders - Difficult
+  {
+    id: 'hematology-coagulation-38',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'D',
+    front: 'What is lupus anticoagulant?',
+    back: {
+      definition: 'Antiphospholipid antibody',
+      high_yield: 'Prolongs aPTT in vitro',
+      clinical_pearl: 'Causes clotting in vivo'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'APS']
+  },
+  {
+    id: 'hematology-coagulation-39',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'D',
+    front: 'Massive transfusion coagulopathy?',
+    back: {
+      definition: 'Dilutional + consumptive',
+      high_yield: 'Low platelets + factors',
+      clinical_pearl: 'Requires 1:1:1 replacement'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Transfusion']
+  },
+  {
+    id: 'hematology-coagulation-40',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'D',
+    front: 'Cryoprecipitate contents?',
+    back: {
+      definition: 'Fibrinogen, factor VIII, vWF',
+      high_yield: 'Used in DIC or low fibrinogen',
+      clinical_pearl: 'Small volume product'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Transfusion']
+  },
+  {
+    id: 'hematology-coagulation-41',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'D',
+    front: 'FFP contents?',
+    back: {
+      definition: 'All clotting factors',
+      high_yield: 'Used for warfarin reversal',
+      clinical_pearl: 'Requires large volume'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Transfusion']
+  },
+  {
+    id: 'hematology-coagulation-42',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'D',
+    front: 'What is thrombocytopenia?',
+    back: {
+      definition: 'Low platelet count',
+      high_yield: '<150K',
+      clinical_pearl: 'Bleeding risk depends on level'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Platelets']
+  },
+  {
+    id: 'hematology-coagulation-43',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'D',
+    front: 'Platelet count for major surgery?',
+    back: {
+      definition: '≥50K',
+      high_yield: 'Minimum safe threshold',
+      clinical_pearl: 'Higher for neurosurgery'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Platelets']
+  },
+  {
+    id: 'hematology-coagulation-44',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'D',
+    front: 'When to give platelets?',
+    back: {
+      definition: 'Active bleeding + thrombocytopenia',
+      high_yield: 'Or <10K prophylactically',
+      clinical_pearl: 'Avoid in TTP/HIT'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Platelets', 'Treatment']
+  },
+  {
+    id: 'hematology-coagulation-45',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'D',
+    front: 'Inherited hypercoagulability clue?',
+    back: {
+      definition: 'Family history of VTE',
+      high_yield: 'Young age of onset',
+      clinical_pearl: 'Recurrent clots'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Thrombophilia']
+  },
+  {
+    id: 'hematology-coagulation-46',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'D',
+    front: 'DIC vs liver disease difference?',
+    back: {
+      definition: 'Factor VIII normal/high in liver disease',
+      high_yield: 'Low in DIC',
+      clinical_pearl: 'Helps differentiate'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'DIC', 'Liver Disease']
+  },
+  {
+    id: 'hematology-coagulation-47',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'D',
+    front: 'Heparin reversal agent?',
+    back: {
+      definition: 'Protamine sulfate',
+      high_yield: 'Neutralizes heparin',
+      clinical_pearl: 'Not effective for DOACs'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Anticoagulation', 'Treatment']
+  },
+  {
+    id: 'hematology-coagulation-48',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'D',
+    front: 'Warfarin reversal agent?',
+    back: {
+      definition: 'Vitamin K + PCC',
+      high_yield: 'Rapid correction',
+      clinical_pearl: 'Used for major bleeding'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Anticoagulation', 'Treatment']
+  },
+  {
+    id: 'hematology-coagulation-49',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'D',
+    front: 'What is PCC?',
+    back: {
+      definition: 'Prothrombin complex concentrate',
+      high_yield: 'Contains II, VII, IX, X',
+      clinical_pearl: 'Fast reversal of warfarin'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Anticoagulation', 'Treatment']
+  },
+  {
+    id: 'hematology-coagulation-50',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'D',
+    front: 'When is DOAC preferred over warfarin?',
+    back: {
+      definition: 'Stable kidney function',
+      high_yield: 'No mechanical valve',
+      clinical_pearl: 'Lower bleeding risk overall'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Anticoagulation', 'Treatment']
+  },
   // Platelet Disorders - Easy
   {
     id: 'hematology-platelet-1',
