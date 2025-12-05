@@ -3181,5 +3181,37 @@ export const hematologyFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0,
     tags: ['Hematology', 'Lymphomas', 'NHL', 'Diagnosis']
+  },
+  {
+    id: 'hematology-lymphomas-49',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'D',
+    front: 'Extranodal NK/T-cell lymphoma?',
+    back: {
+      definition: 'A rare EBV-associated lymphoma',
+      high_yield: 'Causes destructive midline lesions',
+      clinical_pearl: 'Highly aggressive'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'T-cell']
+  },
+  {
+    id: 'hematology-lymphomas-50',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'D',
+    front: 'Key distinction in lymphoma diagnosis?',
+    back: {
+      definition: 'The fundamental classification step',
+      high_yield: 'Hodgkin vs Non-Hodgkin',
+      clinical_pearl: 'Determines therapy pathway'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'Diagnosis']
   }
 ];
