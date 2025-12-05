@@ -2780,5 +2780,406 @@ export const hematologyFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0,
     tags: ['Hematology', 'Lymphomas', 'Hodgkin', 'Risk Factors']
+  },
+  {
+    id: 'hematology-lymphomas-24',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'M',
+    front: 'High vs low-grade lymphoma?',
+    back: {
+      definition: 'Classification based on growth rate',
+      high_yield: 'High-grade = aggressive; low-grade = indolent',
+      clinical_pearl: 'Determines treatment urgency'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'Classification']
+  },
+  {
+    id: 'hematology-lymphomas-25',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'M',
+    front: 'Symptoms of mediastinal mass in Hodgkin?',
+    back: {
+      definition: 'Effects from enlarged mediastinal lymph nodes',
+      high_yield: 'Cough, dyspnea, chest tightness',
+      clinical_pearl: 'Common in nodular sclerosis subtype'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'Hodgkin', 'Symptoms']
+  },
+  {
+    id: 'hematology-lymphomas-26',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'M',
+    front: 'Richter transformation?',
+    back: {
+      definition: 'A complication where CLL transforms into aggressive lymphoma',
+      high_yield: 'Typically DLBCL',
+      clinical_pearl: 'Marked by rapid clinical deterioration'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'CLL', 'Complications']
+  },
+  {
+    id: 'hematology-lymphomas-27',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'M',
+    front: 'Primary CNS lymphoma association?',
+    back: {
+      definition: 'A lymphoma arising primarily in the CNS',
+      high_yield: 'Strongly linked to immunosuppression',
+      clinical_pearl: 'Often EBV-positive in AIDS'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'CNS']
+  },
+  {
+    id: 'hematology-lymphomas-28',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'M',
+    front: 'Adult T-cell leukemia/lymphoma cause?',
+    back: {
+      definition: 'A T-cell malignancy caused by viral infection',
+      high_yield: 'HTLV-1 pathogen',
+      clinical_pearl: 'Associated with hypercalcemia'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'T-cell']
+  },
+  {
+    id: 'hematology-lymphomas-29',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'M',
+    front: 'Sézary syndrome features?',
+    back: {
+      definition: 'A leukemic variant of cutaneous T-cell lymphoma',
+      high_yield: 'Circulating Sézary cells with skin erythema',
+      clinical_pearl: 'Indicates advanced disease'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'T-cell']
+  },
+  {
+    id: 'hematology-lymphomas-30',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'M',
+    front: 'Hairy cell lymphoma phenotype?',
+    back: {
+      definition: 'An indolent B-cell malignancy with cytoplasmic projections',
+      high_yield: 'TRAP-positive cells',
+      clinical_pearl: 'Causes massive splenomegaly'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'Hairy Cell']
+  },
+  {
+    id: 'hematology-lymphomas-31',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'M',
+    front: 'Waldenström macroglobulinemia?',
+    back: {
+      definition: 'A lymphoplasmacytic lymphoma producing IgM',
+      high_yield: 'Causes hyperviscosity',
+      clinical_pearl: 'No lytic bone lesions (unlike myeloma)'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL']
+  },
+  {
+    id: 'hematology-lymphomas-32',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'M',
+    front: 'Hyperviscosity symptoms?',
+    back: {
+      definition: 'Effects of thickened blood from IgM',
+      high_yield: 'Headache, visual changes',
+      clinical_pearl: 'May require plasmapheresis'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'Complications']
+  },
+  {
+    id: 'hematology-lymphomas-33',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'M',
+    front: 'Testicular lymphoma?',
+    back: {
+      definition: 'A primary or secondary lymphoma involving the testes',
+      high_yield: 'Often DLBCL',
+      clinical_pearl: 'Most common testicular tumor in elderly men'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'DLBCL']
+  },
+  {
+    id: 'hematology-lymphomas-34',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'M',
+    front: 'Primary effusion lymphoma cause?',
+    back: {
+      definition: 'An aggressive lymphoma presenting with serous effusions',
+      high_yield: 'Caused by HHV-8',
+      clinical_pearl: 'Occurs in immunocompromised'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL']
+  },
+  {
+    id: 'hematology-lymphomas-35',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'M',
+    front: 'Immunodeficiency-associated lymphomas?',
+    back: {
+      definition: 'Lymphomas arising from impaired immune surveillance',
+      high_yield: 'Often EBV-driven',
+      clinical_pearl: 'Seen post-transplant'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'Risk Factors']
+  },
+  // Lymphomas - Difficult
+  {
+    id: 'hematology-lymphomas-36',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'D',
+    front: 'BCL6 mutation seen in?',
+    back: {
+      definition: 'A mutation affecting germinal center regulation',
+      high_yield: 'Common in DLBCL',
+      clinical_pearl: 'Influences prognosis'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'DLBCL', 'Genetics']
+  },
+  {
+    id: 'hematology-lymphomas-37',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'D',
+    front: 'Hodgkin late complications?',
+    back: {
+      definition: 'Long-term treatment sequelae',
+      high_yield: 'Secondary cancers, cardiopulmonary toxicity',
+      clinical_pearl: 'Higher risk in those treated young'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'Hodgkin', 'Complications']
+  },
+  {
+    id: 'hematology-lymphomas-38',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'D',
+    front: 'Follicular lymphoma transformation?',
+    back: {
+      definition: 'Progression to more aggressive lymphoma',
+      high_yield: 'Most often to DLBCL',
+      clinical_pearl: 'Marked by rapid clinical worsening'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'Follicular', 'Complications']
+  },
+  {
+    id: 'hematology-lymphomas-39',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'D',
+    front: 'Burkitt tumor lysis risk?',
+    back: {
+      definition: 'A metabolic emergency seen in fast-growing tumors',
+      high_yield: 'Very high TLS risk',
+      clinical_pearl: 'Requires prophylactic therapy'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'Burkitt', 'Complications']
+  },
+  {
+    id: 'hematology-lymphomas-40',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'D',
+    front: 'LDH level significance?',
+    back: {
+      definition: 'A marker of cell turnover',
+      high_yield: 'High in aggressive lymphomas',
+      clinical_pearl: 'Used in prognostic scoring'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'Labs', 'Prognosis']
+  },
+  {
+    id: 'hematology-lymphomas-41',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'D',
+    front: 'Mantle cell clinical behavior?',
+    back: {
+      definition: 'A lymphoma with intermediate-aggressive behavior',
+      high_yield: 'Often widespread at diagnosis',
+      clinical_pearl: 'Poor long-term prognosis'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'Mantle Cell', 'Prognosis']
+  },
+  {
+    id: 'hematology-lymphomas-42',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'D',
+    front: 'NHL GI involvement symptom?',
+    back: {
+      definition: 'Result of extranodal lymphoid infiltration',
+      high_yield: 'Abdominal pain or bleeding',
+      clinical_pearl: 'Can cause intussusception in kids'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'Symptoms']
+  },
+  {
+    id: 'hematology-lymphomas-43',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'D',
+    front: 'T-cell lymphomas hallmark?',
+    back: {
+      definition: 'Malignancies derived from mature T cells',
+      high_yield: 'Often involve skin',
+      clinical_pearl: 'More aggressive than many B-cell types'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'T-cell']
+  },
+  {
+    id: 'hematology-lymphomas-44',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'D',
+    front: 'CNS relapse risk high in?',
+    back: {
+      definition: 'Lymphomas prone to CNS involvement',
+      high_yield: 'Burkitt & testicular lymphoma',
+      clinical_pearl: 'Require CNS prophylaxis'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'Complications']
+  },
+  {
+    id: 'hematology-lymphomas-45',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'D',
+    front: 'Mediastinal large B-cell lymphoma?',
+    back: {
+      definition: 'A variant of DLBCL from thymic B cells',
+      high_yield: 'Affects young women',
+      clinical_pearl: 'Can compress mediastinal structures'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'DLBCL']
+  },
+  {
+    id: 'hematology-lymphomas-46',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'D',
+    front: 'Lymphoma after H. pylori treatment?',
+    back: {
+      definition: 'Antigen-driven lymphoma regressing after eradication',
+      high_yield: 'MALT lymphoma',
+      clinical_pearl: 'Antibiotics may cure early disease'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'MALT', 'Treatment']
+  },
+  {
+    id: 'hematology-lymphomas-47',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'D',
+    front: 'Prognostic tool for aggressive lymphomas?',
+    back: {
+      definition: 'A validated scoring system for survival risk',
+      high_yield: 'IPI score',
+      clinical_pearl: 'Guides treatment intensity'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'Prognosis']
+  },
+  {
+    id: 'hematology-lymphomas-48',
+    system: 'Hematology',
+    topic: 'Lymphomas',
+    difficulty: 'D',
+    front: 'Bone marrow involvement more common in?',
+    back: {
+      definition: 'Indolent lymphomas',
+      high_yield: 'Follicular & marginal zone',
+      clinical_pearl: 'Often widespread at diagnosis'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Lymphomas', 'NHL', 'Diagnosis']
   }
 ];
