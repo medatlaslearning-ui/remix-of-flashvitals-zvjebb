@@ -4819,5 +4819,375 @@ export const hematologyFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0,
     tags: ['Hematology', 'Platelet Disorders', 'Complications']
+  },
+  // Transfusion Medicine - Easy
+  {
+    id: 'hematology-transfusion-1',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'E',
+    front: 'What is a type and screen?',
+    back: {
+      definition: 'ABO/Rh typing with antibody screen',
+      high_yield: 'Checks for clinically significant alloantibodies',
+      clinical_pearl: 'Done before most transfusions'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-2',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'E',
+    front: 'What is crossmatching?',
+    back: {
+      definition: 'Compatibility testing between donor RBCs and recipient serum',
+      high_yield: 'Prevents hemolytic reactions',
+      clinical_pearl: 'Mandatory before RBC transfusion'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-3',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'E',
+    front: 'When are packed RBCs indicated?',
+    back: {
+      definition: 'Symptomatic anemia or Hgb <7–8',
+      high_yield: 'Increases oxygen-carrying capacity',
+      clinical_pearl: 'One unit raises Hgb ~1 g/dL'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-4',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'E',
+    front: 'What is FFP?',
+    back: {
+      definition: 'Plasma containing all clotting factors',
+      high_yield: 'Used for coagulopathy',
+      clinical_pearl: 'Requires larger volumes'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-5',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'E',
+    front: 'When is cryoprecipitate used?',
+    back: {
+      definition: 'To replace fibrinogen',
+      high_yield: 'Contains fibrinogen, vWF, factor VIII',
+      clinical_pearl: 'Used in DIC or hypofibrinogenemia'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-6',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'E',
+    front: 'When are platelets indicated?',
+    back: {
+      definition: 'Active bleeding or count <10K',
+      high_yield: 'Raises platelet count',
+      clinical_pearl: 'Avoid in HIT/TTP'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-7',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'E',
+    front: 'What is a universal RBC donor type?',
+    back: {
+      definition: 'O negative',
+      high_yield: 'Lacks A/B antigens',
+      clinical_pearl: 'Preferred in emergencies'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-8',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'E',
+    front: 'What is a universal plasma donor?',
+    back: {
+      definition: 'AB plasma',
+      high_yield: 'No anti-A or anti-B antibodies',
+      clinical_pearl: 'Used for massive transfusion'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-9',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'E',
+    front: 'What is leukoreduction?',
+    back: {
+      definition: 'Removal of WBCs from blood products',
+      high_yield: 'Reduces febrile reactions',
+      clinical_pearl: 'Standard in most countries'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-10',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'E',
+    front: 'What is irradiation of blood products?',
+    back: {
+      definition: 'Exposure to gamma radiation',
+      high_yield: 'Prevents graft-vs-host disease',
+      clinical_pearl: 'Needed for immunocompromised patients'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-11',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'E',
+    front: 'What is washed RBCs?',
+    back: {
+      definition: 'RBCs washed to remove plasma proteins',
+      high_yield: 'Prevents allergic reactions',
+      clinical_pearl: 'Used in IgA deficiency'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-12',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'E',
+    front: 'What is a transfusion reaction?',
+    back: {
+      definition: 'Adverse response to transfused blood',
+      high_yield: 'Varies from mild to fatal',
+      clinical_pearl: 'Immediate evaluation required'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-13',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'E',
+    front: 'Acute hemolytic transfusion reaction definition?',
+    back: {
+      definition: 'Destruction of donor RBCs due to ABO incompatibility',
+      high_yield: 'Medical emergency',
+      clinical_pearl: 'Often clerical error'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-14',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'E',
+    front: 'Signs of acute hemolytic reaction?',
+    back: {
+      definition: 'Fever, flank pain, hypotension',
+      high_yield: 'Hemoglobinuria',
+      clinical_pearl: 'Stop transfusion immediately'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-15',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'E',
+    front: 'Febrile nonhemolytic reaction?',
+    back: {
+      definition: 'Reaction to donor leukocytes/cytokines',
+      high_yield: 'Fever, chills',
+      clinical_pearl: 'Most common reaction'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-16',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'E',
+    front: 'Allergic transfusion reaction?',
+    back: {
+      definition: 'IgE-mediated reaction to plasma proteins',
+      high_yield: 'Urticaria and itching',
+      clinical_pearl: 'Responds to antihistamines'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-17',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'E',
+    front: 'Anaphylactic transfusion reaction?',
+    back: {
+      definition: 'Severe allergic reaction',
+      high_yield: 'Hypotension, airway swelling',
+      clinical_pearl: 'Seen in IgA deficiency'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-18',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'E',
+    front: 'TRALI definition?',
+    back: {
+      definition: 'Acute lung injury after transfusion',
+      high_yield: 'Non-cardiogenic pulmonary edema',
+      clinical_pearl: 'Occurs within 6 hours'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-19',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'E',
+    front: 'TACO definition?',
+    back: {
+      definition: 'Transfusion-associated circulatory overload',
+      high_yield: 'Dyspnea, hypertension',
+      clinical_pearl: 'Volume overload mechanism'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-20',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'E',
+    front: 'Massive transfusion protocol definition?',
+    back: {
+      definition: 'Balanced blood product replacement',
+      high_yield: '1:1:1 RBC:plasma:platelets',
+      clinical_pearl: 'Prevents dilutional coagulopathy'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  // Transfusion Medicine - Medium
+  {
+    id: 'hematology-transfusion-21',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'M',
+    front: 'What is alloimmunization?',
+    back: {
+      definition: 'Immune response to foreign RBC antigens',
+      high_yield: 'Occurs after transfusion or pregnancy',
+      clinical_pearl: 'Complicates future crossmatching'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-22',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'M',
+    front: 'Rh incompatibility significance?',
+    back: {
+      definition: 'Maternal sensitization to fetal RBCs',
+      high_yield: 'Hemolytic disease of newborn',
+      clinical_pearl: 'Prevented with RhIG'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-23',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'M',
+    front: 'Kell antigen significance?',
+    back: {
+      definition: 'Highly immunogenic RBC antigen',
+      high_yield: 'Causes severe HDFN',
+      clinical_pearl: 'Second only to Rh in severity'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
   }
 ];
