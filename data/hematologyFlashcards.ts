@@ -5189,5 +5189,438 @@ export const hematologyFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0,
     tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-24',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'M',
+    front: 'What is CMV-negative blood?',
+    back: {
+      definition: 'Blood from donors without CMV antibodies',
+      high_yield: 'Used for immunocompromised patients',
+      clinical_pearl: 'Prevents CMV transmission'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-25',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'M',
+    front: 'What is a delayed hemolytic transfusion reaction?',
+    back: {
+      definition: 'Hemolysis occurring days to weeks after transfusion',
+      high_yield: 'Due to anamnestic antibody response',
+      clinical_pearl: 'Less severe than acute reactions'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-26',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'M',
+    front: 'What is transfusion-related immunomodulation?',
+    back: {
+      definition: 'Immune suppression from transfusion',
+      high_yield: 'Increased infection risk',
+      clinical_pearl: 'Controversial clinical significance'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-27',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'M',
+    front: 'What is the Kleihauer-Betke test?',
+    back: {
+      definition: 'Detects fetal RBCs in maternal circulation',
+      high_yield: 'Quantifies fetomaternal hemorrhage',
+      clinical_pearl: 'Guides RhIG dosing'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-28',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'M',
+    front: 'What is emergency release blood?',
+    back: {
+      definition: 'O-negative RBCs given without crossmatch',
+      high_yield: 'Used in life-threatening hemorrhage',
+      clinical_pearl: 'Switch to type-specific when available'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-29',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'M',
+    front: 'What is autologous transfusion?',
+    back: {
+      definition: 'Patient receives their own blood',
+      high_yield: 'Eliminates alloimmunization risk',
+      clinical_pearl: 'Used in elective surgery'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-30',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'M',
+    front: 'What is directed donation?',
+    back: {
+      definition: 'Blood donated by specific person for specific recipient',
+      high_yield: 'No proven safety advantage',
+      clinical_pearl: 'May increase GVHD risk'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-31',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'M',
+    front: 'What is apheresis?',
+    back: {
+      definition: 'Selective removal of blood components',
+      high_yield: 'Used for platelet or plasma collection',
+      clinical_pearl: 'Also therapeutic in some conditions'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-32',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'M',
+    front: 'What is therapeutic plasma exchange?',
+    back: {
+      definition: 'Removal of plasma to eliminate pathologic substances',
+      high_yield: 'Used in TTP, myasthenia gravis',
+      clinical_pearl: 'Requires large-bore access'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-33',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'M',
+    front: 'What is red cell exchange?',
+    back: {
+      definition: 'Removal of patient RBCs and replacement with donor RBCs',
+      high_yield: 'Used in severe sickle cell complications',
+      clinical_pearl: 'Rapidly reduces HbS percentage'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-34',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'M',
+    front: 'What is granulocyte transfusion?',
+    back: {
+      definition: 'Transfusion of white blood cells',
+      high_yield: 'Rarely used',
+      clinical_pearl: 'For severe neutropenia with infection'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-35',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'M',
+    front: 'What is the maximum storage time for RBCs?',
+    back: {
+      definition: '42 days at 1-6°C',
+      high_yield: 'Additive solutions extend shelf life',
+      clinical_pearl: 'Older blood has higher potassium'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-36',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'M',
+    front: 'What is the maximum storage time for platelets?',
+    back: {
+      definition: '5-7 days at 20-24°C',
+      high_yield: 'Requires constant agitation',
+      clinical_pearl: 'Higher bacterial contamination risk'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-37',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'M',
+    front: 'What is bacterial contamination of platelets?',
+    back: {
+      definition: 'Most common infectious complication of transfusion',
+      high_yield: 'Due to room temperature storage',
+      clinical_pearl: 'Causes septic transfusion reactions'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-38',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'M',
+    front: 'What is post-transfusion purpura?',
+    back: {
+      definition: 'Severe thrombocytopenia 5-10 days after transfusion',
+      high_yield: 'Due to platelet alloantibodies',
+      clinical_pearl: 'Treat with IVIG'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-39',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'M',
+    front: 'What is transfusion-associated GVHD?',
+    back: {
+      definition: 'Donor lymphocytes attack recipient tissues',
+      high_yield: 'Nearly always fatal',
+      clinical_pearl: 'Prevented by irradiation'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-40',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'M',
+    front: 'What is hyperkalemia from transfusion?',
+    back: {
+      definition: 'Elevated potassium from stored RBCs',
+      high_yield: 'Risk with massive transfusion',
+      clinical_pearl: 'Higher in older units'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-41',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'M',
+    front: 'What is citrate toxicity?',
+    back: {
+      definition: 'Hypocalcemia from citrate anticoagulant',
+      high_yield: 'Occurs with rapid massive transfusion',
+      clinical_pearl: 'Treat with calcium'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-42',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'M',
+    front: 'What is hypothermia from transfusion?',
+    back: {
+      definition: 'Cooling from cold blood products',
+      high_yield: 'Risk with massive transfusion',
+      clinical_pearl: 'Use blood warmers'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-43',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'M',
+    front: 'What is iron overload from transfusion?',
+    back: {
+      definition: 'Excess iron from chronic transfusions',
+      high_yield: 'Causes organ damage',
+      clinical_pearl: 'Requires chelation therapy'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-44',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'M',
+    front: 'What is the ABO blood group system?',
+    back: {
+      definition: 'Most important blood group system',
+      high_yield: 'Based on A and B antigens',
+      clinical_pearl: 'Natural antibodies present'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-45',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'M',
+    front: 'What is the Rh blood group system?',
+    back: {
+      definition: 'Second most important blood group',
+      high_yield: 'D antigen determines Rh status',
+      clinical_pearl: 'No natural antibodies'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-46',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'M',
+    front: 'What is weak D?',
+    back: {
+      definition: 'Reduced expression of D antigen',
+      high_yield: 'Treated as Rh-positive for transfusion',
+      clinical_pearl: 'May need RhIG in pregnancy'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  // Transfusion Medicine - Difficult
+  {
+    id: 'hematology-transfusion-47',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'D',
+    front: 'What is RBC genotype matching?',
+    back: {
+      definition: 'Matching donor-recipient at DNA level',
+      high_yield: 'Prevents alloimmunization in high-risk patients',
+      clinical_pearl: 'Used in SCD'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-48',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'D',
+    front: 'What is pathogen-reduced plasma?',
+    back: {
+      definition: 'Plasma treated to inactivate viruses/bacteria',
+      high_yield: 'Safer product',
+      clinical_pearl: 'Used when available in high-risk patients'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-49',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'D',
+    front: 'What is a neutralizing antibody in transfusion testing?',
+    back: {
+      definition: 'An antibody that interferes with detection of others',
+      high_yield: 'Masks alloantibodies',
+      clinical_pearl: 'Requires advanced immunohematology techniques'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
+  },
+  {
+    id: 'hematology-transfusion-50',
+    system: 'Hematology',
+    topic: 'Transfusion Medicine',
+    difficulty: 'D',
+    front: 'What is viscoelastic testing (TEG/ROTEM)?',
+    back: {
+      definition: 'Real-time assessment of clot formation',
+      high_yield: 'Guides transfusion decisions',
+      clinical_pearl: 'Used in trauma and massive transfusion protocols'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Transfusion Medicine']
   }
 ];
