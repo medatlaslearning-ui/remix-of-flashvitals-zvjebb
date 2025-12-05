@@ -579,18 +579,485 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     reviewCount: 0,
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Staphylococcus']
   },
-  // Bacterial Organisms - Gram Negative (Red)
   {
     id: 'infectious-disease-bacterial-33',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
-    difficulty: 'easy',
-    front: 'Escherichia coli',
+    difficulty: 'medium',
+    front: 'Coagulase-negative staph (prosthetic joint infection)',
     back: {
-      definition: 'Gram-negative rod',
-      high_yield: 'Lactose fermenter',
-      clinical_pearl: 'Most common cause of UTIs and neonatal meningitis',
-      treatment: 'Ceftriaxone or fluoroquinolones'
+      definition: 'Gram-positive cocci in clusters',
+      high_yield: 'Biofilm-forming organisms on hardware and catheters',
+      clinical_pearl: 'Vancomycin + rifampin and often hardware removal',
+      treatment: 'Vancomycin + rifampin and often hardware removal'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Staphylococcus']
+  },
+  {
+    id: 'infectious-disease-bacterial-34',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Staph aureus toxic shock syndrome',
+    back: {
+      definition: 'Gram-positive cocci producing superantigen toxin',
+      high_yield: 'Causes fever, hypotension, rash, multiorgan involvement',
+      clinical_pearl: 'Source control + IV clindamycin + anti-staph agent (e.g., vancomycin)',
+      treatment: 'Source control + IV clindamycin + anti-staph agent (e.g., vancomycin)'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Staphylococcus']
+  },
+  {
+    id: 'infectious-disease-bacterial-35',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Strep pyogenes toxic shock–like syndrome',
+    back: {
+      definition: 'Gram-positive cocci in chains producing exotoxins',
+      high_yield: 'Associated with necrotizing fasciitis and shock',
+      clinical_pearl: 'Urgent debridement + IV penicillin + clindamycin',
+      treatment: 'Urgent debridement + IV penicillin + clindamycin'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Streptococcus']
+  },
+  {
+    id: 'infectious-disease-bacterial-36',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Necrotizing fasciitis due to GAS',
+    back: {
+      definition: 'Gram-positive cocci invading fascia with rapid spread',
+      high_yield: 'Severe pain out of proportion to exam',
+      clinical_pearl: 'Emergent surgery + broad-spectrum IV antibiotics including clindamycin',
+      treatment: 'Emergent surgery + broad-spectrum IV antibiotics including clindamycin'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Streptococcus']
+  },
+  {
+    id: 'infectious-disease-bacterial-37',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'easy',
+    front: 'Strep pyogenes pharyngitis',
+    back: {
+      definition: 'Gram-positive cocci in chains',
+      high_yield: 'Common cause of bacterial sore throat',
+      clinical_pearl: 'Penicillin or amoxicillin to prevent rheumatic fever',
+      treatment: 'Penicillin or amoxicillin to prevent rheumatic fever'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Streptococcus']
+  },
+  {
+    id: 'infectious-disease-bacterial-38',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Rheumatic fever post–strep pharyngitis',
+    back: {
+      definition: 'Immune-mediated sequela of GAS infection',
+      high_yield: 'Affects heart, joints, skin, CNS',
+      clinical_pearl: 'Treat initial infection with penicillin and give secondary prophylaxis',
+      treatment: 'Treat initial infection with penicillin and give secondary prophylaxis'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Streptococcus']
+  },
+  {
+    id: 'infectious-disease-bacterial-39',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'easy',
+    front: 'Group B strep neonatal sepsis',
+    back: {
+      definition: 'Gram-positive cocci transmitted perinatally',
+      high_yield: 'Causes early-onset sepsis and meningitis',
+      clinical_pearl: 'Empiric ampicillin + gentamicin; maternal intrapartum prophylaxis',
+      treatment: 'Empiric ampicillin + gentamicin; maternal intrapartum prophylaxis'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Streptococcus']
+  },
+  {
+    id: 'infectious-disease-bacterial-40',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'GBS intrapartum prophylaxis',
+    back: {
+      definition: 'Gram-positive colonizer of vagina/rectum',
+      high_yield: 'Risk for neonatal infection if untreated',
+      clinical_pearl: 'IV penicillin or ampicillin during labor',
+      treatment: 'IV penicillin or ampicillin during labor'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Streptococcus']
+  },
+  {
+    id: 'infectious-disease-bacterial-41',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Enterococcus high-level aminoglycoside resistance',
+    back: {
+      definition: 'Gram-positive cocci with altered ribosomal target',
+      high_yield: 'Prevents synergy with aminoglycosides',
+      clinical_pearl: 'Use alternative regimens (e.g., ampicillin + ceftriaxone or linezolid)',
+      treatment: 'Use alternative regimens (e.g., ampicillin + ceftriaxone or linezolid)'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Enterococcus']
+  },
+  {
+    id: 'infectious-disease-bacterial-42',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'difficult',
+    front: 'Linezolid-resistant Enterococcus',
+    back: {
+      definition: 'Gram-positive cocci with ribosomal mutation',
+      high_yield: 'Limits use of oxazolidinones',
+      clinical_pearl: 'Consider daptomycin (with ID consultation)',
+      treatment: 'Consider daptomycin (with ID consultation)'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Enterococcus']
+  },
+  {
+    id: 'infectious-disease-bacterial-43',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'difficult',
+    front: 'Daptomycin-nonsusceptible MRSA',
+    back: {
+      definition: 'Gram-positive cocci showing reduced daptomycin activity',
+      high_yield: 'Seen after prolonged therapy',
+      clinical_pearl: 'Switch to alternative agents (e.g., ceftaroline ± other agents)',
+      treatment: 'Switch to alternative agents (e.g., ceftaroline ± other agents)'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Staphylococcus', 'MRSA']
+  },
+  {
+    id: 'infectious-disease-bacterial-44',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'MRSA bacteremia/endocarditis',
+    back: {
+      definition: 'Gram-positive cocci in clusters causing invasive disease',
+      high_yield: 'High risk of metastatic infections',
+      clinical_pearl: 'IV vancomycin or daptomycin with source control and TEE evaluation',
+      treatment: 'IV vancomycin or daptomycin with source control and TEE evaluation'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Staphylococcus', 'MRSA']
+  },
+  {
+    id: 'infectious-disease-bacterial-45',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'MRSA pneumonia',
+    back: {
+      definition: 'Gram-positive cocci in clusters causing necrotizing pneumonia',
+      high_yield: 'Often post–influenza',
+      clinical_pearl: 'Linezolid or vancomycin; add broad coverage as needed',
+      treatment: 'Linezolid or vancomycin; add broad coverage as needed'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Staphylococcus', 'MRSA']
+  },
+  {
+    id: 'infectious-disease-bacterial-46',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'PVL-positive MRSA SSTI',
+    back: {
+      definition: 'Gram-positive cocci producing Panton–Valentine leukocidin',
+      high_yield: 'Causes recurrent abscesses in healthy hosts',
+      clinical_pearl: 'I&D + TMP-SMX/doxycycline; consider decolonization',
+      treatment: 'I&D + TMP-SMX/doxycycline; consider decolonization'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Staphylococcus', 'MRSA']
+  },
+  {
+    id: 'infectious-disease-bacterial-47',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Listeria meningitis',
+    back: {
+      definition: 'Gram-positive rod causing CNS infection',
+      high_yield: 'Occurs in neonates, elderly, pregnant, immunocompromised',
+      clinical_pearl: 'IV ampicillin ± gentamicin',
+      treatment: 'IV ampicillin ± gentamicin'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Listeria']
+  },
+  {
+    id: 'infectious-disease-bacterial-48',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Nocardia brain abscess',
+    back: {
+      definition: 'Weakly acid-fast, branching Gram-positive rod',
+      high_yield: 'Causes space-occupying CNS lesions',
+      clinical_pearl: 'High-dose TMP-SMX ± additional agents; neurosurgical input',
+      treatment: 'High-dose TMP-SMX ± additional agents; neurosurgical input'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Nocardia']
+  },
+  {
+    id: 'infectious-disease-bacterial-49',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Actinomyces pelvic infection',
+    back: {
+      definition: 'Gram-positive filamentous anaerobe',
+      high_yield: 'Associated with prolonged IUD use',
+      clinical_pearl: 'High-dose penicillin; remove device',
+      treatment: 'High-dose penicillin; remove device'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Actinomyces']
+  },
+  {
+    id: 'infectious-disease-bacterial-50',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Clostridial gas gangrene',
+    back: {
+      definition: 'Gram-positive spore-forming rod producing alpha toxin',
+      high_yield: 'Rapidly progressive myonecrosis with gas in tissues',
+      clinical_pearl: 'Emergent debridement + IV penicillin + clindamycin',
+      treatment: 'Emergent debridement + IV penicillin + clindamycin'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Clostridium']
+  },
+  {
+    id: 'infectious-disease-bacterial-51',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'easy',
+    front: 'Bacillus cereus food poisoning',
+    back: {
+      definition: 'Gram-positive spore-forming rod',
+      high_yield: 'Reheated rice–associated vomiting',
+      clinical_pearl: 'Supportive care only',
+      treatment: 'Supportive care only'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Bacillus']
+  },
+  {
+    id: 'infectious-disease-bacterial-52',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'C. difficile recurrent infection',
+    back: {
+      definition: 'Gram-positive spore-forming anaerobe',
+      high_yield: 'Multiple relapses after standard therapy',
+      clinical_pearl: 'Fidaxomicin or vancomycin taper; consider fecal microbiota transplant',
+      treatment: 'Fidaxomicin or vancomycin taper; consider fecal microbiota transplant'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Clostridium']
+  },
+  {
+    id: 'infectious-disease-bacterial-53',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'C. difficile fulminant colitis',
+    back: {
+      definition: 'Gram-positive anaerobe with severe colitis',
+      high_yield: 'Leukocytosis, shock, megacolon',
+      clinical_pearl: 'Oral/rectal vancomycin + IV metronidazole; urgent surgical eval',
+      treatment: 'Oral/rectal vancomycin + IV metronidazole; urgent surgical eval'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Clostridium']
+  },
+  {
+    id: 'infectious-disease-bacterial-54',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Strep anginosus group abscess',
+    back: {
+      definition: 'Gram-positive microaerophilic cocci',
+      high_yield: 'Tend to form deep-seated abscesses',
+      clinical_pearl: 'Ampicillin-sulbactam or ceftriaxone + metronidazole',
+      treatment: 'Ampicillin-sulbactam or ceftriaxone + metronidazole'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Streptococcus']
+  },
+  {
+    id: 'infectious-disease-bacterial-55',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Peptostreptococcus brain abscess',
+    back: {
+      definition: 'Gram-positive anaerobic cocci',
+      high_yield: 'Part of polymicrobial oral flora infections',
+      clinical_pearl: 'Ampicillin-sulbactam or piperacillin-tazobactam',
+      treatment: 'Ampicillin-sulbactam or piperacillin-tazobactam'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Peptostreptococcus']
+  },
+  {
+    id: 'infectious-disease-bacterial-56',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Coagulase-negative staph prosthetic valve infection',
+    back: {
+      definition: 'Gram-positive biofilm-forming cocci',
+      high_yield: 'Common cause of late prosthetic valve endocarditis',
+      clinical_pearl: 'Vancomycin + rifampin ± gentamicin; often requires surgery',
+      treatment: 'Vancomycin + rifampin ± gentamicin; often requires surgery'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Staphylococcus']
+  },
+  {
+    id: 'infectious-disease-bacterial-57',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Viridans strep endocarditis (penicillin-resistant)',
+    back: {
+      definition: 'Gram-positive cocci with reduced beta-lactam susceptibility',
+      high_yield: 'Oral flora source of subacute endocarditis',
+      clinical_pearl: 'High-dose ceftriaxone ± gentamicin',
+      treatment: 'High-dose ceftriaxone ± gentamicin'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Streptococcus']
+  },
+  {
+    id: 'infectious-disease-bacterial-58',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Enterococcus faecalis endocarditis (non-VRE)',
+    back: {
+      definition: 'Gram-positive cocci in chains',
+      high_yield: 'Difficult-to-treat endocarditis',
+      clinical_pearl: 'Ampicillin + ceftriaxone or ampicillin + gentamicin',
+      treatment: 'Ampicillin + ceftriaxone or ampicillin + gentamicin'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Enterococcus']
+  },
+  {
+    id: 'infectious-disease-bacterial-59',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'easy',
+    front: 'Escherichia coli (uropathogenic)',
+    back: {
+      definition: 'Gram-negative lactose-fermenting rod',
+      high_yield: 'Most common cause of community UTI',
+      clinical_pearl: 'Nitrofurantoin, TMP-SMX, or fosfomycin for uncomplicated cystitis',
+      treatment: 'Nitrofurantoin, TMP-SMX, or fosfomycin for uncomplicated cystitis'
     },
     color: 'red',
     bookmarked: false,
@@ -599,16 +1066,52 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'E. coli']
   },
   {
-    id: 'infectious-disease-bacterial-34',
+    id: 'infectious-disease-bacterial-60',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'ESBL-producing E. coli',
+    back: {
+      definition: 'Gram-negative rod with extended-spectrum beta-lactamase',
+      high_yield: 'Resistant to most penicillins/cephalosporins',
+      clinical_pearl: 'Carbapenem (e.g., meropenem) for serious infections',
+      treatment: 'Carbapenem (e.g., meropenem) for serious infections'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'E. coli', 'ESBL']
+  },
+  {
+    id: 'infectious-disease-bacterial-61',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'difficult',
+    front: 'CRE (carbapenem-resistant Enterobacteriaceae)',
+    back: {
+      definition: 'Gram-negative rods with carbapenemases',
+      high_yield: 'Highly resistant hospital pathogens',
+      clinical_pearl: 'Use ceftazidime-avibactam, meropenem-vaborbactam, or ID-guided therapy',
+      treatment: 'Use ceftazidime-avibactam, meropenem-vaborbactam, or ID-guided therapy'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'CRE']
+  },
+  {
+    id: 'infectious-disease-bacterial-62',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'easy',
     front: 'Klebsiella pneumoniae',
     back: {
-      definition: 'Gram-negative rod',
-      high_yield: 'Lactose fermenter, encapsulated',
-      clinical_pearl: 'Causes pneumonia in alcoholics (currant jelly sputum)',
-      treatment: 'Ceftriaxone or carbapenems'
+      definition: 'Gram-negative encapsulated lactose-fermenting rod',
+      high_yield: 'Causes pneumonia and UTIs; currant jelly sputum',
+      clinical_pearl: 'Ceftriaxone or piperacillin-tazobactam depending on severity',
+      treatment: 'Ceftriaxone or piperacillin-tazobactam depending on severity'
     },
     color: 'red',
     bookmarked: false,
@@ -617,327 +1120,129 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Klebsiella']
   },
   {
-    id: 'infectious-disease-bacterial-35',
+    id: 'infectious-disease-bacterial-63',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'ESBL Klebsiella pneumoniae',
+    back: {
+      definition: 'Gram-negative rod with ESBL production',
+      high_yield: 'Nosocomial infections with multidrug resistance',
+      clinical_pearl: 'Carbapenem therapy preferred for severe disease',
+      treatment: 'Carbapenem therapy preferred for severe disease'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Klebsiella', 'ESBL']
+  },
+  {
+    id: 'infectious-disease-bacterial-64',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'easy',
+    front: 'Proteus mirabilis',
+    back: {
+      definition: 'Gram-negative urease-positive rod',
+      high_yield: 'Associated with struvite stones and UTIs',
+      clinical_pearl: 'Ceftriaxone or TMP-SMX depending on susceptibility',
+      treatment: 'Ceftriaxone or TMP-SMX depending on susceptibility'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Proteus']
+  },
+  {
+    id: 'infectious-disease-bacterial-65',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Serratia marcescens',
+    back: {
+      definition: 'Gram-negative rod forming red pigment',
+      high_yield: 'Nosocomial infections, especially in ICUs',
+      clinical_pearl: 'Broad-spectrum beta-lactam/beta-lactamase inhibitor or carbapenem',
+      treatment: 'Broad-spectrum beta-lactam/beta-lactamase inhibitor or carbapenem'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Serratia']
+  },
+  {
+    id: 'infectious-disease-bacterial-66',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Enterobacter cloacae complex',
+    back: {
+      definition: 'Gram-negative rod with inducible AmpC beta-lactamase',
+      high_yield: 'Causes hospital-acquired pneumonia and bacteremia',
+      clinical_pearl: 'Carbapenem or cefepime depending on MIC',
+      treatment: 'Carbapenem or cefepime depending on MIC'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Enterobacter']
+  },
+  {
+    id: 'infectious-disease-bacterial-67',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Citrobacter freundii',
+    back: {
+      definition: 'Gram-negative rod',
+      high_yield: 'Can cause UTIs, sepsis, and neonatal meningitis',
+      clinical_pearl: 'Third- or fourth-generation cephalosporin or carbapenem for serious infection',
+      treatment: 'Third- or fourth-generation cephalosporin or carbapenem for serious infection'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Citrobacter']
+  },
+  {
+    id: 'infectious-disease-bacterial-68',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Morganella morganii',
+    back: {
+      definition: 'Gram-negative rod',
+      high_yield: 'Opportunistic pathogen, often in polymicrobial infections',
+      clinical_pearl: 'Piperacillin-tazobactam or cefepime based on susceptibility',
+      treatment: 'Piperacillin-tazobactam or cefepime based on susceptibility'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Morganella']
+  },
+  {
+    id: 'infectious-disease-bacterial-69',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'easy',
     front: 'Pseudomonas aeruginosa',
     back: {
-      definition: 'Gram-negative rod',
-      high_yield: 'Oxidase positive, produces pyocyanin',
-      clinical_pearl: 'Causes infections in burn patients and CF patients',
-      treatment: 'Piperacillin-tazobactam or cefepime'
+      definition: 'Gram-negative non-lactose-fermenting oxidase-positive rod',
+      high_yield: 'Common cause of HAP, VAP, and wound infections',
+      clinical_pearl: 'Antipseudomonal beta-lactam (e.g., piperacillin-tazobactam, cefepime) ± aminoglycoside',
+      treatment: 'Antipseudomonal beta-lactam (e.g., piperacillin-tazobactam, cefepime) ± aminoglycoside'
     },
     color: 'red',
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Pseudomonas']
-  },
-  {
-    id: 'infectious-disease-bacterial-36',
-    system: 'Infectious Disease',
-    topic: 'Bacterial Organisms',
-    difficulty: 'easy',
-    front: 'Haemophilus influenzae',
-    back: {
-      definition: 'Gram-negative coccobacillus',
-      high_yield: 'Requires factors V and X',
-      clinical_pearl: 'Causes epiglottitis, meningitis, otitis media',
-      treatment: 'Ceftriaxone'
-    },
-    color: 'red',
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Haemophilus']
-  },
-  {
-    id: 'infectious-disease-bacterial-37',
-    system: 'Infectious Disease',
-    topic: 'Bacterial Organisms',
-    difficulty: 'easy',
-    front: 'Neisseria meningitidis',
-    back: {
-      definition: 'Gram-negative diplococci',
-      high_yield: 'Maltose fermenter',
-      clinical_pearl: 'Causes meningitis and meningococcemia with petechial rash',
-      treatment: 'Ceftriaxone'
-    },
-    color: 'red',
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Neisseria']
-  },
-  {
-    id: 'infectious-disease-bacterial-38',
-    system: 'Infectious Disease',
-    topic: 'Bacterial Organisms',
-    difficulty: 'easy',
-    front: 'Neisseria gonorrhoeae',
-    back: {
-      definition: 'Gram-negative diplococci',
-      high_yield: 'Does not ferment maltose',
-      clinical_pearl: 'Causes gonorrhea and pelvic inflammatory disease',
-      treatment: 'Ceftriaxone + azithromycin'
-    },
-    color: 'red',
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Neisseria']
-  },
-  {
-    id: 'infectious-disease-bacterial-39',
-    system: 'Infectious Disease',
-    topic: 'Bacterial Organisms',
-    difficulty: 'medium',
-    front: 'Salmonella typhi',
-    back: {
-      definition: 'Gram-negative rod',
-      high_yield: 'Non-lactose fermenter, H2S positive',
-      clinical_pearl: 'Causes typhoid fever with rose spots',
-      treatment: 'Ceftriaxone or azithromycin'
-    },
-    color: 'red',
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Salmonella']
-  },
-  {
-    id: 'infectious-disease-bacterial-40',
-    system: 'Infectious Disease',
-    topic: 'Bacterial Organisms',
-    difficulty: 'medium',
-    front: 'Shigella species',
-    back: {
-      definition: 'Gram-negative rod',
-      high_yield: 'Non-lactose fermenter, non-motile',
-      clinical_pearl: 'Causes bloody diarrhea (dysentery)',
-      treatment: 'Fluoroquinolones or azithromycin'
-    },
-    color: 'red',
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Shigella']
-  },
-  {
-    id: 'infectious-disease-bacterial-41',
-    system: 'Infectious Disease',
-    topic: 'Bacterial Organisms',
-    difficulty: 'medium',
-    front: 'Vibrio cholerae',
-    back: {
-      definition: 'Gram-negative curved rod',
-      high_yield: 'Oxidase positive, comma-shaped',
-      clinical_pearl: 'Causes cholera with rice-water stools',
-      treatment: 'Doxycycline or azithromycin + rehydration'
-    },
-    color: 'red',
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Vibrio']
-  },
-  {
-    id: 'infectious-disease-bacterial-42',
-    system: 'Infectious Disease',
-    topic: 'Bacterial Organisms',
-    difficulty: 'medium',
-    front: 'Campylobacter jejuni',
-    back: {
-      definition: 'Gram-negative curved rod',
-      high_yield: 'Oxidase positive, grows at 42°C',
-      clinical_pearl: 'Most common cause of bacterial diarrhea, associated with Guillain-Barré',
-      treatment: 'Azithromycin or fluoroquinolones'
-    },
-    color: 'red',
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Campylobacter']
-  },
-  {
-    id: 'infectious-disease-bacterial-43',
-    system: 'Infectious Disease',
-    topic: 'Bacterial Organisms',
-    difficulty: 'medium',
-    front: 'Helicobacter pylori',
-    back: {
-      definition: 'Gram-negative curved rod',
-      high_yield: 'Urease positive',
-      clinical_pearl: 'Causes peptic ulcer disease and gastric cancer',
-      treatment: 'Triple therapy: PPI + clarithromycin + amoxicillin'
-    },
-    color: 'red',
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Helicobacter']
-  },
-  {
-    id: 'infectious-disease-bacterial-44',
-    system: 'Infectious Disease',
-    topic: 'Bacterial Organisms',
-    difficulty: 'medium',
-    front: 'Legionella pneumophila',
-    back: {
-      definition: 'Gram-negative rod',
-      high_yield: 'Requires charcoal yeast extract agar',
-      clinical_pearl: 'Causes atypical pneumonia with hyponatremia',
-      treatment: 'Azithromycin or fluoroquinolones'
-    },
-    color: 'red',
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Legionella']
-  },
-  {
-    id: 'infectious-disease-bacterial-45',
-    system: 'Infectious Disease',
-    topic: 'Bacterial Organisms',
-    difficulty: 'medium',
-    front: 'Bordetella pertussis',
-    back: {
-      definition: 'Gram-negative coccobacillus',
-      high_yield: 'Requires Bordet-Gengou agar',
-      clinical_pearl: 'Causes whooping cough',
-      treatment: 'Azithromycin'
-    },
-    color: 'red',
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Bordetella']
-  },
-  {
-    id: 'infectious-disease-bacterial-46',
-    system: 'Infectious Disease',
-    topic: 'Bacterial Organisms',
-    difficulty: 'hard',
-    front: 'Yersinia pestis',
-    back: {
-      definition: 'Gram-negative rod',
-      high_yield: 'Bipolar staining (safety pin appearance)',
-      clinical_pearl: 'Causes plague (bubonic, septicemic, pneumonic)',
-      treatment: 'Streptomycin or gentamicin'
-    },
-    color: 'red',
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Yersinia']
-  },
-  {
-    id: 'infectious-disease-bacterial-47',
-    system: 'Infectious Disease',
-    topic: 'Bacterial Organisms',
-    difficulty: 'hard',
-    front: 'Francisella tularensis',
-    back: {
-      definition: 'Gram-negative coccobacillus',
-      high_yield: 'Requires cysteine-enriched media',
-      clinical_pearl: 'Causes tularemia (rabbit fever)',
-      treatment: 'Streptomycin or gentamicin'
-    },
-    color: 'red',
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Francisella']
-  },
-  {
-    id: 'infectious-disease-bacterial-48',
-    system: 'Infectious Disease',
-    topic: 'Bacterial Organisms',
-    difficulty: 'hard',
-    front: 'Brucella species',
-    back: {
-      definition: 'Gram-negative coccobacillus',
-      high_yield: 'Intracellular pathogen',
-      clinical_pearl: 'Causes brucellosis (undulant fever)',
-      treatment: 'Doxycycline + rifampin or gentamicin'
-    },
-    color: 'red',
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Brucella']
-  },
-  {
-    id: 'infectious-disease-bacterial-49',
-    system: 'Infectious Disease',
-    topic: 'Bacterial Organisms',
-    difficulty: 'hard',
-    front: 'Bacteroides fragilis',
-    back: {
-      definition: 'Gram-negative anaerobic rod',
-      high_yield: 'Most common anaerobe in colon',
-      clinical_pearl: 'Causes intra-abdominal abscesses',
-      treatment: 'Metronidazole or carbapenems'
-    },
-    color: 'red',
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Bacteroides']
-  },
-  {
-    id: 'infectious-disease-bacterial-50',
-    system: 'Infectious Disease',
-    topic: 'Bacterial Organisms',
-    difficulty: 'hard',
-    front: 'Acinetobacter baumannii',
-    back: {
-      definition: 'Gram-negative coccobacillus',
-      high_yield: 'Oxidase negative, often multidrug resistant',
-      clinical_pearl: 'Causes nosocomial infections in ICU patients',
-      treatment: 'Carbapenems or colistin (if resistant)'
-    },
-    color: 'red',
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Acinetobacter']
-  },
-  {
-    id: 'infectious-disease-bacterial-51',
-    system: 'Infectious Disease',
-    topic: 'Bacterial Organisms',
-    difficulty: 'hard',
-    front: 'Stenotrophomonas maltophilia',
-    back: {
-      definition: 'Gram-negative rod',
-      high_yield: 'Intrinsically resistant to carbapenems',
-      clinical_pearl: 'Causes opportunistic infections in immunocompromised',
-      treatment: 'Trimethoprim-sulfamethoxazole'
-    },
-    color: 'red',
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Stenotrophomonas']
-  },
-  {
-    id: 'infectious-disease-bacterial-52',
-    system: 'Infectious Disease',
-    topic: 'Bacterial Organisms',
-    difficulty: 'hard',
-    front: 'Burkholderia cepacia',
-    back: {
-      definition: 'Gram-negative rod',
-      high_yield: 'Oxidase positive, intrinsically resistant to many antibiotics',
-      clinical_pearl: 'Causes lung infections in cystic fibrosis patients',
-      treatment: 'Trimethoprim-sulfamethoxazole or meropenem'
-    },
-    color: 'red',
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Burkholderia']
   }
 ];
