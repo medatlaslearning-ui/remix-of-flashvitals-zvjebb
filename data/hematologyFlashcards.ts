@@ -4131,6 +4131,70 @@ export const hematologyFlashcards: Flashcard[] = [
     tags: ['Hematology', 'Platelet Disorders', 'Medications']
   },
   {
+    id: 'hematology-platelet-29',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'M',
+    front: 'Postoperative thrombocytopenia in elderly patient?',
+    back: {
+      definition: 'Common after major surgery',
+      high_yield: 'Dilutional, consumptive, or drug-induced',
+      clinical_pearl: 'Monitor for HIT if on heparin prophylaxis'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'Postoperative']
+  },
+  {
+    id: 'hematology-platelet-30',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'M',
+    front: 'Lethargy in PACU with low platelets?',
+    back: {
+      definition: 'Consider anesthesia effects vs complications',
+      high_yield: 'Rule out bleeding, stroke, or metabolic issues',
+      clinical_pearl: 'Thrombocytopenia may indicate underlying process'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'Postoperative']
+  },
+  {
+    id: 'hematology-platelet-31',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'M',
+    front: 'Minimal blood loss but thrombocytopenia postop?',
+    back: {
+      definition: 'Not explained by surgical bleeding',
+      high_yield: 'Consider immune, drug, or dilutional causes',
+      clinical_pearl: 'Check baseline platelet count'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'Postoperative']
+  },
+  {
+    id: 'hematology-platelet-32',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'M',
+    front: 'Thrombocytopenia management in orthopedic surgery?',
+    back: {
+      definition: 'Assess bleeding risk vs thrombosis risk',
+      high_yield: 'Balance VTE prophylaxis with platelet count',
+      clinical_pearl: 'Avoid heparin if HIT suspected'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'Postoperative', 'Orthopedics']
+  },
+  {
     id: 'hematology-platelet-33',
     system: 'Hematology',
     topic: 'Platelet Disorders',
