@@ -4129,5 +4129,294 @@ export const hematologyFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0,
     tags: ['Hematology', 'Platelet Disorders', 'Medications']
+  },
+  {
+    id: 'hematology-platelet-33',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'M',
+    front: 'Sepsis effect on platelets?',
+    back: {
+      definition: 'Consumption + marrow suppression',
+      high_yield: 'Thrombocytopenia',
+      clinical_pearl: 'May indicate DIC'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'Sepsis']
+  },
+  {
+    id: 'hematology-platelet-34',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'M',
+    front: 'Massive transfusion effect on platelets?',
+    back: {
+      definition: 'Dilution of clotting components',
+      high_yield: 'Relative thrombocytopenia',
+      clinical_pearl: 'Requires 1:1:1 resuscitation'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'Transfusion']
+  },
+  {
+    id: 'hematology-platelet-35',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'M',
+    front: 'Liver disease platelet issues?',
+    back: {
+      definition: 'Splenic sequestration + low thrombopoietin',
+      high_yield: 'Low platelets + coagulopathy',
+      clinical_pearl: 'Common in cirrhosis'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'Liver Disease']
+  },
+  // Platelet Disorders - Difficult
+  {
+    id: 'hematology-platelet-36',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'D',
+    front: 'Vaccine-associated ITP?',
+    back: {
+      definition: 'Immune thrombocytopenia after vaccination',
+      high_yield: 'Usually mild',
+      clinical_pearl: 'Self-limited'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'ITP']
+  },
+  {
+    id: 'hematology-platelet-37',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'D',
+    front: 'Post-transfusion purpura?',
+    back: {
+      definition: 'Alloimmune destruction of platelets',
+      high_yield: 'Severe thrombocytopenia',
+      clinical_pearl: 'Occurs 1 week post-transfusion'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'Transfusion']
+  },
+  {
+    id: 'hematology-platelet-38',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'D',
+    front: 'Heparin resistance (not HIT)?',
+    back: {
+      definition: 'Failure to reach therapeutic aPTT',
+      high_yield: 'High antithrombin deficiency',
+      clinical_pearl: 'Occurs in critical illness'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'Anticoagulation']
+  },
+  {
+    id: 'hematology-platelet-39',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'D',
+    front: 'Thrombocytopenia in pregnancy causes?',
+    back: {
+      definition: 'Gestational, preeclampsia, HELLP, ITP',
+      high_yield: 'Gestational most common',
+      clinical_pearl: 'Treatment varies by cause'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'Pregnancy']
+  },
+  {
+    id: 'hematology-platelet-40',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'D',
+    front: 'HELLP syndrome platelets?',
+    back: {
+      definition: 'Hemolysis + elevated LFTs + low platelets',
+      high_yield: 'Pregnancy complication',
+      clinical_pearl: 'Delivery is definitive treatment'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'Pregnancy', 'HELLP']
+  },
+  {
+    id: 'hematology-platelet-41',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'D',
+    front: 'Neonatal alloimmune thrombocytopenia?',
+    back: {
+      definition: 'Maternal antibodies against fetal platelets',
+      high_yield: 'Severe neonatal thrombocytopenia',
+      clinical_pearl: 'Similar to Rh disease but with platelets'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'Neonatal']
+  },
+  {
+    id: 'hematology-platelet-42',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'D',
+    front: 'Platelet refractoriness?',
+    back: {
+      definition: 'Poor rise after transfusion',
+      high_yield: 'Due to alloimmunization',
+      clinical_pearl: 'Use HLA-matched platelets'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'Transfusion']
+  },
+  {
+    id: 'hematology-platelet-43',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'D',
+    front: 'What are schistocytes?',
+    back: {
+      definition: 'Fragmented RBCs',
+      high_yield: 'Marker of MAHA',
+      clinical_pearl: 'Seen in TTP/HUS/DIC'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'MAHA', 'Labs']
+  },
+  {
+    id: 'hematology-platelet-44',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'D',
+    front: 'Immune vs nonimmune thrombocytopenia?',
+    back: {
+      definition: 'Immune = destruction',
+      high_yield: 'Nonimmune = decreased production',
+      clinical_pearl: 'Different management'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'Classification']
+  },
+  {
+    id: 'hematology-platelet-45',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'D',
+    front: 'Drug most associated with TTP relapse?',
+    back: {
+      definition: 'Clopidogrel',
+      high_yield: 'Rare but known risk',
+      clinical_pearl: 'Stop immediately if suspected'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'TTP', 'Medications']
+  },
+  {
+    id: 'hematology-platelet-46',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'D',
+    front: 'When NOT to give platelets?',
+    back: {
+      definition: 'HIT or TTP',
+      high_yield: 'Can worsen thrombosis',
+      clinical_pearl: 'Avoid unless life-threatening bleed'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'Treatment']
+  },
+  {
+    id: 'hematology-platelet-47',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'D',
+    front: 'Corticosteroid role in ITP?',
+    back: {
+      definition: 'Reduces immune platelet destruction',
+      high_yield: 'First-line therapy',
+      clinical_pearl: 'Often rapidly effective'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'ITP', 'Treatment']
+  },
+  {
+    id: 'hematology-platelet-48',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'D',
+    front: 'Thrombopoietin receptor agonists?',
+    back: {
+      definition: 'Stimulate platelet production',
+      high_yield: 'Used in refractory ITP',
+      clinical_pearl: 'E.g., eltrombopag'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'ITP', 'Treatment']
+  },
+  {
+    id: 'hematology-platelet-49',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'D',
+    front: 'Bone marrow biopsy indication in thrombocytopenia?',
+    back: {
+      definition: 'Unclear etiology or pancytopenia',
+      high_yield: 'Evaluates production defects',
+      clinical_pearl: 'Not needed in classic ITP'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'Diagnosis']
+  },
+  {
+    id: 'hematology-platelet-50',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'D',
+    front: 'Most dangerous platelet disorder complication?',
+    back: {
+      definition: 'Intracranial hemorrhage',
+      high_yield: 'Occurs when platelets very low',
+      clinical_pearl: 'Urgent treatment required'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'Complications']
   }
 ];
