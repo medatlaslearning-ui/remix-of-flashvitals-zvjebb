@@ -8,12 +8,12 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'easy',
-    front: 'Staphylococcus aureus',
+    front: 'Staphylococcus aureus (MSSA)',
     back: {
       definition: 'Gram-positive cocci in clusters',
-      high_yield: 'Coagulase positive',
-      clinical_pearl: 'Causes skin infections, endocarditis, osteomyelitis',
-      treatment: 'Nafcillin or vancomycin (if MRSA)'
+      high_yield: 'Common cause of skin/soft tissue infections and bacteremia',
+      clinical_pearl: 'Frequently colonizes nares and skin',
+      treatment: 'Nafcillin or cefazolin for serious MSSA infections'
     },
     color: 'blue',
     bookmarked: false,
@@ -26,30 +26,102 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'easy',
-    front: 'Streptococcus pyogenes (Group A Strep)',
+    front: 'Staphylococcus aureus (MRSA)',
     back: {
-      definition: 'Gram-positive cocci in chains',
-      high_yield: 'Beta-hemolytic',
-      clinical_pearl: 'Causes pharyngitis, cellulitis, necrotizing fasciitis',
-      treatment: 'Penicillin or amoxicillin'
+      definition: 'Gram-positive cocci in clusters with altered PBP2a (mecA)',
+      high_yield: 'Resistant to all beta-lactams except ceftaroline',
+      clinical_pearl: 'Vancomycin IV for serious infections; TMP-SMX, doxycycline, or clindamycin for mild SSTI',
+      treatment: 'Vancomycin IV for serious infections; TMP-SMX, doxycycline, or clindamycin for mild SSTI'
     },
     color: 'blue',
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Streptococcus']
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Staphylococcus', 'MRSA']
   },
   {
     id: 'infectious-disease-bacterial-3',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
-    difficulty: 'easy',
-    front: 'Streptococcus pneumoniae',
+    difficulty: 'medium',
+    front: 'CA-MRSA (community-acquired)',
     back: {
-      definition: 'Gram-positive diplococci',
-      high_yield: 'Alpha-hemolytic, optochin sensitive',
-      clinical_pearl: 'Most common cause of community-acquired pneumonia',
-      treatment: 'Ceftriaxone or levofloxacin'
+      definition: 'Gram-positive cocci in clusters, often PVL positive',
+      high_yield: 'Common cause of abscesses and "spider bite"–like lesions in healthy hosts',
+      clinical_pearl: 'Incision & drainage plus TMP-SMX or doxycycline; consider clindamycin if local resistance low',
+      treatment: 'Incision & drainage plus TMP-SMX or doxycycline; consider clindamycin if local resistance low'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Staphylococcus', 'MRSA']
+  },
+  {
+    id: 'infectious-disease-bacterial-4',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'HA-MRSA (hospital-acquired)',
+    back: {
+      definition: 'Gram-positive cocci in clusters with multidrug resistance',
+      high_yield: 'Often associated with invasive devices and pneumonia',
+      clinical_pearl: 'Vancomycin or daptomycin for bacteremia; linezolid or ceftaroline as alternatives',
+      treatment: 'Vancomycin or daptomycin for bacteremia; linezolid or ceftaroline as alternatives'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Staphylococcus', 'MRSA']
+  },
+  {
+    id: 'infectious-disease-bacterial-5',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'easy',
+    front: 'Staphylococcus epidermidis',
+    back: {
+      definition: 'Gram-positive cocci in clusters, coagulase-negative',
+      high_yield: 'Major cause of prosthetic device and line infections',
+      clinical_pearl: 'Treat with vancomycin until susceptibilities known; remove infected hardware when possible',
+      treatment: 'Treat with vancomycin until susceptibilities known; remove infected hardware when possible'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Staphylococcus']
+  },
+  {
+    id: 'infectious-disease-bacterial-6',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'easy',
+    front: 'Staphylococcus saprophyticus',
+    back: {
+      definition: 'Gram-positive cocci in clusters, coagulase-negative',
+      high_yield: 'Common cause of uncomplicated UTI in young women',
+      clinical_pearl: 'Nitrofurantoin or TMP-SMX for cystitis',
+      treatment: 'Nitrofurantoin or TMP-SMX for cystitis'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Staphylococcus']
+  },
+  {
+    id: 'infectious-disease-bacterial-7',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'easy',
+    front: 'Streptococcus pyogenes (Group A)',
+    back: {
+      definition: 'Gram-positive cocci in chains, beta-hemolytic',
+      high_yield: 'Causes pharyngitis, cellulitis, erysipelas, and necrotizing fasciitis',
+      clinical_pearl: 'Penicillin or amoxicillin for pharyngitis; IV penicillin + clindamycin for severe invasive disease',
+      treatment: 'Penicillin or amoxicillin for pharyngitis; IV penicillin + clindamycin for severe invasive disease'
     },
     color: 'blue',
     bookmarked: false,
@@ -58,16 +130,124 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Streptococcus']
   },
   {
-    id: 'infectious-disease-bacterial-4',
+    id: 'infectious-disease-bacterial-8',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'easy',
-    front: 'Enterococcus faecalis',
+    front: 'Streptococcus agalactiae (Group B)',
+    back: {
+      definition: 'Gram-positive cocci in chains, beta-hemolytic',
+      high_yield: 'Leading cause of neonatal sepsis and meningitis',
+      clinical_pearl: 'Intrapartum prophylaxis with IV penicillin or ampicillin for GBS-colonized mothers',
+      treatment: 'Intrapartum prophylaxis with IV penicillin or ampicillin for GBS-colonized mothers'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Streptococcus']
+  },
+  {
+    id: 'infectious-disease-bacterial-9',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'easy',
+    front: 'Streptococcus pneumoniae (susceptible)',
+    back: {
+      definition: 'Gram-positive lancet-shaped diplococci, alpha-hemolytic',
+      high_yield: 'Most common cause of community-acquired pneumonia and otitis media',
+      clinical_pearl: 'High-dose amoxicillin or amoxicillin-clavulanate for outpatient CAP/otitis',
+      treatment: 'High-dose amoxicillin or amoxicillin-clavulanate for outpatient CAP/otitis'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Streptococcus']
+  },
+  {
+    id: 'infectious-disease-bacterial-10',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Penicillin-resistant Streptococcus pneumoniae',
+    back: {
+      definition: 'Gram-positive diplococci with altered PBPs',
+      high_yield: 'Reduced susceptibility to beta-lactams; often more severe infections',
+      clinical_pearl: 'Use high-dose ceftriaxone or respiratory fluoroquinolone for serious disease',
+      treatment: 'Use high-dose ceftriaxone or respiratory fluoroquinolone for serious disease'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Streptococcus']
+  },
+  {
+    id: 'infectious-disease-bacterial-11',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'easy',
+    front: 'Viridans group streptococci',
+    back: {
+      definition: 'Gram-positive cocci in chains, alpha-hemolytic',
+      high_yield: 'Normal oral flora, common cause of native-valve endocarditis',
+      clinical_pearl: 'IV penicillin G or ceftriaxone for endocarditis',
+      treatment: 'IV penicillin G or ceftriaxone for endocarditis'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Streptococcus']
+  },
+  {
+    id: 'infectious-disease-bacterial-12',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Streptococcus gallolyticus (Strep bovis)',
+    back: {
+      definition: 'Gram-positive cocci in chains, group D',
+      high_yield: 'Associated with colon cancer and endocarditis',
+      clinical_pearl: 'Treat with IV penicillin or ceftriaxone AND evaluate for colorectal malignancy',
+      treatment: 'Treat with IV penicillin or ceftriaxone AND evaluate for colorectal malignancy'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Streptococcus']
+  },
+  {
+    id: 'infectious-disease-bacterial-13',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Group C/G streptococci',
+    back: {
+      definition: 'Gram-positive cocci in chains, beta-hemolytic',
+      high_yield: 'Cause pharyngitis, skin/soft tissue infections, and bacteremia',
+      clinical_pearl: 'Penicillin or ceftriaxone depending on severity',
+      treatment: 'Penicillin or ceftriaxone depending on severity'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Streptococcus']
+  },
+  {
+    id: 'infectious-disease-bacterial-14',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'easy',
+    front: 'Enterococcus faecalis (non-resistant)',
     back: {
       definition: 'Gram-positive cocci in chains',
-      high_yield: 'Gamma-hemolytic, bile esculin positive',
-      clinical_pearl: 'Causes UTIs and endocarditis',
-      treatment: 'Ampicillin + gentamicin or vancomycin'
+      high_yield: 'Causes UTIs, endocarditis, intra-abdominal infections',
+      clinical_pearl: 'Ampicillin ± gentamicin for serious infections if susceptible',
+      treatment: 'Ampicillin ± gentamicin for serious infections if susceptible'
     },
     color: 'blue',
     bookmarked: false,
@@ -76,7 +256,25 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Enterococcus']
   },
   {
-    id: 'infectious-disease-bacterial-5',
+    id: 'infectious-disease-bacterial-15',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Enterococcus faecium (non-resistant)',
+    back: {
+      definition: 'Gram-positive cocci in chains',
+      high_yield: 'More resistant than E. faecalis; can cause nosocomial infections',
+      clinical_pearl: 'Ampicillin if susceptible; often requires linezolid or daptomycin in resistant cases',
+      treatment: 'Ampicillin if susceptible; often requires linezolid or daptomycin in resistant cases'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Enterococcus']
+  },
+  {
+    id: 'infectious-disease-bacterial-16',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'medium',
@@ -94,7 +292,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Clostridium']
   },
   {
-    id: 'infectious-disease-bacterial-6',
+    id: 'infectious-disease-bacterial-17',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'medium',
@@ -112,7 +310,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Clostridium']
   },
   {
-    id: 'infectious-disease-bacterial-7',
+    id: 'infectious-disease-bacterial-18',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'medium',
@@ -130,7 +328,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Clostridium']
   },
   {
-    id: 'infectious-disease-bacterial-8',
+    id: 'infectious-disease-bacterial-19',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'medium',
@@ -148,7 +346,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Bacillus']
   },
   {
-    id: 'infectious-disease-bacterial-9',
+    id: 'infectious-disease-bacterial-20',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'medium',
@@ -166,7 +364,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Listeria']
   },
   {
-    id: 'infectious-disease-bacterial-10',
+    id: 'infectious-disease-bacterial-21',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'hard',
@@ -185,7 +383,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
   },
   // Bacterial Organisms - Gram Negative (Red)
   {
-    id: 'infectious-disease-bacterial-11',
+    id: 'infectious-disease-bacterial-22',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'easy',
@@ -203,7 +401,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'E. coli']
   },
   {
-    id: 'infectious-disease-bacterial-12',
+    id: 'infectious-disease-bacterial-23',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'easy',
@@ -221,7 +419,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Klebsiella']
   },
   {
-    id: 'infectious-disease-bacterial-13',
+    id: 'infectious-disease-bacterial-24',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'easy',
@@ -239,7 +437,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Pseudomonas']
   },
   {
-    id: 'infectious-disease-bacterial-14',
+    id: 'infectious-disease-bacterial-25',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'easy',
@@ -257,7 +455,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Haemophilus']
   },
   {
-    id: 'infectious-disease-bacterial-15',
+    id: 'infectious-disease-bacterial-26',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'easy',
@@ -275,7 +473,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Neisseria']
   },
   {
-    id: 'infectious-disease-bacterial-16',
+    id: 'infectious-disease-bacterial-27',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'easy',
@@ -293,7 +491,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Neisseria']
   },
   {
-    id: 'infectious-disease-bacterial-17',
+    id: 'infectious-disease-bacterial-28',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'medium',
@@ -311,7 +509,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Salmonella']
   },
   {
-    id: 'infectious-disease-bacterial-18',
+    id: 'infectious-disease-bacterial-29',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'medium',
@@ -329,7 +527,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Shigella']
   },
   {
-    id: 'infectious-disease-bacterial-19',
+    id: 'infectious-disease-bacterial-30',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'medium',
@@ -347,7 +545,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Vibrio']
   },
   {
-    id: 'infectious-disease-bacterial-20',
+    id: 'infectious-disease-bacterial-31',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'medium',
@@ -365,7 +563,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Campylobacter']
   },
   {
-    id: 'infectious-disease-bacterial-21',
+    id: 'infectious-disease-bacterial-32',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'medium',
@@ -383,7 +581,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Helicobacter']
   },
   {
-    id: 'infectious-disease-bacterial-22',
+    id: 'infectious-disease-bacterial-33',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'medium',
@@ -401,7 +599,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Legionella']
   },
   {
-    id: 'infectious-disease-bacterial-23',
+    id: 'infectious-disease-bacterial-34',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'medium',
@@ -419,7 +617,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Bordetella']
   },
   {
-    id: 'infectious-disease-bacterial-24',
+    id: 'infectious-disease-bacterial-35',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'hard',
@@ -437,7 +635,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Yersinia']
   },
   {
-    id: 'infectious-disease-bacterial-25',
+    id: 'infectious-disease-bacterial-36',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'hard',
@@ -455,7 +653,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Francisella']
   },
   {
-    id: 'infectious-disease-bacterial-26',
+    id: 'infectious-disease-bacterial-37',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'hard',
@@ -473,7 +671,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Brucella']
   },
   {
-    id: 'infectious-disease-bacterial-27',
+    id: 'infectious-disease-bacterial-38',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'hard',
@@ -491,7 +689,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Bacteroides']
   },
   {
-    id: 'infectious-disease-bacterial-28',
+    id: 'infectious-disease-bacterial-39',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'hard',
@@ -509,7 +707,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Acinetobacter']
   },
   {
-    id: 'infectious-disease-bacterial-29',
+    id: 'infectious-disease-bacterial-40',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'hard',
@@ -527,7 +725,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Stenotrophomonas']
   },
   {
-    id: 'infectious-disease-bacterial-30',
+    id: 'infectious-disease-bacterial-41',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'hard',
