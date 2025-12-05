@@ -65,6 +65,15 @@ export default function HomeScreen() {
     ));
   }, [allFlashcards]);
 
+  // Get unique topics for Infectious Disease
+  const infectiousDiseaseTopics = useMemo(() => {
+    return Array.from(new Set(
+      allFlashcards
+        .filter(card => card.system === 'Infectious Disease')
+        .map(card => card.topic)
+    ));
+  }, [allFlashcards]);
+
   const handleSystemPress = (system: string) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     console.log('Navigating to system:', system);
@@ -80,6 +89,8 @@ export default function HomeScreen() {
       router.push('/(tabs)/(home)/endocrine-topics');
     } else if (system === 'Hematology') {
       router.push('/(tabs)/(home)/hematology-topics');
+    } else if (system === 'Infectious Disease') {
+      router.push('/(tabs)/(home)/infectious-disease-topics');
     }
   };
 
@@ -265,6 +276,25 @@ export default function HomeScreen() {
                 <Text style={styles.systemTitle}>Hematology</Text>
                 <Text style={styles.systemSubtitle}>
                   {allFlashcards.filter(c => c.system === 'Hematology').length} cards • {hematologyTopics.length} topics
+                </Text>
+              </View>
+              <IconSymbol name="chevron.right" size={24} color={colors.textSecondary} />
+            </View>
+          </Pressable>
+
+          {/* Infectious Disease System */}
+          <Pressable 
+            style={styles.systemCard}
+            onPress={() => handleSystemPress('Infectious Disease')}
+          >
+            <View style={styles.systemHeader}>
+              <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
+                <IconSymbol name="cross.case.fill" size={32} color={colors.accent} />
+              </View>
+              <View style={styles.systemInfo}>
+                <Text style={styles.systemTitle}>Infectious Disease</Text>
+                <Text style={styles.systemSubtitle}>
+                  {allFlashcards.filter(c => c.system === 'Infectious Disease').length} cards • {infectiousDiseaseTopics.length} topics
                 </Text>
               </View>
               <IconSymbol name="chevron.right" size={24} color={colors.textSecondary} />

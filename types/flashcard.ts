@@ -3,6 +3,7 @@ export interface FlashcardBack {
   definition: string;
   high_yield: string;
   clinical_pearl: string;
+  treatment?: string;
 }
 
 export interface Flashcard {
@@ -18,6 +19,7 @@ export interface Flashcard {
   lastReviewed?: Date;
   nextReview?: Date;
   difficulty: 'easy' | 'medium' | 'hard';
+  color?: 'blue' | 'red';
 }
 
 export interface QuizQuestion {

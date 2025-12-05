@@ -78,7 +78,13 @@ export function FlashcardComponent({
       )}
 
       {/* Card */}
-      <Pressable onPress={handleFlip} style={styles.card}>
+      <Pressable 
+        onPress={handleFlip} 
+        style={[
+          styles.card,
+          isFlipped && flashcard.color && getColorStyle(flashcard.color)
+        ]}
+      >
         <ScrollView 
           style={styles.cardScroll}
           contentContainerStyle={styles.cardContent}
@@ -100,6 +106,16 @@ export function FlashcardComponent({
           ) : (
             // Back of card
             <View style={styles.cardFace}>
+              {flashcard.color && (
+                <View style={styles.colorIndicator}>
+                  <View style={[styles.colorBadge, getColorBadgeStyle(flashcard.color)]}>
+                    <Text style={styles.colorBadgeText}>
+                      {flashcard.color === 'blue' ? 'Gram Positive' : 'Gram Negative'}
+                    </Text>
+                  </View>
+                </View>
+              )}
+
               <View style={styles.backSection}>
                 <Text style={styles.backLabel}>Definition</Text>
                 <Text style={styles.backText}>{flashcard.back.definition}</Text>
@@ -114,6 +130,13 @@ export function FlashcardComponent({
                 <Text style={styles.backLabel}>Clinical Pearl</Text>
                 <Text style={styles.backText}>{flashcard.back.clinical_pearl}</Text>
               </View>
+
+              {flashcard.back.treatment && (
+                <View style={styles.backSection}>
+                  <Text style={styles.backLabel}>Treatment</Text>
+                  <Text style={styles.backText}>{flashcard.back.treatment}</Text>
+                </View>
+              )}
 
               <View style={styles.tags}>
                 {flashcard.tags.map((tag, index) => (
@@ -162,6 +185,34 @@ const getDifficultyStyle = (difficulty: string) => {
       return { backgroundColor: colors.error + '20', borderColor: colors.error };
     default:
       return { backgroundColor: colors.highlight, borderColor: colors.textSecondary };
+  }
+};
+
+const getColorStyle = (color: 'blue' | 'red') => {
+  if (color === 'blue') {
+    return {
+      backgroundColor: '#E3F2FD',
+      borderWidth: 2,
+      borderColor: '#2196F3',
+    };
+  } else {
+    return {
+      backgroundColor: '#FFEBEE',
+      borderWidth: 2,
+      borderColor: '#F44336',
+    };
+  }
+};
+
+const getColorBadgeStyle = (color: 'blue' | 'red') => {
+  if (color === 'blue') {
+    return {
+      backgroundColor: '#2196F3',
+    };
+  } else {
+    return {
+      backgroundColor: '#F44336',
+    };
   }
 };
 
@@ -289,5 +340,21 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: colors.text,
     textTransform: 'capitalize',
+  },
+  colorIndicator: {
+    marginBottom: 16,
+    alignItems: 'center',
+  },
+  colorBadge: {
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 20,
+  },
+  colorBadgeText: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#FFFFFF',
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
   },
 });
