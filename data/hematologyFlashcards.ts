@@ -3213,5 +3213,471 @@ export const hematologyFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0,
     tags: ['Hematology', 'Lymphomas', 'Diagnosis']
+  },
+  // Coagulation Disorders - Easy
+  {
+    id: 'hematology-coagulation-1',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'E',
+    front: 'What is Hemophilia A?',
+    back: {
+      definition: 'A congenital factor VIII deficiency',
+      high_yield: 'Prolonged aPTT',
+      clinical_pearl: 'X-linked recessive'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Hemophilia']
+  },
+  {
+    id: 'hematology-coagulation-2',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'E',
+    front: 'What is Hemophilia B?',
+    back: {
+      definition: 'A congenital factor IX deficiency',
+      high_yield: 'Prolonged aPTT',
+      clinical_pearl: 'Also called Christmas disease'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Hemophilia']
+  },
+  {
+    id: 'hematology-coagulation-3',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'E',
+    front: 'Most common inherited bleeding disorder?',
+    back: {
+      definition: 'Von Willebrand disease',
+      high_yield: 'Defective platelet adhesion',
+      clinical_pearl: 'Autosomal dominant'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Von Willebrand']
+  },
+  {
+    id: 'hematology-coagulation-4',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'E',
+    front: 'Classic VWD symptom?',
+    back: {
+      definition: 'Mucocutaneous bleeding',
+      high_yield: 'Epistaxis, menorrhagia',
+      clinical_pearl: 'Platelet-type bleeding'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Von Willebrand', 'Symptoms']
+  },
+  {
+    id: 'hematology-coagulation-5',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'E',
+    front: 'Key lab in VWD?',
+    back: {
+      definition: 'Low vWF',
+      high_yield: 'Often low factor VIII',
+      clinical_pearl: 'Prolonged aPTT possible'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Von Willebrand', 'Labs']
+  },
+  {
+    id: 'hematology-coagulation-6',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'E',
+    front: 'Treatment for VWD?',
+    back: {
+      definition: 'Desmopressin (DDAVP)',
+      high_yield: 'Releases vWF',
+      clinical_pearl: 'Used for mild disease'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Von Willebrand', 'Treatment']
+  },
+  {
+    id: 'hematology-coagulation-7',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'E',
+    front: 'What is DIC?',
+    back: {
+      definition: 'Systemic activation of coagulation',
+      high_yield: 'Consumption of platelets & factors',
+      clinical_pearl: 'High mortality'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'DIC']
+  },
+  {
+    id: 'hematology-coagulation-8',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'E',
+    front: 'DIC key trigger?',
+    back: {
+      definition: 'Sepsis, trauma',
+      high_yield: 'Obstetric complications',
+      clinical_pearl: 'Cancer'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'DIC']
+  },
+  {
+    id: 'hematology-coagulation-9',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'E',
+    front: 'DIC hallmark labs?',
+    back: {
+      definition: 'High D-dimer',
+      high_yield: 'Low fibrinogen',
+      clinical_pearl: 'Prolonged PT/aPTT'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'DIC', 'Labs']
+  },
+  {
+    id: 'hematology-coagulation-10',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'E',
+    front: 'What is HIT?',
+    back: {
+      definition: 'Immune-mediated reaction to heparin',
+      high_yield: 'Thrombocytopenia + thrombosis',
+      clinical_pearl: 'Life-threatening'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'HIT']
+  },
+  {
+    id: 'hematology-coagulation-11',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'E',
+    front: 'HIT mechanism?',
+    back: {
+      definition: 'Antibodies to PF4-heparin',
+      high_yield: 'Platelet activation',
+      clinical_pearl: 'Causes clotting, not bleeding'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'HIT']
+  },
+  {
+    id: 'hematology-coagulation-12',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'E',
+    front: 'HIT treatment?',
+    back: {
+      definition: 'Stop heparin',
+      high_yield: 'Use direct thrombin inhibitor',
+      clinical_pearl: 'Avoid warfarin initially'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'HIT', 'Treatment']
+  },
+  {
+    id: 'hematology-coagulation-13',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'E',
+    front: 'What is antiphospholipid syndrome?',
+    back: {
+      definition: 'Autoimmune hypercoagulable disorder',
+      high_yield: 'Arterial + venous clots',
+      clinical_pearl: 'Assoc. with miscarriages'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'APS']
+  },
+  {
+    id: 'hematology-coagulation-14',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'E',
+    front: 'APS lab test?',
+    back: {
+      definition: 'Lupus anticoagulant',
+      high_yield: 'Anticardiolipin',
+      clinical_pearl: 'β2GP1 antibodies'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'APS', 'Labs']
+  },
+  {
+    id: 'hematology-coagulation-15',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'E',
+    front: 'Prolonged PT indicates?',
+    back: {
+      definition: 'Extrinsic pathway issue',
+      high_yield: 'Factor VII deficiency',
+      clinical_pearl: 'Warfarin effect'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Labs']
+  },
+  {
+    id: 'hematology-coagulation-16',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'E',
+    front: 'Prolonged aPTT indicates?',
+    back: {
+      definition: 'Intrinsic pathway defect',
+      high_yield: 'Hemophilia or heparin',
+      clinical_pearl: 'Factor deficiencies'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Labs']
+  },
+  {
+    id: 'hematology-coagulation-17',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'E',
+    front: 'What is a mixing study?',
+    back: {
+      definition: 'Test to differentiate deficiency vs inhibitor',
+      high_yield: 'Correction = deficiency',
+      clinical_pearl: 'No correction = inhibitor'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Labs']
+  },
+  {
+    id: 'hematology-coagulation-18',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'E',
+    front: 'Factor XIII deficiency clue?',
+    back: {
+      definition: 'Delayed bleeding',
+      high_yield: 'Normal PT/aPTT',
+      clinical_pearl: 'Clot unstable'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Factor Deficiency']
+  },
+  {
+    id: 'hematology-coagulation-19',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'E',
+    front: 'Vitamin K deficiency effect?',
+    back: {
+      definition: 'Low factors II, VII, IX, X',
+      high_yield: 'Prolonged PT',
+      clinical_pearl: 'Common in malnutrition'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Vitamin K']
+  },
+  {
+    id: 'hematology-coagulation-20',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'E',
+    front: 'Liver disease coagulopathy?',
+    back: {
+      definition: 'Reduced clotting factor synthesis',
+      high_yield: 'Prolonged PT and aPTT',
+      clinical_pearl: 'Low platelets from splenic sequestration'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Liver Disease']
+  },
+  // Coagulation Disorders - Medium
+  {
+    id: 'hematology-coagulation-21',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'M',
+    front: 'Warfarin mechanism?',
+    back: {
+      definition: 'Inhibits vitamin K recycling',
+      high_yield: 'Reduces clotting factor production',
+      clinical_pearl: 'Affects PT first'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Anticoagulation']
+  },
+  {
+    id: 'hematology-coagulation-22',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'M',
+    front: 'Heparin mechanism?',
+    back: {
+      definition: 'Activates antithrombin',
+      high_yield: 'Inhibits thrombin + factor Xa',
+      clinical_pearl: 'Immediate effect'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Anticoagulation']
+  },
+  {
+    id: 'hematology-coagulation-23',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'M',
+    front: 'DOAC mechanism?',
+    back: {
+      definition: 'Directly inhibit factor Xa or thrombin',
+      high_yield: 'Predictable anticoagulation',
+      clinical_pearl: 'No routine monitoring'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Anticoagulation']
+  },
+  {
+    id: 'hematology-coagulation-24',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'M',
+    front: 'Elevated D-dimer means?',
+    back: {
+      definition: 'High fibrin degradation',
+      high_yield: 'Clot formation and breakdown',
+      clinical_pearl: 'Nonspecific but sensitive'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Labs']
+  },
+  {
+    id: 'hematology-coagulation-25',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'M',
+    front: 'Fibrinogen level in DIC?',
+    back: {
+      definition: 'Reduced',
+      high_yield: 'Consumption of clotting factors',
+      clinical_pearl: 'Correlates with severity'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'DIC', 'Labs']
+  },
+  {
+    id: 'hematology-coagulation-26',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'M',
+    front: 'Thrombotic risk in pregnancy?',
+    back: {
+      definition: 'Hypercoagulable state',
+      high_yield: 'Increased clotting factors',
+      clinical_pearl: 'Important in APS'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Pregnancy']
+  },
+  {
+    id: 'hematology-coagulation-27',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'M',
+    front: 'Most common cause of acquired platelet dysfunction?',
+    back: {
+      definition: 'Uremia',
+      high_yield: 'Impairs platelet adhesion',
+      clinical_pearl: 'Seen in CKD'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Platelet Dysfunction']
+  },
+  {
+    id: 'hematology-coagulation-28',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'M',
+    front: 'Factor V Leiden?',
+    back: {
+      definition: 'Mutation causing activated protein C resistance',
+      high_yield: 'Hypercoagulability',
+      clinical_pearl: 'Most common thrombophilia'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Thrombophilia']
+  },
+  {
+    id: 'hematology-coagulation-29',
+    system: 'Hematology',
+    topic: 'Coagulation Disorders',
+    difficulty: 'M',
+    front: 'Prothrombin G20210 mutation?',
+    back: {
+      definition: 'Increased prothrombin levels',
+      high_yield: 'Higher clot risk',
+      clinical_pearl: 'Inherited thrombophilia'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Coagulation Disorders', 'Thrombophilia']
   }
 ];
