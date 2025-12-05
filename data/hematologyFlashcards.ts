@@ -3679,5 +3679,455 @@ export const hematologyFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0,
     tags: ['Hematology', 'Coagulation Disorders', 'Thrombophilia']
+  },
+  // Platelet Disorders - Easy
+  {
+    id: 'hematology-platelet-1',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'E',
+    front: 'What is thrombocytopenia?',
+    back: {
+      definition: 'Low platelet count',
+      high_yield: '<150K',
+      clinical_pearl: 'Bleeding risk increases when <50K'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders']
+  },
+  {
+    id: 'hematology-platelet-2',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'E',
+    front: 'What is ITP?',
+    back: {
+      definition: 'Immune-mediated platelet destruction',
+      high_yield: 'Autoantibodies to platelets',
+      clinical_pearl: 'Often post-viral'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'ITP']
+  },
+  {
+    id: 'hematology-platelet-3',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'E',
+    front: 'ITP presentation?',
+    back: {
+      definition: 'Isolated thrombocytopenia',
+      high_yield: 'Petechiae, bruising',
+      clinical_pearl: 'Normal PT/aPTT'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'ITP']
+  },
+  {
+    id: 'hematology-platelet-4',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'E',
+    front: 'First-line treatment for ITP?',
+    back: {
+      definition: 'Steroids or IVIG',
+      high_yield: 'Raises platelet count',
+      clinical_pearl: 'Avoid platelet transfusion unless severe bleed'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'ITP', 'Treatment']
+  },
+  {
+    id: 'hematology-platelet-5',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'E',
+    front: 'TTP mechanism?',
+    back: {
+      definition: 'ADAMTS13 deficiency',
+      high_yield: 'Platelet-rich microthrombi',
+      clinical_pearl: 'MAHA + thrombocytopenia'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'TTP']
+  },
+  {
+    id: 'hematology-platelet-6',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'E',
+    front: 'TTP classic pentad?',
+    back: {
+      definition: 'MAHA, thrombocytopenia, fever, renal failure, neuro changes',
+      high_yield: 'Pentad not always present',
+      clinical_pearl: 'Emergency plasmapheresis'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'TTP']
+  },
+  {
+    id: 'hematology-platelet-7',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'E',
+    front: 'HUS cause?',
+    back: {
+      definition: 'Shiga toxin',
+      high_yield: 'MAHA + thrombocytopenia',
+      clinical_pearl: 'Often after diarrheal illness'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'HUS']
+  },
+  {
+    id: 'hematology-platelet-8',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'E',
+    front: 'HUS major organ affected?',
+    back: {
+      definition: 'Kidneys',
+      high_yield: 'Acute renal failure',
+      clinical_pearl: 'Prominent in children'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'HUS']
+  },
+  {
+    id: 'hematology-platelet-9',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'E',
+    front: 'Drug-induced thrombocytopenia?',
+    back: {
+      definition: 'Immune-mediated drop in platelets',
+      high_yield: 'Common with antibiotics/heparin',
+      clinical_pearl: 'Resolves after drug withdrawal'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders']
+  },
+  {
+    id: 'hematology-platelet-10',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'E',
+    front: 'What is HIT type II?',
+    back: {
+      definition: 'Immune-mediated thrombocytopenia from heparin',
+      high_yield: 'PF4 antibodies',
+      clinical_pearl: 'High thrombosis risk'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'HIT']
+  },
+  {
+    id: 'hematology-platelet-11',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'E',
+    front: 'What is platelet function disorder?',
+    back: {
+      definition: 'Defect in platelet adhesion/aggregation',
+      high_yield: 'Normal platelet count',
+      clinical_pearl: 'Bleeding despite normal numbers'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders']
+  },
+  {
+    id: 'hematology-platelet-12',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'E',
+    front: 'Bernard-Soulier syndrome?',
+    back: {
+      definition: 'Inherited defect of platelet adhesion',
+      high_yield: 'GPIb deficiency',
+      clinical_pearl: 'Large platelets'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders']
+  },
+  {
+    id: 'hematology-platelet-13',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'E',
+    front: 'Glanzmann thrombasthenia?',
+    back: {
+      definition: 'Inherited defect of platelet aggregation',
+      high_yield: 'GPIIb/IIIa deficiency',
+      clinical_pearl: 'Normal platelet count but prolonged bleeding'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders']
+  },
+  {
+    id: 'hematology-platelet-14',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'E',
+    front: 'Uremic platelet dysfunction?',
+    back: {
+      definition: 'Platelet adhesion defect from uremia',
+      high_yield: 'Qualitative problem',
+      clinical_pearl: 'Common in CKD'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders']
+  },
+  {
+    id: 'hematology-platelet-15',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'E',
+    front: 'Von Willebrand effect on platelets?',
+    back: {
+      definition: 'Reduces platelet adhesion',
+      high_yield: 'vWF stabilizes factor VIII',
+      clinical_pearl: 'Bleeding from mucosal surfaces'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'Von Willebrand']
+  },
+  {
+    id: 'hematology-platelet-16',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'E',
+    front: 'Thrombocytosis definition?',
+    back: {
+      definition: 'High platelet count',
+      high_yield: '>450K',
+      clinical_pearl: 'Reactive or primary'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders']
+  },
+  {
+    id: 'hematology-platelet-17',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'E',
+    front: 'Reactive thrombocytosis causes?',
+    back: {
+      definition: 'Inflammation, infection',
+      high_yield: 'Iron deficiency',
+      clinical_pearl: 'Surgery or bleeding'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders']
+  },
+  {
+    id: 'hematology-platelet-18',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'E',
+    front: 'Essential thrombocythemia?',
+    back: {
+      definition: 'Myeloproliferative neoplasm with elevated platelets',
+      high_yield: 'JAK2 or CALR mutations',
+      clinical_pearl: 'Risk of clotting or bleeding'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders']
+  },
+  {
+    id: 'hematology-platelet-19',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'E',
+    front: 'Splenic sequestration effect?',
+    back: {
+      definition: 'Enlarged spleen traps platelets',
+      high_yield: 'Thrombocytopenia',
+      clinical_pearl: 'Seen in cirrhosis'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders']
+  },
+  {
+    id: 'hematology-platelet-20',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'E',
+    front: 'Platelet transfusion indication?',
+    back: {
+      definition: 'Active bleeding or <10K',
+      high_yield: 'Prevent spontaneous bleeding',
+      clinical_pearl: 'Avoid in TTP/HIT'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'Treatment']
+  },
+  // Platelet Disorders - Medium
+  {
+    id: 'hematology-platelet-21',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'M',
+    front: 'What is MAHA?',
+    back: {
+      definition: 'Microangiopathic hemolytic anemia',
+      high_yield: 'Schistocytes + low platelets',
+      clinical_pearl: 'Seen in TTP/HUS'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'MAHA']
+  },
+  {
+    id: 'hematology-platelet-22',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'M',
+    front: 'What is pseudothrombocytopenia?',
+    back: {
+      definition: 'Platelet clumping in EDTA tube',
+      high_yield: 'False low platelets',
+      clinical_pearl: 'Repeat sample in citrate tube'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'Labs']
+  },
+  {
+    id: 'hematology-platelet-23',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'M',
+    front: 'HIT timing?',
+    back: {
+      definition: '5–10 days after heparin',
+      high_yield: 'Rapid drop in platelets',
+      clinical_pearl: 'Earlier if previously exposed'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'HIT']
+  },
+  {
+    id: 'hematology-platelet-24',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'M',
+    front: '4T score for HIT?',
+    back: {
+      definition: 'Tool to assess HIT probability',
+      high_yield: 'Thrombocytopenia, timing, thrombosis, other causes',
+      clinical_pearl: 'Guides next steps'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'HIT']
+  },
+  {
+    id: 'hematology-platelet-25',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'M',
+    front: 'TTP labs?',
+    back: {
+      definition: 'Normal PT/aPTT',
+      high_yield: 'Low platelets',
+      clinical_pearl: 'Schistocytes'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'TTP', 'Labs']
+  },
+  {
+    id: 'hematology-platelet-26',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'M',
+    front: 'HUS vs TTP key difference?',
+    back: {
+      definition: 'HUS more renal',
+      high_yield: 'TTP more neurologic',
+      clinical_pearl: 'Both MAHA syndromes'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'TTP', 'HUS']
+  },
+  {
+    id: 'hematology-platelet-27',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'M',
+    front: 'Aspirin mechanism on platelets?',
+    back: {
+      definition: 'Irreversible COX-1 inhibition',
+      high_yield: 'Blocks TXA2',
+      clinical_pearl: 'Impairs aggregation'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'Medications']
+  },
+  {
+    id: 'hematology-platelet-28',
+    system: 'Hematology',
+    topic: 'Platelet Disorders',
+    difficulty: 'M',
+    front: 'NSAIDs vs aspirin platelet effect?',
+    back: {
+      definition: 'NSAIDs reversible',
+      high_yield: 'Aspirin irreversible',
+      clinical_pearl: 'Different duration of impairment'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Hematology', 'Platelet Disorders', 'Medications']
   }
 ];
