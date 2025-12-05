@@ -278,84 +278,48 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'medium',
-    front: 'Clostridium difficile',
+    front: 'VRE (Enterococcus faecium)',
     back: {
-      definition: 'Gram-positive anaerobic rod',
-      high_yield: 'Spore-forming',
-      clinical_pearl: 'Causes antibiotic-associated diarrhea and pseudomembranous colitis',
-      treatment: 'Oral vancomycin or fidaxomicin'
+      definition: 'Gram-positive cocci in chains resistant to vancomycin',
+      high_yield: 'Important cause of nosocomial bloodstream and intra-abdominal infections',
+      clinical_pearl: 'Linezolid or daptomycin as first-line options',
+      treatment: 'Linezolid or daptomycin as first-line options'
     },
     color: 'blue',
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Clostridium']
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Enterococcus', 'VRE']
   },
   {
     id: 'infectious-disease-bacterial-17',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'medium',
-    front: 'Clostridium tetani',
+    front: 'VRE (Enterococcus faecalis)',
     back: {
-      definition: 'Gram-positive anaerobic rod',
-      high_yield: 'Produces tetanospasmin toxin',
-      clinical_pearl: 'Causes tetanus (lockjaw)',
-      treatment: 'Tetanus immunoglobulin + metronidazole'
+      definition: 'Gram-positive cocci in chains resistant to vancomycin',
+      high_yield: 'Less common than VRE faecium but similar clinical settings',
+      clinical_pearl: 'Linezolid or daptomycin; consult ID for complex cases',
+      treatment: 'Linezolid or daptomycin; consult ID for complex cases'
     },
     color: 'blue',
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Clostridium']
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Enterococcus', 'VRE']
   },
   {
     id: 'infectious-disease-bacterial-18',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
-    difficulty: 'medium',
-    front: 'Clostridium perfringens',
-    back: {
-      definition: 'Gram-positive anaerobic rod',
-      high_yield: 'Double zone hemolysis',
-      clinical_pearl: 'Causes gas gangrene and food poisoning',
-      treatment: 'Penicillin + clindamycin + surgical debridement'
-    },
-    color: 'blue',
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Clostridium']
-  },
-  {
-    id: 'infectious-disease-bacterial-19',
-    system: 'Infectious Disease',
-    topic: 'Bacterial Organisms',
-    difficulty: 'medium',
-    front: 'Bacillus anthracis',
-    back: {
-      definition: 'Gram-positive rod',
-      high_yield: 'Spore-forming, encapsulated',
-      clinical_pearl: 'Causes anthrax (cutaneous, inhalational, GI)',
-      treatment: 'Ciprofloxacin or doxycycline'
-    },
-    color: 'blue',
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Bacillus']
-  },
-  {
-    id: 'infectious-disease-bacterial-20',
-    system: 'Infectious Disease',
-    topic: 'Bacterial Organisms',
-    difficulty: 'medium',
+    difficulty: 'easy',
     front: 'Listeria monocytogenes',
     back: {
-      definition: 'Gram-positive rod',
-      high_yield: 'Tumbling motility, grows at 4°C',
-      clinical_pearl: 'Causes meningitis in neonates and immunocompromised',
-      treatment: 'Ampicillin + gentamicin'
+      definition: 'Gram-positive motile coccobacillus',
+      high_yield: 'Causes meningitis and sepsis in neonates, elderly, and pregnant patients',
+      clinical_pearl: 'Ampicillin (often with gentamicin) is drug of choice',
+      treatment: 'Ampicillin (often with gentamicin) is drug of choice'
     },
     color: 'blue',
     bookmarked: false,
@@ -364,16 +328,16 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Listeria']
   },
   {
-    id: 'infectious-disease-bacterial-21',
+    id: 'infectious-disease-bacterial-19',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
-    difficulty: 'hard',
+    difficulty: 'easy',
     front: 'Corynebacterium diphtheriae',
     back: {
-      definition: 'Gram-positive rod',
-      high_yield: 'Club-shaped, metachromatic granules',
-      clinical_pearl: 'Causes diphtheria with pseudomembrane formation',
-      treatment: 'Diphtheria antitoxin + erythromycin or penicillin'
+      definition: 'Gram-positive club-shaped rod',
+      high_yield: 'Produces diphtheria toxin causing pseudomembranous pharyngitis',
+      clinical_pearl: 'Antitoxin + erythromycin or penicillin; ensure vaccination status',
+      treatment: 'Antitoxin + erythromycin or penicillin; ensure vaccination status'
     },
     color: 'blue',
     bookmarked: false,
@@ -381,9 +345,243 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     reviewCount: 0,
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Corynebacterium']
   },
-  // Bacterial Organisms - Gram Negative (Red)
+  {
+    id: 'infectious-disease-bacterial-20',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Nocardia species',
+    back: {
+      definition: 'Weakly acid-fast, branching Gram-positive filamentous rods',
+      high_yield: 'Cause pulmonary nodules and brain abscesses in immunocompromised',
+      clinical_pearl: 'High-dose TMP-SMX; add imipenem or linezolid for severe disease',
+      treatment: 'High-dose TMP-SMX; add imipenem or linezolid for severe disease'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Nocardia']
+  },
+  {
+    id: 'infectious-disease-bacterial-21',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Actinomyces israelii',
+    back: {
+      definition: 'Gram-positive filamentous anaerobe',
+      high_yield: 'Causes chronic cervicofacial infections with "sulfur granules"',
+      clinical_pearl: 'High-dose IV penicillin followed by prolonged oral therapy',
+      treatment: 'High-dose IV penicillin followed by prolonged oral therapy'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Actinomyces']
+  },
   {
     id: 'infectious-disease-bacterial-22',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'easy',
+    front: 'Bacillus anthracis',
+    back: {
+      definition: 'Gram-positive spore-forming rod',
+      high_yield: 'Causes cutaneous, inhalational, or GI anthrax',
+      clinical_pearl: 'Ciprofloxacin or doxycycline plus additional agents for systemic disease',
+      treatment: 'Ciprofloxacin or doxycycline plus additional agents for systemic disease'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Bacillus']
+  },
+  {
+    id: 'infectious-disease-bacterial-23',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'easy',
+    front: 'Bacillus cereus',
+    back: {
+      definition: 'Gram-positive spore-forming rod',
+      high_yield: 'Causes food poisoning from reheated rice (emetic type)',
+      clinical_pearl: 'Supportive care; usually self-limited',
+      treatment: 'Supportive care; usually self-limited'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Bacillus']
+  },
+  {
+    id: 'infectious-disease-bacterial-24',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'easy',
+    front: 'Clostridium tetani',
+    back: {
+      definition: 'Gram-positive anaerobic spore-forming rod',
+      high_yield: 'Produces tetanospasmin causing spastic paralysis',
+      clinical_pearl: 'Tetanus immunoglobulin, metronidazole, and wound care plus vaccination',
+      treatment: 'Tetanus immunoglobulin, metronidazole, and wound care plus vaccination'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Clostridium']
+  },
+  {
+    id: 'infectious-disease-bacterial-25',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'easy',
+    front: 'Clostridium botulinum',
+    back: {
+      definition: 'Gram-positive anaerobic spore-forming rod',
+      high_yield: 'Produces neurotoxin causing flaccid paralysis',
+      clinical_pearl: 'Equine antitoxin (or BabyBIG in infants) plus supportive care',
+      treatment: 'Equine antitoxin (or BabyBIG in infants) plus supportive care'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Clostridium']
+  },
+  {
+    id: 'infectious-disease-bacterial-26',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'easy',
+    front: 'Clostridium perfringens',
+    back: {
+      definition: 'Gram-positive anaerobic spore-forming rod',
+      high_yield: 'Causes gas gangrene and toxin-mediated myonecrosis',
+      clinical_pearl: 'Urgent surgical debridement + IV penicillin ± clindamycin',
+      treatment: 'Urgent surgical debridement + IV penicillin ± clindamycin'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Clostridium']
+  },
+  {
+    id: 'infectious-disease-bacterial-27',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'easy',
+    front: 'Clostridioides difficile (non-severe)',
+    back: {
+      definition: 'Gram-positive spore-forming anaerobe',
+      high_yield: 'Causes antibiotic-associated diarrhea and colitis',
+      clinical_pearl: 'Oral vancomycin or fidaxomicin for initial episode',
+      treatment: 'Oral vancomycin or fidaxomicin for initial episode'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Clostridium']
+  },
+  {
+    id: 'infectious-disease-bacterial-28',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'C. difficile (severe/fulminant)',
+    back: {
+      definition: 'Gram-positive spore-forming anaerobe with severe colitis',
+      high_yield: 'Can cause toxic megacolon, shock, or perforation',
+      clinical_pearl: 'Oral vancomycin + IV metronidazole; surgical consult if fulminant',
+      treatment: 'Oral vancomycin + IV metronidazole; surgical consult if fulminant'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Clostridium']
+  },
+  {
+    id: 'infectious-disease-bacterial-29',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Clostridium septicum',
+    back: {
+      definition: 'Gram-positive spore-forming rod',
+      high_yield: 'Associated with colonic malignancy and neutropenic sepsis',
+      clinical_pearl: 'Broad-spectrum IV beta-lactam/beta-lactamase inhibitor; evaluate for occult colon cancer',
+      treatment: 'Broad-spectrum IV beta-lactam/beta-lactamase inhibitor; evaluate for occult colon cancer'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Clostridium']
+  },
+  {
+    id: 'infectious-disease-bacterial-30',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Peptostreptococcus species',
+    back: {
+      definition: 'Gram-positive anaerobic cocci',
+      high_yield: 'Part of normal oral and GI flora; cause abscesses',
+      clinical_pearl: 'Ampicillin-sulbactam or piperacillin-tazobactam for mixed anaerobic infections',
+      treatment: 'Ampicillin-sulbactam or piperacillin-tazobactam for mixed anaerobic infections'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Peptostreptococcus']
+  },
+  {
+    id: 'infectious-disease-bacterial-31',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Cutibacterium (Propionibacterium) acnes',
+    back: {
+      definition: 'Gram-positive anaerobic rod',
+      high_yield: 'Common cause of acne and prosthetic shoulder infections',
+      clinical_pearl: 'Topical benzoyl peroxide or retinoids for acne; IV cefazolin or similar for hardware infection',
+      treatment: 'Topical benzoyl peroxide or retinoids for acne; IV cefazolin or similar for hardware infection'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Cutibacterium']
+  },
+  {
+    id: 'infectious-disease-bacterial-32',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Staphylococcus lugdunensis',
+    back: {
+      definition: 'Gram-positive cocci in clusters, coagulase-negative but virulent',
+      high_yield: 'Behaves like S. aureus and can cause aggressive endocarditis',
+      clinical_pearl: 'Treat like MSSA/MRSA depending on susceptibility',
+      treatment: 'Treat like MSSA/MRSA depending on susceptibility'
+    },
+    color: 'blue',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Positive', 'Staphylococcus']
+  },
+  // Bacterial Organisms - Gram Negative (Red)
+  {
+    id: 'infectious-disease-bacterial-33',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'easy',
@@ -401,7 +599,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'E. coli']
   },
   {
-    id: 'infectious-disease-bacterial-23',
+    id: 'infectious-disease-bacterial-34',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'easy',
@@ -419,7 +617,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Klebsiella']
   },
   {
-    id: 'infectious-disease-bacterial-24',
+    id: 'infectious-disease-bacterial-35',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'easy',
@@ -437,7 +635,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Pseudomonas']
   },
   {
-    id: 'infectious-disease-bacterial-25',
+    id: 'infectious-disease-bacterial-36',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'easy',
@@ -455,7 +653,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Haemophilus']
   },
   {
-    id: 'infectious-disease-bacterial-26',
+    id: 'infectious-disease-bacterial-37',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'easy',
@@ -473,7 +671,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Neisseria']
   },
   {
-    id: 'infectious-disease-bacterial-27',
+    id: 'infectious-disease-bacterial-38',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'easy',
@@ -491,7 +689,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Neisseria']
   },
   {
-    id: 'infectious-disease-bacterial-28',
+    id: 'infectious-disease-bacterial-39',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'medium',
@@ -509,7 +707,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Salmonella']
   },
   {
-    id: 'infectious-disease-bacterial-29',
+    id: 'infectious-disease-bacterial-40',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'medium',
@@ -527,7 +725,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Shigella']
   },
   {
-    id: 'infectious-disease-bacterial-30',
+    id: 'infectious-disease-bacterial-41',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'medium',
@@ -545,7 +743,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Vibrio']
   },
   {
-    id: 'infectious-disease-bacterial-31',
+    id: 'infectious-disease-bacterial-42',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'medium',
@@ -563,7 +761,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Campylobacter']
   },
   {
-    id: 'infectious-disease-bacterial-32',
+    id: 'infectious-disease-bacterial-43',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'medium',
@@ -581,7 +779,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Helicobacter']
   },
   {
-    id: 'infectious-disease-bacterial-33',
+    id: 'infectious-disease-bacterial-44',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'medium',
@@ -599,7 +797,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Legionella']
   },
   {
-    id: 'infectious-disease-bacterial-34',
+    id: 'infectious-disease-bacterial-45',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'medium',
@@ -617,7 +815,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Bordetella']
   },
   {
-    id: 'infectious-disease-bacterial-35',
+    id: 'infectious-disease-bacterial-46',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'hard',
@@ -635,7 +833,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Yersinia']
   },
   {
-    id: 'infectious-disease-bacterial-36',
+    id: 'infectious-disease-bacterial-47',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'hard',
@@ -653,7 +851,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Francisella']
   },
   {
-    id: 'infectious-disease-bacterial-37',
+    id: 'infectious-disease-bacterial-48',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'hard',
@@ -671,7 +869,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Brucella']
   },
   {
-    id: 'infectious-disease-bacterial-38',
+    id: 'infectious-disease-bacterial-49',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'hard',
@@ -689,7 +887,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Bacteroides']
   },
   {
-    id: 'infectious-disease-bacterial-39',
+    id: 'infectious-disease-bacterial-50',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'hard',
@@ -707,7 +905,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Acinetobacter']
   },
   {
-    id: 'infectious-disease-bacterial-40',
+    id: 'infectious-disease-bacterial-51',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'hard',
@@ -725,7 +923,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Stenotrophomonas']
   },
   {
-    id: 'infectious-disease-bacterial-41',
+    id: 'infectious-disease-bacterial-52',
     system: 'Infectious Disease',
     topic: 'Bacterial Organisms',
     difficulty: 'hard',
