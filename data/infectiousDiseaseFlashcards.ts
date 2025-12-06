@@ -1586,5 +1586,311 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0,
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Helicobacter']
+  },
+  {
+    id: 'infectious-disease-bacterial-89',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Pasteurella multocida',
+    back: {
+      definition: 'Gram-negative coccobacillus',
+      high_yield: 'Associated with dog and cat bites',
+      clinical_pearl: 'Amoxicillin-clavulanate',
+      treatment: 'Amoxicillin-clavulanate'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Pasteurella']
+  },
+  {
+    id: 'infectious-disease-bacterial-90',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Brucella species',
+    back: {
+      definition: 'Gram-negative intracellular coccobacilli',
+      high_yield: 'Causes undulant fever from animal exposure or unpasteurized dairy',
+      clinical_pearl: 'Doxycycline plus rifampin (± aminoglycoside for severe disease)',
+      treatment: 'Doxycycline plus rifampin (± aminoglycoside for severe disease)'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Brucella']
+  },
+  {
+    id: 'infectious-disease-bacterial-91',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Francisella tularensis',
+    back: {
+      definition: 'Gram-negative coccobacillus',
+      high_yield: 'Causes tularemia from ticks or rabbits',
+      clinical_pearl: 'Streptomycin or gentamicin; doxycycline for mild cases',
+      treatment: 'Streptomycin or gentamicin; doxycycline for mild cases'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Francisella']
+  },
+  {
+    id: 'infectious-disease-bacterial-92',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Eikenella corrodens',
+    back: {
+      definition: 'Gram-negative facultative anaerobe',
+      high_yield: 'Part of human oral flora; human bite infections',
+      clinical_pearl: 'Ampicillin-sulbactam or amoxicillin-clavulanate',
+      treatment: 'Ampicillin-sulbactam or amoxicillin-clavulanate'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Eikenella']
+  },
+  {
+    id: 'infectious-disease-bacterial-93',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Bacteroides fragilis',
+    back: {
+      definition: 'Gram-negative anaerobic rod',
+      high_yield: 'Dominant in colonic flora; causes intra-abdominal abscess',
+      clinical_pearl: 'Piperacillin-tazobactam, carbapenem, or metronidazole-based regimens',
+      treatment: 'Piperacillin-tazobactam, carbapenem, or metronidazole-based regimens'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Bacteroides']
+  },
+  {
+    id: 'infectious-disease-bacterial-94',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Prevotella species',
+    back: {
+      definition: 'Gram-negative anaerobic rods',
+      high_yield: 'Common in oral and pelvic infections',
+      clinical_pearl: 'Ampicillin-sulbactam or clindamycin/metronidazole-containing regimens',
+      treatment: 'Ampicillin-sulbactam or clindamycin/metronidazole-containing regimens'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Prevotella']
+  },
+  {
+    id: 'infectious-disease-bacterial-95',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Fusobacterium necrophorum',
+    back: {
+      definition: 'Gram-negative anaerobic rod',
+      high_yield: 'Causes Lemierre syndrome with septic thrombophlebitis',
+      clinical_pearl: 'Ampicillin-sulbactam or piperacillin-tazobactam',
+      treatment: 'Ampicillin-sulbactam or piperacillin-tazobactam'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Fusobacterium']
+  },
+  {
+    id: 'infectious-disease-bacterial-96',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'difficult',
+    front: 'ESBL-producing Proteus species',
+    back: {
+      definition: 'Gram-negative rod with ESBL',
+      high_yield: 'Complicates UTIs and wound infections',
+      clinical_pearl: 'Carbapenem therapy for severe infections',
+      treatment: 'Carbapenem therapy for severe infections'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Proteus', 'ESBL']
+  },
+  {
+    id: 'infectious-disease-bacterial-97',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'difficult',
+    front: 'AmpC-producing Enterobacter cloacae',
+    back: {
+      definition: 'Gram-negative rod with inducible AmpC',
+      high_yield: 'Resistant to many cephalosporins',
+      clinical_pearl: 'Cefepime or carbapenem depending on MIC',
+      treatment: 'Cefepime or carbapenem depending on MIC'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Enterobacter']
+  },
+  {
+    id: 'infectious-disease-bacterial-98',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'difficult',
+    front: 'Carbapenem-resistant Pseudomonas aeruginosa',
+    back: {
+      definition: 'Gram-negative non-fermenter with carbapenemase',
+      high_yield: 'Serious hospital-acquired infections',
+      clinical_pearl: 'Ceftolozane-tazobactam or ceftazidime-avibactam; ID-guided therapy',
+      treatment: 'Ceftolozane-tazobactam or ceftazidime-avibactam; ID-guided therapy'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Pseudomonas']
+  },
+  {
+    id: 'infectious-disease-bacterial-99',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'difficult',
+    front: 'MDR Stenotrophomonas maltophilia',
+    back: {
+      definition: 'Gram-negative non-fermenter with multidrug resistance',
+      high_yield: 'Limited options and high mortality in immunocompromised',
+      clinical_pearl: 'High-dose TMP-SMX or levofloxacin depending on MIC',
+      treatment: 'High-dose TMP-SMX or levofloxacin depending on MIC'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Stenotrophomonas']
+  },
+  {
+    id: 'infectious-disease-bacterial-100',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Klebsiella pneumoniae (HAP)',
+    back: {
+      definition: 'Gram-negative encapsulated rod',
+      high_yield: 'Common cause of hospital-acquired pneumonia',
+      clinical_pearl: 'Piperacillin-tazobactam, cefepime, or carbapenem depending on resistance',
+      treatment: 'Piperacillin-tazobactam, cefepime, or carbapenem depending on resistance'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Klebsiella']
+  },
+  {
+    id: 'infectious-disease-bacterial-101',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Acinetobacter VAP',
+    back: {
+      definition: 'Gram-negative coccobacillus in ventilator patients',
+      high_yield: 'Difficult-to-treat ventilator-associated pneumonia',
+      clinical_pearl: 'Carbapenem if susceptible; MDR regimens if resistant',
+      treatment: 'Carbapenem if susceptible; MDR regimens if resistant'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Acinetobacter']
+  },
+  {
+    id: 'infectious-disease-bacterial-102',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Pseudomonas diabetic foot infection',
+    back: {
+      definition: 'Gram-negative non-fermenter in chronic wounds',
+      high_yield: 'Often polymicrobial with anaerobes',
+      clinical_pearl: 'Antipseudomonal beta-lactam ± additional coverage',
+      treatment: 'Antipseudomonal beta-lactam ± additional coverage'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Pseudomonas']
+  },
+  {
+    id: 'infectious-disease-bacterial-103',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'E. coli spontaneous bacterial peritonitis',
+    back: {
+      definition: 'Gram-negative rod in cirrhotics with ascites',
+      high_yield: 'Most common cause of SBP',
+      clinical_pearl: 'Cefotaxime or ceftriaxone; start empirically',
+      treatment: 'Cefotaxime or ceftriaxone; start empirically'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'E. coli']
+  },
+  {
+    id: 'infectious-disease-bacterial-104',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'H. pylori treatment failure/resistance',
+    back: {
+      definition: 'Gram-negative spiral rod with rising resistance',
+      high_yield: 'Standard triple therapy may fail',
+      clinical_pearl: 'Use bismuth quadruple or alternative regimen per guidelines',
+      treatment: 'Use bismuth quadruple or alternative regimen per guidelines'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Helicobacter']
+  },
+  {
+    id: 'infectious-disease-bacterial-105',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Neisseria meningitidis chemoprophylaxis',
+    back: {
+      definition: 'Gram-negative diplococcus colonizing nasopharynx',
+      high_yield: 'Requires prophylaxis for close contacts',
+      clinical_pearl: 'Rifampin, ciprofloxacin, or ceftriaxone for contacts',
+      treatment: 'Rifampin, ciprofloxacin, or ceftriaxone for contacts'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Neisseria']
   }
 ];
