@@ -1244,5 +1244,347 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0,
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Pseudomonas']
+  },
+  {
+    id: 'infectious-disease-bacterial-70',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'difficult',
+    front: 'MDR Pseudomonas aeruginosa',
+    back: {
+      definition: 'Gram-negative rod with multidrug resistance',
+      high_yield: 'Limited remaining options',
+      clinical_pearl: 'Use ceftolozane-tazobactam, ceftazidime-avibactam, or ID-directed therapy',
+      treatment: 'Use ceftolozane-tazobactam, ceftazidime-avibactam, or ID-directed therapy'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Pseudomonas']
+  },
+  {
+    id: 'infectious-disease-bacterial-71',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Acinetobacter baumannii',
+    back: {
+      definition: 'Gram-negative coccobacillus',
+      high_yield: 'Ventilator-associated pneumonia and wound infections in ICUs',
+      clinical_pearl: 'Carbapenem if susceptible; colistin or high-dose sulbactam for MDR strains',
+      treatment: 'Carbapenem if susceptible; colistin or high-dose sulbactam for MDR strains'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Acinetobacter']
+  },
+  {
+    id: 'infectious-disease-bacterial-72',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'difficult',
+    front: 'MDR Acinetobacter baumannii',
+    back: {
+      definition: 'Gram-negative highly resistant coccobacillus',
+      high_yield: 'Difficult-to-treat nosocomial pathogen',
+      clinical_pearl: 'Combination therapy (e.g., high-dose sulbactam + colistin) with ID input',
+      treatment: 'Combination therapy (e.g., high-dose sulbactam + colistin) with ID input'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Acinetobacter']
+  },
+  {
+    id: 'infectious-disease-bacterial-73',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Stenotrophomonas maltophilia',
+    back: {
+      definition: 'Gram-negative non-fermenter',
+      high_yield: 'Causes pneumonia and bacteremia in immunocompromised',
+      clinical_pearl: 'TMP-SMX is drug of choice',
+      treatment: 'TMP-SMX is drug of choice'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Stenotrophomonas']
+  },
+  {
+    id: 'infectious-disease-bacterial-74',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'easy',
+    front: 'Haemophilus influenzae (non-typeable)',
+    back: {
+      definition: 'Gram-negative coccobacillus',
+      high_yield: 'Common cause of otitis media and COPD exacerbations',
+      clinical_pearl: 'Amoxicillin-clavulanate or second/third-generation cephalosporin',
+      treatment: 'Amoxicillin-clavulanate or second/third-generation cephalosporin'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Haemophilus']
+  },
+  {
+    id: 'infectious-disease-bacterial-75',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'easy',
+    front: 'Moraxella catarrhalis',
+    back: {
+      definition: 'Gram-negative diplococcus',
+      high_yield: 'Causes otitis media, sinusitis, bronchitis',
+      clinical_pearl: 'Amoxicillin-clavulanate or macrolide',
+      treatment: 'Amoxicillin-clavulanate or macrolide'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Moraxella']
+  },
+  {
+    id: 'infectious-disease-bacterial-76',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'easy',
+    front: 'Neisseria meningitidis',
+    back: {
+      definition: 'Gram-negative diplococcus',
+      high_yield: 'Leading cause of bacterial meningitis in young adults',
+      clinical_pearl: 'High-dose IV ceftriaxone + vancomycin initially; add prophylaxis for close contacts',
+      treatment: 'High-dose IV ceftriaxone + vancomycin initially; add prophylaxis for close contacts'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Neisseria']
+  },
+  {
+    id: 'infectious-disease-bacterial-77',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'easy',
+    front: 'Neisseria gonorrhoeae',
+    back: {
+      definition: 'Gram-negative diplococcus',
+      high_yield: 'Sexually transmitted infection causing urethritis, cervicitis, PID',
+      clinical_pearl: 'Ceftriaxone IM plus doxycycline for chlamydia co-coverage',
+      treatment: 'Ceftriaxone IM plus doxycycline for chlamydia co-coverage'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Neisseria']
+  },
+  {
+    id: 'infectious-disease-bacterial-78',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Fluoroquinolone-resistant N. gonorrhoeae',
+    back: {
+      definition: 'Gram-negative diplococcus with QRDR mutations',
+      high_yield: 'High resistance to older regimens',
+      clinical_pearl: 'Ceftriaxone-based therapy remains standard; avoid fluoroquinolones',
+      treatment: 'Ceftriaxone-based therapy remains standard; avoid fluoroquinolones'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Neisseria']
+  },
+  {
+    id: 'infectious-disease-bacterial-79',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Legionella pneumophila',
+    back: {
+      definition: 'Gram-negative intracellular bacillus',
+      high_yield: 'Atypical pneumonia with hyponatremia and GI symptoms',
+      clinical_pearl: 'Azithromycin or levofloxacin IV/PO',
+      treatment: 'Azithromycin or levofloxacin IV/PO'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Legionella']
+  },
+  {
+    id: 'infectious-disease-bacterial-80',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Bordetella pertussis',
+    back: {
+      definition: 'Gram-negative coccobacillus',
+      high_yield: 'Causes whooping cough with paroxysmal cough',
+      clinical_pearl: 'Azithromycin; prophylaxis for close contacts',
+      treatment: 'Azithromycin; prophylaxis for close contacts'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Bordetella']
+  },
+  {
+    id: 'infectious-disease-bacterial-81',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'easy',
+    front: 'Salmonella enterica (non-typhoidal)',
+    back: {
+      definition: 'Gram-negative motile rod',
+      high_yield: 'Causes inflammatory diarrhea and bacteremia in vulnerable hosts',
+      clinical_pearl: 'Supportive care; ceftriaxone or fluoroquinolone for severe/systemic disease',
+      treatment: 'Supportive care; ceftriaxone or fluoroquinolone for severe/systemic disease'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Salmonella']
+  },
+  {
+    id: 'infectious-disease-bacterial-82',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Salmonella Typhi',
+    back: {
+      definition: 'Gram-negative rod causing enteric fever',
+      high_yield: 'Stepwise fever, relative bradycardia, rose spots',
+      clinical_pearl: 'Ceftriaxone or azithromycin; fluoroquinolone where susceptible',
+      treatment: 'Ceftriaxone or azithromycin; fluoroquinolone where susceptible'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Salmonella']
+  },
+  {
+    id: 'infectious-disease-bacterial-83',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'easy',
+    front: 'Shigella species',
+    back: {
+      definition: 'Gram-negative non-motile rod',
+      high_yield: 'Causes dysentery with blood and mucus',
+      clinical_pearl: 'Supportive care; consider azithromycin or ceftriaxone in severe cases',
+      treatment: 'Supportive care; consider azithromycin or ceftriaxone in severe cases'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Shigella']
+  },
+  {
+    id: 'infectious-disease-bacterial-84',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Yersinia enterocolitica',
+    back: {
+      definition: 'Gram-negative rod',
+      high_yield: 'Can mimic appendicitis and cause terminal ileitis',
+      clinical_pearl: 'Supportive care; fluoroquinolone or TMP-SMX for severe infection',
+      treatment: 'Supportive care; fluoroquinolone or TMP-SMX for severe infection'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Yersinia']
+  },
+  {
+    id: 'infectious-disease-bacterial-85',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'easy',
+    front: 'Vibrio cholerae',
+    back: {
+      definition: 'Gram-negative comma-shaped rod',
+      high_yield: 'Watery "rice-water" diarrhea due to toxin',
+      clinical_pearl: 'Aggressive IV/PO rehydration; doxycycline short course',
+      treatment: 'Aggressive IV/PO rehydration; doxycycline short course'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Vibrio']
+  },
+  {
+    id: 'infectious-disease-bacterial-86',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Vibrio vulnificus',
+    back: {
+      definition: 'Gram-negative curved rod',
+      high_yield: 'Causes severe wound infections from seawater and septicemia in liver disease',
+      clinical_pearl: 'Doxycycline plus a third-generation cephalosporin',
+      treatment: 'Doxycycline plus a third-generation cephalosporin'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Vibrio']
+  },
+  {
+    id: 'infectious-disease-bacterial-87',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'easy',
+    front: 'Campylobacter jejuni',
+    back: {
+      definition: 'Gram-negative curved rod',
+      high_yield: 'Common cause of bloody diarrhea; linked to GBS',
+      clinical_pearl: 'Supportive care; azithromycin for severe disease',
+      treatment: 'Supportive care; azithromycin for severe disease'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Campylobacter']
+  },
+  {
+    id: 'infectious-disease-bacterial-88',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Helicobacter pylori',
+    back: {
+      definition: 'Gram-negative spiral-shaped rod',
+      high_yield: 'Causes peptic ulcer disease and gastric cancer risk',
+      clinical_pearl: 'Bismuth or non-bismuth quadruple therapy depending on resistance patterns',
+      treatment: 'Bismuth or non-bismuth quadruple therapy depending on resistance patterns'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Helicobacter']
   }
 ];
