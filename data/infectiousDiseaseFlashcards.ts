@@ -3184,136 +3184,357 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     reviewCount: 0,
     tags: ['Infectious Disease', 'Fungal Infections', 'Prevention']
   },
-  // Viral Infections
+  // Viral Infections (1-50 already exist, adding 51-75)
   {
-    id: 'infectious-disease-viral-1',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'easy',
-    front: 'Herpes simplex virus type 1 (HSV-1)',
-    back: {
-      definition: 'Enveloped DNA virus causing oral herpes',
-      high_yield: 'Painful grouped vesicles on erythematous base',
-      clinical_pearl: 'Can cause encephalitis in adults',
-      treatment: 'Acyclovir PO/IV'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'HSV']
-  },
-  {
-    id: 'infectious-disease-viral-2',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'easy',
-    front: 'Herpes simplex virus type 2 (HSV-2)',
-    back: {
-      definition: 'Enveloped DNA virus causing genital herpes',
-      high_yield: 'Recurrent painful genital ulcers',
-      clinical_pearl: 'Transmission risk highest during outbreaks',
-      treatment: 'Valacyclovir PO'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'HSV']
-  },
-  {
-    id: 'infectious-disease-viral-3',
+    id: 'infectious-disease-viral-51',
     system: 'Infectious Disease',
     topic: 'Viral Infections',
     difficulty: 'medium',
-    front: 'HSV encephalitis',
+    front: 'HIV PrEP',
     back: {
-      definition: 'Viral encephalitis affecting temporal lobes',
-      high_yield: 'Fever, seizures, focal neuro deficits',
-      clinical_pearl: 'MRI shows temporal lobe enhancement',
-      treatment: 'IV acyclovir immediately'
+      definition: 'Pre-exposure prophylaxis',
+      high_yield: 'High-risk patients',
+      clinical_pearl: 'Tenofovir/emtricitabine daily',
+      treatment: '>90% reduction in transmission'
     },
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'HSV']
+    tags: ['Infectious Disease', 'Viral Infections', 'HIV']
   },
   {
-    id: 'infectious-disease-viral-4',
+    id: 'infectious-disease-viral-52',
     system: 'Infectious Disease',
     topic: 'Viral Infections',
     difficulty: 'medium',
-    front: 'Neonatal HSV infection',
+    front: 'HIV PEP',
     back: {
-      definition: 'Transmitted during birth',
-      high_yield: 'Sepsis-like illness, skin lesions',
-      clinical_pearl: 'High mortality untreated',
-      treatment: 'IV acyclovir high-dose'
+      definition: 'Post-exposure prophylaxis',
+      high_yield: 'Must start within 72 hours',
+      clinical_pearl: '3-drug regimen for 28 days',
+      treatment: 'Follow-up testing required'
     },
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'HSV']
+    tags: ['Infectious Disease', 'Viral Infections', 'HIV']
   },
   {
-    id: 'infectious-disease-viral-5',
+    id: 'infectious-disease-viral-53',
     system: 'Infectious Disease',
     topic: 'Viral Infections',
     difficulty: 'easy',
-    front: 'Varicella-zoster virus (VZV)',
+    front: 'CMV mononucleosis',
     back: {
-      definition: 'Enveloped DNA virus causing chickenpox',
-      high_yield: 'Diffuse vesicles at multiple stages',
-      clinical_pearl: 'Highly contagious via droplets',
-      treatment: 'Acyclovir in high-risk patients'
+      definition: 'Mono-like syndrome',
+      high_yield: 'Heterophile negative',
+      clinical_pearl: 'Seen in young adults',
+      treatment: 'Supportive unless immunocompromised'
     },
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'VZV']
+    tags: ['Infectious Disease', 'Viral Infections', 'CMV']
   },
   {
-    id: 'infectious-disease-viral-6',
+    id: 'infectious-disease-viral-54',
+    system: 'Infectious Disease',
+    topic: 'Viral Infections',
+    difficulty: 'medium',
+    front: 'BK virus',
+    back: {
+      definition: 'Polyomavirus causing nephropathy',
+      high_yield: 'Seen in renal transplant pts',
+      clinical_pearl: 'Leads to graft dysfunction',
+      treatment: 'Reduce immunosuppression'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Viral Infections', 'BK virus']
+  },
+  {
+    id: 'infectious-disease-viral-55',
+    system: 'Infectious Disease',
+    topic: 'Viral Infections',
+    difficulty: 'medium',
+    front: 'JC virus',
+    back: {
+      definition: 'Polyomavirus causing PML',
+      high_yield: 'Progressive neurologic deficits',
+      clinical_pearl: 'Seen in AIDS/biologic therapy',
+      treatment: 'Restore immunity'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Viral Infections', 'JC virus']
+  },
+  {
+    id: 'infectious-disease-viral-56',
     system: 'Infectious Disease',
     topic: 'Viral Infections',
     difficulty: 'easy',
-    front: 'Herpes zoster (shingles)',
+    front: 'Human metapneumovirus',
     back: {
-      definition: 'Reactivation of VZV in sensory ganglia',
-      high_yield: 'Painful dermatomal vesicular rash',
-      clinical_pearl: 'Risk of postherpetic neuralgia',
-      treatment: 'Valacyclovir PO'
+      definition: 'Paramyxovirus causing respiratory illness',
+      high_yield: 'Similar to RSV',
+      clinical_pearl: 'Children and elderly',
+      treatment: 'Supportive care'
     },
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'VZV']
+    tags: ['Infectious Disease', 'Viral Infections', 'Metapneumovirus']
   },
   {
-    id: 'infectious-disease-viral-7',
+    id: 'infectious-disease-viral-57',
     system: 'Infectious Disease',
     topic: 'Viral Infections',
-    difficulty: 'medium',
-    front: 'Zoster ophthalmicus',
+    difficulty: 'easy',
+    front: 'Seasonal coronaviruses',
     back: {
-      definition: 'VZV in trigeminal V1 distribution',
-      high_yield: 'Risk of vision loss',
-      clinical_pearl: 'Hutchinson sign on nose',
-      treatment: 'Immediate antivirals + ophthalmology'
+      definition: 'Cause common cold',
+      high_yield: 'Multiple benign strains',
+      clinical_pearl: 'Mild symptoms',
+      treatment: 'Supportive treatment'
     },
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'VZV']
+    tags: ['Infectious Disease', 'Viral Infections', 'Coronavirus']
   },
   {
-    id: 'infectious-disease-viral-8',
+    id: 'infectious-disease-viral-58',
     system: 'Infectious Disease',
     topic: 'Viral Infections',
     difficulty: 'medium',
-    front: 'Disseminated zoster',
+    front: 'Hantavirus',
     back: {
-      definition: 'Widespread VZV in immunocompromised',
-      high_yield: 'Multiple dermatome involvement',
-      clinical_pearl: 'Life-threatening',
+      definition: 'Rodent-borne virus',
+      high_yield: 'Pulmonary edema and shock',
+      clinical_pearl: 'High mortality',
+      treatment: 'Supportive ICU care'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Viral Infections', 'Hantavirus']
+  },
+  {
+    id: 'infectious-disease-viral-59',
+    system: 'Infectious Disease',
+    topic: 'Viral Infections',
+    difficulty: 'medium',
+    front: 'Lassa virus',
+    back: {
+      definition: 'Hemorrhagic fever virus',
+      high_yield: 'West Africa spread',
+      clinical_pearl: 'Hearing loss is common sequela',
+      treatment: 'Ribavirin early'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Viral Infections', 'Lassa']
+  },
+  {
+    id: 'infectious-disease-viral-60',
+    system: 'Infectious Disease',
+    topic: 'Viral Infections',
+    difficulty: 'difficult',
+    front: 'Ebola virus',
+    back: {
+      definition: 'Filovirus causing severe hemorrhagic fever',
+      high_yield: 'High fever, bleeding, shock',
+      clinical_pearl: 'High mortality',
+      treatment: 'Supportive + investigational therapies'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Viral Infections', 'Ebola']
+  },
+  {
+    id: 'infectious-disease-viral-61',
+    system: 'Infectious Disease',
+    topic: 'Viral Infections',
+    difficulty: 'difficult',
+    front: 'Marburg virus',
+    back: {
+      definition: 'Hemorrhagic fever similar to Ebola',
+      high_yield: 'Rapid deterioration',
+      clinical_pearl: 'Nosocomial spread',
+      treatment: 'Supportive critical care'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Viral Infections', 'Marburg']
+  },
+  {
+    id: 'infectious-disease-viral-62',
+    system: 'Infectious Disease',
+    topic: 'Viral Infections',
+    difficulty: 'easy',
+    front: 'Molluscum contagiosum',
+    back: {
+      definition: 'Poxvirus causing skin papules',
+      high_yield: 'Umbilicated lesions',
+      clinical_pearl: 'Common in children',
+      treatment: 'Self-resolving or cryotherapy'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Viral Infections', 'Molluscum']
+  },
+  {
+    id: 'infectious-disease-viral-63',
+    system: 'Infectious Disease',
+    topic: 'Viral Infections',
+    difficulty: 'easy',
+    front: 'Hand-foot-mouth disease',
+    back: {
+      definition: 'Coxsackie A virus',
+      high_yield: 'Oral ulcers + vesicles on hands/feet',
+      clinical_pearl: 'Highly contagious',
+      treatment: 'Supportive'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Viral Infections', 'Coxsackie']
+  },
+  {
+    id: 'infectious-disease-viral-64',
+    system: 'Infectious Disease',
+    topic: 'Viral Infections',
+    difficulty: 'medium',
+    front: 'Viral myocarditis',
+    back: {
+      definition: 'Coxsackie B most common cause',
+      high_yield: 'Chest pain, elevated troponin',
+      clinical_pearl: 'Can lead to dilated cardiomyopathy',
+      treatment: 'Supportive + treat HF'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Viral Infections', 'Coxsackie']
+  },
+  {
+    id: 'infectious-disease-viral-65',
+    system: 'Infectious Disease',
+    topic: 'Viral Infections',
+    difficulty: 'medium',
+    front: 'Viral pericarditis',
+    back: {
+      definition: 'Often post-viral (Coxsackie/flu)',
+      high_yield: 'Pleuritic chest pain, relieved leaning forward',
+      clinical_pearl: 'Diffuse ST elevation',
+      treatment: 'NSAIDs/colchicine'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Viral Infections', 'Pericarditis']
+  },
+  {
+    id: 'infectious-disease-viral-66',
+    system: 'Infectious Disease',
+    topic: 'Viral Infections',
+    difficulty: 'medium',
+    front: 'Viral encephalitis',
+    back: {
+      definition: 'HSV leading cause',
+      high_yield: 'Fever + altered mental status',
+      clinical_pearl: 'Temporal lobe involvement',
+      treatment: 'Acyclovir immediately'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Viral Infections', 'Encephalitis']
+  },
+  {
+    id: 'infectious-disease-viral-67',
+    system: 'Infectious Disease',
+    topic: 'Viral Infections',
+    difficulty: 'easy',
+    front: 'Viral meningitis',
+    back: {
+      definition: 'Enteroviruses most common',
+      high_yield: 'Milder than bacterial',
+      clinical_pearl: 'Lymphocytic CSF',
+      treatment: 'Supportive'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Viral Infections', 'Meningitis']
+  },
+  {
+    id: 'infectious-disease-viral-68',
+    system: 'Infectious Disease',
+    topic: 'Viral Infections',
+    difficulty: 'medium',
+    front: 'JC virus PML',
+    back: {
+      definition: 'Demyelinating CNS disease',
+      high_yield: 'Progressive deficits',
+      clinical_pearl: 'AIDS or immunosuppression',
+      treatment: 'Restore immune function'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Viral Infections', 'JC virus']
+  },
+  {
+    id: 'infectious-disease-viral-69',
+    system: 'Infectious Disease',
+    topic: 'Viral Infections',
+    difficulty: 'easy',
+    front: 'CMV congenital infection',
+    back: {
+      definition: 'Periventricular calcifications',
+      high_yield: 'Microcephaly, hearing loss',
+      clinical_pearl: 'Most common congenital viral infection',
+      treatment: 'Ganciclovir'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Viral Infections', 'CMV']
+  },
+  {
+    id: 'infectious-disease-viral-70',
+    system: 'Infectious Disease',
+    topic: 'Viral Infections',
+    difficulty: 'medium',
+    front: 'Zika congenital syndrome',
+    back: {
+      definition: 'Brain and eye abnormalities',
+      high_yield: 'Microcephaly',
+      clinical_pearl: 'Transmitted by mosquitoes or sexual contact',
+      treatment: 'Supportive care'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Viral Infections', 'Zika']
+  },
+  {
+    id: 'infectious-disease-viral-71',
+    system: 'Infectious Disease',
+    topic: 'Viral Infections',
+    difficulty: 'medium',
+    front: 'Varicella pneumonia',
+    back: {
+      definition: 'Complication of primary VZV',
+      high_yield: 'Severe hypoxia',
+      clinical_pearl: 'More common in adults',
       treatment: 'IV acyclovir'
     },
     bookmarked: false,
@@ -3322,135 +3543,16 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Viral Infections', 'VZV']
   },
   {
-    id: 'infectious-disease-viral-9',
+    id: 'infectious-disease-viral-72',
     system: 'Infectious Disease',
     topic: 'Viral Infections',
     difficulty: 'easy',
-    front: 'Epstein-Barr virus (EBV)',
+    front: 'Influenza complications',
     back: {
-      definition: 'Enveloped DNA virus causing mono',
-      high_yield: 'Fatigue, pharyngitis, lymphadenopathy',
-      clinical_pearl: 'Splenomegaly—no contact sports',
-      treatment: 'Supportive care'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'EBV']
-  },
-  {
-    id: 'infectious-disease-viral-10',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'medium',
-    front: 'EBV-associated cancers',
-    back: {
-      definition: 'EBV linked to lymphoma',
-      high_yield: 'Burkitt, Hodgkin, nasopharyngeal CA',
-      clinical_pearl: 'Occurs with chronic infection',
-      treatment: 'Treat underlying malignancy'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'EBV']
-  },
-  {
-    id: 'infectious-disease-viral-11',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'easy',
-    front: 'Cytomegalovirus (CMV)',
-    back: {
-      definition: 'DNA virus causing mononucleosis-like illness',
-      high_yield: 'CMV IgM positive in acute infection',
-      clinical_pearl: 'Severe disease in transplant pts',
-      treatment: 'Ganciclovir or valganciclovir'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'CMV']
-  },
-  {
-    id: 'infectious-disease-viral-12',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'medium',
-    front: 'CMV colitis',
-    back: {
-      definition: 'Ulcerating colitis in immunosuppressed',
-      high_yield: 'Bloody diarrhea, abdominal pain',
-      clinical_pearl: 'Seen in advanced HIV',
-      treatment: 'Ganciclovir IV'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'CMV']
-  },
-  {
-    id: 'infectious-disease-viral-13',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'medium',
-    front: 'CMV retinitis',
-    back: {
-      definition: 'Progressive retinal necrosis',
-      high_yield: '"Pizza pie" retinal appearance',
-      clinical_pearl: 'Leading cause of blindness in AIDS',
-      treatment: 'Ganciclovir, foscarnet'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'CMV']
-  },
-  {
-    id: 'infectious-disease-viral-14',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'easy',
-    front: 'HHV-6',
-    back: {
-      definition: 'DNA virus causing roseola',
-      high_yield: 'High fever then rash',
-      clinical_pearl: 'Common in infants',
-      treatment: 'Supportive care'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'HHV']
-  },
-  {
-    id: 'infectious-disease-viral-15',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'easy',
-    front: 'HHV-8',
-    back: {
-      definition: 'Virus causing Kaposi sarcoma',
-      high_yield: 'Purple vascular skin lesions',
-      clinical_pearl: 'Occurs in immunosuppressed/HIV',
-      treatment: 'Antiretroviral therapy (ART)'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'HHV']
-  },
-  {
-    id: 'infectious-disease-viral-16',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'easy',
-    front: 'Influenza A virus',
-    back: {
-      definition: 'Segmented RNA virus',
-      high_yield: 'Abrupt fever, myalgias, cough',
-      clinical_pearl: 'Antigenic shift causes pandemics',
-      treatment: 'Oseltamivir if early'
+      definition: 'Post-flu bacterial pneumonia',
+      high_yield: 'S. aureus common',
+      clinical_pearl: 'Recurrent fever after improvement',
+      treatment: 'Start antibiotics promptly'
     },
     bookmarked: false,
     favorite: false,
@@ -3458,372 +3560,15 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Viral Infections', 'Influenza']
   },
   {
-    id: 'infectious-disease-viral-17',
+    id: 'infectious-disease-viral-73',
     system: 'Infectious Disease',
     topic: 'Viral Infections',
     difficulty: 'easy',
-    front: 'Influenza B virus',
+    front: 'Norovirus outbreaks',
     back: {
-      definition: 'RNA virus causing seasonal flu',
-      high_yield: 'Similar to influenza A',
-      clinical_pearl: 'Less antigenic variation',
-      treatment: 'Oseltamivir'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'Influenza']
-  },
-  {
-    id: 'infectious-disease-viral-18',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'medium',
-    front: 'Influenza pneumonia',
-    back: {
-      definition: 'Viral pneumonia after influenza',
-      high_yield: 'Severe hypoxia',
-      clinical_pearl: 'Risk of secondary bacterial infection',
-      treatment: 'Supportive + antivirals'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'Influenza']
-  },
-  {
-    id: 'infectious-disease-viral-19',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'easy',
-    front: 'Respiratory syncytial virus (RSV)',
-    back: {
-      definition: 'RNA virus causing bronchiolitis',
-      high_yield: 'Wheezing, nasal flaring in infants',
-      clinical_pearl: 'Winter outbreaks',
-      treatment: 'Supportive; ribavirin for severe'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'RSV']
-  },
-  {
-    id: 'infectious-disease-viral-20',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'medium',
-    front: 'Severe RSV in adults',
-    back: {
-      definition: 'Affects elderly and COPD pts',
-      high_yield: 'Wheezing and hypoxia',
-      clinical_pearl: 'Common in nursing homes',
-      treatment: 'Supportive care'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'RSV']
-  },
-  {
-    id: 'infectious-disease-viral-21',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'easy',
-    front: 'Adenovirus',
-    back: {
-      definition: 'DNA virus causing respiratory, GI, and conjunctivitis',
-      high_yield: 'Pharyngitis + conjunctivitis',
-      clinical_pearl: 'Can cause hemorrhagic cystitis',
-      treatment: 'Supportive treatment'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'Adenovirus']
-  },
-  {
-    id: 'infectious-disease-viral-22',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'easy',
-    front: 'Parvovirus B19',
-    back: {
-      definition: 'DNA virus causing fifth disease',
-      high_yield: 'Slapped-cheek rash in children',
-      clinical_pearl: 'Aplastic crisis in sickle cell',
-      treatment: 'Supportive management'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'Parvovirus']
-  },
-  {
-    id: 'infectious-disease-viral-23',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'medium',
-    front: 'Parvovirus in pregnancy',
-    back: {
-      definition: 'Causes fetal hydrops',
-      high_yield: 'Transplacental infection',
-      clinical_pearl: 'May require intrauterine transfusion',
-      treatment: 'Supportive + maternal monitoring'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'Parvovirus']
-  },
-  {
-    id: 'infectious-disease-viral-24',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'easy',
-    front: 'Measles virus',
-    back: {
-      definition: 'RNA virus causing measles',
-      high_yield: 'Koplik spots, descending rash',
-      clinical_pearl: 'Highly contagious',
-      treatment: 'Vitamin A + supportive'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'Measles']
-  },
-  {
-    id: 'infectious-disease-viral-25',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'easy',
-    front: 'Mumps virus',
-    back: {
-      definition: 'Paramyxovirus causing parotitis',
-      high_yield: 'Painful swollen parotid glands',
-      clinical_pearl: 'Can cause orchitis in males',
-      treatment: 'Supportive care'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'Mumps']
-  },
-  {
-    id: 'infectious-disease-viral-26',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'easy',
-    front: 'Rubella virus',
-    back: {
-      definition: 'RNA virus causing German measles',
-      high_yield: 'Mild rash + LAD',
-      clinical_pearl: 'Congenital rubella causes severe defects',
-      treatment: 'Vaccination is preventive'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'Rubella']
-  },
-  {
-    id: 'infectious-disease-viral-27',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'easy',
-    front: 'Rabies virus',
-    back: {
-      definition: 'RNA virus transmitted by animal bites',
-      high_yield: 'Tingling → encephalitis → death',
-      clinical_pearl: 'Negri bodies in neurons',
-      treatment: 'Rabies vaccine + immunoglobulin'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'Rabies']
-  },
-  {
-    id: 'infectious-disease-viral-28',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'medium',
-    front: 'Rabies exposure management',
-    back: {
-      definition: 'Post-exposure prophylaxis',
-      high_yield: 'Wash wound + vaccine series',
-      clinical_pearl: 'Rabies Ig for severe exposure',
-      treatment: 'Follow CDC protocol'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'Rabies']
-  },
-  {
-    id: 'infectious-disease-viral-29',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'easy',
-    front: 'West Nile virus',
-    back: {
-      definition: 'Mosquito-borne flavivirus',
-      high_yield: 'Fever, meningitis, or flaccid paralysis',
-      clinical_pearl: 'Older adults highest risk',
-      treatment: 'Supportive care'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'West Nile']
-  },
-  {
-    id: 'infectious-disease-viral-30',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'medium',
-    front: 'Zika virus',
-    back: {
-      definition: 'Mosquito-borne flavivirus',
-      high_yield: 'Conjunctivitis + fever + arthralgias',
-      clinical_pearl: 'Microcephaly in newborns',
-      treatment: 'Supportive, avoid pregnancy exposure'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'Zika']
-  },
-  {
-    id: 'infectious-disease-viral-31',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'easy',
-    front: 'Dengue virus',
-    back: {
-      definition: 'Mosquito-borne flavivirus',
-      high_yield: 'High fever, retro-orbital pain',
-      clinical_pearl: 'Risk of hemorrhagic fever',
-      treatment: 'Supportive fluids; avoid NSAIDs'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'Dengue']
-  },
-  {
-    id: 'infectious-disease-viral-32',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'medium',
-    front: 'Dengue hemorrhagic fever',
-    back: {
-      definition: 'Plasma leakage + bleeding',
-      high_yield: 'Occurs with second infection',
-      clinical_pearl: 'Shock possible',
-      treatment: 'Fluid resuscitation'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'Dengue']
-  },
-  {
-    id: 'infectious-disease-viral-33',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'easy',
-    front: 'Hepatitis A virus (HAV)',
-    back: {
-      definition: 'RNA virus causing acute hepatitis',
-      high_yield: 'Fecal-oral transmission',
-      clinical_pearl: 'Self-limited disease',
-      treatment: 'Supportive care'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'Hepatitis']
-  },
-  {
-    id: 'infectious-disease-viral-34',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'easy',
-    front: 'Hepatitis B virus (HBV)',
-    back: {
-      definition: 'DNA virus causing chronic hepatitis',
-      high_yield: 'Risk of cirrhosis and cancer',
-      clinical_pearl: 'HBeAg indicates infectivity',
-      treatment: 'Tenofovir or entecavir'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'Hepatitis']
-  },
-  {
-    id: 'infectious-disease-viral-35',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'easy',
-    front: 'Hepatitis C virus (HCV)',
-    back: {
-      definition: 'RNA virus causing chronic hepatitis',
-      high_yield: 'Most progress silently',
-      clinical_pearl: 'Curable with direct-acting antivirals',
-      treatment: 'Sofosbuvir-based regimens'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'Hepatitis']
-  },
-  {
-    id: 'infectious-disease-viral-36',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'medium',
-    front: 'Hepatitis D virus (HDV)',
-    back: {
-      definition: 'Defective virus requiring HBV coinfection',
-      high_yield: 'Severe superinfection',
-      clinical_pearl: 'High risk of fulminant hepatitis',
-      treatment: 'Manage underlying HBV'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'Hepatitis']
-  },
-  {
-    id: 'infectious-disease-viral-37',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'easy',
-    front: 'Hepatitis E virus (HEV)',
-    back: {
-      definition: 'RNA virus causing acute hepatitis',
-      high_yield: 'Severe in pregnancy',
-      clinical_pearl: 'Waterborne outbreaks',
-      treatment: 'Supportive care'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'Hepatitis']
-  },
-  {
-    id: 'infectious-disease-viral-38',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'easy',
-    front: 'Norovirus',
-    back: {
-      definition: 'Highly contagious viral gastroenteritis',
-      high_yield: 'Vomiting + diarrhea',
-      clinical_pearl: 'Cruise ship outbreaks',
+      definition: 'Acute vomiting and diarrhea',
+      high_yield: 'Extremely contagious',
+      clinical_pearl: 'Common in long-term care',
       treatment: 'Supportive hydration'
     },
     bookmarked: false,
@@ -3832,207 +3577,37 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     tags: ['Infectious Disease', 'Viral Infections', 'Norovirus']
   },
   {
-    id: 'infectious-disease-viral-39',
+    id: 'infectious-disease-viral-74',
     system: 'Infectious Disease',
     topic: 'Viral Infections',
     difficulty: 'easy',
-    front: 'Rotavirus',
+    front: 'Adenovirus conjunctivitis',
     back: {
-      definition: 'Viral cause of pediatric diarrhea',
-      high_yield: 'Severe dehydration possible',
-      clinical_pearl: 'Prevented by vaccine',
-      treatment: 'Supportive treatment'
+      definition: 'Watery eye discharge',
+      high_yield: 'Highly contagious',
+      clinical_pearl: 'Preauricular lymph nodes',
+      treatment: 'Supportive; hygiene'
     },
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'Rotavirus']
+    tags: ['Infectious Disease', 'Viral Infections', 'Adenovirus']
   },
   {
-    id: 'infectious-disease-viral-40',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'easy',
-    front: 'Enteroviruses (Coxsackie)',
-    back: {
-      definition: 'RNA viruses causing meningitis',
-      high_yield: 'Hand-foot-mouth disease',
-      clinical_pearl: 'Herpangina',
-      treatment: 'Supportive care'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'Enterovirus']
-  },
-  {
-    id: 'infectious-disease-viral-41',
+    id: 'infectious-disease-viral-75',
     system: 'Infectious Disease',
     topic: 'Viral Infections',
     difficulty: 'medium',
-    front: 'Poliovirus',
+    front: 'HHV-8 Kaposi sarcoma',
     back: {
-      definition: 'RNA virus damaging motor neurons',
-      high_yield: 'Asymmetric paralysis',
-      clinical_pearl: 'Prevented by vaccination',
-      treatment: 'Supportive respiratory care'
+      definition: 'Angioproliferative tumor',
+      high_yield: 'AIDS-defining illness',
+      clinical_pearl: 'Violaceous plaques',
+      treatment: 'Treat underlying HIV + chemo if needed'
     },
     bookmarked: false,
     favorite: false,
     reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'Poliovirus']
-  },
-  {
-    id: 'infectious-disease-viral-42',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'easy',
-    front: 'Coronavirus (SARS-CoV-2)',
-    back: {
-      definition: 'Enveloped RNA virus',
-      high_yield: 'Loss of taste/smell, fever, cough',
-      clinical_pearl: 'Hypercoagulability risk',
-      treatment: 'Nirmatrelvir/ritonavir for high-risk outpatients'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'COVID-19']
-  },
-  {
-    id: 'infectious-disease-viral-43',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'medium',
-    front: 'COVID pneumonia',
-    back: {
-      definition: 'Ground-glass opacities',
-      high_yield: 'Hypoxia requiring O2',
-      clinical_pearl: 'Risk of ARDS',
-      treatment: 'Dexamethasone + remdesivir in hospitalized pts'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'COVID-19']
-  },
-  {
-    id: 'infectious-disease-viral-44',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'medium',
-    front: 'Multisystem inflammatory syndrome (MIS-C)',
-    back: {
-      definition: 'Post-COVID hyperinflammation in children',
-      high_yield: 'Fever + cardiac involvement',
-      clinical_pearl: 'Delayed onset after infection',
-      treatment: 'IVIG + steroids'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'COVID-19']
-  },
-  {
-    id: 'infectious-disease-viral-45',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'easy',
-    front: 'HPV (low-risk types)',
-    back: {
-      definition: 'DNA virus causing genital warts',
-      high_yield: 'Types 6 & 11',
-      clinical_pearl: 'Non-cancerous',
-      treatment: 'Cryotherapy or topical agents'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'HPV']
-  },
-  {
-    id: 'infectious-disease-viral-46',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'easy',
-    front: 'HPV (high-risk types)',
-    back: {
-      definition: 'DNA virus causing cervical cancer',
-      high_yield: 'Types 16 & 18',
-      clinical_pearl: 'Pap screening detects early disease',
-      treatment: 'HPV vaccine'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'HPV']
-  },
-  {
-    id: 'infectious-disease-viral-47',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'medium',
-    front: 'HIV-1',
-    back: {
-      definition: 'Retrovirus causing AIDS',
-      high_yield: 'Targets CD4 cells',
-      clinical_pearl: 'Opportunistic infections when CD4 <200',
-      treatment: 'ART for all patients'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'HIV']
-  },
-  {
-    id: 'infectious-disease-viral-48',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'medium',
-    front: 'Acute HIV infection',
-    back: {
-      definition: 'Flu-like illness after exposure',
-      high_yield: 'High viral load, negative Ab test early',
-      clinical_pearl: 'Monospot-like syndrome',
-      treatment: 'Start ART immediately'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'HIV']
-  },
-  {
-    id: 'infectious-disease-viral-49',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'medium',
-    front: 'HIV opportunistic infections',
-    back: {
-      definition: 'Infections due to low CD4',
-      high_yield: 'PJP <200, Toxo <100, MAC <50',
-      clinical_pearl: 'Prophylaxis based on CD4 level',
-      treatment: 'TMP-SMX, azithromycin, etc.'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'HIV']
-  },
-  {
-    id: 'infectious-disease-viral-50',
-    system: 'Infectious Disease',
-    topic: 'Viral Infections',
-    difficulty: 'medium',
-    front: 'HIV viral load monitoring',
-    back: {
-      definition: 'Tracks disease activity',
-      high_yield: 'Higher load = faster progression',
-      clinical_pearl: 'Goal = undetectable',
-      treatment: 'Evaluated every 3–6 months'
-    },
-    bookmarked: false,
-    favorite: false,
-    reviewCount: 0,
-    tags: ['Infectious Disease', 'Viral Infections', 'HIV']
+    tags: ['Infectious Disease', 'Viral Infections', 'HHV']
   }
 ];
