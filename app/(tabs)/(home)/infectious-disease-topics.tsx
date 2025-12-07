@@ -22,6 +22,11 @@ const INFECTIOUS_DISEASE_TOPICS = [
     name: 'Viral Infections',
     icon: 'waveform.path.ecg',
     description: 'Common viral pathogens'
+  },
+  {
+    name: 'STIs',
+    icon: 'exclamationmark.triangle.fill',
+    description: 'Sexually transmitted infections'
   }
 ];
 
