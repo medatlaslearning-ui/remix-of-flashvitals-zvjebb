@@ -4953,5 +4953,107 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0,
     tags: ['Infectious Disease', 'STIs', 'HIV']
+  },
+  {
+    id: 'infectious-disease-sti-25',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'medium',
+    front: 'HIV PrEP',
+    back: {
+      definition: 'Daily medication to prevent HIV',
+      high_yield: 'Tenofovir/emtricitabine',
+      clinical_pearl: '>90% reduction in sexual transmission',
+      treatment: 'Requires quarterly testing'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'HIV']
+  },
+  {
+    id: 'infectious-disease-sti-26',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'medium',
+    front: 'HIV PEP',
+    back: {
+      definition: 'Post-exposure prophylaxis',
+      high_yield: 'Must begin within 72 hours',
+      clinical_pearl: '3-drug regimen for 28 days',
+      treatment: 'Follow-up HIV testing'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'HIV']
+  },
+  {
+    id: 'infectious-disease-sti-27',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'easy',
+    front: 'Molluscum contagiosum',
+    back: {
+      definition: 'Poxvirus',
+      high_yield: 'Umbilicated papules',
+      clinical_pearl: 'Common in genital area',
+      treatment: 'Cryotherapy or self-resolving'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'Molluscum']
+  },
+  {
+    id: 'infectious-disease-sti-28',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'medium',
+    front: 'Hepatitis B sexual transmission',
+    back: {
+      definition: 'DNA virus, blood + body fluids',
+      high_yield: 'Risk with unprotected sex',
+      clinical_pearl: 'Vaccination prevents infection',
+      treatment: 'Tenofovir/entecavir for chronic HBV'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'Hepatitis']
+  },
+  {
+    id: 'infectious-disease-sti-29',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'medium',
+    front: 'Hepatitis C sexual transmission',
+    back: {
+      definition: 'Less efficient than HBV',
+      high_yield: 'Higher in MSM with HIV',
+      clinical_pearl: 'Curable disease',
+      treatment: 'Direct-acting antivirals'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'Hepatitis']
+  },
+  {
+    id: 'infectious-disease-sti-30',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'medium',
+    front: 'Mpox (monkeypox) STI-associated cases',
+    back: {
+      definition: 'Orthopox viral lesions',
+      high_yield: 'Painful vesicles/pustules',
+      clinical_pearl: 'Common in close-contact transmission',
+      treatment: 'Tecovirimat if severe/immunocompromised'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'Mpox']
   }
 ];
