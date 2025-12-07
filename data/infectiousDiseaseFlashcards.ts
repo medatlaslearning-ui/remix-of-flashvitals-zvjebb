@@ -2928,5 +2928,260 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0,
     tags: ['Infectious Disease', 'Fungal Infections', 'Antifungals']
+  },
+  {
+    id: 'infectious-disease-fungal-46',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Flucytosine uses',
+    back: {
+      definition: 'Used with amphotericin for cryptococcal meningitis',
+      high_yield: 'Bone marrow suppression common',
+      clinical_pearl: 'Never used as monotherapy',
+      treatment: 'Improves fungal clearance'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Antifungals']
+  },
+  {
+    id: 'infectious-disease-fungal-47',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Risk factors for invasive candidiasis',
+    back: {
+      definition: 'Broad-spectrum antibiotics, TPN, central lines',
+      high_yield: 'ICU and oncology patients',
+      clinical_pearl: 'Consider empiric therapy in septic shock',
+      treatment: 'Echinocandin preferred'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Candida']
+  },
+  {
+    id: 'infectious-disease-fungal-48',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Risk factors for invasive aspergillosis',
+    back: {
+      definition: 'Prolonged neutropenia, transplant patients',
+      high_yield: 'Pulmonary nodules with halo sign',
+      clinical_pearl: 'Early treatment improves mortality',
+      treatment: 'Voriconazole first-line'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Aspergillus']
+  },
+  {
+    id: 'infectious-disease-fungal-49',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Risk factors for mucormycosis',
+    back: {
+      definition: 'DKA, iron overload, neutropenia',
+      high_yield: 'Rapid angioinvasion',
+      clinical_pearl: 'Black eschar hallmark',
+      treatment: 'Amphotericin + surgery'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Mucor']
+  },
+  {
+    id: 'infectious-disease-fungal-50',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Fungal meningitis CSF findings',
+    back: {
+      definition: 'Lymphocytic predominance, high opening pressure',
+      high_yield: 'Seen with Cryptococcus and Coccidioides',
+      clinical_pearl: 'India ink positive for Cryptococcus',
+      treatment: 'Treat based on organism'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Diagnostics']
+  },
+  {
+    id: 'infectious-disease-fungal-51',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'PJP hypoxia mechanism',
+    back: {
+      definition: 'Alveolar inflammation + impaired gas exchange',
+      high_yield: 'Causes elevated A–a gradient',
+      clinical_pearl: 'Steroids improve outcomes if A–a > 35',
+      treatment: 'TMP-SMX first-line'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Pneumocystis']
+  },
+  {
+    id: 'infectious-disease-fungal-52',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Endemic fungal exposures',
+    back: {
+      definition: 'Histoplasma (caves), Blastomyces (Great Lakes), Coccidioides (SW deserts)',
+      high_yield: 'Geographic clues essential',
+      clinical_pearl: 'Travel history critical',
+      treatment: 'Treat based on symptoms/severity'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Endemic Fungi']
+  },
+  {
+    id: 'infectious-disease-fungal-53',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'easy',
+    front: 'Tinea cruris',
+    back: {
+      definition: 'Dermatophyte infection of groin',
+      high_yield: 'Pruritic, sharply demarcated lesions',
+      clinical_pearl: 'Common in athletes',
+      treatment: 'Topical antifungals'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Dermatophytes']
+  },
+  {
+    id: 'infectious-disease-fungal-54',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'easy',
+    front: 'Tinea barbae',
+    back: {
+      definition: 'Fungal infection of beard area',
+      high_yield: 'Pain, erythema, hair loss',
+      clinical_pearl: 'Associated with animals',
+      treatment: 'Oral antifungals (terbinafine)'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Dermatophytes']
+  },
+  {
+    id: 'infectious-disease-fungal-55',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'easy',
+    front: 'Tinea manuum',
+    back: {
+      definition: 'Dermatophyte infection of hands',
+      high_yield: 'Scaling on palms',
+      clinical_pearl: 'Often accompanies tinea pedis',
+      treatment: 'Topical antifungals'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Dermatophytes']
+  },
+  {
+    id: 'infectious-disease-fungal-56',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Fungal sinusitis (Aspergillus)',
+    back: {
+      definition: 'Chronic sinus inflammation',
+      high_yield: 'CT: hyperdense material',
+      clinical_pearl: 'Consider in refractory sinus disease',
+      treatment: 'Surgery + antifungal'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Aspergillus']
+  },
+  {
+    id: 'infectious-disease-fungal-57',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Chronic pulmonary aspergillosis',
+    back: {
+      definition: 'Slowly progressive lung disease',
+      high_yield: 'Occurs in structural lung disease (e.g., COPD)',
+      clinical_pearl: 'Requires long-term azoles',
+      treatment: 'Itraconazole or voriconazole'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Aspergillus']
+  },
+  {
+    id: 'infectious-disease-fungal-58',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Disseminated candidiasis',
+    back: {
+      definition: 'Multiple organ involvement',
+      high_yield: 'Occurs in critically ill',
+      clinical_pearl: 'Eye exam required for endophthalmitis',
+      treatment: 'Echinocandin therapy'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Candida']
+  },
+  {
+    id: 'infectious-disease-fungal-59',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Antifungal resistance patterns',
+    back: {
+      definition: 'Azole resistance in Candida glabrata',
+      high_yield: 'Requires susceptibility testing',
+      clinical_pearl: 'Choose echinocandin or alternative',
+      treatment: 'Guided by ID'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Antifungals']
+  },
+  {
+    id: 'infectious-disease-fungal-60',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Fungal vaccine status',
+    back: {
+      definition: 'No widely used human fungal vaccines',
+      high_yield: 'Research ongoing',
+      clinical_pearl: 'Vaccines exist for animals',
+      treatment: 'Prevention relies on risk reduction'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Prevention']
   }
 ];
