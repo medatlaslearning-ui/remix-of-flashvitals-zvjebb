@@ -3184,7 +3184,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     reviewCount: 0,
     tags: ['Infectious Disease', 'Fungal Infections', 'Prevention']
   },
-  // Viral Infections (1-24 already exist, adding 25-75)
+  // Viral Infections (1-75 already exist, adding 76-80)
   {
     id: 'infectious-disease-viral-1',
     system: 'Infectious Disease',
@@ -4459,5 +4459,90 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0,
     tags: ['Infectious Disease', 'Viral Infections', 'HHV']
+  },
+  {
+    id: 'infectious-disease-viral-76',
+    system: 'Infectious Disease',
+    topic: 'Viral Infections',
+    difficulty: 'medium',
+    front: 'Viral exanthems',
+    back: {
+      definition: 'Measles, rubella, parvovirus patterns',
+      high_yield: 'Useful for diagnosis in children',
+      clinical_pearl: 'Rashes follow classic progression',
+      treatment: 'Supportive care'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Viral Infections', 'Exanthems']
+  },
+  {
+    id: 'infectious-disease-viral-77',
+    system: 'Infectious Disease',
+    topic: 'Viral Infections',
+    difficulty: 'medium',
+    front: 'POX viruses (orthopox)',
+    back: {
+      definition: 'Monkeypox most relevant',
+      high_yield: 'Painful lesions, lymphadenopathy',
+      clinical_pearl: 'Lesions in same stage unlike varicella',
+      treatment: 'Tecovirimat (TPOXX) if indicated'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Viral Infections', 'Pox']
+  },
+  {
+    id: 'infectious-disease-viral-78',
+    system: 'Infectious Disease',
+    topic: 'Viral Infections',
+    difficulty: 'medium',
+    front: 'RSV bronchiolitis risk factors',
+    back: {
+      definition: 'Prematurity, CHD, young infants',
+      high_yield: 'Wheezing + nasal flaring',
+      clinical_pearl: 'Use Palivizumab for prevention',
+      treatment: 'Supportive management'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Viral Infections', 'RSV']
+  },
+  {
+    id: 'infectious-disease-viral-79',
+    system: 'Infectious Disease',
+    topic: 'Viral Infections',
+    difficulty: 'medium',
+    front: 'COVID long-term effects',
+    back: {
+      definition: 'Fatigue, dyspnea, cognitive changes',
+      high_yield: 'Post-viral inflammatory changes',
+      clinical_pearl: 'Multisystem involvement',
+      treatment: 'Supportive + rehab'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Viral Infections', 'COVID']
+  },
+  {
+    id: 'infectious-disease-viral-80',
+    system: 'Infectious Disease',
+    topic: 'Viral Infections',
+    difficulty: 'medium',
+    front: 'Hepatitis B reactivation',
+    back: {
+      definition: 'Occurs during immunosuppression',
+      high_yield: 'Monitor HBV DNA in at-risk patients',
+      clinical_pearl: 'Can lead to fulminant hepatitis',
+      treatment: 'Start antiviral prophylaxis'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Viral Infections', 'Hepatitis']
   }
 ];
