@@ -3184,7 +3184,7 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     reviewCount: 0,
     tags: ['Infectious Disease', 'Fungal Infections', 'Prevention']
   },
-  // Viral Infections (1-75 already exist, adding 76-80)
+  // Viral Infections (continuing from existing viral infections, adding the last 5)
   {
     id: 'infectious-disease-viral-1',
     system: 'Infectious Disease',
@@ -4544,5 +4544,414 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0,
     tags: ['Infectious Disease', 'Viral Infections', 'Hepatitis']
+  },
+  // STIs (NEW SECTION)
+  {
+    id: 'infectious-disease-sti-1',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'easy',
+    front: 'Chlamydia trachomatis',
+    back: {
+      definition: 'Obligate intracellular bacterium',
+      high_yield: 'Most common bacterial STI',
+      clinical_pearl: 'Often asymptomatic',
+      treatment: 'Doxycycline 100 mg BID x7 days'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'Chlamydia']
+  },
+  {
+    id: 'infectious-disease-sti-2',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'easy',
+    front: 'Neisseria gonorrhoeae',
+    back: {
+      definition: 'Gram-negative diplococcus',
+      high_yield: 'Causes purulent urethritis',
+      clinical_pearl: 'Co-infection with chlamydia common',
+      treatment: 'Ceftriaxone IM + doxycycline'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'Gonorrhea']
+  },
+  {
+    id: 'infectious-disease-sti-3',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'easy',
+    front: 'Syphilis (Treponema pallidum)',
+    back: {
+      definition: 'Spirochete causing multisystem disease',
+      high_yield: 'Painless chancre in primary stage',
+      clinical_pearl: 'Screen with RPR',
+      treatment: 'Benzathine penicillin G IM'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'Syphilis']
+  },
+  {
+    id: 'infectious-disease-sti-4',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'medium',
+    front: 'Secondary syphilis',
+    back: {
+      definition: 'Systemic treponemal infection',
+      high_yield: 'Diffuse rash including palms/soles',
+      clinical_pearl: 'Condyloma lata highly infectious',
+      treatment: 'Penicillin G IM'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'Syphilis']
+  },
+  {
+    id: 'infectious-disease-sti-5',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'medium',
+    front: 'Tertiary syphilis',
+    back: {
+      definition: 'Late-stage infection',
+      high_yield: 'Gummas, aortitis, neurosyphilis',
+      clinical_pearl: 'Cardiovascular involvement possible',
+      treatment: 'IV penicillin for neurosyphilis'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'Syphilis']
+  },
+  {
+    id: 'infectious-disease-sti-6',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'medium',
+    front: 'Congenital syphilis',
+    back: {
+      definition: 'Vertical transmission',
+      high_yield: 'Snuffles, rash, bone lesions',
+      clinical_pearl: 'Preventable with maternal screening',
+      treatment: 'Penicillin G IV/IM'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'Syphilis']
+  },
+  {
+    id: 'infectious-disease-sti-7',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'easy',
+    front: 'Trichomonas vaginalis',
+    back: {
+      definition: 'Flagellated protozoan',
+      high_yield: 'Green frothy discharge, strawberry cervix',
+      clinical_pearl: 'Men often asymptomatic',
+      treatment: 'Metronidazole 2 g PO once'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'Trichomonas']
+  },
+  {
+    id: 'infectious-disease-sti-8',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'easy',
+    front: 'Bacterial vaginosis (Gardnerella)',
+    back: {
+      definition: 'Polymicrobial imbalance',
+      high_yield: 'Thin gray discharge, fishy odor',
+      clinical_pearl: 'Clue cells on wet prep',
+      treatment: 'Metronidazole PO or gel'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'BV']
+  },
+  {
+    id: 'infectious-disease-sti-9',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'easy',
+    front: 'Candida vulvovaginitis',
+    back: {
+      definition: 'Yeast infection',
+      high_yield: 'Pruritus, thick white discharge',
+      clinical_pearl: 'Normal vaginal pH',
+      treatment: 'Fluconazole PO once'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'Candida']
+  },
+  {
+    id: 'infectious-disease-sti-10',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'easy',
+    front: 'HSV-2 genital herpes',
+    back: {
+      definition: 'Enveloped DNA virus',
+      high_yield: 'Painful vesicles/ulcers',
+      clinical_pearl: 'Recurrent outbreaks common',
+      treatment: 'Valacyclovir'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'HSV']
+  },
+  {
+    id: 'infectious-disease-sti-11',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'easy',
+    front: 'HSV-1 genital infections',
+    back: {
+      definition: 'Oral-to-genital transmission',
+      high_yield: 'Less frequent recurrences',
+      clinical_pearl: 'Can still shed asymptomatically',
+      treatment: 'Valacyclovir'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'HSV']
+  },
+  {
+    id: 'infectious-disease-sti-12',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'medium',
+    front: 'Neonatal HSV',
+    back: {
+      definition: 'Peripartum exposure',
+      high_yield: 'Diffuse vesicles, sepsis-like',
+      clinical_pearl: 'High mortality untreated',
+      treatment: 'IV acyclovir'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'HSV']
+  },
+  {
+    id: 'infectious-disease-sti-13',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'easy',
+    front: 'HPV low-risk strains',
+    back: {
+      definition: 'Types 6 & 11',
+      high_yield: 'Genital warts',
+      clinical_pearl: 'Cosmetic concern only',
+      treatment: 'Cryotherapy or topical agents'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'HPV']
+  },
+  {
+    id: 'infectious-disease-sti-14',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'easy',
+    front: 'HPV high-risk strains',
+    back: {
+      definition: 'Types 16 & 18',
+      high_yield: 'Cervical and anal cancer',
+      clinical_pearl: 'Pap + HPV testing crucial',
+      treatment: 'Vaccination is preventive'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'HPV']
+  },
+  {
+    id: 'infectious-disease-sti-15',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'medium',
+    front: 'Chancroid (Haemophilus ducreyi)',
+    back: {
+      definition: 'Painful genital ulcer',
+      high_yield: 'Tender inguinal adenopathy',
+      clinical_pearl: 'Rarer in U.S.',
+      treatment: 'Azithromycin or ceftriaxone'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'Chancroid']
+  },
+  {
+    id: 'infectious-disease-sti-16',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'medium',
+    front: 'Lymphogranuloma venereum (LGV)',
+    back: {
+      definition: 'Invasive C. trachomatis serovars L1–L3',
+      high_yield: 'Painless ulcer, then painful LAD',
+      clinical_pearl: 'Proctocolitis in MSM',
+      treatment: 'Doxycycline x21 days'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'LGV']
+  },
+  {
+    id: 'infectious-disease-sti-17',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'medium',
+    front: 'Granuloma inguinale (Klebsiella granulomatis)',
+    back: {
+      definition: 'Chronic genital ulceration',
+      high_yield: 'Beefy red painless lesions',
+      clinical_pearl: 'Donovan bodies on smear',
+      treatment: 'Doxycycline x3 weeks+'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'Granuloma inguinale']
+  },
+  {
+    id: 'infectious-disease-sti-18',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'medium',
+    front: 'Gonococcal urethritis',
+    back: {
+      definition: 'Purulent discharge',
+      high_yield: 'Severe dysuria',
+      clinical_pearl: 'Often co-infected with chlamydia',
+      treatment: 'Ceftriaxone + doxy'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'Gonorrhea']
+  },
+  {
+    id: 'infectious-disease-sti-19',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'medium',
+    front: 'Nongonococcal urethritis (NGU)',
+    back: {
+      definition: 'Chlamydia, Mycoplasma genitalium',
+      high_yield: 'Mild or scant discharge',
+      clinical_pearl: 'Persistent symptoms suggest M. genitalium',
+      treatment: 'Doxycycline; azithro/moxi for M. genitalium'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'NGU']
+  },
+  {
+    id: 'infectious-disease-sti-20',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'medium',
+    front: 'Pelvic inflammatory disease (PID)',
+    back: {
+      definition: 'Ascending infection from cervix',
+      high_yield: 'Cervical motion tenderness',
+      clinical_pearl: 'Risk for infertility',
+      treatment: 'Ceftriaxone + doxy + metronidazole'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'PID']
+  },
+  {
+    id: 'infectious-disease-sti-21',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'medium',
+    front: 'Fitz-Hugh–Curtis syndrome',
+    back: {
+      definition: 'PID complication',
+      high_yield: 'RUQ pain from perihepatitis',
+      clinical_pearl: 'Violin-string adhesions',
+      treatment: 'Treat underlying PID'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'PID']
+  },
+  {
+    id: 'infectious-disease-sti-22',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'medium',
+    front: 'Epididymitis (sexually transmitted)',
+    back: {
+      definition: 'Chlamydia/Gonorrhea in <35',
+      high_yield: 'Testicular pain/swelling',
+      clinical_pearl: 'Prehn sign relief',
+      treatment: 'Ceftriaxone + doxy'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'Epididymitis']
+  },
+  {
+    id: 'infectious-disease-sti-23',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'easy',
+    front: 'HIV acute infection',
+    back: {
+      definition: 'Flu-like syndrome after exposure',
+      high_yield: 'High viral load',
+      clinical_pearl: 'Often missed',
+      treatment: 'Start ART immediately'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'HIV']
+  },
+  {
+    id: 'infectious-disease-sti-24',
+    system: 'Infectious Disease',
+    topic: 'STIs',
+    difficulty: 'easy',
+    front: 'HIV chronic infection',
+    back: {
+      definition: 'Progressive CD4 decline',
+      high_yield: 'Opportunistic infections',
+      clinical_pearl: 'Undetectable = untransmittable',
+      treatment: 'Lifelong ART'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'STIs', 'HIV']
   }
 ];
