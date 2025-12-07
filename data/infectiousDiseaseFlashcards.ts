@@ -2537,5 +2537,396 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0,
     tags: ['Infectious Disease', 'Fungal Infections', 'Cryptococcus']
+  },
+  {
+    id: 'infectious-disease-fungal-23',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Cryptococcal meningitis',
+    back: {
+      definition: 'Opportunistic fungal CNS infection',
+      high_yield: 'Elevated opening pressure',
+      clinical_pearl: 'Requires serial LPs',
+      treatment: 'Amphotericin B + flucytosine induction'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Cryptococcus']
+  },
+  {
+    id: 'infectious-disease-fungal-24',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'easy',
+    front: 'Pneumocystis jirovecii (PJP)',
+    back: {
+      definition: 'Opportunistic fungal pneumonia',
+      high_yield: 'Diffuse bilateral interstitial infiltrates',
+      clinical_pearl: 'Seen in AIDS CD4 <200',
+      treatment: 'TMP-SMX ± steroids if severe'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Pneumocystis']
+  },
+  {
+    id: 'infectious-disease-fungal-25',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'PJP prophylaxis',
+    back: {
+      definition: 'Prevents PJP in low CD4',
+      high_yield: 'Indicated when CD4 <200',
+      clinical_pearl: 'Also for transplant patients',
+      treatment: 'TMP-SMX daily or thrice weekly'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Pneumocystis']
+  },
+  {
+    id: 'infectious-disease-fungal-26',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Mucor/Rhizopus species',
+    back: {
+      definition: 'Wide non-septate hyphae',
+      high_yield: 'Causes rhinocerebral mucormycosis',
+      clinical_pearl: 'Seen in DKA and neutropenia',
+      treatment: 'Amphotericin B + urgent surgery'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Mucor']
+  },
+  {
+    id: 'infectious-disease-fungal-27',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Mucormycosis in diabetics',
+    back: {
+      definition: 'Opportunistic rhino-orbital infection',
+      high_yield: 'Black necrotic eschar in nasal cavity',
+      clinical_pearl: 'Rapidly fatal without treatment',
+      treatment: 'Aggressive debridement + amphotericin'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Mucor']
+  },
+  {
+    id: 'infectious-disease-fungal-28',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Fusarium species',
+    back: {
+      definition: 'Hyphae similar to Aspergillus but more resistant',
+      high_yield: 'Causes disseminated infection in neutropenia',
+      clinical_pearl: 'Positive blood cultures possible',
+      treatment: 'Voriconazole or amphotericin B'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Fusarium']
+  },
+  {
+    id: 'infectious-disease-fungal-29',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Scedosporium',
+    back: {
+      definition: 'Environmental mold',
+      high_yield: 'Resistant to amphotericin',
+      clinical_pearl: 'Causes pneumonia or disseminated disease',
+      treatment: 'Voriconazole preferred'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Scedosporium']
+  },
+  {
+    id: 'infectious-disease-fungal-30',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'easy',
+    front: 'Candida parapsilosis',
+    back: {
+      definition: 'Yeast infection linked to TPN and catheters',
+      high_yield: 'Forms biofilms',
+      clinical_pearl: 'Frequent neonatal ICU pathogen',
+      treatment: 'Echinocandin or fluconazole depending on severity'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Candida']
+  },
+  {
+    id: 'infectious-disease-fungal-31',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Candida tropicalis',
+    back: {
+      definition: 'More virulent in neutropenia',
+      high_yield: 'Common in oncology patients',
+      clinical_pearl: 'Higher mortality risk',
+      treatment: 'Echinocandin therapy'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Candida']
+  },
+  {
+    id: 'infectious-disease-fungal-32',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Candida glabrata',
+    back: {
+      definition: 'Yeast with intrinsic azole resistance',
+      high_yield: 'Causes urinary and bloodstream infections',
+      clinical_pearl: 'Reduced fluconazole susceptibility',
+      treatment: 'Echinocandin preferred'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Candida']
+  },
+  {
+    id: 'infectious-disease-fungal-33',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Candida krusei',
+    back: {
+      definition: 'Intrinsic fluconazole resistance',
+      high_yield: 'Causes severe candidemia',
+      clinical_pearl: 'Often nosocomial',
+      treatment: 'Echinocandin or voriconazole'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Candida']
+  },
+  {
+    id: 'infectious-disease-fungal-34',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'easy',
+    front: 'Dermatophyte KOH exam',
+    back: {
+      definition: 'Test for diagnosing tinea',
+      high_yield: 'Shows septate hyphae',
+      clinical_pearl: 'Easily performed bedside',
+      treatment: 'Treat with topical terbinafine'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Dermatophytes']
+  },
+  {
+    id: 'infectious-disease-fungal-35',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Fungal blood cultures',
+    back: {
+      definition: 'Detect yeasts and some molds',
+      high_yield: 'Candida species readily grow',
+      clinical_pearl: 'Not sensitive for molds like Aspergillus',
+      treatment: 'Use galactomannan or β-D-glucan'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Diagnostics']
+  },
+  {
+    id: 'infectious-disease-fungal-36',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'β-D-glucan test',
+    back: {
+      definition: 'Serum fungal marker',
+      high_yield: 'Positive in Candida, PJP, some molds',
+      clinical_pearl: 'Not specific for Aspergillus',
+      treatment: 'Supports diagnosis in high-risk patients'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Diagnostics']
+  },
+  {
+    id: 'infectious-disease-fungal-37',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Galactomannan test',
+    back: {
+      definition: 'Aspergillus antigen assay',
+      high_yield: 'Useful in neutropenic hosts',
+      clinical_pearl: 'False positives with some antibiotics',
+      treatment: 'Guides early therapy'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Diagnostics']
+  },
+  {
+    id: 'infectious-disease-fungal-38',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Cryptococcal antigen test',
+    back: {
+      definition: 'Highly sensitive serum/CSF assay',
+      high_yield: 'Detects cryptococcal polysaccharide',
+      clinical_pearl: 'Used for screening in HIV patients',
+      treatment: 'Confirms diagnosis without culture'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Diagnostics']
+  },
+  {
+    id: 'infectious-disease-fungal-39',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'easy',
+    front: 'Terbinafine mechanism',
+    back: {
+      definition: 'Blocks squalene epoxidase',
+      high_yield: 'Targets dermatophytes',
+      clinical_pearl: 'Minimal systemic toxicity',
+      treatment: 'First-line for onychomycosis'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Antifungals']
+  },
+  {
+    id: 'infectious-disease-fungal-40',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'easy',
+    front: 'Azoles mechanism',
+    back: {
+      definition: 'Inhibit fungal ergosterol synthesis',
+      high_yield: 'Broad-spectrum antifungals',
+      clinical_pearl: 'QT prolongation risk',
+      treatment: 'Used for Candida and some molds'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Antifungals']
+  },
+  {
+    id: 'infectious-disease-fungal-41',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'easy',
+    front: 'Echinocandins mechanism',
+    back: {
+      definition: 'Inhibit β-glucan synthesis in cell wall',
+      high_yield: 'Excellent for Candida',
+      clinical_pearl: 'Not effective for Cryptococcus',
+      treatment: 'Micafungin/caspofungin'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Antifungals']
+  },
+  {
+    id: 'infectious-disease-fungal-42',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'easy',
+    front: 'Amphotericin B mechanism',
+    back: {
+      definition: 'Binds ergosterol, creates pores',
+      high_yield: 'Broadest antifungal spectrum',
+      clinical_pearl: 'Nephrotoxicity limited by liposomal formulations',
+      treatment: 'Used for severe systemic infections'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Antifungals']
+  },
+  {
+    id: 'infectious-disease-fungal-43',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Itraconazole uses',
+    back: {
+      definition: 'Active against Histoplasma & Blastomyces',
+      high_yield: 'Requires gastric acidity for absorption',
+      clinical_pearl: 'Drug-level monitoring needed',
+      treatment: 'Used in endemic mycoses'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Antifungals']
+  },
+  {
+    id: 'infectious-disease-fungal-44',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Voriconazole uses',
+    back: {
+      definition: 'Preferred for Aspergillus',
+      high_yield: 'Visual disturbances common',
+      clinical_pearl: 'Monitor levels for toxicity',
+      treatment: 'Also active vs Fusarium'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Antifungals']
+  },
+  {
+    id: 'infectious-disease-fungal-45',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Posaconazole uses',
+    back: {
+      definition: 'Prophylaxis in high-risk neutropenic patients',
+      high_yield: 'Broad mold activity',
+      clinical_pearl: 'Oral suspension requires food',
+      treatment: 'Reduces risk of invasive fungal disease'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Antifungals']
   }
 ];
