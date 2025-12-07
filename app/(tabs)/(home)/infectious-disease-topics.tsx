@@ -12,6 +12,11 @@ const INFECTIOUS_DISEASE_TOPICS = [
     name: 'Bacterial Organisms',
     icon: 'circle.grid.cross.fill',
     description: 'Gram-positive and Gram-negative bacteria'
+  },
+  {
+    name: 'Fungal Infections',
+    icon: 'leaf.fill',
+    description: 'Systemic and opportunistic fungal pathogens'
   }
 ];
 
