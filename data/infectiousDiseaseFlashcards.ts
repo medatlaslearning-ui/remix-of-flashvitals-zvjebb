@@ -1892,5 +1892,239 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0,
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Neisseria']
+  },
+  {
+    id: 'infectious-disease-bacterial-106',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Gonorrhea + chlamydia co-infection',
+    back: {
+      definition: 'Gram-negative diplococcus often coexisting with C. trachomatis',
+      high_yield: 'Treat both pathogens empirically',
+      clinical_pearl: 'Ceftriaxone + doxycycline regimen',
+      treatment: 'Ceftriaxone + doxycycline regimen'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Neisseria']
+  },
+  {
+    id: 'infectious-disease-bacterial-107',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Haemophilus influenzae type b epiglottitis',
+    back: {
+      definition: 'Gram-negative encapsulated coccobacillus',
+      high_yield: 'Rapid upper airway obstruction in children',
+      clinical_pearl: 'IV ceftriaxone + airway management; prevent with Hib vaccine',
+      treatment: 'IV ceftriaxone + airway management; prevent with Hib vaccine'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Haemophilus']
+  },
+  {
+    id: 'infectious-disease-bacterial-108',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Moraxella catarrhalis otitis media',
+    back: {
+      definition: 'Gram-negative diplococcus',
+      high_yield: 'Common cause of AOM in children',
+      clinical_pearl: 'Amoxicillin-clavulanate or second-generation cephalosporin',
+      treatment: 'Amoxicillin-clavulanate or second-generation cephalosporin'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Moraxella']
+  },
+  {
+    id: 'infectious-disease-bacterial-109',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Vibrio vulnificus wound infection',
+    back: {
+      definition: 'Gram-negative curved rod from seawater',
+      high_yield: 'Causes necrotizing infection in liver disease patients',
+      clinical_pearl: 'Doxycycline + third-generation cephalosporin',
+      treatment: 'Doxycycline + third-generation cephalosporin'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Vibrio']
+  },
+  {
+    id: 'infectious-disease-bacterial-110',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Salmonella osteomyelitis in sickle cell',
+    back: {
+      definition: 'Gram-negative rod',
+      high_yield: 'Predisposed in sickle cell disease',
+      clinical_pearl: 'Ceftriaxone or fluoroquinolone based on susceptibility',
+      treatment: 'Ceftriaxone or fluoroquinolone based on susceptibility'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Salmonella']
+  },
+  {
+    id: 'infectious-disease-bacterial-111',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Shigella dysentery',
+    back: {
+      definition: 'Gram-negative non-motile rod',
+      high_yield: 'Low infectious dose and person-to-person spread',
+      clinical_pearl: 'Supportive care; azithromycin or ceftriaxone for severe disease',
+      treatment: 'Supportive care; azithromycin or ceftriaxone for severe disease'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Shigella']
+  },
+  {
+    id: 'infectious-disease-bacterial-112',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Legionella severe CAP',
+    back: {
+      definition: 'Gram-negative intracellular bacillus',
+      high_yield: 'Hyponatremia, GI symptoms, and pneumonia',
+      clinical_pearl: 'IV azithromycin or levofloxacin',
+      treatment: 'IV azithromycin or levofloxacin'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Legionella']
+  },
+  {
+    id: 'infectious-disease-bacterial-113',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Bacteroides intra-abdominal abscess',
+    back: {
+      definition: 'Gram-negative anaerobic rod',
+      high_yield: 'Polymicrobial abscess formation',
+      clinical_pearl: 'Piperacillin-tazobactam or carbapenem',
+      treatment: 'Piperacillin-tazobactam or carbapenem'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Bacteroides']
+  },
+  {
+    id: 'infectious-disease-bacterial-114',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Fusobacterium Lemierre syndrome',
+    back: {
+      definition: 'Gram-negative anaerobic rod',
+      high_yield: 'Jugular vein thrombophlebitis after pharyngitis',
+      clinical_pearl: 'Ampicillin-sulbactam or piperacillin-tazobactam; consider anticoagulation',
+      treatment: 'Ampicillin-sulbactam or piperacillin-tazobactam; consider anticoagulation'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Fusobacterium']
+  },
+  {
+    id: 'infectious-disease-bacterial-115',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Pasteurella bite wound infection',
+    back: {
+      definition: 'Gram-negative coccobacillus from cats/dogs',
+      high_yield: 'Rapidly progressive cellulitis',
+      clinical_pearl: 'Amoxicillin-clavulanate',
+      treatment: 'Amoxicillin-clavulanate'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Pasteurella']
+  },
+  {
+    id: 'infectious-disease-bacterial-116',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Brucella undulant fever',
+    back: {
+      definition: 'Gram-negative intracellular coccobacillus',
+      high_yield: 'Relapsing fever, sweats, and arthralgias',
+      clinical_pearl: 'Doxycycline + rifampin for at least 6 weeks',
+      treatment: 'Doxycycline + rifampin for at least 6 weeks'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Brucella']
+  },
+  {
+    id: 'infectious-disease-bacterial-117',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Francisella ulceroglandular tularemia',
+    back: {
+      definition: 'Gram-negative coccobacillus',
+      high_yield: 'Ulcer + lymphadenopathy after tick/rabbit exposure',
+      clinical_pearl: 'Streptomycin or gentamicin',
+      treatment: 'Streptomycin or gentamicin'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Francisella']
+  },
+  {
+    id: 'infectious-disease-bacterial-118',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Neisseria meningitidis meningococcemia',
+    back: {
+      definition: 'Gram-negative diplococcus causing sepsis',
+      high_yield: 'Purpura, shock, rapid deterioration',
+      clinical_pearl: 'High-dose IV ceftriaxone + supportive care; early treatment critical',
+      treatment: 'High-dose IV ceftriaxone + supportive care; early treatment critical'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Neisseria']
   }
 ];
