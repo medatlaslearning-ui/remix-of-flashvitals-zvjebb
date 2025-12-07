@@ -2126,5 +2126,41 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0,
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Neisseria']
+  },
+  {
+    id: 'infectious-disease-bacterial-119',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Francisella ulceroglandular tularemia',
+    back: {
+      definition: 'Gram-negative coccobacillus',
+      high_yield: 'Ulcer + lymphadenopathy after tick/rabbit exposure',
+      clinical_pearl: 'Streptomycin or gentamicin',
+      treatment: 'Streptomycin or gentamicin'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Francisella']
+  },
+  {
+    id: 'infectious-disease-bacterial-120',
+    system: 'Infectious Disease',
+    topic: 'Bacterial Organisms',
+    difficulty: 'medium',
+    front: 'Neisseria meningitidis meningococcemia',
+    back: {
+      definition: 'Gram-negative diplococcus causing sepsis',
+      high_yield: 'Purpura, shock, rapid deterioration',
+      clinical_pearl: 'High-dose IV ceftriaxone + supportive care; early treatment critical',
+      treatment: 'High-dose IV ceftriaxone + supportive care; early treatment critical'
+    },
+    color: 'red',
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Neisseria']
   }
 ];
