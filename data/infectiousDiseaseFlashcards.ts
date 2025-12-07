@@ -2162,5 +2162,380 @@ export const infectiousDiseaseFlashcards: Flashcard[] = [
     favorite: false,
     reviewCount: 0,
     tags: ['Infectious Disease', 'Bacterial Organisms', 'Gram Negative', 'Neisseria']
+  },
+  // Fungal Infections
+  {
+    id: 'infectious-disease-fungal-1',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'easy',
+    front: 'Candida albicans',
+    back: {
+      definition: 'Yeast forming pseudohyphae',
+      high_yield: 'Most common cause of candidiasis',
+      clinical_pearl: 'Normal flora overgrowth with antibiotics',
+      treatment: 'Fluconazole for uncomplicated infections'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Candida']
+  },
+  {
+    id: 'infectious-disease-fungal-2',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'easy',
+    front: 'Candida albicans thrush',
+    back: {
+      definition: 'White, scrapable plaques on oral mucosa',
+      high_yield: 'Seen in infants, diabetics, inhaled steroid users',
+      clinical_pearl: 'Does not bleed when scraped',
+      treatment: 'Nystatin swish or fluconazole'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Candida']
+  },
+  {
+    id: 'infectious-disease-fungal-3',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'easy',
+    front: 'Candida vulvovaginitis',
+    back: {
+      definition: 'Yeast infection causing pruritus and discharge',
+      high_yield: 'Thick "cottage cheese" discharge',
+      clinical_pearl: 'More common after antibiotics or in diabetics',
+      treatment: 'Topical azoles or fluconazole PO once'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Candida']
+  },
+  {
+    id: 'infectious-disease-fungal-4',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'easy',
+    front: 'Candida esophagitis',
+    back: {
+      definition: 'Yeast infection of the esophagus',
+      high_yield: 'Odynophagia in immunocompromised',
+      clinical_pearl: 'Presence indicates advanced immunosuppression',
+      treatment: 'Fluconazole PO/IV'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Candida']
+  },
+  {
+    id: 'infectious-disease-fungal-5',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'easy',
+    front: 'Candidemia',
+    back: {
+      definition: 'Candida bloodstream infection',
+      high_yield: 'Often from central lines',
+      clinical_pearl: 'Remove lines promptly',
+      treatment: 'Echinocandin (micafungin) first-line'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Candida']
+  },
+  {
+    id: 'infectious-disease-fungal-6',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Candida auris',
+    back: {
+      definition: 'Multidrug-resistant yeast',
+      high_yield: 'Nosocomial outbreaks with high mortality',
+      clinical_pearl: 'Difficult to eradicate from surfaces',
+      treatment: 'Echinocandins preferred; consult ID'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Candida']
+  },
+  {
+    id: 'infectious-disease-fungal-7',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'easy',
+    front: 'Dermatophytes (tinea corporis)',
+    back: {
+      definition: 'Fungal infection of skin',
+      high_yield: 'Annular lesions with central clearing',
+      clinical_pearl: '"Ringworm" appearance',
+      treatment: 'Topical terbinafine'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Dermatophytes']
+  },
+  {
+    id: 'infectious-disease-fungal-8',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'easy',
+    front: 'Tinea pedis',
+    back: {
+      definition: 'Fungal infection of the feet',
+      high_yield: 'Interdigital scaling, itching',
+      clinical_pearl: 'Most common dermatophyte infection',
+      treatment: 'Topical antifungals (terbinafine)'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Dermatophytes']
+  },
+  {
+    id: 'infectious-disease-fungal-9',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'easy',
+    front: 'Tinea capitis',
+    back: {
+      definition: 'Scalp fungal infection',
+      high_yield: 'Patchy alopecia with scaling',
+      clinical_pearl: 'Requires systemic therapy',
+      treatment: 'Oral griseofulvin or terbinafine'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Dermatophytes']
+  },
+  {
+    id: 'infectious-disease-fungal-10',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'easy',
+    front: 'Tinea unguium (onychomycosis)',
+    back: {
+      definition: 'Nail fungal infection',
+      high_yield: 'Thickened, yellow nails',
+      clinical_pearl: 'Long treatment course',
+      treatment: 'Oral terbinafine'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Dermatophytes']
+  },
+  {
+    id: 'infectious-disease-fungal-11',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'easy',
+    front: 'Malassezia (tinea versicolor)',
+    back: {
+      definition: 'Yeast causing hypopigmented patches',
+      high_yield: 'KOH shows "spaghetti and meatballs"',
+      clinical_pearl: 'Worse in humid conditions',
+      treatment: 'Topical selenium or ketoconazole'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Malassezia']
+  },
+  {
+    id: 'infectious-disease-fungal-12',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Sporothrix schenckii',
+    back: {
+      definition: 'Dimorphic fungus causing nodular lesions along lymphatics',
+      high_yield: 'Rose gardener\'s disease',
+      clinical_pearl: 'Linear spread pattern',
+      treatment: 'Itraconazole PO'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Sporothrix']
+  },
+  {
+    id: 'infectious-disease-fungal-13',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Histoplasma capsulatum',
+    back: {
+      definition: 'Dimorphic fungus from bat/bird droppings',
+      high_yield: 'Mississippi/Ohio River Valleys',
+      clinical_pearl: 'CXR may show calcified granulomas',
+      treatment: 'Itraconazole or amphotericin B for severe disease'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Histoplasma']
+  },
+  {
+    id: 'infectious-disease-fungal-14',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Histoplasma disseminated',
+    back: {
+      definition: 'Spread in immunocompromised',
+      high_yield: 'Fever, hepatosplenomegaly',
+      clinical_pearl: 'Consider in AIDS CD4 <150',
+      treatment: 'Amphotericin B then itraconazole maintenance'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Histoplasma']
+  },
+  {
+    id: 'infectious-disease-fungal-15',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Blastomyces dermatitidis',
+    back: {
+      definition: 'Broad-based budding yeast',
+      high_yield: 'Great Lakes & Midwest',
+      clinical_pearl: 'Causes lung, skin, and bone infections',
+      treatment: 'Itraconazole for mild; amphotericin B for severe'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Blastomyces']
+  },
+  {
+    id: 'infectious-disease-fungal-16',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Coccidioides immitis',
+    back: {
+      definition: 'Dimorphic fungus with spherules',
+      high_yield: 'Southwestern U.S. ("Valley Fever")',
+      clinical_pearl: 'Erythema nodosum common',
+      treatment: 'Fluconazole or amphotericin B depending on severity'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Coccidioides']
+  },
+  {
+    id: 'infectious-disease-fungal-17',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Coccidioides meningitis',
+    back: {
+      definition: 'Fungal meningitis in endemic areas',
+      high_yield: 'Chronic headache with lymphocytic CSF',
+      clinical_pearl: 'Requires lifelong therapy',
+      treatment: 'High-dose fluconazole'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Coccidioides']
+  },
+  {
+    id: 'infectious-disease-fungal-18',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'easy',
+    front: 'Aspergillus fumigatus',
+    back: {
+      definition: 'Septate hyphae with acute angle branching',
+      high_yield: 'Causes allergic, colonizing, or invasive disease',
+      clinical_pearl: 'Risk highest in neutropenia',
+      treatment: 'Voriconazole first-line'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Aspergillus']
+  },
+  {
+    id: 'infectious-disease-fungal-19',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Allergic bronchopulmonary aspergillosis (ABPA)',
+    back: {
+      definition: 'Hypersensitivity reaction to Aspergillus',
+      high_yield: 'Occurs in asthma and CF patients',
+      clinical_pearl: 'High IgE, eosinophilia',
+      treatment: 'Steroids + antifungal'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Aspergillus']
+  },
+  {
+    id: 'infectious-disease-fungal-20',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Aspergilloma',
+    back: {
+      definition: 'Fungus ball in preexisting lung cavity',
+      high_yield: 'Can cause hemoptysis',
+      clinical_pearl: 'Seen in TB cavities',
+      treatment: 'Surgical resection or observation'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Aspergillus']
+  },
+  {
+    id: 'infectious-disease-fungal-21',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'medium',
+    front: 'Invasive aspergillosis',
+    back: {
+      definition: 'Angioinvasive fungal infection',
+      high_yield: 'Causes pulmonary nodules with halo sign',
+      clinical_pearl: 'Occurs in prolonged neutropenia',
+      treatment: 'Voriconazole'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Aspergillus']
+  },
+  {
+    id: 'infectious-disease-fungal-22',
+    system: 'Infectious Disease',
+    topic: 'Fungal Infections',
+    difficulty: 'easy',
+    front: 'Cryptococcus neoformans',
+    back: {
+      definition: 'Encapsulated yeast',
+      high_yield: 'Causes meningitis in AIDS',
+      clinical_pearl: 'India ink shows budding yeast',
+      treatment: 'Amphotericin B + flucytosine then fluconazole'
+    },
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    tags: ['Infectious Disease', 'Fungal Infections', 'Cryptococcus']
   }
 ];
