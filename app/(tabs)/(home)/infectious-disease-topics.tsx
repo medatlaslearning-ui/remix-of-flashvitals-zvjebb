@@ -17,6 +17,11 @@ const INFECTIOUS_DISEASE_TOPICS = [
     name: 'Fungal Infections',
     icon: 'leaf.fill',
     description: 'Systemic and opportunistic fungal pathogens'
+  },
+  {
+    name: 'Viral Infections',
+    icon: 'waveform.path.ecg',
+    description: 'Common viral pathogens'
   }
 ];
 
