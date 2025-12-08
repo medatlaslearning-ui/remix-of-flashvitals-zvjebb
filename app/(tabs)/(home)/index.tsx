@@ -74,6 +74,15 @@ export default function HomeScreen() {
     ));
   }, [allFlashcards]);
 
+  // Get unique topics for Neurology
+  const neurologyTopics = useMemo(() => {
+    return Array.from(new Set(
+      allFlashcards
+        .filter(card => card.system === 'Neurology')
+        .map(card => card.topic)
+    ));
+  }, [allFlashcards]);
+
   const handleSystemPress = (system: string) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     console.log('Navigating to system:', system);
@@ -91,6 +100,8 @@ export default function HomeScreen() {
       router.push('/(tabs)/(home)/hematology-topics');
     } else if (system === 'Infectious Disease') {
       router.push('/(tabs)/(home)/infectious-disease-topics');
+    } else if (system === 'Neurology') {
+      router.push('/(tabs)/(home)/neurology-topics');
     }
   };
 
@@ -295,6 +306,25 @@ export default function HomeScreen() {
                 <Text style={styles.systemTitle}>Infectious Disease</Text>
                 <Text style={styles.systemSubtitle}>
                   {allFlashcards.filter(c => c.system === 'Infectious Disease').length} cards • {infectiousDiseaseTopics.length} topics
+                </Text>
+              </View>
+              <IconSymbol name="chevron.right" size={24} color={colors.textSecondary} />
+            </View>
+          </Pressable>
+
+          {/* Neurology System */}
+          <Pressable 
+            style={styles.systemCard}
+            onPress={() => handleSystemPress('Neurology')}
+          >
+            <View style={styles.systemHeader}>
+              <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
+                <IconSymbol name="brain" size={32} color={colors.secondary} />
+              </View>
+              <View style={styles.systemInfo}>
+                <Text style={styles.systemTitle}>Neurology</Text>
+                <Text style={styles.systemSubtitle}>
+                  {allFlashcards.filter(c => c.system === 'Neurology').length} cards • {neurologyTopics.length} topics
                 </Text>
               </View>
               <IconSymbol name="chevron.right" size={24} color={colors.textSecondary} />
