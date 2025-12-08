@@ -27,6 +27,11 @@ const INFECTIOUS_DISEASE_TOPICS = [
     name: 'STIs',
     icon: 'exclamationmark.triangle.fill',
     description: 'Sexually transmitted infections'
+  },
+  {
+    name: 'Parasitic Infections',
+    icon: 'ant.fill',
+    description: 'Protozoan and helminthic parasites'
   }
 ];
 
