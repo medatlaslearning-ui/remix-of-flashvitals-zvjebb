@@ -83,6 +83,15 @@ export default function HomeScreen() {
     ));
   }, [allFlashcards]);
 
+  // Get unique topics for Emergency Medicine & Trauma
+  const emergencyMedicineTopics = useMemo(() => {
+    return Array.from(new Set(
+      allFlashcards
+        .filter(card => card.system === 'Emergency Medicine & Trauma')
+        .map(card => card.topic)
+    ));
+  }, [allFlashcards]);
+
   const handleSystemPress = (system: string) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     console.log('Navigating to system:', system);
@@ -102,6 +111,8 @@ export default function HomeScreen() {
       router.push('/(tabs)/(home)/infectious-disease-topics');
     } else if (system === 'Neurology') {
       router.push('/(tabs)/(home)/neurology-topics');
+    } else if (system === 'Emergency Medicine & Trauma') {
+      router.push('/(tabs)/(home)/emergency-medicine-topics');
     }
   };
 
@@ -325,6 +336,25 @@ export default function HomeScreen() {
                 <Text style={styles.systemTitle}>Neurology</Text>
                 <Text style={styles.systemSubtitle}>
                   {allFlashcards.filter(c => c.system === 'Neurology').length} cards • {neurologyTopics.length} topics
+                </Text>
+              </View>
+              <IconSymbol name="chevron.right" size={24} color={colors.textSecondary} />
+            </View>
+          </Pressable>
+
+          {/* Emergency Medicine & Trauma System */}
+          <Pressable 
+            style={styles.systemCard}
+            onPress={() => handleSystemPress('Emergency Medicine & Trauma')}
+          >
+            <View style={styles.systemHeader}>
+              <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
+                <IconSymbol name="cross.case.fill" size={32} color={colors.error} />
+              </View>
+              <View style={styles.systemInfo}>
+                <Text style={styles.systemTitle}>Emergency Medicine & Trauma</Text>
+                <Text style={styles.systemSubtitle}>
+                  {allFlashcards.filter(c => c.system === 'Emergency Medicine & Trauma').length} cards • {emergencyMedicineTopics.length} topics
                 </Text>
               </View>
               <IconSymbol name="chevron.right" size={24} color={colors.textSecondary} />

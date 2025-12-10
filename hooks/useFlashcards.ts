@@ -10,6 +10,7 @@ import { endocrineFlashcards } from '@/data/endocrineFlashcards';
 import { hematologyFlashcards } from '@/data/hematologyFlashcards';
 import { infectiousDiseaseFlashcards } from '@/data/infectiousDiseaseFlashcards';
 import { neurologyFlashcards } from '@/data/neurologyFlashcards';
+import { emergencyMedicineFlashcards } from '@/data/emergencyMedicineFlashcards';
 
 const STORAGE_KEY = '@flashcards_state';
 
@@ -36,7 +37,8 @@ export function useFlashcards() {
           ...endocrineFlashcards,
           ...hematologyFlashcards,
           ...infectiousDiseaseFlashcards,
-          ...neurologyFlashcards
+          ...neurologyFlashcards,
+          ...emergencyMedicineFlashcards
         ], storedCards);
         setAllFlashcards(merged);
       } else {
@@ -48,7 +50,8 @@ export function useFlashcards() {
           ...endocrineFlashcards,
           ...hematologyFlashcards,
           ...infectiousDiseaseFlashcards,
-          ...neurologyFlashcards
+          ...neurologyFlashcards,
+          ...emergencyMedicineFlashcards
         ]);
       }
     } catch (error) {
@@ -61,7 +64,8 @@ export function useFlashcards() {
         ...endocrineFlashcards,
         ...hematologyFlashcards,
         ...infectiousDiseaseFlashcards,
-        ...neurologyFlashcards
+        ...neurologyFlashcards,
+        ...emergencyMedicineFlashcards
       ]);
     }
   };
