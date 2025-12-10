@@ -3463,7 +3463,7 @@ export const neurologyFlashcards: Flashcard[] = [
     system: 'Neurology',
     topic: 'Cognitive & Demyelinating Disorders',
     difficulty: 'easy',
-    front: 'Alzheimer&apos;s disease',
+    front: 'Alzheimer\'s disease',
     back: {
       definition: 'Progressive memory-predominant dementia',
       high_yield: 'Amyloid plaques and tau tangles',
@@ -3480,7 +3480,7 @@ export const neurologyFlashcards: Flashcard[] = [
     system: 'Neurology',
     topic: 'Cognitive & Demyelinating Disorders',
     difficulty: 'medium',
-    front: 'Alzheimer&apos;s diagnosis',
+    front: 'Alzheimer\'s diagnosis',
     back: {
       definition: 'Clinical + cognitive testing',
       high_yield: 'Gradual decline in memory and learning',
@@ -3514,7 +3514,7 @@ export const neurologyFlashcards: Flashcard[] = [
     system: 'Neurology',
     topic: 'Cognitive & Demyelinating Disorders',
     difficulty: 'medium',
-    front: 'Parkinson&apos;s disease dementia',
+    front: 'Parkinson\'s disease dementia',
     back: {
       definition: 'Dementia developing after PD onset',
       high_yield: 'Executive dysfunction and visuospatial issues',
