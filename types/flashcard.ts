@@ -12,7 +12,7 @@ export interface Flashcard {
   topic: string;
   front: string;
   back: FlashcardBack;
-  tags: string[];
+  tags?: string[];
   bookmarked: boolean;
   favorite: boolean;
   reviewCount: number;

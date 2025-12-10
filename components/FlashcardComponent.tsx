@@ -26,7 +26,8 @@ export function FlashcardComponent({
     front: flashcard.front.substring(0, 30) + '...',
     isFlipped,
     bookmarked: flashcard.bookmarked,
-    favorite: flashcard.favorite
+    favorite: flashcard.favorite,
+    hasTags: !!flashcard.tags
   });
 
   const handleFlip = () => {
@@ -95,13 +96,15 @@ export function FlashcardComponent({
             <View style={styles.cardFace}>
               <Text style={styles.label}>Question</Text>
               <Text style={styles.frontText}>{flashcard.front}</Text>
-              <View style={styles.tags}>
-                {flashcard.tags.map((tag, index) => (
-                  <View key={index} style={styles.tag}>
-                    <Text style={styles.tagText}>{tag}</Text>
-                  </View>
-                ))}
-              </View>
+              {flashcard.tags && flashcard.tags.length > 0 && (
+                <View style={styles.tags}>
+                  {flashcard.tags.map((tag, index) => (
+                    <View key={index} style={styles.tag}>
+                      <Text style={styles.tagText}>{tag}</Text>
+                    </View>
+                  ))}
+                </View>
+              )}
             </View>
           ) : (
             // Back of card
@@ -138,13 +141,15 @@ export function FlashcardComponent({
                 </View>
               )}
 
-              <View style={styles.tags}>
-                {flashcard.tags.map((tag, index) => (
-                  <View key={index} style={styles.tag}>
-                    <Text style={styles.tagText}>{tag}</Text>
-                  </View>
-                ))}
-              </View>
+              {flashcard.tags && flashcard.tags.length > 0 && (
+                <View style={styles.tags}>
+                  {flashcard.tags.map((tag, index) => (
+                    <View key={index} style={styles.tag}>
+                      <Text style={styles.tagText}>{tag}</Text>
+                    </View>
+                  ))}
+                </View>
+              )}
             </View>
           )}
         </ScrollView>
