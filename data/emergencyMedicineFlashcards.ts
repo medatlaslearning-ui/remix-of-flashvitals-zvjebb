@@ -395,6 +395,23 @@ export const emergencyMedicineFlashcards: Flashcard[] = [
     reviewCount: 0,
   },
   {
+    id: 'em-shock-24',
+    system: 'Emergency Medicine & Trauma',
+    topic: 'Shock & Resuscitation',
+    difficulty: 'easy',
+    front: 'Signs of impending respiratory failure',
+    back: {
+      definition: 'Altered mental status, inability to speak, accessory muscle use',
+      high_yield: 'Hypoxia and hypercarbia are late signs',
+      clinical_pearl: 'Secure airway before complete decompensation',
+    },
+    treatment: 'Early intubation if indicated',
+    tags: ['Emergency Medicine', 'Airway', 'Respiratory failure', 'Assessment'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+  },
+  {
     id: 'em-shock-25',
     system: 'Emergency Medicine & Trauma',
     topic: 'Shock & Resuscitation',
