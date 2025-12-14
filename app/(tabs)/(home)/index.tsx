@@ -149,6 +149,11 @@ export default function HomeScreen() {
     router.push('/(tabs)/(home)/admin');
   };
 
+  const handleDrAvaSalta = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    router.push('/(tabs)/(home)/dr-ava-salta');
+  };
+
   return (
     <>
       <Stack.Screen
@@ -158,6 +163,23 @@ export default function HomeScreen() {
         }}
       />
       <ScrollView style={commonStyles.container} contentContainerStyle={styles.content}>
+        {/* Learn with Dr. Ava Salta Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Learn with Dr. Ava Salta</Text>
+          <Pressable style={styles.drAvaCard} onPress={handleDrAvaSalta}>
+            <View style={styles.drAvaIconContainer}>
+              <IconSymbol name="person.circle.fill" size={48} color={colors.card} />
+            </View>
+            <View style={styles.drAvaContent}>
+              <Text style={styles.drAvaTitle}>AI Medical Education Assistant</Text>
+              <Text style={styles.drAvaSubtitle}>
+                Ask questions and learn with interactive video responses powered by AI
+              </Text>
+            </View>
+            <IconSymbol name="chevron.right" size={24} color={colors.card} />
+          </Pressable>
+        </View>
+
         {/* Quick Actions */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Quick Actions</Text>
@@ -387,6 +409,39 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: colors.text,
     marginBottom: 16,
+  },
+  drAvaCard: {
+    backgroundColor: colors.primary,
+    padding: 20,
+    borderRadius: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    boxShadow: '0px 4px 12px rgba(41, 121, 255, 0.3)',
+    elevation: 5,
+  },
+  drAvaIconContainer: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 16,
+  },
+  drAvaContent: {
+    flex: 1,
+  },
+  drAvaTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: colors.card,
+    marginBottom: 4,
+  },
+  drAvaSubtitle: {
+    fontSize: 14,
+    color: colors.card,
+    opacity: 0.9,
+    lineHeight: 20,
   },
   quickActionsGrid: {
     flexDirection: 'row',

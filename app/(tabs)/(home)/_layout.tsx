@@ -16,6 +16,12 @@ export default function HomeLayout() {
         }}
       />
       <Stack.Screen
+        name="dr-ava-salta"
+        options={{
+          headerShown: true,
+        }}
+      />
+      <Stack.Screen
         name="flashcards"
         options={{
           headerShown: true,
