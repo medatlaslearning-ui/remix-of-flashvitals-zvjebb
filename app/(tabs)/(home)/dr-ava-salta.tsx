@@ -1,6 +1,6 @@
 
-import React, { useState, useRef } from 'react';
-import { View, Text, StyleSheet, ScrollView, Pressable, TextInput, ActivityIndicator, Platform } from 'react-native';
+import React, { useState, useRef, useEffect } from 'react';
+import { View, Text, StyleSheet, ScrollView, Pressable, TextInput, ActivityIndicator, Platform, Dimensions, Image } from 'react-native';
 import { Stack } from 'expo-router';
 import { colors, commonStyles } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
@@ -9,6 +9,9 @@ import { WebView } from 'react-native-webview';
 
 const D_ID_API_KEY = 'cGF0cmlja3NoZXJsb2NrNDExQGdtYWlsLmNvbQ:yuPvdNJE9EcynkqSQeuco';
 const D_ID_API_URL = 'https://api.d-id.com';
+
+// Static fallback image for Dr. Ava Salta
+const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=711&fit=crop';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -21,12 +24,21 @@ export default function DrAvaSaltaScreen() {
   const [isLoading, setIsLoading] = useState(false);
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
   const [isGeneratingVideo, setIsGeneratingVideo] = useState(false);
+  const [isVideoLoading, setIsVideoLoading] = useState(false);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const scrollViewRef = useRef<ScrollView>(null);
+  const webViewRef = useRef<WebView>(null);
+
+  // Calculate video dimensions (9:16 aspect ratio)
+  const screenWidth = Dimensions.get('window').width;
+  const videoWidth = Math.min(screenWidth * 0.9, 400);
+  const videoHeight = videoWidth * (16 / 9);
 
   // Function to create a talk with D-ID
   const createTalk = async (text: string) => {
     try {
       setIsGeneratingVideo(true);
+      setIsVideoLoading(true);
       console.log('Creating D-ID talk with text:', text);
 
       const response = await fetch(`${D_ID_API_URL}/talks`, {
@@ -71,6 +83,7 @@ export default function DrAvaSaltaScreen() {
         role: 'assistant',
         content: 'Sorry, I encountered an error generating the video. Please try again.',
       }]);
+      setIsVideoLoading(false);
     } finally {
       setIsGeneratingVideo(false);
     }
@@ -109,6 +122,7 @@ export default function DrAvaSaltaScreen() {
           setTimeout(poll, 2000);
         } else {
           throw new Error('Video generation timeout');
+          setIsVideoLoading(false);
         }
       } catch (error) {
         console.error('Error polling talk status:', error);
@@ -116,6 +130,7 @@ export default function DrAvaSaltaScreen() {
           role: 'assistant',
           content: 'Sorry, the video generation took too long. Please try again.',
         }]);
+        setIsVideoLoading(false);
       }
     };
 
@@ -157,15 +172,24 @@ export default function DrAvaSaltaScreen() {
     }, 100);
   };
 
-  const handleClearVideo = () => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    setVideoUrl(null);
-  };
-
   const handleClearChat = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     setMessages([]);
     setVideoUrl(null);
+    setIsVideoLoading(false);
+    setIsVideoPlaying(false);
+  };
+
+  // Handle video load
+  const handleVideoLoad = () => {
+    console.log('Video loaded successfully');
+    setIsVideoLoading(false);
+  };
+
+  // Handle video playback start
+  const handleVideoPlaybackStart = () => {
+    console.log('Video playback started');
+    setIsVideoPlaying(true);
   };
 
   return (
@@ -177,20 +201,110 @@ export default function DrAvaSaltaScreen() {
         }}
       />
       <View style={commonStyles.container}>
-        {/* Video Section */}
-        {videoUrl && (
-          <View style={styles.videoContainer}>
-            <WebView
-              source={{ uri: videoUrl }}
-              style={styles.video}
-              allowsFullscreenVideo
-              mediaPlaybackRequiresUserAction={false}
-            />
-            <Pressable style={styles.closeVideoButton} onPress={handleClearVideo}>
-              <IconSymbol name="xmark.circle.fill" size={32} color={colors.card} />
-            </Pressable>
+        {/* Dr. Ava Salta Video Avatar Container */}
+        <View style={styles.avatarContainer}>
+          <View style={[styles.videoWrapper, { width: videoWidth, height: videoHeight }]}>
+            {/* Fallback Image - shown when no video URL */}
+            {!videoUrl && (
+              <View style={styles.fallbackContainer}>
+                <Image
+                  source={{ uri: FALLBACK_IMAGE }}
+                  style={styles.fallbackImage}
+                  resizeMode="cover"
+                />
+                <View style={styles.fallbackOverlay}>
+                  <ActivityIndicator size="large" color={colors.card} />
+                  <Text style={styles.fallbackText}>Avatar loading...</Text>
+                </View>
+              </View>
+            )}
+
+            {/* Video Player - shown when video URL is available */}
+            {videoUrl && (
+              <View style={styles.videoContainer}>
+                {Platform.OS === 'web' ? (
+                  <video
+                    src={videoUrl}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      borderRadius: 16,
+                    }}
+                    controls
+                    autoPlay
+                    onLoadedData={handleVideoLoad}
+                    onPlay={handleVideoPlaybackStart}
+                  />
+                ) : (
+                  <WebView
+                    ref={webViewRef}
+                    source={{
+                      html: `
+                        <!DOCTYPE html>
+                        <html>
+                          <head>
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+                            <style>
+                              body {
+                                margin: 0;
+                                padding: 0;
+                                background: #000;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                height: 100vh;
+                              }
+                              video {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                              }
+                            </style>
+                          </head>
+                          <body>
+                            <video
+                              src="${videoUrl}"
+                              controls
+                              autoplay
+                              playsinline
+                              webkit-playsinline
+                              onloadeddata="window.ReactNativeWebView.postMessage('loaded')"
+                              onplay="window.ReactNativeWebView.postMessage('playing')"
+                            ></video>
+                          </body>
+                        </html>
+                      `,
+                    }}
+                    style={styles.webView}
+                    allowsInlineMediaPlayback
+                    mediaPlaybackRequiresUserAction={false}
+                    onMessage={(event) => {
+                      if (event.nativeEvent.data === 'loaded') {
+                        handleVideoLoad();
+                      } else if (event.nativeEvent.data === 'playing') {
+                        handleVideoPlaybackStart();
+                      }
+                    }}
+                  />
+                )}
+
+                {/* Loading Overlay - shown while video is loading */}
+                {isVideoLoading && !isVideoPlaying && (
+                  <View style={styles.loadingOverlay}>
+                    <ActivityIndicator size="large" color={colors.card} />
+                    <Text style={styles.loadingText}>Dr. Ava Salta is responding...</Text>
+                  </View>
+                )}
+              </View>
+            )}
+
+            {/* Persistent Label */}
+            <View style={styles.labelContainer}>
+              <Text style={styles.labelText}>Dr. Ava Salta</Text>
+            </View>
           </View>
-        )}
+        </View>
 
         {/* Chat Section */}
         <ScrollView
@@ -200,7 +314,12 @@ export default function DrAvaSaltaScreen() {
         >
           {messages.length === 0 && (
             <View style={styles.emptyState}>
-              <IconSymbol name="person.circle.fill" size={80} color={colors.primary} />
+              <IconSymbol
+                ios_icon_name="person.circle.fill"
+                android_material_icon_name="account_circle"
+                size={80}
+                color={colors.primary}
+              />
               <Text style={styles.emptyTitle}>Meet Dr. Ava Salta</Text>
               <Text style={styles.emptySubtitle}>
                 Your AI medical education assistant. Ask me anything about medical topics, and I&apos;ll explain with an interactive video response.
@@ -237,21 +356,19 @@ export default function DrAvaSaltaScreen() {
                 message.role === 'user' ? styles.userMessage : styles.assistantMessage,
               ]}
             >
-              <Text style={styles.messageText}>{message.content}</Text>
+              <Text style={[
+                styles.messageText,
+                message.role === 'user' && styles.userMessageText,
+              ]}>
+                {message.content}
+              </Text>
             </View>
           ))}
 
           {isLoading && (
             <View style={[styles.messageContainer, styles.assistantMessage]}>
               <ActivityIndicator color={colors.primary} />
-              <Text style={styles.loadingText}>Dr. Ava is thinking...</Text>
-            </View>
-          )}
-
-          {isGeneratingVideo && (
-            <View style={[styles.messageContainer, styles.assistantMessage]}>
-              <ActivityIndicator color={colors.primary} />
-              <Text style={styles.loadingText}>Generating video response...</Text>
+              <Text style={styles.messageLoadingText}>Dr. Ava is thinking...</Text>
             </View>
           )}
         </ScrollView>
@@ -260,7 +377,12 @@ export default function DrAvaSaltaScreen() {
         <View style={styles.inputContainer}>
           {messages.length > 0 && (
             <Pressable style={styles.clearButton} onPress={handleClearChat}>
-              <IconSymbol name="trash" size={20} color={colors.error} />
+              <IconSymbol
+                ios_icon_name="trash"
+                android_material_icon_name="delete"
+                size={20}
+                color={colors.error}
+              />
             </Pressable>
           )}
           <TextInput
@@ -278,7 +400,8 @@ export default function DrAvaSaltaScreen() {
             disabled={!inputText.trim() || isLoading || isGeneratingVideo}
           >
             <IconSymbol
-              name="arrow.up.circle.fill"
+              ios_icon_name="arrow.up.circle.fill"
+              android_material_icon_name="arrow_circle_up"
               size={40}
               color={inputText.trim() ? colors.primary : colors.textSecondary}
             />
@@ -290,21 +413,83 @@ export default function DrAvaSaltaScreen() {
 }
 
 const styles = StyleSheet.create({
-  videoContainer: {
+  avatarContainer: {
     width: '100%',
-    height: 300,
-    backgroundColor: colors.card,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 20,
+    backgroundColor: colors.background,
+  },
+  videoWrapper: {
+    position: 'relative',
+    borderRadius: 16,
+    overflow: 'hidden',
+    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+    elevation: 5,
+  },
+  fallbackContainer: {
+    width: '100%',
+    height: '100%',
     position: 'relative',
   },
-  video: {
-    flex: 1,
+  fallbackImage: {
+    width: '100%',
+    height: '100%',
   },
-  closeVideoButton: {
+  fallbackOverlay: {
     position: 'absolute',
-    top: 16,
-    right: 16,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  fallbackText: {
+    color: colors.card,
+    fontSize: 18,
+    fontWeight: '600',
+    marginTop: 12,
+  },
+  videoContainer: {
+    width: '100%',
+    height: '100%',
+    position: 'relative',
+  },
+  webView: {
+    flex: 1,
+    backgroundColor: '#000',
+  },
+  loadingOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loadingText: {
+    color: colors.card,
+    fontSize: 16,
+    fontWeight: '600',
+    marginTop: 12,
+  },
+  labelContainer: {
+    position: 'absolute',
+    bottom: 16,
+    left: 16,
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 8,
+  },
+  labelText: {
+    color: colors.card,
+    fontSize: 14,
+    fontWeight: '600',
   },
   chatContainer: {
     flex: 1,
@@ -374,8 +559,12 @@ const styles = StyleSheet.create({
   messageText: {
     fontSize: 16,
     lineHeight: 22,
+    color: colors.text,
   },
-  loadingText: {
+  userMessageText: {
+    color: colors.card,
+  },
+  messageLoadingText: {
     fontSize: 14,
     color: colors.textSecondary,
     marginTop: 8,
