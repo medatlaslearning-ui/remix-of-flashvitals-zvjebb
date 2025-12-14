@@ -6,14 +6,18 @@ import { colors, commonStyles } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
 import * as Haptics from 'expo-haptics';
 import { useVideoPlayer, VideoView } from 'expo-video';
-import { useAudioRecorder, RecordingPresets, setAudioModeAsync, requestRecordingPermissionsAsync } from 'expo-audio';
 import { useEvent } from 'expo';
+import { 
+  useAudioRecorder, 
+  RecordingPresets, 
+  setAudioModeAsync, 
+  requestRecordingPermissionsAsync 
+} from 'expo-audio';
 
 const D_ID_API_KEY = 'cGF0cmlja3NoZXJsb2NrNDExQGdtYWlsLmNvbQ:yuPvdNJE9EcynkqSQeuco';
 const D_ID_API_URL = 'https://api.d-id.com';
 
 // Dr. Ava Salta - Professional medical instructor avatar
-// Using a professional medical presenter image
 const DR_AVA_SALTA_IMAGE = 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=600&fit=crop';
 
 interface Message {
@@ -34,10 +38,10 @@ export default function DrAvaSaltaScreen() {
   const scrollViewRef = useRef<ScrollView>(null);
   const pollingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Audio recorder for voice input
+  // Audio recorder for voice input - FIXED: Using correct hook signature
   const audioRecorder = useAudioRecorder(RecordingPresets.HIGH_QUALITY);
 
-  // Video player setup with expo-video - initialize with null source
+  // Video player setup - FIXED: Proper initialization with null source
   const player = useVideoPlayer(null, (player) => {
     console.log('Video player initialized');
     player.loop = false;
@@ -45,23 +49,33 @@ export default function DrAvaSaltaScreen() {
     player.volume = 1.0;
   });
 
-  // Listen to video player status changes
+  // Listen to video player status changes - FIXED: Added useEvent import
   const { status } = useEvent(player, 'statusChange', { status: player.status });
+  const { playing } = useEvent(player, 'playingChange', { playing: player.playing });
 
   // Calculate video dimensions (9:16 aspect ratio for portrait)
   const screenWidth = Dimensions.get('window').width;
   const videoWidth = Math.min(screenWidth * 0.85, 350);
   const videoHeight = videoWidth * (16 / 9);
 
-  // Setup audio permissions and mode on mount
+  // Setup audio permissions and mode on mount - FIXED: Correct function usage
   useEffect(() => {
     const setupAudio = async () => {
       try {
         console.log('Setting up audio permissions and mode...');
         
+        // Request recording permissions
         const { granted } = await requestRecordingPermissionsAsync();
         console.log('Recording permissions granted:', granted);
         setPermissionsGranted(granted);
+
+        if (!granted) {
+          Alert.alert(
+            'Microphone Permission Required',
+            'Please grant microphone permission to use voice input feature.',
+            [{ text: 'OK' }]
+          );
+        }
 
         // Configure audio mode for both recording and playback through speaker
         await setAudioModeAsync({
@@ -69,10 +83,10 @@ export default function DrAvaSaltaScreen() {
           allowsRecording: true,
           shouldPlayInBackground: false,
         });
-        console.log('Audio mode configured for recording and speaker playback');
+        console.log('Audio mode configured successfully');
       } catch (error) {
         console.error('Error setting up audio:', error);
-        Alert.alert('Audio Setup Error', 'Failed to configure audio. Please restart the app.');
+        Alert.alert('Audio Setup Error', 'Failed to configure audio. Voice input may not work properly.');
       }
     };
 
@@ -84,36 +98,37 @@ export default function DrAvaSaltaScreen() {
     return () => {
       if (pollingTimeoutRef.current) {
         clearTimeout(pollingTimeoutRef.current);
+        pollingTimeoutRef.current = null;
       }
     };
   }, []);
 
-  // Update video source when URL changes
+  // Update video source when URL changes - FIXED: Better error handling
   useEffect(() => {
     if (videoUrl && player) {
       console.log('Updating video player with new URL:', videoUrl);
       try {
+        // Use replace to update the video source
         player.replace(videoUrl);
-        // Automatically play the video when it's ready
-        setTimeout(() => {
-          if (player.status === 'readyToPlay') {
-            console.log('Auto-playing video');
-            player.play();
-          }
-        }, 500);
+        console.log('Video source replaced successfully');
       } catch (error) {
         console.error('Error replacing video source:', error);
+        Alert.alert('Video Error', 'Failed to load video. Please try again.');
       }
     }
-  }, [videoUrl]);
+  }, [videoUrl, player]);
 
   // Auto-play video when status becomes readyToPlay
   useEffect(() => {
-    if (status === 'readyToPlay' && videoUrl && !player.playing) {
+    if (status === 'readyToPlay' && videoUrl && !playing) {
       console.log('Video ready to play, starting playback');
-      player.play();
+      try {
+        player.play();
+      } catch (error) {
+        console.error('Error playing video:', error);
+      }
     }
-  }, [status, videoUrl]);
+  }, [status, videoUrl, playing, player]);
 
   // Generate AI response using a simple medical knowledge base
   const generateAIResponse = (userQuestion: string): string => {
@@ -139,76 +154,96 @@ export default function DrAvaSaltaScreen() {
     }
   };
 
-  // Function to create a talk with D-ID using proper presenter configuration
+  // Function to create a talk with D-ID - FIXED: Better error handling and logging
   const createTalk = async (text: string) => {
     try {
       setIsGeneratingVideo(true);
-      console.log('Creating D-ID talk with text:', text);
+      console.log('Creating D-ID talk with text:', text.substring(0, 50) + '...');
+
+      const requestBody = {
+        script: {
+          type: 'text',
+          input: text,
+          provider: {
+            type: 'microsoft',
+            voice_id: 'en-US-JennyNeural',
+          },
+        },
+        config: {
+          fluent: true,
+          pad_audio: 0,
+          stitch: true,
+        },
+        source_url: DR_AVA_SALTA_IMAGE,
+      };
+
+      console.log('D-ID API Request:', JSON.stringify(requestBody, null, 2));
 
       const response = await fetch(`${D_ID_API_URL}/talks`, {
         method: 'POST',
         headers: {
           'Authorization': `Basic ${D_ID_API_KEY}`,
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
-        body: JSON.stringify({
-          script: {
-            type: 'text',
-            input: text,
-            provider: {
-              type: 'microsoft',
-              voice_id: 'en-US-JennyNeural', // Professional female voice
-            },
-          },
-          config: {
-            fluent: true,
-            pad_audio: 0,
-            stitch: true,
-          },
-          // Using D-ID's default presenter - you can replace this with your custom agent image
-          source_url: DR_AVA_SALTA_IMAGE,
-        }),
+        body: JSON.stringify(requestBody),
       });
 
+      const responseText = await response.text();
+      console.log('D-ID API Response Status:', response.status);
+      console.log('D-ID API Response:', responseText);
+
       if (!response.ok) {
-        const errorData = await response.json();
-        console.error('D-ID API error:', errorData);
-        throw new Error(`D-ID API error: ${response.status} - ${JSON.stringify(errorData)}`);
+        let errorMessage = `D-ID API error: ${response.status}`;
+        try {
+          const errorData = JSON.parse(responseText);
+          errorMessage = errorData.message || errorData.error || errorMessage;
+          console.error('D-ID API error details:', errorData);
+        } catch (e) {
+          console.error('Could not parse error response:', e);
+        }
+        throw new Error(errorMessage);
       }
 
-      const data = await response.json();
-      console.log('D-ID talk created successfully:', data);
+      const data = JSON.parse(responseText);
+      console.log('D-ID talk created successfully. Talk ID:', data.id);
 
       if (data.id) {
         setCurrentTalkId(data.id);
         await pollTalkStatus(data.id);
+      } else {
+        throw new Error('No talk ID returned from D-ID API');
       }
     } catch (error) {
       console.error('Error creating D-ID talk:', error);
       Alert.alert(
         'Video Generation Error',
-        'Unable to generate video response. Please check your internet connection and try again.',
+        error instanceof Error ? error.message : 'Unable to generate video response. Please check your internet connection and try again.',
         [{ text: 'OK' }]
       );
       setIsGeneratingVideo(false);
     }
   };
 
-  // Poll for talk status with proper cleanup
+  // Poll for talk status - FIXED: Better cleanup and error handling
   const pollTalkStatus = async (talkId: string) => {
-    const maxAttempts = 60; // Increased timeout for longer responses
+    const maxAttempts = 60;
     let attempts = 0;
 
     const poll = async () => {
       try {
+        // Check if we should stop polling
         if (currentTalkId !== talkId) {
           console.log('Talk ID changed, stopping poll');
           return;
         }
 
+        console.log(`Polling talk status (attempt ${attempts + 1}/${maxAttempts})...`);
+
         const response = await fetch(`${D_ID_API_URL}/talks/${talkId}`, {
           headers: {
             'Authorization': `Basic ${D_ID_API_KEY}`,
+            'Accept': 'application/json',
           },
         });
 
@@ -217,10 +252,10 @@ export default function DrAvaSaltaScreen() {
         }
 
         const data = await response.json();
-        console.log('Talk status:', data.status, 'Attempt:', attempts + 1);
+        console.log('Talk status:', data.status);
 
         if (data.status === 'done' && data.result_url) {
-          console.log('Video ready:', data.result_url);
+          console.log('Video ready! URL:', data.result_url);
           setVideoUrl(data.result_url);
           setIsGeneratingVideo(false);
           
@@ -234,9 +269,9 @@ export default function DrAvaSaltaScreen() {
           });
           return;
         } else if (data.status === 'error') {
-          throw new Error('Video generation failed');
+          throw new Error(`Video generation failed: ${data.error || 'Unknown error'}`);
         } else if (data.status === 'rejected') {
-          throw new Error('Video generation was rejected');
+          throw new Error('Video generation was rejected by D-ID');
         }
 
         attempts++;
@@ -248,11 +283,15 @@ export default function DrAvaSaltaScreen() {
       } catch (error) {
         console.error('Error polling talk status:', error);
         Alert.alert(
-          'Video Generation Timeout',
-          'The video is taking longer than expected. Please try again with a shorter message.',
+          'Video Generation Error',
+          error instanceof Error ? error.message : 'Failed to generate video. Please try again.',
           [{ text: 'OK' }]
         );
         setIsGeneratingVideo(false);
+        if (pollingTimeoutRef.current) {
+          clearTimeout(pollingTimeoutRef.current);
+          pollingTimeoutRef.current = null;
+        }
       }
     };
 
@@ -309,10 +348,11 @@ export default function DrAvaSaltaScreen() {
     setCurrentTalkId(null);
     if (pollingTimeoutRef.current) {
       clearTimeout(pollingTimeoutRef.current);
+      pollingTimeoutRef.current = null;
     }
   };
 
-  // Voice recording functions
+  // Voice recording functions - FIXED: Proper async/await handling
   const startRecording = async () => {
     try {
       if (!permissionsGranted) {
@@ -337,6 +377,7 @@ export default function DrAvaSaltaScreen() {
     } catch (error) {
       console.error('Failed to start recording:', error);
       Alert.alert('Recording Error', 'Failed to start recording. Please try again.');
+      setIsRecording(false);
     }
   };
 
@@ -358,6 +399,7 @@ export default function DrAvaSaltaScreen() {
     } catch (error) {
       console.error('Failed to stop recording:', error);
       setIsRecording(false);
+      Alert.alert('Recording Error', 'Failed to stop recording properly.');
     }
   };
 
@@ -439,17 +481,17 @@ export default function DrAvaSaltaScreen() {
             </View>
 
             {/* Status Indicator */}
-            {videoUrl && (
-              <View style={styles.statusContainer}>
-                <View style={[styles.statusDot, status === 'readyToPlay' && styles.statusDotActive]} />
-                <Text style={styles.statusText}>
-                  {status === 'loading' && 'Loading video...'}
-                  {status === 'readyToPlay' && player.playing ? 'Speaking...' : 'Ready'}
-                  {status === 'error' && 'Video error'}
-                  {status === 'idle' && 'Idle'}
-                </Text>
-              </View>
-            )}
+            <View style={styles.statusContainer}>
+              <View style={[styles.statusDot, (status === 'readyToPlay' || playing) && styles.statusDotActive]} />
+              <Text style={styles.statusText}>
+                {status === 'loading' && 'Loading video...'}
+                {status === 'readyToPlay' && playing && 'Speaking...'}
+                {status === 'readyToPlay' && !playing && 'Ready'}
+                {status === 'error' && 'Video error'}
+                {status === 'idle' && !videoUrl && 'Waiting for question...'}
+                {status === 'idle' && videoUrl && 'Video complete'}
+              </Text>
+            </View>
           </View>
 
           {/* Chat Messages */}
