@@ -165,18 +165,48 @@ export default function HomeScreen() {
       <ScrollView style={commonStyles.container} contentContainerStyle={styles.content}>
         {/* Learn with Dr. Ava Salta Section */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Learn with Dr. Ava Salta</Text>
+          <Text style={styles.sectionTitle}>AI Medical Instructor</Text>
           <Pressable style={styles.drAvaCard} onPress={handleDrAvaSalta}>
             <View style={styles.drAvaIconContainer}>
-              <IconSymbol name="person.circle.fill" size={48} color={colors.card} />
+              <IconSymbol 
+                ios_icon_name="person.circle.fill" 
+                android_material_icon_name="account_circle"
+                size={52} 
+                color={colors.card} 
+              />
             </View>
             <View style={styles.drAvaContent}>
-              <Text style={styles.drAvaTitle}>AI Medical Education Assistant</Text>
+              <Text style={styles.drAvaTitle}>Dr. Ava Salta</Text>
               <Text style={styles.drAvaSubtitle}>
-                Ask questions and learn with interactive video responses powered by AI
+                Interactive AI assistant with video responses
               </Text>
+              <View style={styles.drAvaFeatures}>
+                <View style={styles.featureItem}>
+                  <IconSymbol 
+                    ios_icon_name="video.fill" 
+                    android_material_icon_name="videocam"
+                    size={16} 
+                    color={colors.card} 
+                  />
+                  <Text style={styles.featureText}>Video Responses</Text>
+                </View>
+                <View style={styles.featureItem}>
+                  <IconSymbol 
+                    ios_icon_name="mic.fill" 
+                    android_material_icon_name="mic"
+                    size={16} 
+                    color={colors.card} 
+                  />
+                  <Text style={styles.featureText}>Voice Input</Text>
+                </View>
+              </View>
             </View>
-            <IconSymbol name="chevron.right" size={24} color={colors.card} />
+            <IconSymbol 
+              ios_icon_name="chevron.right" 
+              android_material_icon_name="chevron_right"
+              size={24} 
+              color={colors.card} 
+            />
           </Pressable>
         </View>
 
@@ -185,24 +215,44 @@ export default function HomeScreen() {
           <Text style={styles.sectionTitle}>Quick Actions</Text>
           <View style={styles.quickActionsGrid}>
             <Pressable style={styles.quickActionCard} onPress={handleQuickStart}>
-              <IconSymbol name="play.circle.fill" size={32} color={colors.primary} />
+              <IconSymbol 
+                ios_icon_name="play.circle.fill" 
+                android_material_icon_name="play_circle"
+                size={32} 
+                color={colors.primary} 
+              />
               <Text style={styles.quickActionTitle}>Quick Start</Text>
               <Text style={styles.quickActionSubtitle}>Random cards</Text>
             </Pressable>
 
             <Pressable style={styles.quickActionCard} onPress={handleQuizMode}>
-              <IconSymbol name="checkmark.circle.fill" size={32} color={colors.accent} />
+              <IconSymbol 
+                ios_icon_name="checkmark.circle.fill" 
+                android_material_icon_name="check_circle"
+                size={32} 
+                color={colors.accent} 
+              />
               <Text style={styles.quickActionTitle}>Quiz Mode</Text>
               <Text style={styles.quickActionSubtitle}>Test yourself</Text>
             </Pressable>
 
             <Pressable style={styles.quickActionCard} onPress={handleBookmarkedPress}>
-              <IconSymbol name="bookmark.fill" size={32} color={colors.primary} />
+              <IconSymbol 
+                ios_icon_name="bookmark.fill" 
+                android_material_icon_name="bookmark"
+                size={32} 
+                color={colors.primary} 
+              />
               <Text style={styles.quickActionTitle}>Bookmarked</Text>
             </Pressable>
 
             <Pressable style={styles.quickActionCard} onPress={handleFavoritesPress}>
-              <IconSymbol name="heart.fill" size={32} color={colors.error} />
+              <IconSymbol 
+                ios_icon_name="heart.fill" 
+                android_material_icon_name="favorite"
+                size={32} 
+                color={colors.error} 
+              />
               <Text style={styles.quickActionTitle}>Favorites</Text>
             </Pressable>
           </View>
@@ -219,7 +269,12 @@ export default function HomeScreen() {
           >
             <View style={styles.systemHeader}>
               <View style={styles.systemIconContainer}>
-                <IconSymbol name="heart.fill" size={32} color={colors.primary} />
+                <IconSymbol 
+                  ios_icon_name="heart.fill" 
+                  android_material_icon_name="favorite"
+                  size={32} 
+                  color={colors.primary} 
+                />
               </View>
               <View style={styles.systemInfo}>
                 <Text style={styles.systemTitle}>Cardiology</Text>
@@ -227,7 +282,12 @@ export default function HomeScreen() {
                   {allFlashcards.filter(c => c.system === 'Cardiology').length} cards • {cardiologyTopics.length} topics
                 </Text>
               </View>
-              <IconSymbol name="chevron.right" size={24} color={colors.textSecondary} />
+              <IconSymbol 
+                ios_icon_name="chevron.right" 
+                android_material_icon_name="chevron_right"
+                size={24} 
+                color={colors.textSecondary} 
+              />
             </View>
           </Pressable>
 
@@ -238,7 +298,12 @@ export default function HomeScreen() {
           >
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
-                <IconSymbol name="lungs.fill" size={32} color={colors.accent} />
+                <IconSymbol 
+                  ios_icon_name="wind" 
+                  android_material_icon_name="air"
+                  size={32} 
+                  color={colors.accent} 
+                />
               </View>
               <View style={styles.systemInfo}>
                 <Text style={styles.systemTitle}>Pulmonology</Text>
@@ -246,7 +311,12 @@ export default function HomeScreen() {
                   {allFlashcards.filter(c => c.system === 'Pulmonary').length} cards • {pulmonaryTopics.length} topics
                 </Text>
               </View>
-              <IconSymbol name="chevron.right" size={24} color={colors.textSecondary} />
+              <IconSymbol 
+                ios_icon_name="chevron.right" 
+                android_material_icon_name="chevron_right"
+                size={24} 
+                color={colors.textSecondary} 
+              />
             </View>
           </Pressable>
 
@@ -257,7 +327,12 @@ export default function HomeScreen() {
           >
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
-                <IconSymbol name="drop.fill" size={32} color={colors.accent} />
+                <IconSymbol 
+                  ios_icon_name="drop.fill" 
+                  android_material_icon_name="water_drop"
+                  size={32} 
+                  color={colors.accent} 
+                />
               </View>
               <View style={styles.systemInfo}>
                 <Text style={styles.systemTitle}>Renal</Text>
@@ -265,7 +340,12 @@ export default function HomeScreen() {
                   {allFlashcards.filter(c => c.system === 'Renal').length} cards • {renalTopics.length} topics
                 </Text>
               </View>
-              <IconSymbol name="chevron.right" size={24} color={colors.textSecondary} />
+              <IconSymbol 
+                ios_icon_name="chevron.right" 
+                android_material_icon_name="chevron_right"
+                size={24} 
+                color={colors.textSecondary} 
+              />
             </View>
           </Pressable>
 
@@ -276,7 +356,12 @@ export default function HomeScreen() {
           >
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
-                <IconSymbol name="cross.case.fill" size={32} color={colors.accent} />
+                <IconSymbol 
+                  ios_icon_name="cross.case.fill" 
+                  android_material_icon_name="medical_services"
+                  size={32} 
+                  color={colors.accent} 
+                />
               </View>
               <View style={styles.systemInfo}>
                 <Text style={styles.systemTitle}>Gastroenterology</Text>
@@ -284,7 +369,12 @@ export default function HomeScreen() {
                   {allFlashcards.filter(c => c.system === 'Gastroenterology').length} cards • {gastroenterologyTopics.length} topics
                 </Text>
               </View>
-              <IconSymbol name="chevron.right" size={24} color={colors.textSecondary} />
+              <IconSymbol 
+                ios_icon_name="chevron.right" 
+                android_material_icon_name="chevron_right"
+                size={24} 
+                color={colors.textSecondary} 
+              />
             </View>
           </Pressable>
 
@@ -295,7 +385,12 @@ export default function HomeScreen() {
           >
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
-                <IconSymbol name="waveform.path.ecg" size={32} color={colors.secondary} />
+                <IconSymbol 
+                  ios_icon_name="waveform.path.ecg" 
+                  android_material_icon_name="monitor_heart"
+                  size={32} 
+                  color={colors.secondary} 
+                />
               </View>
               <View style={styles.systemInfo}>
                 <Text style={styles.systemTitle}>Endocrine</Text>
@@ -303,7 +398,12 @@ export default function HomeScreen() {
                   {allFlashcards.filter(c => c.system === 'Endocrine').length} cards • {endocrineTopics.length} topics
                 </Text>
               </View>
-              <IconSymbol name="chevron.right" size={24} color={colors.textSecondary} />
+              <IconSymbol 
+                ios_icon_name="chevron.right" 
+                android_material_icon_name="chevron_right"
+                size={24} 
+                color={colors.textSecondary} 
+              />
             </View>
           </Pressable>
 
@@ -314,7 +414,12 @@ export default function HomeScreen() {
           >
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
-                <IconSymbol name="drop.fill" size={32} color={colors.error} />
+                <IconSymbol 
+                  ios_icon_name="drop.fill" 
+                  android_material_icon_name="water_drop"
+                  size={32} 
+                  color={colors.error} 
+                />
               </View>
               <View style={styles.systemInfo}>
                 <Text style={styles.systemTitle}>Hematology</Text>
@@ -322,7 +427,12 @@ export default function HomeScreen() {
                   {allFlashcards.filter(c => c.system === 'Hematology').length} cards • {hematologyTopics.length} topics
                 </Text>
               </View>
-              <IconSymbol name="chevron.right" size={24} color={colors.textSecondary} />
+              <IconSymbol 
+                ios_icon_name="chevron.right" 
+                android_material_icon_name="chevron_right"
+                size={24} 
+                color={colors.textSecondary} 
+              />
             </View>
           </Pressable>
 
@@ -333,7 +443,12 @@ export default function HomeScreen() {
           >
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
-                <IconSymbol name="cross.case.fill" size={32} color={colors.accent} />
+                <IconSymbol 
+                  ios_icon_name="cross.case.fill" 
+                  android_material_icon_name="medical_services"
+                  size={32} 
+                  color={colors.accent} 
+                />
               </View>
               <View style={styles.systemInfo}>
                 <Text style={styles.systemTitle}>Infectious Disease</Text>
@@ -341,7 +456,12 @@ export default function HomeScreen() {
                   {allFlashcards.filter(c => c.system === 'Infectious Disease').length} cards • {infectiousDiseaseTopics.length} topics
                 </Text>
               </View>
-              <IconSymbol name="chevron.right" size={24} color={colors.textSecondary} />
+              <IconSymbol 
+                ios_icon_name="chevron.right" 
+                android_material_icon_name="chevron_right"
+                size={24} 
+                color={colors.textSecondary} 
+              />
             </View>
           </Pressable>
 
@@ -352,7 +472,12 @@ export default function HomeScreen() {
           >
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
-                <IconSymbol name="brain" size={32} color={colors.secondary} />
+                <IconSymbol 
+                  ios_icon_name="brain" 
+                  android_material_icon_name="psychology"
+                  size={32} 
+                  color={colors.secondary} 
+                />
               </View>
               <View style={styles.systemInfo}>
                 <Text style={styles.systemTitle}>Neurology</Text>
@@ -360,7 +485,12 @@ export default function HomeScreen() {
                   {allFlashcards.filter(c => c.system === 'Neurology').length} cards • {neurologyTopics.length} topics
                 </Text>
               </View>
-              <IconSymbol name="chevron.right" size={24} color={colors.textSecondary} />
+              <IconSymbol 
+                ios_icon_name="chevron.right" 
+                android_material_icon_name="chevron_right"
+                size={24} 
+                color={colors.textSecondary} 
+              />
             </View>
           </Pressable>
 
@@ -371,7 +501,12 @@ export default function HomeScreen() {
           >
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
-                <IconSymbol name="cross.case.fill" size={32} color={colors.error} />
+                <IconSymbol 
+                  ios_icon_name="cross.case.fill" 
+                  android_material_icon_name="medical_services"
+                  size={32} 
+                  color={colors.error} 
+                />
               </View>
               <View style={styles.systemInfo}>
                 <Text style={styles.systemTitle}>Emergency Medicine & Trauma</Text>
@@ -379,7 +514,12 @@ export default function HomeScreen() {
                   {allFlashcards.filter(c => c.system === 'Emergency Medicine & Trauma').length} cards • {emergencyMedicineTopics.length} topics
                 </Text>
               </View>
-              <IconSymbol name="chevron.right" size={24} color={colors.textSecondary} />
+              <IconSymbol 
+                ios_icon_name="chevron.right" 
+                android_material_icon_name="chevron_right"
+                size={24} 
+                color={colors.textSecondary} 
+              />
             </View>
           </Pressable>
         </View>
@@ -387,7 +527,12 @@ export default function HomeScreen() {
         {/* Admin Access */}
         <View style={styles.section}>
           <Pressable style={styles.adminButton} onPress={handleAdminPanel}>
-            <IconSymbol name="gear" size={20} color={colors.primary} />
+            <IconSymbol 
+              ios_icon_name="gear" 
+              android_material_icon_name="settings"
+              size={20} 
+              color={colors.primary} 
+            />
             <Text style={styles.adminButtonText}>Admin Panel</Text>
           </Pressable>
         </View>
@@ -420,9 +565,9 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   drAvaIconContainer: {
-    width: 64,
-    height: 64,
-    borderRadius: 32,
+    width: 68,
+    height: 68,
+    borderRadius: 34,
     backgroundColor: 'rgba(255, 255, 255, 0.2)',
     alignItems: 'center',
     justifyContent: 'center',
@@ -432,7 +577,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   drAvaTitle: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: '700',
     color: colors.card,
     marginBottom: 4,
@@ -440,8 +585,24 @@ const styles = StyleSheet.create({
   drAvaSubtitle: {
     fontSize: 14,
     color: colors.card,
-    opacity: 0.9,
+    opacity: 0.95,
     lineHeight: 20,
+    marginBottom: 8,
+  },
+  drAvaFeatures: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+  featureItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+  },
+  featureText: {
+    fontSize: 12,
+    color: colors.card,
+    opacity: 0.9,
+    fontWeight: '500',
   },
   quickActionsGrid: {
     flexDirection: 'row',
