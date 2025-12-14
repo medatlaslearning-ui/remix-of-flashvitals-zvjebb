@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, Pressable, Platform } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
 import { colors, commonStyles } from '@/styles/commonStyles';
@@ -28,7 +28,14 @@ const CARDIOLOGY_TOPICS = [
 
 export default function CardiologyTopicsScreen() {
   const router = useRouter();
-  const { allFlashcards } = useFlashcards();
+  const { allFlashcards, getTopicStats, updateTrigger } = useFlashcards();
+
+  // Log when component renders and when updateTrigger changes
+  useEffect(() => {
+    console.log('CardiologyTopicsScreen rendered, updateTrigger:', updateTrigger);
+    console.log('Total flashcards:', allFlashcards.length);
+    console.log('Reviewed flashcards:', allFlashcards.filter(c => c.reviewCount > 0).length);
+  }, [updateTrigger, allFlashcards.length]);
 
   const handleTopicPress = (topicName: string) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -65,12 +72,14 @@ export default function CardiologyTopicsScreen() {
         {/* Topics */}
         <View style={styles.section}>
           {CARDIOLOGY_TOPICS.map((topic, index) => {
-            const topicCards = allFlashcards.filter(
-              card => card.system === 'Cardiology' && card.topic === topic.name
-            );
-            const reviewedCount = topicCards.filter(card => card.reviewCount > 0).length;
-            const remainingCount = topicCards.length - reviewedCount;
-            const progress = topicCards.length > 0 ? (reviewedCount / topicCards.length) * 100 : 0;
+            const stats = getTopicStats('Cardiology', topic.name);
+            
+            console.log(`Topic: ${topic.name}`, {
+              total: stats.total,
+              reviewed: stats.reviewed,
+              remaining: stats.remaining,
+              progress: stats.progress
+            });
 
             return (
               <Pressable
@@ -84,13 +93,13 @@ export default function CardiologyTopicsScreen() {
                       <Text style={styles.topicTitle}>{topic.name}</Text>
                       <Text style={styles.topicDescription}>{topic.description}</Text>
                       <Text style={styles.topicSubtitle}>
-                        {remainingCount} remaining • {reviewedCount} reviewed
+                        {stats.remaining} remaining • {stats.reviewed} reviewed
                       </Text>
                     </View>
                     <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
                   </View>
                   <View style={styles.progressBarContainer}>
-                    <View style={[styles.progressBarFill, { width: `${progress}%` }]} />
+                    <View style={[styles.progressBarFill, { width: `${stats.progress}%` }]} />
                   </View>
                 </View>
               </Pressable>

@@ -18,7 +18,7 @@ export interface Flashcard {
   reviewCount: number;
   lastReviewed?: Date;
   nextReview?: Date;
-  difficulty: 'easy' | 'medium' | 'hard';
+  difficulty: 'easy' | 'medium' | 'hard' | 'difficult';
   color?: 'blue' | 'red';
 }
 

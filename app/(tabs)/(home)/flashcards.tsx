@@ -23,7 +23,7 @@ export default function FlashcardsScreen() {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
-  const hasIncrementedReview = useRef<Set<string>>(new Set());
+  const [reviewedInSession, setReviewedInSession] = useState<Set<string>>(new Set());
 
   const topic = params.topic as string | undefined;
   const filter = params.filter as string | undefined;
@@ -66,7 +66,8 @@ export default function FlashcardsScreen() {
           id: filtered[0].id,
           front: filtered[0].front,
           system: filtered[0].system,
-          topic: filtered[0].topic
+          topic: filtered[0].topic,
+          reviewCount: filtered[0].reviewCount
         });
       }
       
@@ -85,21 +86,28 @@ export default function FlashcardsScreen() {
     console.log('Flashcards changed, resetting index and flip state');
     setCurrentIndex(0);
     setIsFlipped(false);
-    hasIncrementedReview.current = new Set();
+    setReviewedInSession(new Set());
   }, [flashcards.length, topic, filter]);
 
-  // Handle card flip - increment review count when card is flipped
-  const handleFlip = () => {
+  // Handle card flip - increment review count when card is flipped to show answer
+  const handleFlip = async () => {
     const currentCard = flashcards[currentIndex];
     const newFlipState = !isFlipped;
     setIsFlipped(newFlipState);
     
     // Only increment review count when flipping to the back (showing answer)
     // and only once per card in this session
-    if (newFlipState && !hasIncrementedReview.current.has(currentCard.id)) {
+    if (newFlipState && !reviewedInSession.has(currentCard.id)) {
       console.log('Card flipped to back, incrementing review count for card:', currentCard.id);
-      incrementReviewCount(currentCard.id);
-      hasIncrementedReview.current.add(currentCard.id);
+      console.log('Current review count:', currentCard.reviewCount);
+      
+      // Mark as reviewed in this session
+      setReviewedInSession(prev => new Set(prev).add(currentCard.id));
+      
+      // Increment the review count
+      await incrementReviewCount(currentCard.id);
+      
+      console.log('Review count incremented for card:', currentCard.id);
     }
   };
 
@@ -122,7 +130,7 @@ export default function FlashcardsScreen() {
           console.log('Restarting flashcards');
           setCurrentIndex(0);
           setIsFlipped(false);
-          hasIncrementedReview.current = new Set();
+          setReviewedInSession(new Set());
         }},
         { text: 'Go Back', onPress: () => router.back() }
       ]);
@@ -188,7 +196,9 @@ export default function FlashcardsScreen() {
     front: currentCard.front.substring(0, 50) + '...',
     system: currentCard.system,
     topic: currentCard.topic,
-    isFlipped: isFlipped
+    isFlipped: isFlipped,
+    reviewCount: currentCard.reviewCount,
+    reviewedInSession: reviewedInSession.has(currentCard.id)
   });
 
   return (
