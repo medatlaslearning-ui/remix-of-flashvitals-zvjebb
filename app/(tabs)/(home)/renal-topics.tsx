@@ -10,32 +10,26 @@ import { useFlashcards } from '@/hooks/useFlashcards';
 const RENAL_TOPICS = [
   {
     name: 'Acute Kidney Injury (AKI)',
-    icon: 'exclamationmark.triangle',
     description: 'AKI diagnosis, staging, management'
   },
   {
     name: 'Chronic Kidney Disease (CKD)',
-    icon: 'chart.line.uptrend.xyaxis',
     description: 'CKD stages, complications, treatment'
   },
   {
     name: 'Glomerular Diseases',
-    icon: 'circle.hexagongrid',
     description: 'Glomerulonephritis, nephrotic syndrome'
   },
   {
     name: 'Electrolytes & Acid–Base',
-    icon: 'drop.triangle',
     description: 'Electrolyte disorders, acid-base balance'
   },
   {
     name: 'Renal Tubular & Interstitial Disorders',
-    icon: 'waveform.path',
     description: 'Tubular dysfunction, interstitial nephritis'
   },
   {
     name: 'Renal Stones & Infections',
-    icon: 'staroflife',
     description: 'Nephrolithiasis, UTI, pyelonephritis'
   }
 ];
@@ -91,9 +85,6 @@ export default function RenalTopicsScreen() {
                 style={styles.topicCard}
                 onPress={() => handleTopicPress(topic.name)}
               >
-                <View style={styles.topicIconContainer}>
-                  <IconSymbol name={topic.icon} size={32} color={colors.accent} />
-                </View>
                 <View style={styles.topicContent}>
                   <View style={styles.topicHeader}>
                     <View style={styles.topicInfo}>
@@ -160,17 +151,6 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
     elevation: 2,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  topicIconContainer: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    backgroundColor: colors.highlight,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 16,
   },
   topicContent: {
     flex: 1,

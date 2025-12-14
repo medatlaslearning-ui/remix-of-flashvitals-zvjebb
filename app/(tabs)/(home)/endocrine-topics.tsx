@@ -10,37 +10,30 @@ import { useFlashcards } from '@/hooks/useFlashcards';
 const ENDOCRINE_TOPICS = [
   {
     name: 'Diabetes Mellitus',
-    icon: 'drop.fill',
     description: 'Type 1, Type 2, DKA, HHS'
   },
   {
     name: 'Thyroid Disorders',
-    icon: 'circle.hexagongrid',
     description: 'Hyper/hypothyroidism, thyroid nodules'
   },
   {
     name: 'Adrenal Disorders',
-    icon: 'triangle.fill',
     description: 'Cushing, Addison, adrenal insufficiency'
   },
   {
     name: 'Pituitary Disorders',
-    icon: 'brain.head.profile',
     description: 'Prolactinoma, acromegaly, DI, SIADH'
   },
   {
     name: 'Calcium & Bone Metabolism',
-    icon: 'square.grid.3x3',
     description: 'Hypercalcemia, osteoporosis, PTH disorders'
   },
   {
     name: 'Reproductive Endocrinology',
-    icon: 'person.2.fill',
     description: 'PCOS, hypogonadism, reproductive hormones'
   },
   {
     name: 'Endocrine Tumors',
-    icon: 'circle.grid.cross',
     description: 'Pituitary adenomas, MEN syndromes'
   }
 ];
@@ -96,9 +89,6 @@ export default function EndocrinologyTopicsScreen() {
                 style={styles.topicCard}
                 onPress={() => handleTopicPress(topic.name)}
               >
-                <View style={styles.topicIconContainer}>
-                  <IconSymbol name={topic.icon} size={32} color={colors.secondary} />
-                </View>
                 <View style={styles.topicContent}>
                   <View style={styles.topicHeader}>
                     <View style={styles.topicInfo}>
@@ -165,17 +155,6 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
     elevation: 2,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  topicIconContainer: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    backgroundColor: colors.highlight,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 16,
   },
   topicContent: {
     flex: 1,

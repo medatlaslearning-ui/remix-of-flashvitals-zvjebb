@@ -10,27 +10,22 @@ import { useFlashcards } from '@/hooks/useFlashcards';
 const NEUROLOGY_TOPICS = [
   {
     name: 'Headache & Facial Pain Disorders',
-    icon: 'bolt.fill',
     description: 'Migraine, tension headache, cluster headache, trigeminal neuralgia'
   },
   {
     name: 'Seizures, Epilepsy & Neurology Emergencies',
-    icon: 'waveform.path.ecg',
     description: 'Seizure types, status epilepticus, acute neurologic emergencies'
   },
   {
     name: 'Stroke & Cerebrovascular Disease',
-    icon: 'brain.head.profile',
     description: 'Ischemic stroke, hemorrhagic stroke, TIA, vascular malformations'
   },
   {
     name: 'Neuromuscular & Peripheral Nerve Disorders',
-    icon: 'figure.walk',
     description: 'Myasthenia gravis, GBS, peripheral neuropathies, myopathies'
   },
   {
     name: 'Cognitive & Demyelinating Disorders',
-    icon: 'brain',
     description: 'Multiple sclerosis, dementia, Parkinson\'s, movement disorders'
   }
 ];
@@ -86,9 +81,6 @@ export default function NeurologyTopicsScreen() {
                 style={styles.topicCard}
                 onPress={() => handleTopicPress(topic.name)}
               >
-                <View style={styles.topicIconContainer}>
-                  <IconSymbol name={topic.icon} size={32} color={colors.accent} />
-                </View>
                 <View style={styles.topicContent}>
                   <View style={styles.topicHeader}>
                     <View style={styles.topicInfo}>
@@ -155,17 +147,6 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
     elevation: 2,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  topicIconContainer: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    backgroundColor: colors.highlight,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 16,
   },
   topicContent: {
     flex: 1,

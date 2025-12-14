@@ -10,27 +10,22 @@ import { useFlashcards } from '@/hooks/useFlashcards';
 const INFECTIOUS_DISEASE_TOPICS = [
   {
     name: 'Bacterial Organisms',
-    icon: 'circle.grid.cross.fill',
     description: 'Gram-positive and Gram-negative bacteria'
   },
   {
     name: 'Fungal Infections',
-    icon: 'leaf.fill',
     description: 'Systemic and opportunistic fungal pathogens'
   },
   {
     name: 'Viral Infections',
-    icon: 'waveform.path.ecg',
     description: 'Common viral pathogens'
   },
   {
     name: 'STIs',
-    icon: 'exclamationmark.triangle.fill',
     description: 'Sexually transmitted infections'
   },
   {
     name: 'Parasitic Infections',
-    icon: 'ant.fill',
     description: 'Protozoan and helminthic parasites'
   }
 ];
@@ -86,9 +81,6 @@ export default function InfectiousDiseaseTopicsScreen() {
                 style={styles.topicCard}
                 onPress={() => handleTopicPress(topic.name)}
               >
-                <View style={styles.topicIconContainer}>
-                  <IconSymbol name={topic.icon} size={32} color={colors.accent} />
-                </View>
                 <View style={styles.topicContent}>
                   <View style={styles.topicHeader}>
                     <View style={styles.topicInfo}>
@@ -155,17 +147,6 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
     elevation: 2,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  topicIconContainer: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    backgroundColor: colors.highlight,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 16,
   },
   topicContent: {
     flex: 1,

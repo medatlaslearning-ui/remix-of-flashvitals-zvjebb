@@ -10,22 +10,18 @@ import { useFlashcards } from '@/hooks/useFlashcards';
 const CARDIOLOGY_TOPICS = [
   {
     name: 'Arrhythmias',
-    icon: 'waveform.path.ecg',
     description: 'AFib, VT, Heart Blocks'
   },
   {
     name: 'Heart Failure',
-    icon: 'heart.fill',
     description: 'HFrEF, HFpEF, Cardiomyopathy'
   },
   {
     name: 'Ischemic Heart Disease',
-    icon: 'bolt.heart',
     description: 'STEMI, NSTEMI, Angina'
   },
   {
     name: 'Valvular Disease',
-    icon: 'heart.circle',
     description: 'AS, MR, MS, AR'
   }
 ];
@@ -81,9 +77,6 @@ export default function CardiologyTopicsScreen() {
                 style={styles.topicCard}
                 onPress={() => handleTopicPress(topic.name)}
               >
-                <View style={styles.topicIconContainer}>
-                  <IconSymbol name={topic.icon} size={32} color={colors.primary} />
-                </View>
                 <View style={styles.topicContent}>
                   <View style={styles.topicHeader}>
                     <View style={styles.topicInfo}>
@@ -148,17 +141,6 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
     elevation: 2,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  topicIconContainer: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    backgroundColor: colors.highlight,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 16,
   },
   topicContent: {
     flex: 1,

@@ -10,32 +10,26 @@ import { useFlashcards } from '@/hooks/useFlashcards';
 const EMERGENCY_MEDICINE_TOPICS = [
   {
     name: 'Shock & Resuscitation',
-    icon: 'bolt.heart.fill',
     description: 'Shock types, fluid resuscitation, hemodynamic support'
   },
   {
     name: 'Cardiovascular Emergencies',
-    icon: 'heart.fill',
     description: 'ACS, arrhythmias, cardiac arrest, hypertensive emergencies'
   },
   {
     name: 'Pulmonary & Airway Emergencies',
-    icon: 'lungs.fill',
     description: 'Respiratory failure, airway management, PE, pneumothorax'
   },
   {
     name: 'Trauma',
-    icon: 'bandage.fill',
     description: 'Trauma assessment, head injury, chest/abdominal trauma'
   },
   {
     name: 'Neurologic & Toxicologic Emergencies',
-    icon: 'brain.head.profile',
     description: 'Altered mental status, overdose, poisoning, seizures'
   },
   {
     name: 'Infectious Emergencies',
-    icon: 'cross.case.fill',
     description: 'Sepsis, meningitis, severe infections'
   }
 ];
@@ -91,9 +85,6 @@ export default function EmergencyMedicineTopicsScreen() {
                 style={styles.topicCard}
                 onPress={() => handleTopicPress(topic.name)}
               >
-                <View style={styles.topicIconContainer}>
-                  <IconSymbol name={topic.icon} size={32} color={colors.error} />
-                </View>
                 <View style={styles.topicContent}>
                   <View style={styles.topicHeader}>
                     <View style={styles.topicInfo}>
@@ -161,17 +152,6 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
     elevation: 2,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  topicIconContainer: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    backgroundColor: colors.highlight,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 16,
   },
   topicContent: {
     flex: 1,

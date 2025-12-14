@@ -10,37 +10,30 @@ import { useFlashcards } from '@/hooks/useFlashcards';
 const HEMATOLOGY_TOPICS = [
   {
     name: 'Anemias',
-    icon: 'drop.fill',
     description: 'Iron deficiency, B12, folate, hemolytic'
   },
   {
     name: 'Hemoglobinopathies',
-    icon: 'circle.hexagongrid',
     description: 'Sickle cell, thalassemia'
   },
   {
     name: 'Leukemias',
-    icon: 'waveform.path',
     description: 'AML, ALL, CML, CLL'
   },
   {
     name: 'Lymphomas',
-    icon: 'circle.grid.cross',
     description: 'Hodgkin, Non-Hodgkin'
   },
   {
     name: 'Coagulation Disorders',
-    icon: 'bandage.fill',
     description: 'Hemophilia, VWD, DIC'
   },
   {
     name: 'Platelet Disorders',
-    icon: 'circle.grid.3x3',
     description: 'ITP, TTP, HIT'
   },
   {
     name: 'Transfusion Medicine',
-    icon: 'cross.case.fill',
     description: 'Blood products, reactions'
   }
 ];
@@ -96,9 +89,6 @@ export default function HematologyTopicsScreen() {
                 style={styles.topicCard}
                 onPress={() => handleTopicPress(topic.name)}
               >
-                <View style={styles.topicIconContainer}>
-                  <IconSymbol name={topic.icon} size={32} color={colors.error} />
-                </View>
                 <View style={styles.topicContent}>
                   <View style={styles.topicHeader}>
                     <View style={styles.topicInfo}>
@@ -165,17 +155,6 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
     elevation: 2,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  topicIconContainer: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    backgroundColor: colors.highlight,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 16,
   },
   topicContent: {
     flex: 1,
