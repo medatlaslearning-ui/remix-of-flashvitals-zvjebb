@@ -22,7 +22,8 @@ export default function FlashcardsScreen() {
   } = useFlashcards();
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const hasIncrementedReview = useRef(false);
+  const [isFlipped, setIsFlipped] = useState(false);
+  const hasIncrementedReview = useRef<Set<string>>(new Set());
 
   const topic = params.topic as string | undefined;
   const filter = params.filter as string | undefined;
@@ -79,22 +80,28 @@ export default function FlashcardsScreen() {
   console.log('Filtered flashcards count:', flashcards.length);
   console.log('Current index:', currentIndex);
 
-  // Reset index when flashcards change
+  // Reset index and flip state when flashcards change
   useEffect(() => {
-    console.log('Flashcards changed, resetting index');
+    console.log('Flashcards changed, resetting index and flip state');
     setCurrentIndex(0);
-    hasIncrementedReview.current = false;
+    setIsFlipped(false);
+    hasIncrementedReview.current = new Set();
   }, [flashcards.length, topic, filter]);
 
-  // Increment review count for current card (only once per card)
-  useEffect(() => {
-    if (flashcards.length > 0 && currentIndex < flashcards.length && !hasIncrementedReview.current) {
-      const currentCard = flashcards[currentIndex];
-      console.log('Incrementing review count for card:', currentCard.id);
+  // Handle card flip - increment review count when card is flipped
+  const handleFlip = () => {
+    const currentCard = flashcards[currentIndex];
+    const newFlipState = !isFlipped;
+    setIsFlipped(newFlipState);
+    
+    // Only increment review count when flipping to the back (showing answer)
+    // and only once per card in this session
+    if (newFlipState && !hasIncrementedReview.current.has(currentCard.id)) {
+      console.log('Card flipped to back, incrementing review count for card:', currentCard.id);
       incrementReviewCount(currentCard.id);
-      hasIncrementedReview.current = true;
+      hasIncrementedReview.current.add(currentCard.id);
     }
-  }, [currentIndex, flashcards.length, incrementReviewCount]);
+  };
 
   const getScreenTitle = () => {
     if (filter === 'bookmarked') return 'Bookmarked Cards';
@@ -108,13 +115,14 @@ export default function FlashcardsScreen() {
     if (currentIndex < flashcards.length - 1) {
       console.log('Moving to next card:', currentIndex + 1);
       setCurrentIndex(currentIndex + 1);
-      hasIncrementedReview.current = false;
+      setIsFlipped(false);
     } else {
       Alert.alert('End of Cards', 'You have reviewed all cards in this set!', [
         { text: 'Restart', onPress: () => {
           console.log('Restarting flashcards');
           setCurrentIndex(0);
-          hasIncrementedReview.current = false;
+          setIsFlipped(false);
+          hasIncrementedReview.current = new Set();
         }},
         { text: 'Go Back', onPress: () => router.back() }
       ]);
@@ -126,7 +134,7 @@ export default function FlashcardsScreen() {
     if (currentIndex > 0) {
       console.log('Moving to previous card:', currentIndex - 1);
       setCurrentIndex(currentIndex - 1);
-      hasIncrementedReview.current = false;
+      setIsFlipped(false);
     }
   };
 
@@ -179,7 +187,8 @@ export default function FlashcardsScreen() {
     id: currentCard.id,
     front: currentCard.front.substring(0, 50) + '...',
     system: currentCard.system,
-    topic: currentCard.topic
+    topic: currentCard.topic,
+    isFlipped: isFlipped
   });
 
   return (
@@ -212,6 +221,8 @@ export default function FlashcardsScreen() {
           onBookmark={() => handleBookmark(currentCard.id)}
           onFavorite={() => handleFavorite(currentCard.id)}
           showActions={true}
+          isFlipped={isFlipped}
+          onFlip={handleFlip}
         />
 
         {/* Navigation Buttons */}

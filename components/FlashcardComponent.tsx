@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Pressable, Animated, ScrollView } from 'react-native';
 import { IconSymbol } from './IconSymbol';
 import * as Haptics from 'expo-haptics';
@@ -11,15 +11,22 @@ interface FlashcardComponentProps {
   onBookmark: () => void;
   onFavorite: () => void;
   showActions?: boolean;
+  isFlipped?: boolean;
+  onFlip?: () => void;
 }
 
 export function FlashcardComponent({ 
   flashcard, 
   onBookmark, 
   onFavorite,
-  showActions = true 
+  showActions = true,
+  isFlipped: externalIsFlipped,
+  onFlip
 }: FlashcardComponentProps) {
-  const [isFlipped, setIsFlipped] = useState(false);
+  const [internalIsFlipped, setInternalIsFlipped] = useState(false);
+  
+  // Use external flip state if provided, otherwise use internal state
+  const isFlipped = externalIsFlipped !== undefined ? externalIsFlipped : internalIsFlipped;
 
   console.log('FlashcardComponent rendering:', {
     id: flashcard.id,
@@ -33,7 +40,14 @@ export function FlashcardComponent({
   const handleFlip = () => {
     console.log('Flipping card:', flashcard.id);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    setIsFlipped(!isFlipped);
+    
+    if (onFlip) {
+      // Use external flip handler if provided
+      onFlip();
+    } else {
+      // Otherwise use internal state
+      setInternalIsFlipped(!internalIsFlipped);
+    }
   };
 
   const handleBookmarkPress = () => {

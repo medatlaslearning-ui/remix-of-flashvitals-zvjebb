@@ -73,6 +73,7 @@ export default function PulmonaryTopicsScreen() {
               card => card.system === 'Pulmonary' && card.topic === topic.name
             );
             const reviewedCount = topicCards.filter(card => card.reviewCount > 0).length;
+            const remainingCount = topicCards.length - reviewedCount;
             const progress = topicCards.length > 0 ? (reviewedCount / topicCards.length) * 100 : 0;
 
             return (
@@ -87,7 +88,7 @@ export default function PulmonaryTopicsScreen() {
                       <Text style={styles.topicTitle}>{topic.name}</Text>
                       <Text style={styles.topicDescription}>{topic.description}</Text>
                       <Text style={styles.topicSubtitle}>
-                        {topicCards.length} cards • {reviewedCount} reviewed
+                        {remainingCount} remaining • {reviewedCount} reviewed
                       </Text>
                     </View>
                     <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
