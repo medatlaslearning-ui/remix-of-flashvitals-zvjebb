@@ -14,7 +14,7 @@ const D_ID_API_URL = 'https://api.d-id.com';
 
 // Dr. Ava Salta - Professional medical instructor avatar
 // Using a professional medical presenter image
-const DR_AVA_SALTA_IMAGE = 'https://create-images-results.d-id.com/api_img_gen/default-presenter-image.png';
+const DR_AVA_SALTA_IMAGE = 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=600&fit=crop';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -31,23 +31,21 @@ export default function DrAvaSaltaScreen() {
   const [currentTalkId, setCurrentTalkId] = useState<string | null>(null);
   const [isRecording, setIsRecording] = useState(false);
   const [permissionsGranted, setPermissionsGranted] = useState(false);
-  const [sessionId, setSessionId] = useState<string | null>(null);
-  const [streamUrl, setStreamUrl] = useState<string | null>(null);
   const scrollViewRef = useRef<ScrollView>(null);
   const pollingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Audio recorder for voice input
   const audioRecorder = useAudioRecorder(RecordingPresets.HIGH_QUALITY);
 
-  // Video player setup with expo-video
-  const player = useVideoPlayer(videoUrl || undefined, (player) => {
-    if (videoUrl) {
-      player.loop = false;
-      player.play();
-    }
+  // Video player setup with expo-video - initialize with null source
+  const player = useVideoPlayer(null, (player) => {
+    console.log('Video player initialized');
+    player.loop = false;
+    player.muted = false;
+    player.volume = 1.0;
   });
 
-  // Listen to video player status
+  // Listen to video player status changes
   const { status } = useEvent(player, 'statusChange', { status: player.status });
 
   // Calculate video dimensions (9:16 aspect ratio for portrait)
@@ -65,15 +63,16 @@ export default function DrAvaSaltaScreen() {
         console.log('Recording permissions granted:', granted);
         setPermissionsGranted(granted);
 
-        if (granted) {
-          await setAudioModeAsync({
-            playsInSilentMode: true,
-            allowsRecording: true,
-          });
-          console.log('Audio mode configured for recording');
-        }
+        // Configure audio mode for both recording and playback through speaker
+        await setAudioModeAsync({
+          playsInSilentMode: true,
+          allowsRecording: true,
+          shouldPlayInBackground: false,
+        });
+        console.log('Audio mode configured for recording and speaker playback');
       } catch (error) {
         console.error('Error setting up audio:', error);
+        Alert.alert('Audio Setup Error', 'Failed to configure audio. Please restart the app.');
       }
     };
 
@@ -93,9 +92,28 @@ export default function DrAvaSaltaScreen() {
   useEffect(() => {
     if (videoUrl && player) {
       console.log('Updating video player with new URL:', videoUrl);
-      player.replace(videoUrl);
+      try {
+        player.replace(videoUrl);
+        // Automatically play the video when it's ready
+        setTimeout(() => {
+          if (player.status === 'readyToPlay') {
+            console.log('Auto-playing video');
+            player.play();
+          }
+        }, 500);
+      } catch (error) {
+        console.error('Error replacing video source:', error);
+      }
     }
   }, [videoUrl]);
+
+  // Auto-play video when status becomes readyToPlay
+  useEffect(() => {
+    if (status === 'readyToPlay' && videoUrl && !player.playing) {
+      console.log('Video ready to play, starting playback');
+      player.play();
+    }
+  }, [status, videoUrl]);
 
   // Generate AI response using a simple medical knowledge base
   const generateAIResponse = (userQuestion: string): string => {
@@ -114,6 +132,8 @@ export default function DrAvaSaltaScreen() {
       return "Pneumonia is an infection of the lung parenchyma. Community-acquired pneumonia often presents with fever, cough, and dyspnea. Use the CURB-65 score to assess severity. Chest X-ray shows infiltrates. Treatment depends on severity and risk factors. Typical organisms include Streptococcus pneumoniae, while atypical include Mycoplasma and Legionella. Always consider aspiration risk in elderly patients.";
     } else if (lowerQuestion.includes('asthma')) {
       return "Asthma is a chronic inflammatory airway disease causing reversible bronchospasm. Symptoms include wheezing, dyspnea, and cough, often worse at night. Diagnosis involves spirometry showing reversible obstruction. Treatment follows a stepwise approach: short-acting beta agonists for rescue, inhaled corticosteroids for control, and add-on therapies like LABAs for severe cases. Always assess triggers and adherence.";
+    } else if (lowerQuestion.includes('hello') || lowerQuestion.includes('hi') || lowerQuestion.includes('hey')) {
+      return "Hello! I'm Dr. Ava Salta, your AI medical education assistant. I'm here to help you learn about various medical topics, from cardiology to infectious diseases. Feel free to ask me any medical questions, and I'll provide clear, evidence-based explanations to support your learning journey.";
     } else {
       return `Thank you for asking about "${userQuestion}". As Dr. Ava Salta, I'm here to help you understand medical concepts. This is an important topic in medical education. Let me break it down for you in a clear, systematic way. Remember to always correlate clinical findings with patient presentation and use evidence-based guidelines in your practice.`;
     }
@@ -200,9 +220,9 @@ export default function DrAvaSaltaScreen() {
         console.log('Talk status:', data.status, 'Attempt:', attempts + 1);
 
         if (data.status === 'done' && data.result_url) {
+          console.log('Video ready:', data.result_url);
           setVideoUrl(data.result_url);
           setIsGeneratingVideo(false);
-          console.log('Video ready:', data.result_url);
           
           // Update the last message with the video URL
           setMessages(prev => {
@@ -307,20 +327,23 @@ export default function DrAvaSaltaScreen() {
 
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
       
+      console.log('Preparing to record...');
       await audioRecorder.prepareToRecordAsync();
+      console.log('Starting recording...');
       await audioRecorder.record();
       
       setIsRecording(true);
-      console.log('Recording started');
+      console.log('Recording started successfully');
     } catch (error) {
       console.error('Failed to start recording:', error);
-      Alert.alert('Error', 'Failed to start recording. Please try again.');
+      Alert.alert('Recording Error', 'Failed to start recording. Please try again.');
     }
   };
 
   const stopRecording = async () => {
     try {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+      console.log('Stopping recording...');
       await audioRecorder.stop();
       setIsRecording(false);
       
@@ -405,6 +428,7 @@ export default function DrAvaSaltaScreen() {
                   />
                   <Text style={styles.initialText}>Dr. Ava Salta</Text>
                   <Text style={styles.initialSubtext}>AI Medical Instructor</Text>
+                  <Text style={styles.initialHint}>Ask me a medical question to begin</Text>
                 </View>
               )}
 
@@ -420,7 +444,7 @@ export default function DrAvaSaltaScreen() {
                 <View style={[styles.statusDot, status === 'readyToPlay' && styles.statusDotActive]} />
                 <Text style={styles.statusText}>
                   {status === 'loading' && 'Loading video...'}
-                  {status === 'readyToPlay' && 'Video ready'}
+                  {status === 'readyToPlay' && player.playing ? 'Speaking...' : 'Ready'}
                   {status === 'error' && 'Video error'}
                   {status === 'idle' && 'Idle'}
                 </Text>
@@ -466,7 +490,7 @@ export default function DrAvaSaltaScreen() {
                 key={index}
                 style={[
                   styles.messageContainer,
-                  message.role === 'user' ? styles.userMessage : styles.assistantMessage,
+                  message.role === 'user' ? styles.userMessageContainer : styles.assistantMessageContainer,
                 ]}
               >
                 {message.role === 'assistant' && (
@@ -479,7 +503,10 @@ export default function DrAvaSaltaScreen() {
                     />
                   </View>
                 )}
-                <View style={styles.messageBubble}>
+                <View style={[
+                  styles.messageBubble,
+                  message.role === 'user' ? styles.userMessageBubble : styles.assistantMessageBubble,
+                ]}>
                   <Text style={[
                     styles.messageText,
                     message.role === 'user' && styles.userMessageText,
@@ -491,7 +518,7 @@ export default function DrAvaSaltaScreen() {
             ))}
 
             {isLoading && (
-              <View style={[styles.messageContainer, styles.assistantMessage]}>
+              <View style={[styles.messageContainer, styles.assistantMessageContainer]}>
                 <View style={styles.avatarIcon}>
                   <IconSymbol
                     ios_icon_name="person.circle.fill"
@@ -650,6 +677,13 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     marginTop: 8,
   },
+  initialHint: {
+    color: colors.card,
+    fontSize: 14,
+    fontWeight: '300',
+    marginTop: 4,
+    opacity: 0.8,
+  },
   labelContainer: {
     position: 'absolute',
     bottom: 12,
@@ -732,10 +766,12 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     alignItems: 'flex-start',
   },
-  userMessage: {
-    justifyContent: 'flex-end',
+  userMessageContainer: {
+    flexDirection: 'row-reverse',
+    justifyContent: 'flex-start',
   },
-  assistantMessage: {
+  assistantMessageContainer: {
+    flexDirection: 'row',
     justifyContent: 'flex-start',
   },
   avatarIcon: {
@@ -747,14 +783,15 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 16,
   },
-  userMessage: {
-    flexDirection: 'row-reverse',
+  userMessageBubble: {
+    backgroundColor: colors.primary,
+    borderBottomRightRadius: 4,
   },
-  userMessage: {
-    alignSelf: 'flex-end',
-  },
-  assistantMessage: {
-    alignSelf: 'flex-start',
+  assistantMessageBubble: {
+    backgroundColor: colors.card,
+    borderBottomLeftRadius: 4,
+    boxShadow: '0px 1px 3px rgba(0, 0, 0, 0.1)',
+    elevation: 2,
   },
   messageText: {
     fontSize: 15,
@@ -763,32 +800,6 @@ const styles = StyleSheet.create({
   },
   userMessageText: {
     color: colors.card,
-  },
-  userMessage: {
-    flexDirection: 'row-reverse',
-  },
-  userMessage: {
-    maxWidth: '80%',
-    alignSelf: 'flex-end',
-  },
-  userMessage: {
-    backgroundColor: colors.primary,
-  },
-  assistantMessage: {
-    maxWidth: '85%',
-  },
-  messageBubble: {
-    padding: 12,
-    borderRadius: 16,
-    backgroundColor: colors.card,
-    boxShadow: '0px 1px 3px rgba(0, 0, 0, 0.1)',
-    elevation: 2,
-  },
-  userMessage: {
-    flexDirection: 'row-reverse',
-  },
-  userMessage: {
-    backgroundColor: colors.primary,
   },
   messageLoadingText: {
     fontSize: 13,
