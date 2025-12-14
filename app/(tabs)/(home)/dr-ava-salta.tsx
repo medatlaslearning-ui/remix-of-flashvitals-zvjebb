@@ -6,7 +6,7 @@ import { colors, commonStyles } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
 import * as Haptics from 'expo-haptics';
 import { useVideoPlayer, VideoView } from 'expo-video';
-import { useAudioRecorder, RecordingStatus } from 'expo-audio';
+import { useAudioRecorder, RecordingPresets, setAudioModeAsync, requestRecordingPermissionsAsync } from 'expo-audio';
 import { useEvent } from 'expo';
 
 const D_ID_API_KEY = 'cGF0cmlja3NoZXJsb2NrNDExQGdtYWlsLmNvbQ:yuPvdNJE9EcynkqSQeuco';
@@ -28,11 +28,12 @@ export default function DrAvaSaltaScreen() {
   const [isGeneratingVideo, setIsGeneratingVideo] = useState(false);
   const [currentTalkId, setCurrentTalkId] = useState<string | null>(null);
   const [isRecording, setIsRecording] = useState(false);
+  const [permissionsGranted, setPermissionsGranted] = useState(false);
   const scrollViewRef = useRef<ScrollView>(null);
   const pollingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Audio recorder for voice input
-  const audioRecorder = useAudioRecorder();
+  // Audio recorder for voice input - initialized with HIGH_QUALITY preset
+  const audioRecorder = useAudioRecorder(RecordingPresets.HIGH_QUALITY);
 
   // Video player setup with expo-video
   const player = useVideoPlayer(videoUrl || undefined, (player) => {
@@ -49,6 +50,33 @@ export default function DrAvaSaltaScreen() {
   const screenWidth = Dimensions.get('window').width;
   const videoWidth = Math.min(screenWidth * 0.9, 400);
   const videoHeight = videoWidth * (16 / 9);
+
+  // Setup audio permissions and mode on mount
+  useEffect(() => {
+    const setupAudio = async () => {
+      try {
+        console.log('Setting up audio permissions and mode...');
+        
+        // Request recording permissions
+        const { granted } = await requestRecordingPermissionsAsync();
+        console.log('Recording permissions granted:', granted);
+        setPermissionsGranted(granted);
+
+        if (granted) {
+          // Set audio mode to allow recording
+          await setAudioModeAsync({
+            playsInSilentMode: true,
+            allowsRecording: true,
+          });
+          console.log('Audio mode configured for recording');
+        }
+      } catch (error) {
+        console.error('Error setting up audio:', error);
+      }
+    };
+
+    setupAudio();
+  }, []);
 
   // Cleanup polling on unmount
   useEffect(() => {
@@ -223,15 +251,22 @@ export default function DrAvaSaltaScreen() {
   // Voice recording functions
   const startRecording = async () => {
     try {
-      const { granted } = await audioRecorder.requestPermissions();
-      
-      if (!granted) {
-        Alert.alert('Permission Required', 'Please grant microphone permission to use voice input.');
-        return;
+      if (!permissionsGranted) {
+        const { granted } = await requestRecordingPermissionsAsync();
+        setPermissionsGranted(granted);
+        
+        if (!granted) {
+          Alert.alert('Permission Required', 'Please grant microphone permission to use voice input.');
+          return;
+        }
       }
 
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+      
+      // Prepare the recorder before recording
+      await audioRecorder.prepareToRecordAsync();
       await audioRecorder.record();
+      
       setIsRecording(true);
       console.log('Recording started');
     } catch (error) {
@@ -243,8 +278,10 @@ export default function DrAvaSaltaScreen() {
   const stopRecording = async () => {
     try {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-      const uri = await audioRecorder.stop();
+      await audioRecorder.stop();
       setIsRecording(false);
+      
+      const uri = audioRecorder.uri;
       console.log('Recording stopped, URI:', uri);
 
       // For now, just notify the user that voice input was recorded
