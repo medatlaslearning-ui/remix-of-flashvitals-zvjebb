@@ -1,6 +1,6 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, Pressable, TextInput, ActivityIndicator, Platform, Dimensions, Image, Alert } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Pressable, TextInput, ActivityIndicator, Platform, Dimensions, Alert } from 'react-native';
 import { Stack } from 'expo-router';
 import { colors, commonStyles } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
@@ -17,8 +17,8 @@ import {
 const D_ID_API_KEY = 'cGF0cmlja3NoZXJsb2NrNDExQGdtYWlsLmNvbQ:yuPvdNJE9EcynkqSQeuco';
 const D_ID_API_URL = 'https://api.d-id.com';
 
-// Dr. Ava Salta - Professional medical instructor avatar
-const DR_AVA_SALTA_IMAGE = 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=600&fit=crop';
+// D-ID Agent Configuration
+const D_ID_AGENT_ID = 'v2_agt_8NccMrqm';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -38,18 +38,18 @@ export default function DrAvaSaltaScreen() {
   const scrollViewRef = useRef<ScrollView>(null);
   const pollingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Audio recorder for voice input - FIXED: Using correct hook signature
+  // Audio recorder for voice input
   const audioRecorder = useAudioRecorder(RecordingPresets.HIGH_QUALITY);
 
-  // Video player setup - FIXED: Proper initialization with null source
+  // Video player setup - Initialize with null source
   const player = useVideoPlayer(null, (player) => {
-    console.log('Video player initialized');
+    console.log('[VIDEO PLAYER] Initialized');
     player.loop = false;
     player.muted = false;
     player.volume = 1.0;
   });
 
-  // Listen to video player status changes - FIXED: Added useEvent import
+  // Listen to video player status changes
   const { status } = useEvent(player, 'statusChange', { status: player.status });
   const { playing } = useEvent(player, 'playingChange', { playing: player.playing });
 
@@ -58,18 +58,19 @@ export default function DrAvaSaltaScreen() {
   const videoWidth = Math.min(screenWidth * 0.85, 350);
   const videoHeight = videoWidth * (16 / 9);
 
-  // Setup audio permissions and mode on mount - FIXED: Correct function usage
+  // DIAGNOSTIC: Setup audio permissions and mode on mount
   useEffect(() => {
     const setupAudio = async () => {
       try {
-        console.log('Setting up audio permissions and mode...');
+        console.log('[AUDIO SETUP] Starting audio configuration...');
         
         // Request recording permissions
         const { granted } = await requestRecordingPermissionsAsync();
-        console.log('Recording permissions granted:', granted);
+        console.log('[AUDIO SETUP] Recording permissions granted:', granted);
         setPermissionsGranted(granted);
 
         if (!granted) {
+          console.warn('[AUDIO SETUP] Microphone permission denied');
           Alert.alert(
             'Microphone Permission Required',
             'Please grant microphone permission to use voice input feature.',
@@ -77,15 +78,15 @@ export default function DrAvaSaltaScreen() {
           );
         }
 
-        // Configure audio mode for both recording and playback through speaker
+        // Configure audio mode for both recording and playback
         await setAudioModeAsync({
           playsInSilentMode: true,
           allowsRecording: true,
           shouldPlayInBackground: false,
         });
-        console.log('Audio mode configured successfully');
+        console.log('[AUDIO SETUP] Audio mode configured successfully');
       } catch (error) {
-        console.error('Error setting up audio:', error);
+        console.error('[AUDIO SETUP ERROR]', error);
         Alert.alert('Audio Setup Error', 'Failed to configure audio. Voice input may not work properly.');
       }
     };
@@ -93,9 +94,10 @@ export default function DrAvaSaltaScreen() {
     setupAudio();
   }, []);
 
-  // Cleanup polling on unmount
+  // DIAGNOSTIC: Cleanup polling on unmount
   useEffect(() => {
     return () => {
+      console.log('[CLEANUP] Component unmounting, clearing polling timeout');
       if (pollingTimeoutRef.current) {
         clearTimeout(pollingTimeoutRef.current);
         pollingTimeoutRef.current = null;
@@ -103,38 +105,39 @@ export default function DrAvaSaltaScreen() {
     };
   }, []);
 
-  // Update video source when URL changes - FIXED: Better error handling
+  // DIAGNOSTIC: Update video source when URL changes
   useEffect(() => {
     if (videoUrl && player) {
-      console.log('Updating video player with new URL:', videoUrl);
+      console.log('[VIDEO UPDATE] Updating video player with new URL:', videoUrl);
       try {
-        // Use replace to update the video source
         player.replace(videoUrl);
-        console.log('Video source replaced successfully');
+        console.log('[VIDEO UPDATE] Video source replaced successfully');
       } catch (error) {
-        console.error('Error replacing video source:', error);
+        console.error('[VIDEO UPDATE ERROR]', error);
         Alert.alert('Video Error', 'Failed to load video. Please try again.');
       }
     }
   }, [videoUrl, player]);
 
-  // Auto-play video when status becomes readyToPlay
+  // DIAGNOSTIC: Auto-play video when status becomes readyToPlay
   useEffect(() => {
     if (status === 'readyToPlay' && videoUrl && !playing) {
-      console.log('Video ready to play, starting playback');
+      console.log('[VIDEO PLAYBACK] Video ready to play, starting playback');
       try {
         player.play();
+        console.log('[VIDEO PLAYBACK] Playback started');
       } catch (error) {
-        console.error('Error playing video:', error);
+        console.error('[VIDEO PLAYBACK ERROR]', error);
       }
     }
   }, [status, videoUrl, playing, player]);
 
-  // Generate AI response using a simple medical knowledge base
+  // Generate AI response using medical knowledge base
   const generateAIResponse = (userQuestion: string): string => {
+    console.log('[AI RESPONSE] Generating response for:', userQuestion);
     const lowerQuestion = userQuestion.toLowerCase();
     
-    // Simple medical knowledge responses
+    // Medical knowledge responses
     if (lowerQuestion.includes('heart failure') || lowerQuestion.includes('hf')) {
       return "Heart failure is a clinical syndrome where the heart cannot pump enough blood to meet the body's needs. Key signs include dyspnea, fatigue, and edema. The New York Heart Association classification helps grade severity. Treatment includes ACE inhibitors, beta blockers, and diuretics. Remember to assess for underlying causes like coronary artery disease or valvular disorders.";
     } else if (lowerQuestion.includes('diabetes') || lowerQuestion.includes('diabetic')) {
@@ -154,11 +157,11 @@ export default function DrAvaSaltaScreen() {
     }
   };
 
-  // Function to create a talk with D-ID - FIXED: Better error handling and logging
+  // DIAGNOSTIC: Function to create a talk with D-ID
   const createTalk = async (text: string) => {
     try {
       setIsGeneratingVideo(true);
-      console.log('Creating D-ID talk with text:', text.substring(0, 50) + '...');
+      console.log('[D-ID CREATE] Creating D-ID talk with text:', text.substring(0, 50) + '...');
 
       const requestBody = {
         script: {
@@ -174,10 +177,11 @@ export default function DrAvaSaltaScreen() {
           pad_audio: 0,
           stitch: true,
         },
-        source_url: DR_AVA_SALTA_IMAGE,
+        // Using D-ID's default presenter instead of custom image
+        presenter_id: 'amy-jcwCkr1grs',
       };
 
-      console.log('D-ID API Request:', JSON.stringify(requestBody, null, 2));
+      console.log('[D-ID CREATE] Request body:', JSON.stringify(requestBody, null, 2));
 
       const response = await fetch(`${D_ID_API_URL}/talks`, {
         method: 'POST',
@@ -190,23 +194,23 @@ export default function DrAvaSaltaScreen() {
       });
 
       const responseText = await response.text();
-      console.log('D-ID API Response Status:', response.status);
-      console.log('D-ID API Response:', responseText);
+      console.log('[D-ID CREATE] Response status:', response.status);
+      console.log('[D-ID CREATE] Response body:', responseText);
 
       if (!response.ok) {
         let errorMessage = `D-ID API error: ${response.status}`;
         try {
           const errorData = JSON.parse(responseText);
           errorMessage = errorData.message || errorData.error || errorMessage;
-          console.error('D-ID API error details:', errorData);
+          console.error('[D-ID CREATE ERROR] Error details:', errorData);
         } catch (e) {
-          console.error('Could not parse error response:', e);
+          console.error('[D-ID CREATE ERROR] Could not parse error response:', e);
         }
         throw new Error(errorMessage);
       }
 
       const data = JSON.parse(responseText);
-      console.log('D-ID talk created successfully. Talk ID:', data.id);
+      console.log('[D-ID CREATE] Talk created successfully. Talk ID:', data.id);
 
       if (data.id) {
         setCurrentTalkId(data.id);
@@ -215,7 +219,7 @@ export default function DrAvaSaltaScreen() {
         throw new Error('No talk ID returned from D-ID API');
       }
     } catch (error) {
-      console.error('Error creating D-ID talk:', error);
+      console.error('[D-ID CREATE ERROR]', error);
       Alert.alert(
         'Video Generation Error',
         error instanceof Error ? error.message : 'Unable to generate video response. Please check your internet connection and try again.',
@@ -225,7 +229,7 @@ export default function DrAvaSaltaScreen() {
     }
   };
 
-  // Poll for talk status - FIXED: Better cleanup and error handling
+  // DIAGNOSTIC: Poll for talk status
   const pollTalkStatus = async (talkId: string) => {
     const maxAttempts = 60;
     let attempts = 0;
@@ -234,11 +238,11 @@ export default function DrAvaSaltaScreen() {
       try {
         // Check if we should stop polling
         if (currentTalkId !== talkId) {
-          console.log('Talk ID changed, stopping poll');
+          console.log('[D-ID POLL] Talk ID changed, stopping poll');
           return;
         }
 
-        console.log(`Polling talk status (attempt ${attempts + 1}/${maxAttempts})...`);
+        console.log(`[D-ID POLL] Polling talk status (attempt ${attempts + 1}/${maxAttempts})...`);
 
         const response = await fetch(`${D_ID_API_URL}/talks/${talkId}`, {
           headers: {
@@ -252,10 +256,10 @@ export default function DrAvaSaltaScreen() {
         }
 
         const data = await response.json();
-        console.log('Talk status:', data.status);
+        console.log('[D-ID POLL] Talk status:', data.status);
 
         if (data.status === 'done' && data.result_url) {
-          console.log('Video ready! URL:', data.result_url);
+          console.log('[D-ID POLL] Video ready! URL:', data.result_url);
           setVideoUrl(data.result_url);
           setIsGeneratingVideo(false);
           
@@ -281,7 +285,7 @@ export default function DrAvaSaltaScreen() {
           throw new Error('Video generation timeout - please try a shorter message');
         }
       } catch (error) {
-        console.error('Error polling talk status:', error);
+        console.error('[D-ID POLL ERROR]', error);
         Alert.alert(
           'Video Generation Error',
           error instanceof Error ? error.message : 'Failed to generate video. Please try again.',
@@ -298,11 +302,14 @@ export default function DrAvaSaltaScreen() {
     poll();
   };
 
+  // DIAGNOSTIC: Handle send message
   const handleSend = async () => {
     if (!inputText.trim()) {
+      console.log('[SEND] Empty input, ignoring');
       return;
     }
 
+    console.log('[SEND] Sending message:', inputText);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
 
     const userMessage: Message = {
@@ -323,6 +330,7 @@ export default function DrAvaSaltaScreen() {
     // Generate AI response
     setTimeout(() => {
       const aiResponse = generateAIResponse(currentInput);
+      console.log('[SEND] AI response generated:', aiResponse.substring(0, 50) + '...');
       const assistantMessage: Message = {
         role: 'assistant',
         content: aiResponse,
@@ -341,6 +349,7 @@ export default function DrAvaSaltaScreen() {
   };
 
   const handleClearChat = () => {
+    console.log('[CLEAR] Clearing chat');
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     setMessages([]);
     setVideoUrl(null);
@@ -352,14 +361,16 @@ export default function DrAvaSaltaScreen() {
     }
   };
 
-  // Voice recording functions - FIXED: Proper async/await handling
+  // DIAGNOSTIC: Voice recording functions
   const startRecording = async () => {
     try {
+      console.log('[VOICE] Starting recording...');
       if (!permissionsGranted) {
         const { granted } = await requestRecordingPermissionsAsync();
         setPermissionsGranted(granted);
         
         if (!granted) {
+          console.warn('[VOICE] Permission denied');
           Alert.alert('Permission Required', 'Please grant microphone permission to use voice input.');
           return;
         }
@@ -367,15 +378,15 @@ export default function DrAvaSaltaScreen() {
 
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
       
-      console.log('Preparing to record...');
+      console.log('[VOICE] Preparing to record...');
       await audioRecorder.prepareToRecordAsync();
-      console.log('Starting recording...');
+      console.log('[VOICE] Starting recording...');
       await audioRecorder.record();
       
       setIsRecording(true);
-      console.log('Recording started successfully');
+      console.log('[VOICE] Recording started successfully');
     } catch (error) {
-      console.error('Failed to start recording:', error);
+      console.error('[VOICE ERROR] Failed to start recording:', error);
       Alert.alert('Recording Error', 'Failed to start recording. Please try again.');
       setIsRecording(false);
     }
@@ -383,13 +394,13 @@ export default function DrAvaSaltaScreen() {
 
   const stopRecording = async () => {
     try {
+      console.log('[VOICE] Stopping recording...');
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-      console.log('Stopping recording...');
       await audioRecorder.stop();
       setIsRecording(false);
       
       const uri = audioRecorder.uri;
-      console.log('Recording stopped, URI:', uri);
+      console.log('[VOICE] Recording stopped, URI:', uri);
 
       Alert.alert(
         'Voice Input Recorded',
@@ -397,13 +408,14 @@ export default function DrAvaSaltaScreen() {
         [{ text: 'OK' }]
       );
     } catch (error) {
-      console.error('Failed to stop recording:', error);
+      console.error('[VOICE ERROR] Failed to stop recording:', error);
       setIsRecording(false);
       Alert.alert('Recording Error', 'Failed to stop recording properly.');
     }
   };
 
   const toggleRecording = () => {
+    console.log('[VOICE] Toggle recording, current state:', isRecording);
     if (isRecording) {
       stopRecording();
     } else {
@@ -426,18 +438,11 @@ export default function DrAvaSaltaScreen() {
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
         >
-          {/* Dr. Ava Salta Video Avatar Container */}
+          {/* Dr. Ava Salta Video Avatar Container - NO STOCK IMAGE */}
           <View style={styles.avatarContainer}>
             <View style={[styles.videoWrapper, { width: videoWidth, height: videoHeight }]}>
-              {/* Static Image - Always visible as background */}
-              <Image
-                source={{ uri: DR_AVA_SALTA_IMAGE }}
-                style={styles.backgroundImage}
-                resizeMode="cover"
-              />
-
-              {/* Video Player - Overlays the image when available */}
-              {videoUrl && (
+              {/* Video Player - Only shows when video is available */}
+              {videoUrl ? (
                 <View style={styles.videoContainer}>
                   <VideoView
                     player={player}
@@ -447,30 +452,26 @@ export default function DrAvaSaltaScreen() {
                     allowsFullscreen={false}
                   />
                 </View>
+              ) : (
+                <View style={styles.placeholderContainer}>
+                  <IconSymbol
+                    ios_icon_name="person.circle.fill"
+                    android_material_icon_name="account_circle"
+                    size={80}
+                    color={colors.textSecondary}
+                  />
+                  <Text style={styles.placeholderText}>Dr. Ava Salta</Text>
+                  <Text style={styles.placeholderSubtext}>AI Medical Instructor</Text>
+                </View>
               )}
 
               {/* Loading Overlay */}
               {(isGeneratingVideo || (videoUrl && status === 'loading')) && (
                 <View style={styles.loadingOverlay}>
-                  <ActivityIndicator size="large" color={colors.card} />
+                  <ActivityIndicator size="large" color={colors.primary} />
                   <Text style={styles.loadingText}>
                     {isGeneratingVideo ? 'Dr. Ava Salta is responding...' : 'Loading video...'}
                   </Text>
-                </View>
-              )}
-
-              {/* Initial state overlay */}
-              {!videoUrl && !isGeneratingVideo && messages.length === 0 && (
-                <View style={styles.initialOverlay}>
-                  <IconSymbol
-                    ios_icon_name="person.circle.fill"
-                    android_material_icon_name="account_circle"
-                    size={64}
-                    color={colors.card}
-                  />
-                  <Text style={styles.initialText}>Dr. Ava Salta</Text>
-                  <Text style={styles.initialSubtext}>AI Medical Instructor</Text>
-                  <Text style={styles.initialHint}>Ask me a medical question to begin</Text>
                 </View>
               )}
 
@@ -503,27 +504,6 @@ export default function DrAvaSaltaScreen() {
                   Your AI medical education assistant with interactive video responses.
                   Ask me anything about medical topics!
                 </Text>
-                <View style={styles.exampleQuestions}>
-                  <Text style={styles.exampleTitle}>Try asking:</Text>
-                  <Pressable
-                    style={styles.exampleButton}
-                    onPress={() => setInputText('What are the signs of heart failure?')}
-                  >
-                    <Text style={styles.exampleButtonText}>• What are the signs of heart failure?</Text>
-                  </Pressable>
-                  <Pressable
-                    style={styles.exampleButton}
-                    onPress={() => setInputText('Explain diabetes pathophysiology')}
-                  >
-                    <Text style={styles.exampleButtonText}>• Explain diabetes pathophysiology</Text>
-                  </Pressable>
-                  <Pressable
-                    style={styles.exampleButton}
-                    onPress={() => setInputText('How do I interpret an ECG?')}
-                  >
-                    <Text style={styles.exampleButtonText}>• How do I interpret an ECG?</Text>
-                  </Pressable>
-                </View>
               </View>
             )}
 
@@ -601,6 +581,8 @@ export default function DrAvaSaltaScreen() {
               multiline
               maxLength={500}
               editable={!isRecording}
+              returnKeyType="send"
+              onSubmitEditing={handleSend}
             />
 
             {/* Voice Input Button */}
@@ -657,23 +639,30 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.2)',
     elevation: 8,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: colors.card,
   },
-  backgroundImage: {
-    position: 'absolute',
+  placeholderContainer: {
     width: '100%',
     height: '100%',
-    top: 0,
-    left: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.highlight,
+  },
+  placeholderText: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: colors.text,
+    marginTop: 16,
+  },
+  placeholderSubtext: {
+    fontSize: 14,
+    color: colors.textSecondary,
+    marginTop: 4,
   },
   videoContainer: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
     width: '100%',
     height: '100%',
-    backgroundColor: 'transparent',
-    zIndex: 5,
+    backgroundColor: '#000',
   },
   videoView: {
     width: '100%',
@@ -695,36 +684,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     marginTop: 12,
-  },
-  initialOverlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 5,
-  },
-  initialText: {
-    color: colors.card,
-    fontSize: 24,
-    fontWeight: '700',
-    marginTop: 12,
-  },
-  initialSubtext: {
-    color: colors.card,
-    fontSize: 16,
-    fontWeight: '400',
-    marginTop: 8,
-  },
-  initialHint: {
-    color: colors.card,
-    fontSize: 14,
-    fontWeight: '300',
-    marginTop: 4,
-    opacity: 0.8,
   },
   labelContainer: {
     position: 'absolute',
@@ -781,27 +740,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 22,
     paddingHorizontal: 16,
-  },
-  exampleQuestions: {
-    marginTop: 24,
-    width: '100%',
-  },
-  exampleTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: colors.text,
-    marginBottom: 12,
-  },
-  exampleButton: {
-    backgroundColor: colors.highlight,
-    padding: 14,
-    borderRadius: 12,
-    marginBottom: 8,
-  },
-  exampleButtonText: {
-    fontSize: 14,
-    color: colors.text,
-    fontWeight: '500',
   },
   messageContainer: {
     flexDirection: 'row',
