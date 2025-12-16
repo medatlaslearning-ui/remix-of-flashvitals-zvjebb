@@ -2,8 +2,411 @@
 import { Flashcard } from '@/types/flashcard';
 
 export const urologyFlashcards: Flashcard[] = [
-  // Lower Urinary Tract Disorders - Placeholder structure
-  // Flashcards will be added later
+  // Lower Urinary Tract Disorders - Easy Difficulty
+  {
+    id: 'urology-lut-1',
+    system: 'Urology',
+    topic: 'Lower Urinary Tract Disorders',
+    difficulty: 'easy',
+    front: 'What is benign prostatic hyperplasia (BPH)?',
+    back: {
+      definition: 'Nonmalignant enlargement of the prostate causing bladder outlet obstruction.',
+      high_yield: 'Common in aging men.',
+      clinical_pearl: 'Causes progressive lower urinary tract symptoms.'
+    },
+    tags: ['Lower Urinary Tract Disorders', 'BPH', 'Prostate'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-lut-2',
+    system: 'Urology',
+    topic: 'Lower Urinary Tract Disorders',
+    difficulty: 'easy',
+    front: 'What are lower urinary tract symptoms (LUTS)?',
+    back: {
+      definition: 'Storage and voiding symptoms related to bladder and urethra.',
+      high_yield: 'Includes frequency, urgency, weak stream.',
+      clinical_pearl: 'Symptoms do not always correlate with prostate size.'
+    },
+    tags: ['Lower Urinary Tract Disorders', 'LUTS', 'Symptoms'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-lut-3',
+    system: 'Urology',
+    topic: 'Lower Urinary Tract Disorders',
+    difficulty: 'easy',
+    front: 'What is urinary frequency?',
+    back: {
+      definition: 'Increased number of voids during the day.',
+      high_yield: 'Often associated with bladder irritation.',
+      clinical_pearl: 'Ask about fluid and caffeine intake.'
+    },
+    tags: ['Lower Urinary Tract Disorders', 'Frequency', 'Symptoms'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-lut-4',
+    system: 'Urology',
+    topic: 'Lower Urinary Tract Disorders',
+    difficulty: 'easy',
+    front: 'What is urinary urgency?',
+    back: {
+      definition: 'Sudden compelling need to void.',
+      high_yield: 'Common in overactive bladder.',
+      clinical_pearl: 'Urgency without infection suggests detrusor overactivity.'
+    },
+    tags: ['Lower Urinary Tract Disorders', 'Urgency', 'Overactive Bladder'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-lut-5',
+    system: 'Urology',
+    topic: 'Lower Urinary Tract Disorders',
+    difficulty: 'easy',
+    front: 'What is nocturia?',
+    back: {
+      definition: 'Waking from sleep to void urine.',
+      high_yield: 'Common in BPH and heart failure.',
+      clinical_pearl: 'Assess timing and fluid intake before sleep.'
+    },
+    tags: ['Lower Urinary Tract Disorders', 'Nocturia', 'BPH'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+
+  // Lower Urinary Tract Disorders - Medium Difficulty
+  {
+    id: 'urology-lut-6',
+    system: 'Urology',
+    topic: 'Lower Urinary Tract Disorders',
+    difficulty: 'medium',
+    front: 'What is overflow incontinence?',
+    back: {
+      definition: 'Involuntary leakage due to bladder overdistension.',
+      high_yield: 'Associated with chronic urinary retention.',
+      clinical_pearl: 'Post-void residual is often elevated.'
+    },
+    tags: ['Lower Urinary Tract Disorders', 'Incontinence', 'Overflow'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-lut-7',
+    system: 'Urology',
+    topic: 'Lower Urinary Tract Disorders',
+    difficulty: 'medium',
+    front: 'What is stress urinary incontinence?',
+    back: {
+      definition: 'Leakage with increased intra-abdominal pressure.',
+      high_yield: 'Common in women after childbirth.',
+      clinical_pearl: 'Occurs with coughing or sneezing.'
+    },
+    tags: ['Lower Urinary Tract Disorders', 'Incontinence', 'Stress'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-lut-8',
+    system: 'Urology',
+    topic: 'Lower Urinary Tract Disorders',
+    difficulty: 'medium',
+    front: 'What is urge incontinence?',
+    back: {
+      definition: 'Involuntary leakage preceded by urgency.',
+      high_yield: 'Linked to detrusor overactivity.',
+      clinical_pearl: 'Behavioral therapy is first-line treatment.'
+    },
+    tags: ['Lower Urinary Tract Disorders', 'Incontinence', 'Urge'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-lut-9',
+    system: 'Urology',
+    topic: 'Lower Urinary Tract Disorders',
+    difficulty: 'medium',
+    front: 'What is mixed urinary incontinence?',
+    back: {
+      definition: 'Combination of stress and urge incontinence.',
+      high_yield: 'Common in older women.',
+      clinical_pearl: 'Treatment targets predominant symptom.'
+    },
+    tags: ['Lower Urinary Tract Disorders', 'Incontinence', 'Mixed'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-lut-10',
+    system: 'Urology',
+    topic: 'Lower Urinary Tract Disorders',
+    difficulty: 'medium',
+    front: 'What is overactive bladder?',
+    back: {
+      definition: 'Urgency with or without incontinence, often with frequency.',
+      high_yield: 'Diagnosis of exclusion.',
+      clinical_pearl: 'Antimuscarinics may worsen retention.'
+    },
+    tags: ['Lower Urinary Tract Disorders', 'Overactive Bladder', 'OAB'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-lut-11',
+    system: 'Urology',
+    topic: 'Lower Urinary Tract Disorders',
+    difficulty: 'medium',
+    front: 'What is bladder outlet obstruction?',
+    back: {
+      definition: 'Impaired urine flow at the bladder neck or urethra.',
+      high_yield: 'BPH is the most common cause in men.',
+      clinical_pearl: 'Can lead to hydronephrosis if untreated.'
+    },
+    tags: ['Lower Urinary Tract Disorders', 'Obstruction', 'BPH'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-lut-12',
+    system: 'Urology',
+    topic: 'Lower Urinary Tract Disorders',
+    difficulty: 'medium',
+    front: 'What is post-void residual urine?',
+    back: {
+      definition: 'Volume of urine remaining after voiding.',
+      high_yield: 'Elevated levels suggest obstruction or detrusor weakness.',
+      clinical_pearl: 'Measure with bladder scan.'
+    },
+    tags: ['Lower Urinary Tract Disorders', 'Post-Void Residual', 'PVR'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-lut-13',
+    system: 'Urology',
+    topic: 'Lower Urinary Tract Disorders',
+    difficulty: 'medium',
+    front: 'What is acute urinary retention?',
+    back: {
+      definition: 'Sudden inability to void despite full bladder.',
+      high_yield: 'Often precipitated by medications or infection.',
+      clinical_pearl: 'Requires immediate catheterization.'
+    },
+    tags: ['Lower Urinary Tract Disorders', 'Retention', 'Acute'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-lut-14',
+    system: 'Urology',
+    topic: 'Lower Urinary Tract Disorders',
+    difficulty: 'medium',
+    front: 'What is chronic urinary retention?',
+    back: {
+      definition: 'Persistent incomplete bladder emptying.',
+      high_yield: 'May be asymptomatic.',
+      clinical_pearl: 'Can cause renal dysfunction.'
+    },
+    tags: ['Lower Urinary Tract Disorders', 'Retention', 'Chronic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-lut-15',
+    system: 'Urology',
+    topic: 'Lower Urinary Tract Disorders',
+    difficulty: 'medium',
+    front: 'What medications worsen LUTS?',
+    back: {
+      definition: 'Drugs that impair bladder emptying.',
+      high_yield: 'Anticholinergics, opioids, decongestants.',
+      clinical_pearl: 'Always review medication list.'
+    },
+    tags: ['Lower Urinary Tract Disorders', 'Medications', 'LUTS'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+
+  // Lower Urinary Tract Disorders - Difficult
+  {
+    id: 'urology-lut-16',
+    system: 'Urology',
+    topic: 'Lower Urinary Tract Disorders',
+    difficulty: 'difficult',
+    front: 'When does UTI become urosepsis?',
+    back: {
+      definition: 'Systemic infection originating from urinary tract.',
+      high_yield: 'Fever, hypotension, altered mental status.',
+      clinical_pearl: 'Early source control is critical.'
+    },
+    tags: ['Lower Urinary Tract Disorders', 'Urosepsis', 'Sepsis', 'UTI'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-lut-17',
+    system: 'Urology',
+    topic: 'Lower Urinary Tract Disorders',
+    difficulty: 'difficult',
+    front: 'How do obstructing stones complicate infection?',
+    back: {
+      definition: 'Stone blocks urinary flow with infection present.',
+      high_yield: 'High risk of septic shock.',
+      clinical_pearl: 'Requires urgent decompression.'
+    },
+    tags: ['Lower Urinary Tract Disorders', 'Stones', 'Obstruction', 'Infection'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-lut-18',
+    system: 'Urology',
+    topic: 'Lower Urinary Tract Disorders',
+    difficulty: 'difficult',
+    front: 'What is xanthogranulomatous pyelonephritis?',
+    back: {
+      definition: 'Chronic inflammatory renal infection causing tissue destruction.',
+      high_yield: 'Associated with obstruction and stones.',
+      clinical_pearl: 'Often requires nephrectomy.'
+    },
+    tags: ['Lower Urinary Tract Disorders', 'Pyelonephritis', 'Xanthogranulomatous'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-lut-19',
+    system: 'Urology',
+    topic: 'Lower Urinary Tract Disorders',
+    difficulty: 'difficult',
+    front: 'How are fungal UTIs different?',
+    back: {
+      definition: 'Urinary infections caused by Candida species.',
+      high_yield: 'Seen in catheterized or immunocompromised patients.',
+      clinical_pearl: 'Remove catheter whenever possible.'
+    },
+    tags: ['Lower Urinary Tract Disorders', 'Fungal', 'Candida', 'UTI'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-lut-20',
+    system: 'Urology',
+    topic: 'Lower Urinary Tract Disorders',
+    difficulty: 'difficult',
+    front: 'What is the role of antibiotic stewardship in UTI?',
+    back: {
+      definition: 'Optimizing antibiotic use to reduce resistance.',
+      high_yield: 'Avoid unnecessary broad-spectrum therapy.',
+      clinical_pearl: 'Always de-escalate based on cultures.'
+    },
+    tags: ['Lower Urinary Tract Disorders', 'Antibiotic Stewardship', 'UTI'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
 
   // Upper Urinary Tract Disorders - Placeholder structure
   // Flashcards will be added later
