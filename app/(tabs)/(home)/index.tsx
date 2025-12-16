@@ -92,6 +92,15 @@ export default function HomeScreen() {
     ));
   }, [allFlashcards]);
 
+  // Get unique topics for Urology
+  const urologyTopics = useMemo(() => {
+    return Array.from(new Set(
+      allFlashcards
+        .filter(card => card.system === 'Urology')
+        .map(card => card.topic)
+    ));
+  }, [allFlashcards]);
+
   const handleSystemPress = (system: string) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     console.log('Navigating to system:', system);
@@ -113,6 +122,8 @@ export default function HomeScreen() {
       router.push('/(tabs)/(home)/neurology-topics');
     } else if (system === 'Emergency Medicine & Trauma') {
       router.push('/(tabs)/(home)/emergency-medicine-topics');
+    } else if (system === 'Urology') {
+      router.push('/(tabs)/(home)/urology-topics');
     }
   };
 
@@ -512,6 +523,35 @@ export default function HomeScreen() {
                 <Text style={styles.systemTitle}>Emergency Medicine & Trauma</Text>
                 <Text style={styles.systemSubtitle}>
                   {allFlashcards.filter(c => c.system === 'Emergency Medicine & Trauma').length} cards • {emergencyMedicineTopics.length} topics
+                </Text>
+              </View>
+              <IconSymbol 
+                ios_icon_name="chevron.right" 
+                android_material_icon_name="chevron_right"
+                size={24} 
+                color={colors.textSecondary} 
+              />
+            </View>
+          </Pressable>
+
+          {/* Urology System */}
+          <Pressable 
+            style={styles.systemCard}
+            onPress={() => handleSystemPress('Urology')}
+          >
+            <View style={styles.systemHeader}>
+              <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
+                <IconSymbol 
+                  ios_icon_name="cross.case.fill" 
+                  android_material_icon_name="medical_services"
+                  size={32} 
+                  color={colors.secondary} 
+                />
+              </View>
+              <View style={styles.systemInfo}>
+                <Text style={styles.systemTitle}>Urology</Text>
+                <Text style={styles.systemSubtitle}>
+                  {allFlashcards.filter(c => c.system === 'Urology').length} cards • {urologyTopics.length} topics
                 </Text>
               </View>
               <IconSymbol 

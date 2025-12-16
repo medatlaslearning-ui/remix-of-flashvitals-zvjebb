@@ -11,6 +11,7 @@ import { hematologyFlashcards } from '@/data/hematologyFlashcards';
 import { infectiousDiseaseFlashcards } from '@/data/infectiousDiseaseFlashcards';
 import { neurologyFlashcards } from '@/data/neurologyFlashcards';
 import { emergencyMedicineFlashcards } from '@/data/emergencyMedicineFlashcards';
+import { urologyFlashcards } from '@/data/urologyFlashcards';
 
 const STORAGE_KEY = '@flashcards_state';
 const REVIEW_STORAGE_KEY = '@flashcard_reviews';
@@ -40,7 +41,8 @@ export function useFlashcards() {
         ...hematologyFlashcards,
         ...infectiousDiseaseFlashcards,
         ...neurologyFlashcards,
-        ...emergencyMedicineFlashcards
+        ...emergencyMedicineFlashcards,
+        ...urologyFlashcards
       ];
 
       if (stored || reviewData) {
@@ -66,7 +68,8 @@ export function useFlashcards() {
         ...hematologyFlashcards,
         ...infectiousDiseaseFlashcards,
         ...neurologyFlashcards,
-        ...emergencyMedicineFlashcards
+        ...emergencyMedicineFlashcards,
+        ...urologyFlashcards
       ]);
     } finally {
       setIsLoading(false);
