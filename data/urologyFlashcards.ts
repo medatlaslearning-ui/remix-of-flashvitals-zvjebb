@@ -315,6 +315,108 @@ export const urologyFlashcards: Flashcard[] = [
     interval: 0
   },
 
+  // Urologic Stones - Difficult
+  {
+    id: 'urology-stones-16',
+    system: 'Urology',
+    topic: 'Urologic Stones',
+    difficulty: 'difficult',
+    front: 'What defines an obstructing stone emergency?',
+    back: {
+      definition: 'Stone causing obstruction with infection or renal failure.',
+      high_yield: 'Fever plus obstruction is an emergency.',
+      clinical_pearl: 'Requires urgent decompression.'
+    },
+    tags: ['Urologic Stones', 'Emergency', 'Obstruction', 'Infection'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-stones-17',
+    system: 'Urology',
+    topic: 'Urologic Stones',
+    difficulty: 'difficult',
+    front: 'When is urology consultation required?',
+    back: {
+      definition: 'Indications for specialist intervention.',
+      high_yield: 'Infection, intractable pain, AKI.',
+      clinical_pearl: 'Early consult prevents complications.'
+    },
+    tags: ['Urologic Stones', 'Consultation', 'Specialist', 'Management'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-stones-18',
+    system: 'Urology',
+    topic: 'Urologic Stones',
+    difficulty: 'difficult',
+    front: 'What is post-obstructive diuresis?',
+    back: {
+      definition: 'Excessive urine output after relief of obstruction.',
+      high_yield: 'Risk of volume depletion.',
+      clinical_pearl: 'Monitor electrolytes closely.'
+    },
+    tags: ['Urologic Stones', 'Diuresis', 'Obstruction', 'Complications'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-stones-19',
+    system: 'Urology',
+    topic: 'Urologic Stones',
+    difficulty: 'difficult',
+    front: 'How do stones cause acute kidney injury?',
+    back: {
+      definition: 'Obstruction impairing glomerular filtration.',
+      high_yield: 'Usually bilateral obstruction or solitary kidney.',
+      clinical_pearl: 'AKI is often reversible if treated promptly.'
+    },
+    tags: ['Urologic Stones', 'AKI', 'Obstruction', 'Renal Failure'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-stones-20',
+    system: 'Urology',
+    topic: 'Urologic Stones',
+    difficulty: 'difficult',
+    front: 'What is definitive stone management?',
+    back: {
+      definition: 'Procedures to remove or fragment stones.',
+      high_yield: 'Includes lithotripsy and ureteroscopy.',
+      clinical_pearl: 'Choice depends on size, location, and composition.'
+    },
+    tags: ['Urologic Stones', 'Treatment', 'Lithotripsy', 'Ureteroscopy'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+
   // Urologic Emergencies - Easy Difficulty
   {
     id: 'urology-emergencies-1',
