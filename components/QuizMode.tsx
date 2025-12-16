@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, StyleSheet, Pressable, ScrollView, Alert } from 'react-native';
 import { Flashcard, QuizQuestion } from '@/types/flashcard';
 import { colors } from '@/styles/commonStyles';
@@ -20,11 +20,20 @@ export const QuizMode: React.FC<QuizModeProps> = ({ flashcards, onComplete, onEx
   const [score, setScore] = useState(0);
   const [incorrectCardIds, setIncorrectCardIds] = useState<string[]>([]);
 
-  useEffect(() => {
-    generateQuestions();
-  }, [flashcards]);
+  const generateWrongAnswers = useCallback((currentCard: Flashcard, allCards: Flashcard[]): string[] => {
+    const otherCards = allCards.filter(c => c.id !== currentCard.id);
+    const wrongAnswers: string[] = [];
+    
+    // Get 3 random wrong answers from other cards
+    const shuffled = otherCards.sort(() => Math.random() - 0.5);
+    for (let i = 0; i < Math.min(3, shuffled.length); i++) {
+      wrongAnswers.push(shuffled[i].back.definition);
+    }
 
-  const generateQuestions = () => {
+    return wrongAnswers;
+  }, []);
+
+  const generateQuestions = useCallback(() => {
     const generatedQuestions: QuizQuestion[] = flashcards.map((card) => {
       const isTrueFalse = Math.random() > 0.5;
       
@@ -57,20 +66,11 @@ export const QuizMode: React.FC<QuizModeProps> = ({ flashcards, onComplete, onEx
     });
 
     setQuestions(generatedQuestions);
-  };
+  }, [flashcards, generateWrongAnswers]);
 
-  const generateWrongAnswers = (currentCard: Flashcard, allCards: Flashcard[]): string[] => {
-    const otherCards = allCards.filter(c => c.id !== currentCard.id);
-    const wrongAnswers: string[] = [];
-    
-    // Get 3 random wrong answers from other cards
-    const shuffled = otherCards.sort(() => Math.random() - 0.5);
-    for (let i = 0; i < Math.min(3, shuffled.length); i++) {
-      wrongAnswers.push(shuffled[i].back.definition);
-    }
-
-    return wrongAnswers;
-  };
+  useEffect(() => {
+    generateQuestions();
+  }, [generateQuestions]);
 
   const handleAnswerSelect = (answer: string) => {
     if (showExplanation) return;

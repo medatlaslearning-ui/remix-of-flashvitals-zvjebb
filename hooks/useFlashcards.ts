@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Flashcard } from '@/types/flashcard';
 import { cardiologyFlashcards } from '@/data/cardiologyFlashcards';
@@ -21,12 +21,32 @@ export function useFlashcards() {
   const [updateTrigger, setUpdateTrigger] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Load flashcards from storage on mount
-  useEffect(() => {
-    loadFlashcards();
+  const mergeFlashcards = useCallback((
+    baseCards: Flashcard[], 
+    storedCards: Flashcard[], 
+    reviews: Record<string, number>
+  ): Flashcard[] => {
+    const storedMap = new Map(storedCards.map(card => [card.id, card]));
+    return baseCards.map(baseCard => {
+      const stored = storedMap.get(baseCard.id);
+      const reviewCount = reviews[baseCard.id] || 0;
+      
+      if (stored) {
+        return {
+          ...baseCard,
+          bookmarked: stored.bookmarked,
+          favorite: stored.favorite,
+          reviewCount: Math.max(stored.reviewCount || 0, reviewCount),
+        };
+      }
+      return {
+        ...baseCard,
+        reviewCount: reviewCount,
+      };
+    });
   }, []);
 
-  const loadFlashcards = async () => {
+  const loadFlashcards = useCallback(async () => {
     try {
       console.log('Loading flashcards from storage...');
       const stored = await AsyncStorage.getItem(STORAGE_KEY);
@@ -74,32 +94,12 @@ export function useFlashcards() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [mergeFlashcards]);
 
-  const mergeFlashcards = (
-    baseCards: Flashcard[], 
-    storedCards: Flashcard[], 
-    reviews: Record<string, number>
-  ): Flashcard[] => {
-    const storedMap = new Map(storedCards.map(card => [card.id, card]));
-    return baseCards.map(baseCard => {
-      const stored = storedMap.get(baseCard.id);
-      const reviewCount = reviews[baseCard.id] || 0;
-      
-      if (stored) {
-        return {
-          ...baseCard,
-          bookmarked: stored.bookmarked,
-          favorite: stored.favorite,
-          reviewCount: Math.max(stored.reviewCount || 0, reviewCount),
-        };
-      }
-      return {
-        ...baseCard,
-        reviewCount: reviewCount,
-      };
-    });
-  };
+  // Load flashcards from storage on mount
+  useEffect(() => {
+    loadFlashcards();
+  }, [loadFlashcards]);
 
   const saveFlashcards = async (cards: Flashcard[]) => {
     try {

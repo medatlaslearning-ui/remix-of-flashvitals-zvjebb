@@ -38,7 +38,7 @@ export default function UrologyTopicsScreen() {
     console.log('UrologyTopicsScreen rendered, updateTrigger:', updateTrigger);
     console.log('Total flashcards:', allFlashcards.length);
     console.log('Reviewed flashcards:', allFlashcards.filter(c => c.reviewCount > 0).length);
-  }, [updateTrigger, allFlashcards.length]);
+  }, [updateTrigger, allFlashcards]);
 
   const handleTopicPress = (topicName: string) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
