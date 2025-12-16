@@ -408,8 +408,411 @@ export const urologyFlashcards: Flashcard[] = [
     interval: 0
   },
 
-  // Upper Urinary Tract Disorders - Placeholder structure
-  // Flashcards will be added later
+  // Upper Urinary Tract Disorders - Easy Difficulty
+  {
+    id: 'urology-uut-1',
+    system: 'Urology',
+    topic: 'Upper Urinary Tract Disorders',
+    difficulty: 'easy',
+    front: 'What is the upper urinary tract?',
+    back: {
+      definition: 'The portion of the urinary system consisting of the kidneys and ureters.',
+      high_yield: 'Responsible for urine production and transport.',
+      clinical_pearl: 'Disorders often present with flank pain or renal dysfunction.'
+    },
+    tags: ['Upper Urinary Tract Disorders', 'Anatomy', 'Kidneys', 'Ureters'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-uut-2',
+    system: 'Urology',
+    topic: 'Upper Urinary Tract Disorders',
+    difficulty: 'easy',
+    front: 'What is hydronephrosis?',
+    back: {
+      definition: 'Dilation of the renal pelvis and calyces due to urinary obstruction.',
+      high_yield: 'Indicates impaired urine outflow.',
+      clinical_pearl: 'Prolonged hydronephrosis can cause permanent kidney damage.'
+    },
+    tags: ['Upper Urinary Tract Disorders', 'Hydronephrosis', 'Obstruction'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-uut-3',
+    system: 'Urology',
+    topic: 'Upper Urinary Tract Disorders',
+    difficulty: 'easy',
+    front: 'What is hydroureter?',
+    back: {
+      definition: 'Dilation of the ureter due to obstruction.',
+      high_yield: 'Often accompanies hydronephrosis.',
+      clinical_pearl: 'Look for distal obstruction.'
+    },
+    tags: ['Upper Urinary Tract Disorders', 'Hydroureter', 'Obstruction'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-uut-4',
+    system: 'Urology',
+    topic: 'Upper Urinary Tract Disorders',
+    difficulty: 'easy',
+    front: 'What is obstructive uropathy?',
+    back: {
+      definition: 'Functional or anatomic blockage of urine flow.',
+      high_yield: 'Can cause post-renal acute kidney injury.',
+      clinical_pearl: 'Relief of obstruction is definitive treatment.'
+    },
+    tags: ['Upper Urinary Tract Disorders', 'Obstructive Uropathy', 'AKI'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-uut-5',
+    system: 'Urology',
+    topic: 'Upper Urinary Tract Disorders',
+    difficulty: 'easy',
+    front: 'What is flank pain?',
+    back: {
+      definition: 'Pain originating from the kidney or ureter.',
+      high_yield: 'Common in stones or obstruction.',
+      clinical_pearl: 'Radiation to the groin suggests ureteral involvement.'
+    },
+    tags: ['Upper Urinary Tract Disorders', 'Flank Pain', 'Symptoms'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+
+  // Upper Urinary Tract Disorders - Medium Difficulty
+  {
+    id: 'urology-uut-6',
+    system: 'Urology',
+    topic: 'Upper Urinary Tract Disorders',
+    difficulty: 'medium',
+    front: 'What is ureteropelvic junction obstruction?',
+    back: {
+      definition: 'Blockage where the renal pelvis meets the ureter.',
+      high_yield: 'Can be congenital or acquired.',
+      clinical_pearl: 'May present later in life with hydronephrosis.'
+    },
+    tags: ['Upper Urinary Tract Disorders', 'UPJ Obstruction', 'Congenital'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-uut-7',
+    system: 'Urology',
+    topic: 'Upper Urinary Tract Disorders',
+    difficulty: 'medium',
+    front: 'What is renal colic?',
+    back: {
+      definition: 'Severe pain caused by ureteral spasm around an obstruction.',
+      high_yield: 'Often due to stones.',
+      clinical_pearl: 'Pain is intermittent and severe.'
+    },
+    tags: ['Upper Urinary Tract Disorders', 'Renal Colic', 'Pain', 'Stones'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-uut-8',
+    system: 'Urology',
+    topic: 'Upper Urinary Tract Disorders',
+    difficulty: 'medium',
+    front: 'What imaging evaluates upper tract obstruction?',
+    back: {
+      definition: 'Radiologic assessment of kidneys and ureters.',
+      high_yield: 'CT scan is most sensitive.',
+      clinical_pearl: 'Ultrasound is first-line in pregnancy.'
+    },
+    tags: ['Upper Urinary Tract Disorders', 'Imaging', 'CT', 'Ultrasound'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-uut-9',
+    system: 'Urology',
+    topic: 'Upper Urinary Tract Disorders',
+    difficulty: 'medium',
+    front: 'What is post-renal acute kidney injury?',
+    back: {
+      definition: 'AKI caused by urinary tract obstruction.',
+      high_yield: 'Requires bilateral obstruction or solitary kidney.',
+      clinical_pearl: 'Early intervention can fully reverse injury.'
+    },
+    tags: ['Upper Urinary Tract Disorders', 'AKI', 'Post-Renal', 'Obstruction'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-uut-10',
+    system: 'Urology',
+    topic: 'Upper Urinary Tract Disorders',
+    difficulty: 'medium',
+    front: 'What is reflux nephropathy?',
+    back: {
+      definition: 'Renal scarring from chronic vesicoureteral reflux.',
+      high_yield: 'Often diagnosed in childhood.',
+      clinical_pearl: 'Can lead to hypertension and CKD.'
+    },
+    tags: ['Upper Urinary Tract Disorders', 'Reflux Nephropathy', 'VUR', 'CKD'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-uut-11',
+    system: 'Urology',
+    topic: 'Upper Urinary Tract Disorders',
+    difficulty: 'medium',
+    front: 'What is vesicoureteral reflux?',
+    back: {
+      definition: 'Retrograde flow of urine from bladder to ureters.',
+      high_yield: 'Predisposes to recurrent UTIs.',
+      clinical_pearl: 'Common cause of pediatric kidney damage.'
+    },
+    tags: ['Upper Urinary Tract Disorders', 'VUR', 'Reflux', 'Pediatric'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-uut-12',
+    system: 'Urology',
+    topic: 'Upper Urinary Tract Disorders',
+    difficulty: 'medium',
+    front: 'What labs are abnormal in obstruction?',
+    back: {
+      definition: 'Laboratory changes from impaired kidney function.',
+      high_yield: 'Rising creatinine and BUN.',
+      clinical_pearl: 'Always correlate labs with imaging.'
+    },
+    tags: ['Upper Urinary Tract Disorders', 'Labs', 'Creatinine', 'BUN'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-uut-13',
+    system: 'Urology',
+    topic: 'Upper Urinary Tract Disorders',
+    difficulty: 'medium',
+    front: 'What is papillary necrosis?',
+    back: {
+      definition: 'Ischemic necrosis of renal papillae.',
+      high_yield: 'Associated with diabetes and NSAID use.',
+      clinical_pearl: 'Can cause hematuria and obstruction.'
+    },
+    tags: ['Upper Urinary Tract Disorders', 'Papillary Necrosis', 'Diabetes', 'NSAIDs'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-uut-14',
+    system: 'Urology',
+    topic: 'Upper Urinary Tract Disorders',
+    difficulty: 'medium',
+    front: 'What is renal cystic disease?',
+    back: {
+      definition: 'Fluid-filled sacs within the kidney.',
+      high_yield: 'Most simple cysts are benign.',
+      clinical_pearl: 'Complex cysts require further evaluation.'
+    },
+    tags: ['Upper Urinary Tract Disorders', 'Cystic Disease', 'Renal Cysts'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-uut-15',
+    system: 'Urology',
+    topic: 'Upper Urinary Tract Disorders',
+    difficulty: 'medium',
+    front: 'What is polycystic kidney disease?',
+    back: {
+      definition: 'Genetic disorder causing multiple renal cysts.',
+      high_yield: 'Autosomal dominant form presents in adulthood.',
+      clinical_pearl: 'Associated with hypertension and aneurysms.'
+    },
+    tags: ['Upper Urinary Tract Disorders', 'PKD', 'Polycystic', 'Genetic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+
+  // Upper Urinary Tract Disorders - Difficult
+  {
+    id: 'urology-uut-16',
+    system: 'Urology',
+    topic: 'Upper Urinary Tract Disorders',
+    difficulty: 'difficult',
+    front: 'What is renal cell carcinoma?',
+    back: {
+      definition: 'Malignancy arising from renal tubular epithelium.',
+      high_yield: 'Triad of hematuria, flank pain, mass is rare.',
+      clinical_pearl: 'Often discovered incidentally on imaging.'
+    },
+    tags: ['Upper Urinary Tract Disorders', 'RCC', 'Renal Cell Carcinoma', 'Cancer'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-uut-17',
+    system: 'Urology',
+    topic: 'Upper Urinary Tract Disorders',
+    difficulty: 'difficult',
+    front: 'How does obstruction cause chronic kidney disease?',
+    back: {
+      definition: 'Persistent obstruction leading to irreversible nephron loss.',
+      high_yield: 'Duration of obstruction predicts recovery.',
+      clinical_pearl: 'Early detection prevents permanent damage.'
+    },
+    tags: ['Upper Urinary Tract Disorders', 'CKD', 'Obstruction', 'Chronic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-uut-18',
+    system: 'Urology',
+    topic: 'Upper Urinary Tract Disorders',
+    difficulty: 'difficult',
+    front: 'What is xanthogranulomatous pyelonephritis?',
+    back: {
+      definition: 'Chronic destructive renal infection.',
+      high_yield: 'Associated with obstruction and stones.',
+      clinical_pearl: 'Often requires nephrectomy.'
+    },
+    tags: ['Upper Urinary Tract Disorders', 'Xanthogranulomatous', 'Pyelonephritis', 'Infection'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-uut-19',
+    system: 'Urology',
+    topic: 'Upper Urinary Tract Disorders',
+    difficulty: 'difficult',
+    front: 'When is urgent urology referral needed?',
+    back: {
+      definition: 'Situations requiring immediate specialist care.',
+      high_yield: 'Obstruction with infection or AKI.',
+      clinical_pearl: 'Delay increases morbidity.'
+    },
+    tags: ['Upper Urinary Tract Disorders', 'Referral', 'Emergency', 'Specialist'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-uut-20',
+    system: 'Urology',
+    topic: 'Upper Urinary Tract Disorders',
+    difficulty: 'difficult',
+    front: 'How are upper tract disorders managed?',
+    back: {
+      definition: 'Treatment depends on cause and severity.',
+      high_yield: 'Includes stenting, nephrostomy, surgery.',
+      clinical_pearl: 'Individualized management improves outcomes.'
+    },
+    tags: ['Upper Urinary Tract Disorders', 'Management', 'Treatment', 'Surgery'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
 
   // Urologic Infections - Easy Difficulty
   {
