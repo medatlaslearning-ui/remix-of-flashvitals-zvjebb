@@ -11,8 +11,309 @@ export const urologyFlashcards: Flashcard[] = [
   // Urologic Infections - Placeholder structure
   // Flashcards will be added later
 
-  // Urologic Stones - Placeholder structure
-  // Flashcards will be added later
+  // Urologic Stones - Easy Difficulty
+  {
+    id: 'urology-stones-1',
+    system: 'Urology',
+    topic: 'Urologic Stones',
+    difficulty: 'easy',
+    front: 'What is urolithiasis?',
+    back: {
+      definition: 'Formation of calculi within the urinary tract.',
+      high_yield: 'Most stones originate in the kidney.',
+      clinical_pearl: 'Flank pain radiating to the groin is classic.'
+    },
+    tags: ['Urologic Stones', 'Urolithiasis', 'Kidney Stones'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-stones-2',
+    system: 'Urology',
+    topic: 'Urologic Stones',
+    difficulty: 'easy',
+    front: 'What is renal colic?',
+    back: {
+      definition: 'Severe pain caused by ureteral obstruction from a stone.',
+      high_yield: 'Pain is intermittent and severe.',
+      clinical_pearl: 'Patients often cannot find a comfortable position.'
+    },
+    tags: ['Urologic Stones', 'Renal Colic', 'Pain'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-stones-3',
+    system: 'Urology',
+    topic: 'Urologic Stones',
+    difficulty: 'easy',
+    front: 'What is the most common type of kidney stone?',
+    back: {
+      definition: 'Calcium oxalate stone formation.',
+      high_yield: 'Accounts for the majority of stones.',
+      clinical_pearl: 'Hypercalciuria is a major risk factor.'
+    },
+    tags: ['Urologic Stones', 'Calcium Oxalate', 'Stone Types'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-stones-4',
+    system: 'Urology',
+    topic: 'Urologic Stones',
+    difficulty: 'easy',
+    front: 'What imaging is preferred for suspected stones?',
+    back: {
+      definition: 'Non-contrast CT scan of the abdomen and pelvis.',
+      high_yield: 'Gold standard for diagnosis.',
+      clinical_pearl: 'Ultrasound preferred in pregnancy.'
+    },
+    tags: ['Urologic Stones', 'Imaging', 'CT Scan'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-stones-5',
+    system: 'Urology',
+    topic: 'Urologic Stones',
+    difficulty: 'easy',
+    front: 'What is hematuria in stones?',
+    back: {
+      definition: 'Blood in urine due to ureteral irritation.',
+      high_yield: 'Microscopic hematuria is common.',
+      clinical_pearl: 'Absence of hematuria does not rule out stones.'
+    },
+    tags: ['Urologic Stones', 'Hematuria', 'Blood'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+
+  // Urologic Stones - Medium Difficulty
+  {
+    id: 'urology-stones-6',
+    system: 'Urology',
+    topic: 'Urologic Stones',
+    difficulty: 'medium',
+    front: 'What are uric acid stones?',
+    back: {
+      definition: 'Stones composed of uric acid due to acidic urine.',
+      high_yield: 'Radiolucent on X-ray.',
+      clinical_pearl: 'Alkalinizing urine can dissolve stones.'
+    },
+    tags: ['Urologic Stones', 'Uric Acid', 'Stone Types'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-stones-7',
+    system: 'Urology',
+    topic: 'Urologic Stones',
+    difficulty: 'medium',
+    front: 'What are struvite stones?',
+    back: {
+      definition: 'Magnesium ammonium phosphate stones caused by urease-producing bacteria.',
+      high_yield: 'Often form staghorn calculi.',
+      clinical_pearl: 'Always associated with infection.'
+    },
+    tags: ['Urologic Stones', 'Struvite', 'Infection', 'Staghorn'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-stones-8',
+    system: 'Urology',
+    topic: 'Urologic Stones',
+    difficulty: 'medium',
+    front: 'What are cystine stones?',
+    back: {
+      definition: 'Stones caused by inherited cystinuria.',
+      high_yield: 'Rare but recurrent.',
+      clinical_pearl: 'Suspect in young patients with recurrent stones.'
+    },
+    tags: ['Urologic Stones', 'Cystine', 'Genetic', 'Stone Types'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-stones-9',
+    system: 'Urology',
+    topic: 'Urologic Stones',
+    difficulty: 'medium',
+    front: 'What factors increase stone risk?',
+    back: {
+      definition: 'Conditions that promote crystallization in urine.',
+      high_yield: 'Dehydration is the most common risk factor.',
+      clinical_pearl: 'Encourage high fluid intake.'
+    },
+    tags: ['Urologic Stones', 'Risk Factors', 'Prevention'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-stones-10',
+    system: 'Urology',
+    topic: 'Urologic Stones',
+    difficulty: 'medium',
+    front: 'What is medical expulsive therapy?',
+    back: {
+      definition: 'Pharmacologic facilitation of stone passage.',
+      high_yield: 'Alpha blockers may improve passage of distal ureteral stones.',
+      clinical_pearl: 'Works best for stones <10 mm.'
+    },
+    tags: ['Urologic Stones', 'Treatment', 'Alpha Blockers'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-stones-11',
+    system: 'Urology',
+    topic: 'Urologic Stones',
+    difficulty: 'medium',
+    front: 'What size stones usually pass spontaneously?',
+    back: {
+      definition: 'Stones small enough to pass without intervention.',
+      high_yield: '≤5 mm often pass spontaneously.',
+      clinical_pearl: 'Location matters as much as size.'
+    },
+    tags: ['Urologic Stones', 'Stone Size', 'Spontaneous Passage'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-stones-12',
+    system: 'Urology',
+    topic: 'Urologic Stones',
+    difficulty: 'medium',
+    front: 'What is hydronephrosis?',
+    back: {
+      definition: 'Dilation of renal pelvis due to obstruction.',
+      high_yield: 'Indicates impaired urine flow.',
+      clinical_pearl: 'Persistent hydronephrosis threatens renal function.'
+    },
+    tags: ['Urologic Stones', 'Hydronephrosis', 'Obstruction'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-stones-13',
+    system: 'Urology',
+    topic: 'Urologic Stones',
+    difficulty: 'medium',
+    front: 'What labs are helpful in stone evaluation?',
+    back: {
+      definition: 'Blood and urine studies to assess etiology.',
+      high_yield: 'Check creatinine, calcium, urinalysis.',
+      clinical_pearl: 'Metabolic workup recommended for recurrent stones.'
+    },
+    tags: ['Urologic Stones', 'Labs', 'Evaluation'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-stones-14',
+    system: 'Urology',
+    topic: 'Urologic Stones',
+    difficulty: 'medium',
+    front: 'What pain control is preferred in renal colic?',
+    back: {
+      definition: 'Analgesia to manage acute stone pain.',
+      high_yield: 'NSAIDs are first-line.',
+      clinical_pearl: 'NSAIDs reduce ureteral spasm.'
+    },
+    tags: ['Urologic Stones', 'Pain Management', 'NSAIDs'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-stones-15',
+    system: 'Urology',
+    topic: 'Urologic Stones',
+    difficulty: 'medium',
+    front: 'What is a staghorn calculus?',
+    back: {
+      definition: 'Large stone occupying renal pelvis and calyces.',
+      high_yield: 'Often struvite stones.',
+      clinical_pearl: 'Rarely pass spontaneously.'
+    },
+    tags: ['Urologic Stones', 'Staghorn', 'Struvite'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
 
   // Urologic Emergencies - Easy Difficulty
   {
