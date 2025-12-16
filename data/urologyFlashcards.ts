@@ -312,6 +312,108 @@ export const urologyFlashcards: Flashcard[] = [
     interval: 0
   },
 
+  // Urologic Infections - Difficult
+  {
+    id: 'urology-infections-16',
+    system: 'Urology',
+    topic: 'Urologic Infections',
+    difficulty: 'difficult',
+    front: 'When does UTI become urosepsis?',
+    back: {
+      definition: 'Systemic infection originating from urinary tract.',
+      high_yield: 'Fever, hypotension, altered mental status.',
+      clinical_pearl: 'Early source control is critical.'
+    },
+    tags: ['Urologic Infections', 'Urosepsis', 'Sepsis', 'Emergency'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-infections-17',
+    system: 'Urology',
+    topic: 'Urologic Infections',
+    difficulty: 'difficult',
+    front: 'How do obstructing stones complicate infection?',
+    back: {
+      definition: 'Stone blocks urinary flow with infection present.',
+      high_yield: 'High risk of septic shock.',
+      clinical_pearl: 'Requires urgent decompression.'
+    },
+    tags: ['Urologic Infections', 'Obstruction', 'Stones', 'Sepsis'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-infections-18',
+    system: 'Urology',
+    topic: 'Urologic Infections',
+    difficulty: 'difficult',
+    front: 'What is xanthogranulomatous pyelonephritis?',
+    back: {
+      definition: 'Chronic inflammatory renal infection causing tissue destruction.',
+      high_yield: 'Associated with obstruction and stones.',
+      clinical_pearl: 'Often requires nephrectomy.'
+    },
+    tags: ['Urologic Infections', 'Xanthogranulomatous', 'Pyelonephritis', 'Chronic'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-infections-19',
+    system: 'Urology',
+    topic: 'Urologic Infections',
+    difficulty: 'difficult',
+    front: 'How are fungal UTIs different?',
+    back: {
+      definition: 'Urinary infections caused by Candida species.',
+      high_yield: 'Seen in catheterized or immunocompromised patients.',
+      clinical_pearl: 'Remove catheter whenever possible.'
+    },
+    tags: ['Urologic Infections', 'Fungal', 'Candida', 'Immunocompromised'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+  {
+    id: 'urology-infections-20',
+    system: 'Urology',
+    topic: 'Urologic Infections',
+    difficulty: 'difficult',
+    front: 'What is the role of antibiotic stewardship in UTI?',
+    back: {
+      definition: 'Optimizing antibiotic use to reduce resistance.',
+      high_yield: 'Avoid unnecessary broad-spectrum therapy.',
+      clinical_pearl: 'Always de-escalate based on cultures.'
+    },
+    tags: ['Urologic Infections', 'Antibiotic Stewardship', 'Resistance', 'Management'],
+    bookmarked: false,
+    favorite: false,
+    reviewCount: 0,
+    lastReviewed: undefined,
+    nextReview: undefined,
+    easeFactor: 2.5,
+    interval: 0
+  },
+
   // Urologic Stones - Easy Difficulty
   {
     id: 'urology-stones-1',
