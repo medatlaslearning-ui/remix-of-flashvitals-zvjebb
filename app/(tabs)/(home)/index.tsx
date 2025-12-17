@@ -160,11 +160,6 @@ export default function HomeScreen() {
     router.push('/(tabs)/(home)/admin');
   };
 
-  const handleDrAvaSalta = () => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    router.push('/(tabs)/(home)/dr-ava-salta');
-  };
-
   return (
     <>
       <Stack.Screen
@@ -174,53 +169,6 @@ export default function HomeScreen() {
         }}
       />
       <ScrollView style={commonStyles.container} contentContainerStyle={styles.content}>
-        {/* Learn with Dr. Ava Salta Section */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>AI Medical Instructor</Text>
-          <Pressable style={styles.drAvaCard} onPress={handleDrAvaSalta}>
-            <View style={styles.drAvaIconContainer}>
-              <IconSymbol 
-                ios_icon_name="person.circle.fill" 
-                android_material_icon_name="account_circle"
-                size={52} 
-                color={colors.card} 
-              />
-            </View>
-            <View style={styles.drAvaContent}>
-              <Text style={styles.drAvaTitle}>Dr. Ava Salta</Text>
-              <Text style={styles.drAvaSubtitle}>
-                Interactive AI assistant with video responses
-              </Text>
-              <View style={styles.drAvaFeatures}>
-                <View style={styles.featureItem}>
-                  <IconSymbol 
-                    ios_icon_name="video.fill" 
-                    android_material_icon_name="videocam"
-                    size={16} 
-                    color={colors.card} 
-                  />
-                  <Text style={styles.featureText}>Video Responses</Text>
-                </View>
-                <View style={styles.featureItem}>
-                  <IconSymbol 
-                    ios_icon_name="mic.fill" 
-                    android_material_icon_name="mic"
-                    size={16} 
-                    color={colors.card} 
-                  />
-                  <Text style={styles.featureText}>Voice Input</Text>
-                </View>
-              </View>
-            </View>
-            <IconSymbol 
-              ios_icon_name="chevron.right" 
-              android_material_icon_name="chevron_right"
-              size={24} 
-              color={colors.card} 
-            />
-          </Pressable>
-        </View>
-
         {/* Quick Actions */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Quick Actions</Text>
@@ -594,55 +542,6 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: colors.text,
     marginBottom: 16,
-  },
-  drAvaCard: {
-    backgroundColor: colors.primary,
-    padding: 20,
-    borderRadius: 16,
-    flexDirection: 'row',
-    alignItems: 'center',
-    boxShadow: '0px 4px 12px rgba(41, 121, 255, 0.3)',
-    elevation: 5,
-  },
-  drAvaIconContainer: {
-    width: 68,
-    height: 68,
-    borderRadius: 34,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 16,
-  },
-  drAvaContent: {
-    flex: 1,
-  },
-  drAvaTitle: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: colors.card,
-    marginBottom: 4,
-  },
-  drAvaSubtitle: {
-    fontSize: 14,
-    color: colors.card,
-    opacity: 0.95,
-    lineHeight: 20,
-    marginBottom: 8,
-  },
-  drAvaFeatures: {
-    flexDirection: 'row',
-    gap: 12,
-  },
-  featureItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 4,
-  },
-  featureText: {
-    fontSize: 12,
-    color: colors.card,
-    opacity: 0.9,
-    fontWeight: '500',
   },
   quickActionsGrid: {
     flexDirection: 'row',
