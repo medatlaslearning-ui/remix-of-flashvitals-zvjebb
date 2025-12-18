@@ -11,6 +11,7 @@ export interface Reference {
 }
 
 export const infectiousDiseaseReferences: Reference[] = [
+  // Bacterial Infections References
   {
     id: 'ref-001',
     refNumber: 'REF001',
@@ -140,6 +141,127 @@ export const infectiousDiseaseReferences: Reference[] = [
     appliesTo: 'Strep bovis organism definition and clinical pearl cards',
     category: 'Infectious Disease',
     subcategory: 'Bacterial Infections'
+  },
+  // Fungal Infections References
+  {
+    id: 'ref-fungal-001',
+    refNumber: 'REF001',
+    year: 2021,
+    citation: 'IDSA Clinical Practice Guideline for the Management of Candidiasis: 2016 Update with Ongoing Applicability and Resistance Considerations. Pappas PG, et al.',
+    link: 'https://www.idsociety.org/practice-guideline/candidiasis/',
+    appliesTo: 'Candida species, candidemia, invasive candidiasis cards',
+    category: 'Infectious Disease',
+    subcategory: 'Fungal Infections'
+  },
+  {
+    id: 'ref-fungal-002',
+    refNumber: 'REF002',
+    year: 2023,
+    citation: 'IDSA Clinical Practice Guideline for the Diagnosis and Management of Aspergillosis (Updated Evidence Review). Patterson TF, et al.',
+    link: 'https://www.idsociety.org/practice-guideline/aspergillosis/',
+    appliesTo: 'Aspergillus species, invasive aspergillosis, neutropenia-related cards',
+    category: 'Infectious Disease',
+    subcategory: 'Fungal Infections'
+  },
+  {
+    id: 'ref-fungal-003',
+    refNumber: 'REF003',
+    year: 2022,
+    citation: 'Global Guideline for the Diagnosis and Management of Mucormycosis. Cornely OA, et al. Lancet Infectious Diseases.',
+    link: 'https://pubmed.ncbi.nlm.nih.gov/34921926/',
+    appliesTo: 'Mucormycosis, diabetic and immunocompromised fungal emergency cards',
+    category: 'Infectious Disease',
+    subcategory: 'Fungal Infections'
+  },
+  {
+    id: 'ref-fungal-004',
+    refNumber: 'REF004',
+    year: 2022,
+    citation: 'IDSA Guidelines for the Management of Cryptococcal Disease in HIV and Non-HIV Patients (Updated Review).',
+    link: 'https://www.idsociety.org/practice-guideline/cryptococcosis/',
+    appliesTo: 'Cryptococcus neoformans, meningitis cards',
+    category: 'Infectious Disease',
+    subcategory: 'Fungal Infections'
+  },
+  {
+    id: 'ref-fungal-005',
+    refNumber: 'REF005',
+    year: 2023,
+    citation: 'WHO Guidelines for the Diagnosis, Prevention, and Management of Cryptococcal Disease in HIV. World Health Organization.',
+    link: 'https://www.who.int/publications/i/item/9789240052178',
+    appliesTo: 'Cryptococcal meningitis, amphotericin-based therapy cards',
+    category: 'Infectious Disease',
+    subcategory: 'Fungal Infections'
+  },
+  {
+    id: 'ref-fungal-006',
+    refNumber: 'REF006',
+    year: 2024,
+    citation: 'Clinical Review: Endemic Mycoses (Histoplasmosis, Blastomycosis, Coccidioidomycosis). NEJM.',
+    link: 'https://www.nejm.org/doi/full/10.1056/NEJMra2303457',
+    appliesTo: 'Endemic fungal infections, geographic risk cards',
+    category: 'Infectious Disease',
+    subcategory: 'Fungal Infections'
+  },
+  {
+    id: 'ref-fungal-007',
+    refNumber: 'REF007',
+    year: 2021,
+    citation: 'IDSA Clinical Practice Guideline for the Management of Histoplasmosis. Wheat LJ, et al.',
+    link: 'https://www.idsociety.org/practice-guideline/histoplasmosis/',
+    appliesTo: 'Histoplasma capsulatum cards',
+    category: 'Infectious Disease',
+    subcategory: 'Fungal Infections'
+  },
+  {
+    id: 'ref-fungal-008',
+    refNumber: 'REF008',
+    year: 2021,
+    citation: 'IDSA Clinical Practice Guideline for the Treatment of Coccidioidomycosis. Galgiani JN, et al.',
+    link: 'https://www.idsociety.org/practice-guideline/coccidioidomycosis/',
+    appliesTo: 'Coccidioides species, desert exposure cards',
+    category: 'Infectious Disease',
+    subcategory: 'Fungal Infections'
+  },
+  {
+    id: 'ref-fungal-009',
+    refNumber: 'REF009',
+    year: 2023,
+    citation: 'ESCMID/ECMM Guideline for the Diagnosis and Management of Rare Invasive Yeast Infections.',
+    link: 'https://pubmed.ncbi.nlm.nih.gov/37236741/',
+    appliesTo: 'Non-albicans Candida, emerging fungal pathogens cards',
+    category: 'Infectious Disease',
+    subcategory: 'Fungal Infections'
+  },
+  {
+    id: 'ref-fungal-010',
+    refNumber: 'REF010',
+    year: 2024,
+    citation: 'Review: Antifungal Resistance—Mechanisms and Clinical Impact. Clinical Microbiology Reviews.',
+    link: 'https://pubmed.ncbi.nlm.nih.gov/38320361/',
+    appliesTo: 'Azole resistance, echinocandin resistance cards',
+    category: 'Infectious Disease',
+    subcategory: 'Fungal Infections'
+  },
+  {
+    id: 'ref-fungal-011',
+    refNumber: 'REF011',
+    year: 2022,
+    citation: 'IDSA Guidance on the Treatment of Antimicrobial-Resistant Fungal Infections.',
+    link: 'https://www.idsociety.org/practice-guideline/amr-guidance/',
+    appliesTo: 'Drug-resistant fungal organism cards',
+    category: 'Infectious Disease',
+    subcategory: 'Fungal Infections'
+  },
+  {
+    id: 'ref-fungal-012',
+    refNumber: 'REF012',
+    year: 2024,
+    citation: 'Clinical Review: Invasive Fungal Infections in the ICU. Intensive Care Medicine.',
+    link: 'https://pubmed.ncbi.nlm.nih.gov/38144209/',
+    appliesTo: 'ICU-associated fungal infections, empiric therapy cards',
+    category: 'Infectious Disease',
+    subcategory: 'Fungal Infections'
   }
 ];
 

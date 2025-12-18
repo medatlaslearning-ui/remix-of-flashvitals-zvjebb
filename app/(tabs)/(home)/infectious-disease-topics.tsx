@@ -16,7 +16,7 @@ const INFECTIOUS_DISEASE_TOPICS = [
   {
     name: 'Fungal Infections',
     description: 'Systemic and opportunistic fungal pathogens',
-    hasReferences: false
+    hasReferences: true
   },
   {
     name: 'Viral Infections',
@@ -124,7 +124,7 @@ export default function InfectiousDiseaseTopicsScreen() {
                   </View>
                 </Pressable>
                 
-                {/* References Button for Bacterial Organisms */}
+                {/* References Button */}
                 {topic.hasReferences && (
                   <Pressable
                     style={styles.referencesButton}

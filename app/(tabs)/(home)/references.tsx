@@ -13,8 +13,19 @@ export default function ReferencesScreen() {
   const system = params.system as string || 'Infectious Disease';
   const topic = params.topic as string || 'Bacterial Organisms';
 
+  // Map topic names to subcategories
+  const getSubcategory = (topicName: string): string => {
+    if (topicName === 'Bacterial Organisms') {
+      return 'Bacterial Infections';
+    } else if (topicName === 'Fungal Infections') {
+      return 'Fungal Infections';
+    }
+    return topicName;
+  };
+
   // Get references for this topic
-  const references = getReferencesByCategory(system, 'Bacterial Infections');
+  const subcategory = getSubcategory(topic);
+  const references = getReferencesByCategory(system, subcategory);
 
   const handleBackPress = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
