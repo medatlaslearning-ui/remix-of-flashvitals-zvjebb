@@ -175,6 +175,7 @@ const MAPPING = {
   "figure.mind.and.body": "psychology",
   "facemask.fill": "masks",
   "drop.triangle.fill": "water-drop",
+  "ant.fill": "bug-report",
 } as Partial<
   Record<
     import("expo-symbols").SymbolViewProps["name"],

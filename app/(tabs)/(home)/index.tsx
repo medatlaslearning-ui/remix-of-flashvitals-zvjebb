@@ -333,7 +333,7 @@ export default function HomeScreen() {
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
                 <IconSymbol 
-                  name="figure.mind.and.body"
+                  name="facemask.fill"
                   size={32} 
                   color={colors.secondary} 
                 />
@@ -387,7 +387,7 @@ export default function HomeScreen() {
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
                 <IconSymbol 
-                  name="facemask.fill"
+                  name="ant.fill"
                   size={32} 
                   color={colors.accent} 
                 />
