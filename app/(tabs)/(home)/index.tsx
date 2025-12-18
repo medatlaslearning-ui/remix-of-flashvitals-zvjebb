@@ -333,7 +333,7 @@ export default function HomeScreen() {
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
                 <IconSymbol 
-                  name="waveform.path.ecg"
+                  name="figure.mind.and.body"
                   size={32} 
                   color={colors.secondary} 
                 />
@@ -387,7 +387,7 @@ export default function HomeScreen() {
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
                 <IconSymbol 
-                  name="cross.case.fill"
+                  name="facemask.fill"
                   size={32} 
                   color={colors.accent} 
                 />
@@ -468,7 +468,7 @@ export default function HomeScreen() {
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
                 <IconSymbol 
-                  name="cross.case.fill"
+                  name="drop.triangle.fill"
                   size={32} 
                   color={colors.secondary} 
                 />

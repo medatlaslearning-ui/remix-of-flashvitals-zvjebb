@@ -171,6 +171,10 @@ const MAPPING = {
   "drop.fill": "water-drop",
   "cross.case.fill": "medical-services",
   "waveform.path.ecg": "monitor-heart",
+  "brain": "psychology",
+  "figure.mind.and.body": "psychology",
+  "facemask.fill": "masks",
+  "drop.triangle.fill": "water-drop",
 } as Partial<
   Record<
     import("expo-symbols").SymbolViewProps["name"],
