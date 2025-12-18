@@ -10,23 +10,28 @@ import { useFlashcards } from '@/hooks/useFlashcards';
 const INFECTIOUS_DISEASE_TOPICS = [
   {
     name: 'Bacterial Organisms',
-    description: 'Gram-positive and Gram-negative bacteria'
+    description: 'Gram-positive and Gram-negative bacteria',
+    hasReferences: true
   },
   {
     name: 'Fungal Infections',
-    description: 'Systemic and opportunistic fungal pathogens'
+    description: 'Systemic and opportunistic fungal pathogens',
+    hasReferences: false
   },
   {
     name: 'Viral Infections',
-    description: 'Common viral pathogens'
+    description: 'Common viral pathogens',
+    hasReferences: false
   },
   {
     name: 'STIs',
-    description: 'Sexually transmitted infections'
+    description: 'Sexually transmitted infections',
+    hasReferences: false
   },
   {
     name: 'Parasitic Infections',
-    description: 'Protozoan and helminthic parasites'
+    description: 'Protozoan and helminthic parasites',
+    hasReferences: false
   }
 ];
 
@@ -46,6 +51,15 @@ export default function InfectiousDiseaseTopicsScreen() {
     console.log('Navigating to Infectious Disease topic:', topicName);
     router.push({
       pathname: '/(tabs)/(home)/flashcards',
+      params: { topic: topicName, system: 'Infectious Disease' }
+    });
+  };
+
+  const handleReferencesPress = (topicName: string) => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    console.log('Navigating to References for:', topicName);
+    router.push({
+      pathname: '/(tabs)/(home)/references',
       params: { topic: topicName, system: 'Infectious Disease' }
     });
   };
@@ -86,29 +100,41 @@ export default function InfectiousDiseaseTopicsScreen() {
             });
 
             return (
-              <Pressable
-                key={index}
-                style={styles.topicCard}
-                onPress={() => handleTopicPress(topic.name)}
-              >
-                <View style={styles.topicContent}>
-                  <View style={styles.topicHeader}>
-                    <View style={styles.topicInfo}>
-                      <Text style={styles.topicTitle}>{topic.name}</Text>
-                      <Text style={styles.topicDescription}>{topic.description}</Text>
-                      <Text style={styles.topicSubtitle}>
-                        {stats.remaining} remaining • {stats.reviewed} reviewed
-                      </Text>
+              <View key={index} style={styles.topicWrapper}>
+                <Pressable
+                  style={styles.topicCard}
+                  onPress={() => handleTopicPress(topic.name)}
+                >
+                  <View style={styles.topicContent}>
+                    <View style={styles.topicHeader}>
+                      <View style={styles.topicInfo}>
+                        <Text style={styles.topicTitle}>{topic.name}</Text>
+                        <Text style={styles.topicDescription}>{topic.description}</Text>
+                        <Text style={styles.topicSubtitle}>
+                          {stats.remaining} remaining • {stats.reviewed} reviewed
+                        </Text>
+                      </View>
+                      <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
                     </View>
-                    <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
+                    {stats.total > 0 && (
+                      <View style={styles.progressBarContainer}>
+                        <View style={[styles.progressBarFill, { width: `${stats.progress}%` }]} />
+                      </View>
+                    )}
                   </View>
-                  {stats.total > 0 && (
-                    <View style={styles.progressBarContainer}>
-                      <View style={[styles.progressBarFill, { width: `${stats.progress}%` }]} />
-                    </View>
-                  )}
-                </View>
-              </Pressable>
+                </Pressable>
+                
+                {/* References Button for Bacterial Organisms */}
+                {topic.hasReferences && (
+                  <Pressable
+                    style={styles.referencesButton}
+                    onPress={() => handleReferencesPress(topic.name)}
+                  >
+                    <IconSymbol name="book.fill" size={16} color={colors.primary} />
+                    <Text style={styles.referencesButtonText}>View References</Text>
+                  </Pressable>
+                )}
+              </View>
             );
           })}
         </View>
@@ -150,11 +176,13 @@ const styles = StyleSheet.create({
   section: {
     marginBottom: 24,
   },
+  topicWrapper: {
+    marginBottom: 12,
+  },
   topicCard: {
     backgroundColor: colors.card,
     padding: 16,
     borderRadius: 12,
-    marginBottom: 12,
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
     elevation: 2,
   },
@@ -195,6 +223,21 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: colors.accent,
     borderRadius: 2,
+  },
+  referencesButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.highlight,
+    padding: 12,
+    borderRadius: 8,
+    marginTop: 8,
+    gap: 8,
+  },
+  referencesButtonText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: colors.primary,
   },
   backButton: {
     flexDirection: 'row',
