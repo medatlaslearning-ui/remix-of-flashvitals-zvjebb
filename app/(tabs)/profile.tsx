@@ -1,6 +1,6 @@
 
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, Platform, Pressable, Modal } from 'react-native';
+import React, { useState, useMemo } from 'react';
+import { View, Text, StyleSheet, ScrollView, Platform, Pressable, Modal, Alert } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
 import { colors, commonStyles } from '@/styles/commonStyles';
 import { useFlashcards } from '@/hooks/useFlashcards';
@@ -20,7 +20,7 @@ const SPECIALTIES = [
 
 export default function ProfileScreen() {
   const router = useRouter();
-  const { flashcards, getBookmarkedFlashcards, getFavoriteFlashcards } = useFlashcards();
+  const { flashcards, getBookmarkedFlashcards, getFavoriteFlashcards, resetAllReviews } = useFlashcards();
   const [specialty, setSpecialty] = useState<string>('Medical');
   const [showSpecialtyPicker, setShowSpecialtyPicker] = useState(false);
 
@@ -69,6 +69,31 @@ export default function ProfileScreen() {
     });
   };
 
+  const handleResetAllReviews = () => {
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
+    Alert.alert(
+      'Reset All Reviews',
+      'Are you sure you want to reset all card review counts? This action cannot be undone.',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+          onPress: () => console.log('Reset cancelled')
+        },
+        {
+          text: 'Reset',
+          style: 'destructive',
+          onPress: async () => {
+            console.log('Resetting all review counts...');
+            await resetAllReviews();
+            Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+            Alert.alert('Success', 'All review counts have been reset.');
+          }
+        }
+      ]
+    );
+  };
+
   // Calculate stats
   const totalReviews = flashcards.reduce((sum, card) => sum + card.reviewCount, 0);
   const reviewedCards = flashcards.filter(c => c.reviewCount > 0).length;
@@ -96,7 +121,7 @@ export default function ProfileScreen() {
       value: totalReviews,
       icon: 'arrow.clockwise',
       color: colors.secondary,
-      onPress: null,
+      onPress: handleResetAllReviews,
     },
     {
       label: 'Avg Reviews/Card',
@@ -121,12 +146,33 @@ export default function ProfileScreen() {
     },
   ];
 
-  const topicBreakdown = [
-    { name: 'Arrhythmias', count: flashcards.filter(c => c.topic === 'Arrhythmias').length },
-    { name: 'Heart Failure', count: flashcards.filter(c => c.topic === 'Heart Failure').length },
-    { name: 'Ischemic Heart Disease', count: flashcards.filter(c => c.topic === 'Ischemic Heart Disease').length },
-    { name: 'Valvular Disease', count: flashcards.filter(c => c.topic === 'Valvular Disease').length },
-  ];
+  // Get all unique topics across all systems with their review counts
+  const topicBreakdown = useMemo(() => {
+    const topicMap = new Map<string, { total: number; reviewed: number }>();
+    
+    flashcards.forEach(card => {
+      const key = `${card.system} - ${card.topic}`;
+      const existing = topicMap.get(key) || { total: 0, reviewed: 0 };
+      topicMap.set(key, {
+        total: existing.total + 1,
+        reviewed: existing.reviewed + (card.reviewCount > 0 ? 1 : 0)
+      });
+    });
+
+    // Convert to array and sort by system then topic
+    const breakdown = Array.from(topicMap.entries()).map(([key, stats]) => ({
+      name: key,
+      total: stats.total,
+      reviewed: stats.reviewed,
+      percentage: stats.total > 0 ? Math.round((stats.reviewed / stats.total) * 100) : 0
+    }));
+
+    // Sort by system and topic name
+    breakdown.sort((a, b) => a.name.localeCompare(b.name));
+
+    console.log('Topic breakdown:', breakdown.length, 'topics');
+    return breakdown;
+  }, [flashcards]);
 
   return (
     <>
@@ -176,6 +222,11 @@ export default function ProfileScreen() {
                 <IconSymbol name={stat.icon as any} size={32} color={stat.color} />
                 <Text style={styles.statValue}>{stat.value}</Text>
                 <Text style={styles.statLabel}>{stat.label}</Text>
+                {stat.onPress && (
+                  <View style={styles.actionIndicator}>
+                    <IconSymbol name="hand.tap" size={12} color={colors.textSecondary} />
+                  </View>
+                )}
               </Pressable>
             ))}
           </View>
@@ -183,25 +234,24 @@ export default function ProfileScreen() {
 
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Topic Breakdown</Text>
+          <Text style={styles.sectionSubtitle}>
+            {topicBreakdown.length} topics across all systems
+          </Text>
           <View style={styles.topicList}>
-            {topicBreakdown.map((topic, index) => {
-              const percentage = flashcards.length > 0 
-                ? Math.round((topic.count / flashcards.length) * 100) 
-                : 0;
-              
-              return (
-                <View key={index} style={styles.topicItem}>
-                  <View style={styles.topicInfo}>
-                    <Text style={styles.topicName}>{topic.name}</Text>
-                    <Text style={styles.topicCount}>{topic.count} cards</Text>
-                  </View>
-                  <View style={styles.progressBarContainer}>
-                    <View style={[styles.progressBarFill, { width: `${percentage}%` }]} />
-                  </View>
-                  <Text style={styles.percentageText}>{percentage}%</Text>
+            {topicBreakdown.map((topic, index) => (
+              <View key={index} style={styles.topicItem}>
+                <View style={styles.topicInfo}>
+                  <Text style={styles.topicName}>{topic.name}</Text>
+                  <Text style={styles.topicCount}>
+                    {topic.reviewed}/{topic.total} reviewed
+                  </Text>
                 </View>
-              );
-            })}
+                <View style={styles.progressBarContainer}>
+                  <View style={[styles.progressBarFill, { width: `${topic.percentage}%` }]} />
+                </View>
+                <Text style={styles.percentageText}>{topic.percentage}%</Text>
+              </View>
+            ))}
           </View>
         </View>
 
@@ -327,6 +377,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '700',
     color: colors.text,
+    marginBottom: 8,
+  },
+  sectionSubtitle: {
+    fontSize: 14,
+    color: colors.textSecondary,
     marginBottom: 16,
   },
   statsGrid: {
@@ -343,6 +398,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
     elevation: 3,
+    position: 'relative',
   },
   statValue: {
     fontSize: 24,
@@ -355,6 +411,11 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
     marginTop: 4,
     textAlign: 'center',
+  },
+  actionIndicator: {
+    position: 'absolute',
+    top: 8,
+    right: 8,
   },
   topicList: {
     gap: 16,
@@ -373,13 +434,15 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   topicName: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '600',
     color: colors.text,
+    flex: 1,
   },
   topicCount: {
-    fontSize: 14,
+    fontSize: 12,
     color: colors.textSecondary,
+    marginLeft: 8,
   },
   progressBarContainer: {
     height: 8,

@@ -158,6 +158,28 @@ export function useFlashcards() {
     }
   };
 
+  const resetAllReviews = async () => {
+    console.log('Resetting all review counts to 0...');
+    try {
+      const resetCards = allFlashcards.map(card => ({
+        ...card,
+        reviewCount: 0,
+        lastReviewed: undefined,
+      }));
+      
+      setAllFlashcards(resetCards);
+      await saveFlashcards(resetCards);
+      
+      // Also clear the review storage
+      await AsyncStorage.removeItem(REVIEW_STORAGE_KEY);
+      
+      setUpdateTrigger(prev => prev + 1);
+      console.log('All review counts reset successfully');
+    } catch (error) {
+      console.error('Error resetting review counts:', error);
+    }
+  };
+
   const getBookmarkedFlashcards = () => {
     return allFlashcards.filter(card => card.bookmarked);
   };
@@ -188,6 +210,7 @@ export function useFlashcards() {
     toggleBookmark,
     toggleFavorite,
     incrementReviewCount,
+    resetAllReviews,
     getBookmarkedFlashcards,
     getFavoriteFlashcards,
     getTopicStats,

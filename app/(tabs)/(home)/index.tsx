@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { View, Text, StyleSheet, ScrollView, Pressable, Platform } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Pressable, Platform, Alert } from 'react-native';
 import { Stack, useRouter, useFocusEffect } from 'expo-router';
 import { colors, commonStyles } from '@/styles/commonStyles';
 import { useFlashcards } from '@/hooks/useFlashcards';
@@ -10,7 +10,14 @@ import * as Haptics from 'expo-haptics';
 
 export default function HomeScreen() {
   const router = useRouter();
-  const { allFlashcards, updateTrigger } = useFlashcards();
+  const { allFlashcards, updateTrigger, getBookmarkedFlashcards, getFavoriteFlashcards } = useFlashcards();
+
+  // Recalculate counts when screen is focused or flashcards change
+  const bookmarkedCount = useMemo(() => getBookmarkedFlashcards().length, [allFlashcards, updateTrigger]);
+  const favoritesCount = useMemo(() => getFavoriteFlashcards().length, [allFlashcards, updateTrigger]);
+
+  console.log('Home screen - Bookmarked count:', bookmarkedCount);
+  console.log('Home screen - Favorites count:', favoritesCount);
 
   // Get unique topics for Cardiology
   const cardiologyTopics = useMemo(() => {
@@ -201,6 +208,7 @@ export default function HomeScreen() {
                 color={colors.primary} 
               />
               <Text style={styles.quickActionTitle}>Bookmarked</Text>
+              <Text style={styles.quickActionCount}>{bookmarkedCount}</Text>
             </Pressable>
 
             <Pressable style={styles.quickActionCard} onPress={handleFavoritesPress}>
@@ -210,6 +218,7 @@ export default function HomeScreen() {
                 color={colors.error} 
               />
               <Text style={styles.quickActionTitle}>Favorites</Text>
+              <Text style={styles.quickActionCount}>{favoritesCount}</Text>
             </Pressable>
           </View>
         </View>
@@ -531,6 +540,12 @@ const styles = StyleSheet.create({
   quickActionSubtitle: {
     fontSize: 12,
     color: colors.textSecondary,
+    marginTop: 4,
+  },
+  quickActionCount: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: colors.primary,
     marginTop: 4,
   },
   systemCard: {
