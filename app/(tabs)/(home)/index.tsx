@@ -175,8 +175,7 @@ export default function HomeScreen() {
           <View style={styles.quickActionsGrid}>
             <Pressable style={styles.quickActionCard} onPress={handleQuickStart}>
               <IconSymbol 
-                ios_icon_name="play.circle.fill" 
-                android_material_icon_name="play_circle"
+                name="play.circle.fill"
                 size={32} 
                 color={colors.primary} 
               />
@@ -186,8 +185,7 @@ export default function HomeScreen() {
 
             <Pressable style={styles.quickActionCard} onPress={handleQuizMode}>
               <IconSymbol 
-                ios_icon_name="checkmark.circle.fill" 
-                android_material_icon_name="check_circle"
+                name="checkmark.circle.fill"
                 size={32} 
                 color={colors.accent} 
               />
@@ -197,8 +195,7 @@ export default function HomeScreen() {
 
             <Pressable style={styles.quickActionCard} onPress={handleBookmarkedPress}>
               <IconSymbol 
-                ios_icon_name="bookmark.fill" 
-                android_material_icon_name="bookmark"
+                name="bookmark.fill"
                 size={32} 
                 color={colors.primary} 
               />
@@ -207,8 +204,7 @@ export default function HomeScreen() {
 
             <Pressable style={styles.quickActionCard} onPress={handleFavoritesPress}>
               <IconSymbol 
-                ios_icon_name="heart.fill" 
-                android_material_icon_name="favorite"
+                name="heart.fill"
                 size={32} 
                 color={colors.error} 
               />
@@ -229,8 +225,7 @@ export default function HomeScreen() {
             <View style={styles.systemHeader}>
               <View style={styles.systemIconContainer}>
                 <IconSymbol 
-                  ios_icon_name="heart.fill" 
-                  android_material_icon_name="favorite"
+                  name="heart.fill"
                   size={32} 
                   color={colors.primary} 
                 />
@@ -242,8 +237,7 @@ export default function HomeScreen() {
                 </Text>
               </View>
               <IconSymbol 
-                ios_icon_name="chevron.right" 
-                android_material_icon_name="chevron_right"
+                name="chevron.right"
                 size={24} 
                 color={colors.textSecondary} 
               />
@@ -258,8 +252,7 @@ export default function HomeScreen() {
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
                 <IconSymbol 
-                  ios_icon_name="wind" 
-                  android_material_icon_name="air"
+                  name="lungs.fill"
                   size={32} 
                   color={colors.accent} 
                 />
@@ -271,8 +264,7 @@ export default function HomeScreen() {
                 </Text>
               </View>
               <IconSymbol 
-                ios_icon_name="chevron.right" 
-                android_material_icon_name="chevron_right"
+                name="chevron.right"
                 size={24} 
                 color={colors.textSecondary} 
               />
@@ -287,8 +279,7 @@ export default function HomeScreen() {
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
                 <IconSymbol 
-                  ios_icon_name="drop.fill" 
-                  android_material_icon_name="water_drop"
+                  name="drop.fill"
                   size={32} 
                   color={colors.accent} 
                 />
@@ -300,8 +291,7 @@ export default function HomeScreen() {
                 </Text>
               </View>
               <IconSymbol 
-                ios_icon_name="chevron.right" 
-                android_material_icon_name="chevron_right"
+                name="chevron.right"
                 size={24} 
                 color={colors.textSecondary} 
               />
@@ -316,8 +306,7 @@ export default function HomeScreen() {
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
                 <IconSymbol 
-                  ios_icon_name="cross.case.fill" 
-                  android_material_icon_name="medical_services"
+                  name="cross.case.fill"
                   size={32} 
                   color={colors.accent} 
                 />
@@ -329,8 +318,7 @@ export default function HomeScreen() {
                 </Text>
               </View>
               <IconSymbol 
-                ios_icon_name="chevron.right" 
-                android_material_icon_name="chevron_right"
+                name="chevron.right"
                 size={24} 
                 color={colors.textSecondary} 
               />
@@ -345,8 +333,7 @@ export default function HomeScreen() {
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
                 <IconSymbol 
-                  ios_icon_name="waveform.path.ecg" 
-                  android_material_icon_name="monitor_heart"
+                  name="waveform.path.ecg"
                   size={32} 
                   color={colors.secondary} 
                 />
@@ -358,8 +345,7 @@ export default function HomeScreen() {
                 </Text>
               </View>
               <IconSymbol 
-                ios_icon_name="chevron.right" 
-                android_material_icon_name="chevron_right"
+                name="chevron.right"
                 size={24} 
                 color={colors.textSecondary} 
               />
@@ -374,8 +360,7 @@ export default function HomeScreen() {
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
                 <IconSymbol 
-                  ios_icon_name="drop.fill" 
-                  android_material_icon_name="water_drop"
+                  name="drop.fill"
                   size={32} 
                   color={colors.error} 
                 />
@@ -387,8 +372,7 @@ export default function HomeScreen() {
                 </Text>
               </View>
               <IconSymbol 
-                ios_icon_name="chevron.right" 
-                android_material_icon_name="chevron_right"
+                name="chevron.right"
                 size={24} 
                 color={colors.textSecondary} 
               />
@@ -403,8 +387,7 @@ export default function HomeScreen() {
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
                 <IconSymbol 
-                  ios_icon_name="cross.case.fill" 
-                  android_material_icon_name="medical_services"
+                  name="cross.case.fill"
                   size={32} 
                   color={colors.accent} 
                 />
@@ -416,8 +399,7 @@ export default function HomeScreen() {
                 </Text>
               </View>
               <IconSymbol 
-                ios_icon_name="chevron.right" 
-                android_material_icon_name="chevron_right"
+                name="chevron.right"
                 size={24} 
                 color={colors.textSecondary} 
               />
@@ -432,8 +414,7 @@ export default function HomeScreen() {
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
                 <IconSymbol 
-                  ios_icon_name="brain" 
-                  android_material_icon_name="psychology"
+                  name="brain"
                   size={32} 
                   color={colors.secondary} 
                 />
@@ -445,8 +426,7 @@ export default function HomeScreen() {
                 </Text>
               </View>
               <IconSymbol 
-                ios_icon_name="chevron.right" 
-                android_material_icon_name="chevron_right"
+                name="chevron.right"
                 size={24} 
                 color={colors.textSecondary} 
               />
@@ -461,8 +441,7 @@ export default function HomeScreen() {
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
                 <IconSymbol 
-                  ios_icon_name="cross.case.fill" 
-                  android_material_icon_name="medical_services"
+                  name="cross.case.fill"
                   size={32} 
                   color={colors.error} 
                 />
@@ -474,8 +453,7 @@ export default function HomeScreen() {
                 </Text>
               </View>
               <IconSymbol 
-                ios_icon_name="chevron.right" 
-                android_material_icon_name="chevron_right"
+                name="chevron.right"
                 size={24} 
                 color={colors.textSecondary} 
               />
@@ -490,8 +468,7 @@ export default function HomeScreen() {
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
                 <IconSymbol 
-                  ios_icon_name="cross.case.fill" 
-                  android_material_icon_name="medical_services"
+                  name="cross.case.fill"
                   size={32} 
                   color={colors.secondary} 
                 />
@@ -503,8 +480,7 @@ export default function HomeScreen() {
                 </Text>
               </View>
               <IconSymbol 
-                ios_icon_name="chevron.right" 
-                android_material_icon_name="chevron_right"
+                name="chevron.right"
                 size={24} 
                 color={colors.textSecondary} 
               />
@@ -516,8 +492,7 @@ export default function HomeScreen() {
         <View style={styles.section}>
           <Pressable style={styles.adminButton} onPress={handleAdminPanel}>
             <IconSymbol 
-              ios_icon_name="gear" 
-              android_material_icon_name="settings"
+              name="gear"
               size={20} 
               color={colors.primary} 
             />
