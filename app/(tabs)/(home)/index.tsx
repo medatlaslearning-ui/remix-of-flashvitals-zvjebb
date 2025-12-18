@@ -5,6 +5,7 @@ import { Stack, useRouter, useFocusEffect } from 'expo-router';
 import { colors, commonStyles } from '@/styles/commonStyles';
 import { useFlashcards } from '@/hooks/useFlashcards';
 import { IconSymbol } from '@/components/IconSymbol';
+import { RenalIcon, StomachIcon, UrologyIcon } from '@/components/MedicalIcons';
 import * as Haptics from 'expo-haptics';
 
 export default function HomeScreen() {
@@ -278,11 +279,7 @@ export default function HomeScreen() {
           >
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
-                <IconSymbol 
-                  name="drop.fill"
-                  size={32} 
-                  color={colors.accent} 
-                />
+                <RenalIcon size={40} color={colors.accent} />
               </View>
               <View style={styles.systemInfo}>
                 <Text style={styles.systemTitle}>Renal</Text>
@@ -305,11 +302,7 @@ export default function HomeScreen() {
           >
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
-                <IconSymbol 
-                  name="cross.case.fill"
-                  size={32} 
-                  color={colors.accent} 
-                />
+                <StomachIcon size={40} color={colors.accent} />
               </View>
               <View style={styles.systemInfo}>
                 <Text style={styles.systemTitle}>Gastroenterology</Text>
@@ -467,11 +460,7 @@ export default function HomeScreen() {
           >
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
-                <IconSymbol 
-                  name="drop.triangle.fill"
-                  size={32} 
-                  color={colors.secondary} 
-                />
+                <UrologyIcon size={40} color={colors.secondary} />
               </View>
               <View style={styles.systemInfo}>
                 <Text style={styles.systemTitle}>Urology</Text>

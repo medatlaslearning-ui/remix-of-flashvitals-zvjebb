@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, ScrollView, Pressable, Platform } from 'react-n
 import { Stack, useRouter } from 'expo-router';
 import { colors, commonStyles } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
+import { StomachIcon } from '@/components/MedicalIcons';
 import * as Haptics from 'expo-haptics';
 import { useFlashcards } from '@/hooks/useFlashcards';
 
@@ -74,7 +75,7 @@ export default function GastroenterologyTopicsScreen() {
       <ScrollView style={commonStyles.container} contentContainerStyle={styles.content}>
         {/* Header */}
         <View style={styles.header}>
-          <IconSymbol name="cross.case.fill" size={48} color={colors.accent} />
+          <StomachIcon size={56} color={colors.accent} />
           <Text style={styles.headerTitle}>Gastroenterology</Text>
           <Text style={styles.headerSubtitle}>
             Select a subtopic to begin studying

@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, ScrollView, Pressable, Platform } from 'react-n
 import { Stack, useRouter } from 'expo-router';
 import { colors, commonStyles } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
+import { UrologyIcon } from '@/components/MedicalIcons';
 import * as Haptics from 'expo-haptics';
 import { useFlashcards } from '@/hooks/useFlashcards';
 
@@ -65,12 +66,7 @@ export default function UrologyTopicsScreen() {
       <ScrollView style={commonStyles.container} contentContainerStyle={styles.content}>
         {/* Header */}
         <View style={styles.header}>
-          <IconSymbol 
-            ios_icon_name="cross.case.fill" 
-            android_material_icon_name="medical_services"
-            size={48} 
-            color={colors.secondary} 
-          />
+          <UrologyIcon size={56} color={colors.secondary} />
           <Text style={styles.headerTitle}>Urology</Text>
           <Text style={styles.headerSubtitle}>
             Select a subtopic to begin studying
