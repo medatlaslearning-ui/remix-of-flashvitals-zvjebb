@@ -25,9 +25,9 @@ export const infectiousDiseaseReferences: Reference[] = [
   {
     id: 'ref-002',
     refNumber: 'REF002',
-    year: 2023,
-    citation: 'IDSA Clinical Practice Guideline for the Diagnosis and Management of Intravascular Catheter-Related Infection (updated).',
-    link: 'https://www.idsociety.org/practice-guideline/intravascular-catheter-infections/',
+    year: 2021,
+    citation: 'IDSA Clinical Practice Guideline for the Diagnosis and Management of Intravascular Catheter-Related Infection: 2021 Update.',
+    link: 'https://www.idsociety.org/practice-guideline/intravascular-catheter-infections-update/',
     appliesTo: 'Staphylococcus aureus, CoNS, line-associated bacteremia cards',
     category: 'Infectious Disease',
     subcategory: 'Bacterial Infections'
@@ -105,9 +105,9 @@ export const infectiousDiseaseReferences: Reference[] = [
   {
     id: 'ref-010',
     refNumber: 'REF010',
-    year: 2024,
-    citation: 'Clinical Review: Extended-Spectrum Beta-Lactamase (ESBL)-Producing Enterobacterales. N Engl J Med review.',
-    link: 'https://www.nejm.org/doi/10.1056/NEJMra2304609',
+    year: 2023,
+    citation: 'Extended-Spectrum Beta-Lactamases: A Clinical Update. Infection and Drug Resistance (Open Access).',
+    link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10131508/',
     appliesTo: 'ESBL E. coli, Klebsiella treatment cards',
     category: 'Infectious Disease',
     subcategory: 'Bacterial Infections'
@@ -126,8 +126,8 @@ export const infectiousDiseaseReferences: Reference[] = [
     id: 'ref-012',
     refNumber: 'REF012',
     year: 2023,
-    citation: 'IDSA Clinical Practice Guideline for the Management of Gram-Negative Bacteremia (evidence-based review).',
-    link: 'https://academic.oup.com/cid/article/77/8/1123/7147930',
+    citation: 'IDSA Guidance on the Treatment of Antimicrobial Resistant Gram-Negative Infections: Gram-Negative Bloodstream Infections.',
+    link: 'https://www.idsociety.org/practice-guideline/amr-guidance/',
     appliesTo: 'Gram-negative bloodstream infection cards',
     category: 'Infectious Disease',
     subcategory: 'Bacterial Infections'
@@ -135,9 +135,9 @@ export const infectiousDiseaseReferences: Reference[] = [
   {
     id: 'ref-013',
     refNumber: 'REF013',
-    year: 2024,
-    citation: 'Clinical Review: Streptococcus gallolyticus (Strep bovis) and Association With Colorectal Neoplasia.',
-    link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10883765/',
+    year: 2022,
+    citation: 'Streptococcus gallolyticus Bacteremia and Colorectal Cancer: A Systematic Review and Meta-Analysis (Open Access). Frontiers in Medicine.',
+    link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9537866/',
     appliesTo: 'Strep bovis organism definition and clinical pearl cards',
     category: 'Infectious Disease',
     subcategory: 'Bacterial Infections'
