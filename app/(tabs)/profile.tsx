@@ -18,11 +18,14 @@ const SPECIALTIES = [
   'Physician Associate',
 ];
 
+type TabType = 'expert' | 'progress';
+
 export default function ProfileScreen() {
   const router = useRouter();
   const { flashcards, getBookmarkedFlashcards, getFavoriteFlashcards, resetAllReviews } = useFlashcards();
   const [specialty, setSpecialty] = useState<string>('Medical');
   const [showSpecialtyPicker, setShowSpecialtyPicker] = useState(false);
+  const [activeTab, setActiveTab] = useState<TabType>('expert');
 
   // Load specialty from storage
   React.useEffect(() => {
@@ -92,6 +95,18 @@ export default function ProfileScreen() {
         }
       ]
     );
+  };
+
+  const handleTabChange = (tab: TabType) => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    setActiveTab(tab);
+    console.log('Switched to tab:', tab);
+  };
+
+  const handleAskExpertPress = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    console.log('Navigating to Ask an Expert');
+    router.push('/(tabs)/(home)/ask-expert');
   };
 
   // Calculate stats
@@ -209,83 +224,149 @@ export default function ProfileScreen() {
           </Pressable>
         </View>
 
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Your Progress</Text>
-          <View style={styles.statsGrid}>
-            {stats.map((stat, index) => (
-              <Pressable
-                key={index}
-                style={styles.statCard}
-                onPress={stat.onPress || undefined}
-                disabled={!stat.onPress}
-              >
-                <IconSymbol name={stat.icon as any} size={32} color={stat.color} />
-                <Text style={styles.statValue}>{stat.value}</Text>
-                <Text style={styles.statLabel}>{stat.label}</Text>
-                {stat.onPress && (
-                  <View style={styles.actionIndicator}>
-                    <IconSymbol name="hand.tap" size={12} color={colors.textSecondary} />
-                  </View>
-                )}
-              </Pressable>
-            ))}
-          </View>
+        {/* Tab Navigation */}
+        <View style={styles.tabContainer}>
+          <Pressable
+            style={[styles.tab, activeTab === 'expert' && styles.tabActive]}
+            onPress={() => handleTabChange('expert')}
+          >
+            <IconSymbol 
+              name="brain.head.profile" 
+              size={20} 
+              color={activeTab === 'expert' ? colors.primary : colors.textSecondary} 
+            />
+            <Text style={[styles.tabText, activeTab === 'expert' && styles.tabTextActive]}>
+              Ask an Expert
+            </Text>
+          </Pressable>
+          <Pressable
+            style={[styles.tab, activeTab === 'progress' && styles.tabActive]}
+            onPress={() => handleTabChange('progress')}
+          >
+            <IconSymbol 
+              name="chart.bar.fill" 
+              size={20} 
+              color={activeTab === 'progress' ? colors.primary : colors.textSecondary} 
+            />
+            <Text style={[styles.tabText, activeTab === 'progress' && styles.tabTextActive]}>
+              Your Progress
+            </Text>
+          </Pressable>
         </View>
 
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Topic Breakdown</Text>
-          <Text style={styles.sectionSubtitle}>
-            {topicBreakdown.length} topics across all systems
-          </Text>
-          <View style={styles.topicList}>
-            {topicBreakdown.map((topic, index) => (
-              <View key={index} style={styles.topicItem}>
-                <View style={styles.topicInfo}>
-                  <Text style={styles.topicName}>{topic.name}</Text>
-                  <Text style={styles.topicCount}>
-                    {topic.reviewed}/{topic.total} reviewed
+        {/* Ask an Expert Tab Content */}
+        {activeTab === 'expert' && (
+          <View style={styles.section}>
+            <View style={styles.expertCard}>
+              <IconSymbol name="brain.head.profile" size={64} color={colors.primary} />
+              <Text style={styles.expertTitle}>Ask the Medical Expert</Text>
+              <Text style={styles.expertDescription}>
+                Get answers to your medical questions based on evidence-based guidelines and references from our knowledge base.
+              </Text>
+              <Pressable style={styles.expertButton} onPress={handleAskExpertPress}>
+                <IconSymbol name="message.fill" size={20} color={colors.background} />
+                <Text style={styles.expertButtonText}>Start Conversation</Text>
+              </Pressable>
+              <View style={styles.expertFeatures}>
+                <View style={styles.featureItem}>
+                  <IconSymbol name="mic.fill" size={16} color={colors.primary} />
+                  <Text style={styles.featureText}>Voice Input</Text>
+                </View>
+                <View style={styles.featureItem}>
+                  <IconSymbol name="text.bubble.fill" size={16} color={colors.primary} />
+                  <Text style={styles.featureText}>Text Chat</Text>
+                </View>
+                <View style={styles.featureItem}>
+                  <IconSymbol name="book.fill" size={16} color={colors.primary} />
+                  <Text style={styles.featureText}>Referenced Answers</Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        )}
+
+        {/* Your Progress Tab Content */}
+        {activeTab === 'progress' && (
+          <>
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Your Progress</Text>
+              <View style={styles.statsGrid}>
+                {stats.map((stat, index) => (
+                  <Pressable
+                    key={index}
+                    style={styles.statCard}
+                    onPress={stat.onPress || undefined}
+                    disabled={!stat.onPress}
+                  >
+                    <IconSymbol name={stat.icon as any} size={32} color={stat.color} />
+                    <Text style={styles.statValue}>{stat.value}</Text>
+                    <Text style={styles.statLabel}>{stat.label}</Text>
+                    {stat.onPress && (
+                      <View style={styles.actionIndicator}>
+                        <IconSymbol name="hand.tap" size={12} color={colors.textSecondary} />
+                      </View>
+                    )}
+                  </Pressable>
+                ))}
+              </View>
+            </View>
+
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Topic Breakdown</Text>
+              <Text style={styles.sectionSubtitle}>
+                {topicBreakdown.length} topics across all systems
+              </Text>
+              <View style={styles.topicList}>
+                {topicBreakdown.map((topic, index) => (
+                  <View key={index} style={styles.topicItem}>
+                    <View style={styles.topicInfo}>
+                      <Text style={styles.topicName}>{topic.name}</Text>
+                      <Text style={styles.topicCount}>
+                        {topic.reviewed}/{topic.total} reviewed
+                      </Text>
+                    </View>
+                    <View style={styles.progressBarContainer}>
+                      <View style={[styles.progressBarFill, { width: `${topic.percentage}%` }]} />
+                    </View>
+                    <Text style={styles.percentageText}>{topic.percentage}%</Text>
+                  </View>
+                ))}
+              </View>
+            </View>
+
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Study Streak</Text>
+              <View style={styles.streakCard}>
+                <IconSymbol name="flame.fill" size={48} color={colors.warning} />
+                <Text style={styles.streakValue}>Coming Soon</Text>
+                <Text style={styles.streakLabel}>Track your daily study streak</Text>
+              </View>
+            </View>
+
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Achievements</Text>
+              <View style={styles.achievementsGrid}>
+                <View style={styles.achievementCard}>
+                  <IconSymbol name="star.fill" size={32} color={colors.warning} />
+                  <Text style={styles.achievementName}>First Review</Text>
+                  <Text style={styles.achievementStatus}>
+                    {reviewedCards > 0 ? '✓ Unlocked' : 'Locked'}
                   </Text>
                 </View>
-                <View style={styles.progressBarContainer}>
-                  <View style={[styles.progressBarFill, { width: `${topic.percentage}%` }]} />
+                <View style={styles.achievementCard}>
+                  <IconSymbol name="trophy.fill" size={32} color={colors.warning} />
+                  <Text style={styles.achievementName}>Quiz Master</Text>
+                  <Text style={styles.achievementStatus}>Coming Soon</Text>
                 </View>
-                <Text style={styles.percentageText}>{topic.percentage}%</Text>
+                <View style={styles.achievementCard}>
+                  <IconSymbol name="bolt.fill" size={32} color={colors.warning} />
+                  <Text style={styles.achievementName}>Speed Learner</Text>
+                  <Text style={styles.achievementStatus}>Coming Soon</Text>
+                </View>
               </View>
-            ))}
-          </View>
-        </View>
-
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Study Streak</Text>
-          <View style={styles.streakCard}>
-            <IconSymbol name="flame.fill" size={48} color={colors.warning} />
-            <Text style={styles.streakValue}>Coming Soon</Text>
-            <Text style={styles.streakLabel}>Track your daily study streak</Text>
-          </View>
-        </View>
-
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Achievements</Text>
-          <View style={styles.achievementsGrid}>
-            <View style={styles.achievementCard}>
-              <IconSymbol name="star.fill" size={32} color={colors.warning} />
-              <Text style={styles.achievementName}>First Review</Text>
-              <Text style={styles.achievementStatus}>
-                {reviewedCards > 0 ? '✓ Unlocked' : 'Locked'}
-              </Text>
             </View>
-            <View style={styles.achievementCard}>
-              <IconSymbol name="trophy.fill" size={32} color={colors.warning} />
-              <Text style={styles.achievementName}>Quiz Master</Text>
-              <Text style={styles.achievementStatus}>Coming Soon</Text>
-            </View>
-            <View style={styles.achievementCard}>
-              <IconSymbol name="bolt.fill" size={32} color={colors.warning} />
-              <Text style={styles.achievementName}>Speed Learner</Text>
-              <Text style={styles.achievementStatus}>Coming Soon</Text>
-            </View>
-          </View>
-        </View>
+          </>
+        )}
       </ScrollView>
 
       {/* Specialty Picker Modal */}
@@ -343,7 +424,7 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: 'center',
-    marginBottom: 32,
+    marginBottom: 24,
   },
   avatarContainer: {
     marginBottom: 16,
@@ -370,8 +451,94 @@ const styles = StyleSheet.create({
     color: colors.text,
     fontWeight: '500',
   },
+  tabContainer: {
+    flexDirection: 'row',
+    backgroundColor: colors.card,
+    borderRadius: 12,
+    padding: 4,
+    marginBottom: 24,
+    boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
+    elevation: 3,
+  },
+  tab: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+  },
+  tabActive: {
+    backgroundColor: colors.highlight,
+  },
+  tabText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: colors.textSecondary,
+  },
+  tabTextActive: {
+    color: colors.primary,
+  },
   section: {
     marginBottom: 32,
+  },
+  expertCard: {
+    backgroundColor: colors.card,
+    borderRadius: 16,
+    padding: 32,
+    alignItems: 'center',
+    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
+    elevation: 4,
+  },
+  expertTitle: {
+    fontSize: 24,
+    fontWeight: '700',
+    color: colors.text,
+    marginTop: 16,
+    marginBottom: 12,
+    textAlign: 'center',
+  },
+  expertDescription: {
+    fontSize: 15,
+    color: colors.textSecondary,
+    textAlign: 'center',
+    lineHeight: 22,
+    marginBottom: 24,
+  },
+  expertButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    backgroundColor: colors.primary,
+    paddingHorizontal: 32,
+    paddingVertical: 16,
+    borderRadius: 12,
+    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.15)',
+    elevation: 4,
+    marginBottom: 24,
+  },
+  expertButtonText: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: colors.background,
+  },
+  expertFeatures: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: 16,
+  },
+  featureItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
+  featureText: {
+    fontSize: 13,
+    color: colors.textSecondary,
+    fontWeight: '500',
   },
   sectionTitle: {
     fontSize: 20,
