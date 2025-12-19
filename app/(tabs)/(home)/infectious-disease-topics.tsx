@@ -21,7 +21,7 @@ const INFECTIOUS_DISEASE_TOPICS = [
   {
     name: 'Viral Infections',
     description: 'Common viral pathogens',
-    hasReferences: false
+    hasReferences: true
   },
   {
     name: 'STIs',

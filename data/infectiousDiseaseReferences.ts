@@ -262,6 +262,147 @@ export const infectiousDiseaseReferences: Reference[] = [
     appliesTo: 'ICU fungal infection recognition + empiric therapy framework cards',
     category: 'Infectious Disease',
     subcategory: 'Fungal Infections'
+  },
+  // Viral Infections References
+  {
+    id: 'ref-viral-001',
+    refNumber: 'REF001',
+    year: 2024,
+    citation: 'CDC Clinical Guidance for Influenza Antiviral Medications (updated annually). Centers for Disease Control and Prevention.',
+    link: 'https://www.cdc.gov/flu/hcp/antivirals/index.html',
+    appliesTo: 'Influenza A/B diagnosis, treatment, complications cards',
+    category: 'Infectious Disease',
+    subcategory: 'Viral Infections'
+  },
+  {
+    id: 'ref-viral-002',
+    refNumber: 'REF002',
+    year: 2024,
+    citation: 'IDSA Living Guidelines on the Treatment and Management of Patients with COVID-19. Infectious Diseases Society of America.',
+    link: 'https://www.idsociety.org/practice-guideline/covid-19-guideline-treatment-and-management/',
+    appliesTo: 'COVID-19 antivirals, severity stratification, inpatient vs outpatient cards',
+    category: 'Infectious Disease',
+    subcategory: 'Viral Infections'
+  },
+  {
+    id: 'ref-viral-003',
+    refNumber: 'REF003',
+    year: 2023,
+    citation: 'WHO Living Guideline: Therapeutics and Care for COVID-19 (evidence-based update). World Health Organization.',
+    link: 'https://www.who.int/publications/i/item/WHO-2019-nCoV-therapeutics-2023.1',
+    appliesTo: 'COVID-19 global management, oxygen and critical care cards',
+    category: 'Infectious Disease',
+    subcategory: 'Viral Infections'
+  },
+  {
+    id: 'ref-viral-004',
+    refNumber: 'REF004',
+    year: 2023,
+    citation: 'CDC Influenza: Information for Clinicians on Diagnosis and Treatment (evidence review).',
+    link: 'https://www.cdc.gov/flu/professionals/diagnosis/index.htm',
+    appliesTo: 'Influenza testing, complications, high-risk populations cards',
+    category: 'Infectious Disease',
+    subcategory: 'Viral Infections'
+  },
+  {
+    id: 'ref-viral-005',
+    refNumber: 'REF005',
+    year: 2024,
+    citation: 'AASLD Practice Guidance on Prevention, Diagnosis, and Treatment of Chronic Hepatitis B. American Association for the Study of Liver Diseases.',
+    link: 'https://www.aasld.org/practice-guidelines/hepatitis-b',
+    appliesTo: 'Hepatitis B diagnosis, monitoring, antiviral therapy cards',
+    category: 'Infectious Disease',
+    subcategory: 'Viral Infections'
+  },
+  {
+    id: 'ref-viral-006',
+    refNumber: 'REF006',
+    year: 2023,
+    citation: 'AASLD–IDSA HCV Guidance: Recommendations for Testing, Managing, and Treating Hepatitis C (Living Guidance).',
+    link: 'https://www.hcvguidelines.org/',
+    appliesTo: 'Hepatitis C screening, DAA therapy, cure rates cards',
+    category: 'Infectious Disease',
+    subcategory: 'Viral Infections'
+  },
+  {
+    id: 'ref-viral-007',
+    refNumber: 'REF007',
+    year: 2022,
+    citation: 'NIH Clinical Guidelines for the Management of HIV in Adults and Adolescents (Living Guidelines).',
+    link: 'https://clinicalinfo.hiv.gov/en/guidelines/adult-and-adolescent-arv',
+    appliesTo: 'HIV diagnosis, ART initiation, resistance basics cards',
+    category: 'Infectious Disease',
+    subcategory: 'Viral Infections'
+  },
+  {
+    id: 'ref-viral-008',
+    refNumber: 'REF008',
+    year: 2024,
+    citation: 'CDC HIV Clinical Care Guidelines for Health Care Providers. Centers for Disease Control and Prevention.',
+    link: 'https://www.cdc.gov/hiv/clinicians/index.html',
+    appliesTo: 'HIV screening, opportunistic infection overview cards',
+    category: 'Infectious Disease',
+    subcategory: 'Viral Infections'
+  },
+  {
+    id: 'ref-viral-009',
+    refNumber: 'REF009',
+    year: 2024,
+    citation: 'CDC Clinical Overview of Varicella-Zoster Virus (Shingles and Varicella).',
+    link: 'https://www.cdc.gov/chickenpox/hcp/clinical-overview.html',
+    appliesTo: 'VZV, shingles, complications cards',
+    category: 'Infectious Disease',
+    subcategory: 'Viral Infections'
+  },
+  {
+    id: 'ref-viral-010',
+    refNumber: 'REF010',
+    year: 2022,
+    citation: 'IDSA Guidelines for the Diagnosis and Management of Encephalitis (evidence-based update).',
+    link: 'https://www.idsociety.org/practice-guideline/encephalitis/',
+    appliesTo: 'HSV, VZV, arboviral encephalitis cards',
+    category: 'Infectious Disease',
+    subcategory: 'Viral Infections'
+  },
+  {
+    id: 'ref-viral-011',
+    refNumber: 'REF011',
+    year: 2023,
+    citation: 'CDC Clinical Guidance for Arboviral Diseases (West Nile, Dengue, Zika).',
+    link: 'https://www.cdc.gov/arboviral/healthcare-providers/index.html',
+    appliesTo: 'Travel-related viral illness, neuroinvasive disease cards',
+    category: 'Infectious Disease',
+    subcategory: 'Viral Infections'
+  },
+  {
+    id: 'ref-viral-012',
+    refNumber: 'REF012',
+    year: 2023,
+    citation: 'CDC Clinical Overview of Respiratory Syncytial Virus (RSV) in Adults and Children.',
+    link: 'https://www.cdc.gov/rsv/clinical/index.html',
+    appliesTo: 'RSV diagnosis, high-risk populations cards',
+    category: 'Infectious Disease',
+    subcategory: 'Viral Infections'
+  },
+  {
+    id: 'ref-viral-013',
+    refNumber: 'REF013',
+    year: 2022,
+    citation: 'WHO Guidelines on the Clinical Management of Viral Hemorrhagic Fevers (evidence update).',
+    link: 'https://www.who.int/publications/i/item/WHO-VHF-guidelines-2022',
+    appliesTo: 'Viral hemorrhagic fever recognition, isolation cards',
+    category: 'Infectious Disease',
+    subcategory: 'Viral Infections'
+  },
+  {
+    id: 'ref-viral-014',
+    refNumber: 'REF014',
+    year: 2024,
+    citation: 'Clinical Review: Antiviral Resistance—Mechanisms, Surveillance, and Clinical Implications. Clinical Microbiology Reviews.',
+    link: 'https://journals.asm.org/journal/cmr',
+    appliesTo: 'Antiviral resistance mechanisms and surveillance cards',
+    category: 'Infectious Disease',
+    subcategory: 'Viral Infections'
   }
 ];
 
