@@ -403,6 +403,127 @@ export const infectiousDiseaseReferences: Reference[] = [
     appliesTo: 'Antiviral resistance mechanisms and surveillance cards',
     category: 'Infectious Disease',
     subcategory: 'Viral Infections'
+  },
+  // Sexually Transmitted Infections References
+  {
+    id: 'ref-sti-001',
+    refNumber: 'REF001',
+    year: 2023,
+    citation: 'Sexually Transmitted Infections: Updates in Diagnosis, Management, and Prevention. Open-access review. Infectious Disease Clinics of North America.',
+    link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10450541/',
+    appliesTo: 'Global STI overview; syndromic approach cards',
+    category: 'Infectious Disease',
+    subcategory: 'Sexually Transmitted Infections'
+  },
+  {
+    id: 'ref-sti-002',
+    refNumber: 'REF002',
+    year: 2022,
+    citation: 'Management of Chlamydia trachomatis Infections: Current Evidence and Treatment Strategies. Open-access review.',
+    link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9319180/',
+    appliesTo: 'Chlamydia diagnosis, treatment, complications cards',
+    category: 'Infectious Disease',
+    subcategory: 'Sexually Transmitted Infections'
+  },
+  {
+    id: 'ref-sti-003',
+    refNumber: 'REF003',
+    year: 2022,
+    citation: 'Neisseria gonorrhoeae: Antimicrobial Resistance and Treatment Strategies. Open-access review.',
+    link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9404442/',
+    appliesTo: 'Gonorrhea treatment, resistance considerations cards',
+    category: 'Infectious Disease',
+    subcategory: 'Sexually Transmitted Infections'
+  },
+  {
+    id: 'ref-sti-004',
+    refNumber: 'REF004',
+    year: 2023,
+    citation: 'Syphilis: Clinical Manifestations, Diagnosis, and Management. Open-access review. The Lancet Infectious Diseases.',
+    link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10334377/',
+    appliesTo: 'Primary/secondary/tertiary syphilis cards',
+    category: 'Infectious Disease',
+    subcategory: 'Sexually Transmitted Infections'
+  },
+  {
+    id: 'ref-sti-005',
+    refNumber: 'REF005',
+    year: 2021,
+    citation: 'Trichomonas vaginalis Infection: Diagnosis and Management. Open-access review.',
+    link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8352468/',
+    appliesTo: 'Trichomoniasis cards',
+    category: 'Infectious Disease',
+    subcategory: 'Sexually Transmitted Infections'
+  },
+  {
+    id: 'ref-sti-006',
+    refNumber: 'REF006',
+    year: 2023,
+    citation: 'Genital Herpes Simplex Virus Infection: Clinical Features and Management. Open-access review. Frontiers in Microbiology.',
+    link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10262573/',
+    appliesTo: 'HSV-1/HSV-2 genital infection cards',
+    category: 'Infectious Disease',
+    subcategory: 'Sexually Transmitted Infections'
+  },
+  {
+    id: 'ref-sti-007',
+    refNumber: 'REF007',
+    year: 2022,
+    citation: 'Human Papillomavirus Infection and Associated Diseases: Clinical Review. Open-access.',
+    link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8974838/',
+    appliesTo: 'HPV, genital warts, cancer risk cards',
+    category: 'Infectious Disease',
+    subcategory: 'Sexually Transmitted Infections'
+  },
+  {
+    id: 'ref-sti-008',
+    refNumber: 'REF008',
+    year: 2024,
+    citation: 'Pelvic Inflammatory Disease: Diagnosis, Management, and Prevention. Open-access review.',
+    link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10729360/',
+    appliesTo: 'PID pathophysiology, complications cards',
+    category: 'Infectious Disease',
+    subcategory: 'Sexually Transmitted Infections'
+  },
+  {
+    id: 'ref-sti-009',
+    refNumber: 'REF009',
+    year: 2021,
+    citation: 'Epididymitis and Orchitis: Etiology, Diagnosis, and Treatment. Open-access review.',
+    link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8595901/',
+    appliesTo: 'Male STI complications cards',
+    category: 'Infectious Disease',
+    subcategory: 'Sexually Transmitted Infections'
+  },
+  {
+    id: 'ref-sti-010',
+    refNumber: 'REF010',
+    year: 2022,
+    citation: 'Sexually Transmitted Infections in Pregnancy: Maternal and Neonatal Outcomes. Open-access review.',
+    link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9556606/',
+    appliesTo: 'STIs in pregnancy, screening cards',
+    category: 'Infectious Disease',
+    subcategory: 'Sexually Transmitted Infections'
+  },
+  {
+    id: 'ref-sti-011',
+    refNumber: 'REF011',
+    year: 2023,
+    citation: 'HIV and Sexually Transmitted Coinfections: Clinical Implications. Open-access review.',
+    link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10457857/',
+    appliesTo: 'HIV/STI overlap cards',
+    category: 'Infectious Disease',
+    subcategory: 'Sexually Transmitted Infections'
+  },
+  {
+    id: 'ref-sti-012',
+    refNumber: 'REF012',
+    year: 2024,
+    citation: 'Antimicrobial Resistance in Sexually Transmitted Infections: A Global Review. Open-access.',
+    link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10892722/',
+    appliesTo: 'Resistance-aware STI treatment cards',
+    category: 'Infectious Disease',
+    subcategory: 'Sexually Transmitted Infections'
   }
 ];
 
