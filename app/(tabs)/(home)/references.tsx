@@ -5,33 +5,13 @@ import { Stack, useRouter, useLocalSearchParams } from 'expo-router';
 import { colors, commonStyles } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
 import * as Haptics from 'expo-haptics';
-import { infectiousDiseaseReferences, getReferencesByCategory } from '@/data/infectiousDiseaseReferences';
+import { infectiousDiseaseReferences, getSubcategories } from '@/data/infectiousDiseaseReferences';
 
 export default function ReferencesScreen() {
   const router = useRouter();
   const params = useLocalSearchParams();
   const system = params.system as string || 'Infectious Disease';
-  const topic = params.topic as string || 'Bacterial Organisms';
-
-  // Map topic names to subcategories
-  const getSubcategory = (topicName: string): string => {
-    if (topicName === 'Bacterial Organisms') {
-      return 'Bacterial Infections';
-    } else if (topicName === 'Fungal Infections') {
-      return 'Fungal Infections';
-    } else if (topicName === 'Viral Infections') {
-      return 'Viral Infections';
-    } else if (topicName === 'STIs') {
-      return 'Sexually Transmitted Infections';
-    } else if (topicName === 'Parasitic Infections') {
-      return 'Parasitic Infections';
-    }
-    return topicName;
-  };
-
-  // Get references for this topic
-  const subcategory = getSubcategory(topic);
-  const references = getReferencesByCategory(system, subcategory);
+  const topic = params.topic as string || 'All References';
 
   const handleBackPress = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -52,6 +32,9 @@ export default function ReferencesScreen() {
     }
   };
 
+  // Get all subcategories
+  const subcategories = getSubcategories('Infectious Disease References');
+
   return (
     <>
       <Stack.Screen
@@ -64,57 +47,53 @@ export default function ReferencesScreen() {
         {/* Header */}
         <View style={styles.header}>
           <IconSymbol name="book.fill" size={48} color={colors.accent} />
-          <Text style={styles.headerTitle}>References</Text>
+          <Text style={styles.headerTitle}>Infectious Disease References</Text>
           <Text style={styles.headerSubtitle}>
-            {system} → {topic}
+            All scholarly and guideline-based references
           </Text>
           <Text style={styles.headerDescription}>
-            Scholarly and guideline-based references (2021 or newer)
+            References organized by subtopic (2021 or newer)
           </Text>
         </View>
 
-        {/* References List */}
-        <View style={styles.section}>
-          {references.length === 0 ? (
-            <View style={styles.emptyState}>
-              <IconSymbol name="doc.text" size={48} color={colors.textSecondary} />
-              <Text style={styles.emptyStateText}>No references available</Text>
-            </View>
-          ) : (
-            references.map((reference, index) => (
-              <View key={reference.id} style={styles.referenceCard}>
-                {/* Reference Number and Year */}
-                <View style={styles.referenceHeader}>
-                  <View style={styles.refNumberBadge}>
-                    <Text style={styles.refNumberText}>{reference.refNumber}</Text>
-                  </View>
-                  <View style={styles.yearBadge}>
-                    <Text style={styles.yearText}>{reference.year}</Text>
-                  </View>
+        {/* References by Subcategory */}
+        {subcategories.map((subcategory, subIndex) => {
+          const refs = infectiousDiseaseReferences.filter(
+            ref => ref.category === 'Infectious Disease References' && ref.subcategory === subcategory
+          );
+
+          return (
+            <View key={subIndex} style={styles.subcategorySection}>
+              {/* Subcategory Header */}
+              <View style={styles.subcategoryHeader}>
+                <Text style={styles.subcategoryTitle}>{subcategory}</Text>
+                <View style={styles.countBadge}>
+                  <Text style={styles.countText}>{refs.length}</Text>
                 </View>
-
-                {/* Citation */}
-                <Text style={styles.citation}>{reference.citation}</Text>
-
-                {/* Applies To */}
-                <View style={styles.appliesSection}>
-                  <Text style={styles.appliesLabel}>Applies to:</Text>
-                  <Text style={styles.appliesText}>{reference.appliesTo}</Text>
-                </View>
-
-                {/* Link Button */}
-                <Pressable
-                  style={styles.linkButton}
-                  onPress={() => handleLinkPress(reference.link)}
-                >
-                  <IconSymbol name="link" size={16} color={colors.primary} />
-                  <Text style={styles.linkButtonText}>View Source</Text>
-                  <IconSymbol name="arrow.up.right" size={14} color={colors.primary} />
-                </Pressable>
               </View>
-            ))
-          )}
-        </View>
+
+              {/* References List */}
+              {refs.map((reference) => (
+                <View key={reference.id} style={styles.referenceCard}>
+                  {/* Citation */}
+                  <Text style={styles.citation}>{reference.citation}</Text>
+
+                  {/* Link Button */}
+                  {reference.link && (
+                    <Pressable
+                      style={styles.linkButton}
+                      onPress={() => handleLinkPress(reference.link)}
+                    >
+                      <IconSymbol name="link" size={16} color={colors.primary} />
+                      <Text style={styles.linkButtonText}>View Source</Text>
+                      <IconSymbol name="arrow.up.right" size={14} color={colors.primary} />
+                    </Pressable>
+                  )}
+                </View>
+              ))}
+            </View>
+          );
+        })}
 
         {/* Back Button */}
         <View style={styles.section}>
@@ -160,75 +139,47 @@ const styles = StyleSheet.create({
   section: {
     marginBottom: 24,
   },
-  emptyState: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 48,
+  subcategorySection: {
+    marginBottom: 32,
   },
-  emptyStateText: {
-    fontSize: 16,
-    color: colors.textSecondary,
-    marginTop: 16,
+  subcategoryHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 16,
+    paddingBottom: 12,
+    borderBottomWidth: 2,
+    borderBottomColor: colors.accent,
+  },
+  subcategoryTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: colors.text,
+  },
+  countBadge: {
+    backgroundColor: colors.accent,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 12,
+  },
+  countText: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#FFFFFF',
   },
   referenceCard: {
     backgroundColor: colors.card,
     padding: 16,
     borderRadius: 12,
-    marginBottom: 16,
+    marginBottom: 12,
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
     elevation: 2,
-  },
-  referenceHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 12,
-    gap: 8,
-  },
-  refNumberBadge: {
-    backgroundColor: colors.accent,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 6,
-  },
-  refNumberText: {
-    fontSize: 12,
-    fontWeight: '700',
-    color: '#FFFFFF',
-  },
-  yearBadge: {
-    backgroundColor: colors.highlight,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 6,
-  },
-  yearText: {
-    fontSize: 12,
-    fontWeight: '600',
-    color: colors.primary,
   },
   citation: {
     fontSize: 15,
     color: colors.text,
     lineHeight: 22,
     marginBottom: 12,
-  },
-  appliesSection: {
-    backgroundColor: colors.highlight,
-    padding: 12,
-    borderRadius: 8,
-    marginBottom: 12,
-  },
-  appliesLabel: {
-    fontSize: 12,
-    fontWeight: '600',
-    color: colors.textSecondary,
-    marginBottom: 4,
-    textTransform: 'uppercase',
-  },
-  appliesText: {
-    fontSize: 13,
-    color: colors.text,
-    lineHeight: 18,
   },
   linkButton: {
     flexDirection: 'row',

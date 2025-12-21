@@ -11,31 +11,31 @@ const INFECTIOUS_DISEASE_TOPICS = [
   {
     name: 'Bacterial Organisms',
     description: 'Gram-positive and Gram-negative bacteria',
-    hasReferences: true
+    hasReferences: false
   },
   {
     name: 'Fungal Infections',
     description: 'Systemic and opportunistic fungal pathogens',
-    hasReferences: true
+    hasReferences: false
   },
   {
     name: 'Viral Infections',
     description: 'Common viral pathogens',
-    hasReferences: true
+    hasReferences: false
   },
   {
     name: 'STIs',
     description: 'Sexually transmitted infections',
-    hasReferences: true
+    hasReferences: false
   },
   {
     name: 'Parasitic Infections',
     description: 'Protozoan and helminthic parasites',
-    hasReferences: true
+    hasReferences: false
   },
   {
     name: 'Infectious Disease References',
-    description: 'Scholarly and guideline-based references',
+    description: 'All scholarly and guideline-based references',
     hasReferences: false,
     isReferenceSection: true
   },
@@ -61,7 +61,17 @@ export default function InfectiousDiseaseTopicsScreen() {
   const handleTopicPress = (topicName: string, isReferenceSection?: boolean) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     
-    // Reference sections don't navigate to flashcards
+    // If it's the "Infectious Disease References" section, navigate to references
+    if (topicName === 'Infectious Disease References') {
+      console.log('Navigating to Infectious Disease References');
+      router.push({
+        pathname: '/(tabs)/(home)/references',
+        params: { topic: 'All References', system: 'Infectious Disease' }
+      });
+      return;
+    }
+    
+    // Other reference sections don't navigate
     if (isReferenceSection) {
       console.log('Reference section clicked:', topicName);
       return;
@@ -70,15 +80,6 @@ export default function InfectiousDiseaseTopicsScreen() {
     console.log('Navigating to Infectious Disease topic:', topicName);
     router.push({
       pathname: '/(tabs)/(home)/flashcards',
-      params: { topic: topicName, system: 'Infectious Disease' }
-    });
-  };
-
-  const handleReferencesPress = (topicName: string) => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    console.log('Navigating to References for:', topicName);
-    router.push({
-      pathname: '/(tabs)/(home)/references',
       params: { topic: topicName, system: 'Infectious Disease' }
     });
   };
@@ -139,14 +140,20 @@ export default function InfectiousDiseaseTopicsScreen() {
                             {stats.remaining} remaining • {stats.reviewed} reviewed
                           </Text>
                         )}
-                        {topic.isReferenceSection && (
+                        {topic.isReferenceSection && topic.name === 'Infectious Disease References' && (
+                          <Text style={styles.readyLabel}>Tap to view all references</Text>
+                        )}
+                        {topic.isReferenceSection && topic.name === 'Guideline and Authority Websites' && (
                           <Text style={styles.emptyLabel}>Empty - Ready for content</Text>
                         )}
                       </View>
                       {!topic.isReferenceSection && (
                         <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
                       )}
-                      {topic.isReferenceSection && (
+                      {topic.isReferenceSection && topic.name === 'Infectious Disease References' && (
+                        <IconSymbol name="book.fill" size={20} color={colors.accent} />
+                      )}
+                      {topic.isReferenceSection && topic.name === 'Guideline and Authority Websites' && (
                         <IconSymbol name="doc.text" size={20} color={colors.textSecondary} />
                       )}
                     </View>
@@ -157,17 +164,6 @@ export default function InfectiousDiseaseTopicsScreen() {
                     )}
                   </View>
                 </Pressable>
-                
-                {/* References Button */}
-                {topic.hasReferences && (
-                  <Pressable
-                    style={styles.referencesButton}
-                    onPress={() => handleReferencesPress(topic.name)}
-                  >
-                    <IconSymbol name="book.fill" size={16} color={colors.primary} />
-                    <Text style={styles.referencesButtonText}>View References</Text>
-                  </Pressable>
-                )}
               </View>
             );
           })}
@@ -257,6 +253,11 @@ const styles = StyleSheet.create({
     color: colors.accent,
     fontStyle: 'italic',
   },
+  readyLabel: {
+    fontSize: 12,
+    color: colors.accent,
+    fontWeight: '600',
+  },
   progressBarContainer: {
     height: 4,
     backgroundColor: colors.highlight,
@@ -267,21 +268,6 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: colors.accent,
     borderRadius: 2,
-  },
-  referencesButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.highlight,
-    padding: 12,
-    borderRadius: 8,
-    marginTop: 8,
-    gap: 8,
-  },
-  referencesButtonText: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: colors.primary,
   },
   backButton: {
     flexDirection: 'row',
