@@ -26,12 +26,12 @@ const INFECTIOUS_DISEASE_TOPICS = [
   {
     name: 'STIs',
     description: 'Sexually transmitted infections',
-    hasReferences: false
+    hasReferences: true
   },
   {
     name: 'Parasitic Infections',
     description: 'Protozoan and helminthic parasites',
-    hasReferences: false
+    hasReferences: true
   }
 ];
 

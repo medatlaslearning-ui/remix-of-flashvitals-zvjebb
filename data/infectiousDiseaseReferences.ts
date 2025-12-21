@@ -524,6 +524,127 @@ export const infectiousDiseaseReferences: Reference[] = [
     appliesTo: 'Resistance-aware STI treatment cards',
     category: 'Infectious Disease',
     subcategory: 'Sexually Transmitted Infections'
+  },
+  // Parasitic Infections References
+  {
+    id: 'ref-parasitic-001',
+    refNumber: 'REF001',
+    year: 2023,
+    citation: 'Human Parasitic Diseases: Diagnosis, Treatment, and Prevention. Open-access review. Infectious Disease Clinics of North America.',
+    link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10464176/',
+    appliesTo: 'Global parasitic infection overview cards',
+    category: 'Infectious Disease',
+    subcategory: 'Parasitic Infections'
+  },
+  {
+    id: 'ref-parasitic-002',
+    refNumber: 'REF002',
+    year: 2022,
+    citation: 'Malaria: Pathogenesis, Diagnosis, and Management. Open-access review.',
+    link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9387555/',
+    appliesTo: 'Plasmodium species, severe malaria cards',
+    category: 'Infectious Disease',
+    subcategory: 'Parasitic Infections'
+  },
+  {
+    id: 'ref-parasitic-003',
+    refNumber: 'REF003',
+    year: 2023,
+    citation: 'Intestinal Protozoal Infections: Giardia, Entamoeba, and Cryptosporidium. Open-access review.',
+    link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10138942/',
+    appliesTo: 'Protozoal diarrhea and malabsorption cards',
+    category: 'Infectious Disease',
+    subcategory: 'Parasitic Infections'
+  },
+  {
+    id: 'ref-parasitic-004',
+    refNumber: 'REF004',
+    year: 2021,
+    citation: 'Toxoplasma gondii Infection in Humans: Clinical Features and Management. Open-access review.',
+    link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8430709/',
+    appliesTo: 'Toxoplasmosis, immunocompromised and pregnancy cards',
+    category: 'Infectious Disease',
+    subcategory: 'Parasitic Infections'
+  },
+  {
+    id: 'ref-parasitic-005',
+    refNumber: 'REF005',
+    year: 2024,
+    citation: 'Helminth Infections in Humans: Diagnosis and Treatment Updates. Open-access review.',
+    link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10864232/',
+    appliesTo: 'Roundworm, tapeworm, fluke cards',
+    category: 'Infectious Disease',
+    subcategory: 'Parasitic Infections'
+  },
+  {
+    id: 'ref-parasitic-006',
+    refNumber: 'REF006',
+    year: 2022,
+    citation: 'Strongyloidiasis: Clinical Manifestations, Diagnosis, and Treatment. Open-access review.',
+    link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9446973/',
+    appliesTo: 'Strongyloides stercoralis, hyperinfection syndrome cards',
+    category: 'Infectious Disease',
+    subcategory: 'Parasitic Infections'
+  },
+  {
+    id: 'ref-parasitic-007',
+    refNumber: 'REF007',
+    year: 2023,
+    citation: 'Neurocysticercosis: Diagnosis and Management Strategies. Open-access review.',
+    link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10277852/',
+    appliesTo: 'Taenia solium, seizure-related parasitic disease cards',
+    category: 'Infectious Disease',
+    subcategory: 'Parasitic Infections'
+  },
+  {
+    id: 'ref-parasitic-008',
+    refNumber: 'REF008',
+    year: 2022,
+    citation: 'Schistosomiasis: Pathophysiology, Clinical Manifestations, and Treatment. Open-access review.',
+    link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9163277/',
+    appliesTo: 'Schistosoma species, hepatic and urinary disease cards',
+    category: 'Infectious Disease',
+    subcategory: 'Parasitic Infections'
+  },
+  {
+    id: 'ref-parasitic-009',
+    refNumber: 'REF009',
+    year: 2024,
+    citation: 'Leishmaniasis: Clinical Spectrum and Therapeutic Advances. Open-access review.',
+    link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10810497/',
+    appliesTo: 'Cutaneous and visceral leishmaniasis cards',
+    category: 'Infectious Disease',
+    subcategory: 'Parasitic Infections'
+  },
+  {
+    id: 'ref-parasitic-010',
+    refNumber: 'REF010',
+    year: 2023,
+    citation: 'Trypanosoma cruzi and Chagas Disease: Diagnosis and Management. Open-access review.',
+    link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10195143/',
+    appliesTo: 'Chagas disease, cardiomyopathy cards',
+    category: 'Infectious Disease',
+    subcategory: 'Parasitic Infections'
+  },
+  {
+    id: 'ref-parasitic-011',
+    refNumber: 'REF011',
+    year: 2021,
+    citation: 'Echinococcosis (Hydatid Disease): Clinical Features and Treatment. Open-access review.',
+    link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8258072/',
+    appliesTo: 'Hydatid cyst disease cards',
+    category: 'Infectious Disease',
+    subcategory: 'Parasitic Infections'
+  },
+  {
+    id: 'ref-parasitic-012',
+    refNumber: 'REF012',
+    year: 2024,
+    citation: 'Parasitic Infections in Immunocompromised Hosts: Diagnostic and Therapeutic Challenges. Open-access review.',
+    link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10921554/',
+    appliesTo: 'Transplant, HIV-associated parasitic infection cards',
+    category: 'Infectious Disease',
+    subcategory: 'Parasitic Infections'
   }
 ];
 

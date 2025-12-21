@@ -19,6 +19,12 @@ export default function ReferencesScreen() {
       return 'Bacterial Infections';
     } else if (topicName === 'Fungal Infections') {
       return 'Fungal Infections';
+    } else if (topicName === 'Viral Infections') {
+      return 'Viral Infections';
+    } else if (topicName === 'STIs') {
+      return 'Sexually Transmitted Infections';
+    } else if (topicName === 'Parasitic Infections') {
+      return 'Parasitic Infections';
     }
     return topicName;
   };
