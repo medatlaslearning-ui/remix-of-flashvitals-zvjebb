@@ -11,58 +11,6 @@ export interface Reference {
 }
 
 export const medicalReferences: Reference[] = [
-  // Infectious Disease - Bacterial Infections
-  {
-    id: 'ref-id-bac-001',
-    refNumber: 'REF-ID-BAC-001',
-    year: 2024,
-    citation: 'IDSA Guidance on the Treatment of Antimicrobial Resistant Gram-Negative Infections (updated guidance). Infectious Diseases Society of America.',
-    link: 'https://www.idsociety.org/practice-guideline/amr-guidance/',
-    appliesTo: 'Gram-negative organisms, ESBL, CRE, MDR treatment cards',
-    category: 'Infectious Disease',
-    subcategory: 'Bacterial Infections'
-  },
-  {
-    id: 'ref-id-bac-002',
-    refNumber: 'REF-ID-BAC-002',
-    year: 2021,
-    citation: 'IDSA Clinical Practice Guideline for the Diagnosis and Management of Intravascular Catheter-Related Infection: 2021 Update.',
-    link: 'https://www.idsociety.org/practice-guideline/intravascular-catheter-infections-update/',
-    appliesTo: 'Staphylococcus aureus, CoNS, line-associated bacteremia cards',
-    category: 'Infectious Disease',
-    subcategory: 'Bacterial Infections'
-  },
-  {
-    id: 'ref-id-bac-003',
-    refNumber: 'REF-ID-BAC-003',
-    year: 2021,
-    citation: 'IDSA Clinical Practice Guideline for the Management of Methicillin-Resistant Staphylococcus aureus (MRSA).',
-    link: 'https://www.idsociety.org/practice-guideline/mrsa/',
-    appliesTo: 'MRSA definition, treatment, resistant organism cards',
-    category: 'Infectious Disease',
-    subcategory: 'Bacterial Infections'
-  },
-  // Infectious Disease - Fungal Infections
-  {
-    id: 'ref-id-fun-001',
-    refNumber: 'REF-ID-FUN-001',
-    year: 2021,
-    citation: 'IDSA Clinical Practice Guideline for the Management of Candidiasis: 2016 Update with Ongoing Applicability and Resistance Considerations. Pappas PG, et al.',
-    link: 'https://www.idsociety.org/practice-guideline/candidiasis/',
-    appliesTo: 'Candida species, candidemia, invasive candidiasis cards',
-    category: 'Infectious Disease',
-    subcategory: 'Fungal Infections'
-  },
-  {
-    id: 'ref-id-fun-002',
-    refNumber: 'REF-ID-FUN-002',
-    year: 2023,
-    citation: 'IDSA Clinical Practice Guideline for the Diagnosis and Management of Aspergillosis (Updated Evidence Review). Patterson TF, et al.',
-    link: 'https://www.idsociety.org/practice-guideline/aspergillosis/',
-    appliesTo: 'Aspergillus species, invasive aspergillosis, neutropenia-related cards',
-    category: 'Infectious Disease',
-    subcategory: 'Fungal Infections'
-  },
   // Cardiology
   {
     id: 'ref-card-001',

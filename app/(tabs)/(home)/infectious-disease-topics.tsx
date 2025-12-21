@@ -11,27 +11,39 @@ const INFECTIOUS_DISEASE_TOPICS = [
   {
     name: 'Bacterial Organisms',
     description: 'Gram-positive and Gram-negative bacteria',
-    hasReferences: true
+    hasReferences: false
   },
   {
     name: 'Fungal Infections',
     description: 'Systemic and opportunistic fungal pathogens',
-    hasReferences: true
+    hasReferences: false
   },
   {
     name: 'Viral Infections',
     description: 'Common viral pathogens',
-    hasReferences: true
+    hasReferences: false
   },
   {
     name: 'STIs',
     description: 'Sexually transmitted infections',
-    hasReferences: true
+    hasReferences: false
   },
   {
     name: 'Parasitic Infections',
     description: 'Protozoan and helminthic parasites',
-    hasReferences: true
+    hasReferences: false
+  },
+  {
+    name: 'Infectious Disease References',
+    description: 'Scholarly and guideline-based references',
+    hasReferences: false,
+    isReferenceSection: true
+  },
+  {
+    name: 'Guideline and Authority Websites',
+    description: 'Official clinical practice guidelines',
+    hasReferences: false,
+    isReferenceSection: true
   }
 ];
 
@@ -46,8 +58,15 @@ export default function InfectiousDiseaseTopicsScreen() {
     console.log('Reviewed flashcards:', allFlashcards.filter(c => c.reviewCount > 0).length);
   }, [updateTrigger, allFlashcards]);
 
-  const handleTopicPress = (topicName: string) => {
+  const handleTopicPress = (topicName: string, isReferenceSection?: boolean) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    
+    // Reference sections don't navigate to flashcards
+    if (isReferenceSection) {
+      console.log('Reference section clicked:', topicName);
+      return;
+    }
+    
     console.log('Navigating to Infectious Disease topic:', topicName);
     router.push({
       pathname: '/(tabs)/(home)/flashcards',
@@ -90,7 +109,9 @@ export default function InfectiousDiseaseTopicsScreen() {
         {/* Topics */}
         <View style={styles.section}>
           {INFECTIOUS_DISEASE_TOPICS.map((topic, index) => {
-            const stats = getTopicStats('Infectious Disease', topic.name);
+            const stats = topic.isReferenceSection 
+              ? { total: 0, reviewed: 0, remaining: 0, progress: 0 }
+              : getTopicStats('Infectious Disease', topic.name);
             
             console.log(`Topic: ${topic.name}`, {
               total: stats.total,
@@ -102,21 +123,34 @@ export default function InfectiousDiseaseTopicsScreen() {
             return (
               <View key={index} style={styles.topicWrapper}>
                 <Pressable
-                  style={styles.topicCard}
-                  onPress={() => handleTopicPress(topic.name)}
+                  style={[
+                    styles.topicCard,
+                    topic.isReferenceSection && styles.referenceTopicCard
+                  ]}
+                  onPress={() => handleTopicPress(topic.name, topic.isReferenceSection)}
                 >
                   <View style={styles.topicContent}>
                     <View style={styles.topicHeader}>
                       <View style={styles.topicInfo}>
                         <Text style={styles.topicTitle}>{topic.name}</Text>
                         <Text style={styles.topicDescription}>{topic.description}</Text>
-                        <Text style={styles.topicSubtitle}>
-                          {stats.remaining} remaining • {stats.reviewed} reviewed
-                        </Text>
+                        {!topic.isReferenceSection && (
+                          <Text style={styles.topicSubtitle}>
+                            {stats.remaining} remaining • {stats.reviewed} reviewed
+                          </Text>
+                        )}
+                        {topic.isReferenceSection && (
+                          <Text style={styles.emptyLabel}>Empty - Ready for content</Text>
+                        )}
                       </View>
-                      <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
+                      {!topic.isReferenceSection && (
+                        <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
+                      )}
+                      {topic.isReferenceSection && (
+                        <IconSymbol name="doc.text" size={20} color={colors.textSecondary} />
+                      )}
                     </View>
-                    {stats.total > 0 && (
+                    {stats.total > 0 && !topic.isReferenceSection && (
                       <View style={styles.progressBarContainer}>
                         <View style={[styles.progressBarFill, { width: `${stats.progress}%` }]} />
                       </View>
@@ -186,6 +220,11 @@ const styles = StyleSheet.create({
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
     elevation: 2,
   },
+  referenceTopicCard: {
+    borderWidth: 1,
+    borderColor: colors.highlight,
+    borderStyle: 'dashed',
+  },
   topicContent: {
     flex: 1,
   },
@@ -212,6 +251,11 @@ const styles = StyleSheet.create({
   topicSubtitle: {
     fontSize: 12,
     color: colors.textSecondary,
+  },
+  emptyLabel: {
+    fontSize: 12,
+    color: colors.accent,
+    fontStyle: 'italic',
   },
   progressBarContainer: {
     height: 4,
