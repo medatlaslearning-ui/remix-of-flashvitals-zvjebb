@@ -11,27 +11,27 @@ const INFECTIOUS_DISEASE_TOPICS = [
   {
     name: 'Bacterial Organisms',
     description: 'Gram-positive and Gram-negative bacteria',
-    hasReferences: false
+    hasReferences: true
   },
   {
     name: 'Fungal Infections',
     description: 'Systemic and opportunistic fungal pathogens',
-    hasReferences: false
+    hasReferences: true
   },
   {
     name: 'Viral Infections',
     description: 'Common viral pathogens',
-    hasReferences: false
+    hasReferences: true
   },
   {
     name: 'STIs',
     description: 'Sexually transmitted infections',
-    hasReferences: false
+    hasReferences: true
   },
   {
     name: 'Parasitic Infections',
     description: 'Protozoan and helminthic parasites',
-    hasReferences: false
+    hasReferences: true
   },
   {
     name: 'Infectious Disease References',
