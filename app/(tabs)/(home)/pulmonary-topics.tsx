@@ -50,6 +50,16 @@ export default function PulmonaryTopicsScreen() {
     });
   };
 
+  const handleReferencesPress = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    router.push('/(tabs)/(home)/pulmonary-references');
+  };
+
+  const handleGuidelineWebsitesPress = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    router.push('/(tabs)/(home)/pulmonary-guideline-websites');
+  };
+
   const handleBackPress = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     router.back();
@@ -111,10 +121,49 @@ export default function PulmonaryTopicsScreen() {
           })}
         </View>
 
+        {/* Reference Files Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Reference Materials</Text>
+          
+          {/* Pulmonary References */}
+          <Pressable
+            style={styles.referenceCard}
+            onPress={handleReferencesPress}
+          >
+            <View style={styles.referenceContent}>
+              <IconSymbol name="book.fill" size={24} color={colors.accent} />
+              <View style={styles.referenceInfo}>
+                <Text style={styles.referenceTitle}>Pulmonary References</Text>
+                <Text style={styles.referenceDescription}>
+                  Academic references organized by subtopic (APA format)
+                </Text>
+              </View>
+              <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
+            </View>
+          </Pressable>
+
+          {/* Guideline and Authority Websites */}
+          <Pressable
+            style={styles.referenceCard}
+            onPress={handleGuidelineWebsitesPress}
+          >
+            <View style={styles.referenceContent}>
+              <IconSymbol name="globe" size={24} color={colors.accent} />
+              <View style={styles.referenceInfo}>
+                <Text style={styles.referenceTitle}>Guideline and Authority Websites</Text>
+                <Text style={styles.referenceDescription}>
+                  Official pulmonary medicine resources and guidelines
+                </Text>
+              </View>
+              <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
+            </View>
+          </Pressable>
+        </View>
+
         {/* Back Button */}
         <View style={styles.section}>
           <Pressable style={styles.backButton} onPress={handleBackPress}>
-            <IconSymbol name="arrow.left" size={20} color={colors.primary} />
+            <IconSymbol name="arrow.left" size={20} color={colors.accent} />
             <Text style={styles.backButtonText}>Back to Main Menu</Text>
           </Pressable>
         </View>
@@ -147,6 +196,13 @@ const styles = StyleSheet.create({
   },
   section: {
     marginBottom: 24,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: colors.text,
+    marginBottom: 16,
+    paddingHorizontal: 4,
   },
   topicCard: {
     backgroundColor: colors.card,
@@ -194,6 +250,33 @@ const styles = StyleSheet.create({
     backgroundColor: colors.accent,
     borderRadius: 2,
   },
+  referenceCard: {
+    backgroundColor: colors.card,
+    padding: 16,
+    borderRadius: 12,
+    marginBottom: 12,
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
+    elevation: 2,
+  },
+  referenceContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  referenceInfo: {
+    flex: 1,
+  },
+  referenceTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: colors.text,
+    marginBottom: 4,
+  },
+  referenceDescription: {
+    fontSize: 13,
+    color: colors.textSecondary,
+    lineHeight: 18,
+  },
   backButton: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -206,6 +289,6 @@ const styles = StyleSheet.create({
   backButtonText: {
     fontSize: 16,
     fontWeight: '600',
-    color: colors.primary,
+    color: colors.accent,
   },
 });
