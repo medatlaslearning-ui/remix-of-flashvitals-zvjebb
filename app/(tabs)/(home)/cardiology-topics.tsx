@@ -10,19 +10,35 @@ import { useFlashcards } from '@/hooks/useFlashcards';
 const CARDIOLOGY_TOPICS = [
   {
     name: 'Arrhythmias',
-    description: 'AFib, VT, Heart Blocks'
+    description: 'AFib, VT, Heart Blocks',
+    hasReferences: false
   },
   {
     name: 'Heart Failure',
-    description: 'HFrEF, HFpEF, Cardiomyopathy'
+    description: 'HFrEF, HFpEF, Cardiomyopathy',
+    hasReferences: false
   },
   {
     name: 'Ischemic Heart Disease',
-    description: 'STEMI, NSTEMI, Angina'
+    description: 'STEMI, NSTEMI, Angina',
+    hasReferences: false
   },
   {
     name: 'Valvular Disease',
-    description: 'AS, MR, MS, AR'
+    description: 'AS, MR, MS, AR',
+    hasReferences: false
+  },
+  {
+    name: 'Cardiology References',
+    description: 'All scholarly and guideline-based references',
+    hasReferences: false,
+    isReferenceSection: true
+  },
+  {
+    name: 'Guideline and Authority Websites',
+    description: 'Official clinical practice guidelines',
+    hasReferences: false,
+    isReferenceSection: true
   }
 ];
 
@@ -37,8 +53,32 @@ export default function CardiologyTopicsScreen() {
     console.log('Reviewed flashcards:', allFlashcards.filter(c => c.reviewCount > 0).length);
   }, [updateTrigger, allFlashcards]);
 
-  const handleTopicPress = (topicName: string) => {
+  const handleTopicPress = (topicName: string, isReferenceSection?: boolean) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    
+    // If it's the "Cardiology References" section, navigate to references
+    if (topicName === 'Cardiology References') {
+      console.log('Navigating to Cardiology References');
+      router.push({
+        pathname: '/(tabs)/(home)/cardiology-references',
+        params: { topic: 'All References', system: 'Cardiology' }
+      });
+      return;
+    }
+    
+    // If it's the "Guideline and Authority Websites" section, navigate to guideline websites
+    if (topicName === 'Guideline and Authority Websites') {
+      console.log('Navigating to Cardiology Guideline and Authority Websites');
+      router.push('/(tabs)/(home)/cardiology-guideline-websites');
+      return;
+    }
+    
+    // Other reference sections don't navigate
+    if (isReferenceSection) {
+      console.log('Reference section clicked:', topicName);
+      return;
+    }
+    
     console.log('Navigating to Cardiology topic:', topicName);
     router.push({
       pathname: '/(tabs)/(home)/flashcards',
@@ -72,7 +112,9 @@ export default function CardiologyTopicsScreen() {
         {/* Topics */}
         <View style={styles.section}>
           {CARDIOLOGY_TOPICS.map((topic, index) => {
-            const stats = getTopicStats('Cardiology', topic.name);
+            const stats = topic.isReferenceSection 
+              ? { total: 0, reviewed: 0, remaining: 0, progress: 0 }
+              : getTopicStats('Cardiology', topic.name);
             
             console.log(`Topic: ${topic.name}`, {
               total: stats.total,
@@ -82,27 +124,49 @@ export default function CardiologyTopicsScreen() {
             });
 
             return (
-              <Pressable
-                key={index}
-                style={styles.topicCard}
-                onPress={() => handleTopicPress(topic.name)}
-              >
-                <View style={styles.topicContent}>
-                  <View style={styles.topicHeader}>
-                    <View style={styles.topicInfo}>
-                      <Text style={styles.topicTitle}>{topic.name}</Text>
-                      <Text style={styles.topicDescription}>{topic.description}</Text>
-                      <Text style={styles.topicSubtitle}>
-                        {stats.remaining} remaining • {stats.reviewed} reviewed
-                      </Text>
+              <View key={index} style={styles.topicWrapper}>
+                <Pressable
+                  style={[
+                    styles.topicCard,
+                    topic.isReferenceSection && styles.referenceTopicCard
+                  ]}
+                  onPress={() => handleTopicPress(topic.name, topic.isReferenceSection)}
+                >
+                  <View style={styles.topicContent}>
+                    <View style={styles.topicHeader}>
+                      <View style={styles.topicInfo}>
+                        <Text style={styles.topicTitle}>{topic.name}</Text>
+                        <Text style={styles.topicDescription}>{topic.description}</Text>
+                        {!topic.isReferenceSection && (
+                          <Text style={styles.topicSubtitle}>
+                            {stats.remaining} remaining • {stats.reviewed} reviewed
+                          </Text>
+                        )}
+                        {topic.isReferenceSection && topic.name === 'Cardiology References' && (
+                          <Text style={styles.readyLabel}>Tap to view all references</Text>
+                        )}
+                        {topic.isReferenceSection && topic.name === 'Guideline and Authority Websites' && (
+                          <Text style={styles.readyLabel}>Tap to view guideline websites</Text>
+                        )}
+                      </View>
+                      {!topic.isReferenceSection && (
+                        <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
+                      )}
+                      {topic.isReferenceSection && topic.name === 'Cardiology References' && (
+                        <IconSymbol name="book.fill" size={20} color={colors.primary} />
+                      )}
+                      {topic.isReferenceSection && topic.name === 'Guideline and Authority Websites' && (
+                        <IconSymbol name="globe" size={20} color={colors.primary} />
+                      )}
                     </View>
-                    <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
+                    {stats.total > 0 && !topic.isReferenceSection && (
+                      <View style={styles.progressBarContainer}>
+                        <View style={[styles.progressBarFill, { width: `${stats.progress}%` }]} />
+                      </View>
+                    )}
                   </View>
-                  <View style={styles.progressBarContainer}>
-                    <View style={[styles.progressBarFill, { width: `${stats.progress}%` }]} />
-                  </View>
-                </View>
-              </Pressable>
+                </Pressable>
+              </View>
             );
           })}
         </View>
@@ -144,13 +208,20 @@ const styles = StyleSheet.create({
   section: {
     marginBottom: 24,
   },
+  topicWrapper: {
+    marginBottom: 12,
+  },
   topicCard: {
     backgroundColor: colors.card,
     padding: 16,
     borderRadius: 12,
-    marginBottom: 12,
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
     elevation: 2,
+  },
+  referenceTopicCard: {
+    borderWidth: 1,
+    borderColor: colors.highlight,
+    borderStyle: 'dashed',
   },
   topicContent: {
     flex: 1,
@@ -178,6 +249,11 @@ const styles = StyleSheet.create({
   topicSubtitle: {
     fontSize: 12,
     color: colors.textSecondary,
+  },
+  readyLabel: {
+    fontSize: 12,
+    color: colors.primary,
+    fontWeight: '600',
   },
   progressBarContainer: {
     height: 4,
