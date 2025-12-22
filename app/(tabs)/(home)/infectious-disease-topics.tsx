@@ -71,6 +71,13 @@ export default function InfectiousDiseaseTopicsScreen() {
       return;
     }
     
+    // If it's the "Guideline and Authority Websites" section, navigate to guideline websites
+    if (topicName === 'Guideline and Authority Websites') {
+      console.log('Navigating to Guideline and Authority Websites');
+      router.push('/(tabs)/(home)/guideline-websites');
+      return;
+    }
+    
     // Other reference sections don't navigate
     if (isReferenceSection) {
       console.log('Reference section clicked:', topicName);
@@ -144,7 +151,7 @@ export default function InfectiousDiseaseTopicsScreen() {
                           <Text style={styles.readyLabel}>Tap to view all references</Text>
                         )}
                         {topic.isReferenceSection && topic.name === 'Guideline and Authority Websites' && (
-                          <Text style={styles.emptyLabel}>Empty - Ready for content</Text>
+                          <Text style={styles.readyLabel}>Tap to view guideline websites</Text>
                         )}
                       </View>
                       {!topic.isReferenceSection && (
@@ -154,7 +161,7 @@ export default function InfectiousDiseaseTopicsScreen() {
                         <IconSymbol name="book.fill" size={20} color={colors.accent} />
                       )}
                       {topic.isReferenceSection && topic.name === 'Guideline and Authority Websites' && (
-                        <IconSymbol name="doc.text" size={20} color={colors.textSecondary} />
+                        <IconSymbol name="globe" size={20} color={colors.accent} />
                       )}
                     </View>
                     {stats.total > 0 && !topic.isReferenceSection && (
@@ -247,11 +254,6 @@ const styles = StyleSheet.create({
   topicSubtitle: {
     fontSize: 12,
     color: colors.textSecondary,
-  },
-  emptyLabel: {
-    fontSize: 12,
-    color: colors.accent,
-    fontStyle: 'italic',
   },
   readyLabel: {
     fontSize: 12,

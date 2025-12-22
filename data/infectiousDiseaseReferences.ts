@@ -10,6 +10,14 @@ export interface Reference {
   subcategory: string;
 }
 
+export interface GuidelineWebsite {
+  id: string;
+  name: string;
+  url: string;
+  description: string;
+  category: string;
+}
+
 export const infectiousDiseaseReferences: Reference[] = [
   // Bacterial Infections
   {
@@ -222,6 +230,65 @@ export const infectiousDiseaseReferences: Reference[] = [
   }
 ];
 
+export const guidelineWebsites: GuidelineWebsite[] = [
+  {
+    id: 'guide-001',
+    name: 'Infectious Diseases Society of America (IDSA)',
+    url: 'https://www.idsociety.org',
+    description: 'Clinical practice guidelines for infectious diseases',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'guide-002',
+    name: 'Centers for Disease Control and Prevention (CDC)',
+    url: 'https://www.cdc.gov',
+    description: 'Public health guidelines and disease surveillance',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'guide-003',
+    name: 'World Health Organization (WHO)',
+    url: 'https://www.who.int',
+    description: 'Global health guidelines and recommendations',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'guide-004',
+    name: 'National Institutes of Health (NIH) – Clinical Guidelines',
+    url: 'https://clinicalinfo.hiv.gov',
+    description: 'HIV/AIDS clinical practice guidelines',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'guide-005',
+    name: 'American Association for the Study of Liver Diseases (AASLD)',
+    url: 'https://www.aasld.org',
+    description: 'Hepatology and liver disease guidelines',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'guide-006',
+    name: 'European Society of Cardiology (ESC) – Infective Endocarditis',
+    url: 'https://www.escardio.org',
+    description: 'Cardiovascular disease and endocarditis guidelines',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'guide-007',
+    name: 'American Society of Transplantation (AST)',
+    url: 'https://www.myast.org',
+    description: 'Transplant infectious disease guidelines',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'guide-008',
+    name: 'Open Forum Infectious Diseases (OFID)',
+    url: 'https://academic.oup.com/ofid',
+    description: 'Peer-reviewed infectious disease research',
+    category: 'Guideline and Authority Websites'
+  }
+];
+
 // Helper function to get references by category
 export function getReferencesByCategory(category: string, subcategory?: string): Reference[] {
   return infectiousDiseaseReferences.filter(ref => {
@@ -249,4 +316,9 @@ export function getSubcategories(category: string): string[] {
     .filter(ref => ref.category === category)
     .forEach(ref => subcategories.add(ref.subcategory));
   return Array.from(subcategories);
+}
+
+// Helper function to get guideline websites
+export function getGuidelineWebsites(): GuidelineWebsite[] {
+  return guidelineWebsites;
 }
