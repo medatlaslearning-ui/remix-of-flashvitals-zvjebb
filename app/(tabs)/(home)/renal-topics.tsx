@@ -55,6 +55,18 @@ export default function RenalTopicsScreen() {
     });
   };
 
+  const handleReferencesPress = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    console.log('Navigating to Renal References');
+    router.push('/(tabs)/(home)/renal-references');
+  };
+
+  const handleGuidelineWebsitesPress = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    console.log('Navigating to Renal Guideline Websites');
+    router.push('/(tabs)/(home)/renal-guideline-websites');
+  };
+
   const handleBackPress = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     router.back();
@@ -118,6 +130,45 @@ export default function RenalTopicsScreen() {
           })}
         </View>
 
+        {/* Reference Files Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Reference Materials</Text>
+          
+          {/* Renal References */}
+          <Pressable
+            style={styles.referenceCard}
+            onPress={handleReferencesPress}
+          >
+            <View style={styles.referenceContent}>
+              <IconSymbol name="book.fill" size={24} color={colors.primary} />
+              <View style={styles.referenceInfo}>
+                <Text style={styles.referenceTitle}>Renal References</Text>
+                <Text style={styles.referenceDescription}>
+                  Academic references organized by subtopic (APA format)
+                </Text>
+              </View>
+              <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
+            </View>
+          </Pressable>
+
+          {/* Guideline & Authority Websites */}
+          <Pressable
+            style={styles.referenceCard}
+            onPress={handleGuidelineWebsitesPress}
+          >
+            <View style={styles.referenceContent}>
+              <IconSymbol name="globe" size={24} color={colors.primary} />
+              <View style={styles.referenceInfo}>
+                <Text style={styles.referenceTitle}>Guideline & Authority Websites</Text>
+                <Text style={styles.referenceDescription}>
+                  Official renal medicine resources and guidelines
+                </Text>
+              </View>
+              <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
+            </View>
+          </Pressable>
+        </View>
+
         {/* Back Button */}
         <View style={styles.section}>
           <Pressable style={styles.backButton} onPress={handleBackPress}>
@@ -154,6 +205,13 @@ const styles = StyleSheet.create({
   },
   section: {
     marginBottom: 24,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: colors.text,
+    marginBottom: 16,
+    paddingHorizontal: 4,
   },
   topicCard: {
     backgroundColor: colors.card,
@@ -200,6 +258,33 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: colors.accent,
     borderRadius: 2,
+  },
+  referenceCard: {
+    backgroundColor: colors.card,
+    padding: 16,
+    borderRadius: 12,
+    marginBottom: 12,
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
+    elevation: 2,
+  },
+  referenceContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  referenceInfo: {
+    flex: 1,
+  },
+  referenceTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: colors.text,
+    marginBottom: 4,
+  },
+  referenceDescription: {
+    fontSize: 13,
+    color: colors.textSecondary,
+    lineHeight: 18,
   },
   backButton: {
     flexDirection: 'row',
