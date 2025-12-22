@@ -234,7 +234,71 @@ export const pulmonaryReferences: Reference[] = [
   }
 ];
 
-export const pulmonaryGuidelineWebsites: GuidelineWebsite[] = [];
+export const pulmonaryGuidelineWebsites: GuidelineWebsite[] = [
+  {
+    id: 'guideline-001',
+    name: 'American Thoracic Society (ATS)',
+    url: 'https://www.thoracic.org',
+    description: 'Leading organization for respiratory medicine, providing clinical practice guidelines and research.',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'guideline-002',
+    name: 'European Respiratory Society (ERS)',
+    url: 'https://www.ersnet.org',
+    description: 'International organization dedicated to respiratory medicine and science.',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'guideline-003',
+    name: 'Global Initiative for Asthma (GINA)',
+    url: 'https://ginasthma.org',
+    description: 'Global resource for asthma management and prevention guidelines.',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'guideline-004',
+    name: 'Global Initiative for Chronic Obstructive Lung Disease (GOLD)',
+    url: 'https://goldcopd.org',
+    description: 'International guidelines for COPD diagnosis, management, and prevention.',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'guideline-005',
+    name: 'American College of Chest Physicians (CHEST)',
+    url: 'https://www.chestnet.org',
+    description: 'Professional organization for chest medicine and critical care.',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'guideline-006',
+    name: 'National Heart, Lung, and Blood Institute (NHLBI)',
+    url: 'https://www.nhlbi.nih.gov',
+    description: 'NIH institute providing research and guidelines for heart, lung, and blood diseases.',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'guideline-007',
+    name: 'European Society of Cardiology (ESC) – Pulmonary Hypertension',
+    url: 'https://www.escardio.org',
+    description: 'European guidelines for cardiovascular diseases including pulmonary hypertension.',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'guideline-008',
+    name: 'Society of Critical Care Medicine (SCCM)',
+    url: 'https://www.sccm.org',
+    description: 'Professional organization for critical care medicine and intensive care.',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'guideline-009',
+    name: 'World Health Organization (WHO)',
+    url: 'https://www.who.int',
+    description: 'Global health authority providing international health guidelines and standards.',
+    category: 'Guideline and Authority Websites'
+  }
+];
 
 // Helper function to get references by category
 export function getReferencesByCategory(category: string, subcategory?: string): Reference[] {
