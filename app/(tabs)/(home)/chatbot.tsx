@@ -39,7 +39,7 @@ export default function ChatbotScreen() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: 'Hello! I\'m your Medical Guidelines Chatbot. I can help you understand disease processes and provide evidence-based information from medical guidelines and academic references.\n\nAsk me about any medical topic, such as:\n• Disease processes (e.g., "Tell me about congestive heart failure")\n• Management strategies (e.g., "How is diabetes managed?")\n• Clinical guidelines (e.g., "What are the guidelines for stroke?")',
+      text: 'Hello! I\'m your Medical Guidelines Chatbot. I can help you understand disease processes and provide evidence-based information from medical guidelines and academic references.\n\nAsk me about any medical topic, such as:\n• Disease processes (e.g., "Tell me about congestive heart failure")\n• Management strategies (e.g., "How is diabetes managed?")\n• Clinical guidelines (e.g., "What are the guidelines for stroke?")\n• Infectious diseases (e.g., "Tell me about sepsis management")',
       isBot: true,
       timestamp: new Date(),
     },
@@ -66,7 +66,7 @@ export default function ChatbotScreen() {
       hematology: ['blood', 'anemia', 'hemato', 'leukemia', 'lymphoma', 'coagulation', 'thrombosis', 'platelet'],
       neurology: ['brain', 'neuro', 'stroke', 'seizure', 'epilepsy', 'headache', 'migraine', 'dementia', 'alzheimer', 'parkinson', 'multiple sclerosis'],
       'emergency medicine': ['emergency', 'trauma', 'acute', 'critical', 'shock', 'resuscitation'],
-      'infectious disease': ['infection', 'infectious', 'bacteria', 'virus', 'antibiotic', 'sepsis', 'fever'],
+      'infectious disease': ['infection', 'infectious', 'bacteria', 'virus', 'antibiotic', 'sepsis', 'fever', 'fungal', 'parasitic', 'sti', 'hiv', 'hepatitis', 'covid', 'pneumonia', 'meningitis', 'endocarditis', 'tuberculosis', 'malaria'],
       urology: ['urolog', 'prostate', 'bladder', 'urinary tract'],
     };
 
@@ -376,6 +376,206 @@ Additional symptoms:
 - Rehabilitation potential varies by individual
 
 The management of stroke requires rapid recognition, immediate intervention, and comprehensive long-term care. For the most current evidence-based guidelines and detailed protocols, please refer to the authoritative sources listed below.`;
+    }
+    // Sepsis
+    else if (lowerQuery.includes('sepsis') || lowerQuery.includes('septic shock')) {
+      discussion = `**Sepsis and Septic Shock: Comprehensive Overview**
+
+**Pathophysiology:**
+Sepsis is a life-threatening organ dysfunction caused by a dysregulated host response to infection. Septic shock is a subset of sepsis with profound circulatory, cellular, and metabolic abnormalities.
+
+*Key Mechanisms:*
+- Overwhelming inflammatory response to infection
+- Endothelial dysfunction and increased vascular permeability
+- Microvascular thrombosis and impaired tissue perfusion
+- Mitochondrial dysfunction and cellular metabolic failure
+- Multi-organ dysfunction syndrome (MODS)
+
+**Clinical Presentation:**
+- Fever or hypothermia
+- Tachycardia and tachypnea
+- Altered mental status
+- Hypotension (septic shock)
+- Signs of end-organ dysfunction
+- Source of infection may be apparent or occult
+
+**Diagnostic Criteria:**
+
+*Sepsis (Sepsis-3 Definition):*
+- Suspected or documented infection
+- Acute increase in SOFA score ≥2 points
+- Represents organ dysfunction
+
+*Septic Shock:*
+- Sepsis with persistent hypotension requiring vasopressors to maintain MAP ≥65 mmHg
+- Serum lactate >2 mmol/L despite adequate fluid resuscitation
+
+**Evidence-Based Management (Surviving Sepsis Campaign Guidelines):**
+
+*1. Initial Resuscitation (First Hour):*
+- Measure lactate level; remeasure if elevated (>2 mmol/L)
+- Obtain blood cultures before antibiotics
+- Administer broad-spectrum antibiotics within 1 hour
+- Begin rapid fluid resuscitation (30 mL/kg crystalloid for hypotension or lactate ≥4 mmol/L)
+- Apply vasopressors if hypotensive during or after fluid resuscitation to maintain MAP ≥65 mmHg
+
+*2. Antimicrobial Therapy:*
+- Broad-spectrum antibiotics within 1 hour of recognition
+- Empiric coverage based on likely source and local resistance patterns
+- De-escalate based on culture results and clinical improvement
+- Source control (drainage, debridement, device removal) as soon as possible
+
+*3. Hemodynamic Support:*
+- Crystalloids (normal saline or balanced crystalloids) for initial resuscitation
+- Norepinephrine as first-line vasopressor
+- Add vasopressin or epinephrine for refractory shock
+- Consider dobutamine for myocardial dysfunction
+- Target MAP ≥65 mmHg
+
+*4. Adjunctive Therapies:*
+- Corticosteroids (hydrocortisone 200 mg/day) for refractory septic shock
+- Mechanical ventilation with lung-protective strategies if ARDS develops
+- Glucose control (target <180 mg/dL)
+- DVT prophylaxis
+- Stress ulcer prophylaxis in high-risk patients
+
+*5. Monitoring and Supportive Care:*
+- Continuous hemodynamic monitoring
+- Serial lactate measurements
+- Urine output monitoring
+- Assess for organ dysfunction (renal, hepatic, coagulation, respiratory)
+- Nutritional support (enteral preferred)
+- Early mobilization when stable
+
+**Common Sources of Infection:**
+- Pneumonia (most common)
+- Intra-abdominal infections
+- Urinary tract infections
+- Skin and soft tissue infections
+- Catheter-related bloodstream infections
+- Meningitis
+
+**Prognosis:**
+- Mortality rates: Sepsis 10-20%, Septic shock 40-50%
+- Early recognition and treatment improve outcomes
+- Long-term survivors may have cognitive impairment and physical disabilities
+
+**Key Performance Measures:**
+- Time to antibiotic administration (<1 hour)
+- Adequate fluid resuscitation
+- Lactate clearance
+- Source control achieved
+- Appropriate de-escalation of antibiotics
+
+The management of sepsis requires rapid recognition, aggressive early intervention, and meticulous supportive care. For the most current evidence-based guidelines and detailed protocols, please refer to the authoritative sources listed below.`;
+    }
+    // Pneumonia
+    else if (lowerQuery.includes('pneumonia')) {
+      discussion = `**Pneumonia: Comprehensive Overview**
+
+**Pathophysiology:**
+Pneumonia is an acute infection of the pulmonary parenchyma characterized by inflammation of the alveolar spaces and consolidation of lung tissue.
+
+*Classification:*
+- Community-Acquired Pneumonia (CAP): Acquired outside healthcare settings
+- Hospital-Acquired Pneumonia (HAP): Develops ≥48 hours after hospital admission
+- Ventilator-Associated Pneumonia (VAP): Develops ≥48 hours after intubation
+- Healthcare-Associated Pneumonia (HCAP): In patients with recent healthcare exposure
+
+*Common Pathogens:*
+- Streptococcus pneumoniae (most common in CAP)
+- Haemophilus influenzae
+- Mycoplasma pneumoniae
+- Chlamydophila pneumoniae
+- Legionella pneumophila
+- Viral pathogens (influenza, RSV, COVID-19)
+- Gram-negative organisms (HAP/VAP)
+
+**Clinical Presentation:**
+- Fever and chills
+- Productive cough with purulent sputum
+- Pleuritic chest pain
+- Dyspnea and tachypnea
+- Crackles on auscultation
+- Systemic symptoms (fatigue, myalgias)
+
+**Diagnostic Approach:**
+- Chest X-ray or CT scan (infiltrates, consolidation)
+- Sputum culture and Gram stain
+- Blood cultures (before antibiotics)
+- Procalcitonin and inflammatory markers
+- Pulse oximetry and arterial blood gas
+- Urinary antigen tests (Legionella, Pneumococcus)
+
+**Severity Assessment:**
+
+*CURB-65 Score (CAP):*
+- Confusion
+- Urea >20 mg/dL
+- Respiratory rate ≥30/min
+- Blood pressure (SBP <90 or DBP ≤60 mmHg)
+- Age ≥65 years
+
+Score 0-1: Outpatient treatment
+Score 2: Consider hospitalization
+Score ≥3: Hospitalization, consider ICU
+
+**Evidence-Based Management:**
+
+*1. Community-Acquired Pneumonia:*
+
+Outpatient Treatment:
+- Previously healthy: Amoxicillin or doxycycline or macrolide
+- Comorbidities: Amoxicillin-clavulanate or cephalosporin + macrolide or respiratory fluoroquinolone
+
+Inpatient Non-ICU:
+- Beta-lactam (ceftriaxone, ampicillin-sulbactam) + macrolide
+- OR respiratory fluoroquinolone (levofloxacin, moxifloxacin)
+
+Inpatient ICU:
+- Beta-lactam (ceftriaxone, ampicillin-sulbactam) + azithromycin or fluoroquinolone
+- Consider anti-MRSA coverage if risk factors present
+- Consider anti-Pseudomonal coverage if risk factors present
+
+*2. Hospital-Acquired/Ventilator-Associated Pneumonia:*
+- Empiric broad-spectrum coverage
+- Piperacillin-tazobactam, cefepime, or meropenem
+- Add vancomycin or linezolid for MRSA coverage
+- De-escalate based on culture results
+
+*3. Supportive Care:*
+- Oxygen therapy to maintain SpO2 >90%
+- Fluid management
+- Antipyretics for fever
+- Respiratory support (non-invasive ventilation or mechanical ventilation if needed)
+- DVT prophylaxis
+- Early mobilization
+
+*4. Duration of Therapy:*
+- CAP: Minimum 5 days if clinically stable
+- HAP/VAP: 7-8 days (may extend for certain pathogens)
+- Adjust based on clinical response and pathogen
+
+**Complications:**
+- Respiratory failure requiring mechanical ventilation
+- Sepsis and septic shock
+- Pleural effusion and empyema
+- Lung abscess
+- Acute respiratory distress syndrome (ARDS)
+
+**Prevention:**
+- Pneumococcal vaccination (PCV20 or PCV15 + PPSV23)
+- Annual influenza vaccination
+- COVID-19 vaccination
+- Smoking cessation
+- Hand hygiene
+
+**Follow-up:**
+- Repeat chest X-ray in 6-8 weeks for high-risk patients
+- Ensure clinical resolution
+- Address underlying risk factors
+
+The management of pneumonia requires prompt recognition, appropriate antimicrobial therapy, and supportive care. For the most current evidence-based guidelines and detailed protocols, please refer to the authoritative sources listed below.`;
     }
     // Asthma
     else if (lowerQuery.includes('asthma')) {
@@ -819,7 +1019,7 @@ Please review the linked references and guideline websites below for detailed, e
       } else if (relevantWebsites.length > 0 || relevantReferences.length > 0) {
         botText = `I found relevant information for your query. Please see the references and guideline websites below for detailed information.`;
       } else {
-        botText = 'I couldn\'t find specific information for that query. Try asking about:\n\n• Specific diseases (e.g., "heart failure", "diabetes", "stroke", "asthma", "COPD")\n• Disease processes or pathophysiology\n• Management and treatment approaches\n• Clinical guidelines for specific conditions';
+        botText = 'I couldn\'t find specific information for that query. Try asking about:\n\n• Specific diseases (e.g., "heart failure", "diabetes", "stroke", "asthma", "COPD")\n• Infectious diseases (e.g., "sepsis", "pneumonia", "meningitis")\n• Disease processes or pathophysiology\n• Management and treatment approaches\n• Clinical guidelines for specific conditions';
       }
 
       const botMessage: Message = {

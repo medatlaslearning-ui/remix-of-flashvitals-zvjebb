@@ -7,6 +7,7 @@ import { guidelineWebsites as endocrineGuidelineWebsites } from './endocrineRefe
 import { guidelineWebsites as hematologyGuidelineWebsites } from './hematologyReferences';
 import { renalGuidelineWebsites } from './renalReferences';
 import { emergencyMedicineGuidelineWebsites } from './emergencyMedicineReferences';
+import { guidelineWebsites as infectiousDiseaseGuidelineWebsites } from './infectiousDiseaseReferences';
 
 interface GuidelineWebsite {
   name: string;
@@ -95,6 +96,16 @@ export function getAllGuidelineWebsites(): GuidelineWebsite[] {
       url: website.url,
       description: website.description,
       system: 'Emergency Medicine',
+    });
+  });
+
+  // Infectious Disease
+  infectiousDiseaseGuidelineWebsites.forEach(website => {
+    allWebsites.push({
+      name: website.name,
+      url: website.url,
+      description: website.description,
+      system: 'Infectious Disease',
     });
   });
 

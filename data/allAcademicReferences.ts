@@ -7,6 +7,7 @@ import { academicReferences as hematologyReferences } from './hematologyReferenc
 import { pulmonaryReferences } from './pulmonaryReferences';
 import { renalReferences } from './renalReferences';
 import { emergencyMedicineReferences } from './emergencyMedicineReferences';
+import { infectiousDiseaseReferences } from './infectiousDiseaseReferences';
 
 export interface AcademicReference {
   citation: string;
@@ -74,6 +75,18 @@ export function getAllAcademicReferences(): AcademicReference[] {
       citation: ref.citation,
       topic: ref.subcategory,
       system: 'Emergency Medicine',
+      year: ref.year,
+      link: ref.link,
+      appliesTo: ref.appliesTo,
+    });
+  });
+
+  // Infectious Disease - structured format
+  infectiousDiseaseReferences.forEach(ref => {
+    allReferences.push({
+      citation: ref.citation,
+      topic: ref.subcategory,
+      system: 'Infectious Disease',
       year: ref.year,
       link: ref.link,
       appliesTo: ref.appliesTo,
