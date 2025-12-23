@@ -286,6 +286,13 @@ export const emergencyMedicineGuidelineWebsites: GuidelineWebsite[] = [
     url: 'https://www.cdc.gov',
     description: 'Federal agency providing public health guidance, disease surveillance, and emergency preparedness',
     category: 'Guideline & Authority Websites'
+  },
+  {
+    id: 'em-guide-011',
+    name: 'Merck Manuals Professional - Injuries and Poisoning',
+    url: 'https://www.merckmanuals.com/professional/injuries-poisoning',
+    description: 'Comprehensive medical reference for injuries, poisoning, and emergency conditions including diagnosis, treatment, and management',
+    category: 'Guideline & Authority Websites'
   }
 ];
 

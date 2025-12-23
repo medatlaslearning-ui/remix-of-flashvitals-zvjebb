@@ -107,5 +107,10 @@ export const guidelineWebsites: Array<{
     name: "World Health Organization (WHO)",
     url: "https://www.who.int",
     description: "International public health organization providing global health guidelines"
+  },
+  {
+    name: "Merck Manuals Professional - Endocrine and Metabolic Disorders",
+    url: "https://www.merckmanuals.com/professional/endocrine-and-metabolic-disorders",
+    description: "Comprehensive medical reference for endocrine and metabolic disorders including diagnosis, treatment, and management"
   }
 ];

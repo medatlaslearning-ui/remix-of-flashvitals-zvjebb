@@ -275,6 +275,13 @@ export const neurologyGuidelineWebsites: GuidelineWebsite[] = [
     url: 'https://wfneurology.org',
     description: 'International organization promoting neurological education and research worldwide',
     category: 'Guideline & Authority Websites'
+  },
+  {
+    id: 'neuro-guide-010',
+    name: 'Merck Manuals Professional - Neurologic Disorders',
+    url: 'https://www.merckmanuals.com/professional/neurologic-disorders',
+    description: 'Comprehensive medical reference for neurologic disorders including diagnosis, treatment, and management',
+    category: 'Guideline & Authority Websites'
   }
 ];
 

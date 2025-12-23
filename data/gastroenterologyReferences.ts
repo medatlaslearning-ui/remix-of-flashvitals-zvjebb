@@ -114,5 +114,10 @@ export const guidelineWebsites: Array<{
     name: "National Institutes of Health (NIH)",
     url: "https://www.nih.gov",
     description: "Federal research agency supporting biomedical and health research"
+  },
+  {
+    name: "Merck Manuals Professional - Gastrointestinal Disorders",
+    url: "https://www.merckmanuals.com/professional/gastrointestinal-disorders",
+    description: "Comprehensive medical reference for gastrointestinal disorders including diagnosis, treatment, and management"
   }
 ];

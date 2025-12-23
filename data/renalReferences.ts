@@ -268,6 +268,13 @@ export const renalGuidelineWebsites: GuidelineWebsite[] = [
     url: 'https://www.niddk.nih.gov',
     description: 'NIH institute conducting and supporting research on diabetes, digestive, and kidney diseases',
     category: 'Guideline & Authority Websites'
+  },
+  {
+    id: 'renal-guide-009',
+    name: 'Merck Manuals Professional - Genitourinary Disorders',
+    url: 'https://www.merckmanuals.com/professional/genitourinary-disorders',
+    description: 'Comprehensive medical reference for genitourinary disorders including diagnosis, treatment, and management',
+    category: 'Guideline & Authority Websites'
   }
 ];
 

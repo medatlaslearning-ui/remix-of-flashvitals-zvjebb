@@ -297,6 +297,13 @@ export const pulmonaryGuidelineWebsites: GuidelineWebsite[] = [
     url: 'https://www.who.int',
     description: 'Global health authority providing international health guidelines and standards.',
     category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'guideline-010',
+    name: 'Merck Manuals Professional - Pulmonary Disorders',
+    url: 'https://www.merckmanuals.com/professional/pulmonary-disorders',
+    description: 'Comprehensive medical reference for pulmonary disorders including diagnosis, treatment, and management',
+    category: 'Guideline and Authority Websites'
   }
 ];
 

@@ -286,6 +286,13 @@ export const guidelineWebsites: GuidelineWebsite[] = [
     url: 'https://academic.oup.com/ofid',
     description: 'Peer-reviewed infectious disease research',
     category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'guide-009',
+    name: 'Merck Manuals Professional - Infectious Diseases',
+    url: 'https://www.merckmanuals.com/professional/infectious-diseases',
+    description: 'Comprehensive medical reference for infectious diseases including diagnosis, treatment, and management',
+    category: 'Guideline and Authority Websites'
   }
 ];
 

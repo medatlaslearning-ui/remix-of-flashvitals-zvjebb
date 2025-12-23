@@ -257,6 +257,13 @@ export const cardiologyGuidelineWebsites: GuidelineWebsite[] = [
     url: 'https://www.eacts.org',
     description: 'Cardiac surgery guidelines',
     category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'cardio-guide-008',
+    name: 'Merck Manuals Professional - Cardiovascular Disorders',
+    url: 'https://www.merckmanuals.com/professional/cardiovascular-disorders',
+    description: 'Comprehensive medical reference for cardiovascular disorders including diagnosis, treatment, and management',
+    category: 'Guideline and Authority Websites'
   }
 ];
 

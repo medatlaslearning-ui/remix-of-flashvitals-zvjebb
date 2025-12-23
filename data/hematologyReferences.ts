@@ -107,5 +107,10 @@ export const guidelineWebsites: Array<{
     name: "International Society on Thrombosis and Haemostasis (ISTH)",
     url: "https://www.isth.org",
     description: "Global organization focused on thrombosis and hemostasis research and education"
+  },
+  {
+    name: "Merck Manuals Professional - Hematology and Oncology",
+    url: "https://www.merckmanuals.com/professional/hematology-and-oncology",
+    description: "Comprehensive medical reference for hematology and oncology including diagnosis, treatment, and management"
   }
 ];
