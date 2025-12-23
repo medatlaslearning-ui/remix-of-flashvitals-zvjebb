@@ -117,6 +117,37 @@ export default function EmergencyMedicineTopicsScreen() {
           })}
         </View>
 
+        {/* Reference Materials Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Reference Materials</Text>
+          
+          <Pressable style={styles.referenceCard}>
+            <View style={styles.referenceContent}>
+              <IconSymbol name="book.fill" size={24} color={colors.error} />
+              <View style={styles.referenceInfo}>
+                <Text style={styles.referenceTitle}>Emergency Medicine References</Text>
+                <Text style={styles.referenceDescription}>
+                  Academic references organized by subtopic (APA format)
+                </Text>
+              </View>
+              <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
+            </View>
+          </Pressable>
+
+          <Pressable style={styles.referenceCard}>
+            <View style={styles.referenceContent}>
+              <IconSymbol name="globe" size={24} color={colors.error} />
+              <View style={styles.referenceInfo}>
+                <Text style={styles.referenceTitle}>Guideline & Authority Websites</Text>
+                <Text style={styles.referenceDescription}>
+                  Official emergency medicine resources and guidelines
+                </Text>
+              </View>
+              <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
+            </View>
+          </Pressable>
+        </View>
+
         {/* Back Button */}
         <View style={styles.section}>
           <Pressable style={styles.backButton} onPress={handleBackPress}>
@@ -154,6 +185,13 @@ const styles = StyleSheet.create({
   },
   section: {
     marginBottom: 24,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: colors.text,
+    marginBottom: 16,
+    paddingHorizontal: 4,
   },
   topicCard: {
     backgroundColor: colors.card,
@@ -200,6 +238,33 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: colors.error,
     borderRadius: 2,
+  },
+  referenceCard: {
+    backgroundColor: colors.card,
+    padding: 16,
+    borderRadius: 12,
+    marginBottom: 12,
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
+    elevation: 2,
+  },
+  referenceContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  referenceInfo: {
+    flex: 1,
+  },
+  referenceTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: colors.text,
+    marginBottom: 4,
+  },
+  referenceDescription: {
+    fontSize: 13,
+    color: colors.textSecondary,
+    lineHeight: 18,
   },
   backButton: {
     flexDirection: 'row',

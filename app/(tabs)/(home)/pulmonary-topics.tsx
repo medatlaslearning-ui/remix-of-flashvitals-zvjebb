@@ -142,7 +142,7 @@ export default function PulmonaryTopicsScreen() {
             </View>
           </Pressable>
 
-          {/* Guideline and Authority Websites */}
+          {/* Guideline & Authority Websites */}
           <Pressable
             style={styles.referenceCard}
             onPress={handleGuidelineWebsitesPress}
@@ -150,7 +150,7 @@ export default function PulmonaryTopicsScreen() {
             <View style={styles.referenceContent}>
               <IconSymbol name="globe" size={24} color={colors.accent} />
               <View style={styles.referenceInfo}>
-                <Text style={styles.referenceTitle}>Guideline and Authority Websites</Text>
+                <Text style={styles.referenceTitle}>Guideline & Authority Websites</Text>
                 <Text style={styles.referenceDescription}>
                   Official pulmonary medicine resources and guidelines
                 </Text>

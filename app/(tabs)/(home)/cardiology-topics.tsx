@@ -35,7 +35,7 @@ const CARDIOLOGY_TOPICS = [
     isReferenceSection: true
   },
   {
-    name: 'Guideline and Authority Websites',
+    name: 'Guideline & Authority Websites',
     description: 'Official clinical practice guidelines',
     hasReferences: false,
     isReferenceSection: true
@@ -66,9 +66,9 @@ export default function CardiologyTopicsScreen() {
       return;
     }
     
-    // If it's the "Guideline and Authority Websites" section, navigate to guideline websites
-    if (topicName === 'Guideline and Authority Websites') {
-      console.log('Navigating to Cardiology Guideline and Authority Websites');
+    // If it's the "Guideline & Authority Websites" section, navigate to guideline websites
+    if (topicName === 'Guideline & Authority Websites') {
+      console.log('Navigating to Cardiology Guideline & Authority Websites');
       router.push('/(tabs)/(home)/cardiology-guideline-websites');
       return;
     }
@@ -145,7 +145,7 @@ export default function CardiologyTopicsScreen() {
                         {topic.isReferenceSection && topic.name === 'Cardiology References' && (
                           <Text style={styles.readyLabel}>Tap to view all references</Text>
                         )}
-                        {topic.isReferenceSection && topic.name === 'Guideline and Authority Websites' && (
+                        {topic.isReferenceSection && topic.name === 'Guideline & Authority Websites' && (
                           <Text style={styles.readyLabel}>Tap to view guideline websites</Text>
                         )}
                       </View>
@@ -155,7 +155,7 @@ export default function CardiologyTopicsScreen() {
                       {topic.isReferenceSection && topic.name === 'Cardiology References' && (
                         <IconSymbol name="book.fill" size={20} color={colors.primary} />
                       )}
-                      {topic.isReferenceSection && topic.name === 'Guideline and Authority Websites' && (
+                      {topic.isReferenceSection && topic.name === 'Guideline & Authority Websites' && (
                         <IconSymbol name="globe" size={20} color={colors.primary} />
                       )}
                     </View>

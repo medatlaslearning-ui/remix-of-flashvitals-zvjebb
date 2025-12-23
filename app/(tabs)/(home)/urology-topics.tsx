@@ -116,17 +116,55 @@ export default function UrologyTopicsScreen() {
           })}
         </View>
 
-        {/* References Section */}
+        {/* Reference Materials Section */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>References</Text>
-          <View style={styles.referencesCard}>
-            <Text style={styles.referencesText}>
-              References for Urology topics will be added here.
-            </Text>
-            <Text style={styles.referencesSubtext}>
-              This section will include clinical guidelines, research papers, and educational resources.
-            </Text>
-          </View>
+          <Text style={styles.sectionTitle}>Reference Materials</Text>
+          
+          <Pressable style={styles.referenceCard}>
+            <View style={styles.referenceContent}>
+              <IconSymbol 
+                ios_icon_name="book.fill" 
+                android_material_icon_name="book"
+                size={24} 
+                color={colors.secondary} 
+              />
+              <View style={styles.referenceInfo}>
+                <Text style={styles.referenceTitle}>Urology References</Text>
+                <Text style={styles.referenceDescription}>
+                  Academic references organized by subtopic (APA format)
+                </Text>
+              </View>
+              <IconSymbol 
+                ios_icon_name="chevron.right" 
+                android_material_icon_name="chevron_right"
+                size={20} 
+                color={colors.textSecondary} 
+              />
+            </View>
+          </Pressable>
+
+          <Pressable style={styles.referenceCard}>
+            <View style={styles.referenceContent}>
+              <IconSymbol 
+                ios_icon_name="globe" 
+                android_material_icon_name="language"
+                size={24} 
+                color={colors.secondary} 
+              />
+              <View style={styles.referenceInfo}>
+                <Text style={styles.referenceTitle}>Guideline & Authority Websites</Text>
+                <Text style={styles.referenceDescription}>
+                  Official urology resources and guidelines
+                </Text>
+              </View>
+              <IconSymbol 
+                ios_icon_name="chevron.right" 
+                android_material_icon_name="chevron_right"
+                size={20} 
+                color={colors.textSecondary} 
+              />
+            </View>
+          </Pressable>
         </View>
 
         {/* Back Button */}
@@ -176,6 +214,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: colors.text,
     marginBottom: 16,
+    paddingHorizontal: 4,
   },
   topicCard: {
     backgroundColor: colors.card,
@@ -223,23 +262,32 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     borderRadius: 2,
   },
-  referencesCard: {
+  referenceCard: {
     backgroundColor: colors.card,
-    padding: 20,
+    padding: 16,
     borderRadius: 12,
+    marginBottom: 12,
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
     elevation: 2,
   },
-  referencesText: {
+  referenceContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  referenceInfo: {
+    flex: 1,
+  },
+  referenceTitle: {
     fontSize: 16,
     fontWeight: '600',
     color: colors.text,
-    marginBottom: 8,
+    marginBottom: 4,
   },
-  referencesSubtext: {
-    fontSize: 14,
+  referenceDescription: {
+    fontSize: 13,
     color: colors.textSecondary,
-    lineHeight: 20,
+    lineHeight: 18,
   },
   backButton: {
     flexDirection: 'row',

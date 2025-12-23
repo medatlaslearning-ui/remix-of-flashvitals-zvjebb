@@ -83,41 +83,6 @@ export default function NeurologyTopicsScreen() {
           </Text>
         </View>
 
-        {/* Reference Resources Section */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Reference Resources</Text>
-          
-          <Pressable style={styles.resourceCard} onPress={handleReferencesPress}>
-            <View style={styles.resourceContent}>
-              <View style={styles.resourceIconContainer}>
-                <IconSymbol name="book.fill" size={28} color={colors.primary} />
-              </View>
-              <View style={styles.resourceInfo}>
-                <Text style={styles.resourceTitle}>Neurology References</Text>
-                <Text style={styles.resourceDescription}>
-                  Academic references organized by subtopic (APA format)
-                </Text>
-              </View>
-              <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
-            </View>
-          </Pressable>
-
-          <Pressable style={styles.resourceCard} onPress={handleGuidelineWebsitesPress}>
-            <View style={styles.resourceContent}>
-              <View style={styles.resourceIconContainer}>
-                <IconSymbol name="globe" size={28} color={colors.primary} />
-              </View>
-              <View style={styles.resourceInfo}>
-                <Text style={styles.resourceTitle}>Guideline & Authority Websites</Text>
-                <Text style={styles.resourceDescription}>
-                  Official neurology organizations and resources
-                </Text>
-              </View>
-              <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
-            </View>
-          </Pressable>
-        </View>
-
         {/* Topics Section */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Study Topics</Text>
@@ -157,6 +122,41 @@ export default function NeurologyTopicsScreen() {
               </Pressable>
             );
           })}
+        </View>
+
+        {/* Reference Resources Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Reference Resources</Text>
+          
+          <Pressable style={styles.resourceCard} onPress={handleReferencesPress}>
+            <View style={styles.resourceContent}>
+              <View style={styles.resourceIconContainer}>
+                <IconSymbol name="book.fill" size={28} color={colors.primary} />
+              </View>
+              <View style={styles.resourceInfo}>
+                <Text style={styles.resourceTitle}>Neurology References</Text>
+                <Text style={styles.resourceDescription}>
+                  Academic references organized by subtopic (APA format)
+                </Text>
+              </View>
+              <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
+            </View>
+          </Pressable>
+
+          <Pressable style={styles.resourceCard} onPress={handleGuidelineWebsitesPress}>
+            <View style={styles.resourceContent}>
+              <View style={styles.resourceIconContainer}>
+                <IconSymbol name="globe" size={28} color={colors.primary} />
+              </View>
+              <View style={styles.resourceInfo}>
+                <Text style={styles.resourceTitle}>Guideline & Authority Websites</Text>
+                <Text style={styles.resourceDescription}>
+                  Official neurology organizations and resources
+                </Text>
+              </View>
+              <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
+            </View>
+          </Pressable>
         </View>
 
         {/* Back Button */}

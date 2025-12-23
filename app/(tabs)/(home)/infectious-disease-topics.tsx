@@ -40,7 +40,7 @@ const INFECTIOUS_DISEASE_TOPICS = [
     isReferenceSection: true
   },
   {
-    name: 'Guideline and Authority Websites',
+    name: 'Guideline & Authority Websites',
     description: 'Official clinical practice guidelines',
     hasReferences: false,
     isReferenceSection: true
@@ -71,9 +71,9 @@ export default function InfectiousDiseaseTopicsScreen() {
       return;
     }
     
-    // If it's the "Guideline and Authority Websites" section, navigate to guideline websites
-    if (topicName === 'Guideline and Authority Websites') {
-      console.log('Navigating to Guideline and Authority Websites');
+    // If it's the "Guideline & Authority Websites" section, navigate to guideline websites
+    if (topicName === 'Guideline & Authority Websites') {
+      console.log('Navigating to Guideline & Authority Websites');
       router.push('/(tabs)/(home)/guideline-websites');
       return;
     }
@@ -150,7 +150,7 @@ export default function InfectiousDiseaseTopicsScreen() {
                         {topic.isReferenceSection && topic.name === 'Infectious Disease References' && (
                           <Text style={styles.readyLabel}>Tap to view all references</Text>
                         )}
-                        {topic.isReferenceSection && topic.name === 'Guideline and Authority Websites' && (
+                        {topic.isReferenceSection && topic.name === 'Guideline & Authority Websites' && (
                           <Text style={styles.readyLabel}>Tap to view guideline websites</Text>
                         )}
                       </View>
@@ -160,7 +160,7 @@ export default function InfectiousDiseaseTopicsScreen() {
                       {topic.isReferenceSection && topic.name === 'Infectious Disease References' && (
                         <IconSymbol name="book.fill" size={20} color={colors.accent} />
                       )}
-                      {topic.isReferenceSection && topic.name === 'Guideline and Authority Websites' && (
+                      {topic.isReferenceSection && topic.name === 'Guideline & Authority Websites' && (
                         <IconSymbol name="globe" size={20} color={colors.accent} />
                       )}
                     </View>
