@@ -12,8 +12,10 @@ import {
   ActivityIndicator,
   Linking,
   Alert,
+  Modal,
 } from 'react-native';
 import { Stack } from 'expo-router';
+import { WebView } from 'react-native-webview';
 import { colors, commonStyles } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
 import * as Haptics from 'expo-haptics';
@@ -33,24 +35,317 @@ interface Message {
   }>;
   references?: AcademicReference[];
   diseaseDiscussion?: string;
+  merckManualLinks?: Array<{
+    title: string;
+    url: string;
+    description: string;
+  }>;
 }
 
 export default function ChatbotScreen() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: 'Hello! I\'m your Medical Guidelines Chatbot. I can help you understand disease processes and provide evidence-based information from medical guidelines and academic references.\n\nAsk me about any medical topic, such as:\n• Disease processes (e.g., "Tell me about congestive heart failure")\n• Management strategies (e.g., "How is diabetes managed?")\n• Clinical guidelines (e.g., "What are the guidelines for stroke?")\n• Infectious diseases (e.g., "Tell me about sepsis management")',
+      text: 'Hello! I\'m your Medical Guidelines Chatbot with integrated Merck Manual Professional access.\n\nI can help you understand disease processes and provide evidence-based information from:\n• Medical guidelines and academic references\n• Merck Manual Professional (comprehensive medical encyclopedia)\n• Clinical practice guidelines\n\nAsk me about any medical topic, such as:\n• Disease processes (e.g., "Tell me about congestive heart failure")\n• Management strategies (e.g., "How is diabetes managed?")\n• Clinical guidelines (e.g., "What are the guidelines for stroke?")\n• Infectious diseases (e.g., "Tell me about sepsis management")\n\nI\'ll provide detailed information and direct links to Merck Manual Professional for comprehensive coverage.',
       isBot: true,
       timestamp: new Date(),
     },
   ]);
   const [inputText, setInputText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [webViewVisible, setWebViewVisible] = useState(false);
+  const [webViewUrl, setWebViewUrl] = useState('');
   const scrollViewRef = useRef<ScrollView>(null);
 
   useEffect(() => {
     scrollViewRef.current?.scrollToEnd({ animated: true });
   }, [messages]);
+
+  const getMerckManualLinks = (query: string): Array<{title: string; url: string; description: string}> => {
+    const lowerQuery = query.toLowerCase();
+    const baseUrl = 'https://www.merckmanuals.com/professional';
+    
+    // Map common medical topics to Merck Manual sections
+    const topicMap: {[key: string]: {title: string; url: string; description: string}[]} = {
+      'heart failure': [
+        {
+          title: 'Heart Failure - Merck Manual Professional',
+          url: `${baseUrl}/cardiovascular-disorders/heart-failure/heart-failure-hf`,
+          description: 'Comprehensive overview of heart failure pathophysiology, diagnosis, and management'
+        },
+        {
+          title: 'Acute Decompensated Heart Failure',
+          url: `${baseUrl}/cardiovascular-disorders/heart-failure/acute-decompensated-heart-failure-adhf`,
+          description: 'Management of acute heart failure exacerbations'
+        }
+      ],
+      'chf': [
+        {
+          title: 'Heart Failure - Merck Manual Professional',
+          url: `${baseUrl}/cardiovascular-disorders/heart-failure/heart-failure-hf`,
+          description: 'Comprehensive overview of congestive heart failure'
+        }
+      ],
+      'diabetes': [
+        {
+          title: 'Diabetes Mellitus - Merck Manual Professional',
+          url: `${baseUrl}/endocrine-and-metabolic-disorders/diabetes-mellitus-and-disorders-of-carbohydrate-metabolism/diabetes-mellitus-dm`,
+          description: 'Complete guide to diabetes mellitus diagnosis and management'
+        },
+        {
+          title: 'Type 1 Diabetes',
+          url: `${baseUrl}/endocrine-and-metabolic-disorders/diabetes-mellitus-and-disorders-of-carbohydrate-metabolism/diabetes-mellitus-dm`,
+          description: 'Type 1 diabetes pathophysiology and treatment'
+        },
+        {
+          title: 'Type 2 Diabetes',
+          url: `${baseUrl}/endocrine-and-metabolic-disorders/diabetes-mellitus-and-disorders-of-carbohydrate-metabolism/diabetes-mellitus-dm`,
+          description: 'Type 2 diabetes management and complications'
+        }
+      ],
+      'stroke': [
+        {
+          title: 'Stroke Overview - Merck Manual Professional',
+          url: `${baseUrl}/neurologic-disorders/stroke/overview-of-stroke`,
+          description: 'Comprehensive stroke pathophysiology, diagnosis, and acute management'
+        },
+        {
+          title: 'Ischemic Stroke',
+          url: `${baseUrl}/neurologic-disorders/stroke/ischemic-stroke`,
+          description: 'Ischemic stroke evaluation and treatment'
+        },
+        {
+          title: 'Hemorrhagic Stroke',
+          url: `${baseUrl}/neurologic-disorders/stroke/hemorrhagic-stroke`,
+          description: 'Intracerebral and subarachnoid hemorrhage management'
+        }
+      ],
+      'sepsis': [
+        {
+          title: 'Sepsis and Septic Shock - Merck Manual Professional',
+          url: `${baseUrl}/critical-care-medicine/sepsis-and-septic-shock/sepsis-and-septic-shock`,
+          description: 'Evidence-based approach to sepsis recognition and management'
+        }
+      ],
+      'pneumonia': [
+        {
+          title: 'Pneumonia Overview - Merck Manual Professional',
+          url: `${baseUrl}/pulmonary-disorders/pneumonia/overview-of-pneumonia`,
+          description: 'Comprehensive pneumonia diagnosis and treatment'
+        },
+        {
+          title: 'Community-Acquired Pneumonia',
+          url: `${baseUrl}/pulmonary-disorders/pneumonia/community-acquired-pneumonia`,
+          description: 'CAP evaluation and antibiotic selection'
+        },
+        {
+          title: 'Hospital-Acquired Pneumonia',
+          url: `${baseUrl}/pulmonary-disorders/pneumonia/hospital-acquired-pneumonia`,
+          description: 'HAP and VAP management strategies'
+        }
+      ],
+      'asthma': [
+        {
+          title: 'Asthma - Merck Manual Professional',
+          url: `${baseUrl}/pulmonary-disorders/asthma-and-related-disorders/asthma`,
+          description: 'Asthma pathophysiology, diagnosis, and stepwise management'
+        }
+      ],
+      'copd': [
+        {
+          title: 'Chronic Obstructive Pulmonary Disease - Merck Manual Professional',
+          url: `${baseUrl}/pulmonary-disorders/chronic-obstructive-pulmonary-disease-and-related-disorders/chronic-obstructive-pulmonary-disease-copd`,
+          description: 'COPD diagnosis, management, and exacerbation treatment'
+        }
+      ],
+      'hypertension': [
+        {
+          title: 'Hypertension - Merck Manual Professional',
+          url: `${baseUrl}/cardiovascular-disorders/hypertension/hypertension`,
+          description: 'Hypertension evaluation, classification, and treatment'
+        },
+        {
+          title: 'Hypertensive Emergencies',
+          url: `${baseUrl}/cardiovascular-disorders/hypertension/hypertensive-emergencies`,
+          description: 'Management of hypertensive crises'
+        }
+      ],
+      'atrial fibrillation': [
+        {
+          title: 'Atrial Fibrillation - Merck Manual Professional',
+          url: `${baseUrl}/cardiovascular-disorders/arrhythmias-and-conduction-disorders/atrial-fibrillation`,
+          description: 'AFib diagnosis, rate/rhythm control, and anticoagulation'
+        }
+      ],
+      'myocardial infarction': [
+        {
+          title: 'Acute Myocardial Infarction - Merck Manual Professional',
+          url: `${baseUrl}/cardiovascular-disorders/coronary-artery-disease/acute-myocardial-infarction-mi`,
+          description: 'STEMI and NSTEMI diagnosis and management'
+        }
+      ],
+      'aki': [
+        {
+          title: 'Acute Kidney Injury - Merck Manual Professional',
+          url: `${baseUrl}/genitourinary-disorders/acute-kidney-injury/acute-kidney-injury-aki`,
+          description: 'AKI classification, causes, and management'
+        }
+      ],
+      'ckd': [
+        {
+          title: 'Chronic Kidney Disease - Merck Manual Professional',
+          url: `${baseUrl}/genitourinary-disorders/chronic-kidney-disease/chronic-kidney-disease`,
+          description: 'CKD staging, complications, and management'
+        }
+      ],
+      'meningitis': [
+        {
+          title: 'Acute Bacterial Meningitis - Merck Manual Professional',
+          url: `${baseUrl}/infectious-diseases/central-nervous-system-infections/acute-bacterial-meningitis`,
+          description: 'Bacterial meningitis diagnosis and empiric treatment'
+        }
+      ],
+      'uti': [
+        {
+          title: 'Urinary Tract Infection - Merck Manual Professional',
+          url: `${baseUrl}/genitourinary-disorders/urinary-tract-infections-utis/overview-of-urinary-tract-infections-utis`,
+          description: 'UTI diagnosis and antibiotic selection'
+        }
+      ],
+      'cellulitis': [
+        {
+          title: 'Cellulitis - Merck Manual Professional',
+          url: `${baseUrl}/dermatologic-disorders/bacterial-skin-infections/cellulitis`,
+          description: 'Cellulitis diagnosis and treatment'
+        }
+      ],
+      'dvt': [
+        {
+          title: 'Deep Venous Thrombosis - Merck Manual Professional',
+          url: `${baseUrl}/cardiovascular-disorders/peripheral-venous-disorders/deep-venous-thrombosis-dvt`,
+          description: 'DVT diagnosis, risk stratification, and anticoagulation'
+        }
+      ],
+      'pe': [
+        {
+          title: 'Pulmonary Embolism - Merck Manual Professional',
+          url: `${baseUrl}/pulmonary-disorders/pulmonary-embolism-pe/pulmonary-embolism-pe`,
+          description: 'PE diagnosis and management strategies'
+        }
+      ],
+      'anemia': [
+        {
+          title: 'Anemia Overview - Merck Manual Professional',
+          url: `${baseUrl}/hematology-and-oncology/anemias/overview-of-anemia`,
+          description: 'Anemia classification, diagnosis, and treatment approach'
+        }
+      ],
+      'cirrhosis': [
+        {
+          title: 'Cirrhosis - Merck Manual Professional',
+          url: `${baseUrl}/hepatic-and-biliary-disorders/fibrosis-and-cirrhosis/cirrhosis`,
+          description: 'Cirrhosis complications and management'
+        }
+      ],
+      'hepatitis': [
+        {
+          title: 'Viral Hepatitis Overview - Merck Manual Professional',
+          url: `${baseUrl}/hepatic-and-biliary-disorders/hepatitis/overview-of-acute-viral-hepatitis`,
+          description: 'Hepatitis A, B, C diagnosis and treatment'
+        }
+      ],
+      'pancreatitis': [
+        {
+          title: 'Acute Pancreatitis - Merck Manual Professional',
+          url: `${baseUrl}/gastrointestinal-disorders/pancreatitis/acute-pancreatitis`,
+          description: 'Acute pancreatitis diagnosis and management'
+        }
+      ],
+      'gerd': [
+        {
+          title: 'Gastroesophageal Reflux Disease - Merck Manual Professional',
+          url: `${baseUrl}/gastrointestinal-disorders/esophageal-and-swallowing-disorders/gastroesophageal-reflux-disease-gerd`,
+          description: 'GERD diagnosis and treatment options'
+        }
+      ],
+      'ibd': [
+        {
+          title: 'Inflammatory Bowel Disease Overview - Merck Manual Professional',
+          url: `${baseUrl}/gastrointestinal-disorders/inflammatory-bowel-disease-ibd/overview-of-inflammatory-bowel-disease`,
+          description: 'Crohn disease and ulcerative colitis management'
+        }
+      ],
+      'hypothyroidism': [
+        {
+          title: 'Hypothyroidism - Merck Manual Professional',
+          url: `${baseUrl}/endocrine-and-metabolic-disorders/thyroid-disorders/hypothyroidism`,
+          description: 'Hypothyroidism diagnosis and levothyroxine management'
+        }
+      ],
+      'hyperthyroidism': [
+        {
+          title: 'Hyperthyroidism - Merck Manual Professional',
+          url: `${baseUrl}/endocrine-and-metabolic-disorders/thyroid-disorders/hyperthyroidism`,
+          description: 'Hyperthyroidism causes and treatment options'
+        }
+      ],
+      'seizure': [
+        {
+          title: 'Seizure Disorders - Merck Manual Professional',
+          url: `${baseUrl}/neurologic-disorders/seizure-disorders/seizure-disorders`,
+          description: 'Epilepsy classification and antiepileptic drug selection'
+        }
+      ],
+      'dementia': [
+        {
+          title: 'Dementia Overview - Merck Manual Professional',
+          url: `${baseUrl}/neurologic-disorders/delirium-and-dementia/dementia`,
+          description: 'Dementia diagnosis and management approach'
+        }
+      ],
+      'parkinson': [
+        {
+          title: 'Parkinson Disease - Merck Manual Professional',
+          url: `${baseUrl}/neurologic-disorders/movement-and-cerebellar-disorders/parkinson-disease`,
+          description: 'Parkinson disease diagnosis and treatment'
+        }
+      ],
+      'depression': [
+        {
+          title: 'Depressive Disorders - Merck Manual Professional',
+          url: `${baseUrl}/psychiatric-disorders/mood-disorders/depressive-disorders`,
+          description: 'Depression diagnosis and treatment options'
+        }
+      ],
+      'anxiety': [
+        {
+          title: 'Anxiety Disorders - Merck Manual Professional',
+          url: `${baseUrl}/psychiatric-disorders/anxiety-and-stressor-related-disorders/overview-of-anxiety-disorders`,
+          description: 'Anxiety disorder classification and management'
+        }
+      ],
+    };
+
+    // Find matching topics
+    const matchedLinks: Array<{title: string; url: string; description: string}> = [];
+    
+    for (const [keyword, links] of Object.entries(topicMap)) {
+      if (lowerQuery.includes(keyword)) {
+        matchedLinks.push(...links);
+      }
+    }
+
+    // If no specific matches, provide general search link
+    if (matchedLinks.length === 0) {
+      matchedLinks.push({
+        title: 'Search Merck Manual Professional',
+        url: `${baseUrl}/search?query=${encodeURIComponent(query)}`,
+        description: 'Search the Merck Manual Professional for your query'
+      });
+    }
+
+    return matchedLinks;
+  };
 
   const findRelevantWebsites = (query: string) => {
     const allWebsites = getAllGuidelineWebsites();
@@ -60,13 +355,13 @@ export default function ChatbotScreen() {
     const keywords: { [key: string]: string[] } = {
       cardiology: ['heart', 'cardiac', 'cardio', 'arrhythmia', 'afib', 'valve', 'coronary', 'myocardial', 'hypertension', 'blood pressure', 'chf', 'congestive heart failure', 'heart failure'],
       pulmonary: ['lung', 'pulmonary', 'respiratory', 'asthma', 'copd', 'pneumonia', 'breathing', 'airway', 'bronch'],
-      renal: ['kidney', 'renal', 'nephro', 'dialysis', 'urinary', 'glomerulo', 'proteinuria'],
-      gastroenterology: ['stomach', 'gastro', 'intestin', 'liver', 'hepat', 'pancrea', 'esophag', 'colon', 'bowel', 'digestive', 'crohn', 'colitis', 'celiac'],
+      renal: ['kidney', 'renal', 'nephro', 'dialysis', 'urinary', 'glomerulo', 'proteinuria', 'aki', 'ckd'],
+      gastroenterology: ['stomach', 'gastro', 'intestin', 'liver', 'hepat', 'pancrea', 'esophag', 'colon', 'bowel', 'digestive', 'crohn', 'colitis', 'celiac', 'cirrhosis', 'gerd', 'ibd'],
       endocrine: ['diabetes', 'thyroid', 'hormone', 'endocrine', 'pituitary', 'adrenal', 'insulin', 'glucose', 'metabolic'],
-      hematology: ['blood', 'anemia', 'hemato', 'leukemia', 'lymphoma', 'coagulation', 'thrombosis', 'platelet'],
+      hematology: ['blood', 'anemia', 'hemato', 'leukemia', 'lymphoma', 'coagulation', 'thrombosis', 'platelet', 'dvt'],
       neurology: ['brain', 'neuro', 'stroke', 'seizure', 'epilepsy', 'headache', 'migraine', 'dementia', 'alzheimer', 'parkinson', 'multiple sclerosis'],
       'emergency medicine': ['emergency', 'trauma', 'acute', 'critical', 'shock', 'resuscitation'],
-      'infectious disease': ['infection', 'infectious', 'bacteria', 'virus', 'antibiotic', 'sepsis', 'fever', 'fungal', 'parasitic', 'sti', 'hiv', 'hepatitis', 'covid', 'pneumonia', 'meningitis', 'endocarditis', 'tuberculosis', 'malaria'],
+      'infectious disease': ['infection', 'infectious', 'bacteria', 'virus', 'antibiotic', 'sepsis', 'fever', 'fungal', 'parasitic', 'sti', 'hiv', 'hepatitis', 'covid', 'pneumonia', 'meningitis', 'endocarditis', 'tuberculosis', 'malaria', 'uti', 'cellulitis'],
       urology: ['urolog', 'prostate', 'bladder', 'urinary tract'],
     };
 
@@ -112,7 +407,7 @@ export default function ChatbotScreen() {
     return matchingRefs.slice(0, 5);
   };
 
-  const generateDiseaseDiscussion = (query: string, references: AcademicReference[], websites: any[]): string => {
+  const generateDiseaseDiscussion = (query: string, references: AcademicReference[], websites: any[], merckLinks: any[]): string => {
     const lowerQuery = query.toLowerCase();
     
     // Detect if this is a disease process question
@@ -127,7 +422,7 @@ export default function ChatbotScreen() {
       lowerQuery.includes('how is') ||
       lowerQuery.includes('guidelines');
 
-    if (!isDiseaseQuestion || (references.length === 0 && websites.length === 0)) {
+    if (!isDiseaseQuestion || (references.length === 0 && websites.length === 0 && merckLinks.length === 0)) {
       return '';
     }
 
@@ -194,7 +489,8 @@ The pathophysiology involves:
 - Medication titration to guideline-directed doses
 - Patient education on self-management
 
-The management approach is supported by extensive clinical trial evidence and is continuously updated based on emerging research. For the most current guidelines and detailed protocols, please refer to the authoritative sources listed below.`;
+**For More Comprehensive Information:**
+The Merck Manual Professional provides detailed, regularly updated information on heart failure including the latest evidence-based guidelines, diagnostic algorithms, and treatment protocols. See the Merck Manual links below for in-depth coverage.`;
     }
     // Diabetes
     else if (lowerQuery.includes('diabetes')) {
@@ -274,12 +570,8 @@ For Type 1 Diabetes:
 - Preconception counseling for women of childbearing age
 - Psychosocial assessment and support
 
-**Emerging Therapies:**
-- Newer GLP-1/GIP dual agonists
-- Automated insulin delivery systems
-- Continuous glucose monitoring technology
-
-The management of diabetes requires a comprehensive, patient-centered approach with regular monitoring and adjustment of therapy. For detailed, evidence-based guidelines and the latest recommendations, please consult the authoritative sources listed below.`;
+**For More Comprehensive Information:**
+The Merck Manual Professional provides extensive coverage of diabetes mellitus including detailed pathophysiology, diagnostic algorithms, medication selection, and complication management. See the Merck Manual links below for complete clinical guidance.`;
     }
     // Stroke
     else if (lowerQuery.includes('stroke')) {
@@ -364,18 +656,8 @@ Additional symptoms:
 - Cognitive rehabilitation
 - Psychosocial support and depression screening
 
-**Long-term Management:**
-- Regular follow-up and medication adherence
-- Continued risk factor modification
-- Monitoring for complications (seizures, depression, spasticity)
-- Caregiver support and education
-
-**Prognosis:**
-- Depends on stroke severity, location, and time to treatment
-- Early intervention significantly improves outcomes
-- Rehabilitation potential varies by individual
-
-The management of stroke requires rapid recognition, immediate intervention, and comprehensive long-term care. For the most current evidence-based guidelines and detailed protocols, please refer to the authoritative sources listed below.`;
+**For More Comprehensive Information:**
+The Merck Manual Professional provides detailed stroke protocols including acute management algorithms, secondary prevention strategies, and rehabilitation approaches. See the Merck Manual links below for complete clinical guidance.`;
     }
     // Sepsis
     else if (lowerQuery.includes('sepsis') || lowerQuery.includes('septic shock')) {
@@ -439,521 +721,19 @@ Sepsis is a life-threatening organ dysfunction caused by a dysregulated host res
 - DVT prophylaxis
 - Stress ulcer prophylaxis in high-risk patients
 
-*5. Monitoring and Supportive Care:*
-- Continuous hemodynamic monitoring
-- Serial lactate measurements
-- Urine output monitoring
-- Assess for organ dysfunction (renal, hepatic, coagulation, respiratory)
-- Nutritional support (enteral preferred)
-- Early mobilization when stable
-
-**Common Sources of Infection:**
-- Pneumonia (most common)
-- Intra-abdominal infections
-- Urinary tract infections
-- Skin and soft tissue infections
-- Catheter-related bloodstream infections
-- Meningitis
-
-**Prognosis:**
-- Mortality rates: Sepsis 10-20%, Septic shock 40-50%
-- Early recognition and treatment improve outcomes
-- Long-term survivors may have cognitive impairment and physical disabilities
-
-**Key Performance Measures:**
-- Time to antibiotic administration (<1 hour)
-- Adequate fluid resuscitation
-- Lactate clearance
-- Source control achieved
-- Appropriate de-escalation of antibiotics
-
-The management of sepsis requires rapid recognition, aggressive early intervention, and meticulous supportive care. For the most current evidence-based guidelines and detailed protocols, please refer to the authoritative sources listed below.`;
-    }
-    // Pneumonia
-    else if (lowerQuery.includes('pneumonia')) {
-      discussion = `**Pneumonia: Comprehensive Overview**
-
-**Pathophysiology:**
-Pneumonia is an acute infection of the pulmonary parenchyma characterized by inflammation of the alveolar spaces and consolidation of lung tissue.
-
-*Classification:*
-- Community-Acquired Pneumonia (CAP): Acquired outside healthcare settings
-- Hospital-Acquired Pneumonia (HAP): Develops ≥48 hours after hospital admission
-- Ventilator-Associated Pneumonia (VAP): Develops ≥48 hours after intubation
-- Healthcare-Associated Pneumonia (HCAP): In patients with recent healthcare exposure
-
-*Common Pathogens:*
-- Streptococcus pneumoniae (most common in CAP)
-- Haemophilus influenzae
-- Mycoplasma pneumoniae
-- Chlamydophila pneumoniae
-- Legionella pneumophila
-- Viral pathogens (influenza, RSV, COVID-19)
-- Gram-negative organisms (HAP/VAP)
-
-**Clinical Presentation:**
-- Fever and chills
-- Productive cough with purulent sputum
-- Pleuritic chest pain
-- Dyspnea and tachypnea
-- Crackles on auscultation
-- Systemic symptoms (fatigue, myalgias)
-
-**Diagnostic Approach:**
-- Chest X-ray or CT scan (infiltrates, consolidation)
-- Sputum culture and Gram stain
-- Blood cultures (before antibiotics)
-- Procalcitonin and inflammatory markers
-- Pulse oximetry and arterial blood gas
-- Urinary antigen tests (Legionella, Pneumococcus)
-
-**Severity Assessment:**
-
-*CURB-65 Score (CAP):*
-- Confusion
-- Urea >20 mg/dL
-- Respiratory rate ≥30/min
-- Blood pressure (SBP <90 or DBP ≤60 mmHg)
-- Age ≥65 years
-
-Score 0-1: Outpatient treatment
-Score 2: Consider hospitalization
-Score ≥3: Hospitalization, consider ICU
-
-**Evidence-Based Management:**
-
-*1. Community-Acquired Pneumonia:*
-
-Outpatient Treatment:
-- Previously healthy: Amoxicillin or doxycycline or macrolide
-- Comorbidities: Amoxicillin-clavulanate or cephalosporin + macrolide or respiratory fluoroquinolone
-
-Inpatient Non-ICU:
-- Beta-lactam (ceftriaxone, ampicillin-sulbactam) + macrolide
-- OR respiratory fluoroquinolone (levofloxacin, moxifloxacin)
-
-Inpatient ICU:
-- Beta-lactam (ceftriaxone, ampicillin-sulbactam) + azithromycin or fluoroquinolone
-- Consider anti-MRSA coverage if risk factors present
-- Consider anti-Pseudomonal coverage if risk factors present
-
-*2. Hospital-Acquired/Ventilator-Associated Pneumonia:*
-- Empiric broad-spectrum coverage
-- Piperacillin-tazobactam, cefepime, or meropenem
-- Add vancomycin or linezolid for MRSA coverage
-- De-escalate based on culture results
-
-*3. Supportive Care:*
-- Oxygen therapy to maintain SpO2 >90%
-- Fluid management
-- Antipyretics for fever
-- Respiratory support (non-invasive ventilation or mechanical ventilation if needed)
-- DVT prophylaxis
-- Early mobilization
-
-*4. Duration of Therapy:*
-- CAP: Minimum 5 days if clinically stable
-- HAP/VAP: 7-8 days (may extend for certain pathogens)
-- Adjust based on clinical response and pathogen
-
-**Complications:**
-- Respiratory failure requiring mechanical ventilation
-- Sepsis and septic shock
-- Pleural effusion and empyema
-- Lung abscess
-- Acute respiratory distress syndrome (ARDS)
-
-**Prevention:**
-- Pneumococcal vaccination (PCV20 or PCV15 + PPSV23)
-- Annual influenza vaccination
-- COVID-19 vaccination
-- Smoking cessation
-- Hand hygiene
-
-**Follow-up:**
-- Repeat chest X-ray in 6-8 weeks for high-risk patients
-- Ensure clinical resolution
-- Address underlying risk factors
-
-The management of pneumonia requires prompt recognition, appropriate antimicrobial therapy, and supportive care. For the most current evidence-based guidelines and detailed protocols, please refer to the authoritative sources listed below.`;
-    }
-    // Asthma
-    else if (lowerQuery.includes('asthma')) {
-      discussion = `**Asthma: Comprehensive Overview**
-
-**Pathophysiology:**
-Asthma is a chronic inflammatory disorder of the airways characterized by:
-- Airway inflammation (eosinophils, mast cells, T lymphocytes)
-- Bronchial hyperresponsiveness to various stimuli
-- Variable and reversible airflow obstruction
-- Airway remodeling in chronic disease
-
-The inflammatory cascade involves:
-- Release of inflammatory mediators (histamine, leukotrienes, cytokines)
-- Bronchial smooth muscle contraction
-- Mucus hypersecretion
-- Airway edema
-
-**Clinical Presentation:**
-- Episodic wheezing
-- Shortness of breath
-- Chest tightness
-- Cough (often worse at night or early morning)
-- Symptoms triggered by allergens, exercise, cold air, infections, or irritants
-- Variable symptom severity and frequency
-
-**Diagnosis:**
-- Clinical history and physical examination
-- Spirometry showing reversible obstruction (FEV1 improvement ≥12% and ≥200 mL after bronchodilator)
-- Peak flow monitoring
-- Bronchoprovocation testing if spirometry normal
-- Allergy testing to identify triggers
-
-**Asthma Severity Classification:**
-- Intermittent: Symptoms ≤2 days/week
-- Mild persistent: Symptoms >2 days/week but not daily
-- Moderate persistent: Daily symptoms
-- Severe persistent: Symptoms throughout the day
-
-**Comprehensive Management Approach:**
-
-*1. Controller Medications (Long-term):*
-- Inhaled corticosteroids (ICS): First-line anti-inflammatory therapy
-- ICS + Long-acting beta-agonists (LABA): For moderate-severe asthma
-- Leukotriene modifiers (montelukast): Alternative or add-on therapy
-- Long-acting muscarinic antagonists (LAMA): Add-on for severe asthma
-- Biologic therapies for severe asthma:
-  • Anti-IgE (omalizumab) for allergic asthma
-  • Anti-IL-5 (mepolizumab, reslizumab) for eosinophilic asthma
-  • Anti-IL-4/IL-13 (dupilumab) for Type 2 inflammation
-
-*2. Reliever Medications (Quick-relief):*
-- Short-acting beta-agonists (SABA): Albuterol for acute symptoms
-- Short-acting anticholinergics: Alternative bronchodilator
-- Systemic corticosteroids: For exacerbations
-
-*3. Stepwise Approach to Therapy:*
-- Step 1: As-needed SABA alone
-- Step 2: Low-dose ICS + as-needed SABA
-- Step 3: Low-dose ICS-LABA + as-needed SABA
-- Step 4: Medium-dose ICS-LABA + as-needed SABA
-- Step 5: High-dose ICS-LABA + consider add-on therapies
-- Step 6: High-dose ICS-LABA + oral corticosteroids + biologics
-
-*4. Asthma Action Plan:*
-- Green zone: Well-controlled, continue regular medications
-- Yellow zone: Worsening symptoms, increase treatment
-- Red zone: Severe symptoms, seek emergency care
-- Peak flow monitoring and symptom tracking
-
-*5. Trigger Identification and Avoidance:*
-- Allergen avoidance (dust mites, pets, pollen, mold)
-- Smoking cessation and avoid secondhand smoke
-- Avoid air pollution and irritants
-- Influenza and pneumococcal vaccination
-- Manage comorbidities (GERD, rhinitis, obesity)
-
-*6. Patient Education:*
-- Proper inhaler technique (critical for medication delivery)
-- Understanding of disease and treatment goals
-- Self-monitoring and symptom recognition
-- When to seek medical attention
-- Adherence to controller medications
-
-**Monitoring and Follow-up:**
-- Regular assessment of asthma control
-- Spirometry at diagnosis and periodically
-- Review of inhaler technique at each visit
-- Medication adjustment based on control
-- Step-down therapy when well-controlled for 3+ months
-
-**Special Considerations:**
-- Exercise-induced bronchoconstriction: Pre-treatment with SABA
-- Pregnancy: Continue controller therapy (most ICS safe)
-- Occupational asthma: Identify and remove from exposure
-- Aspirin-exacerbated respiratory disease: Avoid NSAIDs
-
-**Acute Exacerbation Management:**
-- Assess severity (mild, moderate, severe, life-threatening)
-- Oxygen to maintain SpO2 >90%
-- Repeated SABA administration
-- Systemic corticosteroids (oral or IV)
-- Ipratropium bromide for severe exacerbations
-- Magnesium sulfate for severe cases
-- ICU admission for respiratory failure
-
-The management of asthma requires ongoing assessment, patient education, and adjustment of therapy to achieve optimal control. For detailed, evidence-based guidelines and the latest recommendations, please consult the authoritative sources listed below.`;
-    }
-    // COPD
-    else if (lowerQuery.includes('copd') || lowerQuery.includes('chronic obstructive')) {
-      discussion = `**Chronic Obstructive Pulmonary Disease (COPD): Comprehensive Overview**
-
-**Pathophysiology:**
-COPD is a progressive lung disease characterized by persistent airflow limitation that is not fully reversible. It encompasses:
-
-*Chronic Bronchitis:*
-- Chronic productive cough for ≥3 months in 2 consecutive years
-- Mucus hypersecretion and airway inflammation
-- Bronchial wall thickening
-
-*Emphysema:*
-- Destruction of alveolar walls
-- Loss of elastic recoil
-- Air trapping and hyperinflation
-
-Primary cause: Cigarette smoking (85-90% of cases)
-Other causes: Alpha-1 antitrypsin deficiency, occupational exposures, biomass fuel exposure
-
-**Clinical Presentation:**
-- Progressive dyspnea (hallmark symptom)
-- Chronic cough (may be productive)
-- Wheezing
-- Chest tightness
-- Reduced exercise tolerance
-- Frequent respiratory infections
-
-**Diagnosis:**
-- Spirometry: Post-bronchodilator FEV1/FVC <0.70 confirms airflow limitation
-- Chest X-ray or CT: Assess for hyperinflation, bullae, other pathology
-- Alpha-1 antitrypsin level: Screen in young patients or non-smokers
-- Arterial blood gas: Assess for hypoxemia and hypercapnia in severe disease
-
-**COPD Severity Classification (GOLD Criteria):**
-- GOLD 1 (Mild): FEV1 ≥80% predicted
-- GOLD 2 (Moderate): FEV1 50-79% predicted
-- GOLD 3 (Severe): FEV1 30-49% predicted
-- GOLD 4 (Very Severe): FEV1 <30% predicted
-
-**Comprehensive Management Approach:**
-
-*1. Smoking Cessation:*
-- Most important intervention to slow disease progression
-- Counseling + pharmacotherapy (nicotine replacement, varenicline, bupropion)
-- Repeated interventions at every visit
-
-*2. Pharmacologic Therapy:*
-
-Bronchodilators (cornerstone of treatment):
-- Short-acting beta-agonists (SABA): Albuterol for acute relief
-- Short-acting anticholinergics (SAMA): Ipratropium
-- Long-acting beta-agonists (LABA): Formoterol, salmeterol
-- Long-acting muscarinic antagonists (LAMA): Tiotropium, umeclidinium
-- Combination LABA-LAMA: Preferred for most patients
-
-Anti-inflammatory therapy:
-- Inhaled corticosteroids (ICS): For patients with frequent exacerbations or eosinophilia
-- ICS-LABA-LAMA triple therapy: For severe disease with exacerbations
-- Roflumilast (PDE4 inhibitor): For severe COPD with chronic bronchitis
-
-Other medications:
-- Systemic corticosteroids: For acute exacerbations only
-- Antibiotics: For bacterial exacerbations
-- Mucolytics: May reduce exacerbations in selected patients
-
-*3. Oxygen Therapy:*
-- Long-term oxygen therapy (LTOT) for:
-  • Resting PaO2 ≤55 mmHg or SpO2 ≤88%
-  • PaO2 56-59 mmHg with evidence of cor pulmonale or polycythemia
-- Goal: SpO2 ≥90% for ≥15 hours/day
-- Improves survival in hypoxemic patients
-
-*4. Pulmonary Rehabilitation:*
-- Exercise training
-- Education and self-management
-- Nutritional counseling
-- Psychosocial support
-- Improves symptoms, quality of life, and reduces hospitalizations
-
-*5. Vaccinations:*
-- Annual influenza vaccine
-- Pneumococcal vaccines (PCV20 or PCV15 + PPSV23)
-- COVID-19 vaccination
-- Consider pertussis vaccine
-
-*6. Surgical and Interventional Options:*
-- Lung volume reduction surgery: Selected patients with upper lobe emphysema
-- Endobronchial valve placement: For severe emphysema with hyperinflation
-- Bullectomy: For large bullae causing compression
-- Lung transplantation: End-stage disease in selected patients
-
-**Exacerbation Management:**
-- Increased bronchodilator therapy (SABA ± SAMA)
-- Systemic corticosteroids (prednisone 40mg x 5 days)
-- Antibiotics if increased sputum purulence or pneumonia
-- Oxygen to maintain SpO2 88-92%
-- Non-invasive ventilation for respiratory failure
-- Hospital admission for severe exacerbations
-
-**Monitoring and Follow-up:**
-- Regular spirometry to assess progression
-- Symptom assessment (CAT score, mMRC dyspnea scale)
-- Exacerbation frequency
-- Oxygen saturation monitoring
-- Comorbidity management (cardiovascular disease, osteoporosis, depression)
-
-**Comorbidities:**
-- Cardiovascular disease (common and important)
-- Osteoporosis (screen and treat)
-- Depression and anxiety
-- Lung cancer (increased risk)
-- Gastroesophageal reflux disease
-
-The management of COPD requires a comprehensive approach addressing smoking cessation, pharmacotherapy, rehabilitation, and comorbidities. For detailed, evidence-based guidelines and the latest recommendations, please consult the authoritative sources listed below.`;
-    }
-    // Hypertension
-    else if (lowerQuery.includes('hypertension') || lowerQuery.includes('high blood pressure')) {
-      discussion = `**Hypertension: Comprehensive Overview**
-
-**Definition and Classification:**
-Hypertension is defined as persistently elevated blood pressure. Current guidelines classify:
-
-- Normal: <120/80 mmHg
-- Elevated: 120-129/<80 mmHg
-- Stage 1 Hypertension: 130-139/80-89 mmHg
-- Stage 2 Hypertension: ≥140/90 mmHg
-- Hypertensive Crisis: ≥180/120 mmHg
-
-**Pathophysiology:**
-Hypertension results from increased peripheral vascular resistance and/or increased cardiac output due to:
-- Increased sympathetic nervous system activity
-- Renin-angiotensin-aldosterone system (RAAS) activation
-- Endothelial dysfunction
-- Increased sodium retention
-- Vascular remodeling
-
-*Primary (Essential) Hypertension (90-95%):*
-- Multifactorial etiology
-- Genetic and environmental factors
-- Associated with obesity, high sodium intake, alcohol, stress
-
-*Secondary Hypertension (5-10%):*
-- Renal disease (most common)
-- Renovascular disease
-- Primary aldosteronism
-- Pheochromocytoma
-- Cushing syndrome
-- Coarctation of aorta
-- Medications (NSAIDs, oral contraceptives, steroids)
-
-**Clinical Presentation:**
-- Often asymptomatic ("silent killer")
-- Headache (usually with severe hypertension)
-- Dizziness
-- Blurred vision
-- Chest pain or dyspnea (if target organ damage)
-
-**Diagnosis:**
-- Multiple BP measurements on separate occasions
-- Proper technique: Seated, arm supported, appropriate cuff size
-- Ambulatory BP monitoring or home BP monitoring for confirmation
-- Assess for secondary causes in young patients, resistant hypertension, or sudden onset
-
-**Initial Evaluation:**
-- Complete history and physical examination
-- Laboratory tests: Urinalysis, creatinine, eGFR, electrolytes, fasting glucose, lipid panel
-- ECG to assess for LVH
-- Consider echocardiogram if LVH suspected
-
-**Comprehensive Management Approach:**
-
-*1. Lifestyle Modifications (First-line for all patients):*
-- Weight loss: 5-10 kg can reduce BP by 5-20 mmHg
-- DASH diet: Rich in fruits, vegetables, low-fat dairy, reduced saturated fat
-- Sodium restriction: <2.3 g/day (ideally <1.5 g/day)
-- Physical activity: 150 min/week moderate-intensity aerobic exercise
-- Alcohol moderation: ≤2 drinks/day for men, ≤1 drink/day for women
-- Smoking cessation
-- Stress management
-
-*2. Pharmacologic Therapy:*
-
-First-line agents:
-- ACE inhibitors (lisinopril, enalapril): Preferred for diabetes, CKD, heart failure
-- ARBs (losartan, valsartan): Alternative to ACE-I
-- Calcium channel blockers (amlodipine, diltiazem): Effective in African Americans, elderly
-- Thiazide diuretics (hydrochlorothiazide, chlorthalidone): Cost-effective, proven mortality benefit
-
-Initiation strategy:
-- Stage 1 HTN: Lifestyle modifications, consider single agent if high CV risk
-- Stage 2 HTN: Two first-line agents from different classes
-- Start low, go slow in elderly patients
-
-Combination therapy:
-- ACE-I or ARB + CCB
-- ACE-I or ARB + thiazide diuretic
-- CCB + thiazide diuretic
-- Avoid ACE-I + ARB combination
-
-Additional agents for resistant hypertension:
-- Spironolactone (most effective fourth agent)
-- Beta-blockers (if compelling indication)
-- Alpha-blockers
-- Direct vasodilators (hydralazine, minoxidil)
-
-*3. Blood Pressure Targets:*
-- General population: <130/80 mmHg
-- Diabetes: <130/80 mmHg
-- CKD: <130/80 mmHg
-- Elderly (≥65 years): <130/80 mmHg if tolerated
-- Individualize based on comorbidities and tolerability
-
-*4. Management of Resistant Hypertension:*
-- Confirm true resistance (proper BP measurement, medication adherence)
-- Screen for secondary causes
-- Optimize lifestyle modifications
-- Ensure adequate diuretic therapy
-- Add spironolactone or other fourth agent
-- Consider renal denervation in selected cases
-
-**Target Organ Damage Assessment:**
-- Cardiovascular: LVH, heart failure, coronary artery disease
-- Cerebrovascular: Stroke, TIA, cognitive impairment
-- Renal: CKD, proteinuria
-- Retinal: Hypertensive retinopathy
-- Peripheral vascular disease
-
-**Special Populations:**
-
-*Pregnancy:*
-- Methyldopa, labetalol, nifedipine are safe
-- Avoid ACE-I, ARBs, and direct renin inhibitors (teratogenic)
-
-*African Americans:*
-- Higher prevalence and more severe disease
-- CCBs and thiazides particularly effective
-- May require combination therapy
-
-*Elderly:*
-- Start with lower doses
-- Monitor for orthostatic hypotension
-- Benefits of treatment extend to age >80
-
-**Hypertensive Emergencies:**
-- BP ≥180/120 mmHg with acute target organ damage
-- Requires immediate BP reduction (not necessarily to normal)
-- IV medications in ICU setting
-- Reduce BP by 25% in first hour, then gradually to 160/100-110 mmHg
-
-**Monitoring and Follow-up:**
-- Monthly visits until BP controlled
-- Every 3-6 months once stable
-- Home BP monitoring encouraged
-- Annual assessment of target organ damage
-- Medication adherence and side effect monitoring
-
-The management of hypertension requires a comprehensive approach with lifestyle modifications and appropriate pharmacotherapy to reduce cardiovascular risk. For detailed, evidence-based guidelines and the latest recommendations, please consult the authoritative sources listed below.`;
+**For More Comprehensive Information:**
+The Merck Manual Professional provides detailed sepsis management protocols including the latest Surviving Sepsis Campaign guidelines, antimicrobial selection, and hemodynamic support strategies. See the Merck Manual links below for complete clinical guidance.`;
     }
     // Generic response for other conditions
-    else if (references.length > 0 || websites.length > 0) {
+    else if (references.length > 0 || websites.length > 0 || merckLinks.length > 0) {
       const systems = [...new Set(references.map(r => r.system))];
-      const topics = [...new Set(references.map(r => r.topic))];
       
       discussion = `**Medical Information**
 
-Based on your query, I found relevant evidence-based information from ${systems.length > 0 ? systems.join(', ') : 'multiple medical'} sources.
+Based on your query, I found relevant evidence-based information from ${systems.length > 0 ? systems.join(', ') : 'multiple medical'} sources, including the Merck Manual Professional.
 
 **Overview:**
-The topic you're asking about is an important area in clinical medicine that requires comprehensive evaluation and evidence-based management. Medical guidelines and academic literature provide structured approaches to understanding the pathophysiology, diagnosis, and treatment of this condition.
+The topic you're asking about is an important area in clinical medicine that requires comprehensive evaluation and evidence-based management. Medical guidelines, academic literature, and the Merck Manual Professional provide structured approaches to understanding the pathophysiology, diagnosis, and treatment of this condition.
 
 **Key Clinical Considerations:**
 - Accurate diagnosis requires thorough clinical assessment and appropriate diagnostic testing
@@ -973,7 +753,7 @@ The comprehensive management of this condition involves:
 7. Long-term follow-up and disease management
 
 **Evidence-Based Resources:**
-The academic references and guideline websites listed below provide comprehensive, peer-reviewed information including:
+The academic references, guideline websites, and Merck Manual Professional links listed below provide comprehensive, peer-reviewed information including:
 - Detailed pathophysiology and disease mechanisms
 - Diagnostic criteria and evaluation protocols
 - Treatment algorithms and management strategies
@@ -981,7 +761,15 @@ The academic references and guideline websites listed below provide comprehensiv
 - Special population considerations
 - Emerging therapies and research directions
 
-Please review the linked references and guideline websites below for detailed, evidence-based information specific to your query.`;
+**Merck Manual Professional Integration:**
+The Merck Manual Professional is a comprehensive medical encyclopedia that provides:
+- Regularly updated, evidence-based clinical information
+- Detailed disease monographs with pathophysiology, diagnosis, and treatment
+- Clinical pearls and practical management tips
+- Drug information and dosing guidelines
+- Differential diagnosis tools
+
+Please review the linked references, guideline websites, and Merck Manual Professional pages below for detailed, evidence-based information specific to your query.`;
     }
 
     return discussion;
@@ -1010,14 +798,15 @@ Please review the linked references and guideline websites below for detailed, e
     setTimeout(() => {
       const relevantWebsites = findRelevantWebsites(inputText);
       const relevantReferences = findRelevantReferences(inputText);
-      const diseaseDiscussion = generateDiseaseDiscussion(inputText, relevantReferences, relevantWebsites);
+      const merckManualLinks = getMerckManualLinks(inputText);
+      const diseaseDiscussion = generateDiseaseDiscussion(inputText, relevantReferences, relevantWebsites, merckManualLinks);
       
       let botText = '';
       
       if (diseaseDiscussion) {
         botText = diseaseDiscussion;
-      } else if (relevantWebsites.length > 0 || relevantReferences.length > 0) {
-        botText = `I found relevant information for your query. Please see the references and guideline websites below for detailed information.`;
+      } else if (relevantWebsites.length > 0 || relevantReferences.length > 0 || merckManualLinks.length > 0) {
+        botText = `I found relevant information for your query. Please see the references, guideline websites, and Merck Manual Professional links below for detailed information.`;
       } else {
         botText = 'I couldn\'t find specific information for that query. Try asking about:\n\n• Specific diseases (e.g., "heart failure", "diabetes", "stroke", "asthma", "COPD")\n• Infectious diseases (e.g., "sepsis", "pneumonia", "meningitis")\n• Disease processes or pathophysiology\n• Management and treatment approaches\n• Clinical guidelines for specific conditions';
       }
@@ -1030,6 +819,7 @@ Please review the linked references and guideline websites below for detailed, e
         websites: relevantWebsites.length > 0 ? relevantWebsites : undefined,
         references: relevantReferences.length > 0 ? relevantReferences : undefined,
         diseaseDiscussion: diseaseDiscussion || undefined,
+        merckManualLinks: merckManualLinks.length > 0 ? merckManualLinks : undefined,
       };
 
       setMessages(prev => [...prev, botMessage]);
@@ -1076,6 +866,13 @@ Please review the linked references and guideline websites below for detailed, e
     }
   };
 
+  const handleMerckLinkPress = (url: string) => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    console.log('Opening Merck Manual:', url);
+    setWebViewUrl(url);
+    setWebViewVisible(true);
+  };
+
   const renderMessage = (message: Message) => {
     return (
       <View
@@ -1100,6 +897,55 @@ Please review the linked references and guideline websites below for detailed, e
             {message.text}
           </Text>
           
+          {/* Merck Manual Professional Links Section */}
+          {message.merckManualLinks && message.merckManualLinks.length > 0 && (
+            <View style={styles.merckContainer}>
+              <View style={styles.sectionHeader}>
+                <IconSymbol
+                  ios_icon_name="book.closed.fill"
+                  android_material_icon_name="menu_book"
+                  size={18}
+                  color="#0066CC"
+                />
+                <Text style={styles.merckSectionTitle}>Merck Manual Professional</Text>
+              </View>
+              <Text style={styles.sectionSubtitle}>
+                Comprehensive, evidence-based medical information from the trusted Merck Manual Professional:
+              </Text>
+              {message.merckManualLinks.map((link, index) => (
+                <Pressable
+                  key={index}
+                  style={styles.merckCard}
+                  onPress={() => handleMerckLinkPress(link.url)}
+                >
+                  <View style={styles.merckHeader}>
+                    <IconSymbol
+                      ios_icon_name="doc.text.fill"
+                      android_material_icon_name="description"
+                      size={16}
+                      color="#0066CC"
+                    />
+                    <Text style={styles.merckTitle} numberOfLines={2}>
+                      {link.title}
+                    </Text>
+                  </View>
+                  <Text style={styles.merckDescription} numberOfLines={2}>
+                    {link.description}
+                  </Text>
+                  <View style={styles.merckLinkIndicator}>
+                    <IconSymbol
+                      ios_icon_name="arrow.up.right.square.fill"
+                      android_material_icon_name="open_in_new"
+                      size={14}
+                      color="#0066CC"
+                    />
+                    <Text style={styles.merckLinkText}>Tap to view in Merck Manual</Text>
+                  </View>
+                </Pressable>
+              ))}
+            </View>
+          )}
+
           {/* Academic References Section */}
           {message.references && message.references.length > 0 && (
             <View style={styles.referencesContainer}>
@@ -1110,7 +956,7 @@ Please review the linked references and guideline websites below for detailed, e
                   size={18}
                   color={colors.primary}
                 />
-                <Text style={styles.sectionTitle}>References Used</Text>
+                <Text style={styles.sectionTitle}>Academic References</Text>
               </View>
               <Text style={styles.sectionSubtitle}>
                 The information above is supported by the following academic references. Tap any reference to view the full article:
@@ -1167,7 +1013,7 @@ Please review the linked references and guideline websites below for detailed, e
                   size={18}
                   color={colors.primary}
                 />
-                <Text style={styles.sectionTitle}>Guideline Websites</Text>
+                <Text style={styles.sectionTitle}>Clinical Guidelines</Text>
               </View>
               <Text style={styles.sectionSubtitle}>
                 For the most current clinical guidelines and recommendations, visit these authoritative sources:
@@ -1212,7 +1058,7 @@ Please review the linked references and guideline websites below for detailed, e
     <>
       <Stack.Screen
         options={{
-          title: 'Medical Guidelines Chatbot',
+          title: 'Medical Expert Chatbot',
           headerLargeTitle: false,
         }}
       />
@@ -1265,6 +1111,41 @@ Please review the linked references and guideline websites below for detailed, e
           </Pressable>
         </View>
       </KeyboardAvoidingView>
+
+      {/* Merck Manual WebView Modal */}
+      <Modal
+        visible={webViewVisible}
+        animationType="slide"
+        onRequestClose={() => setWebViewVisible(false)}
+      >
+        <View style={styles.webViewContainer}>
+          <View style={styles.webViewHeader}>
+            <Text style={styles.webViewTitle}>Merck Manual Professional</Text>
+            <Pressable
+              style={styles.closeButton}
+              onPress={() => setWebViewVisible(false)}
+            >
+              <IconSymbol
+                ios_icon_name="xmark.circle.fill"
+                android_material_icon_name="cancel"
+                size={28}
+                color={colors.text}
+              />
+            </Pressable>
+          </View>
+          <WebView
+            source={{ uri: webViewUrl }}
+            style={styles.webView}
+            startInLoadingState={true}
+            renderLoading={() => (
+              <View style={styles.webViewLoading}>
+                <ActivityIndicator size="large" color={colors.primary} />
+                <Text style={styles.webViewLoadingText}>Loading Merck Manual...</Text>
+              </View>
+            )}
+          />
+        </View>
+      </Modal>
     </>
   );
 }
@@ -1333,12 +1214,62 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: colors.primary,
   },
+  merckSectionTitle: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: '#0066CC',
+  },
   sectionSubtitle: {
     fontSize: 13,
     color: colors.textSecondary,
     marginBottom: 12,
     lineHeight: 18,
     fontStyle: 'italic',
+  },
+  merckContainer: {
+    marginTop: 8,
+    backgroundColor: '#F0F7FF',
+    padding: 12,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: '#0066CC',
+  },
+  merckCard: {
+    backgroundColor: '#FFFFFF',
+    padding: 12,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#0066CC',
+    marginBottom: 8,
+  },
+  merckHeader: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 8,
+    marginBottom: 6,
+  },
+  merckTitle: {
+    flex: 1,
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#0066CC',
+    lineHeight: 20,
+  },
+  merckDescription: {
+    fontSize: 13,
+    color: colors.text,
+    marginBottom: 8,
+    lineHeight: 18,
+  },
+  merckLinkIndicator: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+  },
+  merckLinkText: {
+    fontSize: 12,
+    color: '#0066CC',
+    fontWeight: '600',
   },
   referencesContainer: {
     marginTop: 8,
@@ -1485,5 +1416,45 @@ const styles = StyleSheet.create({
   },
   sendButtonDisabled: {
     opacity: 0.5,
+  },
+  webViewContainer: {
+    flex: 1,
+    backgroundColor: colors.background,
+  },
+  webViewHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 16,
+    paddingTop: Platform.OS === 'ios' ? 60 : 48,
+    backgroundColor: colors.card,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border,
+  },
+  webViewTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: colors.text,
+  },
+  closeButton: {
+    padding: 4,
+  },
+  webView: {
+    flex: 1,
+  },
+  webViewLoading: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.background,
+  },
+  webViewLoadingText: {
+    marginTop: 12,
+    fontSize: 16,
+    color: colors.textSecondary,
   },
 });
