@@ -50,6 +50,16 @@ export default function NeurologyTopicsScreen() {
     });
   };
 
+  const handleReferencesPress = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    router.push('/(tabs)/(home)/neurology-references');
+  };
+
+  const handleGuidelineWebsitesPress = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    router.push('/(tabs)/(home)/neurology-guideline-websites');
+  };
+
   const handleBackPress = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     router.back();
@@ -73,8 +83,44 @@ export default function NeurologyTopicsScreen() {
           </Text>
         </View>
 
-        {/* Topics */}
+        {/* Reference Resources Section */}
         <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Reference Resources</Text>
+          
+          <Pressable style={styles.resourceCard} onPress={handleReferencesPress}>
+            <View style={styles.resourceContent}>
+              <View style={styles.resourceIconContainer}>
+                <IconSymbol name="book.fill" size={28} color={colors.primary} />
+              </View>
+              <View style={styles.resourceInfo}>
+                <Text style={styles.resourceTitle}>Neurology References</Text>
+                <Text style={styles.resourceDescription}>
+                  Academic references organized by subtopic (APA format)
+                </Text>
+              </View>
+              <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
+            </View>
+          </Pressable>
+
+          <Pressable style={styles.resourceCard} onPress={handleGuidelineWebsitesPress}>
+            <View style={styles.resourceContent}>
+              <View style={styles.resourceIconContainer}>
+                <IconSymbol name="globe" size={28} color={colors.primary} />
+              </View>
+              <View style={styles.resourceInfo}>
+                <Text style={styles.resourceTitle}>Guideline & Authority Websites</Text>
+                <Text style={styles.resourceDescription}>
+                  Official neurology organizations and resources
+                </Text>
+              </View>
+              <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
+            </View>
+          </Pressable>
+        </View>
+
+        {/* Topics Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Study Topics</Text>
           {NEUROLOGY_TOPICS.map((topic, index) => {
             const stats = getTopicStats('Neurology', topic.name);
             
@@ -149,6 +195,48 @@ const styles = StyleSheet.create({
   },
   section: {
     marginBottom: 24,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: colors.text,
+    marginBottom: 12,
+    paddingLeft: 4,
+  },
+  resourceCard: {
+    backgroundColor: colors.card,
+    padding: 16,
+    borderRadius: 12,
+    marginBottom: 12,
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
+    elevation: 2,
+  },
+  resourceContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  resourceIconContainer: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: colors.highlight,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  resourceInfo: {
+    flex: 1,
+  },
+  resourceTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: colors.text,
+    marginBottom: 4,
+  },
+  resourceDescription: {
+    fontSize: 13,
+    color: colors.textSecondary,
+    lineHeight: 18,
   },
   topicCard: {
     backgroundColor: colors.card,
