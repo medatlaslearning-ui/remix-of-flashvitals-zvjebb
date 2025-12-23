@@ -32,7 +32,10 @@ const INFECTIOUS_DISEASE_TOPICS = [
     name: 'Parasitic Infections',
     description: 'Protozoan and helminthic parasites',
     hasReferences: false
-  },
+  }
+];
+
+const REFERENCE_MATERIALS = [
   {
     name: 'Infectious Disease References',
     description: 'All scholarly and guideline-based references',
@@ -114,12 +117,11 @@ export default function InfectiousDiseaseTopicsScreen() {
           </Text>
         </View>
 
-        {/* Topics */}
+        {/* Study Topics Section */}
         <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Study Topics</Text>
           {INFECTIOUS_DISEASE_TOPICS.map((topic, index) => {
-            const stats = topic.isReferenceSection 
-              ? { total: 0, reviewed: 0, remaining: 0, progress: 0 }
-              : getTopicStats('Infectious Disease', topic.name);
+            const stats = getTopicStats('Infectious Disease', topic.name);
             
             console.log(`Topic: ${topic.name}`, {
               total: stats.total,
@@ -131,10 +133,7 @@ export default function InfectiousDiseaseTopicsScreen() {
             return (
               <View key={index} style={styles.topicWrapper}>
                 <Pressable
-                  style={[
-                    styles.topicCard,
-                    topic.isReferenceSection && styles.referenceTopicCard
-                  ]}
+                  style={styles.topicCard}
                   onPress={() => handleTopicPress(topic.name, topic.isReferenceSection)}
                 >
                   <View style={styles.topicContent}>
@@ -142,29 +141,13 @@ export default function InfectiousDiseaseTopicsScreen() {
                       <View style={styles.topicInfo}>
                         <Text style={styles.topicTitle}>{topic.name}</Text>
                         <Text style={styles.topicDescription}>{topic.description}</Text>
-                        {!topic.isReferenceSection && (
-                          <Text style={styles.topicSubtitle}>
-                            {stats.remaining} remaining • {stats.reviewed} reviewed
-                          </Text>
-                        )}
-                        {topic.isReferenceSection && topic.name === 'Infectious Disease References' && (
-                          <Text style={styles.readyLabel}>Tap to view all references</Text>
-                        )}
-                        {topic.isReferenceSection && topic.name === 'Guideline & Authority Websites' && (
-                          <Text style={styles.readyLabel}>Tap to view guideline websites</Text>
-                        )}
+                        <Text style={styles.topicSubtitle}>
+                          {stats.remaining} remaining • {stats.reviewed} reviewed
+                        </Text>
                       </View>
-                      {!topic.isReferenceSection && (
-                        <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
-                      )}
-                      {topic.isReferenceSection && topic.name === 'Infectious Disease References' && (
-                        <IconSymbol name="book.fill" size={20} color={colors.accent} />
-                      )}
-                      {topic.isReferenceSection && topic.name === 'Guideline & Authority Websites' && (
-                        <IconSymbol name="globe" size={20} color={colors.accent} />
-                      )}
+                      <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
                     </View>
-                    {stats.total > 0 && !topic.isReferenceSection && (
+                    {stats.total > 0 && (
                       <View style={styles.progressBarContainer}>
                         <View style={[styles.progressBarFill, { width: `${stats.progress}%` }]} />
                       </View>
@@ -174,6 +157,40 @@ export default function InfectiousDiseaseTopicsScreen() {
               </View>
             );
           })}
+        </View>
+
+        {/* Reference Materials Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Reference Materials</Text>
+          {REFERENCE_MATERIALS.map((topic, index) => (
+            <View key={index} style={styles.topicWrapper}>
+              <Pressable
+                style={[styles.topicCard, styles.referenceTopicCard]}
+                onPress={() => handleTopicPress(topic.name, topic.isReferenceSection)}
+              >
+                <View style={styles.topicContent}>
+                  <View style={styles.topicHeader}>
+                    <View style={styles.topicInfo}>
+                      <Text style={styles.topicTitle}>{topic.name}</Text>
+                      <Text style={styles.topicDescription}>{topic.description}</Text>
+                      {topic.name === 'Infectious Disease References' && (
+                        <Text style={styles.readyLabel}>Tap to view all references</Text>
+                      )}
+                      {topic.name === 'Guideline & Authority Websites' && (
+                        <Text style={styles.readyLabel}>Tap to view guideline websites</Text>
+                      )}
+                    </View>
+                    {topic.name === 'Infectious Disease References' && (
+                      <IconSymbol name="book.fill" size={20} color={colors.accent} />
+                    )}
+                    {topic.name === 'Guideline & Authority Websites' && (
+                      <IconSymbol name="globe" size={20} color={colors.accent} />
+                    )}
+                  </View>
+                </View>
+              </Pressable>
+            </View>
+          ))}
         </View>
 
         {/* Back Button */}
@@ -212,6 +229,13 @@ const styles = StyleSheet.create({
   },
   section: {
     marginBottom: 24,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: colors.text,
+    marginBottom: 12,
+    paddingLeft: 4,
   },
   topicWrapper: {
     marginBottom: 12,

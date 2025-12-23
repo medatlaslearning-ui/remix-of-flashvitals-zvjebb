@@ -124,9 +124,9 @@ export default function NeurologyTopicsScreen() {
           })}
         </View>
 
-        {/* Reference Resources Section */}
+        {/* Reference Materials Section */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Reference Resources</Text>
+          <Text style={styles.sectionTitle}>Reference Materials</Text>
           
           <Pressable style={styles.resourceCard} onPress={handleReferencesPress}>
             <View style={styles.resourceContent}>
