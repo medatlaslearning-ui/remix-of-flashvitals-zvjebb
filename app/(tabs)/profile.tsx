@@ -105,8 +105,8 @@ export default function ProfileScreen() {
 
   const handleAskExpertPress = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    console.log('Navigating to Ask an Expert');
-    router.push('/(tabs)/(home)/ask-expert');
+    console.log('Navigating to Medical Guidelines Chatbot');
+    router.push('/(tabs)/(home)/chatbot');
   };
 
   // Calculate stats
@@ -261,7 +261,7 @@ export default function ProfileScreen() {
               <IconSymbol name="brain.head.profile" size={64} color={colors.primary} />
               <Text style={styles.expertTitle}>Ask the Medical Expert</Text>
               <Text style={styles.expertDescription}>
-                Get answers to your medical questions based on evidence-based guidelines and references from our knowledge base.
+                Get answers to your medical questions based on evidence-based guidelines and references from our comprehensive knowledge base covering all medical specialties.
               </Text>
               <Pressable style={styles.expertButton} onPress={handleAskExpertPress}>
                 <IconSymbol name="message.fill" size={20} color={colors.background} />
@@ -269,15 +269,15 @@ export default function ProfileScreen() {
               </Pressable>
               <View style={styles.expertFeatures}>
                 <View style={styles.featureItem}>
-                  <IconSymbol name="mic.fill" size={16} color={colors.primary} />
-                  <Text style={styles.featureText}>Voice Input</Text>
-                </View>
-                <View style={styles.featureItem}>
-                  <IconSymbol name="text.bubble.fill" size={16} color={colors.primary} />
-                  <Text style={styles.featureText}>Text Chat</Text>
-                </View>
-                <View style={styles.featureItem}>
                   <IconSymbol name="book.fill" size={16} color={colors.primary} />
+                  <Text style={styles.featureText}>Evidence-Based</Text>
+                </View>
+                <View style={styles.featureItem}>
+                  <IconSymbol name="globe" size={16} color={colors.primary} />
+                  <Text style={styles.featureText}>Clinical Guidelines</Text>
+                </View>
+                <View style={styles.featureItem}>
+                  <IconSymbol name="doc.text.fill" size={16} color={colors.primary} />
                   <Text style={styles.featureText}>Referenced Answers</Text>
                 </View>
               </View>
