@@ -212,7 +212,7 @@ export default function HomeScreen() {
                 size={32} 
                 color={colors.secondary} 
               />
-              <Text style={styles.quickActionTitle}>Chatbot</Text>
+              <Text style={styles.quickActionTitle}>Medical Guidelines Chatbot</Text>
               <Text style={styles.quickActionSubtitle}>Ask guidelines</Text>
             </Pressable>
 
@@ -551,6 +551,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: colors.text,
     marginTop: 12,
+    textAlign: 'center',
   },
   quickActionSubtitle: {
     fontSize: 12,

@@ -366,7 +366,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-end',
     padding: 12,
-    paddingBottom: Platform.OS === 'ios' ? 24 : 12,
+    paddingBottom: Platform.OS === 'ios' ? 100 : 110,
     backgroundColor: colors.card,
     borderTopWidth: 1,
     borderTopColor: colors.border,
