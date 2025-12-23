@@ -62,4 +62,50 @@ export const guidelineWebsites: Array<{
   name: string;
   url: string;
   description: string;
-}> = [];
+}> = [
+  {
+    name: "American Diabetes Association (ADA)",
+    url: "https://diabetes.org",
+    description: "Leading organization for diabetes research, education, and advocacy"
+  },
+  {
+    name: "Endocrine Society",
+    url: "https://www.endocrine.org",
+    description: "Global community of endocrinologists advancing hormone science and public health"
+  },
+  {
+    name: "American Thyroid Association (ATA)",
+    url: "https://www.thyroid.org",
+    description: "Professional organization dedicated to thyroid research and patient care"
+  },
+  {
+    name: "American Association of Clinical Endocrinology (AACE)",
+    url: "https://www.aace.com",
+    description: "Professional medical organization focused on clinical endocrinology"
+  },
+  {
+    name: "American Society for Reproductive Medicine (ASRM)",
+    url: "https://www.asrm.org",
+    description: "Organization dedicated to advancing reproductive medicine and science"
+  },
+  {
+    name: "European Society of Endocrinology (ESE)",
+    url: "https://www.ese-hormones.org",
+    description: "European organization promoting excellence in endocrinology"
+  },
+  {
+    name: "National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)",
+    url: "https://www.niddk.nih.gov",
+    description: "NIH institute conducting and supporting research on diabetes and endocrine diseases"
+  },
+  {
+    name: "National Institutes of Health (NIH)",
+    url: "https://www.nih.gov",
+    description: "Primary federal agency for conducting and supporting medical research"
+  },
+  {
+    name: "World Health Organization (WHO)",
+    url: "https://www.who.int",
+    description: "International public health organization providing global health guidelines"
+  }
+];
