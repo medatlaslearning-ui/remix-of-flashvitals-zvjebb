@@ -1,7 +1,7 @@
 
 export const academicReferences = [
   {
-    topic: "Iron Deficiency Anemia",
+    topic: "Anemia",
     references: [
       "Camaschella, C. (2023). Iron deficiency anemia. New England Journal of Medicine, 388(19), 1831–1841.",
       "Ganz, T., & Nemeth, E. (2021). Iron homeostasis in anemia of chronic disease. New England Journal of Medicine, 384(19), 1831–1843.",
