@@ -59,6 +59,11 @@ export default function GastroenterologyTopicsScreen() {
     });
   };
 
+  const handleReferencesPress = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    router.push('/(tabs)/(home)/gastroenterology-references');
+  };
+
   const handleBackPress = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     router.back();
@@ -126,7 +131,7 @@ export default function GastroenterologyTopicsScreen() {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Reference Materials</Text>
           
-          <Pressable style={styles.referenceCard}>
+          <Pressable style={styles.referenceCard} onPress={handleReferencesPress}>
             <View style={styles.referenceContent}>
               <IconSymbol name="book.fill" size={24} color={colors.accent} />
               <View style={styles.referenceInfo}>
