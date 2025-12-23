@@ -62,4 +62,50 @@ export const guidelineWebsites: Array<{
   name: string;
   url: string;
   description: string;
-}> = [];
+}> = [
+  {
+    name: "American Society of Hematology (ASH)",
+    url: "https://www.hematology.org",
+    description: "Leading professional organization for hematology research and clinical practice"
+  },
+  {
+    name: "American Association of Blood Banks (AABB)",
+    url: "https://www.aabb.org",
+    description: "Standards and accreditation for blood banking and transfusion medicine"
+  },
+  {
+    name: "National Comprehensive Cancer Network (NCCN)",
+    url: "https://www.nccn.org",
+    description: "Evidence-based cancer treatment guidelines including hematologic malignancies"
+  },
+  {
+    name: "World Health Organization (WHO)",
+    url: "https://www.who.int",
+    description: "Global health guidelines and disease classification systems"
+  },
+  {
+    name: "National Institutes of Health (NIH)",
+    url: "https://www.nih.gov",
+    description: "Federal research agency supporting biomedical and health research"
+  },
+  {
+    name: "Centers for Disease Control and Prevention (CDC)",
+    url: "https://www.cdc.gov",
+    description: "Public health surveillance and disease prevention guidelines"
+  },
+  {
+    name: "European Hematology Association (EHA)",
+    url: "https://ehaweb.org",
+    description: "European organization advancing hematology education and research"
+  },
+  {
+    name: "British Society for Haematology (BSH)",
+    url: "https://b-s-h.org.uk",
+    description: "UK-based professional society providing clinical guidelines in hematology"
+  },
+  {
+    name: "International Society on Thrombosis and Haemostasis (ISTH)",
+    url: "https://www.isth.org",
+    description: "Global organization focused on thrombosis and hemostasis research and education"
+  }
+];
