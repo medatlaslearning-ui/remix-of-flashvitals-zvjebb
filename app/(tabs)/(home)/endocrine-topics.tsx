@@ -58,6 +58,16 @@ export default function EndocrinologyTopicsScreen() {
     });
   };
 
+  const handleReferencesPress = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    router.push('/(tabs)/(home)/endocrine-references');
+  };
+
+  const handleGuidelineWebsitesPress = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    router.push('/(tabs)/(home)/endocrine-guideline-websites');
+  };
+
   const handleBackPress = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     router.back();
@@ -125,7 +135,7 @@ export default function EndocrinologyTopicsScreen() {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Reference Materials</Text>
           
-          <Pressable style={styles.referenceCard}>
+          <Pressable style={styles.referenceCard} onPress={handleReferencesPress}>
             <View style={styles.referenceContent}>
               <IconSymbol name="book.fill" size={24} color={colors.secondary} />
               <View style={styles.referenceInfo}>
@@ -138,7 +148,7 @@ export default function EndocrinologyTopicsScreen() {
             </View>
           </Pressable>
 
-          <Pressable style={styles.referenceCard}>
+          <Pressable style={styles.referenceCard} onPress={handleGuidelineWebsitesPress}>
             <View style={styles.referenceContent}>
               <IconSymbol name="globe" size={24} color={colors.secondary} />
               <View style={styles.referenceInfo}>
