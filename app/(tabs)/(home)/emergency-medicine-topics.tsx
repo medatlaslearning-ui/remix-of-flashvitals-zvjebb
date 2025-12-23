@@ -54,6 +54,16 @@ export default function EmergencyMedicineTopicsScreen() {
     });
   };
 
+  const handleReferencesPress = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    router.push('/(tabs)/(home)/emergency-medicine-references');
+  };
+
+  const handleGuidelineWebsitesPress = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    router.push('/(tabs)/(home)/emergency-medicine-guideline-websites');
+  };
+
   const handleBackPress = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     router.back();
@@ -121,7 +131,7 @@ export default function EmergencyMedicineTopicsScreen() {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Reference Materials</Text>
           
-          <Pressable style={styles.referenceCard}>
+          <Pressable style={styles.referenceCard} onPress={handleReferencesPress}>
             <View style={styles.referenceContent}>
               <IconSymbol name="book.fill" size={24} color={colors.error} />
               <View style={styles.referenceInfo}>
@@ -134,7 +144,7 @@ export default function EmergencyMedicineTopicsScreen() {
             </View>
           </Pressable>
 
-          <Pressable style={styles.referenceCard}>
+          <Pressable style={styles.referenceCard} onPress={handleGuidelineWebsitesPress}>
             <View style={styles.referenceContent}>
               <IconSymbol name="globe" size={24} color={colors.error} />
               <View style={styles.referenceInfo}>
@@ -151,7 +161,7 @@ export default function EmergencyMedicineTopicsScreen() {
         {/* Back Button */}
         <View style={styles.section}>
           <Pressable style={styles.backButton} onPress={handleBackPress}>
-            <IconSymbol name="arrow.left" size={20} color={colors.primary} />
+            <IconSymbol name="arrow.left" size={20} color={colors.error} />
             <Text style={styles.backButtonText}>Back to Main Menu</Text>
           </Pressable>
         </View>
@@ -278,6 +288,6 @@ const styles = StyleSheet.create({
   backButtonText: {
     fontSize: 16,
     fontWeight: '600',
-    color: colors.primary,
+    color: colors.error,
   },
 });
