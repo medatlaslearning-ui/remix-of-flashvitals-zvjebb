@@ -64,6 +64,11 @@ export default function GastroenterologyTopicsScreen() {
     router.push('/(tabs)/(home)/gastroenterology-references');
   };
 
+  const handleGuidelineWebsitesPress = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    router.push('/(tabs)/(home)/gastroenterology-guideline-websites');
+  };
+
   const handleBackPress = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     router.back();
@@ -144,7 +149,7 @@ export default function GastroenterologyTopicsScreen() {
             </View>
           </Pressable>
 
-          <Pressable style={styles.referenceCard}>
+          <Pressable style={styles.referenceCard} onPress={handleGuidelineWebsitesPress}>
             <View style={styles.referenceContent}>
               <IconSymbol name="globe" size={24} color={colors.accent} />
               <View style={styles.referenceInfo}>

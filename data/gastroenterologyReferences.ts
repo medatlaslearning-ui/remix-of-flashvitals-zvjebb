@@ -69,4 +69,50 @@ export const guidelineWebsites: Array<{
   name: string;
   url: string;
   description: string;
-}> = [];
+}> = [
+  {
+    name: "American College of Gastroenterology (ACG)",
+    url: "https://gi.org",
+    description: "Leading professional organization for gastroenterology clinical practice and guidelines"
+  },
+  {
+    name: "American Gastroenterological Association (AGA)",
+    url: "https://www.gastro.org",
+    description: "Professional society advancing the science and practice of gastroenterology"
+  },
+  {
+    name: "European Association for the Study of the Liver (EASL)",
+    url: "https://easl.eu",
+    description: "European organization providing clinical practice guidelines for liver diseases"
+  },
+  {
+    name: "American Association for the Study of Liver Diseases (AASLD)",
+    url: "https://www.aasld.org",
+    description: "Leading organization for liver disease research and clinical practice guidelines"
+  },
+  {
+    name: "British Society of Gastroenterology (BSG)",
+    url: "https://www.bsg.org.uk",
+    description: "UK-based professional society providing clinical guidelines in gastroenterology"
+  },
+  {
+    name: "European Society of Gastrointestinal Endoscopy (ESGE)",
+    url: "https://www.esge.com",
+    description: "European organization focused on endoscopy guidelines and best practices"
+  },
+  {
+    name: "World Gastroenterology Organisation (WGO)",
+    url: "https://www.worldgastroenterology.org",
+    description: "Global federation of gastroenterology societies providing international guidelines"
+  },
+  {
+    name: "National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)",
+    url: "https://www.niddk.nih.gov",
+    description: "NIH institute supporting research on digestive diseases and providing patient resources"
+  },
+  {
+    name: "National Institutes of Health (NIH)",
+    url: "https://www.nih.gov",
+    description: "Federal research agency supporting biomedical and health research"
+  }
+];
