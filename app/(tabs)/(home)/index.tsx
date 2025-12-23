@@ -168,6 +168,11 @@ export default function HomeScreen() {
     router.push('/(tabs)/(home)/admin');
   };
 
+  const handleChatbot = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    router.push('/(tabs)/(home)/chatbot');
+  };
+
   return (
     <>
       <Stack.Screen
@@ -199,6 +204,16 @@ export default function HomeScreen() {
               />
               <Text style={styles.quickActionTitle}>Quiz Mode</Text>
               <Text style={styles.quickActionSubtitle}>Test yourself</Text>
+            </Pressable>
+
+            <Pressable style={styles.quickActionCard} onPress={handleChatbot}>
+              <IconSymbol 
+                name="message.fill"
+                size={32} 
+                color={colors.secondary} 
+              />
+              <Text style={styles.quickActionTitle}>Chatbot</Text>
+              <Text style={styles.quickActionSubtitle}>Ask guidelines</Text>
             </Pressable>
 
             <Pressable style={styles.quickActionCard} onPress={handleBookmarkedPress}>

@@ -13,6 +13,7 @@ export const colors = {
   error: '#FF3B30',
   success: '#34C759',
   warning: '#FF9500',
+  border: '#E0E0E0',
 };
 
 export const buttonStyles = StyleSheet.create({
