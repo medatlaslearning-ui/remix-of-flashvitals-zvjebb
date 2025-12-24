@@ -21,6 +21,7 @@ import { IconSymbol } from '@/components/IconSymbol';
 import * as Haptics from 'expo-haptics';
 import { getAllGuidelineWebsites } from '@/data/allGuidelineWebsites';
 import { getAllAcademicReferences, searchAcademicReferences, type AcademicReference } from '@/data/allAcademicReferences';
+import { searchMerckManualKnowledge, type MerckManualEntry } from '@/data/merckManualKnowledge';
 import { cardiologyFlashcards } from '@/data/cardiologyFlashcards';
 import { pulmonaryFlashcards } from '@/data/pulmonaryFlashcards';
 import { neurologyFlashcards } from '@/data/neurologyFlashcards';
@@ -50,6 +51,7 @@ interface Message {
     url: string;
     description: string;
   }>;
+  merckManualEntries?: MerckManualEntry[];
   flashcards?: Flashcard[];
 }
 
@@ -73,7 +75,7 @@ export default function ChatbotScreen() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: 'Hello! I\'m your Medical Expert Chatbot with access to comprehensive medical resources.\n\nI can help you understand disease processes and provide evidence-based information from:\n\n• Flashcard database (clinical pearls and high-yield information)\n• Academic references and clinical guidelines\n• Merck Manual Professional\n\nAsk me about any medical topic, and I\'ll provide:\n\n• Pathophysiology and disease mechanisms\n• Clinical presentation and symptoms\n• Diagnostic approaches\n• Evidence-based treatment recommendations\n• References to authoritative sources\n\nExamples:\n• "What is atrial fibrillation?"\n• "Tell me about pleural effusion"\n• "How is diabetes managed?"\n• "What are the symptoms of pneumonia?"',
+      text: 'Hello! I\'m your Medical Expert Chatbot powered by the Merck Manual Professional and comprehensive medical resources.\n\n**My Knowledge Base Includes:**\n\n• Merck Manual Professional (comprehensive medical encyclopedia)\n• Clinical flashcard database (high-yield information)\n• Academic references and peer-reviewed literature\n• Clinical practice guidelines from leading organizations\n\n**I Provide:**\n\n• Detailed pathophysiology and disease mechanisms\n• Clinical presentation and symptoms\n• Evidence-based diagnostic approaches\n• Treatment recommendations and protocols\n• Clinical pearls and practical management tips\n• References to authoritative sources\n\n**According to Merck Manual Professional**, I can explain complex medical topics in clear, academically sound language while citing my sources.\n\n**Try asking:**\n• "What is atrial fibrillation?"\n• "Tell me about pheochromocytoma"\n• "How is sepsis managed?"\n• "What are the symptoms of COPD?"\n• "Explain acute kidney injury"',
       isBot: true,
       timestamp: new Date(),
     },
@@ -412,17 +414,73 @@ export default function ChatbotScreen() {
   const generateDynamicResponse = (
     query: string,
     flashcards: Flashcard[],
+    merckEntries: MerckManualEntry[],
     references: AcademicReference[],
     websites: any[],
     merckLinks: any[]
   ): string => {
     console.log('Generating dynamic response for:', query);
     console.log('Found flashcards:', flashcards.length);
+    console.log('Found Merck entries:', merckEntries.length);
     console.log('Found references:', references.length);
     console.log('Found websites:', websites.length);
     console.log('Found Merck links:', merckLinks.length);
 
-    // If we have flashcard data, provide detailed clinical information
+    // Priority 1: Use Merck Manual Professional knowledge base (most comprehensive)
+    if (merckEntries.length > 0) {
+      const primaryEntry = merckEntries[0];
+      let response = `**${primaryEntry.topic}**\n\n`;
+      
+      // Pathophysiology
+      response += '**Pathophysiology:**\n';
+      response += `${primaryEntry.pathophysiology}\n\n`;
+      
+      // Clinical Presentation
+      response += '**Clinical Presentation:**\n';
+      response += `${primaryEntry.clinicalPresentation}\n\n`;
+      
+      // Diagnostic Approach
+      response += '**Diagnostic Approach:**\n';
+      response += `${primaryEntry.diagnosticApproach}\n\n`;
+      
+      // Treatment
+      response += '**Treatment:**\n';
+      response += `${primaryEntry.treatment}\n\n`;
+      
+      // Clinical Pearls
+      if (primaryEntry.clinicalPearls.length > 0) {
+        response += '**Clinical Pearls:**\n';
+        primaryEntry.clinicalPearls.forEach(pearl => {
+          response += `• ${pearl}\n`;
+        });
+        response += '\n';
+      }
+      
+      // Add supplementary information from flashcards if available
+      if (flashcards.length > 0) {
+        response += '**Additional High-Yield Information:**\n\n';
+        for (let i = 0; i < Math.min(flashcards.length, 2); i++) {
+          const card = flashcards[i];
+          if (card.back.clinical_pearl) {
+            response += `• ${card.back.clinical_pearl}\n`;
+          }
+        }
+        response += '\n';
+      }
+      
+      response += '*This information is synthesized from the Merck Manual Professional and clinical flashcard database.*\n\n';
+      
+      // Add context about additional resources
+      if (references.length > 0 || websites.length > 0) {
+        response += '**Additional Resources:**\n';
+        response += 'For the most current clinical practice guidelines, peer-reviewed literature, and evidence-based recommendations, ';
+        response += 'please review the academic references and guideline websites listed below.\n';
+      }
+      
+      return response;
+    }
+
+    // Priority 2: Use flashcard data if no Merck entry but flashcards available
     if (flashcards.length > 0) {
       let response = '**Medical Information**\n\n';
       
@@ -470,47 +528,34 @@ export default function ChatbotScreen() {
       
       response += `*Source: Clinical flashcard database (${primaryCard.system} - ${primaryCard.topic})*\n\n`;
       
-      // Add evidence-based context
-      if (references.length > 0) {
-        response += '**Evidence-Based Support:**\n';
-        response += 'The information above is supported by current clinical practice guidelines and academic literature. ';
-        response += 'See academic references below for detailed, peer-reviewed information.\n\n';
-      }
-      
-      // Add Merck Manual context
-      if (merckLinks.length > 0) {
+      // Add context about Merck Manual and other resources
+      if (merckLinks.length > 0 || references.length > 0 || websites.length > 0) {
         response += '**For Comprehensive Details:**\n';
         response += 'For in-depth pathophysiology, diagnostic criteria, treatment protocols, and clinical management strategies, ';
-        response += 'please consult the Merck Manual Professional links below.\n\n';
-      }
-      
-      // Add guideline websites context
-      if (websites.length > 0) {
-        response += '**Clinical Practice Guidelines:**\n';
-        response += 'For the most current evidence-based recommendations and clinical protocols, ';
-        response += 'please review the guideline websites listed below.\n';
+        response += 'please consult the Merck Manual Professional and clinical practice guidelines listed below.\n';
       }
       
       return response;
     }
     
-    // If no flashcard data but we have other resources
+    // Priority 3: If no flashcard or Merck data but we have other resources
     if (references.length > 0 || websites.length > 0 || merckLinks.length > 0) {
       let response = '**Medical Information**\n\n';
       
       response += '**Clinical Overview:**\n\n';
-      response += 'While I don\'t have specific flashcard information on this exact topic in my database, ';
+      response += 'While I don\'t have specific detailed information on this exact topic in my core knowledge base, ';
       response += 'I\'ve identified relevant clinical guidelines and authoritative resources that provide ';
       response += 'comprehensive, evidence-based information.\n\n';
       
       if (merckLinks.length > 0) {
-        response += '**Merck Manual Professional:**\n';
+        response += '**According to Merck Manual Professional:**\n';
         response += 'The Merck Manual Professional provides detailed information including:\n\n';
         response += '• Detailed disease mechanisms and pathophysiology\n';
         response += '• Evidence-based diagnostic approaches\n';
         response += '• Treatment algorithms and medication guidelines\n';
         response += '• Monitoring recommendations\n';
         response += '• Special population considerations\n\n';
+        response += 'Please review the Merck Manual Professional links below for comprehensive information.\n\n';
       }
       
       if (websites.length > 0) {
@@ -527,7 +572,7 @@ export default function ChatbotScreen() {
       return response;
     }
 
-    // If no data found at all
+    // Priority 4: If no data found at all
     return 'I cannot provide specific information on this topic from my current database. However, I recommend consulting the Merck Manual Professional and clinical practice guidelines for comprehensive, evidence-based medical information. Please try rephrasing your question or asking about a specific medical condition, symptom, or treatment.';
   };
 
@@ -556,16 +601,20 @@ export default function ChatbotScreen() {
       console.log('Processing query:', currentQuery);
       
       // Search all data sources
+      const merckEntries = searchMerckManualKnowledge(currentQuery);
       const relevantFlashcards = findRelevantFlashcards(currentQuery);
       const relevantReferences = findRelevantReferences(currentQuery);
       const relevantWebsites = findRelevantWebsites(currentQuery);
       const merckManualLinks = getMerckManualLinks(currentQuery);
       
       console.log('Search results:');
+      console.log('- Merck entries:', merckEntries.length);
+      if (merckEntries.length > 0) {
+        console.log('  Top Merck entry:', merckEntries[0].topic);
+      }
       console.log('- Flashcards:', relevantFlashcards.length);
       if (relevantFlashcards.length > 0) {
         console.log('  Top flashcard:', relevantFlashcards[0].front);
-        console.log('  Definition:', relevantFlashcards[0].back.definition);
       }
       console.log('- References:', relevantReferences.length);
       console.log('- Websites:', relevantWebsites.length);
@@ -575,6 +624,7 @@ export default function ChatbotScreen() {
       const botText = generateDynamicResponse(
         currentQuery,
         relevantFlashcards,
+        merckEntries,
         relevantReferences,
         relevantWebsites,
         merckManualLinks
@@ -585,6 +635,7 @@ export default function ChatbotScreen() {
         text: botText,
         isBot: true,
         timestamp: new Date(),
+        merckManualEntries: merckEntries.length > 0 ? merckEntries : undefined,
         flashcards: relevantFlashcards.length > 0 ? relevantFlashcards : undefined,
         references: relevantReferences.length > 0 ? relevantReferences : undefined,
         websites: relevantWebsites.length > 0 ? relevantWebsites : undefined,
@@ -666,6 +717,72 @@ export default function ChatbotScreen() {
             {message.text}
           </Text>
           
+          {/* Merck Manual Professional Knowledge Base Section */}
+          {message.merckManualEntries && message.merckManualEntries.length > 0 && (
+            <View style={styles.merckKnowledgeContainer}>
+              <View style={styles.sectionHeader}>
+                <IconSymbol
+                  ios_icon_name="book.closed.fill"
+                  android_material_icon_name="menu_book"
+                  size={18}
+                  color="#0066CC"
+                />
+                <Text style={styles.merckKnowledgeSectionTitle}>Merck Manual Professional Knowledge Base</Text>
+              </View>
+              <Text style={styles.sectionSubtitle}>
+                Comprehensive medical information synthesized from the Merck Manual Professional:
+              </Text>
+              {message.merckManualEntries.map((entry, index) => (
+                <View key={index} style={styles.merckKnowledgeCard}>
+                  <Text style={styles.merckKnowledgeTopic}>{entry.topic}</Text>
+                  <Text style={styles.merckKnowledgeSystem}>{entry.system}</Text>
+                  
+                  <View style={styles.merckKnowledgeSection}>
+                    <Text style={styles.merckKnowledgeLabel}>Pathophysiology:</Text>
+                    <Text style={styles.merckKnowledgeContent}>{entry.pathophysiology}</Text>
+                  </View>
+                  
+                  <View style={styles.merckKnowledgeSection}>
+                    <Text style={styles.merckKnowledgeLabel}>Clinical Presentation:</Text>
+                    <Text style={styles.merckKnowledgeContent}>{entry.clinicalPresentation}</Text>
+                  </View>
+                  
+                  <View style={styles.merckKnowledgeSection}>
+                    <Text style={styles.merckKnowledgeLabel}>Diagnostic Approach:</Text>
+                    <Text style={styles.merckKnowledgeContent}>{entry.diagnosticApproach}</Text>
+                  </View>
+                  
+                  <View style={styles.merckKnowledgeSection}>
+                    <Text style={styles.merckKnowledgeLabel}>Treatment:</Text>
+                    <Text style={styles.merckKnowledgeContent}>{entry.treatment}</Text>
+                  </View>
+                  
+                  {entry.clinicalPearls.length > 0 && (
+                    <View style={styles.merckKnowledgeSection}>
+                      <Text style={styles.merckKnowledgeLabel}>Clinical Pearls:</Text>
+                      {entry.clinicalPearls.map((pearl, pearlIndex) => (
+                        <Text key={pearlIndex} style={styles.merckKnowledgePearl}>• {pearl}</Text>
+                      ))}
+                    </View>
+                  )}
+                  
+                  <Pressable
+                    style={styles.merckKnowledgeLink}
+                    onPress={() => handleWebsitePress(entry.merckUrl)}
+                  >
+                    <IconSymbol
+                      ios_icon_name="arrow.up.right.square.fill"
+                      android_material_icon_name="open_in_new"
+                      size={14}
+                      color="#0066CC"
+                    />
+                    <Text style={styles.merckKnowledgeLinkText}>View full article on Merck Manual Professional</Text>
+                  </Pressable>
+                </View>
+              ))}
+            </View>
+          )}
+
           {/* Flashcards Section */}
           {message.flashcards && message.flashcards.length > 0 && (
             <View style={styles.flashcardsContainer}>
@@ -1050,6 +1167,73 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     lineHeight: 18,
     fontStyle: 'italic',
+  },
+  merckKnowledgeContainer: {
+    marginTop: 8,
+    backgroundColor: '#E6F2FF',
+    padding: 12,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: '#0066CC',
+  },
+  merckKnowledgeSectionTitle: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: '#0066CC',
+  },
+  merckKnowledgeCard: {
+    backgroundColor: '#FFFFFF',
+    padding: 14,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#0066CC',
+    marginBottom: 8,
+  },
+  merckKnowledgeTopic: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#0066CC',
+    marginBottom: 4,
+  },
+  merckKnowledgeSystem: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: colors.textSecondary,
+    marginBottom: 12,
+  },
+  merckKnowledgeSection: {
+    marginTop: 10,
+  },
+  merckKnowledgeLabel: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#0066CC',
+    marginBottom: 4,
+  },
+  merckKnowledgeContent: {
+    fontSize: 14,
+    color: colors.text,
+    lineHeight: 20,
+  },
+  merckKnowledgePearl: {
+    fontSize: 13,
+    color: colors.text,
+    lineHeight: 19,
+    marginTop: 4,
+  },
+  merckKnowledgeLink: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    marginTop: 12,
+    paddingTop: 12,
+    borderTopWidth: 1,
+    borderTopColor: '#E0E0E0',
+  },
+  merckKnowledgeLinkText: {
+    fontSize: 13,
+    color: '#0066CC',
+    fontWeight: '600',
   },
   flashcardsContainer: {
     marginTop: 8,
