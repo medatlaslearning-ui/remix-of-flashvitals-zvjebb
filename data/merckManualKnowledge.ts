@@ -34,7 +34,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
   // ARRHYTHMIAS & CONDUCTION DISORDERS
   {
     topic: 'Atrial Fibrillation',
-    keywords: ['atrial fibrillation', 'afib', 'af', 'irregular rhythm', 'arrhythmia'],
+    keywords: ['atrial fibrillation', 'afib', 'af', 'a-fib', 'a fib'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, atrial fibrillation is characterized by rapid, disorganized atrial electrical activity resulting in ineffective atrial contraction and an irregularly irregular ventricular response. The condition arises from multiple reentrant wavelets in the atria, often triggered by ectopic foci near the pulmonary veins. This leads to loss of coordinated atrial mechanical function and increased risk of thrombus formation in the left atrial appendage.',
     clinicalPresentation: 'Patients may be asymptomatic or present with palpitations, dyspnea, chest discomfort, fatigue, or lightheadedness. Physical examination reveals an irregularly irregular pulse. Some patients present with complications such as stroke or heart failure exacerbation.',
@@ -68,7 +68,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Supraventricular Tachycardia',
-    keywords: ['svt', 'supraventricular tachycardia', 'psvt', 'paroxysmal supraventricular tachycardia', 'avnrt', 'avrt'],
+    keywords: ['svt', 'supraventricular tachycardia', 'psvt', 'paroxysmal supraventricular tachycardia', 'avnrt', 'avrt', 'av nodal reentrant', 'av reentrant'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, supraventricular tachycardia encompasses narrow-complex tachycardias originating above the ventricles. The most common mechanisms are AV nodal reentrant tachycardia (AVNRT, 60% of cases) involving dual AV nodal pathways, and AV reentrant tachycardia (AVRT, 30%) involving an accessory pathway. Atrial tachycardia accounts for the remaining 10%. These arrhythmias typically have abrupt onset and termination.',
     clinicalPresentation: 'Patients experience sudden onset of rapid, regular palpitations, often described as "fluttering" in the chest. Associated symptoms include dyspnea, chest discomfort, lightheadedness, diaphoresis, and anxiety. Polyuria may occur due to atrial natriuretic peptide release. Episodes may last seconds to hours. Physical examination during tachycardia reveals rapid, regular pulse (typically 150-250 bpm).',
@@ -85,7 +85,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Ventricular Tachycardia',
-    keywords: ['ventricular tachycardia', 'vt', 'v-tach', 'wide complex tachycardia'],
+    keywords: ['ventricular tachycardia', 'vt', 'v-tach', 'v tach', 'vtach'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, ventricular tachycardia is defined as three or more consecutive ventricular beats at a rate >100 bpm. Monomorphic VT (uniform QRS morphology) typically results from reentry around myocardial scar, most commonly post-MI. Polymorphic VT (varying QRS morphology) suggests acute ischemia or channelopathy. VT impairs cardiac output due to loss of AV synchrony, rapid rate, and underlying ventricular dysfunction.',
     clinicalPresentation: 'Presentation ranges from asymptomatic to cardiac arrest. Symptoms include palpitations, dyspnea, chest pain, presyncope, or syncope. Sustained VT (>30 seconds) often causes hemodynamic compromise. Physical examination may reveal cannon A waves in jugular venous pulse (AV dissociation), variable S1 intensity, and signs of heart failure. Pulseless VT is a cardiac arrest rhythm.',
@@ -102,7 +102,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Ventricular Fibrillation',
-    keywords: ['ventricular fibrillation', 'vfib', 'vf', 'cardiac arrest'],
+    keywords: ['ventricular fibrillation', 'vfib', 'vf', 'v-fib', 'v fib'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, ventricular fibrillation is chaotic, disorganized ventricular electrical activity resulting in no effective cardiac output. Multiple reentrant wavelets cause rapid, irregular ventricular depolarization without coordinated contraction. VF is the most common initial rhythm in sudden cardiac arrest. Common causes include acute MI, severe ischemia, cardiomyopathy, channelopathies, electrolyte abnormalities, and drug toxicity.',
     clinicalPresentation: 'VF causes immediate loss of consciousness and cardiac arrest. No pulse, blood pressure, or cardiac output. Agonal respirations may be present initially. Without immediate intervention, death occurs within minutes. Witnessed arrest may have brief prodrome of chest pain, palpitations, or dyspnea.',
@@ -188,7 +188,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
   // HEART FAILURE
   {
     topic: 'Heart Failure',
-    keywords: ['heart failure', 'hf', 'chf', 'congestive heart failure', 'hfref', 'hfpef', 'cardiac failure'],
+    keywords: ['heart failure', 'hf', 'chf', 'congestive heart failure', 'hfref', 'hfpef', 'cardiac failure', 'systolic heart failure', 'diastolic heart failure'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, heart failure is a clinical syndrome resulting from structural or functional cardiac disorders that impair ventricular filling or ejection. HFrEF (reduced ejection fraction <40%) involves impaired systolic function, while HFpEF (preserved EF ≥50%) involves diastolic dysfunction with impaired ventricular relaxation and filling. Neurohormonal activation (RAAS, sympathetic nervous system) initially compensates but ultimately contributes to disease progression through adverse remodeling.',
     clinicalPresentation: 'Patients present with dyspnea (exertional, orthopnea, paroxysmal nocturnal dyspnea), fatigue, fluid retention (peripheral edema, ascites), and reduced exercise tolerance. Physical examination may reveal elevated jugular venous pressure, S3 gallop, pulmonary rales, hepatomegaly, and peripheral edema. Right heart failure manifests with systemic congestion, while left heart failure causes pulmonary congestion.',
@@ -205,7 +205,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Acute Decompensated Heart Failure',
-    keywords: ['acute heart failure', 'adhf', 'decompensated heart failure', 'flash pulmonary edema', 'cardiogenic pulmonary edema'],
+    keywords: ['acute heart failure', 'adhf', 'decompensated heart failure', 'acute decompensated', 'flash pulmonary edema', 'cardiogenic pulmonary edema'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, acute decompensated heart failure represents rapid worsening of heart failure signs and symptoms requiring urgent evaluation and treatment. Results from increased preload (volume overload), increased afterload (hypertension), decreased contractility (ischemia, arrhythmia), or combination. Pulmonary and systemic congestion develop rapidly. Common precipitants include medication non-compliance, dietary indiscretion, arrhythmias, ischemia, infection, and uncontrolled hypertension.',
     clinicalPresentation: 'Acute dyspnea at rest, orthopnea, paroxysmal nocturnal dyspnea, and cough with frothy sputum. Physical examination reveals tachypnea, hypoxemia, pulmonary rales, elevated JVP, S3 gallop, and peripheral edema. Patients may be hypertensive (flash pulmonary edema) or hypotensive (cardiogenic shock). Severe cases present with respiratory failure requiring mechanical ventilation.',
@@ -222,7 +222,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Cardiogenic Shock',
-    keywords: ['cardiogenic shock', 'cardiac shock', 'pump failure', 'low cardiac output'],
+    keywords: ['cardiogenic shock', 'cardiac shock', 'cardiogenic', 'pump failure'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, cardiogenic shock results from severe impairment of cardiac output causing inadequate tissue perfusion despite adequate intravascular volume. Most commonly caused by extensive MI (>40% LV involvement), but also results from acute valvular dysfunction, myocarditis, or end-stage cardiomyopathy. Compensatory mechanisms (tachycardia, vasoconstriction) initially maintain blood pressure but worsen myocardial oxygen supply-demand mismatch, creating vicious cycle.',
     clinicalPresentation: 'Hypotension (SBP <90 mmHg), signs of hypoperfusion (cool extremities, altered mental status, oliguria), and pulmonary congestion. Physical examination reveals tachycardia, weak pulse, cool clammy skin, elevated JVP, pulmonary rales, and S3 gallop. Hemodynamic criteria: cardiac index <2.2 L/min/m², pulmonary capillary wedge pressure >15 mmHg.',
@@ -240,7 +240,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
   // ISCHEMIC HEART DISEASE
   {
     topic: 'Myocardial Infarction',
-    keywords: ['myocardial infarction', 'mi', 'heart attack', 'stemi', 'nstemi', 'acute coronary syndrome', 'acs'],
+    keywords: ['myocardial infarction', 'mi', 'heart attack', 'stemi', 'nstemi', 'acute coronary syndrome', 'acs', 'st elevation mi', 'non st elevation mi'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, myocardial infarction results from acute coronary artery occlusion, typically due to atherosclerotic plaque rupture with superimposed thrombosis. STEMI involves complete occlusion with transmural infarction, while NSTEMI involves partial occlusion or transient complete occlusion with subendocardial infarction. Myocardial necrosis begins within 20-40 minutes of complete occlusion and progresses over hours.',
     clinicalPresentation: 'Classic presentation includes substernal chest pressure or pain radiating to left arm, jaw, or back, often accompanied by diaphoresis, nausea, and dyspnea. Symptoms typically last >20 minutes. Atypical presentations (dyspnea, fatigue, epigastric pain) are common in elderly, diabetic, and female patients. Physical examination may be unremarkable or show signs of complications (heart failure, arrhythmias).',
@@ -257,7 +257,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Unstable Angina',
-    keywords: ['unstable angina', 'ua', 'crescendo angina', 'rest angina', 'new onset angina'],
+    keywords: ['unstable angina', 'ua', 'crescendo angina', 'rest angina', 'new onset angina', 'unstable'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, unstable angina is part of acute coronary syndrome spectrum, characterized by myocardial ischemia without myocardial necrosis (negative cardiac biomarkers). Results from non-occlusive thrombus on disrupted atherosclerotic plaque, causing transient severe ischemia. Represents high-risk state with significant progression to MI or death. Distinguished from NSTEMI only by absence of troponin elevation.',
     clinicalPresentation: 'Three patterns: rest angina (occurring at rest or minimal exertion), new-onset angina (severe, within 2 months), or crescendo angina (increasing frequency, severity, or duration). Chest discomfort similar to MI but may be briefer. Physical examination often normal between episodes. High-risk features include prolonged pain, hemodynamic instability, or new mitral regurgitation murmur.',
@@ -274,7 +274,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Stable Angina Pectoris',
-    keywords: ['stable angina', 'chronic stable angina', 'exertional angina', 'angina pectoris'],
+    keywords: ['stable angina', 'chronic stable angina', 'exertional angina', 'angina pectoris', 'stable angina pectoris'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, stable angina results from fixed coronary artery stenosis (typically >70%) causing myocardial oxygen supply-demand mismatch during increased cardiac workload. Atherosclerotic plaque narrows coronary lumen, limiting blood flow during exertion or stress. Symptoms are predictable and reproducible with similar levels of exertion. Represents chronic coronary syndrome with lower acute event risk than unstable angina.',
     clinicalPresentation: 'Predictable chest discomfort with exertion, emotional stress, or cold exposure, relieved by rest or nitroglycerin within 5-10 minutes. Described as pressure, tightness, or heaviness in substernal or left chest, may radiate to arm, jaw, or back. Canadian Cardiovascular Society (CCS) classification grades severity. Physical examination typically normal at rest.',
@@ -291,7 +291,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Prinzmetal Angina',
-    keywords: ['prinzmetal angina', 'variant angina', 'vasospastic angina', 'coronary vasospasm'],
+    keywords: ['prinzmetal angina', 'prinzmetal', 'variant angina', 'vasospastic angina', 'coronary vasospasm', 'coronary spasm'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, Prinzmetal (variant) angina results from coronary artery vasospasm causing transient complete or near-complete occlusion, typically in absence of significant atherosclerosis. Spasm usually occurs at rest, often in early morning hours. Mechanism involves endothelial dysfunction, smooth muscle hyperreactivity, and autonomic imbalance. May be triggered by smoking, cocaine, cold exposure, or hyperventilation.',
     clinicalPresentation: 'Chest pain at rest, typically between midnight and 8 AM, lasting 5-15 minutes. Pain similar to typical angina but occurs without exertion. May be associated with palpitations or syncope if arrhythmias occur. Physical examination normal between episodes. Smoking and cocaine use are common associations.',
@@ -309,7 +309,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
   // VALVULAR HEART DISEASE
   {
     topic: 'Aortic Stenosis',
-    keywords: ['aortic stenosis', 'as', 'aortic valve stenosis', 'valvular stenosis'],
+    keywords: ['aortic stenosis', 'as', 'aortic valve stenosis', 'aortic valve narrowing', 'calcific aortic stenosis'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, aortic stenosis involves progressive narrowing of the aortic valve orifice, most commonly due to age-related calcific degeneration, bicuspid aortic valve, or rheumatic disease. The obstruction increases left ventricular afterload, leading to compensatory concentric hypertrophy. Eventually, the ventricle fails to maintain adequate cardiac output, and symptoms develop.',
     clinicalPresentation: 'The classic triad includes angina, syncope, and dyspnea. Angina results from increased myocardial oxygen demand and reduced coronary perfusion. Syncope occurs with exertion due to inability to increase cardiac output. Dyspnea indicates heart failure. Physical examination reveals a crescendo-decrescendo systolic murmur at the right upper sternal border radiating to the carotids, delayed and diminished carotid upstroke (pulsus parvus et tardus), and narrow pulse pressure.',
@@ -326,7 +326,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Aortic Regurgitation',
-    keywords: ['aortic regurgitation', 'ar', 'aortic insufficiency', 'ai', 'aortic valve regurgitation'],
+    keywords: ['aortic regurgitation', 'ar', 'aortic insufficiency', 'ai', 'aortic valve regurgitation', 'aortic valve insufficiency'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, aortic regurgitation results from incomplete aortic valve closure during diastole, allowing backflow from aorta into left ventricle. Causes include aortic root dilation (Marfan, hypertension, aging), bicuspid valve, rheumatic disease, or aortic dissection. Chronic AR causes LV volume overload with eccentric hypertrophy. Acute AR causes sudden volume overload without compensatory remodeling, leading to pulmonary edema and cardiogenic shock.',
     clinicalPresentation: 'Chronic AR: asymptomatic for years, then dyspnea, orthopnea, PND, and angina. Physical exam shows wide pulse pressure, bounding pulses (Corrigan pulse, water-hammer pulse), head bobbing (de Musset sign), and diastolic decrescendo murmur at left sternal border. Acute AR: sudden dyspnea, pulmonary edema, hypotension, and soft short diastolic murmur.',
@@ -343,7 +343,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Mitral Stenosis',
-    keywords: ['mitral stenosis', 'ms', 'mitral valve stenosis'],
+    keywords: ['mitral stenosis', 'ms', 'mitral valve stenosis', 'mitral valve narrowing', 'rheumatic mitral stenosis'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, mitral stenosis is narrowing of the mitral valve orifice, most commonly from rheumatic heart disease (accounts for >90% in developing countries). Chronic inflammation causes leaflet thickening, commissural fusion, and chordal shortening. Obstruction increases left atrial pressure, causing left atrial enlargement, pulmonary hypertension, and eventually right heart failure. Atrial fibrillation develops in 30-40% due to atrial dilation.',
     clinicalPresentation: 'Dyspnea on exertion is earliest symptom, progressing to orthopnea and PND. Hemoptysis may occur from pulmonary venous hypertension. Atrial fibrillation causes palpitations and increases stroke risk. Physical exam reveals low-pitched diastolic rumble at apex with opening snap, loud S1, and accentuated P2 if pulmonary hypertension present. Malar flush may be visible.',
@@ -360,7 +360,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Mitral Regurgitation',
-    keywords: ['mitral regurgitation', 'mr', 'mitral insufficiency', 'mi', 'mitral valve regurgitation'],
+    keywords: ['mitral regurgitation', 'mr', 'mitral insufficiency', 'mitral valve regurgitation', 'mitral valve insufficiency', 'mitral valve leak'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, mitral regurgitation results from incomplete mitral valve closure during systole, allowing backflow from LV into LA. Primary MR involves valve pathology (prolapse, rheumatic disease, chordal rupture). Secondary (functional) MR results from LV dilation or dysfunction with structurally normal valve. Chronic MR causes LV and LA volume overload with eccentric LV hypertrophy. Acute severe MR causes sudden LA pressure rise and pulmonary edema.',
     clinicalPresentation: 'Chronic MR: asymptomatic for years, then dyspnea, fatigue, and palpitations (AF). Acute MR: sudden dyspnea, pulmonary edema, and cardiogenic shock. Physical exam shows holosystolic murmur at apex radiating to axilla, best heard in left lateral decubitus position. S3 gallop common. Acute MR may have soft murmur due to rapid LA-LV pressure equalization.',
@@ -377,7 +377,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Mitral Valve Prolapse',
-    keywords: ['mitral valve prolapse', 'mvp', 'floppy mitral valve', 'barlow disease'],
+    keywords: ['mitral valve prolapse', 'mvp', 'floppy mitral valve', 'barlow disease', 'mitral prolapse', 'mvp syndrome'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, mitral valve prolapse involves abnormal systolic displacement of mitral leaflets into left atrium. Results from myxomatous degeneration causing leaflet redundancy and chordal elongation. Most cases are primary (idiopathic), but MVP occurs in connective tissue disorders (Marfan, Ehlers-Danlos). Usually benign but can progress to significant mitral regurgitation or arrhythmias.',
     clinicalPresentation: 'Most patients asymptomatic. Some experience atypical chest pain, palpitations, dyspnea, or anxiety. Physical exam reveals mid-systolic click (earlier with standing, later with squatting) with or without late systolic murmur. Murmur increases with maneuvers that decrease LV volume (standing, Valsalva). Complications include progressive MR, arrhythmias, and rarely sudden death.',
@@ -394,7 +394,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Tricuspid Regurgitation',
-    keywords: ['tricuspid regurgitation', 'tr', 'tricuspid insufficiency'],
+    keywords: ['tricuspid regurgitation', 'tr', 'tricuspid insufficiency', 'tricuspid valve regurgitation', 'tricuspid valve insufficiency'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, tricuspid regurgitation is most commonly functional (secondary) due to RV dilation from pulmonary hypertension or RV dysfunction. Primary TR results from valve pathology (rheumatic disease, carcinoid, trauma, pacemaker leads). TR causes RV volume overload and systemic venous congestion. Severe TR leads to RV failure, hepatic congestion, and peripheral edema.',
     clinicalPresentation: 'Symptoms include fatigue, abdominal distension, peripheral edema, and right upper quadrant pain from hepatic congestion. Physical exam shows holosystolic murmur at left lower sternal border increasing with inspiration (Carvallo sign), elevated JVP with prominent V waves, pulsatile liver, ascites, and peripheral edema. Severe TR causes pulsatile hepatomegaly.',
@@ -412,7 +412,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
   // HYPERTENSION
   {
     topic: 'Hypertension',
-    keywords: ['hypertension', 'high blood pressure', 'htn', 'elevated blood pressure'],
+    keywords: ['hypertension', 'high blood pressure', 'htn', 'elevated blood pressure', 'essential hypertension', 'primary hypertension'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, hypertension is sustained elevation of blood pressure (≥130/80 mmHg). Primary (essential) hypertension (90-95%) has multifactorial etiology involving genetic, environmental, and lifestyle factors. Secondary hypertension results from identifiable causes (renal disease, endocrine disorders, medications). Chronic hypertension causes vascular remodeling, left ventricular hypertrophy, and end-organ damage (heart, brain, kidneys, eyes).',
     clinicalPresentation: 'Most patients are asymptomatic; hypertension is often detected on routine screening. Severe hypertension may cause headache, dizziness, or blurred vision. Hypertensive emergency presents with severe elevation (>180/120) plus acute end-organ damage (encephalopathy, stroke, MI, acute heart failure, aortic dissection, acute kidney injury). Physical examination may reveal retinopathy, S4 gallop, or bruits.',
@@ -429,7 +429,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Hypertensive Emergency',
-    keywords: ['hypertensive emergency', 'malignant hypertension', 'hypertensive crisis', 'hypertensive encephalopathy'],
+    keywords: ['hypertensive emergency', 'malignant hypertension', 'hypertensive crisis', 'hypertensive encephalopathy', 'acute hypertensive emergency'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, hypertensive emergency is severe blood pressure elevation (typically >180/120 mmHg) with acute target organ damage. Acute endothelial injury causes fibrinoid necrosis of arterioles, leading to organ ischemia and dysfunction. Organs affected include brain (encephalopathy, stroke), heart (MI, acute heart failure), kidneys (acute kidney injury), and vasculature (aortic dissection). Requires immediate BP reduction to prevent irreversible organ damage.',
     clinicalPresentation: 'Severe headache, visual disturbances, confusion, seizures, chest pain, dyspnea, or focal neurologic deficits. Physical exam shows markedly elevated BP, papilledema, retinal hemorrhages, altered mental status, pulmonary edema, or neurologic deficits. Hypertensive urgency (severe BP elevation without organ damage) is less acute.',
@@ -447,7 +447,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
   // CARDIOMYOPATHIES
   {
     topic: 'Dilated Cardiomyopathy',
-    keywords: ['dilated cardiomyopathy', 'dcm', 'idiopathic dilated cardiomyopathy'],
+    keywords: ['dilated cardiomyopathy', 'dcm', 'idiopathic dilated cardiomyopathy', 'dilated cm', 'congestive cardiomyopathy'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, dilated cardiomyopathy is characterized by LV dilation and systolic dysfunction without adequate hypertrophy. Causes include genetic mutations (30-50%), viral myocarditis, alcohol, chemotherapy (anthracyclines), peripartum, and idiopathic. Progressive LV dilation and dysfunction lead to heart failure, arrhythmias, and thromboembolism. Neurohormonal activation worsens remodeling.',
     clinicalPresentation: 'Heart failure symptoms: dyspnea, orthopnea, PND, fatigue, and edema. Palpitations from arrhythmias. Thromboembolic events (stroke, peripheral embolism). Physical exam shows displaced PMI, S3 gallop, elevated JVP, pulmonary rales, and peripheral edema. May have mitral or tricuspid regurgitation murmurs from annular dilation.',
@@ -464,7 +464,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Hypertrophic Cardiomyopathy',
-    keywords: ['hypertrophic cardiomyopathy', 'hcm', 'hocm', 'hypertrophic obstructive cardiomyopathy', 'idiopathic hypertrophic subaortic stenosis', 'ihss'],
+    keywords: ['hypertrophic cardiomyopathy', 'hcm', 'hocm', 'hypertrophic obstructive cardiomyopathy', 'idiopathic hypertrophic subaortic stenosis', 'ihss', 'hypertrophic cm'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, hypertrophic cardiomyopathy is characterized by LV hypertrophy (wall thickness ≥15 mm) without other cause. Autosomal dominant inheritance with mutations in sarcomere protein genes. Asymmetric septal hypertrophy is most common. LVOT obstruction occurs in 70% due to systolic anterior motion of mitral valve. Diastolic dysfunction from impaired relaxation. Risk of sudden cardiac death from ventricular arrhythmias.',
     clinicalPresentation: 'Many asymptomatic. Symptoms include dyspnea, chest pain, palpitations, presyncope, or syncope (especially with exertion). Sudden cardiac death may be first presentation. Physical exam shows harsh systolic murmur at left sternal border increasing with Valsalva and standing (decreased preload worsens obstruction), decreasing with squatting. Bisferiens pulse. S4 gallop.',
@@ -481,7 +481,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Restrictive Cardiomyopathy',
-    keywords: ['restrictive cardiomyopathy', 'rcm', 'infiltrative cardiomyopathy'],
+    keywords: ['restrictive cardiomyopathy', 'rcm', 'infiltrative cardiomyopathy', 'restrictive cm', 'diastolic dysfunction cardiomyopathy'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, restrictive cardiomyopathy is characterized by impaired ventricular filling due to increased myocardial stiffness, with normal or near-normal systolic function and wall thickness. Causes include infiltrative diseases (amyloidosis, sarcoidosis, hemochromatosis), storage diseases (Fabry, glycogen storage), endomyocardial diseases (fibrosis, hypereosinophilic syndrome), and idiopathic. Diastolic dysfunction causes elevated filling pressures and heart failure.',
     clinicalPresentation: 'Right heart failure symptoms predominate: fatigue, peripheral edema, ascites, hepatomegaly. Dyspnea and exercise intolerance. Physical exam shows elevated JVP with prominent Y descent (Kussmaul sign - JVP rises with inspiration), S3 or S4 gallop, hepatomegaly, ascites, and peripheral edema. May have low voltage ECG despite thick walls in amyloidosis.',
@@ -498,7 +498,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Myocarditis',
-    keywords: ['myocarditis', 'viral myocarditis', 'inflammatory cardiomyopathy', 'cardiac inflammation'],
+    keywords: ['myocarditis', 'viral myocarditis', 'inflammatory cardiomyopathy', 'cardiac inflammation', 'myocardial inflammation'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, myocarditis is inflammation of the myocardium, most commonly from viral infection (coxsackievirus, adenovirus, parvovirus B19, COVID-19). Other causes include autoimmune diseases, drugs (immune checkpoint inhibitors, clozapine), toxins, and giant cell myocarditis. Inflammation causes myocyte injury and dysfunction. May progress to dilated cardiomyopathy. Fulminant myocarditis causes severe acute heart failure.',
     clinicalPresentation: 'Presentation varies from asymptomatic to fulminant heart failure or sudden death. Symptoms include chest pain (may mimic MI), dyspnea, palpitations, and fatigue. Often preceded by viral prodrome. Physical exam may show tachycardia, S3 gallop, and signs of heart failure. Fulminant myocarditis presents with cardiogenic shock.',
@@ -516,7 +516,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
   // PERICARDIAL DISEASE
   {
     topic: 'Acute Pericarditis',
-    keywords: ['pericarditis', 'acute pericarditis', 'pericardial inflammation'],
+    keywords: ['pericarditis', 'acute pericarditis', 'pericardial inflammation', 'pericardial disease'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, acute pericarditis is inflammation of the pericardium, most commonly idiopathic or viral (coxsackievirus, echovirus, adenovirus). Other causes include post-MI (early or Dressler syndrome), uremia, autoimmune diseases, malignancy, tuberculosis, and drugs. Inflammation causes chest pain and may lead to pericardial effusion. Recurrent pericarditis occurs in 15-30%.',
     clinicalPresentation: 'Sharp, pleuritic chest pain worse with lying flat and inspiration, improved by sitting forward. May radiate to trapezius ridge. Associated with dyspnea. Physical exam reveals pericardial friction rub (scratchy, triphasic sound best heard at left sternal border with patient leaning forward). Fever common. Pericardial effusion may cause muffled heart sounds.',
@@ -533,7 +533,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Cardiac Tamponade',
-    keywords: ['cardiac tamponade', 'pericardial tamponade', 'tamponade'],
+    keywords: ['cardiac tamponade', 'pericardial tamponade', 'tamponade', 'heart tamponade'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, cardiac tamponade occurs when pericardial fluid accumulation causes increased intrapericardial pressure, compressing cardiac chambers and impairing ventricular filling. Results in decreased cardiac output and obstructive shock. Causes include pericarditis, malignancy, trauma, aortic dissection, post-cardiac surgery, and uremia. Rapid accumulation (trauma, rupture) causes tamponade with smaller volumes than slow accumulation (malignancy).',
     clinicalPresentation: 'Beck triad: hypotension, elevated JVP, muffled heart sounds. Dyspnea, tachycardia, and pulsus paradoxus (>10 mmHg decrease in SBP with inspiration). Physical exam shows tachycardia, hypotension, elevated JVP with absent Y descent, muffled heart sounds, and cool extremities. Severe cases present with cardiogenic shock or cardiac arrest (pulseless electrical activity).',
@@ -550,7 +550,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Constrictive Pericarditis',
-    keywords: ['constrictive pericarditis', 'pericardial constriction'],
+    keywords: ['constrictive pericarditis', 'pericardial constriction', 'chronic constrictive pericarditis', 'pericardial fibrosis'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, constrictive pericarditis results from chronic pericardial inflammation causing fibrosis, thickening, and sometimes calcification of pericardium. Rigid pericardium restricts ventricular filling, causing diastolic dysfunction and elevated filling pressures. Causes include prior cardiac surgery, radiation, tuberculosis, viral pericarditis, and idiopathic. Ventricular interdependence causes dissociation of intrathoracic and intracardiac pressures.',
     clinicalPresentation: 'Right heart failure symptoms: fatigue, peripheral edema, ascites, hepatomegaly. Dyspnea and exercise intolerance. Physical exam shows elevated JVP with prominent Y descent, Kussmaul sign (JVP rises with inspiration), pericardial knock (early diastolic sound), hepatomegaly, ascites, and peripheral edema. Pulsus paradoxus less common than in tamponade.',
@@ -568,7 +568,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
   // ENDOCARDITIS
   {
     topic: 'Infective Endocarditis',
-    keywords: ['endocarditis', 'infective endocarditis', 'bacterial endocarditis', 'ie', 'valve infection', 'heart valve infection'],
+    keywords: ['endocarditis', 'infective endocarditis', 'bacterial endocarditis', 'ie', 'valve infection', 'heart valve infection', 'endocardial infection'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, infective endocarditis is infection of endocardial surface, typically heart valves, caused by bacteria (Streptococcus viridans, Staphylococcus aureus, enterococci) or fungi. Bacteremia seeds damaged or abnormal valves, forming vegetations (infected thrombi). Vegetations cause valve destruction and emboli. Risk factors include prosthetic valves, prior IE, structural heart disease, IV drug use, and poor dentition.',
     clinicalPresentation: 'Fever (90%), new or changing murmur, and signs of systemic illness (fatigue, weight loss, night sweats). Embolic phenomena: stroke, splenic infarct, renal infarct. Immunologic phenomena: Osler nodes (painful finger/toe nodules), Janeway lesions (painless palmar/plantar macules), Roth spots (retinal hemorrhages), glomerulonephritis. Acute S. aureus IE presents with sepsis and rapid valve destruction.',
@@ -586,7 +586,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
   // AORTIC DISEASE
   {
     topic: 'Aortic Dissection',
-    keywords: ['aortic dissection', 'dissecting aneurysm', 'aortic tear'],
+    keywords: ['aortic dissection', 'dissecting aneurysm', 'aortic tear', 'type a dissection', 'type b dissection', 'stanford dissection'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, aortic dissection occurs when intimal tear allows blood to enter aortic media, creating false lumen that propagates along aorta. Stanford type A involves ascending aorta (requires emergency surgery), type B involves descending aorta distal to left subclavian (usually managed medically). Risk factors include hypertension, connective tissue disorders (Marfan, Ehlers-Danlos), bicuspid aortic valve, cocaine use, and trauma. Complications include aortic rupture, tamponade, stroke, MI, mesenteric ischemia, and limb ischemia.',
     clinicalPresentation: 'Sudden severe "tearing" or "ripping" chest or back pain, often described as worst pain ever. Type A: anterior chest pain. Type B: interscapular back pain. May have syncope, stroke, MI, or limb ischemia. Physical exam may show blood pressure differential between arms (>20 mmHg), pulse deficits, aortic regurgitation murmur, or neurologic deficits. Hypotension suggests rupture or tamponade.',
@@ -603,7 +603,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Abdominal Aortic Aneurysm',
-    keywords: ['aortic aneurysm', 'aaa', 'abdominal aortic aneurysm'],
+    keywords: ['aortic aneurysm', 'aaa', 'abdominal aortic aneurysm', 'abdominal aneurysm', 'infrarenal aneurysm'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, abdominal aortic aneurysm is focal dilation of abdominal aorta ≥3 cm (normal 2 cm). Results from atherosclerosis, genetic factors, and proteolytic degradation of aortic wall. Risk factors include smoking, hypertension, male sex, age >65, and family history. Most occur infrarenal. Rupture risk increases with size: <5 cm (1%/year), 5-6 cm (5-10%/year), >6 cm (>10%/year). Rupture is often fatal.',
     clinicalPresentation: 'Most asymptomatic, discovered incidentally on imaging or physical exam. Symptomatic AAA suggests expansion or rupture: abdominal or back pain. Ruptured AAA: severe abdominal/back pain, hypotension, pulsatile abdominal mass (classic triad). Physical exam may reveal pulsatile abdominal mass above umbilicus. Rupture presents with shock.',
@@ -621,7 +621,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
   // PERIPHERAL VASCULAR DISEASE
   {
     topic: 'Peripheral Arterial Disease',
-    keywords: ['peripheral arterial disease', 'pad', 'peripheral vascular disease', 'pvd', 'claudication'],
+    keywords: ['peripheral arterial disease', 'pad', 'peripheral vascular disease', 'pvd', 'claudication', 'intermittent claudication', 'critical limb ischemia'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, peripheral arterial disease is atherosclerotic occlusive disease of lower extremity arteries causing reduced blood flow. Risk factors include smoking, diabetes, hypertension, hyperlipidemia, and age. Stenosis or occlusion causes exercise-induced ischemia (claudication) or critical limb ischemia. PAD is marker of systemic atherosclerosis with increased cardiovascular event risk.',
     clinicalPresentation: 'Intermittent claudication: reproducible leg pain with walking, relieved by rest. Pain location indicates stenosis level: buttock/hip (aortoiliac), thigh (common femoral), calf (superficial femoral/popliteal). Critical limb ischemia: rest pain, non-healing ulcers, gangrene. Physical exam shows diminished or absent pulses, bruits, hair loss, cool skin, pallor with elevation, rubor with dependency, and prolonged capillary refill.',
@@ -638,7 +638,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Deep Vein Thrombosis',
-    keywords: ['deep vein thrombosis', 'dvt', 'deep venous thrombosis', 'venous thromboembolism', 'vte'],
+    keywords: ['deep vein thrombosis', 'dvt', 'deep venous thrombosis', 'venous thromboembolism', 'vte', 'leg clot', 'venous clot'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, deep vein thrombosis is blood clot formation in deep veins, most commonly lower extremities. Results from Virchow triad: stasis, endothelial injury, and hypercoagulability. Risk factors include immobility, surgery, trauma, malignancy, pregnancy, oral contraceptives, thrombophilia, and prior VTE. Proximal DVT (popliteal or above) has higher risk of pulmonary embolism than distal (calf) DVT.',
     clinicalPresentation: 'Unilateral leg pain, swelling, warmth, and erythema. May be asymptomatic. Physical exam shows calf tenderness, pitting edema, increased leg circumference (>3 cm difference), palpable cord, and dilated superficial veins. Homan sign (calf pain with dorsiflexion) is neither sensitive nor specific. Phlegmasia cerulea dolens (massive DVT with venous gangrene) presents with severe pain, cyanosis, and limb-threatening ischemia.',
@@ -656,7 +656,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
   // ADDITIONAL CARDIOLOGY TOPICS
   {
     topic: 'Pulmonary Hypertension',
-    keywords: ['pulmonary hypertension', 'pulmonary arterial hypertension', 'pah', 'ph'],
+    keywords: ['pulmonary hypertension', 'pulmonary arterial hypertension', 'pah', 'ph', 'pulmonary htn', 'elevated pulmonary pressure'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, pulmonary hypertension is elevated mean pulmonary artery pressure ≥20 mmHg at rest. WHO classification: Group 1 (pulmonary arterial hypertension), Group 2 (left heart disease), Group 3 (lung disease/hypoxia), Group 4 (chronic thromboembolic), Group 5 (multifactorial). PAH involves pulmonary vascular remodeling with vasoconstriction, proliferation, and thrombosis. Increased pulmonary vascular resistance causes RV pressure overload, hypertrophy, and eventually RV failure.',
     clinicalPresentation: 'Dyspnea on exertion is earliest symptom, progressing to fatigue, chest pain, syncope, and signs of right heart failure (edema, ascites). Physical exam shows loud P2, RV heave, tricuspid regurgitation murmur, elevated JVP, hepatomegaly, and peripheral edema. Advanced disease causes cyanosis and clubbing.',
@@ -673,7 +673,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Syncope',
-    keywords: ['syncope', 'fainting', 'loss of consciousness', 'vasovagal syncope'],
+    keywords: ['syncope', 'fainting', 'loss of consciousness', 'vasovagal syncope', 'passing out', 'blackout'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, syncope is transient loss of consciousness due to global cerebral hypoperfusion with rapid onset, short duration, and spontaneous complete recovery. Causes include reflex (vasovagal, situational, carotid sinus), orthostatic hypotension, and cardiac (arrhythmia, structural disease). Vasovagal syncope results from sudden drop in heart rate and blood pressure from autonomic reflex. Cardiac syncope has highest mortality risk.',
     clinicalPresentation: 'Sudden loss of consciousness with loss of postural tone. Vasovagal: prodrome of nausea, diaphoresis, pallor, warmth; triggered by pain, emotion, prolonged standing. Cardiac: sudden onset without warning, may occur with exertion. Orthostatic: occurs with standing. Brief tonic-clonic movements may occur but distinguish from seizure (no post-ictal confusion, rapid recovery).',
@@ -993,7 +993,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
 /**
  * Search function to find relevant Merck Manual entries based on query
- * IMPROVED: Better keyword matching to prevent false positives
+ * ENHANCED: Precise keyword matching to prevent content bleeding between topics
  */
 export function searchMerckManualKnowledge(query: string): MerckManualEntry[] {
   const lowerQuery = query.toLowerCase().trim();
@@ -1004,43 +1004,71 @@ export function searchMerckManualKnowledge(query: string): MerckManualEntry[] {
     
     // EXACT TOPIC MATCH - Highest priority (massive boost)
     if (entry.topic.toLowerCase() === lowerQuery) {
-      score += 1000;
-    } else if (entry.topic.toLowerCase().includes(lowerQuery)) {
+      score += 10000; // Dramatically increased for exact topic match
+    } else if (entry.topic.toLowerCase().includes(lowerQuery) && lowerQuery.length > 4) {
       score += 100;
     }
     
     // EXACT KEYWORD MATCH - Very high priority
     entry.keywords.forEach(keyword => {
-      if (keyword === lowerQuery) {
-        score += 500; // Exact match gets huge boost
-      } else if (keyword.includes(lowerQuery) && lowerQuery.length > 3) {
-        // Only partial match if query is substantial
+      const keywordLower = keyword.toLowerCase();
+      
+      // Perfect exact match
+      if (keywordLower === lowerQuery) {
+        score += 5000; // Exact match gets huge boost
+      }
+      // Exact match with word boundaries (e.g., "endocarditis" matches "endocarditis" but not "myocarditis")
+      else if (lowerQuery.split(' ').some(word => word === keywordLower)) {
+        score += 3000;
+      }
+      // Keyword contains query as complete word (with boundaries)
+      else if (new RegExp(`\\b${lowerQuery}\\b`).test(keywordLower) && lowerQuery.length > 3) {
+        score += 1000;
+      }
+      // Partial match only if query is substantial and at start of keyword
+      else if (keywordLower.startsWith(lowerQuery) && lowerQuery.length > 5) {
         score += 50;
       }
     });
     
-    // INDIVIDUAL QUERY WORDS - Lower priority, only for multi-word queries
+    // MULTI-WORD QUERY MATCHING - Only for queries with multiple words
     if (queryWords.length > 1) {
+      let multiWordScore = 0;
+      let matchedWords = 0;
+      
       queryWords.forEach(word => {
         entry.keywords.forEach(keyword => {
-          if (keyword.includes(word) && word.length > 3) {
-            score += 5;
+          const keywordLower = keyword.toLowerCase();
+          // Check if keyword contains the word as a complete word
+          if (new RegExp(`\\b${word}\\b`).test(keywordLower) && word.length > 3) {
+            multiWordScore += 10;
+            matchedWords++;
           }
         });
       });
+      
+      // Bonus if multiple words match
+      if (matchedWords > 1) {
+        score += multiWordScore * matchedWords;
+      } else {
+        score += multiWordScore;
+      }
     }
     
-    // SYSTEM MATCH - Lowest priority
+    // SYSTEM MATCH - Very low priority, only as tiebreaker
     if (entry.system.toLowerCase().includes(lowerQuery)) {
-      score += 2;
+      score += 1;
     }
     
     return { entry, score };
   });
   
-  // Return entries with score > 0, sorted by score
+  // Filter out very low scores to prevent irrelevant matches
+  const MIN_SCORE_THRESHOLD = 10;
+  
+  // Return entries with score above threshold, sorted by score
   return scoredEntries
-    .filter(item => item.score > 0)
+    .filter(item => item.score >= MIN_SCORE_THRESHOLD)
     .sort((a, b) => b.score - a.score)
     .map(item => item.entry)
     .slice(0, 3); // Return top 3 matches
