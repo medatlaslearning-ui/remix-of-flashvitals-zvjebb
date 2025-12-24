@@ -73,7 +73,7 @@ export default function ChatbotScreen() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: 'Hello! I\'m your Medical Expert Chatbot with access to comprehensive medical resources.\n\nI can help you understand disease processes and provide evidence-based information from:\n\n• Flashcard database (clinical pearls and high-yield information)\n• Academic references and clinical guidelines\n• Merck Manual Professional\n\nAsk me about any medical topic, and I\'ll provide:\n\n• Pathophysiology and disease mechanisms\n• Clinical presentation and symptoms\n• Diagnostic approaches\n• Evidence-based treatment recommendations\n• References to authoritative sources\n\nExamples:\n• "What is a pleural effusion?"\n• "Tell me about heart failure"\n• "How is diabetes managed?"\n• "What are the symptoms of pneumonia?"',
+      text: 'Hello! I\'m your Medical Expert Chatbot with access to comprehensive medical resources.\n\nI can help you understand disease processes and provide evidence-based information from:\n\n• Flashcard database (clinical pearls and high-yield information)\n• Academic references and clinical guidelines\n• Merck Manual Professional\n\nAsk me about any medical topic, and I\'ll provide:\n\n• Pathophysiology and disease mechanisms\n• Clinical presentation and symptoms\n• Diagnostic approaches\n• Evidence-based treatment recommendations\n• References to authoritative sources\n\nExamples:\n• "What is atrial fibrillation?"\n• "Tell me about pleural effusion"\n• "How is diabetes managed?"\n• "What are the symptoms of pneumonia?"',
       isBot: true,
       timestamp: new Date(),
     },
@@ -172,6 +172,13 @@ export default function ChatbotScreen() {
         }
       ],
       'atrial fibrillation': [
+        {
+          title: 'Atrial Fibrillation - Merck Manual Professional',
+          url: `${baseUrl}/cardiovascular-disorders/arrhythmias-and-conduction-disorders/atrial-fibrillation`,
+          description: 'AFib diagnosis, rate/rhythm control, and anticoagulation'
+        }
+      ],
+      'afib': [
         {
           title: 'Atrial Fibrillation - Merck Manual Professional',
           url: `${baseUrl}/cardiovascular-disorders/arrhythmias-and-conduction-disorders/atrial-fibrillation`,
@@ -284,7 +291,7 @@ export default function ChatbotScreen() {
     
     // Keywords for different medical systems
     const keywords: { [key: string]: string[] } = {
-      cardiology: ['heart', 'cardiac', 'cardio', 'arrhythmia', 'afib', 'valve', 'coronary', 'myocardial', 'hypertension', 'blood pressure', 'chf', 'congestive heart failure', 'heart failure', 'mi', 'myocardial infarction'],
+      cardiology: ['heart', 'cardiac', 'cardio', 'arrhythmia', 'afib', 'atrial fibrillation', 'valve', 'coronary', 'myocardial', 'hypertension', 'blood pressure', 'chf', 'congestive heart failure', 'heart failure', 'mi', 'myocardial infarction'],
       pulmonary: ['lung', 'pulmonary', 'respiratory', 'asthma', 'copd', 'pneumonia', 'breathing', 'airway', 'bronch', 'pe', 'pulmonary embolism', 'pleural', 'effusion', 'pneumothorax', 'pleura'],
       renal: ['kidney', 'renal', 'nephro', 'dialysis', 'urinary', 'glomerulo', 'proteinuria', 'aki', 'ckd'],
       gastroenterology: ['stomach', 'gastro', 'intestin', 'liver', 'hepat', 'pancrea', 'esophag', 'colon', 'bowel', 'digestive', 'crohn', 'colitis', 'celiac', 'cirrhosis', 'gerd', 'ibd'],
@@ -342,48 +349,64 @@ export default function ChatbotScreen() {
     const lowerQuery = query.toLowerCase();
     const allFlashcards = getAllFlashcards();
     
-    // Search through flashcards
-    const matchingCards = allFlashcards.filter(card => {
-      const frontMatch = card.front.toLowerCase().includes(lowerQuery);
-      const topicMatch = card.topic.toLowerCase().includes(lowerQuery);
-      const systemMatch = card.system.toLowerCase().includes(lowerQuery);
-      const tagsMatch = card.tags.some(tag => tag.toLowerCase().includes(lowerQuery));
+    // Enhanced search with better scoring
+    const scoredCards = allFlashcards.map(card => {
+      let score = 0;
       
-      // Check back content
-      const backMatch = 
-        card.back.definition?.toLowerCase().includes(lowerQuery) ||
-        card.back.high_yield?.toLowerCase().includes(lowerQuery) ||
-        card.back.clinical_pearl?.toLowerCase().includes(lowerQuery);
+      // Check front (question) - highest priority
+      if (card.front.toLowerCase().includes(lowerQuery)) {
+        score += 10;
+      }
       
-      return frontMatch || topicMatch || systemMatch || tagsMatch || backMatch;
+      // Check topic - high priority
+      if (card.topic.toLowerCase().includes(lowerQuery)) {
+        score += 8;
+      }
+      
+      // Check tags - high priority
+      if (card.tags.some(tag => tag.toLowerCase().includes(lowerQuery))) {
+        score += 7;
+      }
+      
+      // Check back content - medium priority
+      if (card.back.definition?.toLowerCase().includes(lowerQuery)) {
+        score += 6;
+      }
+      if (card.back.high_yield?.toLowerCase().includes(lowerQuery)) {
+        score += 5;
+      }
+      if (card.back.clinical_pearl?.toLowerCase().includes(lowerQuery)) {
+        score += 4;
+      }
+      if (card.back.treatment?.toLowerCase().includes(lowerQuery)) {
+        score += 4;
+      }
+      
+      // Check system - lower priority
+      if (card.system.toLowerCase().includes(lowerQuery)) {
+        score += 2;
+      }
+      
+      // Exact matches get bonus
+      const queryWords = lowerQuery.split(' ');
+      queryWords.forEach(word => {
+        if (word.length > 3) { // Only check meaningful words
+          if (card.front.toLowerCase().includes(word)) score += 2;
+          if (card.tags.some(tag => tag.toLowerCase() === word)) score += 3;
+        }
+      });
+      
+      return { card, score };
     });
+    
+    // Filter cards with score > 0 and sort by score
+    const matchingCards = scoredCards
+      .filter(item => item.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .map(item => item.card);
 
     // Return top 5 most relevant flashcards
     return matchingCards.slice(0, 5);
-  };
-
-  const extractKeywords = (query: string): string[] => {
-    const lowerQuery = query.toLowerCase();
-    
-    // Medical keywords to extract
-    const medicalTerms = [
-      'pathophysiology', 'symptoms', 'signs', 'treatment', 'diagnosis', 'management',
-      'causes', 'etiology', 'complications', 'prognosis', 'prevention',
-      'acute', 'chronic', 'severe', 'mild', 'moderate',
-      'infection', 'inflammation', 'disease', 'syndrome', 'disorder',
-      'heart', 'lung', 'kidney', 'liver', 'brain', 'blood',
-      'failure', 'insufficiency', 'dysfunction', 'injury',
-      'fever', 'pain', 'cough', 'dyspnea', 'edema', 'hypoxia'
-    ];
-    
-    const foundKeywords: string[] = [];
-    for (const term of medicalTerms) {
-      if (lowerQuery.includes(term)) {
-        foundKeywords.push(term);
-      }
-    }
-    
-    return foundKeywords;
   };
 
   const generateDynamicResponse = (
@@ -399,100 +422,113 @@ export default function ChatbotScreen() {
     console.log('Found websites:', websites.length);
     console.log('Found Merck links:', merckLinks.length);
 
-    // If no data found at all
-    if (flashcards.length === 0 && references.length === 0 && websites.length === 0 && merckLinks.length === 0) {
-      return 'I cannot provide that information, but I will refer you to these guidelines. Please check the Merck Manual Professional link below for comprehensive medical information on this topic.';
-    }
-
-    const lowerQuery = query.toLowerCase();
-    const keywords = extractKeywords(query);
-    
-    let response = '**Medical Information**\n\n';
-
-    // Extract information from flashcards
+    // If we have flashcard data, provide detailed clinical information
     if (flashcards.length > 0) {
-      response += '**Clinical Overview:**\n\n';
+      let response = '**Medical Information**\n\n';
       
-      // Prioritize flashcards that best match the query
       const primaryCard = flashcards[0];
       
-      // Extract pathophysiology/definition
+      // Extract and present pathophysiology/definition
       if (primaryCard.back.definition) {
-        response += `**Definition/Pathophysiology:**\n${primaryCard.back.definition}\n\n`;
+        response += '**Pathophysiology/Definition:**\n';
+        response += `${primaryCard.back.definition}\n\n`;
       }
       
-      // Extract high-yield information
+      // Extract and present clinical features/symptoms
       if (primaryCard.back.high_yield) {
-        response += `**Key Clinical Features:**\n${primaryCard.back.high_yield}\n\n`;
+        response += '**Clinical Features:**\n';
+        response += `${primaryCard.back.high_yield}\n\n`;
       }
       
-      // Extract clinical pearls
+      // Extract and present clinical pearls
       if (primaryCard.back.clinical_pearl) {
-        response += `**Clinical Pearl:**\n${primaryCard.back.clinical_pearl}\n\n`;
+        response += '**Clinical Pearls:**\n';
+        response += `${primaryCard.back.clinical_pearl}\n\n`;
       }
       
-      // Extract treatment if available
+      // Extract and present treatment
       if (primaryCard.back.treatment) {
-        response += `**Treatment Approach:**\n${primaryCard.back.treatment}\n\n`;
+        response += '**Treatment:**\n';
+        response += `${primaryCard.back.treatment}\n\n`;
       }
       
       // Add additional relevant information from other flashcards
       if (flashcards.length > 1) {
-        response += '**Additional Clinical Information:**\n';
+        response += '**Additional Clinical Information:**\n\n';
         for (let i = 1; i < Math.min(flashcards.length, 3); i++) {
           const card = flashcards[i];
-          if (card.back.clinical_pearl) {
-            response += `• ${card.back.clinical_pearl}\n`;
+          response += `• **${card.front}**\n`;
+          if (card.back.definition) {
+            response += `  ${card.back.definition}\n`;
           }
+          if (card.back.clinical_pearl) {
+            response += `  Pearl: ${card.back.clinical_pearl}\n`;
+          }
+          response += '\n';
         }
-        response += '\n';
       }
       
       response += `*Source: Clinical flashcard database (${primaryCard.system} - ${primaryCard.topic})*\n\n`;
+      
+      // Add evidence-based context
+      if (references.length > 0) {
+        response += '**Evidence-Based Support:**\n';
+        response += 'The information above is supported by current clinical practice guidelines and academic literature. ';
+        response += 'See academic references below for detailed, peer-reviewed information.\n\n';
+      }
+      
+      // Add Merck Manual context
+      if (merckLinks.length > 0) {
+        response += '**For Comprehensive Details:**\n';
+        response += 'For in-depth pathophysiology, diagnostic criteria, treatment protocols, and clinical management strategies, ';
+        response += 'please consult the Merck Manual Professional links below.\n\n';
+      }
+      
+      // Add guideline websites context
+      if (websites.length > 0) {
+        response += '**Clinical Practice Guidelines:**\n';
+        response += 'For the most current evidence-based recommendations and clinical protocols, ';
+        response += 'please review the guideline websites listed below.\n';
+      }
+      
+      return response;
+    }
+    
+    // If no flashcard data but we have other resources
+    if (references.length > 0 || websites.length > 0 || merckLinks.length > 0) {
+      let response = '**Medical Information**\n\n';
+      
+      response += '**Clinical Overview:**\n\n';
+      response += 'While I don\'t have specific flashcard information on this exact topic in my database, ';
+      response += 'I\'ve identified relevant clinical guidelines and authoritative resources that provide ';
+      response += 'comprehensive, evidence-based information.\n\n';
+      
+      if (merckLinks.length > 0) {
+        response += '**Merck Manual Professional:**\n';
+        response += 'The Merck Manual Professional provides detailed information including:\n\n';
+        response += '• Detailed disease mechanisms and pathophysiology\n';
+        response += '• Evidence-based diagnostic approaches\n';
+        response += '• Treatment algorithms and medication guidelines\n';
+        response += '• Monitoring recommendations\n';
+        response += '• Special population considerations\n\n';
+      }
+      
+      if (websites.length > 0) {
+        response += '**Clinical Practice Guidelines:**\n';
+        response += 'Leading medical organizations provide authoritative clinical practice guidelines ';
+        response += 'with evidence-based recommendations. Please review the guideline websites below.\n\n';
+      }
+      
+      if (references.length > 0) {
+        response += '**Academic References:**\n';
+        response += 'Peer-reviewed literature and clinical guidelines are available below for detailed information.\n';
+      }
+      
+      return response;
     }
 
-    // Add information from references if available
-    if (references.length > 0) {
-      response += '**Evidence-Based Guidelines:**\n\n';
-      response += 'The information above is supported by current clinical practice guidelines and academic literature. ';
-      response += `Key topics include: ${references.map(r => r.topic).slice(0, 3).join(', ')}.\n\n`;
-      response += 'Please review the academic references below for detailed, peer-reviewed information and treatment algorithms.\n\n';
-    }
-
-    // Add Merck Manual context
-    if (merckLinks.length > 0) {
-      response += '**Comprehensive Medical Reference:**\n\n';
-      response += 'For detailed pathophysiology, diagnostic criteria, treatment protocols, and clinical management strategies, ';
-      response += 'please consult the Merck Manual Professional links below. The Merck Manual provides:\n\n';
-      response += '• Detailed disease mechanisms and pathophysiology\n';
-      response += '• Evidence-based diagnostic approaches\n';
-      response += '• Treatment algorithms and medication guidelines\n';
-      response += '• Monitoring recommendations\n';
-      response += '• Special population considerations\n\n';
-    }
-
-    // Add guideline websites context
-    if (websites.length > 0) {
-      response += '**Clinical Practice Guidelines:**\n\n';
-      response += 'For the most current evidence-based recommendations and clinical protocols, ';
-      response += 'please review the guideline websites listed below from leading medical organizations.\n\n';
-    }
-
-    // If we have flashcard data, add a summary
-    if (flashcards.length > 0) {
-      response += '**Summary:**\n\n';
-      response += 'The information provided above is based on validated clinical resources including ';
-      response += 'our flashcard database, academic references, and authoritative medical guidelines. ';
-      response += 'For comprehensive details, please review all linked resources below.\n';
-    } else {
-      // No flashcard data, but we have other resources
-      response += '**Next Steps:**\n\n';
-      response += 'While I don\'t have specific flashcard information on this exact topic, ';
-      response += 'I\'ve identified relevant clinical guidelines and authoritative resources below. ';
-      response += 'Please review the Merck Manual Professional and guideline websites for comprehensive information.\n';
-    }
-
-    return response;
+    // If no data found at all
+    return 'I cannot provide specific information on this topic from my current database. However, I recommend consulting the Merck Manual Professional and clinical practice guidelines for comprehensive, evidence-based medical information. Please try rephrasing your question or asking about a specific medical condition, symptom, or treatment.';
   };
 
   const handleSend = () => {
@@ -527,6 +563,10 @@ export default function ChatbotScreen() {
       
       console.log('Search results:');
       console.log('- Flashcards:', relevantFlashcards.length);
+      if (relevantFlashcards.length > 0) {
+        console.log('  Top flashcard:', relevantFlashcards[0].front);
+        console.log('  Definition:', relevantFlashcards[0].back.definition);
+      }
       console.log('- References:', relevantReferences.length);
       console.log('- Websites:', relevantWebsites.length);
       console.log('- Merck links:', merckManualLinks.length);
