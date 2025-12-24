@@ -326,12 +326,12 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Aortic Regurgitation',
-    keywords: ['aortic regurgitation', 'ar', 'aortic insufficiency', 'ai'],
+    keywords: ['aortic regurgitation', 'ar', 'aortic insufficiency', 'ai', 'aortic valve regurgitation'],
     system: 'Cardiology',
-    pathophysiology: 'According to Merck Manual Professional, aortic regurgitation results from incomplete aortic valve closure during diastole, allowing backflow from aorta into left ventricle. Causes include aortic root dilation (Marfan, hypertension, aging), bicuspid valve, endocarditis, rheumatic disease, or aortic dissection. Chronic AR causes LV volume overload with eccentric hypertrophy. Acute AR causes sudden volume overload without compensatory remodeling, leading to pulmonary edema and cardiogenic shock.',
+    pathophysiology: 'According to Merck Manual Professional, aortic regurgitation results from incomplete aortic valve closure during diastole, allowing backflow from aorta into left ventricle. Causes include aortic root dilation (Marfan, hypertension, aging), bicuspid valve, rheumatic disease, or aortic dissection. Chronic AR causes LV volume overload with eccentric hypertrophy. Acute AR causes sudden volume overload without compensatory remodeling, leading to pulmonary edema and cardiogenic shock.',
     clinicalPresentation: 'Chronic AR: asymptomatic for years, then dyspnea, orthopnea, PND, and angina. Physical exam shows wide pulse pressure, bounding pulses (Corrigan pulse, water-hammer pulse), head bobbing (de Musset sign), and diastolic decrescendo murmur at left sternal border. Acute AR: sudden dyspnea, pulmonary edema, hypotension, and soft short diastolic murmur.',
-    diagnosticApproach: 'Echocardiography assesses severity (regurgitant volume, regurgitant fraction, vena contracta), LV size and function, and aortic root dimensions. Chronic severe AR: holodiastolic flow reversal in descending aorta, pressure half-time <200 ms. ECG shows LVH in chronic AR. Chest X-ray shows cardiomegaly. Cardiac MRI quantifies regurgitant volume. Evaluate for underlying cause (Marfan, endocarditis, dissection).',
-    treatment: 'Chronic AR: vasodilators (ACE inhibitors, nifedipine) reduce afterload and slow progression. Aortic valve replacement indicated for symptoms, LV dysfunction (EF <50%), or severe LV dilation (LVESD >50 mm). Acute severe AR: emergency surgery after stabilization with vasodilators and inotropes. Avoid beta-blockers in acute AR (worsen by prolonging diastole). Endocarditis prophylaxis no longer recommended.',
+    diagnosticApproach: 'Echocardiography assesses severity (regurgitant volume, regurgitant fraction, vena contracta), LV size and function, and aortic root dimensions. Chronic severe AR: holodiastolic flow reversal in descending aorta, pressure half-time <200 ms. ECG shows LVH in chronic AR. Chest X-ray shows cardiomegaly. Cardiac MRI quantifies regurgitant volume. Evaluate for underlying cause (Marfan, dissection).',
+    treatment: 'Chronic AR: vasodilators (ACE inhibitors, nifedipine) reduce afterload and slow progression. Aortic valve replacement indicated for symptoms, LV dysfunction (EF <50%), or severe LV dilation (LVESD >50 mm). Acute severe AR: emergency surgery after stabilization with vasodilators and inotropes. Avoid beta-blockers in acute AR (worsen by prolonging diastole).',
     clinicalPearls: [
       'Wide pulse pressure and bounding pulses are classic signs',
       'Acute AR is surgical emergency',
@@ -360,15 +360,15 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Mitral Regurgitation',
-    keywords: ['mitral regurgitation', 'mr', 'mitral insufficiency', 'mi'],
+    keywords: ['mitral regurgitation', 'mr', 'mitral insufficiency', 'mi', 'mitral valve regurgitation'],
     system: 'Cardiology',
-    pathophysiology: 'According to Merck Manual Professional, mitral regurgitation results from incomplete mitral valve closure during systole, allowing backflow from LV into LA. Primary MR involves valve pathology (prolapse, rheumatic disease, endocarditis, chordal rupture). Secondary (functional) MR results from LV dilation or dysfunction with structurally normal valve. Chronic MR causes LV and LA volume overload with eccentric LV hypertrophy. Acute severe MR causes sudden LA pressure rise and pulmonary edema.',
+    pathophysiology: 'According to Merck Manual Professional, mitral regurgitation results from incomplete mitral valve closure during systole, allowing backflow from LV into LA. Primary MR involves valve pathology (prolapse, rheumatic disease, chordal rupture). Secondary (functional) MR results from LV dilation or dysfunction with structurally normal valve. Chronic MR causes LV and LA volume overload with eccentric LV hypertrophy. Acute severe MR causes sudden LA pressure rise and pulmonary edema.',
     clinicalPresentation: 'Chronic MR: asymptomatic for years, then dyspnea, fatigue, and palpitations (AF). Acute MR: sudden dyspnea, pulmonary edema, and cardiogenic shock. Physical exam shows holosystolic murmur at apex radiating to axilla, best heard in left lateral decubitus position. S3 gallop common. Acute MR may have soft murmur due to rapid LA-LV pressure equalization.',
     diagnosticApproach: 'Echocardiography assesses severity (regurgitant volume, regurgitant fraction, effective regurgitant orifice area), mechanism (primary vs secondary), LV size and function, and LA size. Severe MR: vena contracta ≥0.7 cm, regurgitant volume ≥60 mL, regurgitant fraction ≥50%. ECG may show LA enlargement and AF. Chest X-ray shows cardiomegaly and LA enlargement. TEE better visualizes valve anatomy.',
     treatment: 'Chronic primary MR: mitral valve repair (preferred) or replacement for severe symptomatic MR or asymptomatic with LV dysfunction (EF <60%) or LV dilation (LVESD ≥40 mm). Transcatheter edge-to-edge repair (MitraClip) for high surgical risk. Secondary MR: optimize heart failure therapy (GDMT), CRT if indicated. Acute severe MR: emergency surgery after stabilization with vasodilators, inotropes, and IABP. Anticoagulation for AF.',
     clinicalPearls: [
       'Mitral valve repair preferred over replacement when feasible',
-      'Acute MR from papillary muscle rupture post-MI is surgical emergency',
+      'Acute MR from papillary muscle rupture is surgical emergency',
       'Flail leaflet indicates severe MR requiring surgery',
       'Secondary MR improves with optimal heart failure treatment'
     ],
@@ -379,15 +379,15 @@ export const merckManualKnowledge: MerckManualEntry[] = [
     topic: 'Mitral Valve Prolapse',
     keywords: ['mitral valve prolapse', 'mvp', 'floppy mitral valve', 'barlow disease'],
     system: 'Cardiology',
-    pathophysiology: 'According to Merck Manual Professional, mitral valve prolapse involves abnormal systolic displacement of mitral leaflets into left atrium. Results from myxomatous degeneration causing leaflet redundancy and chordal elongation. Most cases are primary (idiopathic), but MVP occurs in connective tissue disorders (Marfan, Ehlers-Danlos). Usually benign but can progress to significant mitral regurgitation, endocarditis, or arrhythmias.',
-    clinicalPresentation: 'Most patients asymptomatic. Some experience atypical chest pain, palpitations, dyspnea, or anxiety. Physical exam reveals mid-systolic click (earlier with standing, later with squatting) with or without late systolic murmur. Murmur increases with maneuvers that decrease LV volume (standing, Valsalva). Complications include progressive MR, endocarditis, arrhythmias, and rarely sudden death.',
+    pathophysiology: 'According to Merck Manual Professional, mitral valve prolapse involves abnormal systolic displacement of mitral leaflets into left atrium. Results from myxomatous degeneration causing leaflet redundancy and chordal elongation. Most cases are primary (idiopathic), but MVP occurs in connective tissue disorders (Marfan, Ehlers-Danlos). Usually benign but can progress to significant mitral regurgitation or arrhythmias.',
+    clinicalPresentation: 'Most patients asymptomatic. Some experience atypical chest pain, palpitations, dyspnea, or anxiety. Physical exam reveals mid-systolic click (earlier with standing, later with squatting) with or without late systolic murmur. Murmur increases with maneuvers that decrease LV volume (standing, Valsalva). Complications include progressive MR, arrhythmias, and rarely sudden death.',
     diagnosticApproach: 'Echocardiography is diagnostic: shows systolic displacement of mitral leaflets >2 mm beyond mitral annular plane in parasternal long-axis view. Assesses leaflet thickness, degree of prolapse, and severity of MR. ECG usually normal but may show T-wave abnormalities or arrhythmias. Holter monitor if palpitations. Exclude connective tissue disorders in young patients.',
-    treatment: 'Asymptomatic MVP without MR: reassurance, no treatment needed. Beta-blockers for symptomatic palpitations or chest pain. Severe MR: mitral valve repair or replacement per MR guidelines. Endocarditis prophylaxis no longer recommended except for prior endocarditis. Avoid dehydration and stimulants. Genetic counseling if syndromic. Monitor with serial echo if progressive MR.',
+    treatment: 'Asymptomatic MVP without MR: reassurance, no treatment needed. Beta-blockers for symptomatic palpitations or chest pain. Severe MR: mitral valve repair or replacement per MR guidelines. Avoid dehydration and stimulants. Genetic counseling if syndromic. Monitor with serial echo if progressive MR.',
     clinicalPearls: [
       'Mid-systolic click is pathognomonic',
       'Most patients have benign course',
-      'Endocarditis prophylaxis no longer recommended',
-      'Severe myxomatous disease (Barlow) has higher risk of complications'
+      'Severe myxomatous disease (Barlow) has higher risk of complications',
+      'Maneuvers that decrease preload make click earlier and murmur longer'
     ],
     merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/valvular-disorders/mitral-valve-prolapse-mvp'
   },
@@ -396,7 +396,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
     topic: 'Tricuspid Regurgitation',
     keywords: ['tricuspid regurgitation', 'tr', 'tricuspid insufficiency'],
     system: 'Cardiology',
-    pathophysiology: 'According to Merck Manual Professional, tricuspid regurgitation is most commonly functional (secondary) due to RV dilation from pulmonary hypertension or RV dysfunction. Primary TR results from valve pathology (endocarditis, rheumatic disease, carcinoid, trauma, pacemaker leads). TR causes RV volume overload and systemic venous congestion. Severe TR leads to RV failure, hepatic congestion, and peripheral edema.',
+    pathophysiology: 'According to Merck Manual Professional, tricuspid regurgitation is most commonly functional (secondary) due to RV dilation from pulmonary hypertension or RV dysfunction. Primary TR results from valve pathology (rheumatic disease, carcinoid, trauma, pacemaker leads). TR causes RV volume overload and systemic venous congestion. Severe TR leads to RV failure, hepatic congestion, and peripheral edema.',
     clinicalPresentation: 'Symptoms include fatigue, abdominal distension, peripheral edema, and right upper quadrant pain from hepatic congestion. Physical exam shows holosystolic murmur at left lower sternal border increasing with inspiration (Carvallo sign), elevated JVP with prominent V waves, pulsatile liver, ascites, and peripheral edema. Severe TR causes pulsatile hepatomegaly.',
     diagnosticApproach: 'Echocardiography assesses TR severity (vena contracta, regurgitant volume, hepatic vein flow reversal), RV size and function, and pulmonary artery pressure. Severe TR: vena contracta ≥0.7 cm, dense continuous wave Doppler signal. ECG may show right atrial enlargement and RV hypertrophy. Chest X-ray shows cardiomegaly and RA enlargement. Right heart catheterization measures pulmonary pressures.',
     treatment: 'Treat underlying cause: pulmonary hypertension therapy, optimize left heart failure treatment. Diuretics for volume overload. Severe symptomatic TR: tricuspid valve repair (preferred) or replacement, often performed during left-sided valve surgery. Transcatheter tricuspid valve interventions emerging. Isolated TR surgery has high operative risk. Treat atrial fibrillation if present.',
@@ -498,7 +498,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Myocarditis',
-    keywords: ['myocarditis', 'viral myocarditis', 'inflammatory cardiomyopathy'],
+    keywords: ['myocarditis', 'viral myocarditis', 'inflammatory cardiomyopathy', 'cardiac inflammation'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, myocarditis is inflammation of the myocardium, most commonly from viral infection (coxsackievirus, adenovirus, parvovirus B19, COVID-19). Other causes include autoimmune diseases, drugs (immune checkpoint inhibitors, clozapine), toxins, and giant cell myocarditis. Inflammation causes myocyte injury and dysfunction. May progress to dilated cardiomyopathy. Fulminant myocarditis causes severe acute heart failure.',
     clinicalPresentation: 'Presentation varies from asymptomatic to fulminant heart failure or sudden death. Symptoms include chest pain (may mimic MI), dyspnea, palpitations, and fatigue. Often preceded by viral prodrome. Physical exam may show tachycardia, S3 gallop, and signs of heart failure. Fulminant myocarditis presents with cardiogenic shock.',
@@ -568,16 +568,16 @@ export const merckManualKnowledge: MerckManualEntry[] = [
   // ENDOCARDITIS
   {
     topic: 'Infective Endocarditis',
-    keywords: ['endocarditis', 'infective endocarditis', 'bacterial endocarditis', 'ie'],
+    keywords: ['endocarditis', 'infective endocarditis', 'bacterial endocarditis', 'ie', 'valve infection', 'heart valve infection'],
     system: 'Cardiology',
-    pathophysiology: 'According to Merck Manual Professional, infective endocarditis is infection of endocardial surface, typically heart valves, caused by bacteria (Streptococcus viridans, Staphylococcus aureus, enterococci) or fungi. Bacteremia seeds damaged or abnormal valves, forming vegetations (infected thrombi). Vegetations cause valve destruction, regurgitation, and emboli. Risk factors include prosthetic valves, prior endocarditis, structural heart disease, IV drug use, and poor dentition.',
-    clinicalPresentation: 'Fever (90%), new or changing murmur, and signs of systemic illness (fatigue, weight loss, night sweats). Embolic phenomena: stroke, splenic infarct, renal infarct. Immunologic phenomena: Osler nodes (painful finger/toe nodules), Janeway lesions (painless palmar/plantar macules), Roth spots (retinal hemorrhages), glomerulonephritis. Acute S. aureus endocarditis presents with sepsis and rapid valve destruction.',
-    diagnosticApproach: 'Modified Duke criteria: 2 major, 1 major + 3 minor, or 5 minor criteria. Major: positive blood cultures (2 separate cultures with typical organisms), endocardial involvement on echo (vegetation, abscess, new regurgitation). Minor: predisposing condition, fever, vascular/immunologic phenomena, positive blood culture not meeting major criteria. Echocardiography: TTE first, TEE if TTE negative or prosthetic valve. Blood cultures before antibiotics.',
-    treatment: 'Prolonged IV antibiotics (4-6 weeks): native valve streptococcal endocarditis - penicillin or ceftriaxone; S. aureus - nafcillin or vancomycin; enterococcal - ampicillin + gentamicin. Surgery indicated for heart failure, uncontrolled infection, large vegetations (>10 mm), recurrent emboli, or prosthetic valve endocarditis. Antibiotic prophylaxis only for high-risk patients (prosthetic valve, prior endocarditis) undergoing dental procedures.',
+    pathophysiology: 'According to Merck Manual Professional, infective endocarditis is infection of endocardial surface, typically heart valves, caused by bacteria (Streptococcus viridans, Staphylococcus aureus, enterococci) or fungi. Bacteremia seeds damaged or abnormal valves, forming vegetations (infected thrombi). Vegetations cause valve destruction and emboli. Risk factors include prosthetic valves, prior IE, structural heart disease, IV drug use, and poor dentition.',
+    clinicalPresentation: 'Fever (90%), new or changing murmur, and signs of systemic illness (fatigue, weight loss, night sweats). Embolic phenomena: stroke, splenic infarct, renal infarct. Immunologic phenomena: Osler nodes (painful finger/toe nodules), Janeway lesions (painless palmar/plantar macules), Roth spots (retinal hemorrhages), glomerulonephritis. Acute S. aureus IE presents with sepsis and rapid valve destruction.',
+    diagnosticApproach: 'Modified Duke criteria: 2 major, 1 major + 3 minor, or 5 minor criteria. Major: positive blood cultures (2 separate cultures with typical organisms), endocardial involvement on echo (vegetation, abscess, new valve dysfunction). Minor: predisposing condition, fever, vascular/immunologic phenomena, positive blood culture not meeting major criteria. Echocardiography: TTE first, TEE if TTE negative or prosthetic valve. Blood cultures before antibiotics.',
+    treatment: 'Prolonged IV antibiotics (4-6 weeks): native valve streptococcal IE - penicillin or ceftriaxone; S. aureus - nafcillin or vancomycin; enterococcal - ampicillin + gentamicin. Surgery indicated for heart failure, uncontrolled infection, large vegetations (>10 mm), recurrent emboli, or prosthetic valve IE. Antibiotic prophylaxis only for high-risk patients (prosthetic valve, prior IE) undergoing dental procedures.',
     clinicalPearls: [
       'Three sets of blood cultures before starting antibiotics',
       'TEE more sensitive than TTE for vegetations and complications',
-      'S. aureus endocarditis often requires surgery',
+      'S. aureus IE often requires surgery',
       'Antibiotic prophylaxis no longer recommended for most patients'
     ],
     merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/endocarditis/infective-endocarditis'
@@ -993,42 +993,46 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
 /**
  * Search function to find relevant Merck Manual entries based on query
+ * IMPROVED: Better keyword matching to prevent false positives
  */
 export function searchMerckManualKnowledge(query: string): MerckManualEntry[] {
-  const lowerQuery = query.toLowerCase();
+  const lowerQuery = query.toLowerCase().trim();
   const queryWords = lowerQuery.split(' ').filter(word => word.length > 2);
   
   const scoredEntries = merckManualKnowledge.map(entry => {
     let score = 0;
     
-    // Check topic name (highest priority)
+    // EXACT TOPIC MATCH - Highest priority (massive boost)
     if (entry.topic.toLowerCase() === lowerQuery) {
-      score += 100;
+      score += 1000;
     } else if (entry.topic.toLowerCase().includes(lowerQuery)) {
-      score += 50;
+      score += 100;
     }
     
-    // Check keywords (high priority)
+    // EXACT KEYWORD MATCH - Very high priority
     entry.keywords.forEach(keyword => {
       if (keyword === lowerQuery) {
-        score += 80;
-      } else if (keyword.includes(lowerQuery) || lowerQuery.includes(keyword)) {
-        score += 40;
+        score += 500; // Exact match gets huge boost
+      } else if (keyword.includes(lowerQuery) && lowerQuery.length > 3) {
+        // Only partial match if query is substantial
+        score += 50;
       }
     });
     
-    // Check individual query words against keywords
-    queryWords.forEach(word => {
-      entry.keywords.forEach(keyword => {
-        if (keyword.includes(word)) {
-          score += 10;
-        }
+    // INDIVIDUAL QUERY WORDS - Lower priority, only for multi-word queries
+    if (queryWords.length > 1) {
+      queryWords.forEach(word => {
+        entry.keywords.forEach(keyword => {
+          if (keyword.includes(word) && word.length > 3) {
+            score += 5;
+          }
+        });
       });
-    });
+    }
     
-    // Check system
+    // SYSTEM MATCH - Lowest priority
     if (entry.system.toLowerCase().includes(lowerQuery)) {
-      score += 5;
+      score += 2;
     }
     
     return { entry, score };
