@@ -10,6 +10,8 @@
  * - Diagnostic approach
  * - Treatment recommendations
  * - Merck Manual URL for reference
+ * 
+ * COMPREHENSIVE CARDIOLOGY COVERAGE - ALL MAJOR TOPICS
  */
 
 export interface MerckManualEntry {
@@ -25,7 +27,11 @@ export interface MerckManualEntry {
 }
 
 export const merckManualKnowledge: MerckManualEntry[] = [
-  // CARDIOLOGY
+  // ============================================================================
+  // COMPREHENSIVE CARDIOLOGY SECTION - ALL MAJOR TOPICS
+  // ============================================================================
+
+  // ARRHYTHMIAS & CONDUCTION DISORDERS
   {
     topic: 'Atrial Fibrillation',
     keywords: ['atrial fibrillation', 'afib', 'af', 'irregular rhythm', 'arrhythmia'],
@@ -42,6 +48,144 @@ export const merckManualKnowledge: MerckManualEntry[] = [
     ],
     merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/arrhythmias-and-conduction-disorders/atrial-fibrillation'
   },
+
+  {
+    topic: 'Atrial Flutter',
+    keywords: ['atrial flutter', 'flutter', 'sawtooth', 'f waves'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, atrial flutter is a macroreentrant atrial tachycardia, typically involving a circuit around the tricuspid annulus (typical flutter) or other atrial structures (atypical flutter). The atrial rate is usually 250-350 bpm with a characteristic sawtooth pattern on ECG. AV node conduction typically occurs in a 2:1 or 4:1 ratio, resulting in ventricular rates of 125-175 bpm or 75-100 bpm respectively.',
+    clinicalPresentation: 'Patients present with palpitations, dyspnea, chest discomfort, or lightheadedness. Some patients are asymptomatic. Physical examination may reveal a regular or regularly irregular pulse depending on AV conduction ratio. Symptoms are often more pronounced than in atrial fibrillation due to faster ventricular rates.',
+    diagnosticApproach: 'ECG shows characteristic sawtooth flutter waves (F waves) best seen in leads II, III, aVF, and V1. Atrial rate is typically 250-350 bpm. Carotid sinus massage or adenosine can transiently slow AV conduction to unmask flutter waves. Echocardiography evaluates for structural heart disease. Electrophysiology study may be needed for atypical flutter.',
+    treatment: 'Rate control with beta-blockers or calcium channel blockers. Cardioversion (electrical or pharmacologic with ibutilide) for rhythm control. Catheter ablation of the cavotricuspid isthmus is highly effective for typical flutter (>90% success rate). Anticoagulation based on CHA2DS2-VASc score as stroke risk similar to atrial fibrillation. Treat underlying causes.',
+    clinicalPearls: [
+      'Flutter often coexists with or converts to atrial fibrillation',
+      'Catheter ablation is curative for typical flutter with high success rates',
+      'Anticoagulation requirements same as atrial fibrillation',
+      'Class IC antiarrhythmics can paradoxically increase ventricular rate by slowing flutter rate and improving AV conduction'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/arrhythmias-and-conduction-disorders/atrial-flutter'
+  },
+
+  {
+    topic: 'Supraventricular Tachycardia',
+    keywords: ['svt', 'supraventricular tachycardia', 'psvt', 'paroxysmal supraventricular tachycardia', 'avnrt', 'avrt'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, supraventricular tachycardia encompasses narrow-complex tachycardias originating above the ventricles. The most common mechanisms are AV nodal reentrant tachycardia (AVNRT, 60% of cases) involving dual AV nodal pathways, and AV reentrant tachycardia (AVRT, 30%) involving an accessory pathway. Atrial tachycardia accounts for the remaining 10%. These arrhythmias typically have abrupt onset and termination.',
+    clinicalPresentation: 'Patients experience sudden onset of rapid, regular palpitations, often described as "fluttering" in the chest. Associated symptoms include dyspnea, chest discomfort, lightheadedness, diaphoresis, and anxiety. Polyuria may occur due to atrial natriuretic peptide release. Episodes may last seconds to hours. Physical examination during tachycardia reveals rapid, regular pulse (typically 150-250 bpm).',
+    diagnosticApproach: 'ECG during tachycardia shows narrow QRS complex (<120 ms) with regular rhythm at 150-250 bpm. P waves may be buried in QRS (AVNRT), visible after QRS (AVRT), or precede QRS (atrial tachycardia). Vagal maneuvers or adenosine administration can terminate tachycardia or reveal underlying mechanism. Baseline ECG may show delta wave in Wolff-Parkinson-White syndrome. Electrophysiology study defines mechanism and guides ablation.',
+    treatment: 'Acute management: vagal maneuvers (Valsalva, carotid massage) first-line. If unsuccessful, adenosine 6 mg rapid IV push, then 12 mg if needed. Alternative agents include diltiazem or metoprolol. Unstable patients require synchronized cardioversion. Long-term management: catheter ablation is curative (>95% success for AVNRT). Beta-blockers or calcium channel blockers for infrequent episodes. Avoid AV nodal blockers in WPW with atrial fibrillation.',
+    clinicalPearls: [
+      'Adenosine causes brief asystole and chest discomfort - warn patients',
+      'Document rhythm strip during adenosine administration',
+      'Catheter ablation is highly effective and curative',
+      'WPW with atrial fibrillation requires procainamide, not AV nodal blockers'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/arrhythmias-and-conduction-disorders/paroxysmal-supraventricular-tachycardia-psvt'
+  },
+
+  {
+    topic: 'Ventricular Tachycardia',
+    keywords: ['ventricular tachycardia', 'vt', 'v-tach', 'wide complex tachycardia'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, ventricular tachycardia is defined as three or more consecutive ventricular beats at a rate >100 bpm. Monomorphic VT (uniform QRS morphology) typically results from reentry around myocardial scar, most commonly post-MI. Polymorphic VT (varying QRS morphology) suggests acute ischemia or channelopathy. VT impairs cardiac output due to loss of AV synchrony, rapid rate, and underlying ventricular dysfunction.',
+    clinicalPresentation: 'Presentation ranges from asymptomatic to cardiac arrest. Symptoms include palpitations, dyspnea, chest pain, presyncope, or syncope. Sustained VT (>30 seconds) often causes hemodynamic compromise. Physical examination may reveal cannon A waves in jugular venous pulse (AV dissociation), variable S1 intensity, and signs of heart failure. Pulseless VT is a cardiac arrest rhythm.',
+    diagnosticApproach: 'ECG shows wide QRS complex (>120 ms) tachycardia at 100-250 bpm. Features favoring VT over SVT with aberrancy include: AV dissociation, fusion beats, capture beats, QRS >140 ms, extreme axis deviation, and specific QRS morphology criteria (Brugada criteria). Assume wide complex tachycardia is VT until proven otherwise, especially in patients with structural heart disease. Echocardiography and cardiac MRI evaluate for structural disease.',
+    treatment: 'Pulseless VT: immediate defibrillation per ACLS protocol. Stable monomorphic VT: amiodarone or procainamide IV. Unstable VT: synchronized cardioversion. Polymorphic VT: treat underlying cause (ischemia, electrolytes, QT prolongation). Long-term: ICD for secondary prevention. Catheter ablation for recurrent VT despite medical therapy. Beta-blockers reduce VT recurrence. Treat underlying heart disease and ischemia.',
+    clinicalPearls: [
+      'Assume wide complex tachycardia is VT in patients with known heart disease',
+      'AV dissociation, fusion beats, and capture beats are diagnostic of VT',
+      'ICD is indicated for sustained VT with structural heart disease',
+      'Polymorphic VT requires evaluation for acute ischemia and QT prolongation'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/arrhythmias-and-conduction-disorders/ventricular-tachycardia'
+  },
+
+  {
+    topic: 'Ventricular Fibrillation',
+    keywords: ['ventricular fibrillation', 'vfib', 'vf', 'cardiac arrest'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, ventricular fibrillation is chaotic, disorganized ventricular electrical activity resulting in no effective cardiac output. Multiple reentrant wavelets cause rapid, irregular ventricular depolarization without coordinated contraction. VF is the most common initial rhythm in sudden cardiac arrest. Common causes include acute MI, severe ischemia, cardiomyopathy, channelopathies, electrolyte abnormalities, and drug toxicity.',
+    clinicalPresentation: 'VF causes immediate loss of consciousness and cardiac arrest. No pulse, blood pressure, or cardiac output. Agonal respirations may be present initially. Without immediate intervention, death occurs within minutes. Witnessed arrest may have brief prodrome of chest pain, palpitations, or dyspnea.',
+    diagnosticApproach: 'ECG shows irregular, chaotic waveforms without identifiable QRS complexes, P waves, or T waves. Amplitude may be coarse (>3 mm) or fine (<3 mm). Diagnosis is clinical: unresponsive patient without pulse. Confirm pulselessness and begin CPR immediately. Post-resuscitation evaluation includes ECG, cardiac biomarkers, echocardiography, coronary angiography, and electrolyte assessment.',
+    treatment: 'Immediate defibrillation is critical - survival decreases 7-10% per minute delay. Follow ACLS protocol: CPR with high-quality chest compressions, defibrillation, epinephrine, and amiodarone. Treat reversible causes (Hs and Ts). Post-cardiac arrest care includes targeted temperature management, coronary angiography/PCI if indicated, and ICD placement for secondary prevention. Address underlying cause.',
+    clinicalPearls: [
+      'Immediate defibrillation is the only effective treatment',
+      'Survival decreases dramatically with each minute of delay',
+      'ICD is indicated for survivors without reversible cause',
+      'Evaluate for inherited arrhythmia syndromes in young patients'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/arrhythmias-and-conduction-disorders/ventricular-fibrillation'
+  },
+
+  {
+    topic: 'Torsades de Pointes',
+    keywords: ['torsades de pointes', 'torsades', 'polymorphic vt', 'long qt'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, torsades de pointes is a specific form of polymorphic ventricular tachycardia associated with QT interval prolongation. The name describes the characteristic "twisting of the points" appearance as QRS amplitude oscillates around the baseline. Caused by early afterdepolarizations from delayed ventricular repolarization. Triggers include hypokalemia, hypomagnesemia, bradycardia, and QT-prolonging drugs.',
+    clinicalPresentation: 'Episodes are typically brief and self-terminating, causing palpitations, lightheadedness, or syncope. May degenerate into sustained VT or ventricular fibrillation causing cardiac arrest. Patients often have history of recurrent syncope. Physical examination between episodes may be normal. Prolonged QTc on baseline ECG is key finding.',
+    diagnosticApproach: 'ECG during episode shows polymorphic VT with characteristic twisting QRS morphology and rate 200-250 bpm. Baseline ECG shows prolonged QTc (>500 ms high risk). Measure QTc using Bazett formula: QT/√RR. Identify precipitants: check electrolytes (K+, Mg2+, Ca2+), review medications, assess for congenital long QT syndrome. Genetic testing if suspected inherited channelopathy.',
+    treatment: 'Acute: IV magnesium sulfate 2g over 1-2 minutes, even if serum magnesium normal. Correct electrolytes (K+ >4.5, Mg2+ >2). Discontinue QT-prolonging drugs. Temporary pacing or isoproterenol to increase heart rate and shorten QT. Defibrillation if degenerates to VF. Long-term: avoid QT-prolonging drugs, correct electrolytes, beta-blockers for congenital LQTS, ICD for high-risk patients.',
+    clinicalPearls: [
+      'Magnesium is first-line treatment even if serum level normal',
+      'Avoid Class Ia and III antiarrhythmics as they prolong QT',
+      'Increasing heart rate (pacing or isoproterenol) shortens QT and prevents recurrence',
+      'Screen family members if congenital long QT syndrome suspected'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/arrhythmias-and-conduction-disorders/torsades-de-pointes'
+  },
+
+  {
+    topic: 'Wolff-Parkinson-White Syndrome',
+    keywords: ['wpw', 'wolff parkinson white', 'accessory pathway', 'delta wave', 'pre-excitation'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, WPW syndrome results from an accessory pathway (Bundle of Kent) that bypasses the AV node, allowing direct electrical connection between atria and ventricles. This causes ventricular pre-excitation with characteristic delta wave on ECG. The accessory pathway can conduct rapidly, creating risk of life-threatening arrhythmias, particularly if atrial fibrillation develops and conducts rapidly to ventricles.',
+    clinicalPresentation: 'Many patients are asymptomatic with incidental ECG findings. Symptomatic patients experience paroxysmal supraventricular tachycardia (orthodromic AVRT most common). Palpitations, dyspnea, chest discomfort, presyncope, or syncope. Atrial fibrillation with rapid ventricular response via accessory pathway can cause hemodynamic collapse or degenerate to ventricular fibrillation. Physical examination between episodes is typically normal.',
+    diagnosticApproach: 'Baseline ECG shows short PR interval (<120 ms), delta wave (slurred upstroke of QRS), and wide QRS complex (>120 ms). During orthodromic AVRT, ECG shows narrow complex tachycardia with retrograde P waves. During atrial fibrillation, irregular wide complex tachycardia with varying QRS morphology. Electrophysiology study localizes accessory pathway and assesses risk. Exercise testing may unmask intermittent pre-excitation.',
+    treatment: 'Asymptomatic patients: observation vs. catheter ablation based on occupation and patient preference. Symptomatic patients: catheter ablation is curative (>95% success rate) and first-line therapy. Acute AVRT: vagal maneuvers, adenosine, or cardioversion. Atrial fibrillation with WPW: procainamide or ibutilide (NOT AV nodal blockers which can accelerate conduction via accessory pathway). Avoid digoxin, beta-blockers, and calcium channel blockers in WPW with AF.',
+    clinicalPearls: [
+      'Never use AV nodal blockers (digoxin, beta-blockers, CCBs) in WPW with atrial fibrillation',
+      'Catheter ablation is curative and preferred for symptomatic patients',
+      'Rapid irregular wide complex tachycardia in WPW suggests AF with pre-excitation',
+      'High-risk occupations (pilots, athletes) may warrant prophylactic ablation'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/arrhythmias-and-conduction-disorders/wolff-parkinson-white-wpw-syndrome'
+  },
+
+  {
+    topic: 'Sick Sinus Syndrome',
+    keywords: ['sick sinus syndrome', 'sinus node dysfunction', 'brady-tachy syndrome', 'sinus pause'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, sick sinus syndrome encompasses various sinus node dysfunctions including sinus bradycardia, sinus arrest, sinoatrial block, and alternating bradycardia-tachycardia (brady-tachy syndrome). Results from degenerative fibrosis of sinus node, often age-related. May be exacerbated by medications (beta-blockers, calcium channel blockers, digoxin). Associated with atrial fibrillation in 50% of cases.',
+    clinicalPresentation: 'Symptoms result from bradycardia or tachycardia episodes: fatigue, exercise intolerance, dyspnea, presyncope, syncope, palpitations, or confusion. Brady-tachy syndrome causes alternating symptoms. Many patients are asymptomatic. Physical examination may reveal bradycardia, irregular pulse, or be normal between episodes. Symptoms often correlate with medication changes.',
+    diagnosticApproach: 'ECG may show sinus bradycardia (<50 bpm), sinus pauses (>3 seconds), sinoatrial block, or alternating bradycardia and tachycardia. Holter monitor or event recorder correlates symptoms with rhythm. Exercise testing evaluates chronotropic incompetence (failure to increase heart rate appropriately). Electrophysiology study measures sinus node recovery time if diagnosis uncertain. Exclude reversible causes (hypothyroidism, medications, sleep apnea).',
+    treatment: 'Discontinue or reduce AV nodal blocking medications if possible. Symptomatic bradycardia requires permanent pacemaker (dual-chamber preferred). Brady-tachy syndrome: pacemaker allows safe use of rate-controlling drugs for tachycardia. Anticoagulation for atrial fibrillation based on CHA2DS2-VASc score. Treat underlying conditions. Asymptomatic patients may be observed.',
+    clinicalPearls: [
+      'Pacemaker indicated for symptomatic bradycardia or pauses >3 seconds',
+      'Brady-tachy syndrome requires pacemaker before treating tachycardia',
+      'Dual-chamber pacing preferred to maintain AV synchrony',
+      'Screen for sleep apnea which can worsen sinus node dysfunction'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/arrhythmias-and-conduction-disorders/sick-sinus-syndrome'
+  },
+
+  {
+    topic: 'Atrioventricular Block',
+    keywords: ['av block', 'heart block', 'first degree av block', 'second degree av block', 'third degree av block', 'complete heart block', 'mobitz'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, AV block represents impaired conduction from atria to ventricles. First-degree: prolonged AV conduction (PR >200 ms) but all impulses conducted. Second-degree Mobitz I (Wenckebach): progressive PR prolongation until dropped beat, typically at AV node level. Second-degree Mobitz II: intermittent non-conducted P waves without PR prolongation, typically infranodal. Third-degree (complete): no atrial impulses conducted, atria and ventricles beat independently.',
+    clinicalPresentation: 'First-degree AV block is asymptomatic. Mobitz I often asymptomatic or causes mild symptoms. Mobitz II and third-degree block cause fatigue, dyspnea, presyncope, syncope (Stokes-Adams attacks), or heart failure. Physical examination may reveal bradycardia, cannon A waves (AV dissociation), and variable S1 intensity in complete heart block.',
+    diagnosticApproach: 'ECG diagnosis: First-degree shows PR >200 ms with all P waves conducted. Mobitz I shows progressive PR lengthening then dropped QRS (Wenckebach periodicity). Mobitz II shows constant PR with intermittent non-conducted P waves. Third-degree shows complete AV dissociation with regular P-P and R-R intervals but no relationship between them. Evaluate for reversible causes (medications, electrolytes, Lyme disease, ischemia). Echocardiography assesses structural disease.',
+    treatment: 'First-degree: observation, no treatment needed. Mobitz I: observation if asymptomatic; pacemaker if symptomatic. Mobitz II: permanent pacemaker indicated due to high risk of progression to complete block. Third-degree: temporary pacing if acute (MI, medications, Lyme disease) with treatment of underlying cause; permanent pacemaker if chronic or symptomatic. Atropine or transcutaneous pacing for acute symptomatic bradycardia.',
+    clinicalPearls: [
+      'Mobitz II has high risk of sudden progression to complete heart block',
+      'Third-degree block with narrow QRS escape suggests junctional escape (more stable)',
+      'Third-degree block with wide QRS escape suggests ventricular escape (less stable)',
+      'New AV block in setting of MI may be temporary but requires monitoring'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/arrhythmias-and-conduction-disorders/atrioventricular-block'
+  },
+
+  // HEART FAILURE
   {
     topic: 'Heart Failure',
     keywords: ['heart failure', 'hf', 'chf', 'congestive heart failure', 'hfref', 'hfpef', 'cardiac failure'],
@@ -58,6 +202,42 @@ export const merckManualKnowledge: MerckManualEntry[] = [
     ],
     merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/heart-failure/heart-failure-hf'
   },
+
+  {
+    topic: 'Acute Decompensated Heart Failure',
+    keywords: ['acute heart failure', 'adhf', 'decompensated heart failure', 'flash pulmonary edema', 'cardiogenic pulmonary edema'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, acute decompensated heart failure represents rapid worsening of heart failure signs and symptoms requiring urgent evaluation and treatment. Results from increased preload (volume overload), increased afterload (hypertension), decreased contractility (ischemia, arrhythmia), or combination. Pulmonary and systemic congestion develop rapidly. Common precipitants include medication non-compliance, dietary indiscretion, arrhythmias, ischemia, infection, and uncontrolled hypertension.',
+    clinicalPresentation: 'Acute dyspnea at rest, orthopnea, paroxysmal nocturnal dyspnea, and cough with frothy sputum. Physical examination reveals tachypnea, hypoxemia, pulmonary rales, elevated JVP, S3 gallop, and peripheral edema. Patients may be hypertensive (flash pulmonary edema) or hypotensive (cardiogenic shock). Severe cases present with respiratory failure requiring mechanical ventilation.',
+    diagnosticApproach: 'Clinical diagnosis supported by elevated BNP/NT-proBNP. Chest X-ray shows pulmonary edema (Kerley B lines, cephalization, pleural effusions) and cardiomegaly. ECG may reveal ischemia, arrhythmia, or LVH. Echocardiography assesses ventricular function and identifies precipitants. Arterial blood gas shows hypoxemia and respiratory alkalosis initially. Cardiac biomarkers rule out acute coronary syndrome.',
+    treatment: 'Oxygen to maintain SpO2 >90%. IV loop diuretics (furosemide) for volume overload. Vasodilators (nitroglycerin, nitroprusside) reduce preload and afterload if hypertensive. Non-invasive positive pressure ventilation (BiPAP) improves oxygenation and reduces work of breathing. Inotropes (dobutamine, milrinone) for low cardiac output. Treat precipitants (ischemia, arrhythmia, infection). Mechanical circulatory support for refractory cardiogenic shock.',
+    clinicalPearls: [
+      'Identify and treat precipitating factors',
+      'IV diuretics more effective than oral in acute setting',
+      'BiPAP reduces intubation rates and improves outcomes',
+      'Avoid excessive diuresis which can worsen renal function'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/heart-failure/acute-decompensated-heart-failure-adhf'
+  },
+
+  {
+    topic: 'Cardiogenic Shock',
+    keywords: ['cardiogenic shock', 'cardiac shock', 'pump failure', 'low cardiac output'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, cardiogenic shock results from severe impairment of cardiac output causing inadequate tissue perfusion despite adequate intravascular volume. Most commonly caused by extensive MI (>40% LV involvement), but also results from acute valvular dysfunction, myocarditis, or end-stage cardiomyopathy. Compensatory mechanisms (tachycardia, vasoconstriction) initially maintain blood pressure but worsen myocardial oxygen supply-demand mismatch, creating vicious cycle.',
+    clinicalPresentation: 'Hypotension (SBP <90 mmHg), signs of hypoperfusion (cool extremities, altered mental status, oliguria), and pulmonary congestion. Physical examination reveals tachycardia, weak pulse, cool clammy skin, elevated JVP, pulmonary rales, and S3 gallop. Hemodynamic criteria: cardiac index <2.2 L/min/m², pulmonary capillary wedge pressure >15 mmHg.',
+    diagnosticApproach: 'Clinical diagnosis based on hypotension and hypoperfusion. Echocardiography assesses LV function and identifies mechanical complications (VSD, papillary muscle rupture, free wall rupture). ECG and cardiac biomarkers diagnose MI. Pulmonary artery catheterization confirms diagnosis and guides therapy. Arterial blood gas shows metabolic acidosis and elevated lactate. Coronary angiography for revascularization if ischemic cause.',
+    treatment: 'Urgent revascularization (PCI or CABG) for MI-related shock. Inotropic support (dobutamine, milrinone) to improve cardiac output. Vasopressors (norepinephrine) if hypotension persists. Mechanical circulatory support (intra-aortic balloon pump, Impella, ECMO) for refractory shock. Surgical repair of mechanical complications. Avoid excessive fluid administration. Treat arrhythmias. Consider heart transplantation for irreversible causes.',
+    clinicalPearls: [
+      'Early revascularization improves survival in MI-related cardiogenic shock',
+      'Mechanical circulatory support bridges to recovery or transplantation',
+      'Avoid beta-blockers and ACE inhibitors in acute phase',
+      'Mortality remains high (40-50%) despite optimal therapy'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/critical-care-medicine/shock-and-fluid-resuscitation/cardiogenic-shock'
+  },
+
+  // ISCHEMIC HEART DISEASE
   {
     topic: 'Myocardial Infarction',
     keywords: ['myocardial infarction', 'mi', 'heart attack', 'stemi', 'nstemi', 'acute coronary syndrome', 'acs'],
@@ -74,6 +254,59 @@ export const merckManualKnowledge: MerckManualEntry[] = [
     ],
     merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/coronary-artery-disease/acute-myocardial-infarction-mi'
   },
+
+  {
+    topic: 'Unstable Angina',
+    keywords: ['unstable angina', 'ua', 'crescendo angina', 'rest angina', 'new onset angina'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, unstable angina is part of acute coronary syndrome spectrum, characterized by myocardial ischemia without myocardial necrosis (negative cardiac biomarkers). Results from non-occlusive thrombus on disrupted atherosclerotic plaque, causing transient severe ischemia. Represents high-risk state with significant progression to MI or death. Distinguished from NSTEMI only by absence of troponin elevation.',
+    clinicalPresentation: 'Three patterns: rest angina (occurring at rest or minimal exertion), new-onset angina (severe, within 2 months), or crescendo angina (increasing frequency, severity, or duration). Chest discomfort similar to MI but may be briefer. Physical examination often normal between episodes. High-risk features include prolonged pain, hemodynamic instability, or new mitral regurgitation murmur.',
+    diagnosticApproach: 'ECG may show ST depression, T-wave inversion, or be normal. Serial cardiac troponins are negative (distinguishes from NSTEMI). Risk stratification using TIMI or GRACE scores guides management. Stress testing or coronary CT angiography for low-risk patients. Coronary angiography for high-risk patients or those with recurrent symptoms despite medical therapy.',
+    treatment: 'Antiplatelet therapy: aspirin plus P2Y12 inhibitor (ticagrelor or prasugrel preferred over clopidogrel). Anticoagulation with heparin or fondaparinux. Beta-blockers and nitrates for symptom control. High-intensity statin. Early invasive strategy (coronary angiography within 24-72 hours) for high-risk patients. Medical management with delayed angiography for low-risk patients. Revascularization (PCI or CABG) based on anatomy.',
+    clinicalPearls: [
+      'Unstable angina and NSTEMI managed similarly - only differ by troponin',
+      'TIMI score ≥3 or GRACE score >140 indicates high risk',
+      'Dual antiplatelet therapy for 12 months post-ACS',
+      'Avoid NSAIDs which increase cardiovascular risk'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/coronary-artery-disease/unstable-angina'
+  },
+
+  {
+    topic: 'Stable Angina Pectoris',
+    keywords: ['stable angina', 'chronic stable angina', 'exertional angina', 'angina pectoris'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, stable angina results from fixed coronary artery stenosis (typically >70%) causing myocardial oxygen supply-demand mismatch during increased cardiac workload. Atherosclerotic plaque narrows coronary lumen, limiting blood flow during exertion or stress. Symptoms are predictable and reproducible with similar levels of exertion. Represents chronic coronary syndrome with lower acute event risk than unstable angina.',
+    clinicalPresentation: 'Predictable chest discomfort with exertion, emotional stress, or cold exposure, relieved by rest or nitroglycerin within 5-10 minutes. Described as pressure, tightness, or heaviness in substernal or left chest, may radiate to arm, jaw, or back. Canadian Cardiovascular Society (CCS) classification grades severity. Physical examination typically normal at rest.',
+    diagnosticApproach: 'Diagnosis based on clinical history. Resting ECG often normal but may show prior MI or LVH. Stress testing (exercise ECG, stress echo, or nuclear imaging) demonstrates inducible ischemia. Coronary CT angiography evaluates coronary anatomy non-invasively. Invasive coronary angiography defines extent and severity of disease, guides revascularization. Assess cardiovascular risk factors.',
+    treatment: 'Medical therapy: antiplatelet (aspirin), beta-blocker, statin, ACE inhibitor if diabetes or LV dysfunction. Antianginal therapy: sublingual nitroglycerin for acute episodes; long-acting nitrates, beta-blockers, or calcium channel blockers for prevention. Ranolazine for refractory angina. Revascularization (PCI or CABG) for refractory symptoms or high-risk anatomy (left main, proximal LAD, three-vessel disease). Aggressive risk factor modification.',
+    clinicalPearls: [
+      'Stable angina has predictable pattern - change in pattern suggests unstable angina',
+      'Beta-blockers are first-line for angina prevention and improve outcomes',
+      'CABG superior to PCI for left main or three-vessel disease',
+      'Cardiac rehabilitation improves symptoms and reduces events'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/coronary-artery-disease/stable-angina-pectoris'
+  },
+
+  {
+    topic: 'Prinzmetal Angina',
+    keywords: ['prinzmetal angina', 'variant angina', 'vasospastic angina', 'coronary vasospasm'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, Prinzmetal (variant) angina results from coronary artery vasospasm causing transient complete or near-complete occlusion, typically in absence of significant atherosclerosis. Spasm usually occurs at rest, often in early morning hours. Mechanism involves endothelial dysfunction, smooth muscle hyperreactivity, and autonomic imbalance. May be triggered by smoking, cocaine, cold exposure, or hyperventilation.',
+    clinicalPresentation: 'Chest pain at rest, typically between midnight and 8 AM, lasting 5-15 minutes. Pain similar to typical angina but occurs without exertion. May be associated with palpitations or syncope if arrhythmias occur. Physical examination normal between episodes. Smoking and cocaine use are common associations.',
+    diagnosticApproach: 'ECG during pain shows transient ST elevation that resolves with symptom relief. Cardiac biomarkers typically negative unless prolonged spasm causes MI. Coronary angiography may show normal or minimal disease; provocative testing with ergonovine or acetylcholine can induce spasm. Holter monitoring may capture ST elevation during nocturnal episodes. Exclude cocaine use.',
+    treatment: 'Calcium channel blockers (diltiazem or amlodipine) are first-line, prevent vasospasm. Long-acting nitrates also effective. Avoid beta-blockers which may worsen vasospasm through unopposed alpha-mediated vasoconstriction. Smoking cessation essential. Avoid triggers (cocaine, cold exposure). Aspirin use controversial. Refractory cases may require high-dose calcium channel blockers or combination therapy.',
+    clinicalPearls: [
+      'ST elevation during pain that resolves is diagnostic',
+      'Beta-blockers contraindicated - may worsen vasospasm',
+      'Calcium channel blockers are highly effective',
+      'Screen for cocaine use in young patients with vasospastic angina'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/coronary-artery-disease/prinzmetal-angina'
+  },
+
+  // VALVULAR HEART DISEASE
   {
     topic: 'Aortic Stenosis',
     keywords: ['aortic stenosis', 'as', 'aortic valve stenosis', 'valvular stenosis'],
@@ -91,7 +324,375 @@ export const merckManualKnowledge: MerckManualEntry[] = [
     merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/valvular-disorders/aortic-stenosis'
   },
 
-  // PULMONARY
+  {
+    topic: 'Aortic Regurgitation',
+    keywords: ['aortic regurgitation', 'ar', 'aortic insufficiency', 'ai'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, aortic regurgitation results from incomplete aortic valve closure during diastole, allowing backflow from aorta into left ventricle. Causes include aortic root dilation (Marfan, hypertension, aging), bicuspid valve, endocarditis, rheumatic disease, or aortic dissection. Chronic AR causes LV volume overload with eccentric hypertrophy. Acute AR causes sudden volume overload without compensatory remodeling, leading to pulmonary edema and cardiogenic shock.',
+    clinicalPresentation: 'Chronic AR: asymptomatic for years, then dyspnea, orthopnea, PND, and angina. Physical exam shows wide pulse pressure, bounding pulses (Corrigan pulse, water-hammer pulse), head bobbing (de Musset sign), and diastolic decrescendo murmur at left sternal border. Acute AR: sudden dyspnea, pulmonary edema, hypotension, and soft short diastolic murmur.',
+    diagnosticApproach: 'Echocardiography assesses severity (regurgitant volume, regurgitant fraction, vena contracta), LV size and function, and aortic root dimensions. Chronic severe AR: holodiastolic flow reversal in descending aorta, pressure half-time <200 ms. ECG shows LVH in chronic AR. Chest X-ray shows cardiomegaly. Cardiac MRI quantifies regurgitant volume. Evaluate for underlying cause (Marfan, endocarditis, dissection).',
+    treatment: 'Chronic AR: vasodilators (ACE inhibitors, nifedipine) reduce afterload and slow progression. Aortic valve replacement indicated for symptoms, LV dysfunction (EF <50%), or severe LV dilation (LVESD >50 mm). Acute severe AR: emergency surgery after stabilization with vasodilators and inotropes. Avoid beta-blockers in acute AR (worsen by prolonging diastole). Endocarditis prophylaxis no longer recommended.',
+    clinicalPearls: [
+      'Wide pulse pressure and bounding pulses are classic signs',
+      'Acute AR is surgical emergency',
+      'Serial echo monitors LV size and function in asymptomatic patients',
+      'Austin Flint murmur: mid-diastolic rumble from AR jet hitting mitral valve'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/valvular-disorders/aortic-regurgitation'
+  },
+
+  {
+    topic: 'Mitral Stenosis',
+    keywords: ['mitral stenosis', 'ms', 'mitral valve stenosis'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, mitral stenosis is narrowing of the mitral valve orifice, most commonly from rheumatic heart disease (accounts for >90% in developing countries). Chronic inflammation causes leaflet thickening, commissural fusion, and chordal shortening. Obstruction increases left atrial pressure, causing left atrial enlargement, pulmonary hypertension, and eventually right heart failure. Atrial fibrillation develops in 30-40% due to atrial dilation.',
+    clinicalPresentation: 'Dyspnea on exertion is earliest symptom, progressing to orthopnea and PND. Hemoptysis may occur from pulmonary venous hypertension. Atrial fibrillation causes palpitations and increases stroke risk. Physical exam reveals low-pitched diastolic rumble at apex with opening snap, loud S1, and accentuated P2 if pulmonary hypertension present. Malar flush may be visible.',
+    diagnosticApproach: 'Echocardiography is diagnostic: measures valve area (<1.5 cm² = severe), mean gradient (>10 mmHg = severe), and pulmonary artery pressure. Shows thickened, domed mitral leaflets with restricted opening. ECG may show left atrial enlargement (P mitrale), atrial fibrillation, or right ventricular hypertrophy. Chest X-ray shows left atrial enlargement, straightening of left heart border, and pulmonary congestion.',
+    treatment: 'Medical: diuretics for congestion, beta-blockers or calcium channel blockers for rate control in AF, anticoagulation for AF or prior embolism. Percutaneous balloon mitral valvuloplasty for symptomatic severe MS with favorable valve morphology and no left atrial thrombus. Mitral valve surgery (repair or replacement) for severe symptomatic MS not suitable for valvuloplasty. Treat atrial fibrillation and prevent thromboembolism.',
+    clinicalPearls: [
+      'Opening snap timing correlates with severity - earlier snap indicates more severe stenosis',
+      'Atrial fibrillation dramatically worsens symptoms by reducing diastolic filling time',
+      'Anticoagulation essential for AF or prior embolism',
+      'Pregnancy poorly tolerated due to increased cardiac output demands'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/valvular-disorders/mitral-stenosis'
+  },
+
+  {
+    topic: 'Mitral Regurgitation',
+    keywords: ['mitral regurgitation', 'mr', 'mitral insufficiency', 'mi'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, mitral regurgitation results from incomplete mitral valve closure during systole, allowing backflow from LV into LA. Primary MR involves valve pathology (prolapse, rheumatic disease, endocarditis, chordal rupture). Secondary (functional) MR results from LV dilation or dysfunction with structurally normal valve. Chronic MR causes LV and LA volume overload with eccentric LV hypertrophy. Acute severe MR causes sudden LA pressure rise and pulmonary edema.',
+    clinicalPresentation: 'Chronic MR: asymptomatic for years, then dyspnea, fatigue, and palpitations (AF). Acute MR: sudden dyspnea, pulmonary edema, and cardiogenic shock. Physical exam shows holosystolic murmur at apex radiating to axilla, best heard in left lateral decubitus position. S3 gallop common. Acute MR may have soft murmur due to rapid LA-LV pressure equalization.',
+    diagnosticApproach: 'Echocardiography assesses severity (regurgitant volume, regurgitant fraction, effective regurgitant orifice area), mechanism (primary vs secondary), LV size and function, and LA size. Severe MR: vena contracta ≥0.7 cm, regurgitant volume ≥60 mL, regurgitant fraction ≥50%. ECG may show LA enlargement and AF. Chest X-ray shows cardiomegaly and LA enlargement. TEE better visualizes valve anatomy.',
+    treatment: 'Chronic primary MR: mitral valve repair (preferred) or replacement for severe symptomatic MR or asymptomatic with LV dysfunction (EF <60%) or LV dilation (LVESD ≥40 mm). Transcatheter edge-to-edge repair (MitraClip) for high surgical risk. Secondary MR: optimize heart failure therapy (GDMT), CRT if indicated. Acute severe MR: emergency surgery after stabilization with vasodilators, inotropes, and IABP. Anticoagulation for AF.',
+    clinicalPearls: [
+      'Mitral valve repair preferred over replacement when feasible',
+      'Acute MR from papillary muscle rupture post-MI is surgical emergency',
+      'Flail leaflet indicates severe MR requiring surgery',
+      'Secondary MR improves with optimal heart failure treatment'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/valvular-disorders/mitral-regurgitation'
+  },
+
+  {
+    topic: 'Mitral Valve Prolapse',
+    keywords: ['mitral valve prolapse', 'mvp', 'floppy mitral valve', 'barlow disease'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, mitral valve prolapse involves abnormal systolic displacement of mitral leaflets into left atrium. Results from myxomatous degeneration causing leaflet redundancy and chordal elongation. Most cases are primary (idiopathic), but MVP occurs in connective tissue disorders (Marfan, Ehlers-Danlos). Usually benign but can progress to significant mitral regurgitation, endocarditis, or arrhythmias.',
+    clinicalPresentation: 'Most patients asymptomatic. Some experience atypical chest pain, palpitations, dyspnea, or anxiety. Physical exam reveals mid-systolic click (earlier with standing, later with squatting) with or without late systolic murmur. Murmur increases with maneuvers that decrease LV volume (standing, Valsalva). Complications include progressive MR, endocarditis, arrhythmias, and rarely sudden death.',
+    diagnosticApproach: 'Echocardiography is diagnostic: shows systolic displacement of mitral leaflets >2 mm beyond mitral annular plane in parasternal long-axis view. Assesses leaflet thickness, degree of prolapse, and severity of MR. ECG usually normal but may show T-wave abnormalities or arrhythmias. Holter monitor if palpitations. Exclude connective tissue disorders in young patients.',
+    treatment: 'Asymptomatic MVP without MR: reassurance, no treatment needed. Beta-blockers for symptomatic palpitations or chest pain. Severe MR: mitral valve repair or replacement per MR guidelines. Endocarditis prophylaxis no longer recommended except for prior endocarditis. Avoid dehydration and stimulants. Genetic counseling if syndromic. Monitor with serial echo if progressive MR.',
+    clinicalPearls: [
+      'Mid-systolic click is pathognomonic',
+      'Most patients have benign course',
+      'Endocarditis prophylaxis no longer recommended',
+      'Severe myxomatous disease (Barlow) has higher risk of complications'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/valvular-disorders/mitral-valve-prolapse-mvp'
+  },
+
+  {
+    topic: 'Tricuspid Regurgitation',
+    keywords: ['tricuspid regurgitation', 'tr', 'tricuspid insufficiency'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, tricuspid regurgitation is most commonly functional (secondary) due to RV dilation from pulmonary hypertension or RV dysfunction. Primary TR results from valve pathology (endocarditis, rheumatic disease, carcinoid, trauma, pacemaker leads). TR causes RV volume overload and systemic venous congestion. Severe TR leads to RV failure, hepatic congestion, and peripheral edema.',
+    clinicalPresentation: 'Symptoms include fatigue, abdominal distension, peripheral edema, and right upper quadrant pain from hepatic congestion. Physical exam shows holosystolic murmur at left lower sternal border increasing with inspiration (Carvallo sign), elevated JVP with prominent V waves, pulsatile liver, ascites, and peripheral edema. Severe TR causes pulsatile hepatomegaly.',
+    diagnosticApproach: 'Echocardiography assesses TR severity (vena contracta, regurgitant volume, hepatic vein flow reversal), RV size and function, and pulmonary artery pressure. Severe TR: vena contracta ≥0.7 cm, dense continuous wave Doppler signal. ECG may show right atrial enlargement and RV hypertrophy. Chest X-ray shows cardiomegaly and RA enlargement. Right heart catheterization measures pulmonary pressures.',
+    treatment: 'Treat underlying cause: pulmonary hypertension therapy, optimize left heart failure treatment. Diuretics for volume overload. Severe symptomatic TR: tricuspid valve repair (preferred) or replacement, often performed during left-sided valve surgery. Transcatheter tricuspid valve interventions emerging. Isolated TR surgery has high operative risk. Treat atrial fibrillation if present.',
+    clinicalPearls: [
+      'Most TR is functional from pulmonary hypertension or RV dilation',
+      'Carvallo sign (increased murmur with inspiration) is characteristic',
+      'Severe TR causes pulsatile liver and prominent V waves in JVP',
+      'Tricuspid valve repair preferred over replacement when feasible'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/valvular-disorders/tricuspid-regurgitation'
+  },
+
+  // HYPERTENSION
+  {
+    topic: 'Hypertension',
+    keywords: ['hypertension', 'high blood pressure', 'htn', 'elevated blood pressure'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, hypertension is sustained elevation of blood pressure (≥130/80 mmHg). Primary (essential) hypertension (90-95%) has multifactorial etiology involving genetic, environmental, and lifestyle factors. Secondary hypertension results from identifiable causes (renal disease, endocrine disorders, medications). Chronic hypertension causes vascular remodeling, left ventricular hypertrophy, and end-organ damage (heart, brain, kidneys, eyes).',
+    clinicalPresentation: 'Most patients are asymptomatic; hypertension is often detected on routine screening. Severe hypertension may cause headache, dizziness, or blurred vision. Hypertensive emergency presents with severe elevation (>180/120) plus acute end-organ damage (encephalopathy, stroke, MI, acute heart failure, aortic dissection, acute kidney injury). Physical examination may reveal retinopathy, S4 gallop, or bruits.',
+    diagnosticApproach: 'Diagnosis requires elevated blood pressure on ≥2 occasions. Confirm with home blood pressure monitoring or ambulatory monitoring. Evaluate for secondary causes in young patients, resistant hypertension, or sudden onset: renal function, electrolytes, urinalysis, plasma aldosterone/renin ratio, renal artery imaging. Assess for target organ damage: ECG, echocardiography, fundoscopy, urine albumin. Cardiovascular risk stratification.',
+    treatment: 'Lifestyle modifications: weight loss, DASH diet, sodium restriction (<2g/day), exercise, limit alcohol. Pharmacotherapy for BP ≥130/80 with cardiovascular disease or ≥140/90 without. First-line agents: ACE inhibitors, ARBs, calcium channel blockers, thiazide diuretics. Most patients require ≥2 drugs. Target <130/80 for most patients. Resistant hypertension may require spironolactone. Hypertensive emergency requires IV antihypertensives and ICU monitoring.',
+    clinicalPearls: [
+      'White coat hypertension requires home BP monitoring for diagnosis',
+      'ACE inhibitors/ARBs are preferred in diabetes or CKD with proteinuria',
+      'Avoid abrupt BP reduction in hypertensive emergency (risk of stroke)',
+      'Screen for secondary causes if age <30 or resistant to 3 drugs'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/hypertension/hypertension'
+  },
+
+  {
+    topic: 'Hypertensive Emergency',
+    keywords: ['hypertensive emergency', 'malignant hypertension', 'hypertensive crisis', 'hypertensive encephalopathy'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, hypertensive emergency is severe blood pressure elevation (typically >180/120 mmHg) with acute target organ damage. Acute endothelial injury causes fibrinoid necrosis of arterioles, leading to organ ischemia and dysfunction. Organs affected include brain (encephalopathy, stroke), heart (MI, acute heart failure), kidneys (acute kidney injury), and vasculature (aortic dissection). Requires immediate BP reduction to prevent irreversible organ damage.',
+    clinicalPresentation: 'Severe headache, visual disturbances, confusion, seizures, chest pain, dyspnea, or focal neurologic deficits. Physical exam shows markedly elevated BP, papilledema, retinal hemorrhages, altered mental status, pulmonary edema, or neurologic deficits. Hypertensive urgency (severe BP elevation without organ damage) is less acute.',
+    diagnosticApproach: 'Measure BP in both arms. Assess for end-organ damage: neurologic exam, fundoscopy (papilledema, hemorrhages), ECG and troponin (MI), chest X-ray (pulmonary edema, widened mediastinum), renal function and urinalysis (acute kidney injury, hematuria), CT head if neurologic symptoms. Distinguish emergency (organ damage) from urgency (no organ damage) as management differs.',
+    treatment: 'ICU admission. IV antihypertensives: nicardipine, clevidipine, labetalol, or enalaprilat. Goal: reduce MAP by 10-20% in first hour, then 5-15% over next 23 hours. Avoid excessive BP reduction (risk of stroke, MI, renal failure). Specific agents for specific scenarios: nitroprusside for aortic dissection, nitroglycerin for MI/pulmonary edema, labetalol for stroke. Transition to oral agents once stable. Treat underlying cause.',
+    clinicalPearls: [
+      'Gradual BP reduction prevents cerebral hypoperfusion',
+      'Nitroprusside can cause cyanide toxicity with prolonged use',
+      'Aortic dissection requires aggressive BP control (SBP <120)',
+      'Hypertensive urgency can be managed with oral agents outpatient'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/hypertension/hypertensive-emergencies'
+  },
+
+  // CARDIOMYOPATHIES
+  {
+    topic: 'Dilated Cardiomyopathy',
+    keywords: ['dilated cardiomyopathy', 'dcm', 'idiopathic dilated cardiomyopathy'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, dilated cardiomyopathy is characterized by LV dilation and systolic dysfunction without adequate hypertrophy. Causes include genetic mutations (30-50%), viral myocarditis, alcohol, chemotherapy (anthracyclines), peripartum, and idiopathic. Progressive LV dilation and dysfunction lead to heart failure, arrhythmias, and thromboembolism. Neurohormonal activation worsens remodeling.',
+    clinicalPresentation: 'Heart failure symptoms: dyspnea, orthopnea, PND, fatigue, and edema. Palpitations from arrhythmias. Thromboembolic events (stroke, peripheral embolism). Physical exam shows displaced PMI, S3 gallop, elevated JVP, pulmonary rales, and peripheral edema. May have mitral or tricuspid regurgitation murmurs from annular dilation.',
+    diagnosticApproach: 'Echocardiography shows LV dilation (LVEDD >5.5 cm in women, >6.0 cm in men) and reduced EF (<40%). Global hypokinesis. May show LV thrombus. ECG may show LBBB, Q waves, or arrhythmias. Cardiac MRI evaluates for myocarditis, infiltrative disease, or scar. Genetic testing if family history. Exclude ischemia with coronary angiography or stress testing. Check TSH, iron studies, HIV.',
+    treatment: 'Standard heart failure therapy (GDMT): ACE inhibitors/ARBs/ARNI, beta-blockers, MRAs, SGLT2 inhibitors. Diuretics for volume overload. ICD for EF ≤35% despite 3 months optimal therapy. CRT if LBBB and QRS ≥150 ms. Anticoagulation if LV thrombus or AF. Avoid alcohol. Treat underlying cause (alcohol cessation, immunosuppression for myocarditis). Consider transplant for refractory disease.',
+    clinicalPearls: [
+      'Exclude ischemic cause - coronary angiography often needed',
+      'Genetic testing identifies familial DCM in 30-50%',
+      'Alcohol cessation can lead to significant recovery',
+      'Peripartum cardiomyopathy may recover but has recurrence risk'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/cardiomyopathies/dilated-cardiomyopathy'
+  },
+
+  {
+    topic: 'Hypertrophic Cardiomyopathy',
+    keywords: ['hypertrophic cardiomyopathy', 'hcm', 'hocm', 'hypertrophic obstructive cardiomyopathy', 'idiopathic hypertrophic subaortic stenosis', 'ihss'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, hypertrophic cardiomyopathy is characterized by LV hypertrophy (wall thickness ≥15 mm) without other cause. Autosomal dominant inheritance with mutations in sarcomere protein genes. Asymmetric septal hypertrophy is most common. LVOT obstruction occurs in 70% due to systolic anterior motion of mitral valve. Diastolic dysfunction from impaired relaxation. Risk of sudden cardiac death from ventricular arrhythmias.',
+    clinicalPresentation: 'Many asymptomatic. Symptoms include dyspnea, chest pain, palpitations, presyncope, or syncope (especially with exertion). Sudden cardiac death may be first presentation. Physical exam shows harsh systolic murmur at left sternal border increasing with Valsalva and standing (decreased preload worsens obstruction), decreasing with squatting. Bisferiens pulse. S4 gallop.',
+    diagnosticApproach: 'Echocardiography shows LV hypertrophy (≥15 mm, or ≥13 mm with family history), typically asymmetric septal hypertrophy. Systolic anterior motion of mitral valve and LVOT obstruction (gradient ≥30 mmHg) in obstructive HCM. Diastolic dysfunction. ECG shows LVH, deep Q waves, and T-wave inversions. Cardiac MRI for unclear cases. Genetic testing. Screen first-degree relatives. Assess sudden death risk.',
+    treatment: 'Beta-blockers or non-dihydropyridine calcium channel blockers for symptoms. Disopyramide for refractory obstruction. Avoid vasodilators and diuretics (worsen obstruction). Septal reduction therapy (surgical myectomy or alcohol septal ablation) for severe symptomatic obstruction despite medical therapy. ICD for high sudden death risk (prior cardiac arrest, sustained VT, family history of sudden death, massive LVH, unexplained syncope). Avoid strenuous exercise.',
+    clinicalPearls: [
+      'Most common cause of sudden cardiac death in young athletes',
+      'Murmur increases with decreased preload (opposite of AS)',
+      'Avoid dehydration and vasodilators',
+      'Screen first-degree relatives with echo and ECG'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/cardiomyopathies/hypertrophic-cardiomyopathy'
+  },
+
+  {
+    topic: 'Restrictive Cardiomyopathy',
+    keywords: ['restrictive cardiomyopathy', 'rcm', 'infiltrative cardiomyopathy'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, restrictive cardiomyopathy is characterized by impaired ventricular filling due to increased myocardial stiffness, with normal or near-normal systolic function and wall thickness. Causes include infiltrative diseases (amyloidosis, sarcoidosis, hemochromatosis), storage diseases (Fabry, glycogen storage), endomyocardial diseases (fibrosis, hypereosinophilic syndrome), and idiopathic. Diastolic dysfunction causes elevated filling pressures and heart failure.',
+    clinicalPresentation: 'Right heart failure symptoms predominate: fatigue, peripheral edema, ascites, hepatomegaly. Dyspnea and exercise intolerance. Physical exam shows elevated JVP with prominent Y descent (Kussmaul sign - JVP rises with inspiration), S3 or S4 gallop, hepatomegaly, ascites, and peripheral edema. May have low voltage ECG despite thick walls in amyloidosis.',
+    diagnosticApproach: 'Echocardiography shows normal or mildly reduced EF, normal or mildly increased wall thickness, biatrial enlargement, and restrictive filling pattern (short deceleration time, E/A ratio >2). Cardiac MRI shows late gadolinium enhancement patterns specific to etiology. ECG may show low voltage (amyloidosis) or conduction abnormalities. Endomyocardial biopsy for definitive diagnosis. Distinguish from constrictive pericarditis.',
+    treatment: 'Treat underlying cause: chemotherapy for amyloidosis, phlebotomy for hemochromatosis, immunosuppression for sarcoidosis. Diuretics for congestion (use cautiously - preload dependent). Avoid aggressive diuresis. Treat arrhythmias. Anticoagulation for AF. Pacemaker for conduction disease. Poor prognosis overall. Cardiac transplantation for refractory disease (but amyloidosis may recur).',
+    clinicalPearls: [
+      'Amyloidosis: thick walls with low voltage ECG is classic',
+      'Apical sparing on strain imaging suggests cardiac amyloidosis',
+      'Distinguish from constrictive pericarditis (surgical cure possible)',
+      'Endomyocardial biopsy often needed for definitive diagnosis'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/cardiomyopathies/restrictive-cardiomyopathy'
+  },
+
+  {
+    topic: 'Myocarditis',
+    keywords: ['myocarditis', 'viral myocarditis', 'inflammatory cardiomyopathy'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, myocarditis is inflammation of the myocardium, most commonly from viral infection (coxsackievirus, adenovirus, parvovirus B19, COVID-19). Other causes include autoimmune diseases, drugs (immune checkpoint inhibitors, clozapine), toxins, and giant cell myocarditis. Inflammation causes myocyte injury and dysfunction. May progress to dilated cardiomyopathy. Fulminant myocarditis causes severe acute heart failure.',
+    clinicalPresentation: 'Presentation varies from asymptomatic to fulminant heart failure or sudden death. Symptoms include chest pain (may mimic MI), dyspnea, palpitations, and fatigue. Often preceded by viral prodrome. Physical exam may show tachycardia, S3 gallop, and signs of heart failure. Fulminant myocarditis presents with cardiogenic shock.',
+    diagnosticApproach: 'Cardiac biomarkers elevated (troponin, BNP). ECG shows ST-T changes, arrhythmias, or conduction abnormalities. Echocardiography shows LV dysfunction (global or regional), may be normal in mild cases. Cardiac MRI shows myocardial edema, hyperemia, and late gadolinium enhancement (diagnostic criteria: Lake Louise criteria). Endomyocardial biopsy is gold standard but rarely performed. Viral PCR on biopsy. Exclude acute coronary syndrome.',
+    treatment: 'Supportive care: standard heart failure therapy, treat arrhythmias. Avoid NSAIDs and strenuous exercise during acute phase. Fulminant myocarditis may require mechanical circulatory support (ECMO, Impella). Immunosuppression (corticosteroids, azathioprine) for giant cell myocarditis or autoimmune causes. Most viral myocarditis resolves spontaneously. ICD if persistent LV dysfunction. Monitor for progression to dilated cardiomyopathy.',
+    clinicalPearls: [
+      'Cardiac MRI is key diagnostic test',
+      'Fulminant myocarditis has better long-term prognosis than acute myocarditis if survives',
+      'Giant cell myocarditis requires immunosuppression',
+      'COVID-19 can cause myocarditis, especially after vaccination'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/myocarditis-and-pericarditis/myocarditis'
+  },
+
+  // PERICARDIAL DISEASE
+  {
+    topic: 'Acute Pericarditis',
+    keywords: ['pericarditis', 'acute pericarditis', 'pericardial inflammation'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, acute pericarditis is inflammation of the pericardium, most commonly idiopathic or viral (coxsackievirus, echovirus, adenovirus). Other causes include post-MI (early or Dressler syndrome), uremia, autoimmune diseases, malignancy, tuberculosis, and drugs. Inflammation causes chest pain and may lead to pericardial effusion. Recurrent pericarditis occurs in 15-30%.',
+    clinicalPresentation: 'Sharp, pleuritic chest pain worse with lying flat and inspiration, improved by sitting forward. May radiate to trapezius ridge. Associated with dyspnea. Physical exam reveals pericardial friction rub (scratchy, triphasic sound best heard at left sternal border with patient leaning forward). Fever common. Pericardial effusion may cause muffled heart sounds.',
+    diagnosticApproach: 'Diagnosis requires 2 of 4 criteria: chest pain, pericardial friction rub, ECG changes, pericardial effusion. ECG shows diffuse ST elevation (concave upward) with PR depression. Cardiac biomarkers may be mildly elevated (myopericarditis). Echocardiography detects pericardial effusion. Inflammatory markers elevated (ESR, CRP). Exclude MI. Evaluate for underlying cause if recurrent or high-risk features.',
+    treatment: 'NSAIDs (ibuprofen or aspirin) plus colchicine for 3 months reduces recurrence. Avoid strenuous exercise until symptoms resolve and inflammatory markers normalize. Corticosteroids for refractory cases or specific causes (autoimmune, uremic). Treat underlying cause. Restrict activity. Monitor for complications (tamponade, constrictive pericarditis). Recurrent pericarditis may require prolonged colchicine or immunosuppression.',
+    clinicalPearls: [
+      'Colchicine reduces recurrence risk - use for initial episode',
+      'Diffuse ST elevation with PR depression is classic ECG finding',
+      'Avoid corticosteroids initially - increase recurrence risk',
+      'Post-MI pericarditis: early (1-3 days) vs Dressler (weeks to months)'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/myocarditis-and-pericarditis/acute-pericarditis'
+  },
+
+  {
+    topic: 'Cardiac Tamponade',
+    keywords: ['cardiac tamponade', 'pericardial tamponade', 'tamponade'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, cardiac tamponade occurs when pericardial fluid accumulation causes increased intrapericardial pressure, compressing cardiac chambers and impairing ventricular filling. Results in decreased cardiac output and obstructive shock. Causes include pericarditis, malignancy, trauma, aortic dissection, post-cardiac surgery, and uremia. Rapid accumulation (trauma, rupture) causes tamponade with smaller volumes than slow accumulation (malignancy).',
+    clinicalPresentation: 'Beck triad: hypotension, elevated JVP, muffled heart sounds. Dyspnea, tachycardia, and pulsus paradoxus (>10 mmHg decrease in SBP with inspiration). Physical exam shows tachycardia, hypotension, elevated JVP with absent Y descent, muffled heart sounds, and cool extremities. Severe cases present with cardiogenic shock or cardiac arrest (pulseless electrical activity).',
+    diagnosticApproach: 'Echocardiography is diagnostic: shows pericardial effusion with RA and RV diastolic collapse, respiratory variation in mitral and tricuspid inflow velocities, and dilated IVC. ECG may show low voltage, electrical alternans (beat-to-beat QRS amplitude variation), or sinus tachycardia. Chest X-ray shows enlarged cardiac silhouette. Right heart catheterization shows equalization of diastolic pressures.',
+    treatment: 'Medical emergency requiring urgent pericardiocentesis. Hemodynamic support: IV fluids to increase preload, avoid positive pressure ventilation if possible. Pericardiocentesis via subxiphoid approach under echo or fluoroscopic guidance. Drain fluid slowly to avoid RV dilation. Surgical pericardial window for recurrent tamponade or loculated effusions. Treat underlying cause. Monitor for recurrence.',
+    clinicalPearls: [
+      'Pulsus paradoxus >10 mmHg is sensitive but not specific',
+      'Electrical alternans suggests large effusion with swinging heart',
+      'Avoid positive pressure ventilation - worsens hemodynamics',
+      'Post-cardiac surgery tamponade may be loculated and require surgical drainage'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/myocarditis-and-pericarditis/cardiac-tamponade'
+  },
+
+  {
+    topic: 'Constrictive Pericarditis',
+    keywords: ['constrictive pericarditis', 'pericardial constriction'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, constrictive pericarditis results from chronic pericardial inflammation causing fibrosis, thickening, and sometimes calcification of pericardium. Rigid pericardium restricts ventricular filling, causing diastolic dysfunction and elevated filling pressures. Causes include prior cardiac surgery, radiation, tuberculosis, viral pericarditis, and idiopathic. Ventricular interdependence causes dissociation of intrathoracic and intracardiac pressures.',
+    clinicalPresentation: 'Right heart failure symptoms: fatigue, peripheral edema, ascites, hepatomegaly. Dyspnea and exercise intolerance. Physical exam shows elevated JVP with prominent Y descent, Kussmaul sign (JVP rises with inspiration), pericardial knock (early diastolic sound), hepatomegaly, ascites, and peripheral edema. Pulsus paradoxus less common than in tamponade.',
+    diagnosticApproach: 'Echocardiography shows pericardial thickening, septal bounce (ventricular interdependence), respiratory variation in mitral and tricuspid inflow velocities, and dilated IVC. Cardiac MRI or CT shows pericardial thickening (>4 mm) and calcification. Cardiac catheterization shows equalization of diastolic pressures, square root sign, and ventricular interdependence. Distinguish from restrictive cardiomyopathy (endomyocardial biopsy may be needed).',
+    treatment: 'Pericardiectomy is curative but high operative risk. Indicated for symptomatic patients with confirmed diagnosis. Medical management: diuretics for congestion (use cautiously - preload dependent). Treat underlying cause if identified (tuberculosis). Perioperative mortality 6-12%. Incomplete resection may cause recurrent symptoms. Radiation-induced constriction has worse prognosis.',
+    clinicalPearls: [
+      'Distinguish from restrictive cardiomyopathy - constriction is surgically curable',
+      'Pericardial calcification on CT supports diagnosis but not always present',
+      'Kussmaul sign and prominent Y descent are classic findings',
+      'Pericardiectomy is definitive treatment but high-risk surgery'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/myocarditis-and-pericarditis/constrictive-pericarditis'
+  },
+
+  // ENDOCARDITIS
+  {
+    topic: 'Infective Endocarditis',
+    keywords: ['endocarditis', 'infective endocarditis', 'bacterial endocarditis', 'ie'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, infective endocarditis is infection of endocardial surface, typically heart valves, caused by bacteria (Streptococcus viridans, Staphylococcus aureus, enterococci) or fungi. Bacteremia seeds damaged or abnormal valves, forming vegetations (infected thrombi). Vegetations cause valve destruction, regurgitation, and emboli. Risk factors include prosthetic valves, prior endocarditis, structural heart disease, IV drug use, and poor dentition.',
+    clinicalPresentation: 'Fever (90%), new or changing murmur, and signs of systemic illness (fatigue, weight loss, night sweats). Embolic phenomena: stroke, splenic infarct, renal infarct. Immunologic phenomena: Osler nodes (painful finger/toe nodules), Janeway lesions (painless palmar/plantar macules), Roth spots (retinal hemorrhages), glomerulonephritis. Acute S. aureus endocarditis presents with sepsis and rapid valve destruction.',
+    diagnosticApproach: 'Modified Duke criteria: 2 major, 1 major + 3 minor, or 5 minor criteria. Major: positive blood cultures (2 separate cultures with typical organisms), endocardial involvement on echo (vegetation, abscess, new regurgitation). Minor: predisposing condition, fever, vascular/immunologic phenomena, positive blood culture not meeting major criteria. Echocardiography: TTE first, TEE if TTE negative or prosthetic valve. Blood cultures before antibiotics.',
+    treatment: 'Prolonged IV antibiotics (4-6 weeks): native valve streptococcal endocarditis - penicillin or ceftriaxone; S. aureus - nafcillin or vancomycin; enterococcal - ampicillin + gentamicin. Surgery indicated for heart failure, uncontrolled infection, large vegetations (>10 mm), recurrent emboli, or prosthetic valve endocarditis. Antibiotic prophylaxis only for high-risk patients (prosthetic valve, prior endocarditis) undergoing dental procedures.',
+    clinicalPearls: [
+      'Three sets of blood cultures before starting antibiotics',
+      'TEE more sensitive than TTE for vegetations and complications',
+      'S. aureus endocarditis often requires surgery',
+      'Antibiotic prophylaxis no longer recommended for most patients'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/endocarditis/infective-endocarditis'
+  },
+
+  // AORTIC DISEASE
+  {
+    topic: 'Aortic Dissection',
+    keywords: ['aortic dissection', 'dissecting aneurysm', 'aortic tear'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, aortic dissection occurs when intimal tear allows blood to enter aortic media, creating false lumen that propagates along aorta. Stanford type A involves ascending aorta (requires emergency surgery), type B involves descending aorta distal to left subclavian (usually managed medically). Risk factors include hypertension, connective tissue disorders (Marfan, Ehlers-Danlos), bicuspid aortic valve, cocaine use, and trauma. Complications include aortic rupture, tamponade, stroke, MI, mesenteric ischemia, and limb ischemia.',
+    clinicalPresentation: 'Sudden severe "tearing" or "ripping" chest or back pain, often described as worst pain ever. Type A: anterior chest pain. Type B: interscapular back pain. May have syncope, stroke, MI, or limb ischemia. Physical exam may show blood pressure differential between arms (>20 mmHg), pulse deficits, aortic regurgitation murmur, or neurologic deficits. Hypotension suggests rupture or tamponade.',
+    diagnosticApproach: 'CT angiography is diagnostic: shows intimal flap, true and false lumens, and extent of dissection. TEE alternative if unstable for CT. Chest X-ray may show widened mediastinum but can be normal. ECG to exclude MI (but dissection can cause MI if involves coronary ostia). D-dimer has high negative predictive value. Assess for complications: echo for tamponade/AR, CT for malperfusion.',
+    treatment: 'Type A: emergency surgery (mortality 1-2% per hour without surgery). Type B: medical management unless complicated (malperfusion, rupture, refractory pain/hypertension). Medical therapy: IV beta-blocker (esmolol, labetalol) to reduce heart rate <60 and SBP 100-120 mmHg, then vasodilator (nitroprusside) if needed. Pain control. Complicated type B: endovascular repair (TEVAR). Long-term: beta-blocker, blood pressure control, serial imaging.',
+    clinicalPearls: [
+      'Type A dissection is surgical emergency',
+      'Beta-blocker before vasodilator to prevent reflex tachycardia',
+      'Blood pressure differential or pulse deficit suggests dissection',
+      'Marfan patients require aggressive blood pressure control and surveillance'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/diseases-of-the-aorta-and-its-branches/aortic-dissection'
+  },
+
+  {
+    topic: 'Abdominal Aortic Aneurysm',
+    keywords: ['aortic aneurysm', 'aaa', 'abdominal aortic aneurysm'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, abdominal aortic aneurysm is focal dilation of abdominal aorta ≥3 cm (normal 2 cm). Results from atherosclerosis, genetic factors, and proteolytic degradation of aortic wall. Risk factors include smoking, hypertension, male sex, age >65, and family history. Most occur infrarenal. Rupture risk increases with size: <5 cm (1%/year), 5-6 cm (5-10%/year), >6 cm (>10%/year). Rupture is often fatal.',
+    clinicalPresentation: 'Most asymptomatic, discovered incidentally on imaging or physical exam. Symptomatic AAA suggests expansion or rupture: abdominal or back pain. Ruptured AAA: severe abdominal/back pain, hypotension, pulsatile abdominal mass (classic triad). Physical exam may reveal pulsatile abdominal mass above umbilicus. Rupture presents with shock.',
+    diagnosticApproach: 'Ultrasound is screening test: measures maximal aortic diameter. CT angiography for surgical planning: defines anatomy, size, and relationship to renal and iliac arteries. Screening recommended for men 65-75 with smoking history. Incidental finding on other imaging common. Monitor small AAA (<5.5 cm) with serial ultrasound every 6-12 months.',
+    treatment: 'Asymptomatic AAA: surveillance if <5.5 cm (men) or <5.0 cm (women). Repair indicated for size ≥5.5 cm, rapid expansion (>0.5 cm/6 months), or symptomatic. Endovascular repair (EVAR) preferred if suitable anatomy. Open surgical repair for unsuitable anatomy or young patients. Ruptured AAA: emergency surgery (mortality 50-80%). Medical management: smoking cessation, blood pressure control, statin.',
+    clinicalPearls: [
+      'Screen men 65-75 with smoking history with one-time ultrasound',
+      'Rupture risk increases exponentially with size',
+      'Symptomatic AAA requires urgent evaluation',
+      'EVAR has lower perioperative mortality but requires surveillance for endoleaks'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/diseases-of-the-aorta-and-its-branches/abdominal-aortic-aneurysms-aaa'
+  },
+
+  // PERIPHERAL VASCULAR DISEASE
+  {
+    topic: 'Peripheral Arterial Disease',
+    keywords: ['peripheral arterial disease', 'pad', 'peripheral vascular disease', 'pvd', 'claudication'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, peripheral arterial disease is atherosclerotic occlusive disease of lower extremity arteries causing reduced blood flow. Risk factors include smoking, diabetes, hypertension, hyperlipidemia, and age. Stenosis or occlusion causes exercise-induced ischemia (claudication) or critical limb ischemia. PAD is marker of systemic atherosclerosis with increased cardiovascular event risk.',
+    clinicalPresentation: 'Intermittent claudication: reproducible leg pain with walking, relieved by rest. Pain location indicates stenosis level: buttock/hip (aortoiliac), thigh (common femoral), calf (superficial femoral/popliteal). Critical limb ischemia: rest pain, non-healing ulcers, gangrene. Physical exam shows diminished or absent pulses, bruits, hair loss, cool skin, pallor with elevation, rubor with dependency, and prolonged capillary refill.',
+    diagnosticApproach: 'Ankle-brachial index (ABI) is screening test: ABI <0.90 diagnostic of PAD. ABI 0.41-0.90 = mild-moderate PAD, <0.40 = severe PAD. Falsely elevated ABI (>1.40) in calcified vessels (diabetes) requires toe-brachial index. Segmental pressures and pulse volume recordings localize disease. Duplex ultrasound evaluates stenosis severity. CT or MR angiography for surgical planning. Treadmill test quantifies functional limitation.',
+    treatment: 'Risk factor modification: smoking cessation (most important), statin, antiplatelet therapy (aspirin or clopidogrel), blood pressure and glucose control. Exercise therapy: supervised walking program improves claudication. Cilostazol improves walking distance. Revascularization for lifestyle-limiting claudication or critical limb ischemia: endovascular (angioplasty/stenting) for focal disease, bypass surgery for extensive disease. Amputation for non-salvageable limb.',
+    clinicalPearls: [
+      'Smoking cessation is most important intervention',
+      'PAD indicates high cardiovascular risk - aggressive risk factor modification',
+      'Supervised exercise therapy as effective as revascularization for claudication',
+      'Critical limb ischemia requires urgent revascularization to prevent amputation'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/peripheral-arterial-disorders/peripheral-arterial-disease'
+  },
+
+  {
+    topic: 'Deep Vein Thrombosis',
+    keywords: ['deep vein thrombosis', 'dvt', 'deep venous thrombosis', 'venous thromboembolism', 'vte'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, deep vein thrombosis is blood clot formation in deep veins, most commonly lower extremities. Results from Virchow triad: stasis, endothelial injury, and hypercoagulability. Risk factors include immobility, surgery, trauma, malignancy, pregnancy, oral contraceptives, thrombophilia, and prior VTE. Proximal DVT (popliteal or above) has higher risk of pulmonary embolism than distal (calf) DVT.',
+    clinicalPresentation: 'Unilateral leg pain, swelling, warmth, and erythema. May be asymptomatic. Physical exam shows calf tenderness, pitting edema, increased leg circumference (>3 cm difference), palpable cord, and dilated superficial veins. Homan sign (calf pain with dorsiflexion) is neither sensitive nor specific. Phlegmasia cerulea dolens (massive DVT with venous gangrene) presents with severe pain, cyanosis, and limb-threatening ischemia.',
+    diagnosticApproach: 'Wells score estimates pretest probability. D-dimer has high negative predictive value in low-probability patients. Compression ultrasound is diagnostic: non-compressible vein indicates thrombus. Repeat ultrasound in 1 week if initial negative but high suspicion. CT or MR venography for pelvic/IVC thrombus. Evaluate for underlying cause: malignancy screening in unprovoked DVT, thrombophilia testing in young patients or recurrent VTE.',
+    treatment: 'Anticoagulation for ≥3 months: DOACs (rivaroxaban, apixaban) preferred over warfarin. LMWH or fondaparinux bridge if using warfarin. Provoked DVT: 3 months. Unprovoked DVT: consider extended anticoagulation. Thrombolysis or thrombectomy for phlegmasia cerulea dolens. IVC filter if anticoagulation contraindicated. Compression stockings for post-thrombotic syndrome prevention. Treat underlying cause.',
+    clinicalPearls: [
+      'Proximal DVT requires anticoagulation; isolated distal DVT management controversial',
+      'DOACs preferred over warfarin for most patients',
+      'Unprovoked DVT warrants malignancy screening',
+      'Post-thrombotic syndrome occurs in 20-50% despite anticoagulation'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/peripheral-venous-disorders/deep-venous-thrombosis-dvt'
+  },
+
+  // ADDITIONAL CARDIOLOGY TOPICS
+  {
+    topic: 'Pulmonary Hypertension',
+    keywords: ['pulmonary hypertension', 'pulmonary arterial hypertension', 'pah', 'ph'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, pulmonary hypertension is elevated mean pulmonary artery pressure ≥20 mmHg at rest. WHO classification: Group 1 (pulmonary arterial hypertension), Group 2 (left heart disease), Group 3 (lung disease/hypoxia), Group 4 (chronic thromboembolic), Group 5 (multifactorial). PAH involves pulmonary vascular remodeling with vasoconstriction, proliferation, and thrombosis. Increased pulmonary vascular resistance causes RV pressure overload, hypertrophy, and eventually RV failure.',
+    clinicalPresentation: 'Dyspnea on exertion is earliest symptom, progressing to fatigue, chest pain, syncope, and signs of right heart failure (edema, ascites). Physical exam shows loud P2, RV heave, tricuspid regurgitation murmur, elevated JVP, hepatomegaly, and peripheral edema. Advanced disease causes cyanosis and clubbing.',
+    diagnosticApproach: 'Echocardiography estimates pulmonary artery systolic pressure and assesses RV function. Right heart catheterization is gold standard: measures mean PAP, pulmonary capillary wedge pressure, and calculates pulmonary vascular resistance. Distinguish pre-capillary (PAH, CTEPH) from post-capillary (left heart disease) PH. Evaluate for underlying cause: PFTs, HRCT, V/Q scan, HIV, liver disease, connective tissue disease, sleep study.',
+    treatment: 'Treat underlying cause. Group 1 PAH: calcium channel blockers if vasoreactive, PAH-specific therapy (endothelin receptor antagonists, phosphodiesterase-5 inhibitors, prostacyclins, soluble guanylate cyclase stimulators). Combination therapy for severe disease. Diuretics for volume overload. Oxygen for hypoxemia. Anticoagulation controversial. Group 4 CTEPH: pulmonary thromboendarterectomy is curative. Lung transplantation for refractory disease.',
+    clinicalPearls: [
+      'Right heart catheterization required for diagnosis and classification',
+      'V/Q scan screens for CTEPH (potentially curable)',
+      'Combination PAH therapy improves outcomes',
+      'Avoid pregnancy - high maternal mortality'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/pulmonary-disorders/pulmonary-hypertension/pulmonary-hypertension'
+  },
+
+  {
+    topic: 'Syncope',
+    keywords: ['syncope', 'fainting', 'loss of consciousness', 'vasovagal syncope'],
+    system: 'Cardiology',
+    pathophysiology: 'According to Merck Manual Professional, syncope is transient loss of consciousness due to global cerebral hypoperfusion with rapid onset, short duration, and spontaneous complete recovery. Causes include reflex (vasovagal, situational, carotid sinus), orthostatic hypotension, and cardiac (arrhythmia, structural disease). Vasovagal syncope results from sudden drop in heart rate and blood pressure from autonomic reflex. Cardiac syncope has highest mortality risk.',
+    clinicalPresentation: 'Sudden loss of consciousness with loss of postural tone. Vasovagal: prodrome of nausea, diaphoresis, pallor, warmth; triggered by pain, emotion, prolonged standing. Cardiac: sudden onset without warning, may occur with exertion. Orthostatic: occurs with standing. Brief tonic-clonic movements may occur but distinguish from seizure (no post-ictal confusion, rapid recovery).',
+    diagnosticApproach: 'History and physical exam most important. Orthostatic vital signs. ECG in all patients: look for arrhythmia, conduction disease, pre-excitation, long QT, Brugada pattern, ARVD. Echocardiography if structural heart disease suspected. Holter or event monitor if arrhythmia suspected. Tilt table test for recurrent unexplained syncope. Electrophysiology study for high-risk patients. Carotid sinus massage if >40 years. Avoid unnecessary testing in low-risk vasovagal syncope.',
+    treatment: 'Treat underlying cause. Vasovagal: reassurance, avoid triggers, increase salt and fluid intake, physical counterpressure maneuvers, midodrine or fludrocortisone for refractory cases. Orthostatic: discontinue offending drugs, increase salt/fluid, compression stockings, midodrine. Cardiac: treat arrhythmia (pacemaker, ICD, ablation), treat structural disease. Driving restrictions for high-risk syncope.',
+    clinicalPearls: [
+      'Cardiac syncope has highest mortality - requires thorough evaluation',
+      'Syncope with exertion suggests cardiac cause',
+      'Normal ECG and no structural heart disease suggests benign cause',
+      'Avoid unnecessary testing in young patients with typical vasovagal syncope'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/symptoms-of-cardiovascular-disorders/syncope'
+  },
+
+  // ============================================================================
+  // OTHER MEDICAL SYSTEMS (ABBREVIATED - FOCUS ON CARDIOLOGY)
+  // ============================================================================
+
+  // PULMONARY (Selected Topics)
   {
     topic: 'Pneumonia',
     keywords: ['pneumonia', 'cap', 'community acquired pneumonia', 'lung infection', 'pneumonitis'],
@@ -108,6 +709,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
     ],
     merckUrl: 'https://www.merckmanuals.com/professional/pulmonary-disorders/pneumonia/overview-of-pneumonia'
   },
+
   {
     topic: 'Chronic Obstructive Pulmonary Disease',
     keywords: ['copd', 'chronic obstructive pulmonary disease', 'emphysema', 'chronic bronchitis', 'obstructive lung disease'],
@@ -124,6 +726,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
     ],
     merckUrl: 'https://www.merckmanuals.com/professional/pulmonary-disorders/chronic-obstructive-pulmonary-disease-and-related-disorders/chronic-obstructive-pulmonary-disease-copd'
   },
+
   {
     topic: 'Asthma',
     keywords: ['asthma', 'reactive airway disease', 'bronchospasm', 'wheezing'],
@@ -140,6 +743,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
     ],
     merckUrl: 'https://www.merckmanuals.com/professional/pulmonary-disorders/asthma-and-related-disorders/asthma'
   },
+
   {
     topic: 'Pulmonary Embolism',
     keywords: ['pulmonary embolism', 'pe', 'blood clot', 'embolus', 'venous thromboembolism'],
@@ -156,6 +760,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
     ],
     merckUrl: 'https://www.merckmanuals.com/professional/pulmonary-disorders/pulmonary-embolism-pe/pulmonary-embolism-pe'
   },
+
   {
     topic: 'Pleural Effusion',
     keywords: ['pleural effusion', 'fluid in lungs', 'pleural fluid', 'effusion'],
@@ -173,7 +778,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
     merckUrl: 'https://www.merckmanuals.com/professional/pulmonary-disorders/mediastinal-and-pleural-disorders/pleural-effusion'
   },
 
-  // RENAL
+  // RENAL (Selected Topics)
   {
     topic: 'Acute Kidney Injury',
     keywords: ['acute kidney injury', 'aki', 'acute renal failure', 'arf', 'kidney failure'],
@@ -190,6 +795,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
     ],
     merckUrl: 'https://www.merckmanuals.com/professional/genitourinary-disorders/acute-kidney-injury/acute-kidney-injury-aki'
   },
+
   {
     topic: 'Chronic Kidney Disease',
     keywords: ['chronic kidney disease', 'ckd', 'chronic renal failure', 'kidney disease', 'renal insufficiency'],
@@ -207,7 +813,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
     merckUrl: 'https://www.merckmanuals.com/professional/genitourinary-disorders/chronic-kidney-disease/chronic-kidney-disease'
   },
 
-  // GASTROENTEROLOGY
+  // GASTROENTEROLOGY (Selected Topics)
   {
     topic: 'Gastroesophageal Reflux Disease',
     keywords: ['gerd', 'gastroesophageal reflux', 'acid reflux', 'heartburn', 'reflux disease'],
@@ -224,6 +830,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
     ],
     merckUrl: 'https://www.merckmanuals.com/professional/gastrointestinal-disorders/esophageal-and-swallowing-disorders/gastroesophageal-reflux-disease-gerd'
   },
+
   {
     topic: 'Inflammatory Bowel Disease',
     keywords: ['inflammatory bowel disease', 'ibd', 'crohn disease', 'ulcerative colitis', 'crohns', 'uc'],
@@ -241,7 +848,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
     merckUrl: 'https://www.merckmanuals.com/professional/gastrointestinal-disorders/inflammatory-bowel-disease-ibd/overview-of-inflammatory-bowel-disease'
   },
 
-  // ENDOCRINE
+  // ENDOCRINE (Selected Topics)
   {
     topic: 'Diabetes Mellitus',
     keywords: ['diabetes', 'diabetes mellitus', 'type 1 diabetes', 'type 2 diabetes', 'dm', 't1dm', 't2dm', 'hyperglycemia'],
@@ -258,6 +865,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
     ],
     merckUrl: 'https://www.merckmanuals.com/professional/endocrine-and-metabolic-disorders/diabetes-mellitus-and-disorders-of-carbohydrate-metabolism/diabetes-mellitus-dm'
   },
+
   {
     topic: 'Hypothyroidism',
     keywords: ['hypothyroidism', 'underactive thyroid', 'low thyroid', 'hashimoto', 'myxedema'],
@@ -275,7 +883,24 @@ export const merckManualKnowledge: MerckManualEntry[] = [
     merckUrl: 'https://www.merckmanuals.com/professional/endocrine-and-metabolic-disorders/thyroid-disorders/hypothyroidism'
   },
 
-  // HEMATOLOGY
+  {
+    topic: 'Pheochromocytoma',
+    keywords: ['pheochromocytoma', 'adrenal tumor', 'catecholamine excess', 'paraganglioma'],
+    system: 'Endocrine',
+    pathophysiology: 'According to Merck Manual Professional, pheochromocytoma is a catecholamine-secreting tumor arising from chromaffin cells of the adrenal medulla (90%) or extra-adrenal paraganglia (10%). The tumor secretes excessive epinephrine and norepinephrine, causing paroxysmal or sustained hypertension and hypermetabolic symptoms. About 25-30% are hereditary, associated with MEN 2, von Hippel-Lindau, neurofibromatosis type 1, or familial paraganglioma syndromes.',
+    clinicalPresentation: 'Classic triad includes episodic headaches, sweating, and tachycardia. Patients experience paroxysmal hypertension, palpitations, anxiety, tremor, and pallor. Episodes may be triggered by abdominal pressure, certain foods (tyramine), or medications. Some patients have sustained hypertension. Physical examination during episode shows hypertension, tachycardia, and diaphoresis. Orthostatic hypotension may occur between episodes.',
+    diagnosticApproach: 'Biochemical diagnosis: measure plasma free metanephrines or 24-hour urine fractionated metanephrines and catecholamines. Plasma free metanephrines have highest sensitivity. Avoid interfering medications (tricyclic antidepressants, decongestants). Once biochemically confirmed, localize tumor with CT or MRI of abdomen/pelvis. MIBG scan or PET scan for extra-adrenal or metastatic disease. Genetic testing for hereditary syndromes.',
+    treatment: 'Surgical resection is curative. Preoperative preparation essential: alpha-blockade (phenoxybenzamine or doxazosin) for 7-14 days, then add beta-blocker if needed (never beta-blocker first - risk of unopposed alpha stimulation). Maintain high-salt diet and hydration. Laparoscopic adrenalectomy preferred. Intraoperative hypertensive crises managed with nitroprusside or phentolamine. Metastatic disease requires combination chemotherapy and targeted therapy.',
+    clinicalPearls: [
+      'Rule of 10s: 10% bilateral, 10% extra-adrenal, 10% malignant, 10% familial',
+      'Never give beta-blocker before alpha-blockade (hypertensive crisis)',
+      'Plasma free metanephrines are preferred screening test',
+      'Screen family members if hereditary syndrome identified'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/endocrine-and-metabolic-disorders/adrenal-disorders/pheochromocytoma'
+  },
+
+  // HEMATOLOGY (Selected Topics)
   {
     topic: 'Anemia',
     keywords: ['anemia', 'low hemoglobin', 'low hematocrit', 'iron deficiency', 'anemic'],
@@ -293,7 +918,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
     merckUrl: 'https://www.merckmanuals.com/professional/hematology-and-oncology/anemias/overview-of-anemia'
   },
 
-  // NEUROLOGY
+  // NEUROLOGY (Selected Topics)
   {
     topic: 'Stroke',
     keywords: ['stroke', 'cva', 'cerebrovascular accident', 'brain attack', 'ischemic stroke', 'hemorrhagic stroke'],
@@ -311,7 +936,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
     merckUrl: 'https://www.merckmanuals.com/professional/neurologic-disorders/stroke/overview-of-stroke'
   },
 
-  // INFECTIOUS DISEASE
+  // INFECTIOUS DISEASE (Selected Topics)
   {
     topic: 'Tuberculosis',
     keywords: ['tuberculosis', 'tb', 'mycobacterium tuberculosis', 'latent tb', 'active tb'],
@@ -329,7 +954,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
     merckUrl: 'https://www.merckmanuals.com/professional/infectious-diseases/mycobacteria/tuberculosis-tb'
   },
 
-  // EMERGENCY MEDICINE
+  // EMERGENCY MEDICINE (Selected Topics)
   {
     topic: 'Sepsis',
     keywords: ['sepsis', 'septic shock', 'severe sepsis', 'septicemia', 'systemic infection'],
@@ -347,7 +972,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
     merckUrl: 'https://www.merckmanuals.com/professional/critical-care-medicine/sepsis-and-septic-shock/sepsis-and-septic-shock'
   },
 
-  // UROLOGY
+  // UROLOGY (Selected Topics)
   {
     topic: 'Urinary Tract Infection',
     keywords: ['urinary tract infection', 'uti', 'cystitis', 'pyelonephritis', 'bladder infection'],
@@ -364,40 +989,6 @@ export const merckManualKnowledge: MerckManualEntry[] = [
     ],
     merckUrl: 'https://www.merckmanuals.com/professional/genitourinary-disorders/urinary-tract-infections-utis/overview-of-urinary-tract-infections-utis'
   },
-
-  // Additional high-yield topics
-  {
-    topic: 'Hypertension',
-    keywords: ['hypertension', 'high blood pressure', 'htn', 'elevated blood pressure'],
-    system: 'Cardiology',
-    pathophysiology: 'According to Merck Manual Professional, hypertension is sustained elevation of blood pressure (≥130/80 mmHg). Primary (essential) hypertension (90-95%) has multifactorial etiology involving genetic, environmental, and lifestyle factors. Secondary hypertension results from identifiable causes (renal disease, endocrine disorders, medications). Chronic hypertension causes vascular remodeling, left ventricular hypertrophy, and end-organ damage (heart, brain, kidneys, eyes).',
-    clinicalPresentation: 'Most patients are asymptomatic; hypertension is often detected on routine screening. Severe hypertension may cause headache, dizziness, or blurred vision. Hypertensive emergency presents with severe elevation (>180/120) plus acute end-organ damage (encephalopathy, stroke, MI, acute heart failure, aortic dissection, acute kidney injury). Physical examination may reveal retinopathy, S4 gallop, or bruits.',
-    diagnosticApproach: 'Diagnosis requires elevated blood pressure on ≥2 occasions. Confirm with home blood pressure monitoring or ambulatory monitoring. Evaluate for secondary causes in young patients, resistant hypertension, or sudden onset: renal function, electrolytes, urinalysis, plasma aldosterone/renin ratio, renal artery imaging. Assess for target organ damage: ECG, echocardiography, fundoscopy, urine albumin. Cardiovascular risk stratification.',
-    treatment: 'Lifestyle modifications: weight loss, DASH diet, sodium restriction (<2g/day), exercise, limit alcohol. Pharmacotherapy for BP ≥130/80 with cardiovascular disease or ≥140/90 without. First-line agents: ACE inhibitors, ARBs, calcium channel blockers, thiazide diuretics. Most patients require ≥2 drugs. Target <130/80 for most patients. Resistant hypertension may require spironolactone. Hypertensive emergency requires IV antihypertensives and ICU monitoring.',
-    clinicalPearls: [
-      'White coat hypertension requires home BP monitoring for diagnosis',
-      'ACE inhibitors/ARBs are preferred in diabetes or CKD with proteinuria',
-      'Avoid abrupt BP reduction in hypertensive emergency (risk of stroke)',
-      'Screen for secondary causes if age <30 or resistant to 3 drugs'
-    ],
-    merckUrl: 'https://www.merckmanuals.com/professional/cardiovascular-disorders/hypertension/hypertension'
-  },
-  {
-    topic: 'Pheochromocytoma',
-    keywords: ['pheochromocytoma', 'adrenal tumor', 'catecholamine excess', 'paraganglioma'],
-    system: 'Endocrine',
-    pathophysiology: 'According to Merck Manual Professional, pheochromocytoma is a catecholamine-secreting tumor arising from chromaffin cells of the adrenal medulla (90%) or extra-adrenal paraganglia (10%). The tumor secretes excessive epinephrine and norepinephrine, causing paroxysmal or sustained hypertension and hypermetabolic symptoms. About 25-30% are hereditary, associated with MEN 2, von Hippel-Lindau, neurofibromatosis type 1, or familial paraganglioma syndromes.',
-    clinicalPresentation: 'Classic triad includes episodic headaches, sweating, and tachycardia. Patients experience paroxysmal hypertension, palpitations, anxiety, tremor, and pallor. Episodes may be triggered by abdominal pressure, certain foods (tyramine), or medications. Some patients have sustained hypertension. Physical examination during episode shows hypertension, tachycardia, and diaphoresis. Orthostatic hypotension may occur between episodes.',
-    diagnosticApproach: 'Biochemical diagnosis: measure plasma free metanephrines or 24-hour urine fractionated metanephrines and catecholamines. Plasma free metanephrines have highest sensitivity. Avoid interfering medications (tricyclic antidepressants, decongestants). Once biochemically confirmed, localize tumor with CT or MRI of abdomen/pelvis. MIBG scan or PET scan for extra-adrenal or metastatic disease. Genetic testing for hereditary syndromes.',
-    treatment: 'Surgical resection is curative. Preoperative preparation essential: alpha-blockade (phenoxybenzamine or doxazosin) for 7-14 days, then add beta-blocker if needed (never beta-blocker first - risk of unopposed alpha stimulation). Maintain high-salt diet and hydration. Laparoscopic adrenalectomy preferred. Intraoperative hypertensive crises managed with nitroprusside or phentolamine. Metastatic disease requires combination chemotherapy and targeted therapy.',
-    clinicalPearls: [
-      'Rule of 10s: 10% bilateral, 10% extra-adrenal, 10% malignant, 10% familial',
-      'Never give beta-blocker before alpha-blockade (hypertensive crisis)',
-      'Plasma free metanephrines are preferred screening test',
-      'Screen family members if hereditary syndrome identified'
-    ],
-    merckUrl: 'https://www.merckmanuals.com/professional/endocrine-and-metabolic-disorders/adrenal-disorders/pheochromocytoma'
-  }
 ];
 
 /**
