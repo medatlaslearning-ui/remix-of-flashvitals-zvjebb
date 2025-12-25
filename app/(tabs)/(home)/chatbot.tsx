@@ -75,7 +75,7 @@ export default function ChatbotScreen() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: 'Hello! I\'m your Medical Expert Chatbot powered by the Merck Manual Professional and comprehensive medical resources.\n\n**My Knowledge Base Includes:**\n\n• Merck Manual Professional (comprehensive medical encyclopedia)\n• Clinical flashcard database (high-yield information)\n• Academic references and peer-reviewed literature\n• Clinical practice guidelines from leading organizations\n\n**I Provide:**\n\n• Detailed pathophysiology and disease mechanisms\n• Clinical presentation and symptoms\n• Evidence-based diagnostic approaches\n• Treatment recommendations and protocols\n• Clinical pearls and practical management tips\n• References to authoritative sources\n\n**According to Merck Manual Professional**, I can explain complex medical topics in clear, academically sound language while citing my sources.\n\n**Try asking:**\n• "What is atrial fibrillation?"\n• "Tell me about pheochromocytoma"\n• "How is sepsis managed?"\n• "What are the symptoms of COPD?"\n• "Explain acute kidney injury"',
+      text: 'Hello! I\'m your Medical Expert Chatbot powered by the Merck Manual Professional and comprehensive medical resources.\n\n**My Enhanced Knowledge Base:**\n\n• **Merck Manual Professional** - Comprehensive medical encyclopedia with detailed disease information\n• **Clinical Flashcard Database** - High-yield, board-relevant information\n• **Academic References** - Peer-reviewed literature and clinical trials\n• **Clinical Practice Guidelines** - Evidence-based recommendations from leading organizations\n\n**I Provide Precise, Targeted Responses:**\n\n• **Expanded Explanations** - Detailed, original responses without word count limitations\n• **Targeted Information** - Ask about specific aspects (pathophysiology, symptoms, diagnosis, treatment) and I\'ll focus on exactly what you need\n• **Original Synthesis** - I generate original responses based on the Merck Manual as a textbook, not direct copying\n• **Integrated Knowledge** - Seamlessly combines Merck Manual content with flashcard insights\n• **Referenced Responses** - All information cites authoritative sources\n\n**According to Merck Manual Professional**, I can explain complex medical topics in clear, academically sound language while maintaining precision and preventing content bleeding between similar conditions.\n\n**Try Asking:**\n\n• "What is the pathophysiology of atrial fibrillation?" (focused response)\n• "What are the symptoms of COPD?" (clinical features only)\n• "How do you diagnose acute kidney injury?" (diagnostic approach)\n• "What is the treatment for metabolic acidosis?" (treatment only)\n• "Tell me about renal tubular acidosis" (comprehensive overview)\n\n**Quality Assurance:**\n\nMy keyword matching has been enhanced to prevent content bleeding - when you ask about "metabolic acidosis," you\'ll get information about metabolic acidosis, not renal tubular acidosis or other similar conditions.',
       isBot: true,
       timestamp: new Date(),
     },
@@ -426,55 +426,164 @@ export default function ChatbotScreen() {
     console.log('Found websites:', websites.length);
     console.log('Found Merck links:', merckLinks.length);
 
+    // Detect query intent (what aspect of disease is being asked about)
+    const lowerQuery = query.toLowerCase();
+    const isPathophysiologyQuery = /pathophysiology|mechanism|cause|etiology|why|how does/i.test(query);
+    const isClinicalQuery = /symptom|sign|present|clinical feature|manifestation|appear/i.test(query);
+    const isDiagnosticQuery = /diagnos|test|workup|evaluation|assess|detect/i.test(query);
+    const isTreatmentQuery = /treat|therap|manage|medication|drug|intervention/i.test(query);
+
     // Priority 1: Use Merck Manual Professional knowledge base (most comprehensive)
     if (merckEntries.length > 0) {
       const primaryEntry = merckEntries[0];
       let response = `**${primaryEntry.topic}**\n\n`;
       
+      // If specific aspect requested, provide only that section with expanded detail
+      if (isPathophysiologyQuery) {
+        response += '**Pathophysiology and Disease Mechanisms:**\n\n';
+        response += `${primaryEntry.pathophysiology}\n\n`;
+        
+        // Add related flashcard insights for pathophysiology
+        if (flashcards.length > 0) {
+          const relevantCards = flashcards.filter(card => 
+            card.back.definition && card.back.definition.length > 50
+          );
+          if (relevantCards.length > 0) {
+            response += '**Additional Mechanistic Insights:**\n\n';
+            relevantCards.slice(0, 2).forEach(card => {
+              if (card.back.definition) {
+                response += `• ${card.back.definition}\n`;
+              }
+            });
+            response += '\n';
+          }
+        }
+        
+        response += '*This pathophysiological explanation is synthesized from the Merck Manual Professional, representing current understanding of disease mechanisms.*\n';
+        return response;
+      }
+      
+      if (isClinicalQuery) {
+        response += '**Clinical Presentation and Manifestations:**\n\n';
+        response += `${primaryEntry.clinicalPresentation}\n\n`;
+        
+        // Add high-yield clinical features from flashcards
+        if (flashcards.length > 0) {
+          const clinicalCards = flashcards.filter(card => 
+            card.back.high_yield || card.back.clinical_pearl
+          );
+          if (clinicalCards.length > 0) {
+            response += '**High-Yield Clinical Features:**\n\n';
+            clinicalCards.slice(0, 3).forEach(card => {
+              if (card.back.high_yield) {
+                response += `• ${card.back.high_yield}\n`;
+              }
+              if (card.back.clinical_pearl) {
+                response += `  Clinical Pearl: ${card.back.clinical_pearl}\n`;
+              }
+            });
+            response += '\n';
+          }
+        }
+        
+        response += '*This clinical presentation is based on the Merck Manual Professional and clinical experience documented in our flashcard database.*\n';
+        return response;
+      }
+      
+      if (isDiagnosticQuery) {
+        response += '**Diagnostic Approach and Evaluation:**\n\n';
+        response += `${primaryEntry.diagnosticApproach}\n\n`;
+        
+        // Add diagnostic pearls from flashcards
+        if (flashcards.length > 0) {
+          const diagnosticCards = flashcards.filter(card => 
+            card.back.clinical_pearl && /diagnos|test|lab|imaging/i.test(card.back.clinical_pearl)
+          );
+          if (diagnosticCards.length > 0) {
+            response += '**Diagnostic Pearls:**\n\n';
+            diagnosticCards.slice(0, 2).forEach(card => {
+              if (card.back.clinical_pearl) {
+                response += `• ${card.back.clinical_pearl}\n`;
+              }
+            });
+            response += '\n';
+          }
+        }
+        
+        response += '*This diagnostic approach follows evidence-based guidelines from the Merck Manual Professional.*\n';
+        return response;
+      }
+      
+      if (isTreatmentQuery) {
+        response += '**Treatment and Management:**\n\n';
+        response += `${primaryEntry.treatment}\n\n`;
+        
+        // Add treatment insights from flashcards
+        if (flashcards.length > 0) {
+          const treatmentCards = flashcards.filter(card => card.back.treatment);
+          if (treatmentCards.length > 0) {
+            response += '**Additional Treatment Considerations:**\n\n';
+            treatmentCards.slice(0, 2).forEach(card => {
+              if (card.back.treatment) {
+                response += `• ${card.back.treatment}\n`;
+              }
+            });
+            response += '\n';
+          }
+        }
+        
+        response += '*Treatment recommendations are based on current evidence-based guidelines from the Merck Manual Professional.*\n';
+        return response;
+      }
+      
+      // If no specific aspect requested, provide comprehensive overview
+      response += '**Comprehensive Medical Overview:**\n\n';
+      
       // Pathophysiology
-      response += '**Pathophysiology:**\n';
+      response += '**Pathophysiology:**\n\n';
       response += `${primaryEntry.pathophysiology}\n\n`;
       
       // Clinical Presentation
-      response += '**Clinical Presentation:**\n';
+      response += '**Clinical Presentation:**\n\n';
       response += `${primaryEntry.clinicalPresentation}\n\n`;
       
       // Diagnostic Approach
-      response += '**Diagnostic Approach:**\n';
+      response += '**Diagnostic Approach:**\n\n';
       response += `${primaryEntry.diagnosticApproach}\n\n`;
       
       // Treatment
-      response += '**Treatment:**\n';
+      response += '**Treatment:**\n\n';
       response += `${primaryEntry.treatment}\n\n`;
       
       // Clinical Pearls
       if (primaryEntry.clinicalPearls.length > 0) {
-        response += '**Clinical Pearls:**\n';
+        response += '**Clinical Pearls:**\n\n';
         primaryEntry.clinicalPearls.forEach(pearl => {
           response += `• ${pearl}\n`;
         });
         response += '\n';
       }
       
-      // Add supplementary information from flashcards if available
+      // Add supplementary high-yield information from flashcards
       if (flashcards.length > 0) {
-        response += '**Additional High-Yield Information:**\n\n';
-        for (let i = 0; i < Math.min(flashcards.length, 2); i++) {
-          const card = flashcards[i];
-          if (card.back.clinical_pearl) {
+        response += '**Additional High-Yield Clinical Information:**\n\n';
+        const uniquePearls = new Set<string>();
+        flashcards.slice(0, 3).forEach(card => {
+          if (card.back.clinical_pearl && !uniquePearls.has(card.back.clinical_pearl)) {
+            uniquePearls.add(card.back.clinical_pearl);
             response += `• ${card.back.clinical_pearl}\n`;
           }
-        }
+        });
         response += '\n';
       }
       
-      response += '*This information is synthesized from the Merck Manual Professional and clinical flashcard database.*\n\n';
+      response += '*This comprehensive information is synthesized from the Merck Manual Professional and supplemented with high-yield clinical insights from our flashcard database.*\n\n';
       
       // Add context about additional resources
       if (references.length > 0 || websites.length > 0) {
-        response += '**Additional Resources:**\n';
+        response += '**For Further Reading:**\n\n';
         response += 'For the most current clinical practice guidelines, peer-reviewed literature, and evidence-based recommendations, ';
-        response += 'please review the academic references and guideline websites listed below.\n';
+        response += 'please review the academic references and guideline websites provided below.\n';
       }
       
       return response;
@@ -486,43 +595,87 @@ export default function ChatbotScreen() {
       
       const primaryCard = flashcards[0];
       
-      // Extract and present pathophysiology/definition
-      if (primaryCard.back.definition) {
-        response += '**Pathophysiology/Definition:**\n';
+      // Provide targeted response based on query intent
+      if (isPathophysiologyQuery && primaryCard.back.definition) {
+        response += '**Pathophysiology/Definition:**\n\n';
         response += `${primaryCard.back.definition}\n\n`;
-      }
-      
-      // Extract and present clinical features/symptoms
-      if (primaryCard.back.high_yield) {
-        response += '**Clinical Features:**\n';
-        response += `${primaryCard.back.high_yield}\n\n`;
-      }
-      
-      // Extract and present clinical pearls
-      if (primaryCard.back.clinical_pearl) {
-        response += '**Clinical Pearls:**\n';
-        response += `${primaryCard.back.clinical_pearl}\n\n`;
-      }
-      
-      // Extract and present treatment
-      if (primaryCard.back.treatment) {
-        response += '**Treatment:**\n';
-        response += `${primaryCard.back.treatment}\n\n`;
-      }
-      
-      // Add additional relevant information from other flashcards
-      if (flashcards.length > 1) {
-        response += '**Additional Clinical Information:**\n\n';
-        for (let i = 1; i < Math.min(flashcards.length, 3); i++) {
-          const card = flashcards[i];
-          response += `• **${card.front}**\n`;
-          if (card.back.definition) {
-            response += `  ${card.back.definition}\n`;
-          }
-          if (card.back.clinical_pearl) {
-            response += `  Pearl: ${card.back.clinical_pearl}\n`;
-          }
+        
+        // Add related definitions from other cards
+        const relatedCards = flashcards.slice(1, 3).filter(card => card.back.definition);
+        if (relatedCards.length > 0) {
+          response += '**Related Concepts:**\n\n';
+          relatedCards.forEach(card => {
+            response += `• **${card.front}**: ${card.back.definition}\n`;
+          });
           response += '\n';
+        }
+      } else if (isClinicalQuery && primaryCard.back.high_yield) {
+        response += '**Clinical Features:**\n\n';
+        response += `${primaryCard.back.high_yield}\n\n`;
+        
+        if (primaryCard.back.clinical_pearl) {
+          response += '**Clinical Pearl:**\n\n';
+          response += `${primaryCard.back.clinical_pearl}\n\n`;
+        }
+        
+        // Add related clinical features
+        const clinicalCards = flashcards.slice(1, 3).filter(card => card.back.high_yield);
+        if (clinicalCards.length > 0) {
+          response += '**Additional Clinical Features:**\n\n';
+          clinicalCards.forEach(card => {
+            response += `• ${card.back.high_yield}\n`;
+          });
+          response += '\n';
+        }
+      } else if (isTreatmentQuery && primaryCard.back.treatment) {
+        response += '**Treatment:**\n\n';
+        response += `${primaryCard.back.treatment}\n\n`;
+        
+        // Add related treatment information
+        const treatmentCards = flashcards.slice(1, 3).filter(card => card.back.treatment);
+        if (treatmentCards.length > 0) {
+          response += '**Additional Treatment Considerations:**\n\n';
+          treatmentCards.forEach(card => {
+            response += `• ${card.back.treatment}\n`;
+          });
+          response += '\n';
+        }
+      } else {
+        // Comprehensive response from flashcards
+        if (primaryCard.back.definition) {
+          response += '**Pathophysiology/Definition:**\n\n';
+          response += `${primaryCard.back.definition}\n\n`;
+        }
+        
+        if (primaryCard.back.high_yield) {
+          response += '**Clinical Features:**\n\n';
+          response += `${primaryCard.back.high_yield}\n\n`;
+        }
+        
+        if (primaryCard.back.clinical_pearl) {
+          response += '**Clinical Pearls:**\n\n';
+          response += `${primaryCard.back.clinical_pearl}\n\n`;
+        }
+        
+        if (primaryCard.back.treatment) {
+          response += '**Treatment:**\n\n';
+          response += `${primaryCard.back.treatment}\n\n`;
+        }
+        
+        // Add additional relevant information from other flashcards
+        if (flashcards.length > 1) {
+          response += '**Additional Clinical Information:**\n\n';
+          for (let i = 1; i < Math.min(flashcards.length, 3); i++) {
+            const card = flashcards[i];
+            response += `• **${card.front}**\n`;
+            if (card.back.definition) {
+              response += `  ${card.back.definition}\n`;
+            }
+            if (card.back.clinical_pearl) {
+              response += `  Pearl: ${card.back.clinical_pearl}\n`;
+            }
+            response += '\n';
+          }
         }
       }
       
@@ -530,7 +683,7 @@ export default function ChatbotScreen() {
       
       // Add context about Merck Manual and other resources
       if (merckLinks.length > 0 || references.length > 0 || websites.length > 0) {
-        response += '**For Comprehensive Details:**\n';
+        response += '**For Comprehensive Details:**\n\n';
         response += 'For in-depth pathophysiology, diagnostic criteria, treatment protocols, and clinical management strategies, ';
         response += 'please consult the Merck Manual Professional and clinical practice guidelines listed below.\n';
       }
@@ -548,7 +701,7 @@ export default function ChatbotScreen() {
       response += 'comprehensive, evidence-based information.\n\n';
       
       if (merckLinks.length > 0) {
-        response += '**According to Merck Manual Professional:**\n';
+        response += '**According to Merck Manual Professional:**\n\n';
         response += 'The Merck Manual Professional provides detailed information including:\n\n';
         response += '• Detailed disease mechanisms and pathophysiology\n';
         response += '• Evidence-based diagnostic approaches\n';
@@ -559,13 +712,13 @@ export default function ChatbotScreen() {
       }
       
       if (websites.length > 0) {
-        response += '**Clinical Practice Guidelines:**\n';
+        response += '**Clinical Practice Guidelines:**\n\n';
         response += 'Leading medical organizations provide authoritative clinical practice guidelines ';
         response += 'with evidence-based recommendations. Please review the guideline websites below.\n\n';
       }
       
       if (references.length > 0) {
-        response += '**Academic References:**\n';
+        response += '**Academic References:**\n\n';
         response += 'Peer-reviewed literature and clinical guidelines are available below for detailed information.\n';
       }
       

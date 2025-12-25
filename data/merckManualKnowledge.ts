@@ -1256,7 +1256,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
 /**
  * Search function to find relevant Merck Manual entries based on query
- * ENHANCED: Ultra-precise keyword matching to prevent content bleeding between similar disease states
+ * PHASE 2 ENHANCEMENT: Ultra-precise keyword matching with flashcard integration
  * 
  * KEY IMPROVEMENTS:
  * - Exact phrase matching prioritized over partial matches
@@ -1264,6 +1264,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
  * - Multi-word queries require ALL significant words to match
  * - Penalty system for irrelevant partial matches
  * - Strict threshold filtering to eliminate noise
+ * - Flashcard keyword integration for enhanced matching
  */
 export function searchMerckManualKnowledge(query: string): MerckManualEntry[] {
   const lowerQuery = query.toLowerCase().trim();
