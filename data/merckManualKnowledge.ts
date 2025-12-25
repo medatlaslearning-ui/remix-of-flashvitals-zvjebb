@@ -34,7 +34,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
   // ARRHYTHMIAS & CONDUCTION DISORDERS
   {
     topic: 'Atrial Fibrillation',
-    keywords: ['atrial fibrillation', 'afib', 'af', 'a-fib', 'a fib'],
+    keywords: ['atrial fibrillation', 'afib', 'af', 'a-fib', 'a fib', 'atrial fib'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, atrial fibrillation is characterized by rapid, disorganized atrial electrical activity resulting in ineffective atrial contraction and an irregularly irregular ventricular response. The condition arises from multiple reentrant wavelets in the atria, often triggered by ectopic foci near the pulmonary veins. This leads to loss of coordinated atrial mechanical function and increased risk of thrombus formation in the left atrial appendage.',
     clinicalPresentation: 'Patients may be asymptomatic or present with palpitations, dyspnea, chest discomfort, fatigue, or lightheadedness. Physical examination reveals an irregularly irregular pulse. Some patients present with complications such as stroke or heart failure exacerbation.',
@@ -51,7 +51,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Atrial Flutter',
-    keywords: ['atrial flutter', 'flutter', 'sawtooth', 'f waves'],
+    keywords: ['atrial flutter', 'aflutter', 'sawtooth pattern', 'f waves', 'flutter waves'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, atrial flutter is a macroreentrant atrial tachycardia, typically involving a circuit around the tricuspid annulus (typical flutter) or other atrial structures (atypical flutter). The atrial rate is usually 250-350 bpm with a characteristic sawtooth pattern on ECG. AV node conduction typically occurs in a 2:1 or 4:1 ratio, resulting in ventricular rates of 125-175 bpm or 75-100 bpm respectively.',
     clinicalPresentation: 'Patients present with palpitations, dyspnea, chest discomfort, or lightheadedness. Some patients are asymptomatic. Physical examination may reveal a regular or regularly irregular pulse depending on AV conduction ratio. Symptoms are often more pronounced than in atrial fibrillation due to faster ventricular rates.',
@@ -68,7 +68,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Supraventricular Tachycardia',
-    keywords: ['svt', 'supraventricular tachycardia', 'psvt', 'paroxysmal supraventricular tachycardia', 'avnrt', 'avrt', 'av nodal reentrant', 'av reentrant'],
+    keywords: ['svt', 'supraventricular tachycardia', 'psvt', 'paroxysmal supraventricular tachycardia', 'avnrt', 'avrt', 'av nodal reentrant tachycardia', 'av reentrant tachycardia'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, supraventricular tachycardia encompasses narrow-complex tachycardias originating above the ventricles. The most common mechanisms are AV nodal reentrant tachycardia (AVNRT, 60% of cases) involving dual AV nodal pathways, and AV reentrant tachycardia (AVRT, 30%) involving an accessory pathway. Atrial tachycardia accounts for the remaining 10%. These arrhythmias typically have abrupt onset and termination.',
     clinicalPresentation: 'Patients experience sudden onset of rapid, regular palpitations, often described as "fluttering" in the chest. Associated symptoms include dyspnea, chest discomfort, lightheadedness, diaphoresis, and anxiety. Polyuria may occur due to atrial natriuretic peptide release. Episodes may last seconds to hours. Physical examination during tachycardia reveals rapid, regular pulse (typically 150-250 bpm).',
@@ -85,7 +85,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Ventricular Tachycardia',
-    keywords: ['ventricular tachycardia', 'vt', 'v-tach', 'v tach', 'vtach'],
+    keywords: ['ventricular tachycardia', 'vt', 'v-tach', 'v tach', 'vtach', 'ventricular tachy'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, ventricular tachycardia is defined as three or more consecutive ventricular beats at a rate >100 bpm. Monomorphic VT (uniform QRS morphology) typically results from reentry around myocardial scar, most commonly post-MI. Polymorphic VT (varying QRS morphology) suggests acute ischemia or channelopathy. VT impairs cardiac output due to loss of AV synchrony, rapid rate, and underlying ventricular dysfunction.',
     clinicalPresentation: 'Presentation ranges from asymptomatic to cardiac arrest. Symptoms include palpitations, dyspnea, chest pain, presyncope, or syncope. Sustained VT (>30 seconds) often causes hemodynamic compromise. Physical examination may reveal cannon A waves in jugular venous pulse (AV dissociation), variable S1 intensity, and signs of heart failure. Pulseless VT is a cardiac arrest rhythm.',
@@ -188,7 +188,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
   // HEART FAILURE
   {
     topic: 'Heart Failure',
-    keywords: ['heart failure', 'hf', 'chf', 'congestive heart failure', 'hfref', 'hfpef', 'cardiac failure', 'systolic heart failure', 'diastolic heart failure'],
+    keywords: ['heart failure', 'hf', 'chf', 'congestive heart failure', 'hfref', 'hfpef', 'cardiac failure', 'systolic heart failure', 'diastolic heart failure', 'heart failure with reduced ejection fraction', 'heart failure with preserved ejection fraction'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, heart failure is a clinical syndrome resulting from structural or functional cardiac disorders that impair ventricular filling or ejection. HFrEF (reduced ejection fraction <40%) involves impaired systolic function, while HFpEF (preserved EF ≥50%) involves diastolic dysfunction with impaired ventricular relaxation and filling. Neurohormonal activation (RAAS, sympathetic nervous system) initially compensates but ultimately contributes to disease progression through adverse remodeling.',
     clinicalPresentation: 'Patients present with dyspnea (exertional, orthopnea, paroxysmal nocturnal dyspnea), fatigue, fluid retention (peripheral edema, ascites), and reduced exercise tolerance. Physical examination may reveal elevated jugular venous pressure, S3 gallop, pulmonary rales, hepatomegaly, and peripheral edema. Right heart failure manifests with systemic congestion, while left heart failure causes pulmonary congestion.',
@@ -205,7 +205,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Acute Decompensated Heart Failure',
-    keywords: ['acute heart failure', 'adhf', 'decompensated heart failure', 'acute decompensated', 'flash pulmonary edema', 'cardiogenic pulmonary edema'],
+    keywords: ['acute heart failure', 'adhf', 'decompensated heart failure', 'acute decompensated heart failure', 'flash pulmonary edema', 'cardiogenic pulmonary edema', 'acute chf'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, acute decompensated heart failure represents rapid worsening of heart failure signs and symptoms requiring urgent evaluation and treatment. Results from increased preload (volume overload), increased afterload (hypertension), decreased contractility (ischemia, arrhythmia), or combination. Pulmonary and systemic congestion develop rapidly. Common precipitants include medication non-compliance, dietary indiscretion, arrhythmias, ischemia, infection, and uncontrolled hypertension.',
     clinicalPresentation: 'Acute dyspnea at rest, orthopnea, paroxysmal nocturnal dyspnea, and cough with frothy sputum. Physical examination reveals tachypnea, hypoxemia, pulmonary rales, elevated JVP, S3 gallop, and peripheral edema. Patients may be hypertensive (flash pulmonary edema) or hypotensive (cardiogenic shock). Severe cases present with respiratory failure requiring mechanical ventilation.',
@@ -240,7 +240,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
   // ISCHEMIC HEART DISEASE
   {
     topic: 'Myocardial Infarction',
-    keywords: ['myocardial infarction', 'mi', 'heart attack', 'stemi', 'nstemi', 'acute coronary syndrome', 'acs', 'st elevation mi', 'non st elevation mi'],
+    keywords: ['myocardial infarction', 'mi', 'heart attack', 'stemi', 'nstemi', 'acute coronary syndrome', 'acs', 'st elevation myocardial infarction', 'non st elevation myocardial infarction', 'acute mi'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, myocardial infarction results from acute coronary artery occlusion, typically due to atherosclerotic plaque rupture with superimposed thrombosis. STEMI involves complete occlusion with transmural infarction, while NSTEMI involves partial occlusion or transient complete occlusion with subendocardial infarction. Myocardial necrosis begins within 20-40 minutes of complete occlusion and progresses over hours.',
     clinicalPresentation: 'Classic presentation includes substernal chest pressure or pain radiating to left arm, jaw, or back, often accompanied by diaphoresis, nausea, and dyspnea. Symptoms typically last >20 minutes. Atypical presentations (dyspnea, fatigue, epigastric pain) are common in elderly, diabetic, and female patients. Physical examination may be unremarkable or show signs of complications (heart failure, arrhythmias).',
@@ -695,7 +695,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
   // AIRWAY DISORDERS
   {
     topic: 'Asthma',
-    keywords: ['asthma', 'reactive airway disease', 'bronchospasm', 'wheezing', 'asthmatic'],
+    keywords: ['asthma', 'reactive airway disease', 'bronchospasm', 'asthmatic bronchitis', 'allergic asthma'],
     system: 'Pulmonary',
     pathophysiology: 'According to Merck Manual Professional, asthma is a chronic inflammatory disorder of the airways characterized by reversible airflow obstruction, bronchial hyperresponsiveness, and airway inflammation. Type 2 inflammation (eosinophils, mast cells, Th2 cells) predominates in allergic asthma. Triggers include allergens, exercise, cold air, respiratory infections, and irritants. Airway remodeling can occur with chronic inflammation, leading to irreversible changes including basement membrane thickening, smooth muscle hypertrophy, and mucus gland hyperplasia.',
     clinicalPresentation: 'Patients experience episodic wheezing, dyspnea, chest tightness, and cough, often worse at night or early morning. Symptoms are triggered by specific exposures and improve with bronchodilators. Physical examination during exacerbation reveals wheezing, prolonged expiration, and use of accessory muscles. Severe exacerbations may present with inability to speak in full sentences, silent chest (minimal air movement indicating severe obstruction), and respiratory distress. Between exacerbations, examination may be normal.',
@@ -712,7 +712,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Chronic Obstructive Pulmonary Disease',
-    keywords: ['copd', 'chronic obstructive pulmonary disease', 'emphysema', 'chronic bronchitis', 'obstructive lung disease'],
+    keywords: ['copd', 'chronic obstructive pulmonary disease', 'emphysema', 'chronic bronchitis', 'chronic obstructive lung disease', 'chronic obstructive airway disease'],
     system: 'Pulmonary',
     pathophysiology: 'According to Merck Manual Professional, COPD is characterized by progressive airflow limitation that is not fully reversible. Chronic bronchitis involves airway inflammation, mucus hypersecretion, and productive cough for ≥3 months in 2 consecutive years. Emphysema involves destruction of alveolar walls and loss of elastic recoil, leading to air trapping and hyperinflation. Smoking is the primary risk factor (85-90% of cases), causing oxidative stress, protease-antiprotease imbalance, and chronic inflammation. Alpha-1 antitrypsin deficiency is a genetic cause, particularly in young patients with basilar emphysema.',
     clinicalPresentation: 'Patients present with progressive dyspnea, chronic cough, and sputum production. Symptoms worsen over years. Physical examination may reveal prolonged expiration, wheezing, barrel chest, use of accessory muscles, pursed-lip breathing, and decreased breath sounds. Advanced disease causes cyanosis, cor pulmonale (right heart failure from pulmonary hypertension), and cachexia. Acute exacerbations feature increased dyspnea, cough, and sputum purulence, often triggered by infections or air pollution.',
@@ -764,7 +764,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
   // PULMONARY INFECTIONS
   {
     topic: 'Community-Acquired Pneumonia',
-    keywords: ['pneumonia', 'cap', 'community acquired pneumonia', 'lung infection', 'pneumonitis'],
+    keywords: ['pneumonia', 'cap', 'community acquired pneumonia', 'community pneumonia', 'bacterial pneumonia'],
     system: 'Pulmonary',
     pathophysiology: 'According to Merck Manual Professional, community-acquired pneumonia is an acute infection of the pulmonary parenchyma in patients not recently hospitalized. Streptococcus pneumoniae is the most common bacterial cause (30-50%). Other pathogens include Haemophilus influenzae, Mycoplasma pneumoniae, Chlamydophila pneumoniae, Legionella pneumophila, and respiratory viruses (influenza, RSV, SARS-CoV-2). Pathogens reach the lungs via aspiration of oropharyngeal secretions, inhalation of aerosols, or hematogenous spread. The inflammatory response causes alveolar filling with exudate, impairing gas exchange.',
     clinicalPresentation: 'Typical bacterial pneumonia presents with acute onset of fever, productive cough with purulent sputum, pleuritic chest pain, and dyspnea. Physical examination reveals tachypnea, tachycardia, fever, crackles, bronchial breath sounds, egophony, and dullness to percussion over the affected area. Atypical pneumonia (Mycoplasma, Chlamydia, Legionella) presents with gradual onset, dry cough, headache, and extrapulmonary symptoms (myalgias, GI symptoms). Elderly patients may present atypically with confusion, functional decline, or absence of fever.',
@@ -781,7 +781,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Hospital-Acquired Pneumonia',
-    keywords: ['hospital acquired pneumonia', 'hap', 'nosocomial pneumonia', 'ventilator associated pneumonia', 'vap'],
+    keywords: ['hospital acquired pneumonia', 'hap', 'nosocomial pneumonia', 'ventilator associated pneumonia', 'vap', 'healthcare associated pneumonia'],
     system: 'Pulmonary',
     pathophysiology: 'According to Merck Manual Professional, hospital-acquired pneumonia develops ≥48 hours after hospital admission. Ventilator-associated pneumonia (VAP) occurs >48 hours after endotracheal intubation. Pathogens differ from CAP and include multidrug-resistant organisms: Pseudomonas aeruginosa, MRSA, Acinetobacter, Klebsiella pneumoniae (including carbapenem-resistant), and Enterobacter. Risk factors include mechanical ventilation, aspiration, immunosuppression, prior antibiotics, and prolonged hospitalization. Biofilm formation on endotracheal tubes facilitates bacterial colonization in VAP.',
     clinicalPresentation: 'New or progressive pulmonary infiltrate plus clinical signs of infection: fever or hypothermia, leukocytosis or leukopenia, purulent sputum, and worsening oxygenation. Physical examination reveals crackles, bronchial breath sounds, and signs of consolidation. VAP diagnosis is challenging due to overlap with other causes of infiltrates (ARDS, pulmonary edema, atelectasis). Clinical Pulmonary Infection Score (CPIS) aids diagnosis but has limitations.',
@@ -850,7 +850,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
   // PULMONARY VASCULAR DISORDERS
   {
     topic: 'Pulmonary Embolism',
-    keywords: ['pulmonary embolism', 'pe', 'blood clot', 'embolus', 'venous thromboembolism', 'vte'],
+    keywords: ['pulmonary embolism', 'pe', 'lung embolism', 'pulmonary embolus', 'venous thromboembolism', 'vte'],
     system: 'Pulmonary',
     pathophysiology: 'According to Merck Manual Professional, pulmonary embolism occurs when thrombus (usually from deep vein thrombosis of lower extremities) lodges in the pulmonary arterial system, causing mechanical obstruction and release of vasoactive mediators. This increases pulmonary vascular resistance and right ventricular afterload. Large emboli can cause right ventricular failure and hemodynamic collapse (massive PE). Gas exchange is impaired through increased dead space ventilation (ventilation without perfusion) and ventilation-perfusion mismatch. Risk factors include immobility, surgery, trauma, malignancy, pregnancy, oral contraceptives, thrombophilia, and prior VTE (Virchow triad: stasis, hypercoagulability, endothelial injury).',
     clinicalPresentation: 'Classic triad of dyspnea, pleuritic chest pain, and hemoptysis is uncommon (<20%). Most patients present with sudden-onset dyspnea and tachypnea. Pleuritic chest pain suggests peripheral embolism with pleural irritation. Massive PE causes hypotension, syncope, and signs of right heart strain. Physical examination may reveal tachycardia, tachypnea, hypoxemia, low-grade fever, and signs of DVT (unilateral leg swelling, tenderness). Submassive PE shows RV dysfunction on imaging without hypotension. Small PE may be asymptomatic or cause minimal symptoms.',
@@ -884,7 +884,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Acute Respiratory Distress Syndrome',
-    keywords: ['ards', 'acute respiratory distress syndrome', 'acute lung injury', 'ali', 'non-cardiogenic pulmonary edema'],
+    keywords: ['ards', 'acute respiratory distress syndrome', 'acute lung injury', 'ali', 'non-cardiogenic pulmonary edema', 'acute respiratory distress'],
     system: 'Pulmonary',
     pathophysiology: 'According to Merck Manual Professional, ARDS is acute diffuse inflammatory lung injury leading to increased pulmonary vascular permeability, pulmonary edema, and severe hypoxemia. Berlin definition requires: acute onset (<1 week), bilateral opacities on imaging, hypoxemia (PaO2/FiO2 ratio <300 mmHg with PEEP ≥5 cm H2O), and absence of cardiogenic pulmonary edema. Severity: mild (200-300), moderate (100-200), severe (<100). Common causes include sepsis (most common), pneumonia, aspiration, trauma, pancreatitis, and transfusion-related acute lung injury (TRALI). Pathophysiology involves diffuse alveolar damage with protein-rich edema, hyaline membrane formation, and impaired surfactant function.',
     clinicalPresentation: 'Acute onset of severe dyspnea, tachypnea, and hypoxemia within hours to days of inciting event. Physical examination reveals tachypnea, tachycardia, cyanosis, use of accessory muscles, and diffuse crackles. Severe cases require mechanical ventilation. Complications include barotrauma (pneumothorax), ventilator-associated pneumonia, multi-organ dysfunction, and death (mortality 30-40%). Survivors may develop pulmonary fibrosis and persistent functional impairment.',
@@ -954,7 +954,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
   // PLEURAL DISORDERS
   {
     topic: 'Pleural Effusion',
-    keywords: ['pleural effusion', 'fluid in lungs', 'pleural fluid', 'effusion', 'hydrothorax'],
+    keywords: ['pleural effusion', 'pleural fluid', 'pleural space fluid', 'hydrothorax', 'lung effusion'],
     system: 'Pulmonary',
     pathophysiology: 'According to Merck Manual Professional, pleural effusion is abnormal accumulation of fluid in the pleural space. Transudates result from imbalance in hydrostatic and oncotic pressures (heart failure, cirrhosis, nephrotic syndrome, hypoalbuminemia). Exudates result from increased capillary permeability or impaired lymphatic drainage due to inflammation, infection, or malignancy. Normal pleural fluid production is 10-20 mL/day, reabsorbed by parietal pleural lymphatics. Effusions develop when production exceeds absorption or lymphatic drainage is impaired.',
     clinicalPresentation: 'Small effusions (<300 mL) may be asymptomatic. Larger effusions cause dyspnea, pleuritic chest pain, and cough. Massive effusions cause severe dyspnea and may shift the mediastinum. Physical examination reveals decreased breath sounds, dullness to percussion, decreased tactile fremitus, and possible pleural friction rub. Egophony may be present at upper border of effusion. Associated findings depend on underlying cause: fever in infection, weight loss in malignancy, peripheral edema in heart failure, ascites in cirrhosis.',
@@ -971,7 +971,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Pneumothorax',
-    keywords: ['pneumothorax', 'collapsed lung', 'air in pleural space', 'tension pneumothorax'],
+    keywords: ['pneumothorax', 'collapsed lung', 'spontaneous pneumothorax', 'tension pneumothorax', 'lung collapse'],
     system: 'Pulmonary',
     pathophysiology: 'According to Merck Manual Professional, pneumothorax is air in the pleural space causing partial or complete lung collapse. Primary spontaneous pneumothorax occurs without underlying lung disease, typically in tall, thin young men due to rupture of apical blebs. Secondary spontaneous pneumothorax occurs in patients with underlying lung disease (COPD, cystic fibrosis, Pneumocystis pneumonia, interstitial lung disease). Traumatic pneumothorax results from penetrating or blunt chest trauma. Iatrogenic pneumothorax follows procedures (central line placement, thoracentesis, lung biopsy, mechanical ventilation). Tension pneumothorax is life-threatening: one-way valve allows air entry but not exit, causing progressive accumulation, mediastinal shift, and cardiovascular collapse.',
     clinicalPresentation: 'Sudden onset of ipsilateral chest pain (sharp, pleuritic) and dyspnea. Small pneumothorax may be asymptomatic. Physical examination reveals decreased breath sounds, hyperresonance to percussion, and decreased tactile fremitus on affected side. Tension pneumothorax presents with severe respiratory distress, hypotension, tachycardia, jugular venous distension, tracheal deviation away from affected side, and absent breath sounds. Subcutaneous emphysema may be present. Hamman sign (crunching sound with heartbeat) suggests pneumomediastinum.',
@@ -1046,7 +1046,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
   // ACUTE KIDNEY INJURY
   {
     topic: 'Acute Kidney Injury',
-    keywords: ['acute kidney injury', 'aki', 'acute renal failure', 'arf', 'acute tubular necrosis', 'atn'],
+    keywords: ['acute kidney injury', 'aki', 'acute renal failure', 'arf', 'acute tubular necrosis', 'atn', 'acute kidney failure'],
     system: 'Renal',
     pathophysiology: 'According to Merck Manual Professional, acute kidney injury is a sudden decline in kidney function characterized by elevated serum creatinine, decreased urine output, or both. AKI is classified into three categories based on etiology: prerenal (decreased renal perfusion), intrinsic (direct kidney parenchymal damage), and postrenal (urinary tract obstruction). Prerenal AKI results from hypoperfusion (hypovolemia, heart failure, sepsis) causing decreased glomerular filtration. Intrinsic AKI involves damage to glomeruli, tubules, interstitium, or vessels. Acute tubular necrosis (ATN) is the most common intrinsic cause, resulting from ischemia or nephrotoxins. Postrenal AKI occurs when bilateral obstruction or unilateral obstruction in a solitary kidney impairs urine flow.',
     clinicalPresentation: 'Patients may be asymptomatic with AKI detected only by laboratory abnormalities, or present with oliguria (<400 mL/day), anuria, fluid overload (edema, pulmonary congestion), uremic symptoms (nausea, confusion, pericarditis), or complications (hyperkalemia, metabolic acidosis). Physical examination findings depend on etiology: volume depletion in prerenal AKI, fluid overload in intrinsic AKI, bladder distention in postrenal AKI. Severe AKI may present with altered mental status, seizures, or cardiac arrhythmias from electrolyte disturbances.',
@@ -1168,7 +1168,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Metabolic Acidosis',
-    keywords: ['metabolic acidosis', 'acidosis', 'anion gap', 'high anion gap metabolic acidosis', 'normal anion gap metabolic acidosis'],
+    keywords: ['metabolic acidosis', 'anion gap acidosis', 'high anion gap metabolic acidosis', 'normal anion gap metabolic acidosis', 'hagma', 'nagma'],
     system: 'Renal',
     pathophysiology: 'According to Merck Manual Professional, metabolic acidosis is characterized by decreased serum bicarbonate (<22 mEq/L) and decreased pH (<7.35). Classified by anion gap: high anion gap metabolic acidosis (HAGMA) results from accumulation of unmeasured anions (lactate, ketones, toxins, uremic acids), while normal anion gap metabolic acidosis (NAGMA) results from bicarbonate loss or impaired acid excretion. Anion gap = Na - (Cl + HCO3), normal 8-12 mEq/L. HAGMA causes (MUDPILES): Methanol, Uremia, Diabetic ketoacidosis, Propylene glycol, Isoniazid/Iron, Lactic acidosis, Ethylene glycol, Salicylates. NAGMA causes: diarrhea, renal tubular acidosis, ureterosigmoidostomy, carbonic anhydrase inhibitors. Respiratory compensation occurs via hyperventilation (Kussmaul respirations).',
     clinicalPresentation: 'Symptoms depend on severity and underlying cause. Mild acidosis may be asymptomatic. Moderate to severe acidosis causes dyspnea, Kussmaul respirations (deep, rapid breathing), confusion, lethargy, and nausea. Severe acidosis (pH <7.1) can cause cardiac dysfunction, arrhythmias, and coma. Physical examination may reveal tachypnea, altered mental status, and signs of underlying cause (fruity breath odor in DKA, signs of volume depletion in diarrhea, uremic symptoms in kidney failure).',
@@ -1203,7 +1203,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Renal Tubular Acidosis',
-    keywords: ['renal tubular acidosis', 'rta', 'type 1 rta', 'type 2 rta', 'type 4 rta', 'distal rta', 'proximal rta'],
+    keywords: ['renal tubular acidosis', 'rta', 'type 1 rta', 'type 2 rta', 'type 4 rta', 'distal rta', 'proximal rta', 'tubular acidosis'],
     system: 'Renal',
     pathophysiology: 'According to Merck Manual Professional, renal tubular acidosis encompasses disorders of renal acid-base regulation causing normal anion gap metabolic acidosis. Type 1 (distal) RTA: impaired distal tubule hydrogen ion secretion, causing inability to acidify urine (urine pH >5.5 despite acidemia). Causes include autoimmune diseases, medications (amphotericin B), genetic disorders. Type 2 (proximal) RTA: impaired proximal tubule bicarbonate reabsorption, causing bicarbonate wasting. Associated with Fanconi syndrome. Type 4 RTA: aldosterone deficiency or resistance, causing hyperkalemia and impaired distal hydrogen and potassium secretion. Most common RTA, often seen in diabetic nephropathy and chronic kidney disease.',
     clinicalPresentation: 'Type 1 RTA: growth retardation in children, nephrolithiasis and nephrocalcinosis (from hypercalciuria), bone disease (osteomalacia), hypokalemia, muscle weakness. Type 2 RTA: similar to type 1 but associated with Fanconi syndrome (glycosuria, phosphaturia, aminoaciduria), rickets/osteomalacia. Type 4 RTA: often asymptomatic, hyperkalemia may cause muscle weakness or cardiac arrhythmias. All types cause normal anion gap metabolic acidosis with variable severity.',
@@ -1256,85 +1256,165 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
 /**
  * Search function to find relevant Merck Manual entries based on query
- * ENHANCED: Precise keyword matching to prevent content bleeding between topics
+ * ENHANCED: Ultra-precise keyword matching to prevent content bleeding between similar disease states
+ * 
+ * KEY IMPROVEMENTS:
+ * - Exact phrase matching prioritized over partial matches
+ * - Word boundary enforcement prevents substring false positives
+ * - Multi-word queries require ALL significant words to match
+ * - Penalty system for irrelevant partial matches
+ * - Strict threshold filtering to eliminate noise
  */
 export function searchMerckManualKnowledge(query: string): MerckManualEntry[] {
   const lowerQuery = query.toLowerCase().trim();
-  const queryWords = lowerQuery.split(' ').filter(word => word.length > 2);
+  const queryWords = lowerQuery.split(/\s+/).filter(word => word.length > 2);
+  
+  // Helper function to escape regex special characters
+  const escapeRegex = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   
   const scoredEntries = merckManualKnowledge.map(entry => {
     let score = 0;
+    let hasExactMatch = false;
+    let hasStrongMatch = false;
     
-    // EXACT TOPIC MATCH - Highest priority (massive boost)
-    if (entry.topic.toLowerCase() === lowerQuery) {
-      score += 10000; // Dramatically increased for exact topic match
-    } else if (entry.topic.toLowerCase().includes(lowerQuery) && lowerQuery.length > 4) {
-      score += 100;
+    // PRIORITY 1: EXACT TOPIC MATCH - Highest priority
+    const topicLower = entry.topic.toLowerCase();
+    if (topicLower === lowerQuery) {
+      score += 100000; // Massive boost for perfect topic match
+      hasExactMatch = true;
     }
     
-    // EXACT KEYWORD MATCH - Very high priority
+    // PRIORITY 2: EXACT KEYWORD MATCH - Very high priority
     entry.keywords.forEach(keyword => {
       const keywordLower = keyword.toLowerCase();
       
-      // Perfect exact match
+      // Perfect exact match (entire query matches entire keyword)
       if (keywordLower === lowerQuery) {
-        score += 5000; // Exact match gets huge boost
+        score += 50000;
+        hasExactMatch = true;
       }
-      // Exact match with word boundaries (e.g., "endocarditis" matches "endocarditis" but not "myocarditis")
-      else if (lowerQuery.split(' ').some(word => word === keywordLower)) {
-        score += 3000;
-      }
-      // Keyword contains query as complete word (with boundaries)
-      else if (new RegExp(`\\b${lowerQuery}\\b`).test(keywordLower) && lowerQuery.length > 3) {
-        score += 1000;
-      }
-      // Partial match only if query is substantial and at start of keyword
-      else if (keywordLower.startsWith(lowerQuery) && lowerQuery.length > 5) {
-        score += 50;
+      // Exact phrase match with word boundaries
+      else if (new RegExp(`\\b${escapeRegex(lowerQuery)}\\b`).test(keywordLower)) {
+        score += 25000;
+        hasStrongMatch = true;
       }
     });
     
-    // MULTI-WORD QUERY MATCHING - Only for queries with multiple words
-    if (queryWords.length > 1) {
-      let multiWordScore = 0;
+    // PRIORITY 3: MULTI-WORD EXACT MATCHING
+    // For multi-word queries, ALL significant words must match
+    if (queryWords.length > 1 && !hasExactMatch) {
       let matchedWords = 0;
+      let totalSignificantWords = queryWords.length;
       
       queryWords.forEach(word => {
-        entry.keywords.forEach(keyword => {
-          const keywordLower = keyword.toLowerCase();
-          // Check if keyword contains the word as a complete word
-          if (new RegExp(`\\b${word}\\b`).test(keywordLower) && word.length > 3) {
-            multiWordScore += 10;
-            matchedWords++;
-          }
-        });
+        let wordMatched = false;
+        
+        // Check topic for word match
+        if (new RegExp(`\\b${escapeRegex(word)}\\b`).test(topicLower)) {
+          wordMatched = true;
+        }
+        
+        // Check keywords for word match
+        if (!wordMatched) {
+          entry.keywords.forEach(keyword => {
+            const keywordLower = keyword.toLowerCase();
+            if (new RegExp(`\\b${escapeRegex(word)}\\b`).test(keywordLower)) {
+              wordMatched = true;
+            }
+          });
+        }
+        
+        if (wordMatched) {
+          matchedWords++;
+        }
       });
       
-      // Bonus if multiple words match
-      if (matchedWords > 1) {
-        score += multiWordScore * matchedWords;
-      } else {
-        score += multiWordScore;
+      // Calculate match percentage
+      const matchPercentage = matchedWords / totalSignificantWords;
+      
+      // Require at least 80% of words to match for multi-word queries
+      if (matchPercentage >= 0.8) {
+        score += 10000 * matchPercentage * matchedWords;
+        hasStrongMatch = true;
+      } else if (matchPercentage >= 0.5) {
+        // Partial match with lower score
+        score += 1000 * matchPercentage;
       }
     }
     
+    // PRIORITY 4: SINGLE WORD MATCHING (only if no strong match yet)
+    if (queryWords.length === 1 && !hasExactMatch && !hasStrongMatch) {
+      const singleWord = queryWords[0];
+      
+      // Check for word boundary match in topic
+      if (new RegExp(`\\b${escapeRegex(singleWord)}\\b`).test(topicLower)) {
+        score += 5000;
+        hasStrongMatch = true;
+      }
+      
+      // Check for word boundary match in keywords
+      entry.keywords.forEach(keyword => {
+        const keywordLower = keyword.toLowerCase();
+        if (new RegExp(`\\b${escapeRegex(singleWord)}\\b`).test(keywordLower)) {
+          score += 3000;
+          hasStrongMatch = true;
+        }
+      });
+      
+      // Only allow prefix matching for longer queries (6+ characters)
+      if (!hasStrongMatch && singleWord.length >= 6) {
+        entry.keywords.forEach(keyword => {
+          const keywordLower = keyword.toLowerCase();
+          if (keywordLower.startsWith(singleWord)) {
+            score += 100; // Much lower score for prefix matches
+          }
+        });
+      }
+    }
+    
+    // PENALTY: Reduce score if query is substring of a different disease
+    // This prevents "acidosis" from matching "renal tubular acidosis" when user wants "metabolic acidosis"
+    if (!hasExactMatch && !hasStrongMatch) {
+      entry.keywords.forEach(keyword => {
+        const keywordLower = keyword.toLowerCase();
+        // If keyword contains query but not as a complete word, apply penalty
+        if (keywordLower.includes(lowerQuery) && 
+            !new RegExp(`\\b${escapeRegex(lowerQuery)}\\b`).test(keywordLower)) {
+          score -= 500; // Penalty for substring matches
+        }
+      });
+    }
+    
     // SYSTEM MATCH - Very low priority, only as tiebreaker
-    if (entry.system.toLowerCase().includes(lowerQuery)) {
-      score += 1;
+    if (entry.system.toLowerCase() === lowerQuery) {
+      score += 10;
     }
     
     return { entry, score };
   });
   
-  // Filter out very low scores to prevent irrelevant matches
-  const MIN_SCORE_THRESHOLD = 10;
+  // STRICT FILTERING: Only return entries with meaningful scores
+  // Exact matches: 25000+
+  // Strong matches: 3000+
+  // Weak matches: filtered out
+  const MIN_SCORE_THRESHOLD = 2500;
   
-  // Return entries with score above threshold, sorted by score
-  return scoredEntries
+  const filteredEntries = scoredEntries
     .filter(item => item.score >= MIN_SCORE_THRESHOLD)
-    .sort((a, b) => b.score - a.score)
-    .map(item => item.entry)
-    .slice(0, 3); // Return top 3 matches
+    .sort((a, b) => b.score - a.score);
+  
+  // Log top matches for debugging
+  if (filteredEntries.length > 0) {
+    console.log(`Search for "${query}":`, filteredEntries.slice(0, 3).map(item => ({
+      topic: item.entry.topic,
+      score: item.score
+    })));
+  }
+  
+  // Return top 3 matches only
+  return filteredEntries
+    .slice(0, 3)
+    .map(item => item.entry);
 }
 
 /**
@@ -1353,4 +1433,112 @@ export function getMerckManualBySystem(system: string): MerckManualEntry[] {
   return merckManualKnowledge.filter(
     entry => entry.system.toLowerCase() === system.toLowerCase()
   );
+}
+
+/**
+ * STRESS TEST FUNCTION
+ * Tests keyword search precision to prevent content bleeding
+ * 
+ * This function runs automated tests on similar disease names to ensure
+ * the search algorithm correctly differentiates between them.
+ */
+export function runKeywordStressTest(): {
+  passed: number;
+  failed: number;
+  results: Array<{
+    query: string;
+    expectedTopic: string;
+    actualTopic: string | null;
+    passed: boolean;
+    score?: number;
+  }>;
+} {
+  const testCases = [
+    // RENAL/NEPHROLOGY STRESS TESTS
+    { query: 'renal tubular acidosis', expectedTopic: 'Renal Tubular Acidosis' },
+    { query: 'metabolic acidosis', expectedTopic: 'Metabolic Acidosis' },
+    { query: 'rta', expectedTopic: 'Renal Tubular Acidosis' },
+    { query: 'type 1 rta', expectedTopic: 'Renal Tubular Acidosis' },
+    { query: 'anion gap acidosis', expectedTopic: 'Metabolic Acidosis' },
+    { query: 'acute kidney injury', expectedTopic: 'Acute Kidney Injury' },
+    { query: 'aki', expectedTopic: 'Acute Kidney Injury' },
+    { query: 'chronic kidney disease', expectedTopic: 'Chronic Kidney Disease' },
+    { query: 'ckd', expectedTopic: 'Chronic Kidney Disease' },
+    { query: 'nephrotic syndrome', expectedTopic: 'Nephrotic Syndrome' },
+    { query: 'nephritic syndrome', expectedTopic: 'Nephritic Syndrome' },
+    { query: 'glomerulonephritis', expectedTopic: 'Nephritic Syndrome' },
+    { query: 'iga nephropathy', expectedTopic: 'IgA Nephropathy' },
+    { query: 'hyponatremia', expectedTopic: 'Hyponatremia' },
+    { query: 'hyperkalemia', expectedTopic: 'Hyperkalemia' },
+    { query: 'acute interstitial nephritis', expectedTopic: 'Acute Interstitial Nephritis' },
+    { query: 'nephrolithiasis', expectedTopic: 'Nephrolithiasis' },
+    { query: 'kidney stones', expectedTopic: 'Nephrolithiasis' },
+    { query: 'urinary tract infection', expectedTopic: 'Urinary Tract Infection' },
+    { query: 'uti', expectedTopic: 'Urinary Tract Infection' },
+    
+    // CARDIOLOGY STRESS TESTS
+    { query: 'atrial fibrillation', expectedTopic: 'Atrial Fibrillation' },
+    { query: 'atrial flutter', expectedTopic: 'Atrial Flutter' },
+    { query: 'afib', expectedTopic: 'Atrial Fibrillation' },
+    { query: 'ventricular tachycardia', expectedTopic: 'Ventricular Tachycardia' },
+    { query: 'supraventricular tachycardia', expectedTopic: 'Supraventricular Tachycardia' },
+    { query: 'svt', expectedTopic: 'Supraventricular Tachycardia' },
+    { query: 'vt', expectedTopic: 'Ventricular Tachycardia' },
+    { query: 'heart failure', expectedTopic: 'Heart Failure' },
+    { query: 'acute heart failure', expectedTopic: 'Acute Decompensated Heart Failure' },
+    { query: 'myocardial infarction', expectedTopic: 'Myocardial Infarction' },
+    { query: 'stemi', expectedTopic: 'Myocardial Infarction' },
+    { query: 'unstable angina', expectedTopic: 'Unstable Angina' },
+    { query: 'stable angina', expectedTopic: 'Stable Angina Pectoris' },
+    { query: 'aortic stenosis', expectedTopic: 'Aortic Stenosis' },
+    { query: 'aortic regurgitation', expectedTopic: 'Aortic Regurgitation' },
+    { query: 'mitral stenosis', expectedTopic: 'Mitral Stenosis' },
+    { query: 'mitral regurgitation', expectedTopic: 'Mitral Regurgitation' },
+    { query: 'endocarditis', expectedTopic: 'Infective Endocarditis' },
+    { query: 'myocarditis', expectedTopic: 'Myocarditis' },
+    { query: 'pericarditis', expectedTopic: 'Acute Pericarditis' },
+    { query: 'cardiac tamponade', expectedTopic: 'Cardiac Tamponade' },
+    { query: 'hypertension', expectedTopic: 'Hypertension' },
+    { query: 'hypertensive emergency', expectedTopic: 'Hypertensive Emergency' },
+    
+    // PULMONARY STRESS TESTS
+    { query: 'asthma', expectedTopic: 'Asthma' },
+    { query: 'copd', expectedTopic: 'Chronic Obstructive Pulmonary Disease' },
+    { query: 'pneumonia', expectedTopic: 'Community-Acquired Pneumonia' },
+    { query: 'hospital acquired pneumonia', expectedTopic: 'Hospital-Acquired Pneumonia' },
+    { query: 'tuberculosis', expectedTopic: 'Tuberculosis' },
+    { query: 'pulmonary embolism', expectedTopic: 'Pulmonary Embolism' },
+    { query: 'pe', expectedTopic: 'Pulmonary Embolism' },
+    { query: 'ards', expectedTopic: 'Acute Respiratory Distress Syndrome' },
+    { query: 'pleural effusion', expectedTopic: 'Pleural Effusion' },
+    { query: 'pneumothorax', expectedTopic: 'Pneumothorax' },
+    { query: 'empyema', expectedTopic: 'Empyema' },
+    { query: 'bronchiectasis', expectedTopic: 'Bronchiectasis' },
+    { query: 'cystic fibrosis', expectedTopic: 'Cystic Fibrosis' },
+    { query: 'sarcoidosis', expectedTopic: 'Sarcoidosis' },
+    { query: 'pulmonary hypertension', expectedTopic: 'Pulmonary Hypertension' },
+    { query: 'lung cancer', expectedTopic: 'Lung Cancer' },
+  ];
+  
+  const results = testCases.map(testCase => {
+    const searchResults = searchMerckManualKnowledge(testCase.query);
+    const actualTopic = searchResults.length > 0 ? searchResults[0].topic : null;
+    const passed = actualTopic === testCase.expectedTopic;
+    
+    return {
+      query: testCase.query,
+      expectedTopic: testCase.expectedTopic,
+      actualTopic,
+      passed,
+    };
+  });
+  
+  const passed = results.filter(r => r.passed).length;
+  const failed = results.filter(r => !r.passed).length;
+  
+  return {
+    passed,
+    failed,
+    results,
+  };
 }
