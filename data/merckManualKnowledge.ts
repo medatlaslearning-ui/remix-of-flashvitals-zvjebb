@@ -11,7 +11,7 @@
  * - Treatment recommendations
  * - Merck Manual URL for reference
  * 
- * COMPREHENSIVE CARDIOLOGY & PULMONARY COVERAGE - ALL MAJOR TOPICS
+ * COMPREHENSIVE CARDIOLOGY, PULMONARY & RENAL COVERAGE - ALL MAJOR TOPICS
  */
 
 export interface MerckManualEntry {
@@ -1037,6 +1037,220 @@ export const merckManualKnowledge: MerckManualEntry[] = [
       'Screening with low-dose CT reduces lung cancer mortality in high-risk smokers'
     ],
     merckUrl: 'https://www.merckmanuals.com/professional/pulmonary-disorders/tumors-of-the-lungs/lung-carcinoma'
+  },
+
+  // ============================================================================
+  // COMPREHENSIVE RENAL/NEPHROLOGY SECTION - ALL MAJOR TOPICS
+  // ============================================================================
+
+  // ACUTE KIDNEY INJURY
+  {
+    topic: 'Acute Kidney Injury',
+    keywords: ['acute kidney injury', 'aki', 'acute renal failure', 'arf', 'acute tubular necrosis', 'atn'],
+    system: 'Renal',
+    pathophysiology: 'According to Merck Manual Professional, acute kidney injury is a sudden decline in kidney function characterized by elevated serum creatinine, decreased urine output, or both. AKI is classified into three categories based on etiology: prerenal (decreased renal perfusion), intrinsic (direct kidney parenchymal damage), and postrenal (urinary tract obstruction). Prerenal AKI results from hypoperfusion (hypovolemia, heart failure, sepsis) causing decreased glomerular filtration. Intrinsic AKI involves damage to glomeruli, tubules, interstitium, or vessels. Acute tubular necrosis (ATN) is the most common intrinsic cause, resulting from ischemia or nephrotoxins. Postrenal AKI occurs when bilateral obstruction or unilateral obstruction in a solitary kidney impairs urine flow.',
+    clinicalPresentation: 'Patients may be asymptomatic with AKI detected only by laboratory abnormalities, or present with oliguria (<400 mL/day), anuria, fluid overload (edema, pulmonary congestion), uremic symptoms (nausea, confusion, pericarditis), or complications (hyperkalemia, metabolic acidosis). Physical examination findings depend on etiology: volume depletion in prerenal AKI, fluid overload in intrinsic AKI, bladder distention in postrenal AKI. Severe AKI may present with altered mental status, seizures, or cardiac arrhythmias from electrolyte disturbances.',
+    diagnosticApproach: 'Diagnosis based on KDIGO criteria: increase in serum creatinine ≥0.3 mg/dL within 48 hours, or increase to ≥1.5 times baseline within 7 days, or urine output <0.5 mL/kg/hr for 6 hours. Classify AKI by stage (1-3) based on creatinine rise and urine output. Determine etiology: urinalysis (muddy brown casts in ATN, RBC casts in glomerulonephritis, WBC casts in acute interstitial nephritis), urine sodium and fractional excretion of sodium (FENa <1% suggests prerenal, >2% suggests intrinsic), renal ultrasound (hydronephrosis suggests obstruction), and assessment of volume status. Additional tests based on suspected cause: urine eosinophils (AIN), serum CK (rhabdomyolysis), complement levels (glomerulonephritis).',
+    treatment: 'Management depends on etiology and severity. Prerenal AKI: restore renal perfusion with IV fluids (crystalloids), treat underlying cause (heart failure, sepsis), discontinue nephrotoxic medications. Intrinsic AKI: supportive care, treat underlying cause (stop nephrotoxins, immunosuppression for glomerulonephritis), avoid further kidney injury. Postrenal AKI: relieve obstruction (urinary catheter, ureteral stent, nephrostomy). General measures: maintain euvolemia, avoid nephrotoxins, adjust medication doses for renal function, monitor electrolytes and acid-base status. Indications for renal replacement therapy (dialysis): refractory hyperkalemia, severe metabolic acidosis, volume overload unresponsive to diuretics, uremic complications (pericarditis, encephalopathy), certain intoxications. Nutritional support and prevention of complications are essential.',
+    clinicalPearls: [
+      'FENa <1% suggests prerenal AKI; >2% suggests ATN (not reliable if diuretics given)',
+      'Muddy brown casts on urinalysis are pathognomonic for ATN',
+      'Bilateral obstruction or unilateral obstruction in solitary kidney required for postrenal AKI',
+      'Early nephrology consultation for severe AKI, unclear etiology, or need for dialysis'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/genitourinary-disorders/acute-kidney-injury/acute-kidney-injury-aki'
+  },
+
+  // CHRONIC KIDNEY DISEASE
+  {
+    topic: 'Chronic Kidney Disease',
+    keywords: ['chronic kidney disease', 'ckd', 'chronic renal failure', 'crf', 'chronic renal insufficiency', 'end stage renal disease', 'esrd'],
+    system: 'Renal',
+    pathophysiology: 'According to Merck Manual Professional, chronic kidney disease is progressive loss of kidney function over months to years, defined as abnormalities of kidney structure or function present for >3 months. CKD is classified into 5 stages based on estimated glomerular filtration rate (eGFR): Stage 1 (eGFR ≥90 with kidney damage), Stage 2 (eGFR 60-89), Stage 3a (45-59), Stage 3b (30-44), Stage 4 (15-29), Stage 5 (<15 or dialysis). Common causes include diabetes mellitus (leading cause), hypertension, glomerulonephritis, polycystic kidney disease, and chronic interstitial nephritis. Progressive nephron loss leads to compensatory hyperfiltration in remaining nephrons, which ultimately accelerates kidney damage. CKD complications include anemia (decreased erythropoietin), mineral bone disease (hyperphosphatemia, hypocalcemia, secondary hyperparathyroidism), metabolic acidosis, and cardiovascular disease.',
+    clinicalPresentation: 'Early CKD is often asymptomatic, detected incidentally on laboratory testing. As kidney function declines, patients develop fatigue, decreased appetite, nausea, pruritus, and fluid retention (edema, hypertension). Advanced CKD (Stage 4-5) causes uremic symptoms: altered mental status, pericarditis, bleeding diathesis, peripheral neuropathy, and restless legs syndrome. Physical examination may reveal hypertension, edema, pallor (anemia), uremic frost (rare), and signs of underlying disease (diabetic retinopathy, lupus rash). Complications include volume overload, electrolyte abnormalities (hyperkalemia, hyperphosphatemia, hypocalcemia), metabolic acidosis, and cardiovascular disease (leading cause of death in CKD).',
+    diagnosticApproach: 'Diagnosis requires evidence of kidney damage or decreased kidney function for ≥3 months. Assess eGFR using serum creatinine-based equations (CKD-EPI preferred). Evaluate for kidney damage: albuminuria (urine albumin-to-creatinine ratio >30 mg/g), hematuria, structural abnormalities on imaging. Determine etiology: urinalysis, renal ultrasound (kidney size and echogenicity), serologic tests (ANA, ANCA, complement, hepatitis serologies), kidney biopsy if indicated. Assess complications: CBC (anemia), comprehensive metabolic panel (electrolytes, acid-base status), PTH and vitamin D (mineral bone disease), lipid panel (cardiovascular risk). Screen for cardiovascular disease. Monitor progression with serial eGFR and albuminuria measurements.',
+    treatment: 'Goals: slow progression, treat complications, prepare for renal replacement therapy. Slow progression: control blood pressure (target <130/80, lower if proteinuria), ACE inhibitors or ARBs (reduce proteinuria and slow progression), SGLT2 inhibitors (cardio-renal protection), glycemic control in diabetes (A1c <7%), treat underlying cause. Manage complications: erythropoiesis-stimulating agents (ESAs) for anemia (target Hgb 10-11.5 g/dL), phosphate binders and vitamin D for mineral bone disease, sodium bicarbonate for metabolic acidosis, dietary modifications (protein restriction, potassium restriction, phosphate restriction). Cardiovascular risk reduction: statins, aspirin if indicated. Prepare for renal replacement therapy: patient education, vascular access creation (arteriovenous fistula preferred), consider kidney transplantation evaluation. Dialysis or transplantation indicated when eGFR <15 or earlier if uremic symptoms, refractory complications.',
+    clinicalPearls: [
+      'ACE inhibitors/ARBs are renoprotective - continue unless contraindicated (hyperkalemia, AKI)',
+      'SGLT2 inhibitors slow CKD progression and reduce cardiovascular events',
+      'Small, echogenic kidneys on ultrasound suggest chronic, irreversible disease',
+      'Refer to nephrology when eGFR <30 or rapidly declining, or for complex management'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/genitourinary-disorders/chronic-kidney-disease/chronic-kidney-disease'
+  },
+
+  // GLOMERULAR DISEASES
+  {
+    topic: 'Nephrotic Syndrome',
+    keywords: ['nephrotic syndrome', 'nephrotic', 'proteinuria', 'hypoalbuminemia', 'edema', 'hyperlipidemia'],
+    system: 'Renal',
+    pathophysiology: 'According to Merck Manual Professional, nephrotic syndrome is characterized by heavy proteinuria (>3.5 g/day or urine protein-to-creatinine ratio >3000 mg/g), hypoalbuminemia (<3 g/dL), edema, and hyperlipidemia. Results from increased glomerular permeability to proteins, primarily due to podocyte injury. Common causes in adults include membranous nephropathy (most common primary cause), focal segmental glomerulosclerosis (FSGS), minimal change disease, and secondary causes (diabetes, amyloidosis, lupus). In children, minimal change disease is most common. Proteinuria leads to hypoalbuminemia, which decreases oncotic pressure causing edema. Hyperlipidemia results from increased hepatic lipoprotein synthesis. Complications include thromboembolism (loss of anticoagulant proteins), infections (loss of immunoglobulins), and acute kidney injury.',
+    clinicalPresentation: 'Patients present with progressive edema (periorbital, lower extremity, scrotal, anasarca), frothy urine (proteinuria), and weight gain. Physical examination reveals pitting edema, ascites, and pleural effusions in severe cases. Complications may manifest as deep vein thrombosis, pulmonary embolism (hypercoagulable state), or infections (pneumococcal peritonitis). Hypertension is variable depending on underlying cause. Lipid abnormalities may cause xanthomas or corneal arcus.',
+    diagnosticApproach: 'Diagnosis requires documentation of nephrotic-range proteinuria and hypoalbuminemia. Urinalysis shows 3-4+ protein, oval fat bodies, fatty casts. 24-hour urine collection or spot urine protein-to-creatinine ratio quantifies proteinuria. Serum albumin <3 g/dL, elevated cholesterol and triglycerides. Assess kidney function (serum creatinine, eGFR). Evaluate for underlying cause: serum and urine protein electrophoresis (amyloidosis, myeloma), ANA and complement (lupus), hepatitis B and C serologies, HIV testing, fasting glucose (diabetes). Kidney biopsy is often necessary to determine specific glomerular disease and guide treatment. Assess for complications: hypercoagulability (consider thrombophilia workup if thrombosis), infections.',
+    treatment: 'General measures: sodium restriction (<2 g/day), diuretics for edema (loop diuretics, may need combination with thiazides), ACE inhibitors or ARBs to reduce proteinuria, statins for hyperlipidemia. Anticoagulation controversial but consider for severe hypoalbuminemia (<2 g/dL), prior thrombosis, or membranous nephropathy. Specific treatment depends on underlying cause: Minimal change disease - corticosteroids (prednisone 1 mg/kg/day), excellent response rate. FSGS - corticosteroids, may require immunosuppression (cyclosporine, mycophenolate). Membranous nephropathy - immunosuppression (cyclophosphamide or rituximab plus corticosteroids) for high-risk patients. Secondary causes - treat underlying disease (glycemic control for diabetes, chemotherapy for amyloidosis). Monitor for complications and treatment side effects. Prognosis varies by etiology.',
+    clinicalPearls: [
+      'Membranous nephropathy is most common cause of nephrotic syndrome in adults',
+      'Minimal change disease responds well to corticosteroids (>90% remission rate)',
+      'Hypercoagulability is major complication - consider anticoagulation if albumin <2 g/dL',
+      'Kidney biopsy essential to determine specific diagnosis and guide treatment'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/genitourinary-disorders/glomerular-disorders/nephrotic-syndrome'
+  },
+
+  {
+    topic: 'Nephritic Syndrome',
+    keywords: ['nephritic syndrome', 'nephritic', 'glomerulonephritis', 'hematuria', 'rbc casts', 'acute glomerulonephritis'],
+    system: 'Renal',
+    pathophysiology: 'According to Merck Manual Professional, nephritic syndrome is characterized by glomerular inflammation with hematuria, red blood cell casts, proteinuria (usually <3.5 g/day), hypertension, edema, and acute kidney injury. Results from immune-mediated glomerular injury causing inflammation and disruption of glomerular basement membrane. Common causes include post-infectious glomerulonephritis (post-streptococcal most common), IgA nephropathy, lupus nephritis, ANCA-associated vasculitis, and anti-GBM disease (Goodpasture syndrome). Inflammation leads to decreased GFR, sodium and water retention (causing hypertension and edema), and hematuria from glomerular capillary wall disruption.',
+    clinicalPresentation: 'Patients present with gross or microscopic hematuria (tea-colored or cola-colored urine), edema (periorbital, lower extremity), hypertension, and oliguria. May have recent history of infection (pharyngitis, skin infection) in post-infectious GN. Physical examination reveals hypertension, edema, and possible signs of volume overload (pulmonary rales, elevated JVP). Severe cases may present with acute kidney injury, pulmonary edema, or hypertensive emergency. Systemic symptoms depend on underlying cause (fever, rash, arthritis in lupus; hemoptysis in Goodpasture or vasculitis).',
+    diagnosticApproach: 'Urinalysis is key: hematuria with dysmorphic RBCs and RBC casts (pathognomonic for glomerulonephritis), proteinuria (usually sub-nephrotic range). Assess kidney function: elevated serum creatinine, decreased eGFR. Evaluate for specific causes: ASO titer and anti-DNase B (post-streptococcal GN), complement levels (low C3 in post-infectious GN and lupus, low C3 and C4 in lupus), ANA and anti-dsDNA (lupus), ANCA (vasculitis), anti-GBM antibodies (Goodpasture). Kidney biopsy often necessary for definitive diagnosis, especially if rapidly progressive or unclear etiology. Assess severity: degree of kidney dysfunction, presence of crescents on biopsy (indicates rapidly progressive GN).',
+    treatment: 'Supportive care: control blood pressure (ACE inhibitors or ARBs preferred), manage fluid overload (sodium restriction, diuretics), treat hyperkalemia if present. Specific treatment depends on underlying cause: Post-infectious GN - supportive care, usually self-limited. IgA nephropathy - ACE inhibitors/ARBs, corticosteroids for progressive disease. Lupus nephritis - immunosuppression (corticosteroids plus cyclophosphamide or mycophenolate). ANCA-associated vasculitis - immunosuppression (corticosteroids plus cyclophosphamide or rituximab), plasma exchange for severe disease. Anti-GBM disease - plasma exchange, immunosuppression (corticosteroids plus cyclophosphamide). Rapidly progressive GN requires urgent treatment to prevent irreversible kidney damage. Dialysis may be needed for severe AKI. Prognosis varies by etiology and severity.',
+    clinicalPearls: [
+      'RBC casts on urinalysis are pathognomonic for glomerulonephritis',
+      'Post-streptococcal GN typically occurs 1-3 weeks after pharyngitis, 3-6 weeks after skin infection',
+      'Rapidly progressive GN (crescentic GN) requires urgent treatment to prevent ESRD',
+      'Low complement levels help narrow differential (post-infectious GN, lupus, MPGN)'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/genitourinary-disorders/glomerular-disorders/overview-of-nephritic-syndrome'
+  },
+
+  {
+    topic: 'IgA Nephropathy',
+    keywords: ['iga nephropathy', 'iga', 'berger disease', 'iga glomerulonephritis'],
+    system: 'Renal',
+    pathophysiology: 'According to Merck Manual Professional, IgA nephropathy (Berger disease) is the most common primary glomerulonephritis worldwide, characterized by deposition of IgA-dominant immune complexes in the glomerular mesangium. Pathogenesis involves abnormal glycosylation of IgA1, leading to formation of immune complexes that deposit in glomeruli, causing mesangial proliferation and inflammation. More common in Asians and males. Clinical course is variable, ranging from asymptomatic hematuria to progressive chronic kidney disease. Approximately 30-40% progress to ESRD over 20-30 years.',
+    clinicalPresentation: 'Classic presentation is episodic gross hematuria (tea-colored urine) concurrent with or immediately following upper respiratory infection (synpharyngitic hematuria). Between episodes, patients have persistent microscopic hematuria with variable proteinuria. Some patients present with nephrotic syndrome or nephritic syndrome. Hypertension develops in many patients. Physical examination often unremarkable except for hypertension. Henoch-Schönlein purpura (IgA vasculitis) is systemic variant with purpuric rash, arthritis, and abdominal pain.',
+    diagnosticApproach: 'Urinalysis shows hematuria (microscopic or gross) with dysmorphic RBCs and RBC casts, variable proteinuria. Serum creatinine may be normal or elevated. Serum IgA levels elevated in 50% but not diagnostic. Kidney biopsy is diagnostic: light microscopy shows mesangial proliferation, immunofluorescence shows dominant or co-dominant IgA deposition in mesangium. Assess prognosis: poor prognostic factors include persistent proteinuria >1 g/day, hypertension, reduced GFR at presentation, and extensive glomerulosclerosis on biopsy.',
+    treatment: 'Supportive care: ACE inhibitors or ARBs to reduce proteinuria and blood pressure (target BP <130/80, <125/75 if proteinuria >1 g/day), control hypertension. Immunosuppression controversial, reserved for high-risk patients: corticosteroids may benefit patients with proteinuria >1 g/day despite maximal supportive care. Fish oil (omega-3 fatty acids) may slow progression in some patients. Avoid nephrotoxins. Treat hyperlipidemia. Tonsillectomy not proven beneficial. Monitor for progression with serial measurements of proteinuria, blood pressure, and kidney function. Kidney transplantation for ESRD, but disease recurs in ~50% of grafts (usually mild).',
+    clinicalPearls: [
+      'Synpharyngitic hematuria (concurrent with URI) is classic for IgA nephropathy',
+      'Most common primary glomerulonephritis worldwide',
+      'Kidney biopsy required for definitive diagnosis',
+      'ACE inhibitors/ARBs are cornerstone of treatment to reduce proteinuria'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/genitourinary-disorders/glomerular-disorders/iga-nephropathy'
+  },
+
+  // ELECTROLYTE DISORDERS
+  {
+    topic: 'Hyponatremia',
+    keywords: ['hyponatremia', 'low sodium', 'siadh', 'syndrome of inappropriate antidiuretic hormone'],
+    system: 'Renal',
+    pathophysiology: 'According to Merck Manual Professional, hyponatremia is defined as serum sodium <135 mEq/L, the most common electrolyte disorder. Results from excess water relative to sodium, not necessarily sodium depletion. Classified by volume status: hypovolemic (sodium and water loss, but more sodium lost), euvolemic (water retention), hypervolemic (sodium and water retention, but more water retained). Common causes include diuretics, SIADH, heart failure, cirrhosis, adrenal insufficiency, hypothyroidism, and psychogenic polydipsia. SIADH results from inappropriate ADH secretion causing water retention despite low serum osmolality. Rapid correction of chronic hyponatremia can cause osmotic demyelination syndrome (central pontine myelinolysis).',
+    clinicalPresentation: 'Symptoms depend on severity and rapidity of onset. Mild (130-135 mEq/L): often asymptomatic. Moderate (125-130 mEq/L): nausea, confusion, headache. Severe (<125 mEq/L): altered mental status, seizures, coma. Acute hyponatremia (<48 hours) more likely to cause severe neurologic symptoms due to cerebral edema. Chronic hyponatremia (>48 hours) better tolerated due to brain adaptation. Physical examination findings depend on volume status: hypovolemic (dry mucous membranes, decreased skin turgor, orthostatic hypotension), euvolemic (normal), hypervolemic (edema, ascites, elevated JVP).',
+    diagnosticApproach: 'Confirm true hyponatremia (exclude pseudohyponatremia from hyperlipidemia or hyperproteinemia, exclude hypertonic hyponatremia from hyperglycemia). Assess volume status clinically. Measure serum osmolality, urine osmolality, and urine sodium. SIADH criteria: hyponatremia with low serum osmolality (<275 mOsm/kg), inappropriately concentrated urine (urine osmolality >100 mOsm/kg), urine sodium >40 mEq/L, euvolemia, normal thyroid and adrenal function. Evaluate for underlying cause: medication review (diuretics, SSRIs, carbamazepine), assess for heart failure, cirrhosis, kidney disease, malignancy (lung cancer, CNS disorders).',
+    treatment: 'Treatment depends on severity, acuity, and volume status. Acute symptomatic hyponatremia: hypertonic saline (3% NaCl) to raise sodium by 4-6 mEq/L over first few hours, then slower correction. Chronic hyponatremia: correct slowly (≤8-10 mEq/L per 24 hours) to avoid osmotic demyelination syndrome. Hypovolemic: isotonic saline. Euvolemic (SIADH): fluid restriction (<800 mL/day), treat underlying cause, consider vasopressin receptor antagonists (tolvaptan, conivaptan) for refractory cases. Hypervolemic: treat underlying condition (heart failure, cirrhosis), fluid and sodium restriction, diuretics. Monitor sodium levels frequently during correction. Avoid overly rapid correction.',
+    clinicalPearls: [
+      'Correct chronic hyponatremia slowly (≤8-10 mEq/L per 24 hours) to avoid osmotic demyelination',
+      'SIADH: low serum osmolality with inappropriately concentrated urine',
+      'Acute symptomatic hyponatremia is medical emergency requiring hypertonic saline',
+      'Always assess volume status to guide treatment approach'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/endocrine-and-metabolic-disorders/electrolyte-disorders/hyponatremia'
+  },
+
+  {
+    topic: 'Hyperkalemia',
+    keywords: ['hyperkalemia', 'high potassium', 'elevated potassium'],
+    system: 'Renal',
+    pathophysiology: 'According to Merck Manual Professional, hyperkalemia is defined as serum potassium >5.0 mEq/L. Results from decreased renal excretion (most common), increased potassium release from cells, or excessive intake. Common causes include chronic kidney disease, acute kidney injury, medications (ACE inhibitors, ARBs, potassium-sparing diuretics, NSAIDs), hypoaldosteronism (type 4 RTA), and tissue breakdown (rhabdomyolysis, tumor lysis syndrome, hemolysis). Hyperkalemia affects cardiac conduction, potentially causing life-threatening arrhythmias. Pseudohyperkalemia (falsely elevated due to hemolysis, thrombocytosis, leukocytosis) must be excluded.',
+    clinicalPresentation: 'Often asymptomatic until severe. Symptoms include muscle weakness, paresthesias, and palpitations. Severe hyperkalemia can cause ascending paralysis and cardiac arrhythmias (ventricular fibrillation, asystole). Physical examination may reveal muscle weakness or flaccid paralysis. ECG changes are key: peaked T waves (earliest sign), prolonged PR interval, loss of P waves, widened QRS complex, sine wave pattern (pre-arrest). Cardiac arrest can occur without warning.',
+    diagnosticApproach: 'Confirm true hyperkalemia (repeat if suspected pseudohyperkalemia from hemolysis). Obtain ECG immediately to assess for cardiac toxicity. Assess severity: mild (5.0-5.5 mEq/L), moderate (5.5-6.5 mEq/L), severe (>6.5 mEq/L or any level with ECG changes). Determine cause: assess kidney function (creatinine, eGFR), review medications, check for tissue breakdown (CK for rhabdomyolysis, LDH and uric acid for tumor lysis), assess for hypoaldosteronism (low aldosterone, high renin suggests adrenal insufficiency; low aldosterone, low renin suggests hyporeninemic hypoaldosteronism).',
+    treatment: 'Treatment urgency depends on severity and ECG changes. Severe hyperkalemia with ECG changes is medical emergency: 1) Stabilize cardiac membrane: calcium gluconate or calcium chloride IV (does not lower potassium but protects heart). 2) Shift potassium into cells: insulin with dextrose IV, albuterol nebulizer, sodium bicarbonate if metabolic acidosis. 3) Remove potassium from body: loop diuretics if kidney function adequate, sodium polystyrene sulfonate (Kayexelate) or patiromer (slower acting), hemodialysis for severe cases or refractory hyperkalemia. Treat underlying cause: discontinue offending medications, treat kidney disease, correct hypoaldosteronism. Dietary potassium restriction. Monitor potassium levels and ECG.',
+    clinicalPearls: [
+      'Peaked T waves are earliest ECG finding; widened QRS and sine wave pattern indicate severe toxicity',
+      'Calcium stabilizes cardiac membrane but does not lower potassium level',
+      'Insulin with dextrose and albuterol shift potassium into cells (temporary effect)',
+      'Dialysis is definitive treatment for severe, refractory hyperkalemia'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/endocrine-and-metabolic-disorders/electrolyte-disorders/hyperkalemia'
+  },
+
+  {
+    topic: 'Metabolic Acidosis',
+    keywords: ['metabolic acidosis', 'acidosis', 'anion gap', 'high anion gap metabolic acidosis', 'normal anion gap metabolic acidosis'],
+    system: 'Renal',
+    pathophysiology: 'According to Merck Manual Professional, metabolic acidosis is characterized by decreased serum bicarbonate (<22 mEq/L) and decreased pH (<7.35). Classified by anion gap: high anion gap metabolic acidosis (HAGMA) results from accumulation of unmeasured anions (lactate, ketones, toxins, uremic acids), while normal anion gap metabolic acidosis (NAGMA) results from bicarbonate loss or impaired acid excretion. Anion gap = Na - (Cl + HCO3), normal 8-12 mEq/L. HAGMA causes (MUDPILES): Methanol, Uremia, Diabetic ketoacidosis, Propylene glycol, Isoniazid/Iron, Lactic acidosis, Ethylene glycol, Salicylates. NAGMA causes: diarrhea, renal tubular acidosis, ureterosigmoidostomy, carbonic anhydrase inhibitors. Respiratory compensation occurs via hyperventilation (Kussmaul respirations).',
+    clinicalPresentation: 'Symptoms depend on severity and underlying cause. Mild acidosis may be asymptomatic. Moderate to severe acidosis causes dyspnea, Kussmaul respirations (deep, rapid breathing), confusion, lethargy, and nausea. Severe acidosis (pH <7.1) can cause cardiac dysfunction, arrhythmias, and coma. Physical examination may reveal tachypnea, altered mental status, and signs of underlying cause (fruity breath odor in DKA, signs of volume depletion in diarrhea, uremic symptoms in kidney failure).',
+    diagnosticApproach: 'Arterial blood gas confirms acidosis: pH <7.35, HCO3 <22 mEq/L. Calculate anion gap to classify. Assess respiratory compensation: expected PaCO2 = 1.5 × HCO3 + 8 (±2). If measured PaCO2 differs significantly, consider mixed disorder. For HAGMA, calculate delta gap (ΔAG - ΔHCO3) to detect concurrent metabolic alkalosis or NAGMA. Determine cause: HAGMA - measure lactate, glucose and ketones (DKA), BUN and creatinine (uremia), osmolar gap (toxic alcohols), salicylate level. NAGMA - urine anion gap (positive suggests RTA, negative suggests GI losses), assess for diarrhea or RTA. Additional tests based on suspected cause.',
+    treatment: 'Treat underlying cause - this is primary therapy. Specific treatments: Lactic acidosis - improve tissue perfusion, treat sepsis. DKA - insulin, fluids, electrolyte replacement. Uremia - dialysis. Toxic ingestions - specific antidotes (fomepizole for methanol/ethylene glycol, sodium bicarbonate for salicylates). Diarrhea - fluid and electrolyte replacement. RTA - alkali therapy (sodium bicarbonate or citrate). Sodium bicarbonate controversial for most causes of metabolic acidosis; consider if pH <7.1 and hemodynamically unstable, or for specific indications (severe hyperkalemia, tricyclic antidepressant overdose, uremic acidosis). Correct electrolyte abnormalities. Monitor pH, electrolytes, and response to treatment.',
+    clinicalPearls: [
+      'Calculate anion gap to classify metabolic acidosis (HAGMA vs NAGMA)',
+      'Kussmaul respirations indicate respiratory compensation for metabolic acidosis',
+      'Delta gap helps identify mixed acid-base disorders',
+      'Treat underlying cause - sodium bicarbonate rarely indicated and may be harmful'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/endocrine-and-metabolic-disorders/acid-base-regulation-and-disorders/metabolic-acidosis'
+  },
+
+  // RENAL TUBULAR DISORDERS
+  {
+    topic: 'Acute Interstitial Nephritis',
+    keywords: ['acute interstitial nephritis', 'ain', 'interstitial nephritis', 'drug induced nephritis'],
+    system: 'Renal',
+    pathophysiology: 'According to Merck Manual Professional, acute interstitial nephritis is characterized by inflammation of the renal interstitium and tubules, typically caused by hypersensitivity reaction to medications (most common), infections, or autoimmune diseases. Common drug causes include NSAIDs, antibiotics (beta-lactams, sulfonamides, fluoroquinolones), PPIs, and diuretics. Immune-mediated injury causes interstitial edema, inflammatory cell infiltration (lymphocytes, eosinophils), and tubular damage, leading to acute kidney injury. Unlike other drug reactions, AIN can occur weeks to months after drug initiation.',
+    clinicalPresentation: 'Classic triad of fever, rash, and eosinophilia occurs in <10% of cases. Most patients present with nonspecific symptoms of acute kidney injury: decreased urine output, edema, nausea. Some have flank pain. Physical examination may reveal fever, rash (maculopapular), or be unremarkable. Systemic symptoms depend on underlying cause. Temporal relationship between drug exposure and AKI is key diagnostic clue.',
+    diagnosticApproach: 'Urinalysis shows WBCs, WBC casts, and often eosinophiluria (Hansel stain, though sensitivity and specificity limited). Hematuria and mild proteinuria (<1.5 g/day) common. Serum creatinine elevated. Peripheral eosinophilia in ~30%. Kidney biopsy is gold standard: shows interstitial inflammation with lymphocytes and eosinophils, tubulitis, and interstitial edema. Exclude other causes of AKI: prerenal (FENa), ATN (muddy brown casts), glomerulonephritis (RBC casts, heavy proteinuria). Review medication history carefully.',
+    treatment: 'Discontinue offending medication immediately - this is most important intervention. Supportive care: maintain euvolemia, avoid nephrotoxins, adjust medications for kidney function. Corticosteroids (prednisone 0.5-1 mg/kg/day for 4-6 weeks, then taper) may hasten recovery if started early, especially for severe AKI or if kidney function not improving after drug discontinuation. Evidence for steroids is limited. Monitor kidney function - most patients recover, but some develop chronic kidney disease, especially if diagnosis delayed. Prognosis generally good if drug stopped promptly.',
+    clinicalPearls: [
+      'NSAIDs and PPIs are common causes often overlooked',
+      'Classic triad (fever, rash, eosinophilia) present in <10% of cases',
+      'Eosinophiluria suggests AIN but not specific',
+      'Discontinue offending drug immediately - most important treatment'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/genitourinary-disorders/tubulointerstitial-diseases/acute-interstitial-nephritis'
+  },
+
+  {
+    topic: 'Renal Tubular Acidosis',
+    keywords: ['renal tubular acidosis', 'rta', 'type 1 rta', 'type 2 rta', 'type 4 rta', 'distal rta', 'proximal rta'],
+    system: 'Renal',
+    pathophysiology: 'According to Merck Manual Professional, renal tubular acidosis encompasses disorders of renal acid-base regulation causing normal anion gap metabolic acidosis. Type 1 (distal) RTA: impaired distal tubule hydrogen ion secretion, causing inability to acidify urine (urine pH >5.5 despite acidemia). Causes include autoimmune diseases, medications (amphotericin B), genetic disorders. Type 2 (proximal) RTA: impaired proximal tubule bicarbonate reabsorption, causing bicarbonate wasting. Associated with Fanconi syndrome. Type 4 RTA: aldosterone deficiency or resistance, causing hyperkalemia and impaired distal hydrogen and potassium secretion. Most common RTA, often seen in diabetic nephropathy and chronic kidney disease.',
+    clinicalPresentation: 'Type 1 RTA: growth retardation in children, nephrolithiasis and nephrocalcinosis (from hypercalciuria), bone disease (osteomalacia), hypokalemia, muscle weakness. Type 2 RTA: similar to type 1 but associated with Fanconi syndrome (glycosuria, phosphaturia, aminoaciduria), rickets/osteomalacia. Type 4 RTA: often asymptomatic, hyperkalemia may cause muscle weakness or cardiac arrhythmias. All types cause normal anion gap metabolic acidosis with variable severity.',
+    diagnosticApproach: 'Confirm normal anion gap metabolic acidosis. Measure urine pH: Type 1 - urine pH >5.5 despite acidemia (diagnostic). Type 2 - urine pH <5.5 when serum bicarbonate low (after bicarbonate wasting), but >5.5 when bicarbonate repleted. Type 4 - urine pH typically <5.5. Measure serum potassium: Type 1 and 2 - hypokalemia. Type 4 - hyperkalemia (key distinguishing feature). Urine anion gap: positive in type 1 and 4 (impaired ammonium excretion), negative in type 2 and GI losses. Additional tests: fractional excretion of bicarbonate (>15% in type 2), aldosterone and renin levels (type 4), assess for Fanconi syndrome (glycosuria, phosphaturia).',
+    treatment: 'Type 1 RTA: alkali therapy with sodium bicarbonate or potassium citrate (1-2 mEq/kg/day) to maintain normal serum bicarbonate, potassium supplementation if needed. Type 2 RTA: large doses of alkali required (10-15 mEq/kg/day) due to ongoing bicarbonate wasting, potassium supplementation, treat underlying cause, thiazide diuretics may help by inducing volume depletion. Type 4 RTA: treat underlying cause, dietary potassium restriction, loop diuretics to enhance potassium excretion, fludrocortisone if aldosterone deficiency, sodium bicarbonate for acidosis. Monitor electrolytes and acid-base status. Prognosis depends on underlying cause and adequacy of treatment.',
+    clinicalPearls: [
+      'Type 1 RTA: urine pH >5.5 despite acidemia, hypokalemia, nephrolithiasis',
+      'Type 2 RTA: associated with Fanconi syndrome, requires large doses of alkali',
+      'Type 4 RTA: hyperkalemia is key feature, most common RTA',
+      'All RTAs cause normal anion gap metabolic acidosis'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/genitourinary-disorders/renal-transport-abnormalities/renal-tubular-acidosis'
+  },
+
+  // URINARY TRACT DISORDERS
+  {
+    topic: 'Nephrolithiasis',
+    keywords: ['nephrolithiasis', 'kidney stones', 'renal calculi', 'urolithiasis', 'renal stones'],
+    system: 'Renal',
+    pathophysiology: 'According to Merck Manual Professional, nephrolithiasis (kidney stones) results from crystallization of urinary solutes when concentration exceeds solubility. Stone types: calcium oxalate (most common, 70-80%), calcium phosphate, uric acid (radiolucent), struvite (infection stones), and cystine (rare, genetic). Risk factors include dehydration, hypercalciuria, hyperoxaluria, hyperuricosuria, hypocitraturia, low urine volume, and urinary tract infections (struvite stones). Calcium stones associated with hypercalciuria (idiopathic, hyperparathyroidism), hyperoxaluria (dietary, enteric, primary), and hypocitraturia. Uric acid stones form in acidic urine. Struvite stones form with urease-producing bacteria (Proteus). Cystine stones result from genetic defect in cystine transport.',
+    clinicalPresentation: 'Classic presentation is acute onset of severe colicky flank pain radiating to groin (renal colic), often with nausea and vomiting. Hematuria (gross or microscopic) in >90%. Pain location indicates stone position: flank (kidney or upper ureter), lower abdomen (mid ureter), groin or testicular/labial (lower ureter or ureterovesical junction). Urinary urgency and frequency if stone near bladder. Physical examination shows costovertebral angle tenderness, patient unable to find comfortable position (unlike peritonitis). Fever suggests concurrent infection (pyonephrosis) - urologic emergency.',
+    diagnosticApproach: 'Urinalysis shows hematuria (microscopic or gross) in >90%, may show crystals (calcium oxalate, uric acid, cystine). Non-contrast CT scan is gold standard: detects all stone types (including radiolucent uric acid), determines size and location, identifies hydronephrosis and alternative diagnoses. Kidney-ureter-bladder (KUB) X-ray detects radiopaque stones (calcium, struvite, cystine) but misses uric acid stones. Renal ultrasound alternative if CT contraindicated (pregnancy), detects hydronephrosis. Metabolic evaluation for recurrent stones or high-risk patients: 24-hour urine collection (volume, calcium, oxalate, uric acid, citrate, pH), serum calcium, phosphate, uric acid, PTH if hypercalcemia.',
+    treatment: 'Acute management: analgesia (NSAIDs or opioids), antiemetics, hydration. Medical expulsive therapy with alpha-blocker (tamsulosin) facilitates stone passage for stones <10 mm. Most stones <5 mm pass spontaneously. Indications for intervention: stone >10 mm, persistent pain, infection, obstruction with AKI, solitary kidney. Intervention options: extracorporeal shock wave lithotripsy (ESWL) for stones <2 cm, ureteroscopy with laser lithotripsy, percutaneous nephrolithotomy for large stones. Prevention: increase fluid intake (goal urine output >2 L/day), dietary modifications based on stone type (limit sodium, animal protein, oxalate), thiazide diuretics for hypercalciuria, potassium citrate for hypocitraturia or uric acid stones, allopurinol for hyperuricosuria. Treat underlying causes (hyperparathyroidism).',
+    clinicalPearls: [
+      'Non-contrast CT is gold standard for diagnosis',
+      'Stones <5 mm usually pass spontaneously; >10 mm usually require intervention',
+      'Fever with obstructing stone is urologic emergency (pyonephrosis)',
+      'Increase fluid intake to >2 L urine output/day for prevention'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/genitourinary-disorders/urinary-calculi/urinary-calculi'
+  },
+
+  {
+    topic: 'Urinary Tract Infection',
+    keywords: ['urinary tract infection', 'uti', 'cystitis', 'pyelonephritis', 'bladder infection'],
+    system: 'Renal',
+    pathophysiology: 'According to Merck Manual Professional, urinary tract infections result from bacterial colonization of the urinary tract, most commonly by Escherichia coli (80-85% of community-acquired UTIs). Other pathogens include Klebsiella, Proteus, Enterococcus, and Staphylococcus saprophyticus. Bacteria typically ascend from perineum through urethra to bladder (cystitis) and may ascend further to kidneys (pyelonephritis). Risk factors include female sex (shorter urethra), sexual activity, pregnancy, urinary obstruction, catheterization, diabetes, and immunosuppression. Complicated UTI occurs with structural/functional abnormalities, immunosuppression, or resistant organisms.',
+    clinicalPresentation: 'Cystitis: dysuria, urinary frequency, urgency, suprapubic pain, hematuria. No systemic symptoms. Pyelonephritis: fever, chills, flank pain, costovertebral angle tenderness, nausea, vomiting. May have cystitis symptoms. Physical examination: cystitis - suprapubic tenderness; pyelonephritis - fever, costovertebral angle tenderness, ill-appearing. Elderly or immunocompromised may have atypical presentation (confusion, functional decline, absence of fever).',
+    diagnosticApproach: 'Urinalysis: pyuria (>10 WBC/hpf), bacteriuria, positive leukocyte esterase and nitrites (high specificity for UTI). Hematuria common. Urine culture: ≥10^5 CFU/mL diagnostic for cystitis, ≥10^4 CFU/mL for pyelonephritis or catheter-associated UTI. Obtain culture before antibiotics in pyelonephritis, complicated UTI, or treatment failure. Blood cultures in pyelonephritis if sepsis suspected. Imaging (renal ultrasound or CT) if pyelonephritis not improving after 48-72 hours (assess for abscess, obstruction) or recurrent infections (assess for structural abnormalities).',
+    treatment: 'Cystitis (uncomplicated): nitrofurantoin 100 mg BID x 5 days, or TMP-SMX DS BID x 3 days (if local resistance <20%), or fosfomycin 3g single dose. Avoid fluoroquinolones for uncomplicated cystitis (reserve for complicated infections). Pyelonephritis (outpatient): fluoroquinolone (ciprofloxacin or levofloxacin) x 7 days, or ceftriaxone 1g IV/IM once then oral cephalosporin x 7 days. Pyelonephritis (inpatient): fluoroquinolone IV or ceftriaxone IV, adjust based on culture. Complicated UTI: broader spectrum antibiotics, longer duration (10-14 days), treat underlying cause. Asymptomatic bacteriuria: treat only in pregnancy or before urologic procedures. Prevention: increase fluid intake, void after intercourse, avoid spermicides.',
+    clinicalPearls: [
+      'E. coli causes 80-85% of community-acquired UTIs',
+      'Positive nitrites highly specific for UTI (but not sensitive)',
+      'Asymptomatic bacteriuria should not be treated except in pregnancy',
+      'Pyelonephritis requires 7-14 days of antibiotics (longer than cystitis)'
+    ],
+    merckUrl: 'https://www.merckmanuals.com/professional/genitourinary-disorders/urinary-tract-infections-utis/bacterial-urinary-tract-infections-utis'
   },
 ];
 
