@@ -1256,17 +1256,20 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
 /**
  * Search function to find relevant Merck Manual entries based on query
- * PHASE 2 ENHANCEMENT: Ultra-precise keyword matching with flashcard integration
+ * PHASE 3 ENHANCEMENT: Balanced keyword matching for comprehensive textbook-style responses
  * 
- * KEY IMPROVEMENTS:
- * - Exact phrase matching prioritized over partial matches
- * - Word boundary enforcement prevents substring false positives
- * - Multi-word queries require ALL significant words to match
- * - Penalty system for irrelevant partial matches
- * - Strict threshold filtering to eliminate noise
- * - Flashcard keyword integration for enhanced matching
+ * KEY IMPROVEMENTS FROM PHASE 3:
+ * - Loosened keyword matching to allow broader, contextually relevant results
+ * - Reduced minimum score threshold (500, down from 2500) for more comprehensive coverage
+ * - Enhanced content matching in pathophysiology, clinical presentation, and treatment sections
+ * - Maintained precision for exact matches while allowing semantic relevance
+ * - Supports comprehensive textbook-style responses with detailed information
+ * - Removed overly strict penalties that limited relevant results
+ * - Increased result count from 3 to 5 for more thorough responses
+ * - Lowered multi-word match requirement from 80% to 60% for better flexibility
  */
 export function searchMerckManualKnowledge(query: string): MerckManualEntry[] {
+  // PHASE 3: Loosened keyword matching for comprehensive textbook-style responses
   const lowerQuery = query.toLowerCase().trim();
   const queryWords = lowerQuery.split(/\s+/).filter(word => word.length > 2);
   
@@ -1299,10 +1302,14 @@ export function searchMerckManualKnowledge(query: string): MerckManualEntry[] {
         score += 25000;
         hasStrongMatch = true;
       }
+      // PHASE 3: Partial keyword match (loosened for broader results)
+      else if (keywordLower.includes(lowerQuery)) {
+        score += 5000;
+        hasStrongMatch = true;
+      }
     });
     
-    // PRIORITY 3: MULTI-WORD EXACT MATCHING
-    // For multi-word queries, ALL significant words must match
+    // PRIORITY 3: MULTI-WORD MATCHING (PHASE 3: Loosened from 80% to 60%)
     if (queryWords.length > 1 && !hasExactMatch) {
       let matchedWords = 0;
       let totalSignificantWords = queryWords.length;
@@ -1325,6 +1332,22 @@ export function searchMerckManualKnowledge(query: string): MerckManualEntry[] {
           });
         }
         
+        // PHASE 3: Also check content sections for semantic relevance
+        if (!wordMatched) {
+          const contentSections = [
+            entry.pathophysiology.toLowerCase(),
+            entry.clinicalPresentation.toLowerCase(),
+            entry.diagnosticApproach.toLowerCase(),
+            entry.treatment.toLowerCase()
+          ];
+          
+          contentSections.forEach(section => {
+            if (new RegExp(`\\b${escapeRegex(word)}\\b`).test(section)) {
+              wordMatched = true;
+            }
+          });
+        }
+        
         if (wordMatched) {
           matchedWords++;
         }
@@ -1333,17 +1356,17 @@ export function searchMerckManualKnowledge(query: string): MerckManualEntry[] {
       // Calculate match percentage
       const matchPercentage = matchedWords / totalSignificantWords;
       
-      // Require at least 80% of words to match for multi-word queries
-      if (matchPercentage >= 0.8) {
-        score += 10000 * matchPercentage * matchedWords;
+      // PHASE 3: Lowered threshold from 80% to 60% for broader results
+      if (matchPercentage >= 0.6) {
+        score += 8000 * matchPercentage * matchedWords;
         hasStrongMatch = true;
-      } else if (matchPercentage >= 0.5) {
-        // Partial match with lower score
-        score += 1000 * matchPercentage;
+      } else if (matchPercentage >= 0.4) {
+        // Partial match with moderate score
+        score += 2000 * matchPercentage;
       }
     }
     
-    // PRIORITY 4: SINGLE WORD MATCHING (only if no strong match yet)
+    // PRIORITY 4: SINGLE WORD MATCHING
     if (queryWords.length === 1 && !hasExactMatch && !hasStrongMatch) {
       const singleWord = queryWords[0];
       
@@ -1362,43 +1385,47 @@ export function searchMerckManualKnowledge(query: string): MerckManualEntry[] {
         }
       });
       
-      // Only allow prefix matching for longer queries (6+ characters)
-      if (!hasStrongMatch && singleWord.length >= 6) {
+      // PHASE 3: Check content sections for single word matches
+      if (!hasStrongMatch) {
+        const contentSections = [
+          entry.pathophysiology.toLowerCase(),
+          entry.clinicalPresentation.toLowerCase(),
+          entry.diagnosticApproach.toLowerCase(),
+          entry.treatment.toLowerCase()
+        ];
+        
+        contentSections.forEach(section => {
+          if (new RegExp(`\\b${escapeRegex(singleWord)}\\b`).test(section)) {
+            score += 1000; // Moderate score for content matches
+          }
+        });
+      }
+      
+      // PHASE 3: Allow prefix matching for longer queries (5+ characters, lowered from 6)
+      if (!hasStrongMatch && singleWord.length >= 5) {
         entry.keywords.forEach(keyword => {
           const keywordLower = keyword.toLowerCase();
           if (keywordLower.startsWith(singleWord)) {
-            score += 100; // Much lower score for prefix matches
+            score += 500; // Increased from 100 for better prefix matching
           }
         });
       }
     }
     
-    // PENALTY: Reduce score if query is substring of a different disease
-    // This prevents "acidosis" from matching "renal tubular acidosis" when user wants "metabolic acidosis"
-    if (!hasExactMatch && !hasStrongMatch) {
-      entry.keywords.forEach(keyword => {
-        const keywordLower = keyword.toLowerCase();
-        // If keyword contains query but not as a complete word, apply penalty
-        if (keywordLower.includes(lowerQuery) && 
-            !new RegExp(`\\b${escapeRegex(lowerQuery)}\\b`).test(keywordLower)) {
-          score -= 500; // Penalty for substring matches
-        }
-      });
-    }
+    // PHASE 3: REMOVED PENALTY SYSTEM - Allow related topics to appear
+    // This enables the chatbot to provide comprehensive information about related conditions
     
-    // SYSTEM MATCH - Very low priority, only as tiebreaker
-    if (entry.system.toLowerCase() === lowerQuery) {
-      score += 10;
+    // SYSTEM MATCH - Low priority, but useful for system-wide queries
+    if (entry.system.toLowerCase().includes(lowerQuery)) {
+      score += 100; // Increased from 10 for better system matching
     }
     
     return { entry, score };
   });
   
-  // STRICT FILTERING: Only return entries with meaningful scores
-  // Exact matches: 25000+
-  // Strong matches: 3000+
-  // Weak matches: filtered out
-  const MIN_SCORE_THRESHOLD = 2500;
+  // PHASE 3: LOOSENED FILTERING - Lower threshold for broader, more comprehensive results
+  // This allows the chatbot to provide textbook-style comprehensive information
+  const MIN_SCORE_THRESHOLD = 500; // Reduced from 2500 to allow more relevant results
   
   const filteredEntries = scoredEntries
     .filter(item => item.score >= MIN_SCORE_THRESHOLD)
@@ -1406,15 +1433,15 @@ export function searchMerckManualKnowledge(query: string): MerckManualEntry[] {
   
   // Log top matches for debugging
   if (filteredEntries.length > 0) {
-    console.log(`Search for "${query}":`, filteredEntries.slice(0, 3).map(item => ({
+    console.log(`Search for "${query}":`, filteredEntries.slice(0, 5).map(item => ({
       topic: item.entry.topic,
       score: item.score
     })));
   }
   
-  // Return top 3 matches only
+  // PHASE 3: Return top 5 matches (increased from 3) for more comprehensive responses
   return filteredEntries
-    .slice(0, 3)
+    .slice(0, 5)
     .map(item => item.entry);
 }
 
