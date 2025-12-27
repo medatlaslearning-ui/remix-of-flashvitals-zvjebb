@@ -1039,9 +1039,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
     merckUrl: 'https://www.merckmanuals.com/professional/pulmonary-disorders/tumors-of-the-lungs/lung-carcinoma'
   },
 
-  // ============================================================================
-  // COMPREHENSIVE RENAL/NEPHROLOGY SECTION - ALL MAJOR TOPICS
-  // ============================================================================
+
 
   // ACUTE KIDNEY INJURY
   {
