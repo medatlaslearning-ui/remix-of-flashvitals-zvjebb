@@ -8,6 +8,7 @@ import { IconSymbol } from '@/components/IconSymbol';
 import { Flashcard } from '@/types/flashcard';
 import * as Haptics from 'expo-haptics';
 import { runKeywordStressTest } from '@/data/merckManualKnowledge';
+import SystemHealthMonitor from '@/components/SystemHealthMonitor';
 
 export default function AdminScreen() {
   const router = useRouter();
@@ -161,6 +162,11 @@ export default function AdminScreen() {
         <View style={styles.header}>
           <Text style={styles.title}>Admin Panel</Text>
           <Text style={styles.subtitle}>Manage Flashcards & Run Tests</Text>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Perpetual Learning Engine</Text>
+          <SystemHealthMonitor />
         </View>
 
         <View style={styles.statsCard}>

@@ -33,6 +33,7 @@ import { emergencyMedicineFlashcards } from '@/data/emergencyMedicineFlashcards'
 import { infectiousDiseaseFlashcards } from '@/data/infectiousDiseaseFlashcards';
 import { urologyFlashcards } from '@/data/urologyFlashcards';
 import { Flashcard } from '@/types/flashcard';
+import { perpetualLearningEngine, type FollowUpQuestion } from '@/data/perpetualLearningEngine';
 
 interface Message {
   id: string;
@@ -53,6 +54,10 @@ interface Message {
   }>;
   merckManualEntries?: MerckManualEntry[];
   flashcards?: Flashcard[];
+  interactionId?: string;
+  feedback?: 'positive' | 'negative';
+  followUpQuestions?: FollowUpQuestion[];
+  system?: string;
 }
 
 // Combine all flashcards
@@ -75,7 +80,7 @@ export default function ChatbotScreen() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: 'Hello! I\'m your Medical Expert Chatbot powered by the Merck Manual Professional. I respond like a doctor to your specific questions with original answers based on my comprehensive medical knowledge.\n\n**My Complete Knowledge Base (Phase 5):**\n\n• **Cardiology** - Arrhythmias, heart failure, ischemic heart disease, valvular disorders, cardiomyopathies\n• **Pulmonary** - Asthma, COPD, pneumonia, interstitial lung diseases, pulmonary vascular disorders\n• **Gastroenterology** - GI disorders, liver disease, IBD, pancreatic conditions\n• **Endocrine** - Diabetes, thyroid disorders, adrenal disorders, pituitary disorders, calcium/bone disorders\n• **Hematology** - Anemias, bleeding disorders, thrombotic disorders, hematologic malignancies\n• **Renal** - Acute kidney injury, chronic kidney disease, glomerular diseases, electrolyte disorders\n• **Clinical Flashcards** - High-yield, board-relevant information\n• **Academic References** - Peer-reviewed literature and clinical trials\n• **Clinical Guidelines** - Evidence-based recommendations from leading organizations\n\n**I Respond Like a Doctor:**\n\n• **Focused Responses** - When you ask about pathophysiology, I focus ONLY on disease mechanisms\n• **Specific Answers** - When you ask about clinical findings, I focus ONLY on symptoms and signs\n• **Targeted Information** - When you ask about diagnosis, I focus ONLY on diagnostic approaches\n• **Precise Treatment Plans** - When you ask about treatment, I focus ONLY on management strategies\n• **Original Synthesis** - I generate original responses based on the Merck Manual, like a doctor explaining to a patient\n• **No Content Bleeding** - Enhanced keyword checking ensures I don\'t mix up similar diseases\n\n**Keyword Hooks - Ask Specific Questions:**\n\n• "What is the **pathophysiology** of iron deficiency anemia?" → Focused on disease mechanisms\n• "What are the **clinical findings** of multiple myeloma?" → Focused on symptoms and signs\n• "How do you **diagnose** thrombotic thrombocytopenic purpura?" → Focused on diagnostic approach\n• "What is the **treatment** for sickle cell disease?" → Focused on management strategies\n• "Tell me about hemophilia A" → Comprehensive overview of all aspects\n\n**Phase 5 Enhancements:**\n\nI now have complete Hematology coverage and enhanced keyword hooks that allow me to respond precisely to your specific questions, just like a doctor would answer a patient\'s focused inquiry.',
+      text: 'Hello! I\'m your Medical Expert Chatbot powered by the **Perpetual System Logic Learning Engine**.\n\n**🔄 Continuous Learning System:**\n\nI continuously learn from your interactions to provide better responses:\n\n• **Feedback Loop** - Rate my responses with 👍 or 👎 to help me improve\n• **Follow-Up Questions** - I suggest related questions to enhance your learning\n• **Self-Monitoring** - I run internal audits and stress tests to maintain quality\n• **Auto-Repair** - I fix issues automatically and alert you when needed\n\n**📚 Complete Knowledge Base:**\n\n• **Cardiology** - Arrhythmias, heart failure, ischemic heart disease, valvular disorders\n• **Pulmonary** - Asthma, COPD, pneumonia, interstitial lung diseases\n• **Gastroenterology** - GI disorders, liver disease, IBD, pancreatic conditions\n• **Endocrine** - Diabetes, thyroid disorders, adrenal disorders\n• **Hematology** - Anemias, bleeding disorders, thrombotic disorders, malignancies\n• **Renal** - AKI, CKD, glomerular diseases, electrolyte disorders\n• **Neurology** - Stroke, seizures, movement disorders, dementia, MS\n• **Infectious Disease** - Bacterial, viral, fungal, parasitic infections\n\n**🎯 Focused Responses:**\n\nAsk specific questions using keywords:\n• "What is the **pathophysiology** of..."\n• "What are the **clinical findings** of..."\n• "How do you **diagnose**..."\n• "What is the **treatment** for..."\n\n**💡 Interactive Learning:**\n\nAfter each response, I\'ll suggest 3 follow-up questions to deepen your understanding. Select one to continue learning!\n\nLet\'s begin your medical learning journey!',
       isBot: true,
       timestamp: new Date(),
     },
@@ -84,11 +89,24 @@ export default function ChatbotScreen() {
   const [isTyping, setIsTyping] = useState(false);
   const [webViewVisible, setWebViewVisible] = useState(false);
   const [webViewUrl, setWebViewUrl] = useState('');
+  const [systemNeedsRefresh, setSystemNeedsRefresh] = useState(false);
   const scrollViewRef = useRef<ScrollView>(null);
 
   useEffect(() => {
     scrollViewRef.current?.scrollToEnd({ animated: true });
   }, [messages]);
+
+  // Check system health on mount
+  useEffect(() => {
+    checkSystemHealth();
+  }, []);
+
+  const checkSystemHealth = async () => {
+    const health = perpetualLearningEngine.getSystemHealth();
+    if (health.needsRepair) {
+      setSystemNeedsRefresh(true);
+    }
+  };
 
   const getMerckManualLinks = (query: string): Array<{title: string; url: string; description: string}> => {
     const lowerQuery = query.toLowerCase();
@@ -409,6 +427,23 @@ export default function ChatbotScreen() {
 
     // Return top 5 most relevant flashcards
     return matchingCards.slice(0, 5);
+  };
+
+  const detectMedicalSystem = (query: string, merckEntries: MerckManualEntry[]): string => {
+    if (merckEntries.length > 0) {
+      return merckEntries[0].system;
+    }
+
+    const lowerQuery = query.toLowerCase();
+    if (lowerQuery.includes('heart') || lowerQuery.includes('cardiac')) return 'Cardiology';
+    if (lowerQuery.includes('lung') || lowerQuery.includes('pulmonary')) return 'Pulmonary';
+    if (lowerQuery.includes('kidney') || lowerQuery.includes('renal')) return 'Renal';
+    if (lowerQuery.includes('brain') || lowerQuery.includes('neuro')) return 'Neurology';
+    if (lowerQuery.includes('blood') || lowerQuery.includes('anemia')) return 'Hematology';
+    if (lowerQuery.includes('diabetes') || lowerQuery.includes('thyroid')) return 'Endocrine';
+    if (lowerQuery.includes('infection') || lowerQuery.includes('sepsis')) return 'Infectious Disease';
+    
+    return 'General Medicine';
   };
 
   const generateDynamicResponse = (
@@ -826,7 +861,7 @@ export default function ChatbotScreen() {
     return 'I cannot provide specific information on this topic from my current database. However, I recommend consulting the Merck Manual Professional and clinical practice guidelines for comprehensive, evidence-based medical information. Please try rephrasing your question or asking about a specific medical condition, symptom, or treatment.';
   };
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!inputText.trim()) {
       return;
     }
@@ -847,7 +882,7 @@ export default function ChatbotScreen() {
     setIsTyping(true);
 
     // Process the query
-    setTimeout(() => {
+    setTimeout(async () => {
       console.log('Processing query:', currentQuery);
       
       // Search all data sources
@@ -880,6 +915,23 @@ export default function ChatbotScreen() {
         merckManualLinks
       );
 
+      // Detect medical system
+      const system = detectMedicalSystem(currentQuery, merckEntries);
+
+      // Ingest interaction into Perpetual Learning Engine
+      const interactionId = await perpetualLearningEngine.ingestInteraction(
+        currentQuery,
+        botText,
+        system
+      );
+
+      // Generate follow-up questions
+      const followUpQuestions = perpetualLearningEngine.generateFollowUpQuestions(
+        currentQuery,
+        botText,
+        system
+      );
+
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
         text: botText,
@@ -890,11 +942,131 @@ export default function ChatbotScreen() {
         references: relevantReferences.length > 0 ? relevantReferences : undefined,
         websites: relevantWebsites.length > 0 ? relevantWebsites : undefined,
         merckManualLinks: merckManualLinks.length > 0 ? merckManualLinks : undefined,
+        interactionId,
+        followUpQuestions,
+        system,
       };
 
       setMessages(prev => [...prev, botMessage]);
       setIsTyping(false);
+
+      // Check if system needs refresh after interaction
+      await checkSystemHealth();
     }, 1500);
+  };
+
+  const handleFeedback = async (messageId: string, feedback: 'positive' | 'negative') => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+
+    const message = messages.find(m => m.id === messageId);
+    if (!message || !message.interactionId) {
+      console.error('Message or interaction ID not found');
+      return;
+    }
+
+    // If negative feedback, ask for confirmation (double-check)
+    if (feedback === 'negative') {
+      Alert.alert(
+        'Negative Feedback',
+        'Are you sure this response was not helpful? This will trigger an internal audit to improve future responses.',
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel',
+          },
+          {
+            text: 'Confirm',
+            style: 'destructive',
+            onPress: async () => {
+              await perpetualLearningEngine.recordFeedback(message.interactionId!, feedback, true);
+              
+              // Update message with feedback
+              setMessages(prev =>
+                prev.map(m =>
+                  m.id === messageId ? { ...m, feedback } : m
+                )
+              );
+
+              Alert.alert(
+                'Feedback Recorded',
+                'Thank you for your feedback. The system will audit this response and learn from it to provide better answers in the future.'
+              );
+
+              // Check if system needs refresh
+              await checkSystemHealth();
+            },
+          },
+        ]
+      );
+    } else {
+      // Positive feedback - record immediately
+      await perpetualLearningEngine.recordFeedback(message.interactionId, feedback);
+      
+      // Update message with feedback
+      setMessages(prev =>
+        prev.map(m =>
+          m.id === messageId ? { ...m, feedback } : m
+        )
+      );
+
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+    }
+  };
+
+  const handleFollowUpQuestion = async (messageId: string, question: string) => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+
+    const message = messages.find(m => m.id === messageId);
+    if (message && message.interactionId) {
+      await perpetualLearningEngine.recordFollowUpSelection(message.interactionId, question);
+    }
+
+    // Set the follow-up question as input and send it
+    setInputText(question);
+    
+    // Trigger send after a short delay to allow state update
+    setTimeout(() => {
+      handleSend();
+    }, 100);
+  };
+
+  const handleRefreshSystemLogic = async () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+
+    Alert.alert(
+      'Refresh System Logic',
+      'This will refresh the Perpetual Learning Engine, recalculate quality scores, and run stress tests. Continue?',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Refresh',
+          onPress: async () => {
+            setIsTyping(true);
+            
+            try {
+              await perpetualLearningEngine.refreshSystemLogic();
+              
+              setIsTyping(false);
+              setSystemNeedsRefresh(false);
+              
+              Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+              
+              Alert.alert(
+                'System Refreshed',
+                'The Perpetual Learning Engine has been refreshed successfully. All quality scores have been recalculated and stress tests completed.'
+              );
+            } catch (error) {
+              console.error('Error refreshing system:', error);
+              setIsTyping(false);
+              Alert.alert('Error', 'Failed to refresh system logic');
+            }
+          },
+        },
+      ]
+    );
   };
 
   const handleWebsitePress = async (url: string) => {
@@ -966,6 +1138,96 @@ export default function ChatbotScreen() {
           >
             {message.text}
           </Text>
+          
+          {/* Feedback Buttons for Bot Messages */}
+          {message.isBot && message.interactionId && (
+            <View style={styles.feedbackContainer}>
+              <Text style={styles.feedbackLabel}>Was this response helpful?</Text>
+              <View style={styles.feedbackButtons}>
+                <Pressable
+                  style={[
+                    styles.feedbackButton,
+                    message.feedback === 'positive' && styles.feedbackButtonActive,
+                  ]}
+                  onPress={() => handleFeedback(message.id, 'positive')}
+                  disabled={message.feedback !== undefined}
+                >
+                  <IconSymbol
+                    ios_icon_name="hand.thumbsup.fill"
+                    android_material_icon_name="thumb_up"
+                    size={20}
+                    color={message.feedback === 'positive' ? '#27AE60' : colors.textSecondary}
+                  />
+                  <Text
+                    style={[
+                      styles.feedbackButtonText,
+                      message.feedback === 'positive' && styles.feedbackButtonTextActive,
+                    ]}
+                  >
+                    Helpful
+                  </Text>
+                </Pressable>
+                <Pressable
+                  style={[
+                    styles.feedbackButton,
+                    message.feedback === 'negative' && styles.feedbackButtonActive,
+                  ]}
+                  onPress={() => handleFeedback(message.id, 'negative')}
+                  disabled={message.feedback !== undefined}
+                >
+                  <IconSymbol
+                    ios_icon_name="hand.thumbsdown.fill"
+                    android_material_icon_name="thumb_down"
+                    size={20}
+                    color={message.feedback === 'negative' ? '#E74C3C' : colors.textSecondary}
+                  />
+                  <Text
+                    style={[
+                      styles.feedbackButtonText,
+                      message.feedback === 'negative' && styles.feedbackButtonTextActive,
+                    ]}
+                  >
+                    Not Helpful
+                  </Text>
+                </Pressable>
+              </View>
+              {message.feedback && (
+                <Text style={styles.feedbackThankYou}>
+                  Thank you for your feedback! The Perpetual Learning Engine is learning from your input.
+                </Text>
+              )}
+            </View>
+          )}
+
+          {/* Follow-Up Questions */}
+          {message.isBot && message.followUpQuestions && message.followUpQuestions.length > 0 && (
+            <View style={styles.followUpContainer}>
+              <Text style={styles.followUpTitle}>
+                💡 Continue Learning - Suggested Questions:
+              </Text>
+              {message.followUpQuestions.map((fq, index) => (
+                <Pressable
+                  key={fq.id}
+                  style={styles.followUpButton}
+                  onPress={() => handleFollowUpQuestion(message.id, fq.question)}
+                >
+                  <View style={styles.followUpNumber}>
+                    <Text style={styles.followUpNumberText}>{index + 1}</Text>
+                  </View>
+                  <Text style={styles.followUpQuestion}>{fq.question}</Text>
+                  <IconSymbol
+                    ios_icon_name="arrow.right.circle.fill"
+                    android_material_icon_name="arrow_circle_right"
+                    size={20}
+                    color={colors.primary}
+                  />
+                </Pressable>
+              ))}
+              <Text style={styles.followUpHint}>
+                Tap a question to explore related topics and deepen your understanding
+              </Text>
+            </View>
+          )}
           
           {/* Merck Manual Professional Knowledge Base Section */}
           {message.merckManualEntries && message.merckManualEntries.length > 0 && (
@@ -1247,6 +1509,21 @@ export default function ChatbotScreen() {
         options={{
           title: 'Medical Expert Chatbot',
           headerLargeTitle: false,
+          headerRight: () => (
+            systemNeedsRefresh ? (
+              <Pressable
+                onPress={handleRefreshSystemLogic}
+                style={styles.headerButton}
+              >
+                <IconSymbol
+                  ios_icon_name="arrow.clockwise.circle.fill"
+                  android_material_icon_name="refresh"
+                  size={28}
+                  color={colors.primary}
+                />
+              </Pressable>
+            ) : null
+          ),
         }}
       />
       <KeyboardAvoidingView
@@ -1342,6 +1619,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.background,
   },
+  headerButton: {
+    marginRight: 8,
+  },
   messagesContainer: {
     flex: 1,
   },
@@ -1388,6 +1668,103 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
     marginTop: 4,
     marginHorizontal: 4,
+  },
+  feedbackContainer: {
+    marginTop: 16,
+    paddingTop: 16,
+    borderTopWidth: 1,
+    borderTopColor: colors.border,
+  },
+  feedbackLabel: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: colors.text,
+    marginBottom: 8,
+  },
+  feedbackButtons: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  feedbackButton: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+    padding: 10,
+    borderRadius: 8,
+    backgroundColor: colors.background,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  feedbackButtonActive: {
+    backgroundColor: colors.highlight,
+    borderColor: colors.primary,
+  },
+  feedbackButtonText: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: colors.textSecondary,
+  },
+  feedbackButtonTextActive: {
+    color: colors.primary,
+  },
+  feedbackThankYou: {
+    fontSize: 12,
+    color: colors.textSecondary,
+    fontStyle: 'italic',
+    marginTop: 8,
+    textAlign: 'center',
+  },
+  followUpContainer: {
+    marginTop: 16,
+    paddingTop: 16,
+    borderTopWidth: 1,
+    borderTopColor: colors.border,
+  },
+  followUpTitle: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: colors.text,
+    marginBottom: 12,
+  },
+  followUpButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    padding: 12,
+    marginBottom: 8,
+    borderRadius: 10,
+    backgroundColor: colors.background,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  followUpNumber: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: colors.primary,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  followUpNumberText: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#FFFFFF',
+  },
+  followUpQuestion: {
+    flex: 1,
+    fontSize: 13,
+    fontWeight: '600',
+    color: colors.text,
+    lineHeight: 18,
+  },
+  followUpHint: {
+    fontSize: 11,
+    color: colors.textSecondary,
+    fontStyle: 'italic',
+    marginTop: 4,
+    textAlign: 'center',
   },
   sectionHeader: {
     flexDirection: 'row',
