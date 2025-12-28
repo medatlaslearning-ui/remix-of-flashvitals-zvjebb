@@ -28,6 +28,8 @@ export interface MerckManualEntry {
 
 // Import Gastroenterology knowledge from separate file
 import { gastroenterologyKnowledge } from './gastroenterologyKnowledge';
+// Import Endocrine System knowledge from separate file (PHASE 4)
+import { endocrineSystemKnowledge } from './endocrineSystemKnowledge';
 
 export const merckManualKnowledge: MerckManualEntry[] = [
   // ============================================================================
@@ -1048,6 +1050,11 @@ export const merckManualKnowledge: MerckManualEntry[] = [
   ...gastroenterologyKnowledge,
 
   // ============================================================================
+  // COMPREHENSIVE ENDOCRINE SYSTEM - IMPORTED FROM SEPARATE FILE (PHASE 4)
+  // ============================================================================
+  ...endocrineSystemKnowledge,
+
+  // ============================================================================
   // COMPREHENSIVE RENAL SECTION - ALL MAJOR TOPICS
   // ============================================================================
 
@@ -1554,6 +1561,31 @@ export function runKeywordStressTest(): {
     { query: 'sarcoidosis', expectedTopic: 'Sarcoidosis' },
     { query: 'pulmonary hypertension', expectedTopic: 'Pulmonary Hypertension' },
     { query: 'lung cancer', expectedTopic: 'Lung Cancer' },
+    
+    // ENDOCRINE STRESS TESTS (PHASE 4)
+    { query: 'type 1 diabetes', expectedTopic: 'Type 1 Diabetes Mellitus' },
+    { query: 'type 2 diabetes', expectedTopic: 'Type 2 Diabetes Mellitus' },
+    { query: 't1dm', expectedTopic: 'Type 1 Diabetes Mellitus' },
+    { query: 't2dm', expectedTopic: 'Type 2 Diabetes Mellitus' },
+    { query: 'diabetic ketoacidosis', expectedTopic: 'Diabetic Ketoacidosis' },
+    { query: 'dka', expectedTopic: 'Diabetic Ketoacidosis' },
+    { query: 'hyperosmolar hyperglycemic state', expectedTopic: 'Hyperosmolar Hyperglycemic State' },
+    { query: 'hhs', expectedTopic: 'Hyperosmolar Hyperglycemic State' },
+    { query: 'hypoglycemia', expectedTopic: 'Hypoglycemia' },
+    { query: 'hypothyroidism', expectedTopic: 'Hypothyroidism' },
+    { query: 'hyperthyroidism', expectedTopic: 'Hyperthyroidism' },
+    { query: 'graves disease', expectedTopic: 'Hyperthyroidism' },
+    { query: 'thyroid nodules', expectedTopic: 'Thyroid Nodules' },
+    { query: 'cushing syndrome', expectedTopic: 'Cushing Syndrome' },
+    { query: 'addison disease', expectedTopic: 'Addison Disease' },
+    { query: 'pheochromocytoma', expectedTopic: 'Pheochromocytoma' },
+    { query: 'acromegaly', expectedTopic: 'Acromegaly' },
+    { query: 'prolactinoma', expectedTopic: 'Prolactinoma' },
+    { query: 'diabetes insipidus', expectedTopic: 'Diabetes Insipidus' },
+    { query: 'siadh', expectedTopic: 'Syndrome of Inappropriate Antidiuretic Hormone' },
+    { query: 'primary hyperparathyroidism', expectedTopic: 'Primary Hyperparathyroidism' },
+    { query: 'osteoporosis', expectedTopic: 'Osteoporosis' },
+    { query: 'paget disease of bone', expectedTopic: 'Paget Disease of Bone' },
   ];
   
   const results = testCases.map(testCase => {
