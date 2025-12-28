@@ -7,12 +7,15 @@ import { useFlashcards } from '@/hooks/useFlashcards';
 import { IconSymbol } from '@/components/IconSymbol';
 import { Flashcard } from '@/types/flashcard';
 import * as Haptics from 'expo-haptics';
+import { runKeywordStressTest } from '@/data/merckManualKnowledge';
 
 export default function AdminScreen() {
   const router = useRouter();
   const { flashcards } = useFlashcards();
   const [selectedCard, setSelectedCard] = useState<Flashcard | null>(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [testResults, setTestResults] = useState<ReturnType<typeof runKeywordStressTest> | null>(null);
+  const [showTestDetails, setShowTestDetails] = useState(false);
 
   // Form state
   const [system, setSystem] = useState('Cardiology');
@@ -81,6 +84,57 @@ export default function AdminScreen() {
     resetForm();
   };
 
+  const handleRunStressTests = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    console.log('Running keyword search stress tests...');
+    const results = runKeywordStressTest();
+    setTestResults(results);
+    setShowTestDetails(false);
+    console.log('Test results:', results);
+    
+    // Show alert with summary
+    const successRate = Math.round((results.passed / (results.passed + results.failed)) * 100);
+    Alert.alert(
+      'Stress Test Complete',
+      `Success Rate: ${successRate}%\nPassed: ${results.passed}\nFailed: ${results.failed}`,
+      [{ text: 'OK' }]
+    );
+  };
+
+  const getSystemColor = (query: string): string => {
+    const lowerQuery = query.toLowerCase();
+    if (lowerQuery.includes('kidney') || lowerQuery.includes('renal') || lowerQuery.includes('nephro') || 
+        lowerQuery.includes('acidosis') || lowerQuery.includes('sodium') || lowerQuery.includes('potassium')) {
+      return '#4A90E2';
+    }
+    if (lowerQuery.includes('heart') || lowerQuery.includes('cardiac') || lowerQuery.includes('atrial') || 
+        lowerQuery.includes('ventricular') || lowerQuery.includes('hypertension')) {
+      return '#E74C3C';
+    }
+    if (lowerQuery.includes('lung') || lowerQuery.includes('pulmonary') || lowerQuery.includes('pneumo') || 
+        lowerQuery.includes('respiratory') || lowerQuery.includes('asthma') || lowerQuery.includes('copd')) {
+      return '#27AE60';
+    }
+    if (lowerQuery.includes('stroke') || lowerQuery.includes('seizure') || lowerQuery.includes('epilep') || 
+        lowerQuery.includes('parkinson') || lowerQuery.includes('alzheimer') || lowerQuery.includes('dementia') ||
+        lowerQuery.includes('tremor') || lowerQuery.includes('sclerosis') || lowerQuery.includes('migraine') ||
+        lowerQuery.includes('neuropathy') || lowerQuery.includes('myasthenia') || lowerQuery.includes('meningitis') ||
+        lowerQuery.includes('encephalitis') || lowerQuery.includes('bell') || lowerQuery.includes('trigeminal') ||
+        lowerQuery.includes('als') || lowerQuery.includes('hydrocephalus') || lowerQuery.includes('vertigo')) {
+      return '#9B59B6';
+    }
+    if (lowerQuery.includes('diabetes') || lowerQuery.includes('thyroid') || lowerQuery.includes('adrenal') ||
+        lowerQuery.includes('pituitary') || lowerQuery.includes('cushing') || lowerQuery.includes('addison')) {
+      return '#F39C12';
+    }
+    if (lowerQuery.includes('anemia') || lowerQuery.includes('leukemia') || lowerQuery.includes('lymphoma') ||
+        lowerQuery.includes('myeloma') || lowerQuery.includes('thrombocyt') || lowerQuery.includes('hemophilia') ||
+        lowerQuery.includes('sickle') || lowerQuery.includes('thalassemia')) {
+      return '#E91E63';
+    }
+    return colors.textSecondary;
+  };
+
   const getTopicStats = (topicName: string) => {
     return flashcards.filter(c => c.topic === topicName).length;
   };
@@ -106,7 +160,7 @@ export default function AdminScreen() {
       >
         <View style={styles.header}>
           <Text style={styles.title}>Admin Panel</Text>
-          <Text style={styles.subtitle}>Manage Flashcards</Text>
+          <Text style={styles.subtitle}>Manage Flashcards & Run Tests</Text>
         </View>
 
         <View style={styles.statsCard}>
@@ -125,6 +179,137 @@ export default function AdminScreen() {
               <Text style={styles.statLabel}>Avg Reviews</Text>
             </View>
           </View>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Keyword Search Testing</Text>
+          <Text style={styles.sectionDescription}>
+            Run stress tests to validate keyword matching accuracy and prevent content bleeding between diseases.
+          </Text>
+          
+          <Pressable style={styles.stressTestButton} onPress={handleRunStressTests}>
+            <IconSymbol
+              ios_icon_name="play.circle.fill"
+              android_material_icon_name="play_circle"
+              size={24}
+              color="#FFFFFF"
+            />
+            <Text style={styles.stressTestButtonText}>Run Stress Tests</Text>
+          </Pressable>
+
+          {testResults && (
+            <View style={styles.testResultsContainer}>
+              <View style={styles.testSummaryCard}>
+                <View style={styles.testSummaryRow}>
+                  <View style={styles.testSummaryItem}>
+                    <IconSymbol
+                      ios_icon_name="checkmark.circle.fill"
+                      android_material_icon_name="check_circle"
+                      size={32}
+                      color="#27AE60"
+                    />
+                    <Text style={styles.testSummaryNumber}>{testResults.passed}</Text>
+                    <Text style={styles.testSummaryLabel}>Passed</Text>
+                  </View>
+                  <View style={styles.testSummaryItem}>
+                    <IconSymbol
+                      ios_icon_name="xmark.circle.fill"
+                      android_material_icon_name="cancel"
+                      size={32}
+                      color="#E74C3C"
+                    />
+                    <Text style={styles.testSummaryNumber}>{testResults.failed}</Text>
+                    <Text style={styles.testSummaryLabel}>Failed</Text>
+                  </View>
+                  <View style={styles.testSummaryItem}>
+                    <IconSymbol
+                      ios_icon_name="chart.bar.fill"
+                      android_material_icon_name="bar_chart"
+                      size={32}
+                      color={colors.primary}
+                    />
+                    <Text style={styles.testSummaryNumber}>
+                      {Math.round((testResults.passed / (testResults.passed + testResults.failed)) * 100)}%
+                    </Text>
+                    <Text style={styles.testSummaryLabel}>Success Rate</Text>
+                  </View>
+                </View>
+              </View>
+
+              <Pressable
+                style={styles.detailsToggle}
+                onPress={() => setShowTestDetails(!showTestDetails)}
+              >
+                <Text style={styles.detailsToggleText}>
+                  {showTestDetails ? 'Hide' : 'Show'} Detailed Results
+                </Text>
+                <IconSymbol
+                  ios_icon_name={showTestDetails ? 'chevron.up' : 'chevron.down'}
+                  android_material_icon_name={showTestDetails ? 'expand_less' : 'expand_more'}
+                  size={20}
+                  color={colors.primary}
+                />
+              </Pressable>
+
+              {showTestDetails && (
+                <View style={styles.detailsContainer}>
+                  {testResults.results.map((result, index) => (
+                    <View
+                      key={index}
+                      style={[
+                        styles.testCard,
+                        result.passed ? styles.testCardPassed : styles.testCardFailed,
+                      ]}
+                    >
+                      <View style={styles.testHeader}>
+                        <IconSymbol
+                          ios_icon_name={result.passed ? 'checkmark.circle.fill' : 'xmark.circle.fill'}
+                          android_material_icon_name={result.passed ? 'check_circle' : 'cancel'}
+                          size={20}
+                          color={result.passed ? '#27AE60' : '#E74C3C'}
+                        />
+                        <Text style={[styles.testQuery, { color: getSystemColor(result.query) }]}>
+                          &quot;{result.query}&quot;
+                        </Text>
+                      </View>
+                      <View style={styles.testDetails}>
+                        <Text style={styles.testLabel}>Expected:</Text>
+                        <Text style={styles.testValue}>{result.expectedTopic}</Text>
+                      </View>
+                      <View style={styles.testDetails}>
+                        <Text style={styles.testLabel}>Actual:</Text>
+                        <Text style={[
+                          styles.testValue,
+                          !result.passed && styles.testValueError
+                        ]}>
+                          {result.actualTopic || 'No match found'}
+                        </Text>
+                      </View>
+                    </View>
+                  ))}
+
+                  {testResults.failed > 0 && (
+                    <View style={styles.failedSection}>
+                      <Text style={styles.failedTitle}>Failed Tests Summary:</Text>
+                      {testResults.results
+                        .filter(r => !r.passed)
+                        .map((result, index) => (
+                          <View key={index} style={styles.failedItem}>
+                            <Text style={styles.failedQuery}>• &quot;{result.query}&quot;</Text>
+                            <Text style={styles.failedDetail}>
+                              Expected: {result.expectedTopic}
+                            </Text>
+                            <Text style={styles.failedDetail}>
+                              Got: {result.actualTopic || 'No match'}
+                            </Text>
+                          </View>
+                        ))}
+                    </View>
+                  )}
+                </View>
+              )}
+            </View>
+          )}
         </View>
 
         <View style={styles.section}>
@@ -236,7 +421,12 @@ export default function AdminScreen() {
             </View>
 
             <Pressable onPress={handleSave} style={styles.saveButton}>
-              <IconSymbol name="checkmark.circle.fill" size={20} color={colors.card} />
+              <IconSymbol
+                ios_icon_name="checkmark.circle.fill"
+                android_material_icon_name="check_circle"
+                size={20}
+                color={colors.card}
+              />
               <Text style={styles.saveButtonText}>
                 {isEditing ? 'Update Flashcard' : 'Add Flashcard'}
               </Text>
@@ -254,10 +444,20 @@ export default function AdminScreen() {
                 </View>
                 <View style={styles.cardItemActions}>
                   <Pressable onPress={() => handleEdit(card)} style={styles.iconButton}>
-                    <IconSymbol name="pencil" size={20} color={colors.primary} />
+                    <IconSymbol
+                      ios_icon_name="pencil"
+                      android_material_icon_name="edit"
+                      size={20}
+                      color={colors.primary}
+                    />
                   </Pressable>
                   <Pressable onPress={() => handleDelete(card)} style={styles.iconButton}>
-                    <IconSymbol name="trash" size={20} color={colors.error} />
+                    <IconSymbol
+                      ios_icon_name="trash"
+                      android_material_icon_name="delete"
+                      size={20}
+                      color={colors.error}
+                    />
                   </Pressable>
                 </View>
               </View>
@@ -270,10 +470,20 @@ export default function AdminScreen() {
                   Reviews: {card.reviewCount}
                 </Text>
                 {card.bookmarked && (
-                  <IconSymbol name="bookmark.fill" size={16} color={colors.primary} />
+                  <IconSymbol
+                    ios_icon_name="bookmark.fill"
+                    android_material_icon_name="bookmark"
+                    size={16}
+                    color={colors.primary}
+                  />
                 )}
                 {card.favorite && (
-                  <IconSymbol name="heart.fill" size={16} color={colors.error} />
+                  <IconSymbol
+                    ios_icon_name="heart.fill"
+                    android_material_icon_name="favorite"
+                    size={16}
+                    color={colors.error}
+                  />
                 )}
               </View>
             </View>
@@ -350,6 +560,12 @@ const styles = StyleSheet.create({
     color: colors.text,
     marginBottom: 12,
   },
+  sectionDescription: {
+    fontSize: 14,
+    color: colors.textSecondary,
+    lineHeight: 20,
+    marginBottom: 16,
+  },
   cancelButton: {
     paddingHorizontal: 12,
     paddingVertical: 6,
@@ -376,6 +592,143 @@ const styles = StyleSheet.create({
   topicCount: {
     fontSize: 14,
     color: colors.textSecondary,
+  },
+  stressTestButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 12,
+    backgroundColor: colors.primary,
+    padding: 16,
+    borderRadius: 12,
+    boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
+    elevation: 3,
+  },
+  stressTestButtonText: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#FFFFFF',
+  },
+  testResultsContainer: {
+    marginTop: 20,
+  },
+  testSummaryCard: {
+    backgroundColor: colors.card,
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 16,
+    boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
+    elevation: 3,
+  },
+  testSummaryRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  testSummaryItem: {
+    alignItems: 'center',
+    gap: 8,
+  },
+  testSummaryNumber: {
+    fontSize: 28,
+    fontWeight: '700',
+    color: colors.text,
+  },
+  testSummaryLabel: {
+    fontSize: 14,
+    color: colors.textSecondary,
+    fontWeight: '600',
+  },
+  detailsToggle: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    padding: 12,
+    backgroundColor: colors.card,
+    borderRadius: 8,
+    marginBottom: 16,
+  },
+  detailsToggleText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: colors.primary,
+  },
+  detailsContainer: {
+    marginTop: 8,
+  },
+  testCard: {
+    backgroundColor: colors.card,
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 12,
+    borderWidth: 2,
+  },
+  testCardPassed: {
+    borderColor: '#27AE60',
+  },
+  testCardFailed: {
+    borderColor: '#E74C3C',
+  },
+  testHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 12,
+  },
+  testQuery: {
+    fontSize: 16,
+    fontWeight: '700',
+    flex: 1,
+  },
+  testDetails: {
+    flexDirection: 'row',
+    marginBottom: 4,
+  },
+  testLabel: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: colors.textSecondary,
+    width: 80,
+  },
+  testValue: {
+    fontSize: 14,
+    color: colors.text,
+    flex: 1,
+  },
+  testValueError: {
+    color: '#E74C3C',
+    fontWeight: '600',
+  },
+  failedSection: {
+    backgroundColor: '#FFF5F5',
+    borderRadius: 12,
+    padding: 16,
+    marginTop: 12,
+    borderWidth: 1,
+    borderColor: '#E74C3C',
+  },
+  failedTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#E74C3C',
+    marginBottom: 12,
+  },
+  failedItem: {
+    marginBottom: 12,
+    paddingBottom: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: '#FFE0E0',
+  },
+  failedQuery: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: colors.text,
+    marginBottom: 4,
+  },
+  failedDetail: {
+    fontSize: 13,
+    color: colors.textSecondary,
+    marginLeft: 16,
   },
   form: {
     backgroundColor: colors.card,
