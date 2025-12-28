@@ -58,11 +58,11 @@ export const academicReferences = [
   }
 ];
 
-export const guidelineWebsites: Array<{
+export const guidelineWebsites: {
   name: string;
   url: string;
   description: string;
-}> = [
+}[] = [
   {
     name: "American Society of Hematology (ASH)",
     url: "https://www.hematology.org",

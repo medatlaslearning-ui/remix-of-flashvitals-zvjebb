@@ -40,18 +40,18 @@ interface Message {
   text: string;
   isBot: boolean;
   timestamp: Date;
-  websites?: Array<{
+  websites?: {
     name: string;
     url: string;
     description: string;
     system: string;
-  }>;
+  }[];
   references?: AcademicReference[];
-  merckManualLinks?: Array<{
+  merckManualLinks?: {
     title: string;
     url: string;
     description: string;
-  }>;
+  }[];
   merckManualEntries?: MerckManualEntry[];
   flashcards?: Flashcard[];
   interactionId?: string;
@@ -108,7 +108,7 @@ export default function ChatbotScreen() {
     }
   };
 
-  const getMerckManualLinks = (query: string): Array<{title: string; url: string; description: string}> => {
+  const getMerckManualLinks = (query: string): {title: string; url: string; description: string}[] => {
     const lowerQuery = query.toLowerCase();
     const baseUrl = 'https://www.merckmanuals.com/professional';
     
@@ -285,7 +285,7 @@ export default function ChatbotScreen() {
     };
 
     // Find matching topics
-    const matchedLinks: Array<{title: string; url: string; description: string}> = [];
+    const matchedLinks: {title: string; url: string; description: string}[] = [];
     
     for (const [keyword, links] of Object.entries(topicMap)) {
       if (lowerQuery.includes(keyword)) {

@@ -65,11 +65,11 @@ export const academicReferences = [
   }
 ];
 
-export const guidelineWebsites: Array<{
+export const guidelineWebsites: {
   name: string;
   url: string;
   description: string;
-}> = [
+}[] = [
   {
     name: "American College of Gastroenterology (ACG)",
     url: "https://gi.org",

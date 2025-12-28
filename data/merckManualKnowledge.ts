@@ -34,6 +34,16 @@
  * - Merck Manual URL for reference
  */
 
+// Import knowledge from separate files
+import { cardiologyKnowledge } from './cardiologyKnowledge';
+import { pulmonaryKnowledge } from './pulmonaryKnowledge';
+import { renalKnowledge } from './renalKnowledge';
+import { gastroenterologyKnowledge } from './gastroenterologyKnowledge';
+import { endocrineSystemKnowledge } from './endocrineSystemKnowledge';
+import { hematologyKnowledge } from './hematologyKnowledge';
+import { neurologyKnowledge } from './neurologyKnowledge';
+import { infectiousDiseaseKnowledge } from './infectiousDiseaseKnowledge';
+
 export interface MerckManualEntry {
   topic: string;
   keywords: string[];
@@ -45,20 +55,6 @@ export interface MerckManualEntry {
   clinicalPearls: string[];
   merckUrl: string;
 }
-
-// Import knowledge from separate files
-import { cardiologyKnowledge } from './cardiologyKnowledge';
-import { pulmonaryKnowledge } from './pulmonaryKnowledge';
-import { renalKnowledge } from './renalKnowledge';
-import { gastroenterologyKnowledge } from './gastroenterologyKnowledge';
-// Import Endocrine System knowledge from separate file (PHASE 4)
-import { endocrineSystemKnowledge } from './endocrineSystemKnowledge';
-// Import Hematology System knowledge from separate file (PHASE 5)
-import { hematologyKnowledge } from './hematologyKnowledge';
-// Import Neurology System knowledge from separate file (PHASE 6)
-import { neurologyKnowledge } from './neurologyKnowledge';
-// Import Infectious Disease System knowledge from separate file (PHASE 7)
-import { infectiousDiseaseKnowledge } from './infectiousDiseaseKnowledge';
 
 export const merckManualKnowledge: MerckManualEntry[] = [
   // ============================================================================
@@ -448,13 +444,13 @@ export function getMerckManualBySystem(system: string): MerckManualEntry[] {
 export function runKeywordStressTest(): {
   passed: number;
   failed: number;
-  results: Array<{
+  results: {
     query: string;
     expectedTopic: string;
     actualTopic: string | null;
     passed: boolean;
     score?: number;
-  }>;
+  }[];
 } {
   const testCases = [
     // RENAL/NEPHROLOGY STRESS TESTS

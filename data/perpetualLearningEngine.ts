@@ -31,7 +31,7 @@ export interface UserInteraction {
 
 export interface SystemHealth {
   totalInteractions: number;
-  positiveF eedback: number;
+  positiveFeedback: number;
   negativeFeedback: number;
   averageQuality: number;
   lastStressTest?: Date;
