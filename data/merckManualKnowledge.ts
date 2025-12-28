@@ -2,16 +2,32 @@
 /**
  * Merck Manual Professional Knowledge Base
  * 
+ * PHASE 5 COMPLETE: Comprehensive Medical Knowledge Base with Enhanced Keyword Hooks
+ * 
  * This file contains comprehensive medical knowledge extracted from the Merck Manual Professional.
+ * 
+ * COMPLETE SYSTEM COVERAGE:
+ * - Cardiology: Arrhythmias, heart failure, ischemic heart disease, valvular disorders, cardiomyopathies
+ * - Pulmonary: Airway disorders, infections, vascular disorders, interstitial diseases, pleural disorders
+ * - Gastroenterology: Esophageal, peptic ulcer, IBD, liver, pancreatic disorders
+ * - Endocrine: Diabetes, thyroid, adrenal, pituitary, calcium/bone disorders
+ * - Hematology: Anemias, bleeding disorders, thrombotic disorders, malignancies
+ * - Renal: AKI, CKD, glomerular diseases, electrolyte disorders, tubular disorders
+ * 
+ * PHASE 5 ENHANCEMENTS:
+ * - Keyword hooks for focused responses (pathophysiology, clinical, diagnostic, treatment)
+ * - Enhanced content bleeding prevention with disease-specific term matching
+ * - Doctor-patient interaction model for targeted answers
+ * - Topic-specific flashcard filtering
+ * 
  * Each entry includes:
  * - Topic name and keywords for matching
  * - Pathophysiology/definition
  * - Clinical presentation
  * - Diagnostic approach
  * - Treatment recommendations
+ * - Clinical pearls
  * - Merck Manual URL for reference
- * 
- * COMPREHENSIVE CARDIOLOGY, PULMONARY & RENAL COVERAGE - ALL MAJOR TOPICS
  */
 
 export interface MerckManualEntry {
@@ -30,6 +46,8 @@ export interface MerckManualEntry {
 import { gastroenterologyKnowledge } from './gastroenterologyKnowledge';
 // Import Endocrine System knowledge from separate file (PHASE 4)
 import { endocrineSystemKnowledge } from './endocrineSystemKnowledge';
+// Import Hematology System knowledge from separate file (PHASE 5)
+import { hematologyKnowledge } from './hematologyKnowledge';
 
 export const merckManualKnowledge: MerckManualEntry[] = [
   // ============================================================================
@@ -1055,6 +1073,11 @@ export const merckManualKnowledge: MerckManualEntry[] = [
   ...endocrineSystemKnowledge,
 
   // ============================================================================
+  // COMPREHENSIVE HEMATOLOGY SYSTEM - IMPORTED FROM SEPARATE FILE (PHASE 5)
+  // ============================================================================
+  ...hematologyKnowledge,
+
+  // ============================================================================
   // COMPREHENSIVE RENAL SECTION - ALL MAJOR TOPICS
   // ============================================================================
 
@@ -1271,9 +1294,14 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 
 /**
  * Search function to find relevant Merck Manual entries based on query
- * PHASE 3 ENHANCEMENT: Balanced keyword matching for comprehensive textbook-style responses
  * 
- * KEY IMPROVEMENTS FROM PHASE 3:
+ * PHASE 5 ENHANCEMENTS:
+ * - Keyword hooks for specific phrases (pathophysiology, clinical presentation, diagnosis, treatment)
+ * - Enhanced content bleeding prevention across all phases
+ * - Improved precision for disease-specific queries
+ * - Maintains comprehensive textbook-style responses from Phase 3
+ * 
+ * PHASE 3 IMPROVEMENTS:
  * - Loosened keyword matching to allow broader, contextually relevant results
  * - Reduced minimum score threshold (500, down from 2500) for more comprehensive coverage
  * - Enhanced content matching in pathophysiology, clinical presentation, and treatment sections
@@ -1284,17 +1312,64 @@ export const merckManualKnowledge: MerckManualEntry[] = [
  * - Lowered multi-word match requirement from 80% to 60% for better flexibility
  */
 export function searchMerckManualKnowledge(query: string): MerckManualEntry[] {
-  // PHASE 3: Loosened keyword matching for comprehensive textbook-style responses
+  // PHASE 5: Detect query intent with keyword hooks
   const lowerQuery = query.toLowerCase().trim();
+  
+  // Keyword hooks for specific aspects of disease
+  const isPathophysiologyQuery = /pathophysiology|mechanism|cause|etiology|why|how does|disease process/i.test(query);
+  const isClinicalQuery = /symptom|sign|present|clinical feature|manifestation|appear|clinical finding/i.test(query);
+  const isDiagnosticQuery = /diagnos|test|workup|evaluation|assess|detect|diagnostic approach/i.test(query);
+  const isTreatmentQuery = /treat|therap|manage|medication|drug|intervention/i.test(query);
+  
+  console.log('Query intent detection:', {
+    query,
+    isPathophysiologyQuery,
+    isClinicalQuery,
+    isDiagnosticQuery,
+    isTreatmentQuery
+  });
   const queryWords = lowerQuery.split(/\s+/).filter(word => word.length > 2);
   
   // Helper function to escape regex special characters
   const escapeRegex = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   
+  // PHASE 5: Enhanced keyword checking to prevent content bleeding
+  // Extract disease-specific terms to ensure precision
+  const diseaseSpecificTerms = new Set<string>();
+  
+  // Common disease modifiers that should be matched precisely
+  const diseaseModifiers = [
+    'acute', 'chronic', 'primary', 'secondary', 'type 1', 'type 2', 'type i', 'type ii',
+    'iron', 'vitamin', 'b12', 'folate', 'renal', 'tubular', 'metabolic', 'respiratory',
+    'diabetic', 'immune', 'autoimmune', 'infectious', 'bacterial', 'viral'
+  ];
+  
+  diseaseModifiers.forEach(modifier => {
+    if (lowerQuery.includes(modifier)) {
+      diseaseSpecificTerms.add(modifier);
+    }
+  });
+  
+  console.log('Disease-specific terms detected:', Array.from(diseaseSpecificTerms));
+  
   const scoredEntries = merckManualKnowledge.map(entry => {
     let score = 0;
     let hasExactMatch = false;
     let hasStrongMatch = false;
+    let hasSpecificTermMatch = true; // Assume match unless proven otherwise
+    
+    // PHASE 5: Check for disease-specific term matches to prevent content bleeding
+    if (diseaseSpecificTerms.size > 0) {
+      const entryText = `${entry.topic} ${entry.keywords.join(' ')}`.toLowerCase();
+      hasSpecificTermMatch = Array.from(diseaseSpecificTerms).every(term => 
+        entryText.includes(term)
+      );
+      
+      // If specific terms don't match, heavily penalize
+      if (!hasSpecificTermMatch) {
+        score -= 50000;
+      }
+    }
     
     // PRIORITY 1: EXACT TOPIC MATCH - Highest priority
     const topicLower = entry.topic.toLowerCase();
@@ -1586,6 +1661,40 @@ export function runKeywordStressTest(): {
     { query: 'primary hyperparathyroidism', expectedTopic: 'Primary Hyperparathyroidism' },
     { query: 'osteoporosis', expectedTopic: 'Osteoporosis' },
     { query: 'paget disease of bone', expectedTopic: 'Paget Disease of Bone' },
+    
+    // HEMATOLOGY STRESS TESTS (PHASE 5)
+    { query: 'iron deficiency anemia', expectedTopic: 'Iron Deficiency Anemia' },
+    { query: 'vitamin b12 deficiency', expectedTopic: 'Vitamin B12 Deficiency' },
+    { query: 'folate deficiency', expectedTopic: 'Folate Deficiency' },
+    { query: 'anemia of chronic disease', expectedTopic: 'Anemia of Chronic Disease' },
+    { query: 'sickle cell disease', expectedTopic: 'Sickle Cell Disease' },
+    { query: 'thalassemia', expectedTopic: 'Thalassemia' },
+    { query: 'g6pd deficiency', expectedTopic: 'Glucose-6-Phosphate Dehydrogenase Deficiency' },
+    { query: 'immune thrombocytopenia', expectedTopic: 'Immune Thrombocytopenia' },
+    { query: 'itp', expectedTopic: 'Immune Thrombocytopenia' },
+    { query: 'hemophilia a', expectedTopic: 'Hemophilia A' },
+    { query: 'von willebrand disease', expectedTopic: 'Von Willebrand Disease' },
+    { query: 'disseminated intravascular coagulation', expectedTopic: 'Disseminated Intravascular Coagulation' },
+    { query: 'dic', expectedTopic: 'Disseminated Intravascular Coagulation' },
+    { query: 'deep vein thrombosis', expectedTopic: 'Deep Vein Thrombosis' },
+    { query: 'dvt', expectedTopic: 'Deep Vein Thrombosis' },
+    { query: 'thrombotic thrombocytopenic purpura', expectedTopic: 'Thrombotic Thrombocytopenic Purpura' },
+    { query: 'ttp', expectedTopic: 'Thrombotic Thrombocytopenic Purpura' },
+    { query: 'acute myeloid leukemia', expectedTopic: 'Acute Myeloid Leukemia' },
+    { query: 'aml', expectedTopic: 'Acute Myeloid Leukemia' },
+    { query: 'chronic myeloid leukemia', expectedTopic: 'Chronic Myeloid Leukemia' },
+    { query: 'cml', expectedTopic: 'Chronic Myeloid Leukemia' },
+    { query: 'multiple myeloma', expectedTopic: 'Multiple Myeloma' },
+    { query: 'hodgkin lymphoma', expectedTopic: 'Hodgkin Lymphoma' },
+    { query: 'non hodgkin lymphoma', expectedTopic: 'Non-Hodgkin Lymphoma' },
+    { query: 'polycythemia vera', expectedTopic: 'Polycythemia Vera' },
+    { query: 'essential thrombocythemia', expectedTopic: 'Essential Thrombocythemia' },
+    { query: 'acute lymphoblastic leukemia', expectedTopic: 'Acute Lymphoblastic Leukemia' },
+    { query: 'all', expectedTopic: 'Acute Lymphoblastic Leukemia' },
+    { query: 'chronic lymphocytic leukemia', expectedTopic: 'Chronic Lymphocytic Leukemia' },
+    { query: 'cll', expectedTopic: 'Chronic Lymphocytic Leukemia' },
+    { query: 'hemolytic anemia', expectedTopic: 'Hemolytic Anemia' },
+    { query: 'aplastic anemia', expectedTopic: 'Aplastic Anemia' },
   ];
   
   const results = testCases.map(testCase => {

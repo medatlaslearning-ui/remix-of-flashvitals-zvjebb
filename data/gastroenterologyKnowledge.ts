@@ -11,7 +11,10 @@
  * - Clinical pearls
  * - Merck Manual URL for reference
  * 
- * PHASE 3 KEYWORD REFINEMENT: Enhanced keyword specificity to prevent content bleeding
+ * PHASE 5 KEYWORD REFINEMENT: Enhanced keyword specificity to prevent content bleeding
+ * - Disease-specific modifiers ensure precise matching
+ * - Keyword hooks enable focused responses
+ * - Content bleeding prevention across all GI conditions
  */
 
 import { MerckManualEntry } from './merckManualKnowledge';

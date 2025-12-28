@@ -3,6 +3,7 @@
  * Endocrine System Knowledge Base - Merck Manual Professional
  * 
  * PHASE 4: COMPLETE ENDOCRINE SYSTEM
+ * PHASE 5 ENHANCEMENTS: Enhanced keyword specificity and content bleeding prevention
  * 
  * Comprehensive endocrinology knowledge extracted from the Merck Manual Professional.
  * This file contains detailed information on major endocrine conditions including:
@@ -13,7 +14,8 @@
  * - Clinical pearls
  * - Merck Manual URL for reference
  * 
- * Maintains same integrity and structure as Cardiology, Pulmonary, Renal, and Gastroenterology sections.
+ * Maintains same integrity and structure as Cardiology, Pulmonary, Renal, Gastroenterology, and Hematology sections.
+ * Enhanced keyword hooks enable focused, doctor-like responses to specific questions.
  */
 
 import { MerckManualEntry } from './merckManualKnowledge';
