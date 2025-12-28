@@ -104,7 +104,7 @@ export class PerpetualLearningEngine {
       ]);
 
       if (interactionsData) {
-        this.interactions = JSON.parse(interactionsData).map((i: any) => ({
+        this.interactions = JSON.parse(interactionsData).map((i: UserInteraction) => ({
           ...i,
           timestamp: new Date(i.timestamp),
           feedbackTimestamp: i.feedbackTimestamp ? new Date(i.feedbackTimestamp) : undefined,
@@ -117,7 +117,7 @@ export class PerpetualLearningEngine {
           ...parsed,
           lastStressTest: parsed.lastStressTest ? new Date(parsed.lastStressTest) : undefined,
           lastRepair: parsed.lastRepair ? new Date(parsed.lastRepair) : undefined,
-          repairHistory: parsed.repairHistory?.map((r: any) => ({
+          repairHistory: parsed.repairHistory?.map((r: RepairAction) => ({
             ...r,
             timestamp: new Date(r.timestamp),
           })) || [],
@@ -329,6 +329,7 @@ export class PerpetualLearningEngine {
       hematology: ['blood', 'anemia', 'leukemia'],
       endocrine: ['diabetes', 'thyroid', 'hormone'],
       infectious: ['infection', 'bacterial', 'viral', 'sepsis'],
+      urology: ['urinary', 'bladder', 'prostate', 'ureteral'],
     };
 
     // Check if query is about one system but response discusses another
@@ -680,6 +681,11 @@ export class PerpetualLearningEngine {
         'sepsis': ['septic shock', 'systemic inflammatory response syndrome'],
         'tuberculosis': ['pneumonia', 'lung abscess'],
         'hiv': ['aids', 'opportunistic infections'],
+      },
+      urology: {
+        'benign prostatic hyperplasia': ['prostate cancer', 'urethral stricture'],
+        'acute kidney injury': ['chronic kidney disease', 'acute tubular necrosis'],
+        'urinary tract infection': ['pyelonephritis', 'cystitis'],
       },
     };
 

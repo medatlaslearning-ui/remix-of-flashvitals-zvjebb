@@ -2,7 +2,7 @@
 /**
  * Merck Manual Professional Knowledge Base
  * 
- * PHASE 7 COMPLETE: Comprehensive Medical Knowledge Base with Enhanced Keyword Hooks
+ * PHASE 9 COMPLETE: Comprehensive Medical Knowledge Base with Enhanced Keyword Hooks
  * 
  * This file contains comprehensive medical knowledge extracted from the Merck Manual Professional.
  * 
@@ -16,15 +16,16 @@
  * - Renal: AKI, CKD, glomerular diseases, electrolyte disorders, tubular disorders
  * - Infectious Disease: Bacterial, viral, fungal, parasitic infections, STIs
  * - Emergency Medicine: Shock, trauma, cardiovascular emergencies, airway emergencies, toxicology
+ * - Urology: Lower/upper urinary tract disorders, infections, stones, emergencies, prostate disorders
  * 
- * PHASE 8 ENHANCEMENTS:
- * - Complete Emergency Medicine system with comprehensive coverage
- * - Enhanced keyword specificity to prevent content bleeding across all systems
+ * PHASE 9 ENHANCEMENTS:
+ * - Complete Urology system with comprehensive coverage
+ * - Enhanced keyword specificity to prevent content bleeding with Renal system
  * - Keyword hooks for focused responses (pathophysiology, clinical, diagnostic, treatment)
  * - Disease-specific term matching ensures precision
  * - Doctor-patient interaction model for targeted answers
  * - Topic-specific flashcard filtering
- * - Emergency-specific keywords prevent confusion with other specialties
+ * - Urology-specific keywords prevent confusion with other specialties
  * 
  * Each entry includes:
  * - Topic name and keywords for matching
@@ -46,6 +47,7 @@ import { hematologyKnowledge } from './hematologyKnowledge';
 import { neurologyKnowledge } from './neurologyKnowledge';
 import { infectiousDiseaseKnowledge } from './infectiousDiseaseKnowledge';
 import { emergencyMedicineKnowledge } from './emergencyMedicineKnowledge';
+import { urologyKnowledge } from './urologyKnowledge';
 
 export interface MerckManualEntry {
   topic: string;
@@ -104,6 +106,11 @@ export const merckManualKnowledge: MerckManualEntry[] = [
   // COMPREHENSIVE EMERGENCY MEDICINE SYSTEM - IMPORTED FROM SEPARATE FILE (PHASE 8)
   // ============================================================================
   ...emergencyMedicineKnowledge,
+
+  // ============================================================================
+  // COMPREHENSIVE UROLOGY SYSTEM - IMPORTED FROM SEPARATE FILE (PHASE 9)
+  // ============================================================================
+  ...urologyKnowledge,
 ];
 
 /**
@@ -147,7 +154,7 @@ export function searchMerckManualKnowledge(query: string): MerckManualEntry[] {
   });
   const queryWords = lowerQuery.split(/\s+/).filter(word => word.length > 2);
   
-  // PHASE 8: Enhanced system detection for better filtering including Emergency Medicine
+  // PHASE 9: Enhanced system detection for better filtering including Urology
   const systemHints = {
     'emergency medicine': ['shock', 'trauma', 'hemorrhagic', 'resuscitation', 'cardiac arrest',
                           'tension pneumothorax', 'massive pe', 'stemi', 'hypertensive emergency',
@@ -168,8 +175,11 @@ export function searchMerckManualKnowledge(query: string): MerckManualEntry[] {
     endocrine: ['diabetes', 'thyroid', 'adrenal', 'pituitary', 'hormone', 'insulin', 'glucose'],
     hematology: ['anemia', 'blood', 'leukemia', 'lymphoma', 'platelet', 'coagulation', 
                  'hemophilia', 'sickle', 'thalassemia'],
-    renal: ['kidney', 'renal', 'nephro', 'urine', 'creatinine'],
-    gastroenterology: ['gastro', 'intestin', 'bowel', 'liver', 'pancrea', 'esophag']
+    renal: ['kidney', 'renal', 'nephro', 'glomerular', 'aki', 'ckd', 'dialysis'],
+    gastroenterology: ['gastro', 'intestin', 'bowel', 'liver', 'pancrea', 'esophag'],
+    urology: ['urinary', 'bladder', 'prostate', 'ureteral', 'bph', 'incontinence', 
+              'testicular', 'scrotal', 'priapism', 'stone', 'nephrolithiasis', 'cystitis',
+              'pyelonephritis', 'retention', 'voiding', 'hydronephrosis']
   };
   
   // Detect likely system from query
@@ -217,7 +227,15 @@ export function searchMerckManualKnowledge(query: string): MerckManualEntry[] {
     'stemi', 'ventricular fibrillation', 'pulseless', 'hypertensive emergency', 'ards',
     'massive pe', 'tension pneumothorax', 'traumatic brain injury', 'blunt trauma',
     'status epilepticus', 'opioid overdose', 'naloxone', 'resuscitation', 'cardiac arrest',
-    'emergency', 'acute', 'trauma', 'shock', 'overdose', 'toxicology'
+    'emergency', 'acute', 'trauma', 'shock', 'overdose', 'toxicology',
+    // PHASE 9: Urology-specific terms
+    'benign prostatic hyperplasia', 'bph', 'prostate enlargement', 'urinary incontinence',
+    'stress incontinence', 'urge incontinence', 'overflow incontinence', 'overactive bladder',
+    'hydronephrosis', 'vesicoureteral reflux', 'vur', 'urinary tract infection', 'uti',
+    'cystitis', 'pyelonephritis', 'prostatitis', 'epididymitis', 'nephrolithiasis',
+    'kidney stones', 'renal calculi', 'ureteral colic', 'renal colic', 'testicular torsion',
+    'priapism', 'acute urinary retention', 'fournier gangrene', 'prostate cancer',
+    'bladder outlet obstruction', 'lower urinary tract', 'upper urinary tract', 'urologic'
   ];
   
   diseaseModifiers.forEach(modifier => {
@@ -639,6 +657,33 @@ export function runKeywordStressTest(): {
     { query: 'opioid overdose', expectedTopic: 'Opioid Overdose' },
     { query: 'acute ischemic stroke', expectedTopic: 'Acute Ischemic Stroke' },
     
+    // UROLOGY STRESS TESTS (PHASE 9)
+    { query: 'benign prostatic hyperplasia', expectedTopic: 'Benign Prostatic Hyperplasia' },
+    { query: 'bph', expectedTopic: 'Benign Prostatic Hyperplasia' },
+    { query: 'urinary incontinence', expectedTopic: 'Urinary Incontinence' },
+    { query: 'stress incontinence', expectedTopic: 'Urinary Incontinence' },
+    { query: 'overactive bladder', expectedTopic: 'Overactive Bladder' },
+    { query: 'oab', expectedTopic: 'Overactive Bladder' },
+    { query: 'hydronephrosis', expectedTopic: 'Hydronephrosis' },
+    { query: 'vesicoureteral reflux', expectedTopic: 'Vesicoureteral Reflux' },
+    { query: 'vur', expectedTopic: 'Vesicoureteral Reflux' },
+    { query: 'urinary tract infection', expectedTopic: 'Urinary Tract Infection' },
+    { query: 'uti', expectedTopic: 'Urinary Tract Infection' },
+    { query: 'cystitis', expectedTopic: 'Urinary Tract Infection' },
+    { query: 'pyelonephritis', expectedTopic: 'Pyelonephritis' },
+    { query: 'acute bacterial prostatitis', expectedTopic: 'Acute Bacterial Prostatitis' },
+    { query: 'epididymitis', expectedTopic: 'Epididymitis' },
+    { query: 'nephrolithiasis', expectedTopic: 'Nephrolithiasis' },
+    { query: 'kidney stones', expectedTopic: 'Nephrolithiasis' },
+    { query: 'ureteral colic', expectedTopic: 'Ureteral Colic' },
+    { query: 'renal colic', expectedTopic: 'Ureteral Colic' },
+    { query: 'testicular torsion', expectedTopic: 'Testicular Torsion' },
+    { query: 'priapism', expectedTopic: 'Priapism' },
+    { query: 'acute urinary retention', expectedTopic: 'Acute Urinary Retention' },
+    { query: 'fournier gangrene', expectedTopic: 'Fournier Gangrene' },
+    { query: 'prostate cancer', expectedTopic: 'Prostate Cancer' },
+    { query: 'chronic bacterial prostatitis', expectedTopic: 'Chronic Bacterial Prostatitis' },
+    
     // CRITICAL CONTENT BLEEDING PREVENTION TESTS (ALL PHASES)
     { query: 'what is the pathophysiology of hemorrhagic shock', expectedTopic: 'Hemorrhagic Shock' },
     { query: 'what is the pathophysiology of septic shock', expectedTopic: 'Septic Shock' },
@@ -650,22 +695,30 @@ export function runKeywordStressTest(): {
     { query: 'what is the pathophysiology of type 2 diabetes', expectedTopic: 'Type 2 Diabetes Mellitus' },
     { query: 'what is the pathophysiology of ischemic stroke', expectedTopic: 'Ischemic Stroke' },
     { query: 'what is the pathophysiology of hemorrhagic stroke', expectedTopic: 'Hemorrhagic Stroke' },
+    { query: 'what is the pathophysiology of benign prostatic hyperplasia', expectedTopic: 'Benign Prostatic Hyperplasia' },
+    { query: 'what is the pathophysiology of testicular torsion', expectedTopic: 'Testicular Torsion' },
     { query: 'clinical presentation of stemi', expectedTopic: 'ST-Elevation Myocardial Infarction (STEMI)' },
     { query: 'clinical presentation of ards', expectedTopic: 'Acute Respiratory Distress Syndrome (ARDS)' },
     { query: 'clinical presentation of hiv', expectedTopic: 'HIV/AIDS' },
     { query: 'clinical presentation of parkinson disease', expectedTopic: 'Parkinson Disease' },
     { query: 'clinical presentation of alzheimer disease', expectedTopic: 'Alzheimer Disease' },
+    { query: 'clinical presentation of urinary incontinence', expectedTopic: 'Urinary Incontinence' },
+    { query: 'clinical presentation of pyelonephritis', expectedTopic: 'Pyelonephritis' },
     { query: 'treatment of tension pneumothorax', expectedTopic: 'Tension Pneumothorax' },
     { query: 'treatment of opioid overdose', expectedTopic: 'Opioid Overdose' },
     { query: 'treatment of influenza', expectedTopic: 'Influenza' },
     { query: 'treatment of epilepsy', expectedTopic: 'Epilepsy' },
     { query: 'treatment of status epilepticus', expectedTopic: 'Status Epilepticus' },
     { query: 'treatment of malaria', expectedTopic: 'Malaria' },
+    { query: 'treatment of acute urinary retention', expectedTopic: 'Acute Urinary Retention' },
+    { query: 'treatment of priapism', expectedTopic: 'Priapism' },
     { query: 'diagnosis of massive pe', expectedTopic: 'Massive Pulmonary Embolism' },
     { query: 'diagnosis of traumatic brain injury', expectedTopic: 'Traumatic Brain Injury' },
     { query: 'diagnosis of covid-19', expectedTopic: 'COVID-19' },
     { query: 'diagnosis of multiple sclerosis', expectedTopic: 'Multiple Sclerosis' },
     { query: 'diagnosis of myasthenia gravis', expectedTopic: 'Myasthenia Gravis' },
+    { query: 'diagnosis of nephrolithiasis', expectedTopic: 'Nephrolithiasis' },
+    { query: 'diagnosis of vesicoureteral reflux', expectedTopic: 'Vesicoureteral Reflux' },
   ];
   
   const results = testCases.map(testCase => {
