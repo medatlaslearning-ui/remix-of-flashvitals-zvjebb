@@ -47,6 +47,15 @@ export default function KeywordSearchTest() {
         lowerQuery.includes('sickle') || lowerQuery.includes('thalassemia')) {
       return '#E91E63'; // Pink for Hematology
     }
+    if (lowerQuery.includes('sepsis') || lowerQuery.includes('infection') || lowerQuery.includes('bacterial') ||
+        lowerQuery.includes('viral') || lowerQuery.includes('fungal') || lowerQuery.includes('tuberculosis') ||
+        lowerQuery.includes('tb') || lowerQuery.includes('hiv') || lowerQuery.includes('aids') ||
+        lowerQuery.includes('hepatitis') || lowerQuery.includes('influenza') || lowerQuery.includes('flu') ||
+        lowerQuery.includes('covid') || lowerQuery.includes('coronavirus') || lowerQuery.includes('candida') ||
+        lowerQuery.includes('aspergillus') || lowerQuery.includes('malaria') || lowerQuery.includes('syphilis') ||
+        lowerQuery.includes('gonorrhea') || lowerQuery.includes('chlamydia') || lowerQuery.includes('lyme')) {
+      return '#00BCD4'; // Cyan for Infectious Disease
+    }
     return colors.textSecondary;
   };
 
