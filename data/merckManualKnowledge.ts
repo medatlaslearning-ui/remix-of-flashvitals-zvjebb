@@ -15,14 +15,16 @@
  * - Neurology: Stroke, seizures, movement disorders, dementia, MS, headaches, neuropathy
  * - Renal: AKI, CKD, glomerular diseases, electrolyte disorders, tubular disorders
  * - Infectious Disease: Bacterial, viral, fungal, parasitic infections, STIs
+ * - Emergency Medicine: Shock, trauma, cardiovascular emergencies, airway emergencies, toxicology
  * 
- * PHASE 7 ENHANCEMENTS:
- * - Complete Infectious Disease system with comprehensive coverage
- * - Enhanced keyword specificity to prevent content bleeding
+ * PHASE 8 ENHANCEMENTS:
+ * - Complete Emergency Medicine system with comprehensive coverage
+ * - Enhanced keyword specificity to prevent content bleeding across all systems
  * - Keyword hooks for focused responses (pathophysiology, clinical, diagnostic, treatment)
  * - Disease-specific term matching ensures precision
  * - Doctor-patient interaction model for targeted answers
  * - Topic-specific flashcard filtering
+ * - Emergency-specific keywords prevent confusion with other specialties
  * 
  * Each entry includes:
  * - Topic name and keywords for matching
@@ -43,6 +45,7 @@ import { endocrineSystemKnowledge } from './endocrineSystemKnowledge';
 import { hematologyKnowledge } from './hematologyKnowledge';
 import { neurologyKnowledge } from './neurologyKnowledge';
 import { infectiousDiseaseKnowledge } from './infectiousDiseaseKnowledge';
+import { emergencyMedicineKnowledge } from './emergencyMedicineKnowledge';
 
 export interface MerckManualEntry {
   topic: string;
@@ -96,17 +99,24 @@ export const merckManualKnowledge: MerckManualEntry[] = [
   // COMPREHENSIVE INFECTIOUS DISEASE SYSTEM - IMPORTED FROM SEPARATE FILE (PHASE 7)
   // ============================================================================
   ...infectiousDiseaseKnowledge,
+
+  // ============================================================================
+  // COMPREHENSIVE EMERGENCY MEDICINE SYSTEM - IMPORTED FROM SEPARATE FILE (PHASE 8)
+  // ============================================================================
+  ...emergencyMedicineKnowledge,
 ];
 
 /**
  * Search function to find relevant Merck Manual entries based on query
  * 
- * PHASE 7 ENHANCEMENTS:
+ * PHASE 8 ENHANCEMENTS:
+ * - Emergency Medicine system integration with comprehensive coverage
+ * - Enhanced keyword specificity for emergency conditions (shock, trauma, overdose)
  * - Keyword hooks for specific phrases (pathophysiology, clinical presentation, diagnosis, treatment)
- * - Enhanced content bleeding prevention across all phases
+ * - Enhanced content bleeding prevention across all 9 medical systems
  * - Improved precision for disease-specific queries
  * - Maintains comprehensive textbook-style responses from Phase 3
- * - Infectious Disease system integration with same integrity as previous phases
+ * - Emergency-specific terms prevent confusion with other specialties
  * 
  * PHASE 3 IMPROVEMENTS:
  * - Loosened keyword matching to allow broader, contextually relevant results
@@ -137,8 +147,12 @@ export function searchMerckManualKnowledge(query: string): MerckManualEntry[] {
   });
   const queryWords = lowerQuery.split(/\s+/).filter(word => word.length > 2);
   
-  // PHASE 7: Enhanced system detection for better filtering
+  // PHASE 8: Enhanced system detection for better filtering including Emergency Medicine
   const systemHints = {
+    'emergency medicine': ['shock', 'trauma', 'hemorrhagic', 'resuscitation', 'cardiac arrest',
+                          'tension pneumothorax', 'massive pe', 'stemi', 'hypertensive emergency',
+                          'ards', 'traumatic brain injury', 'tbi', 'blunt trauma', 'status epilepticus',
+                          'opioid overdose', 'overdose', 'toxicology', 'emergency', 'acute'],
     'infectious disease': ['sepsis', 'infection', 'bacterial', 'viral', 'fungal', 'parasite', 
                           'tuberculosis', 'tb', 'hiv', 'aids', 'hepatitis', 'influenza', 'flu',
                           'covid', 'coronavirus', 'candida', 'aspergillus', 'cryptococcus',
@@ -197,7 +211,13 @@ export function searchMerckManualKnowledge(query: string): MerckManualEntry[] {
     'covid', 'coronavirus', 'sars', 'candida', 'aspergillus', 'cryptococcus',
     'malaria', 'plasmodium', 'toxoplasma', 'syphilis', 'gonorrhea', 'chlamydia',
     'endocarditis', 'meningitis', 'encephalitis', 'lyme', 'borrelia', 'clostridium',
-    'herpes', 'hsv', 'sexually transmitted', 'sti'
+    'herpes', 'hsv', 'sexually transmitted', 'sti',
+    // PHASE 8: Emergency Medicine-specific terms
+    'hemorrhagic shock', 'septic shock', 'cardiogenic shock', 'obstructive shock', 'neurogenic shock',
+    'stemi', 'ventricular fibrillation', 'pulseless', 'hypertensive emergency', 'ards',
+    'massive pe', 'tension pneumothorax', 'traumatic brain injury', 'blunt trauma',
+    'status epilepticus', 'opioid overdose', 'naloxone', 'resuscitation', 'cardiac arrest',
+    'emergency', 'acute', 'trauma', 'shock', 'overdose', 'toxicology'
   ];
   
   diseaseModifiers.forEach(modifier => {
@@ -599,7 +619,29 @@ export function runKeywordStressTest(): {
     { query: 'gonorrhea', expectedTopic: 'Gonorrhea' },
     { query: 'chlamydia', expectedTopic: 'Chlamydia' },
     
+    // EMERGENCY MEDICINE STRESS TESTS (PHASE 8)
+    { query: 'hemorrhagic shock', expectedTopic: 'Hemorrhagic Shock' },
+    { query: 'septic shock', expectedTopic: 'Septic Shock' },
+    { query: 'cardiogenic shock', expectedTopic: 'Cardiogenic Shock' },
+    { query: 'obstructive shock', expectedTopic: 'Obstructive Shock' },
+    { query: 'neurogenic shock', expectedTopic: 'Neurogenic Shock' },
+    { query: 'stemi', expectedTopic: 'ST-Elevation Myocardial Infarction (STEMI)' },
+    { query: 'ventricular fibrillation', expectedTopic: 'Ventricular Fibrillation and Pulseless Ventricular Tachycardia' },
+    { query: 'pulseless vt', expectedTopic: 'Ventricular Fibrillation and Pulseless Ventricular Tachycardia' },
+    { query: 'hypertensive emergency', expectedTopic: 'Hypertensive Emergency' },
+    { query: 'ards', expectedTopic: 'Acute Respiratory Distress Syndrome (ARDS)' },
+    { query: 'massive pulmonary embolism', expectedTopic: 'Massive Pulmonary Embolism' },
+    { query: 'tension pneumothorax', expectedTopic: 'Tension Pneumothorax' },
+    { query: 'traumatic brain injury', expectedTopic: 'Traumatic Brain Injury' },
+    { query: 'tbi', expectedTopic: 'Traumatic Brain Injury' },
+    { query: 'blunt abdominal trauma', expectedTopic: 'Blunt Abdominal Trauma' },
+    { query: 'status epilepticus', expectedTopic: 'Status Epilepticus' },
+    { query: 'opioid overdose', expectedTopic: 'Opioid Overdose' },
+    { query: 'acute ischemic stroke', expectedTopic: 'Acute Ischemic Stroke' },
+    
     // CRITICAL CONTENT BLEEDING PREVENTION TESTS (ALL PHASES)
+    { query: 'what is the pathophysiology of hemorrhagic shock', expectedTopic: 'Hemorrhagic Shock' },
+    { query: 'what is the pathophysiology of septic shock', expectedTopic: 'Septic Shock' },
     { query: 'what is the pathophysiology of sepsis', expectedTopic: 'Sepsis and Septic Shock' },
     { query: 'what is the pathophysiology of tuberculosis', expectedTopic: 'Tuberculosis' },
     { query: 'what is the pathophysiology of sickle cell disease', expectedTopic: 'Sickle Cell Disease' },
@@ -608,13 +650,19 @@ export function runKeywordStressTest(): {
     { query: 'what is the pathophysiology of type 2 diabetes', expectedTopic: 'Type 2 Diabetes Mellitus' },
     { query: 'what is the pathophysiology of ischemic stroke', expectedTopic: 'Ischemic Stroke' },
     { query: 'what is the pathophysiology of hemorrhagic stroke', expectedTopic: 'Hemorrhagic Stroke' },
+    { query: 'clinical presentation of stemi', expectedTopic: 'ST-Elevation Myocardial Infarction (STEMI)' },
+    { query: 'clinical presentation of ards', expectedTopic: 'Acute Respiratory Distress Syndrome (ARDS)' },
     { query: 'clinical presentation of hiv', expectedTopic: 'HIV/AIDS' },
     { query: 'clinical presentation of parkinson disease', expectedTopic: 'Parkinson Disease' },
     { query: 'clinical presentation of alzheimer disease', expectedTopic: 'Alzheimer Disease' },
+    { query: 'treatment of tension pneumothorax', expectedTopic: 'Tension Pneumothorax' },
+    { query: 'treatment of opioid overdose', expectedTopic: 'Opioid Overdose' },
     { query: 'treatment of influenza', expectedTopic: 'Influenza' },
     { query: 'treatment of epilepsy', expectedTopic: 'Epilepsy' },
     { query: 'treatment of status epilepticus', expectedTopic: 'Status Epilepticus' },
     { query: 'treatment of malaria', expectedTopic: 'Malaria' },
+    { query: 'diagnosis of massive pe', expectedTopic: 'Massive Pulmonary Embolism' },
+    { query: 'diagnosis of traumatic brain injury', expectedTopic: 'Traumatic Brain Injury' },
     { query: 'diagnosis of covid-19', expectedTopic: 'COVID-19' },
     { query: 'diagnosis of multiple sclerosis', expectedTopic: 'Multiple Sclerosis' },
     { query: 'diagnosis of myasthenia gravis', expectedTopic: 'Myasthenia Gravis' },
