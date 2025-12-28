@@ -211,7 +211,7 @@ export const merckManualKnowledge: MerckManualEntry[] = [
   // HEART FAILURE
   {
     topic: 'Heart Failure',
-    keywords: ['heart failure', 'hf', 'chf', 'congestive heart failure', 'hfref', 'hfpef', 'cardiac failure', 'systolic heart failure', 'diastolic heart failure', 'heart failure with reduced ejection fraction', 'heart failure with preserved ejection fraction'],
+    keywords: ['heart failure', 'hf', 'chf', 'congestive heart failure', 'hfref', 'hfpef', 'cardiac failure', 'systolic heart failure', 'diastolic heart failure', 'heart failure with reduced ejection fraction', 'heart failure with preserved ejection fraction', 'heart failure pathophysiology', 'cardiac heart failure', 'ventricular failure', 'pump failure heart'],
     system: 'Cardiology',
     pathophysiology: 'According to Merck Manual Professional, heart failure is a clinical syndrome resulting from structural or functional cardiac disorders that impair ventricular filling or ejection. HFrEF (reduced ejection fraction <40%) involves impaired systolic function, while HFpEF (preserved EF ≥50%) involves diastolic dysfunction with impaired ventricular relaxation and filling. Neurohormonal activation (RAAS, sympathetic nervous system) initially compensates but ultimately contributes to disease progression through adverse remodeling.',
     clinicalPresentation: 'Patients present with dyspnea (exertional, orthopnea, paroxysmal nocturnal dyspnea), fatigue, fluid retention (peripheral edema, ascites), and reduced exercise tolerance. Physical examination may reveal elevated jugular venous pressure, S3 gallop, pulmonary rales, hepatomegaly, and peripheral edema. Right heart failure manifests with systemic congestion, while left heart failure causes pulmonary congestion.',
@@ -1341,7 +1341,10 @@ export function searchMerckManualKnowledge(query: string): MerckManualEntry[] {
   const diseaseModifiers = [
     'acute', 'chronic', 'primary', 'secondary', 'type 1', 'type 2', 'type i', 'type ii',
     'iron', 'vitamin', 'b12', 'folate', 'renal', 'tubular', 'metabolic', 'respiratory',
-    'diabetic', 'immune', 'autoimmune', 'infectious', 'bacterial', 'viral'
+    'diabetic', 'immune', 'autoimmune', 'infectious', 'bacterial', 'viral',
+    'sickle', 'sickle cell', 'hemoglobin s', 'sickling', 'heart', 'cardiac', 'ventricular',
+    'thalassemia', 'hemophilia', 'von willebrand', 'thrombocytopenia', 'leukemia', 'lymphoma',
+    'myeloma', 'anemia', 'deficiency', 'polycythemia', 'thrombocythemia'
   ];
   
   diseaseModifiers.forEach(modifier => {
@@ -1361,13 +1364,20 @@ export function searchMerckManualKnowledge(query: string): MerckManualEntry[] {
     // PHASE 5: Check for disease-specific term matches to prevent content bleeding
     if (diseaseSpecificTerms.size > 0) {
       const entryText = `${entry.topic} ${entry.keywords.join(' ')}`.toLowerCase();
-      hasSpecificTermMatch = Array.from(diseaseSpecificTerms).every(term => 
+      
+      // Check if ALL disease-specific terms are present in the entry
+      const matchedTerms = Array.from(diseaseSpecificTerms).filter(term => 
         entryText.includes(term)
       );
       
+      hasSpecificTermMatch = matchedTerms.length === diseaseSpecificTerms.size;
+      
       // If specific terms don't match, heavily penalize
       if (!hasSpecificTermMatch) {
-        score -= 50000;
+        score -= 100000; // Increased penalty to ensure mismatches are excluded
+      } else {
+        // Bonus for matching all specific terms
+        score += 10000 * matchedTerms.length;
       }
     }
     
@@ -1525,8 +1535,12 @@ export function searchMerckManualKnowledge(query: string): MerckManualEntry[] {
   if (filteredEntries.length > 0) {
     console.log(`Search for "${query}":`, filteredEntries.slice(0, 5).map(item => ({
       topic: item.entry.topic,
-      score: item.score
+      score: item.score,
+      system: item.entry.system
     })));
+  } else {
+    console.log(`No matches found for "${query}"`);
+    console.log('Disease-specific terms:', Array.from(diseaseSpecificTerms));
   }
   
   // PHASE 3: Return top 5 matches (increased from 3) for more comprehensive responses

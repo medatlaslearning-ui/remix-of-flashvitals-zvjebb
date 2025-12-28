@@ -31,7 +31,7 @@ export const hematologyKnowledge: MerckManualEntry[] = [
   // ANEMIAS
   {
     topic: 'Iron Deficiency Anemia',
-    keywords: ['iron deficiency anemia', 'ida', 'iron deficiency', 'microcytic anemia iron', 'low iron anemia'],
+    keywords: ['iron deficiency anemia', 'ida', 'iron deficiency', 'microcytic anemia iron', 'low iron anemia', 'iron deficiency pathophysiology', 'ferritin deficiency', 'low ferritin', 'iron anemia'],
     system: 'Hematology',
     pathophysiology: 'According to Merck Manual Professional, iron deficiency anemia results from inadequate iron stores to support normal red blood cell production. Iron is essential for hemoglobin synthesis. Causes include chronic blood loss (GI bleeding, menorrhagia), inadequate dietary intake, malabsorption (celiac disease, H. pylori, gastric bypass), and increased demand (pregnancy, growth). Chronic blood loss is the most common cause in adults. Iron deficiency progresses through three stages: depletion of iron stores (low ferritin), iron-deficient erythropoiesis (low serum iron, high TIBC), and iron deficiency anemia (microcytic, hypochromic RBCs).',
     clinicalPresentation: 'Symptoms of anemia include fatigue, weakness, dyspnea on exertion, palpitations, and pallor. Specific to iron deficiency: pica (craving for non-food items like ice, dirt), pagophagia (ice craving), restless legs syndrome, and koilonychia (spoon-shaped nails). Physical examination reveals pallor, tachycardia, and systolic flow murmur. Severe cases may have angular cheilitis, glossitis, and brittle nails. Children may have developmental delays and behavioral problems.',
@@ -48,7 +48,7 @@ export const hematologyKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Vitamin B12 Deficiency',
-    keywords: ['vitamin b12 deficiency', 'b12 deficiency', 'cobalamin deficiency', 'pernicious anemia', 'megaloblastic anemia b12'],
+    keywords: ['vitamin b12 deficiency', 'b12 deficiency', 'cobalamin deficiency', 'pernicious anemia', 'megaloblastic anemia b12', 'b12 pathophysiology', 'vitamin b12 pathophysiology', 'cobalamin pathophysiology'],
     system: 'Hematology',
     pathophysiology: 'According to Merck Manual Professional, vitamin B12 (cobalamin) deficiency causes megaloblastic anemia and neurologic complications. B12 is essential for DNA synthesis and myelin formation. Causes include pernicious anemia (autoimmune destruction of gastric parietal cells causing intrinsic factor deficiency), malabsorption (gastric surgery, ileal disease, pancreatic insufficiency), dietary deficiency (strict vegans), and medications (metformin, PPIs). Pernicious anemia is most common cause in developed countries. Deficiency impairs DNA synthesis, causing ineffective erythropoiesis with large, immature RBCs (megaloblasts).',
     clinicalPresentation: 'Anemia symptoms: fatigue, weakness, dyspnea, pallor. Neurologic symptoms: paresthesias, ataxia, loss of vibration and position sense, cognitive impairment, dementia, and rarely subacute combined degeneration of spinal cord (posterior and lateral columns). GI symptoms: glossitis (smooth, beefy red tongue), diarrhea. Physical examination reveals pallor, tachycardia, decreased vibration and position sense, ataxia, and positive Romberg sign. Neurologic symptoms may occur without anemia.',
@@ -65,7 +65,7 @@ export const hematologyKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Folate Deficiency',
-    keywords: ['folate deficiency', 'folic acid deficiency', 'megaloblastic anemia folate', 'folate deficiency anemia'],
+    keywords: ['folate deficiency', 'folic acid deficiency', 'megaloblastic anemia folate', 'folate deficiency anemia', 'folate pathophysiology', 'folic acid pathophysiology'],
     system: 'Hematology',
     pathophysiology: 'According to Merck Manual Professional, folate deficiency causes megaloblastic anemia similar to B12 deficiency but without neurologic complications. Folate is essential for DNA synthesis. Causes include inadequate dietary intake (alcoholics, elderly, poverty), malabsorption (celiac disease, tropical sprue), increased demand (pregnancy, hemolytic anemia, malignancy), and medications (methotrexate, trimethoprim, phenytoin, sulfasalazine). Alcoholism is most common cause in developed countries. Body stores last only 3-4 months, so deficiency develops faster than B12 deficiency.',
     clinicalPresentation: 'Anemia symptoms: fatigue, weakness, dyspnea, pallor. GI symptoms: glossitis, diarrhea. No neurologic symptoms (distinguishes from B12 deficiency). Physical examination reveals pallor, tachycardia, and smooth tongue. Pregnancy: folate deficiency increases risk of neural tube defects (spina bifida, anencephaly) in fetus.',
@@ -82,7 +82,7 @@ export const hematologyKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Anemia of Chronic Disease',
-    keywords: ['anemia of chronic disease', 'acd', 'anemia of inflammation', 'chronic disease anemia'],
+    keywords: ['anemia of chronic disease', 'acd', 'anemia of inflammation', 'chronic disease anemia', 'acd pathophysiology', 'chronic disease anemia pathophysiology'],
     system: 'Hematology',
     pathophysiology: 'According to Merck Manual Professional, anemia of chronic disease (ACD) is the second most common anemia worldwide after iron deficiency. Results from chronic inflammatory conditions (infections, autoimmune diseases, malignancy, chronic kidney disease). Inflammatory cytokines (IL-6, TNF-alpha) increase hepcidin production, which blocks iron release from macrophages and decreases intestinal iron absorption, causing functional iron deficiency. Also causes decreased erythropoietin production and response, shortened RBC survival, and impaired erythropoiesis. Iron is present but unavailable for erythropoiesis.',
     clinicalPresentation: 'Symptoms of underlying chronic disease predominate. Anemia symptoms: fatigue, weakness, dyspnea on exertion, pallor. Usually mild to moderate anemia (hemoglobin 8-10 g/dL). Physical examination reveals signs of underlying disease (arthritis, infection, malignancy) and pallor.',
@@ -99,7 +99,7 @@ export const hematologyKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Sickle Cell Disease',
-    keywords: ['sickle cell disease', 'sickle cell anemia', 'scd', 'hemoglobin ss disease', 'sickle cell'],
+    keywords: ['sickle cell disease', 'sickle cell anemia', 'scd', 'hemoglobin ss disease', 'sickle cell', 'sickling', 'hemoglobin s', 'hbs', 'sickle cell crisis', 'vaso-occlusive crisis', 'sickle cell pathophysiology'],
     system: 'Hematology',
     pathophysiology: 'According to Merck Manual Professional, sickle cell disease is an autosomal recessive hemoglobinopathy caused by mutation in beta-globin gene (glutamic acid replaced by valine at position 6). Hemoglobin S polymerizes when deoxygenated, causing RBCs to sickle. Sickled cells are rigid, causing vaso-occlusion, hemolysis, and ischemic organ damage. Triggers include hypoxia, dehydration, infection, cold, and acidosis. Complications include vaso-occlusive crises, acute chest syndrome, stroke, splenic sequestration, priapism, and chronic organ damage (kidneys, lungs, bones). Heterozygotes (sickle cell trait) usually asymptomatic.',
     clinicalPresentation: 'Chronic hemolytic anemia: fatigue, jaundice, gallstones. Vaso-occlusive crises: severe pain in bones, chest, abdomen, lasting hours to days. Acute chest syndrome: fever, chest pain, dyspnea, pulmonary infiltrates (leading cause of death). Stroke: focal neurologic deficits. Splenic sequestration: acute splenomegaly, severe anemia, shock. Priapism: prolonged painful erection. Physical examination: pallor, jaundice, splenomegaly (children), functional asplenia (adults), leg ulcers, and signs of complications.',
@@ -116,7 +116,7 @@ export const hematologyKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Thalassemia',
-    keywords: ['thalassemia', 'beta thalassemia', 'alpha thalassemia', 'thalassemia major', 'thalassemia minor'],
+    keywords: ['thalassemia', 'beta thalassemia', 'alpha thalassemia', 'thalassemia major', 'thalassemia minor', 'thalassemia pathophysiology', 'hemoglobin thalassemia'],
     system: 'Hematology',
     pathophysiology: 'According to Merck Manual Professional, thalassemias are inherited disorders of hemoglobin synthesis with reduced or absent production of alpha or beta globin chains. Beta-thalassemia: reduced beta-globin synthesis, excess alpha chains precipitate causing ineffective erythropoiesis and hemolysis. Alpha-thalassemia: reduced alpha-globin synthesis, excess beta or gamma chains form unstable tetramers. Severity depends on number of affected genes. Beta-thalassemia major (homozygous): severe anemia requiring transfusions. Beta-thalassemia minor (heterozygous): mild microcytic anemia. Alpha-thalassemia: 4 genes, severity increases with more deletions.',
     clinicalPresentation: 'Beta-thalassemia major: severe anemia in infancy, failure to thrive, hepatosplenomegaly, bone deformities (frontal bossing, maxillary hyperplasia from marrow expansion), growth retardation. Transfusion-dependent. Iron overload from transfusions causes cardiac, hepatic, and endocrine complications. Beta-thalassemia minor: asymptomatic or mild anemia. Alpha-thalassemia trait: asymptomatic. HbH disease (3 gene deletion): moderate hemolytic anemia. Hydrops fetalis (4 gene deletion): incompatible with life.',
@@ -289,7 +289,7 @@ export const hematologyKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Multiple Myeloma',
-    keywords: ['multiple myeloma', 'myeloma', 'plasma cell myeloma', 'plasma cell dyscrasia'],
+    keywords: ['multiple myeloma', 'myeloma', 'plasma cell myeloma', 'plasma cell dyscrasia', 'multiple myeloma pathophysiology', 'myeloma pathophysiology', 'plasma cell cancer'],
     system: 'Hematology',
     pathophysiology: 'According to Merck Manual Professional, multiple myeloma is a malignant proliferation of plasma cells producing monoclonal immunoglobulin (M protein). Clonal plasma cells accumulate in bone marrow, causing bone destruction, marrow failure, and end-organ damage. M protein causes hyperviscosity and renal damage (light chain cast nephropathy). Complications include hypercalcemia (bone destruction), renal failure (light chains, hypercalcemia), anemia (marrow replacement), infections (hypogammaglobulinemia), and pathologic fractures. Median age 70 years. Preceded by monoclonal gammopathy of undetermined significance (MGUS) and smoldering myeloma.',
     clinicalPresentation: 'Bone pain (especially back, ribs), pathologic fractures, fatigue (anemia), recurrent infections (hypogammaglobulinemia), renal failure, and hypercalcemia symptoms (confusion, constipation, polyuria). Physical examination may reveal bone tenderness, pallor, and signs of hypercalcemia. Hyperviscosity syndrome (rare): headache, blurred vision, bleeding, altered mental status. Amyloidosis (light chain deposition): nephrotic syndrome, cardiomyopathy, neuropathy, macroglossia.',
@@ -409,7 +409,7 @@ export const hematologyKnowledge: MerckManualEntry[] = [
 
   {
     topic: 'Hemolytic Anemia',
-    keywords: ['hemolytic anemia', 'hemolysis', 'autoimmune hemolytic anemia', 'aiha', 'hemolytic'],
+    keywords: ['hemolytic anemia', 'hemolysis', 'autoimmune hemolytic anemia', 'aiha', 'hemolytic', 'hemolytic anemia pathophysiology', 'hemolysis pathophysiology', 'rbc destruction'],
     system: 'Hematology',
     pathophysiology: 'According to Merck Manual Professional, hemolytic anemia results from increased red blood cell destruction (hemolysis) exceeding bone marrow compensatory capacity. Classified as intravascular (hemolysis in circulation) or extravascular (hemolysis in spleen/liver). Causes include intrinsic RBC defects (hereditary spherocytosis, G6PD deficiency, sickle cell disease) and extrinsic factors (autoimmune, mechanical, infections, toxins). Autoimmune hemolytic anemia (AIHA) involves antibodies against RBC antigens. Warm AIHA (IgG antibodies, 70%) and cold agglutinin disease (IgM antibodies, 30%). Hemolysis releases hemoglobin, causing jaundice, hemoglobinuria, and increased bilirubin.',
     clinicalPresentation: 'Anemia symptoms: fatigue, dyspnea, pallor, tachycardia. Jaundice from unconjugated hyperbilirubinemia. Dark urine (hemoglobinuria) in intravascular hemolysis. Splenomegaly in extravascular hemolysis. Physical examination reveals pallor, jaundice, splenomegaly, and signs of underlying disease. Acute hemolysis may present with back pain, fever, and hemodynamic instability. Chronic hemolysis causes gallstones (pigment stones) and leg ulcers.',
