@@ -30,6 +30,23 @@ export default function KeywordSearchTest() {
         lowerQuery.includes('respiratory') || lowerQuery.includes('asthma') || lowerQuery.includes('copd')) {
       return '#27AE60'; // Green for Pulmonary
     }
+    if (lowerQuery.includes('stroke') || lowerQuery.includes('seizure') || lowerQuery.includes('epilep') || 
+        lowerQuery.includes('parkinson') || lowerQuery.includes('alzheimer') || lowerQuery.includes('dementia') ||
+        lowerQuery.includes('tremor') || lowerQuery.includes('sclerosis') || lowerQuery.includes('migraine') ||
+        lowerQuery.includes('neuropathy') || lowerQuery.includes('myasthenia') || lowerQuery.includes('meningitis') ||
+        lowerQuery.includes('encephalitis') || lowerQuery.includes('bell') || lowerQuery.includes('trigeminal') ||
+        lowerQuery.includes('als') || lowerQuery.includes('hydrocephalus') || lowerQuery.includes('vertigo')) {
+      return '#9B59B6'; // Purple for Neurology
+    }
+    if (lowerQuery.includes('diabetes') || lowerQuery.includes('thyroid') || lowerQuery.includes('adrenal') ||
+        lowerQuery.includes('pituitary') || lowerQuery.includes('cushing') || lowerQuery.includes('addison')) {
+      return '#F39C12'; // Orange for Endocrine
+    }
+    if (lowerQuery.includes('anemia') || lowerQuery.includes('leukemia') || lowerQuery.includes('lymphoma') ||
+        lowerQuery.includes('myeloma') || lowerQuery.includes('thrombocyt') || lowerQuery.includes('hemophilia') ||
+        lowerQuery.includes('sickle') || lowerQuery.includes('thalassemia')) {
+      return '#E91E63'; // Pink for Hematology
+    }
     return colors.textSecondary;
   };
 

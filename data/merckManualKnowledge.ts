@@ -2,7 +2,7 @@
 /**
  * Merck Manual Professional Knowledge Base
  * 
- * PHASE 5 COMPLETE: Comprehensive Medical Knowledge Base with Enhanced Keyword Hooks
+ * PHASE 6 COMPLETE: Comprehensive Medical Knowledge Base with Enhanced Keyword Hooks
  * 
  * This file contains comprehensive medical knowledge extracted from the Merck Manual Professional.
  * 
@@ -12,11 +12,14 @@
  * - Gastroenterology: Esophageal, peptic ulcer, IBD, liver, pancreatic disorders
  * - Endocrine: Diabetes, thyroid, adrenal, pituitary, calcium/bone disorders
  * - Hematology: Anemias, bleeding disorders, thrombotic disorders, malignancies
+ * - Neurology: Stroke, seizures, movement disorders, dementia, MS, headaches, neuropathy
  * - Renal: AKI, CKD, glomerular diseases, electrolyte disorders, tubular disorders
  * 
- * PHASE 5 ENHANCEMENTS:
+ * PHASE 6 ENHANCEMENTS:
+ * - Complete Neurology system with comprehensive coverage
+ * - Enhanced keyword specificity to prevent content bleeding
  * - Keyword hooks for focused responses (pathophysiology, clinical, diagnostic, treatment)
- * - Enhanced content bleeding prevention with disease-specific term matching
+ * - Disease-specific term matching ensures precision
  * - Doctor-patient interaction model for targeted answers
  * - Topic-specific flashcard filtering
  * 
@@ -48,6 +51,8 @@ import { gastroenterologyKnowledge } from './gastroenterologyKnowledge';
 import { endocrineSystemKnowledge } from './endocrineSystemKnowledge';
 // Import Hematology System knowledge from separate file (PHASE 5)
 import { hematologyKnowledge } from './hematologyKnowledge';
+// Import Neurology System knowledge from separate file (PHASE 6)
+import { neurologyKnowledge } from './neurologyKnowledge';
 
 export const merckManualKnowledge: MerckManualEntry[] = [
   // ============================================================================
@@ -1078,6 +1083,11 @@ export const merckManualKnowledge: MerckManualEntry[] = [
   ...hematologyKnowledge,
 
   // ============================================================================
+  // COMPREHENSIVE NEUROLOGY SYSTEM - IMPORTED FROM SEPARATE FILE (PHASE 6)
+  // ============================================================================
+  ...neurologyKnowledge,
+
+  // ============================================================================
   // COMPREHENSIVE RENAL SECTION - ALL MAJOR TOPICS
   // ============================================================================
 
@@ -1330,6 +1340,32 @@ export function searchMerckManualKnowledge(query: string): MerckManualEntry[] {
   });
   const queryWords = lowerQuery.split(/\s+/).filter(word => word.length > 2);
   
+  // PHASE 6: Enhanced system detection for better filtering
+  const systemHints = {
+    neurology: ['stroke', 'seizure', 'epilep', 'parkinson', 'alzheimer', 'dementia', 'tremor', 
+                'sclerosis', 'migraine', 'headache', 'neuropathy', 'myasthenia', 'meningitis', 
+                'encephalitis', 'bell', 'trigeminal', 'als', 'hydrocephalus', 'vertigo', 
+                'guillain', 'facial palsy', 'brain', 'cerebral', 'neurologic'],
+    cardiology: ['heart', 'cardiac', 'atrial', 'ventricular', 'myocardial', 'coronary', 
+                 'valve', 'arrhythmia', 'fibrillation', 'flutter', 'tachycardia'],
+    pulmonary: ['lung', 'pulmonary', 'respiratory', 'pneumo', 'asthma', 'copd', 'bronch'],
+    endocrine: ['diabetes', 'thyroid', 'adrenal', 'pituitary', 'hormone', 'insulin', 'glucose'],
+    hematology: ['anemia', 'blood', 'leukemia', 'lymphoma', 'platelet', 'coagulation', 
+                 'hemophilia', 'sickle', 'thalassemia'],
+    renal: ['kidney', 'renal', 'nephro', 'urine', 'creatinine'],
+    gastroenterology: ['gastro', 'intestin', 'bowel', 'liver', 'pancrea', 'esophag']
+  };
+  
+  // Detect likely system from query
+  let detectedSystem: string | null = null;
+  for (const [system, hints] of Object.entries(systemHints)) {
+    if (hints.some(hint => lowerQuery.includes(hint))) {
+      detectedSystem = system;
+      console.log('Detected system:', system);
+      break;
+    }
+  }
+  
   // Helper function to escape regex special characters
   const escapeRegex = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   
@@ -1344,7 +1380,15 @@ export function searchMerckManualKnowledge(query: string): MerckManualEntry[] {
     'diabetic', 'immune', 'autoimmune', 'infectious', 'bacterial', 'viral',
     'sickle', 'sickle cell', 'hemoglobin s', 'sickling', 'heart', 'cardiac', 'ventricular',
     'thalassemia', 'hemophilia', 'von willebrand', 'thrombocytopenia', 'leukemia', 'lymphoma',
-    'myeloma', 'anemia', 'deficiency', 'polycythemia', 'thrombocythemia'
+    'myeloma', 'anemia', 'deficiency', 'polycythemia', 'thrombocythemia',
+    // PHASE 6: Neurology-specific terms
+    'ischemic', 'hemorrhagic', 'stroke', 'cerebral', 'brain', 'neurologic', 'neural',
+    'seizure', 'epileptic', 'convulsive', 'parkinson', 'alzheimer', 'dementia',
+    'tremor', 'movement', 'huntington', 'multiple sclerosis', 'demyelinating',
+    'migraine', 'cluster', 'headache', 'neuropathy', 'peripheral', 'guillain',
+    'myasthenia', 'neuromuscular', 'meningitis', 'encephalitis', 'bell',
+    'trigeminal', 'facial', 'als', 'motor neuron', 'hydrocephalus', 'restless',
+    'carpal tunnel', 'vertigo', 'vestibular', 'subarachnoid', 'transient'
   ];
   
   diseaseModifiers.forEach(modifier => {
@@ -1518,6 +1562,20 @@ export function searchMerckManualKnowledge(query: string): MerckManualEntry[] {
     // SYSTEM MATCH - Low priority, but useful for system-wide queries
     if (entry.system.toLowerCase().includes(lowerQuery)) {
       score += 100; // Increased from 10 for better system matching
+    }
+    
+    // PHASE 6: System-based filtering to prevent cross-system bleeding
+    if (detectedSystem) {
+      const entrySystemLower = entry.system.toLowerCase();
+      if (entrySystemLower === detectedSystem) {
+        // Boost entries from detected system
+        score += 5000;
+      } else {
+        // Penalize entries from other systems unless strong keyword match
+        if (!hasExactMatch && !hasStrongMatch) {
+          score -= 5000;
+        }
+      }
     }
     
     return { entry, score };
@@ -1709,6 +1767,66 @@ export function runKeywordStressTest(): {
     { query: 'cll', expectedTopic: 'Chronic Lymphocytic Leukemia' },
     { query: 'hemolytic anemia', expectedTopic: 'Hemolytic Anemia' },
     { query: 'aplastic anemia', expectedTopic: 'Aplastic Anemia' },
+    
+    // NEUROLOGY STRESS TESTS (PHASE 6)
+    { query: 'ischemic stroke', expectedTopic: 'Ischemic Stroke' },
+    { query: 'hemorrhagic stroke', expectedTopic: 'Hemorrhagic Stroke' },
+    { query: 'intracerebral hemorrhage', expectedTopic: 'Hemorrhagic Stroke' },
+    { query: 'subarachnoid hemorrhage', expectedTopic: 'Subarachnoid Hemorrhage' },
+    { query: 'sah', expectedTopic: 'Subarachnoid Hemorrhage' },
+    { query: 'transient ischemic attack', expectedTopic: 'Transient Ischemic Attack' },
+    { query: 'tia', expectedTopic: 'Transient Ischemic Attack' },
+    { query: 'epilepsy', expectedTopic: 'Epilepsy' },
+    { query: 'seizure disorder', expectedTopic: 'Epilepsy' },
+    { query: 'status epilepticus', expectedTopic: 'Status Epilepticus' },
+    { query: 'parkinson disease', expectedTopic: 'Parkinson Disease' },
+    { query: 'parkinsons disease', expectedTopic: 'Parkinson Disease' },
+    { query: 'essential tremor', expectedTopic: 'Essential Tremor' },
+    { query: 'huntington disease', expectedTopic: 'Huntington Disease' },
+    { query: 'alzheimer disease', expectedTopic: 'Alzheimer Disease' },
+    { query: 'alzheimers disease', expectedTopic: 'Alzheimer Disease' },
+    { query: 'vascular dementia', expectedTopic: 'Vascular Dementia' },
+    { query: 'multiple sclerosis', expectedTopic: 'Multiple Sclerosis' },
+    { query: 'ms', expectedTopic: 'Multiple Sclerosis' },
+    { query: 'migraine', expectedTopic: 'Migraine' },
+    { query: 'migraine headache', expectedTopic: 'Migraine' },
+    { query: 'cluster headache', expectedTopic: 'Cluster Headache' },
+    { query: 'diabetic neuropathy', expectedTopic: 'Diabetic Neuropathy' },
+    { query: 'guillain barre syndrome', expectedTopic: 'Guillain-Barré Syndrome' },
+    { query: 'gbs', expectedTopic: 'Guillain-Barré Syndrome' },
+    { query: 'myasthenia gravis', expectedTopic: 'Myasthenia Gravis' },
+    { query: 'meningitis', expectedTopic: 'Meningitis' },
+    { query: 'bacterial meningitis', expectedTopic: 'Meningitis' },
+    { query: 'encephalitis', expectedTopic: 'Encephalitis' },
+    { query: 'hsv encephalitis', expectedTopic: 'Encephalitis' },
+    { query: 'bell palsy', expectedTopic: 'Bell Palsy' },
+    { query: 'facial nerve palsy', expectedTopic: 'Bell Palsy' },
+    { query: 'trigeminal neuralgia', expectedTopic: 'Trigeminal Neuralgia' },
+    { query: 'als', expectedTopic: 'Amyotrophic Lateral Sclerosis' },
+    { query: 'amyotrophic lateral sclerosis', expectedTopic: 'Amyotrophic Lateral Sclerosis' },
+    { query: 'normal pressure hydrocephalus', expectedTopic: 'Normal Pressure Hydrocephalus' },
+    { query: 'nph', expectedTopic: 'Normal Pressure Hydrocephalus' },
+    { query: 'restless legs syndrome', expectedTopic: 'Restless Legs Syndrome' },
+    { query: 'rls', expectedTopic: 'Restless Legs Syndrome' },
+    { query: 'carpal tunnel syndrome', expectedTopic: 'Carpal Tunnel Syndrome' },
+    { query: 'cts', expectedTopic: 'Carpal Tunnel Syndrome' },
+    { query: 'vertigo', expectedTopic: 'Vertigo' },
+    { query: 'bppv', expectedTopic: 'Vertigo' },
+    
+    // CRITICAL CONTENT BLEEDING PREVENTION TESTS (PHASE 6)
+    // These tests ensure diseases with similar terms don't bleed into each other
+    { query: 'what is the pathophysiology of ischemic stroke', expectedTopic: 'Ischemic Stroke' },
+    { query: 'what is the pathophysiology of hemorrhagic stroke', expectedTopic: 'Hemorrhagic Stroke' },
+    { query: 'what is the pathophysiology of sickle cell disease', expectedTopic: 'Sickle Cell Disease' },
+    { query: 'what is the pathophysiology of heart failure', expectedTopic: 'Heart Failure' },
+    { query: 'what is the pathophysiology of type 1 diabetes', expectedTopic: 'Type 1 Diabetes Mellitus' },
+    { query: 'what is the pathophysiology of type 2 diabetes', expectedTopic: 'Type 2 Diabetes Mellitus' },
+    { query: 'clinical presentation of parkinson disease', expectedTopic: 'Parkinson Disease' },
+    { query: 'clinical presentation of alzheimer disease', expectedTopic: 'Alzheimer Disease' },
+    { query: 'treatment of epilepsy', expectedTopic: 'Epilepsy' },
+    { query: 'treatment of status epilepticus', expectedTopic: 'Status Epilepticus' },
+    { query: 'diagnosis of multiple sclerosis', expectedTopic: 'Multiple Sclerosis' },
+    { query: 'diagnosis of myasthenia gravis', expectedTopic: 'Myasthenia Gravis' },
   ];
   
   const results = testCases.map(testCase => {
