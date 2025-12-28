@@ -26,6 +26,9 @@ export interface MerckManualEntry {
   merckUrl: string;
 }
 
+// Import Gastroenterology knowledge from separate file
+import { gastroenterologyKnowledge } from './gastroenterologyKnowledge';
+
 export const merckManualKnowledge: MerckManualEntry[] = [
   // ============================================================================
   // COMPREHENSIVE CARDIOLOGY SECTION - ALL MAJOR TOPICS
@@ -1039,7 +1042,14 @@ export const merckManualKnowledge: MerckManualEntry[] = [
     merckUrl: 'https://www.merckmanuals.com/professional/pulmonary-disorders/tumors-of-the-lungs/lung-carcinoma'
   },
 
+  // ============================================================================
+  // COMPREHENSIVE GASTROENTEROLOGY SECTION - IMPORTED FROM SEPARATE FILE
+  // ============================================================================
+  ...gastroenterologyKnowledge,
 
+  // ============================================================================
+  // COMPREHENSIVE RENAL SECTION - ALL MAJOR TOPICS
+  // ============================================================================
 
   // ACUTE KIDNEY INJURY
   {
