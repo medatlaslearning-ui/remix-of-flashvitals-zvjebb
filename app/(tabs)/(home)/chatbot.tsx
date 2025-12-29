@@ -24,6 +24,7 @@ import { getAllAcademicReferences, searchAcademicReferences, type AcademicRefere
 import { searchMerckManualKnowledge, type MerckManualEntry } from '@/data/merckManualKnowledge';
 import { searchACCGuidelines, type ACCGuidelineEntry } from '@/data/accGuidelinesKnowledge';
 import { searchAHAGuidelines, type AHAGuidelineEntry } from '@/data/ahaGuidelinesKnowledge';
+import { searchESCGuidelines, type ESCGuidelineEntry } from '@/data/escGuidelinesKnowledge';
 import { cardiologyFlashcards } from '@/data/cardiologyFlashcards';
 import { pulmonaryFlashcards } from '@/data/pulmonaryFlashcards';
 import { neurologyFlashcards } from '@/data/neurologyFlashcards';
@@ -57,6 +58,7 @@ interface Message {
   merckManualEntries?: MerckManualEntry[];
   accGuidelines?: ACCGuidelineEntry[];
   ahaGuidelines?: AHAGuidelineEntry[];
+  escGuidelines?: ESCGuidelineEntry[];
   flashcards?: Flashcard[];
   interactionId?: string;
   feedback?: 'positive' | 'negative';
@@ -84,7 +86,7 @@ export default function ChatbotScreen() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: 'Hello! I\'m your Medical Expert Chatbot powered by the **Perpetual System Logic Learning Engine**.\n\n**🔄 Continuous Learning System:**\n\nI continuously learn from your interactions to provide better responses:\n\n• **Feedback Loop** - Rate my responses with 👍 or 👎 to help me improve\n• **Follow-Up Questions** - I suggest related questions to enhance your learning\n• **Self-Monitoring** - I run internal audits and stress tests to maintain quality\n• **Auto-Repair** - I fix issues automatically and alert you when needed\n\n**📚 Complete Knowledge Base:**\n\n• **Cardiology** - Arrhythmias, heart failure, ischemic heart disease, valvular disorders\n• **Pulmonary** - Asthma, COPD, pneumonia, interstitial lung diseases\n• **Gastroenterology** - GI disorders, liver disease, IBD, pancreatic conditions\n• **Endocrine** - Diabetes, thyroid disorders, adrenal disorders\n• **Hematology** - Anemias, bleeding disorders, thrombotic disorders, malignancies\n• **Renal** - AKI, CKD, glomerular diseases, electrolyte disorders\n• **Neurology** - Stroke, seizures, movement disorders, dementia, MS\n• **Infectious Disease** - Bacterial, viral, fungal, parasitic infections\n• **Emergency Medicine** - Shock, trauma, cardiovascular emergencies, toxicology\n• **Urology** - Urinary tract disorders, prostate conditions, kidney stones\n\n**📋 Clinical Practice Guidelines (NEW!):**\n\n• **ACC Guidelines** - American College of Cardiology evidence-based recommendations\n• **AHA Guidelines** - American Heart Association cardiovascular disease prevention and management\n\nAsk about guidelines using keywords like "ACC guideline", "AHA guideline", "recommendation", or "evidence"\n\n**🎯 Focused Responses:**\n\nAsk specific questions using keywords:\n• "What is the **pathophysiology** of..."\n• "What are the **clinical findings** of..."\n• "How do you **diagnose**..."\n• "What is the **treatment** for..."\n• "What are the **ACC/AHA guidelines** for..."\n\n**💡 Interactive Learning:**\n\nAfter each response, I\'ll suggest 3 follow-up questions to deepen your understanding. Select one to continue learning!\n\nLet\'s begin your medical learning journey!',
+      text: 'Hello! I\'m your Medical Expert Chatbot powered by the **Perpetual System Logic Learning Engine**.\n\n**🔄 Continuous Learning System:**\n\nI continuously learn from your interactions to provide better responses:\n\n• **Feedback Loop** - Rate my responses with 👍 or 👎 to help me improve\n• **Follow-Up Questions** - I suggest related questions to enhance your learning\n• **Self-Monitoring** - I run internal audits and stress tests to maintain quality\n• **Auto-Repair** - I fix issues automatically and alert you when needed\n\n**📚 Complete Knowledge Base:**\n\n• **Cardiology** - Arrhythmias, heart failure, ischemic heart disease, valvular disorders\n• **Pulmonary** - Asthma, COPD, pneumonia, interstitial lung diseases\n• **Gastroenterology** - GI disorders, liver disease, IBD, pancreatic conditions\n• **Endocrine** - Diabetes, thyroid disorders, adrenal disorders\n• **Hematology** - Anemias, bleeding disorders, thrombotic disorders, malignancies\n• **Renal** - AKI, CKD, glomerular diseases, electrolyte disorders\n• **Neurology** - Stroke, seizures, movement disorders, dementia, MS\n• **Infectious Disease** - Bacterial, viral, fungal, parasitic infections\n• **Emergency Medicine** - Shock, trauma, cardiovascular emergencies, toxicology\n• **Urology** - Urinary tract disorders, prostate conditions, kidney stones\n\n**📋 Clinical Practice Guidelines (NEW!):**\n\n• **ACC Guidelines** - American College of Cardiology evidence-based recommendations\n• **AHA Guidelines** - American Heart Association cardiovascular disease prevention and management\n• **ESC Guidelines** - European Society of Cardiology comprehensive cardiovascular guidelines\n\nAsk about guidelines using keywords like "ACC guideline", "AHA guideline", "ESC guideline", "recommendation", or "evidence"\n\n**🎯 Focused Responses:**\n\nAsk specific questions using keywords:\n• "What is the **pathophysiology** of..."\n• "What are the **clinical findings** of..."\n• "How do you **diagnose**..."\n• "What is the **treatment** for..."\n• "What are the **ACC/AHA/ESC guidelines** for..."\n\n**💡 Interactive Learning:**\n\nAfter each response, I\'ll suggest 3 follow-up questions to deepen your understanding. Select one to continue learning!\n\nLet\'s begin your medical learning journey!',
       isBot: true,
       timestamp: new Date(),
     },
@@ -458,25 +460,26 @@ export default function ChatbotScreen() {
     websites: any[],
     merckLinks: any[],
     accGuidelines: ACCGuidelineEntry[],
-    ahaGuidelines: AHAGuidelineEntry[]
+    ahaGuidelines: AHAGuidelineEntry[],
+    escGuidelines: ESCGuidelineEntry[]
   ): string => {
     console.log('Generating dynamic response for:', query);
     console.log('Found flashcards:', flashcards.length);
     console.log('Found Merck entries:', merckEntries.length);
     console.log('Found ACC guidelines:', accGuidelines.length);
     console.log('Found AHA guidelines:', ahaGuidelines.length);
+    console.log('Found ESC guidelines:', escGuidelines.length);
     console.log('Found references:', references.length);
     console.log('Found websites:', websites.length);
     console.log('Found Merck links:', merckLinks.length);
 
-    // PHASE 5: Enhanced query intent detection with keyword hooks
-    // These hooks ensure the chatbot focuses on the specific aspect requested
+    // Enhanced query intent detection with keyword hooks
     const lowerQuery = query.toLowerCase();
     const isPathophysiologyQuery = /pathophysiology|mechanism|cause|etiology|why|how does|disease process|pathogenesis/i.test(query);
     const isClinicalQuery = /symptom|sign|present|clinical feature|manifestation|appear|clinical finding|physical exam/i.test(query);
     const isDiagnosticQuery = /diagnos|test|workup|evaluation|assess|detect|diagnostic approach|lab|imaging/i.test(query);
     const isTreatmentQuery = /treat|therap|manage|medication|drug|intervention|management|therapy/i.test(query);
-    const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|american college|american heart/i.test(query);
+    const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|esc|american college|american heart|european society/i.test(query);
     
     console.log('Query intent hooks:', {
       isPathophysiologyQuery,
@@ -486,8 +489,8 @@ export default function ChatbotScreen() {
       isGuidelineQuery
     });
 
-    // PHASE 11: Priority 0: Clinical Practice Guidelines (ACC/AHA) - Highest priority for guideline queries
-    if (isGuidelineQuery && (accGuidelines.length > 0 || ahaGuidelines.length > 0)) {
+    // Priority 0: Clinical Practice Guidelines (ACC/AHA/ESC) - Highest priority for guideline queries
+    if (isGuidelineQuery && (accGuidelines.length > 0 || ahaGuidelines.length > 0 || escGuidelines.length > 0)) {
       let response = '';
       
       // ACC Guidelines
@@ -601,6 +604,63 @@ export default function ChatbotScreen() {
         response += `*This information is from the American Heart Association (AHA) clinical practice guidelines. These are evidence-based recommendations with specific Class of Recommendation (COR) and Level of Evidence (LOE) ratings.*\n\n`;
       }
       
+      // ESC Guidelines
+      if (escGuidelines.length > 0) {
+        const guideline = escGuidelines[0];
+        if (accGuidelines.length > 0 || ahaGuidelines.length > 0) {
+          response += '\n---\n\n';
+        }
+        response += `**${guideline.topic}**\n\n`;
+        response += `**Guideline Summary:**\n\n${guideline.guidelineSummary}\n\n`;
+        
+        if (guideline.classIRecommendations.length > 0) {
+          response += '**Class I Recommendations (Strong Recommendation):**\n\n';
+          guideline.classIRecommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        if (guideline.classIIARecommendations.length > 0) {
+          response += '**Class IIA Recommendations (Moderate Recommendation):**\n\n';
+          guideline.classIIARecommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        if (guideline.classIIBRecommendations.length > 0) {
+          response += '**Class IIB Recommendations (Weak Recommendation):**\n\n';
+          guideline.classIIBRecommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        if (guideline.classIIIRecommendations.length > 0) {
+          response += '**Class III Recommendations (Not Recommended):**\n\n';
+          guideline.classIIIRecommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        response += '**Clinical Implementation:**\n\n';
+        response += `${guideline.clinicalImplementation}\n\n`;
+        
+        if (guideline.keyPoints.length > 0) {
+          response += '**Key Points:**\n\n';
+          guideline.keyPoints.forEach(point => {
+            response += `• ${point}\n`;
+          });
+          response += '\n';
+        }
+        
+        response += `**Level of Evidence:** ${guideline.levelOfEvidence}\n\n`;
+        response += `**Publication Year:** ${guideline.publicationYear}\n\n`;
+        response += `*This information is from the European Society of Cardiology (ESC) clinical practice guidelines. These are evidence-based recommendations with specific Class of Recommendation and Level of Evidence ratings.*\n\n`;
+      }
+      
       return response;
     }
 
@@ -609,8 +669,7 @@ export default function ChatbotScreen() {
       const primaryEntry = merckEntries[0];
       let response = `**${primaryEntry.topic}**\n\n`;
       
-      // PHASE 5: Enhanced keyword hooks - provide focused, doctor-like responses
-      // When user asks about specific aspect, focus ONLY on that aspect with deep detail
+      // Enhanced keyword hooks - provide focused, doctor-like responses
       
       if (isPathophysiologyQuery) {
         response += '**Pathophysiology and Disease Mechanisms:**\n\n';
@@ -764,8 +823,7 @@ export default function ChatbotScreen() {
         return response;
       }
       
-      // PHASE 5: If no specific aspect requested, provide comprehensive overview
-      // But maintain focus on primary entry to prevent content bleeding
+      // If no specific aspect requested, provide comprehensive overview
       response += '**Comprehensive Medical Overview:**\n\n';
       
       // Pathophysiology
@@ -793,7 +851,7 @@ export default function ChatbotScreen() {
         response += '\n';
       }
       
-      // PHASE 5: Add supplementary information from flashcards (only same topic to prevent bleeding)
+      // Add supplementary information from flashcards (only same topic to prevent bleeding)
       if (flashcards.length > 0) {
         const topicSpecificCards = flashcards.filter(card => 
           card.topic === primaryEntry.topic || 
@@ -831,12 +889,12 @@ export default function ChatbotScreen() {
       
       const primaryCard = flashcards[0];
       
-      // PHASE 5: Provide targeted response based on query intent with content bleeding prevention
+      // Provide targeted response based on query intent with content bleeding prevention
       if (isPathophysiologyQuery && primaryCard.back.definition) {
         response += '**Pathophysiology/Definition:**\n\n';
         response += `${primaryCard.back.definition}\n\n`;
         
-        // PHASE 5: Only add related cards from same topic to prevent bleeding
+        // Only add related cards from same topic to prevent bleeding
         const relatedCards = flashcards.slice(1, 3).filter(card => 
           card.back.definition && 
           card.topic === primaryCard.topic // Same topic only
@@ -860,7 +918,7 @@ export default function ChatbotScreen() {
           response += `${primaryCard.back.clinical_pearl}\n\n`;
         }
         
-        // PHASE 5: Only add related cards from same topic
+        // Only add related cards from same topic
         const clinicalCards = flashcards.slice(1, 3).filter(card => 
           card.back.high_yield &&
           card.topic === primaryCard.topic // Same topic only
@@ -879,7 +937,7 @@ export default function ChatbotScreen() {
         response += '**Treatment:**\n\n';
         response += `${primaryCard.back.treatment}\n\n`;
         
-        // PHASE 5: Only add related cards from same topic
+        // Only add related cards from same topic
         const treatmentCards = flashcards.slice(1, 3).filter(card => 
           card.back.treatment &&
           card.topic === primaryCard.topic // Same topic only
@@ -895,7 +953,7 @@ export default function ChatbotScreen() {
         response += `*As your medical expert, I've focused on the treatment of ${primaryCard.topic} based on our clinical flashcard database.*\n`;
         return response;
       } else {
-        // PHASE 5: Comprehensive response from flashcards with content bleeding prevention
+        // Comprehensive response from flashcards with content bleeding prevention
         if (primaryCard.back.definition) {
           response += '**Pathophysiology/Definition:**\n\n';
           response += `${primaryCard.back.definition}\n\n`;
@@ -916,7 +974,7 @@ export default function ChatbotScreen() {
           response += `${primaryCard.back.treatment}\n\n`;
         }
         
-        // PHASE 5: Add additional information only from same topic to prevent bleeding
+        // Add additional information only from same topic to prevent bleeding
         if (flashcards.length > 1) {
           const topicSpecificCards = flashcards.slice(1).filter(card =>
             card.topic === primaryCard.topic // Same topic only
@@ -1015,12 +1073,13 @@ export default function ChatbotScreen() {
       
       // Detect if query is asking for guidelines
       const lowerQuery = currentQuery.toLowerCase();
-      const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|american college|american heart/i.test(currentQuery);
+      const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|esc|american college|american heart|european society/i.test(currentQuery);
       
       // Search all data sources
       const merckEntries = searchMerckManualKnowledge(currentQuery);
       const accGuidelines = isGuidelineQuery ? searchACCGuidelines(currentQuery) : [];
       const ahaGuidelines = isGuidelineQuery ? searchAHAGuidelines(currentQuery) : [];
+      const escGuidelines = isGuidelineQuery ? searchESCGuidelines(currentQuery) : [];
       const relevantFlashcards = findRelevantFlashcards(currentQuery);
       const relevantReferences = findRelevantReferences(currentQuery);
       const relevantWebsites = findRelevantWebsites(currentQuery);
@@ -1039,6 +1098,10 @@ export default function ChatbotScreen() {
       if (ahaGuidelines.length > 0) {
         console.log('  Top AHA guideline:', ahaGuidelines[0].topic);
       }
+      console.log('- ESC Guidelines:', escGuidelines.length);
+      if (escGuidelines.length > 0) {
+        console.log('  Top ESC guideline:', escGuidelines[0].topic);
+      }
       console.log('- Flashcards:', relevantFlashcards.length);
       if (relevantFlashcards.length > 0) {
         console.log('  Top flashcard:', relevantFlashcards[0].front);
@@ -1056,7 +1119,8 @@ export default function ChatbotScreen() {
         relevantWebsites,
         merckManualLinks,
         accGuidelines,
-        ahaGuidelines
+        ahaGuidelines,
+        escGuidelines
       );
 
       // Detect medical system
@@ -1084,6 +1148,7 @@ export default function ChatbotScreen() {
         merckManualEntries: merckEntries.length > 0 ? merckEntries : undefined,
         accGuidelines: accGuidelines.length > 0 ? accGuidelines : undefined,
         ahaGuidelines: ahaGuidelines.length > 0 ? ahaGuidelines : undefined,
+        escGuidelines: escGuidelines.length > 0 ? escGuidelines : undefined,
         flashcards: relevantFlashcards.length > 0 ? relevantFlashcards : undefined,
         references: relevantReferences.length > 0 ? relevantReferences : undefined,
         websites: relevantWebsites.length > 0 ? relevantWebsites : undefined,
