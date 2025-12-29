@@ -2,9 +2,10 @@
 /**
  * Merck Manual Professional Knowledge Base
  * 
- * PHASE 9 COMPLETE: Comprehensive Medical Knowledge Base with Enhanced Keyword Hooks
+ * PHASE 10: ACC Guidelines Integration (American College of Cardiology)
  * 
- * This file contains comprehensive medical knowledge extracted from the Merck Manual Professional.
+ * This file contains comprehensive medical knowledge extracted from the Merck Manual Professional
+ * and clinical practice guidelines from leading medical organizations.
  * 
  * COMPLETE SYSTEM COVERAGE:
  * - Cardiology: Arrhythmias, heart failure, ischemic heart disease, valvular disorders, cardiomyopathies
@@ -18,14 +19,12 @@
  * - Emergency Medicine: Shock, trauma, cardiovascular emergencies, airway emergencies, toxicology
  * - Urology: Lower/upper urinary tract disorders, infections, stones, emergencies, prostate disorders
  * 
- * PHASE 9 ENHANCEMENTS:
- * - Complete Urology system with comprehensive coverage
- * - Enhanced keyword specificity to prevent content bleeding with Renal system
- * - Keyword hooks for focused responses (pathophysiology, clinical, diagnostic, treatment)
- * - Disease-specific term matching ensures precision
- * - Doctor-patient interaction model for targeted answers
- * - Topic-specific flashcard filtering
- * - Urology-specific keywords prevent confusion with other specialties
+ * PHASE 10 ENHANCEMENTS:
+ * - ACC Guidelines integration for evidence-based cardiology practice
+ * - Guideline-specific search and retrieval functions
+ * - Class of Recommendation (COR) and Level of Evidence (LOE) tracking
+ * - Separate guideline knowledge base prevents content bleeding
+ * - Enhanced keyword specificity for guideline queries
  * 
  * Each entry includes:
  * - Topic name and keywords for matching
@@ -116,14 +115,12 @@ export const merckManualKnowledge: MerckManualEntry[] = [
 /**
  * Search function to find relevant Merck Manual entries based on query
  * 
- * PHASE 8 ENHANCEMENTS:
- * - Emergency Medicine system integration with comprehensive coverage
- * - Enhanced keyword specificity for emergency conditions (shock, trauma, overdose)
- * - Keyword hooks for specific phrases (pathophysiology, clinical presentation, diagnosis, treatment)
- * - Enhanced content bleeding prevention across all 9 medical systems
+ * PHASE 10 ENHANCEMENTS:
+ * - ACC Guidelines integration with separate search function
+ * - Guideline-specific keyword detection (guideline, recommendation, class, evidence)
+ * - Enhanced content bleeding prevention across all 10 medical systems
  * - Improved precision for disease-specific queries
  * - Maintains comprehensive textbook-style responses from Phase 3
- * - Emergency-specific terms prevent confusion with other specialties
  * 
  * PHASE 3 IMPROVEMENTS:
  * - Loosened keyword matching to allow broader, contextually relevant results
