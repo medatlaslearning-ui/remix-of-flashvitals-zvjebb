@@ -2,7 +2,7 @@
 /**
  * Merck Manual Professional Knowledge Base
  * 
- * PHASE 10: ACC Guidelines Integration (American College of Cardiology)
+ * PHASE 11: AHA Guidelines Integration (American Heart Association)
  * 
  * This file contains comprehensive medical knowledge extracted from the Merck Manual Professional
  * and clinical practice guidelines from leading medical organizations.
@@ -25,6 +25,13 @@
  * - Class of Recommendation (COR) and Level of Evidence (LOE) tracking
  * - Separate guideline knowledge base prevents content bleeding
  * - Enhanced keyword specificity for guideline queries
+ * 
+ * PHASE 11 ENHANCEMENTS:
+ * - AHA Guidelines integration for cardiovascular disease prevention and management
+ * - Primary prevention, cholesterol management, hypertension, stroke prevention
+ * - CPR and emergency cardiovascular care guidelines
+ * - Peripheral artery disease management
+ * - Comprehensive evidence-based recommendations with COR and LOE ratings
  * 
  * Each entry includes:
  * - Topic name and keywords for matching
