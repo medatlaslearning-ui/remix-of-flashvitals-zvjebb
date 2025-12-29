@@ -13,8 +13,8 @@ export default function HomeScreen() {
   const { allFlashcards, updateTrigger, getBookmarkedFlashcards, getFavoriteFlashcards } = useFlashcards();
 
   // Recalculate counts when screen is focused or flashcards change
-  const bookmarkedCount = useMemo(() => getBookmarkedFlashcards().length, [allFlashcards, updateTrigger, getBookmarkedFlashcards]);
-  const favoritesCount = useMemo(() => getFavoriteFlashcards().length, [allFlashcards, updateTrigger, getFavoriteFlashcards]);
+  const bookmarkedCount = useMemo(() => getBookmarkedFlashcards().length, [getBookmarkedFlashcards]);
+  const favoritesCount = useMemo(() => getFavoriteFlashcards().length, [getFavoriteFlashcards]);
 
   console.log('Home screen - Bookmarked count:', bookmarkedCount);
   console.log('Home screen - Favorites count:', favoritesCount);
