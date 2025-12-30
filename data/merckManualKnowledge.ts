@@ -60,6 +60,7 @@ import { ahaGuidelinesKnowledge } from './ahaGuidelinesKnowledge';
 import { hfsaGuidelinesKnowledge } from './hfsaGuidelinesKnowledge';
 import { hrsGuidelinesKnowledge } from './hrsGuidelinesKnowledge';
 import { scaiGuidelinesKnowledge } from './scaiGuidelinesKnowledge';
+import { eactsGuidelinesKnowledge } from './eactsGuidelinesKnowledge';
 
 export interface MerckManualEntry {
   topic: string;
