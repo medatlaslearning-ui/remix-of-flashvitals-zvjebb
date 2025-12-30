@@ -35,6 +35,7 @@ import { searchSCCMGuidelines, type SCCMGuidelineEntry } from '@/data/sccmGuidel
 import { searchKDIGOGuidelines, type KDIGOGuidelineEntry } from '@/data/kdigoGuidelinesKnowledge';
 import { searchNIDDKGuidelines, type NIDDKGuidelineEntry } from '@/data/niddkGuidelinesKnowledge';
 import { searchACGGuidelines, type ACGGuidelineEntry } from '@/data/acgGuidelinesKnowledge';
+import { searchADAGuidelines, type ADAGuidelineEntry } from '@/data/adaGuidelinesKnowledge';
 import { cardiologyFlashcards } from '@/data/cardiologyFlashcards';
 import { pulmonaryFlashcards } from '@/data/pulmonaryFlashcards';
 import { neurologyFlashcards } from '@/data/neurologyFlashcards';
@@ -79,6 +80,7 @@ interface Message {
   kdigoGuidelines?: KDIGOGuidelineEntry[];
   niddkGuidelines?: NIDDKGuidelineEntry[];
   acgGuidelines?: ACGGuidelineEntry[];
+  adaGuidelines?: ADAGuidelineEntry[];
   flashcards?: Flashcard[];
   interactionId?: string;
   feedback?: 'positive' | 'negative';
@@ -491,7 +493,8 @@ export default function ChatbotScreen() {
     sccmGuidelines: SCCMGuidelineEntry[],
     kdigoGuidelines: KDIGOGuidelineEntry[],
     niddkGuidelines: NIDDKGuidelineEntry[],
-    acgGuidelines: ACGGuidelineEntry[]
+    acgGuidelines: ACGGuidelineEntry[],
+    adaGuidelines: ADAGuidelineEntry[]
   ): string => {
     console.log('Generating dynamic response for:', query);
     console.log('Found flashcards:', flashcards.length);
@@ -512,6 +515,10 @@ export default function ChatbotScreen() {
     if (acgGuidelines.length > 0) {
       console.log('  Top ACG guideline:', acgGuidelines[0].topic);
     }
+    console.log('Found ADA guidelines:', adaGuidelines.length);
+    if (adaGuidelines.length > 0) {
+      console.log('  Top ADA guideline:', adaGuidelines[0].topic);
+    }
     console.log('Found references:', references.length);
     console.log('Found websites:', websites.length);
     console.log('Found Merck links:', merckLinks.length);
@@ -522,7 +529,7 @@ export default function ChatbotScreen() {
     const isClinicalQuery = /symptom|sign|present|clinical feature|manifestation|appear|clinical finding|physical exam/i.test(query);
     const isDiagnosticQuery = /diagnos|test|workup|evaluation|assess|detect|diagnostic approach|lab|imaging/i.test(query);
     const isTreatmentQuery = /treat|therap|manage|medication|drug|intervention|management|therapy/i.test(query);
-    const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|esc|hfsa|hrs|scai|eacts|ats|chest|sccm|kdigo|niddk|american college|american heart|european society|heart failure society|heart rhythm society|cardiovascular angiography|interventions|cardio-thoracic surgery|european association|american thoracic society|thoracic society|chest physicians|critical care medicine|society of critical care|kidney disease improving global outcomes|national institute of diabetes|digestive and kidney diseases/i.test(query);
+    const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|esc|hfsa|hrs|scai|eacts|ats|chest|sccm|kdigo|niddk|acg|ada|american college|american heart|european society|heart failure society|heart rhythm society|cardiovascular angiography|interventions|cardio-thoracic surgery|european association|american thoracic society|thoracic society|chest physicians|critical care medicine|society of critical care|kidney disease improving global outcomes|national institute of diabetes|digestive and kidney diseases|gastroenterology|american diabetes association|diabetes association/i.test(query);
     
     console.log('Query intent hooks:', {
       isPathophysiologyQuery,
@@ -532,8 +539,8 @@ export default function ChatbotScreen() {
       isGuidelineQuery
     });
 
-    // Priority 0: Clinical Practice Guidelines (ACC/AHA/ESC/HFSA/HRS/SCAI/EACTS/ATS/CHEST/SCCM/KDIGO/NIDDK/ACG) - Highest priority for guideline queries
-    if (isGuidelineQuery && (accGuidelines.length > 0 || ahaGuidelines.length > 0 || escGuidelines.length > 0 || hfsaGuidelines.length > 0 || hrsGuidelines.length > 0 || scaiGuidelines.length > 0 || eactsGuidelines.length > 0 || atsGuidelines.length > 0 || chestGuidelines.length > 0 || sccmGuidelines.length > 0 || kdigoGuidelines.length > 0 || niddkGuidelines.length > 0 || acgGuidelines.length > 0)) {
+    // Priority 0: Clinical Practice Guidelines (ACC/AHA/ESC/HFSA/HRS/SCAI/EACTS/ATS/CHEST/SCCM/KDIGO/NIDDK/ACG/ADA) - Highest priority for guideline queries
+    if (isGuidelineQuery && (accGuidelines.length > 0 || ahaGuidelines.length > 0 || escGuidelines.length > 0 || hfsaGuidelines.length > 0 || hrsGuidelines.length > 0 || scaiGuidelines.length > 0 || eactsGuidelines.length > 0 || atsGuidelines.length > 0 || chestGuidelines.length > 0 || sccmGuidelines.length > 0 || kdigoGuidelines.length > 0 || niddkGuidelines.length > 0 || acgGuidelines.length > 0 || adaGuidelines.length > 0)) {
       let response = '';
       
       // ACC Guidelines
@@ -1178,6 +1185,63 @@ export default function ChatbotScreen() {
         response += `*This information is from the American College of Gastroenterology (ACG) clinical practice guidelines. These are evidence-based recommendations with specific strength of recommendation and quality of evidence ratings.*\n\n`;
       }
       
+      // ADA Guidelines
+      if (adaGuidelines.length > 0) {
+        const guideline = adaGuidelines[0];
+        if (accGuidelines.length > 0 || ahaGuidelines.length > 0 || escGuidelines.length > 0 || hfsaGuidelines.length > 0 || hrsGuidelines.length > 0 || scaiGuidelines.length > 0 || eactsGuidelines.length > 0 || atsGuidelines.length > 0 || chestGuidelines.length > 0 || sccmGuidelines.length > 0 || kdigoGuidelines.length > 0 || niddkGuidelines.length > 0 || acgGuidelines.length > 0) {
+          response += '\n---\n\n';
+        }
+        response += `**${guideline.topic}**\n\n`;
+        response += `**Guideline Summary:**\n\n${guideline.guidelineSummary}\n\n`;
+        
+        if (guideline.levelARecommendations.length > 0) {
+          response += '**Level A Recommendations (High Quality Evidence):**\n\n';
+          guideline.levelARecommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        if (guideline.levelBRecommendations.length > 0) {
+          response += '**Level B Recommendations (Moderate Quality Evidence):**\n\n';
+          guideline.levelBRecommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        if (guideline.levelCRecommendations.length > 0) {
+          response += '**Level C Recommendations (Low Quality Evidence):**\n\n';
+          guideline.levelCRecommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        if (guideline.levelERecommendations.length > 0) {
+          response += '**Level E Recommendations (Expert Opinion):**\n\n';
+          guideline.levelERecommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        response += '**Clinical Implementation:**\n\n';
+        response += `${guideline.clinicalImplementation}\n\n`;
+        
+        if (guideline.keyPoints.length > 0) {
+          response += '**Key Points:**\n\n';
+          guideline.keyPoints.forEach(point => {
+            response += `• ${point}\n`;
+          });
+          response += '\n';
+        }
+        
+        response += `**Quality of Evidence:** ${guideline.qualityOfEvidence}\n\n`;
+        response += `**Publication Year:** ${guideline.publicationYear}\n\n`;
+        response += `*This information is from the American Diabetes Association (ADA) Standards of Medical Care in Diabetes. These are evidence-based recommendations with specific levels of evidence (A = High, B = Moderate, C = Low, E = Expert Opinion).*\n\n`;
+      }
+      
       return response;
     }
 
@@ -1590,7 +1654,7 @@ export default function ChatbotScreen() {
       
       // Detect if query is asking for guidelines
       const lowerQuery = currentQuery.toLowerCase();
-      const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|esc|hfsa|hrs|scai|eacts|ats|chest|sccm|kdigo|niddk|acg|american college|american heart|european society|heart failure society|heart rhythm society|cardiovascular angiography|interventions|cardio-thoracic surgery|european association|american thoracic society|thoracic society|chest physicians|critical care medicine|society of critical care|kidney disease improving global outcomes|national institute of diabetes|digestive and kidney diseases|gastroenterology/i.test(currentQuery);
+      const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|esc|hfsa|hrs|scai|eacts|ats|chest|sccm|kdigo|niddk|acg|ada|american college|american heart|european society|heart failure society|heart rhythm society|cardiovascular angiography|interventions|cardio-thoracic surgery|european association|american thoracic society|thoracic society|chest physicians|critical care medicine|society of critical care|kidney disease improving global outcomes|national institute of diabetes|digestive and kidney diseases|gastroenterology|american diabetes association|diabetes association/i.test(currentQuery);
       
       // Search all data sources
       const merckEntries = searchMerckManualKnowledge(currentQuery);
@@ -1607,6 +1671,7 @@ export default function ChatbotScreen() {
       const kdigoGuidelines = isGuidelineQuery ? searchKDIGOGuidelines(currentQuery) : [];
       const niddkGuidelines = isGuidelineQuery ? searchNIDDKGuidelines(currentQuery) : [];
       const acgGuidelines = isGuidelineQuery ? searchACGGuidelines(currentQuery) : [];
+      const adaGuidelines = isGuidelineQuery ? searchADAGuidelines(currentQuery) : [];
       const relevantFlashcards = findRelevantFlashcards(currentQuery);
       const relevantReferences = findRelevantReferences(currentQuery);
       const relevantWebsites = findRelevantWebsites(currentQuery);
@@ -1669,6 +1734,10 @@ export default function ChatbotScreen() {
       if (acgGuidelines.length > 0) {
         console.log('  Top ACG guideline:', acgGuidelines[0].topic);
       }
+      console.log('- ADA Guidelines:', adaGuidelines.length);
+      if (adaGuidelines.length > 0) {
+        console.log('  Top ADA guideline:', adaGuidelines[0].topic);
+      }
       console.log('- Flashcards:', relevantFlashcards.length);
       if (relevantFlashcards.length > 0) {
         console.log('  Top flashcard:', relevantFlashcards[0].front);
@@ -1697,7 +1766,8 @@ export default function ChatbotScreen() {
         sccmGuidelines,
         kdigoGuidelines,
         niddkGuidelines,
-        acgGuidelines
+        acgGuidelines,
+        adaGuidelines
       );
 
       // Detect medical system
@@ -1736,6 +1806,7 @@ export default function ChatbotScreen() {
         kdigoGuidelines: kdigoGuidelines.length > 0 ? kdigoGuidelines : undefined,
         niddkGuidelines: niddkGuidelines.length > 0 ? niddkGuidelines : undefined,
         acgGuidelines: acgGuidelines.length > 0 ? acgGuidelines : undefined,
+        adaGuidelines: adaGuidelines.length > 0 ? adaGuidelines : undefined,
         flashcards: relevantFlashcards.length > 0 ? relevantFlashcards : undefined,
         references: relevantReferences.length > 0 ? relevantReferences : undefined,
         websites: relevantWebsites.length > 0 ? relevantWebsites : undefined,
