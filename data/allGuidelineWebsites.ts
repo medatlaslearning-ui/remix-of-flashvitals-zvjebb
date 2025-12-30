@@ -8,6 +8,7 @@ import { guidelineWebsites as hematologyGuidelineWebsites } from './hematologyRe
 import { renalGuidelineWebsites } from './renalReferences';
 import { emergencyMedicineGuidelineWebsites } from './emergencyMedicineReferences';
 import { guidelineWebsites as infectiousDiseaseGuidelineWebsites } from './infectiousDiseaseReferences';
+import { urologyGuidelineWebsites } from './urologyReferences';
 
 interface GuidelineWebsite {
   name: string;
@@ -106,6 +107,16 @@ export function getAllGuidelineWebsites(): GuidelineWebsite[] {
       url: website.url,
       description: website.description,
       system: 'Infectious Disease',
+    });
+  });
+
+  // Urology
+  urologyGuidelineWebsites.forEach(website => {
+    allWebsites.push({
+      name: website.name,
+      url: website.url,
+      description: website.description,
+      system: 'Urology',
     });
   });
 

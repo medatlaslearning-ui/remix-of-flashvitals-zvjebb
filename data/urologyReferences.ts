@@ -145,9 +145,107 @@ export const urologyReferences: Reference[] = [
 export const urologyGuidelineWebsites: GuidelineWebsite[] = [
   {
     id: 'urology-guide-001',
-    name: 'Merck Manuals Professional - Genitourinary Disorders',
-    url: 'https://www.merckmanuals.com/professional/genitourinary-disorders',
-    description: 'Comprehensive medical reference for urologic disorders including diagnosis, treatment, and management',
+    name: 'American Urological Association (AUA) Guidelines — Main hub',
+    url: 'https://www.auanet.org/guidelines',
+    description: 'Comprehensive collection of evidence-based clinical practice guidelines for urologic conditions',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'urology-guide-002',
+    name: 'AUA Guideline: Management of Acute Urinary Retention',
+    url: 'https://www.auanet.org/guidelines-and-quality/guidelines/acute-urinary-retention',
+    description: 'Clinical guidelines for diagnosis and management of acute urinary retention',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'urology-guide-003',
+    name: 'AUA Guideline: Benign Prostatic Hyperplasia (BPH) — Full guideline library',
+    url: 'https://www.auanet.org/guidelines/benign-prostatic-hyperplasia-(bph)-guideline',
+    description: 'Comprehensive guidelines for evaluation and treatment of benign prostatic hyperplasia',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'urology-guide-004',
+    name: 'AUA Guideline: Urolithiasis (Kidney Stones)',
+    url: 'https://www.auanet.org/guidelines/urolithiasis-(kidney-stones)-guideline',
+    description: 'Evidence-based guidelines for management of kidney stones and urolithiasis',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'urology-guide-005',
+    name: 'AUA Guideline: Catheter-associated Urinary Tract Infection (CAUTI)',
+    url: 'https://www.auanet.org/guidelines/cauti-(catheter-associated-urinary-tract-infection)',
+    description: 'Guidelines for prevention and management of catheter-associated urinary tract infections',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'urology-guide-006',
+    name: 'AUA/EAU Joint Guideline: Testicular Torsion and Acute Scrotum',
+    url: 'https://www.auanet.org/education/guidelines/testicular-torsion',
+    description: 'Joint guidelines for emergency evaluation and management of testicular torsion and acute scrotal pain',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'urology-guide-007',
+    name: 'European Association of Urology (EAU) Guideline Portal — Urology Guidelines Index',
+    url: 'https://uroweb.org/guidelines',
+    description: 'Comprehensive index of European urology guidelines covering all urologic conditions',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'urology-guide-008',
+    name: 'EAU Guideline: Non-Muscle-Invasive Bladder Cancer (useful for hematuria workup)',
+    url: 'https://uroweb.org/guideline/non-muscle-invasive-bladder-cancer',
+    description: 'Guidelines for evaluation and management of non-muscle-invasive bladder cancer and hematuria',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'urology-guide-009',
+    name: 'Centers for Disease Control — UTI & Pyelonephritis (clinical overview)',
+    url: 'https://www.cdc.gov/antibiotic-use/community/for-patients/common-illnesses/uti.html',
+    description: 'CDC clinical overview of urinary tract infections and pyelonephritis with antibiotic stewardship guidance',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'urology-guide-010',
+    name: 'NIH/MedlinePlus — Bladder Infection Overview',
+    url: 'https://medlineplus.gov/bladderinfection.html',
+    description: 'Patient-friendly overview of bladder infections with clinical information and resources',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'urology-guide-011',
+    name: 'Merck Manual – Urology Section (professional reference)',
+    url: 'https://www.merckmanuals.com/professional/genitourinary-system-disorders',
+    description: 'Comprehensive medical reference for genitourinary system disorders including diagnosis and treatment',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'urology-guide-012',
+    name: 'National Kidney Foundation — Hydronephrosis / Obstructive Uropathy',
+    url: 'https://www.kidney.org/atoz/content/obstructive-uropathy',
+    description: 'Clinical information on hydronephrosis and obstructive uropathy from the National Kidney Foundation',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'urology-guide-013',
+    name: 'Society for Maternal-Fetal Medicine — Urosepsis in Pregnancy (clinical resource)',
+    url: 'https://www.smfm.org/resources/urosepsis-in-pregnancy',
+    description: 'Clinical resource for management of urosepsis in pregnancy with evidence-based recommendations',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'urology-guide-014',
+    name: 'Infectious Diseases Society of America (IDSA) — UTI Treatment Guidance',
+    url: 'https://www.idsociety.org/practice-guideline/uti/',
+    description: 'IDSA evidence-based guidelines for diagnosis and treatment of urinary tract infections',
+    category: 'Guideline and Authority Websites'
+  },
+  {
+    id: 'urology-guide-015',
+    name: 'WHO — Prevention of Catheter-Associated UTIs (general public health resource)',
+    url: 'https://www.who.int/publications/i/item/WHO-CAUTI-prevention',
+    description: 'WHO public health resource for prevention of catheter-associated urinary tract infections',
     category: 'Guideline and Authority Websites'
   }
 ];

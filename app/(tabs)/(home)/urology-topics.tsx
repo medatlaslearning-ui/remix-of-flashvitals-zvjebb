@@ -55,6 +55,11 @@ export default function UrologyTopicsScreen() {
     router.push('/(tabs)/(home)/urology-references');
   };
 
+  const handleGuidelineWebsitesPress = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    router.push('/(tabs)/(home)/urology-guideline-websites');
+  };
+
   const handleBackPress = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     router.back();
@@ -148,7 +153,7 @@ export default function UrologyTopicsScreen() {
             </View>
           </Pressable>
 
-          <Pressable style={styles.referenceCard}>
+          <Pressable style={styles.referenceCard} onPress={handleGuidelineWebsitesPress}>
             <View style={styles.referenceContent}>
               <IconSymbol 
                 ios_icon_name="globe" 
