@@ -26,6 +26,7 @@ import { searchACCGuidelines, type ACCGuidelineEntry } from '@/data/accGuideline
 import { searchAHAGuidelines, type AHAGuidelineEntry } from '@/data/ahaGuidelinesKnowledge';
 import { searchESCGuidelines, type ESCGuidelineEntry } from '@/data/escGuidelinesKnowledge';
 import { searchHFSAGuidelines, type HFSAGuidelineEntry } from '@/data/hfsaGuidelinesKnowledge';
+import { searchHRSGuidelines, type HRSGuidelineEntry } from '@/data/hrsGuidelinesKnowledge';
 import { cardiologyFlashcards } from '@/data/cardiologyFlashcards';
 import { pulmonaryFlashcards } from '@/data/pulmonaryFlashcards';
 import { neurologyFlashcards } from '@/data/neurologyFlashcards';
@@ -61,6 +62,7 @@ interface Message {
   ahaGuidelines?: AHAGuidelineEntry[];
   escGuidelines?: ESCGuidelineEntry[];
   hfsaGuidelines?: HFSAGuidelineEntry[];
+  hrsGuidelines?: HRSGuidelineEntry[];
   flashcards?: Flashcard[];
   interactionId?: string;
   feedback?: 'positive' | 'negative';
@@ -88,7 +90,7 @@ export default function ChatbotScreen() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: 'Hello! I\'m your Medical Expert Chatbot powered by the **Perpetual System Logic Learning Engine**.\n\n**🔄 Continuous Learning System:**\n\nI continuously learn from your interactions to provide better responses:\n\n• **Feedback Loop** - Rate my responses with 👍 or 👎 to help me improve\n• **Follow-Up Questions** - I suggest related questions to enhance your learning\n• **Self-Monitoring** - I run internal audits and stress tests to maintain quality\n• **Auto-Repair** - I fix issues automatically and alert you when needed\n\n**📚 Complete Knowledge Base:**\n\n• **Cardiology** - Arrhythmias, heart failure, ischemic heart disease, valvular disorders\n• **Pulmonary** - Asthma, COPD, pneumonia, interstitial lung diseases\n• **Gastroenterology** - GI disorders, liver disease, IBD, pancreatic conditions\n• **Endocrine** - Diabetes, thyroid disorders, adrenal disorders\n• **Hematology** - Anemias, bleeding disorders, thrombotic disorders, malignancies\n• **Renal** - AKI, CKD, glomerular diseases, electrolyte disorders\n• **Neurology** - Stroke, seizures, movement disorders, dementia, MS\n• **Infectious Disease** - Bacterial, viral, fungal, parasitic infections\n• **Emergency Medicine** - Shock, trauma, cardiovascular emergencies, toxicology\n• **Urology** - Urinary tract disorders, prostate conditions, kidney stones\n\n**📋 Clinical Practice Guidelines (NEW!):**\n\n• **ACC Guidelines** - American College of Cardiology evidence-based recommendations\n• **AHA Guidelines** - American Heart Association cardiovascular disease prevention and management\n• **ESC Guidelines** - European Society of Cardiology comprehensive cardiovascular guidelines\n• **HFSA Guidelines** - Heart Failure Society of America heart failure management\n\nAsk about guidelines using keywords like "ACC guideline", "AHA guideline", "ESC guideline", "HFSA guideline", "recommendation", or "evidence"\n\n**🎯 Focused Responses:**\n\nAsk specific questions using keywords:\n• "What is the **pathophysiology** of..."\n• "What are the **clinical findings** of..."\n• "How do you **diagnose**..."\n• "What is the **treatment** for..."\n• "What are the **ACC/AHA/ESC/HFSA guidelines** for..."\n\n**💡 Interactive Learning:**\n\nAfter each response, I\'ll suggest 3 follow-up questions to deepen your understanding. Select one to continue learning!\n\nLet\'s begin your medical learning journey!',
+      text: 'Hello! I\'m your Medical Expert Chatbot powered by the **Perpetual System Logic Learning Engine**.\n\n**🔄 Continuous Learning System:**\n\nI continuously learn from your interactions to provide better responses:\n\n• **Feedback Loop** - Rate my responses with 👍 or 👎 to help me improve\n• **Follow-Up Questions** - I suggest related questions to enhance your learning\n• **Self-Monitoring** - I run internal audits and stress tests to maintain quality\n• **Auto-Repair** - I fix issues automatically and alert you when needed\n\n**📚 Complete Knowledge Base:**\n\n• **Cardiology** - Arrhythmias, heart failure, ischemic heart disease, valvular disorders\n• **Pulmonary** - Asthma, COPD, pneumonia, interstitial lung diseases\n• **Gastroenterology** - GI disorders, liver disease, IBD, pancreatic conditions\n• **Endocrine** - Diabetes, thyroid disorders, adrenal disorders\n• **Hematology** - Anemias, bleeding disorders, thrombotic disorders, malignancies\n• **Renal** - AKI, CKD, glomerular diseases, electrolyte disorders\n• **Neurology** - Stroke, seizures, movement disorders, dementia, MS\n• **Infectious Disease** - Bacterial, viral, fungal, parasitic infections\n• **Emergency Medicine** - Shock, trauma, cardiovascular emergencies, toxicology\n• **Urology** - Urinary tract disorders, prostate conditions, kidney stones\n\n**📋 Clinical Practice Guidelines (NEW!):**\n\n• **ACC Guidelines** - American College of Cardiology evidence-based recommendations\n• **AHA Guidelines** - American Heart Association cardiovascular disease prevention and management\n• **ESC Guidelines** - European Society of Cardiology comprehensive cardiovascular guidelines\n• **HFSA Guidelines** - Heart Failure Society of America heart failure management\n• **HRS Guidelines** - Heart Rhythm Society arrhythmia and device therapy guidelines\n\nAsk about guidelines using keywords like "ACC guideline", "AHA guideline", "ESC guideline", "HFSA guideline", "HRS guideline", "recommendation", or "evidence"\n\n**🎯 Focused Responses:**\n\nAsk specific questions using keywords:\n• "What is the **pathophysiology** of..."\n• "What are the **clinical findings** of..."\n• "How do you **diagnose**..."\n• "What is the **treatment** for..."\n• "What are the **ACC/AHA/ESC/HFSA guidelines** for..."\n\n**💡 Interactive Learning:**\n\nAfter each response, I\'ll suggest 3 follow-up questions to deepen your understanding. Select one to continue learning!\n\nLet\'s begin your medical learning journey!',
       isBot: true,
       timestamp: new Date(),
     },
@@ -464,7 +466,8 @@ export default function ChatbotScreen() {
     accGuidelines: ACCGuidelineEntry[],
     ahaGuidelines: AHAGuidelineEntry[],
     escGuidelines: ESCGuidelineEntry[],
-    hfsaGuidelines: HFSAGuidelineEntry[]
+    hfsaGuidelines: HFSAGuidelineEntry[],
+    hrsGuidelines: HRSGuidelineEntry[]
   ): string => {
     console.log('Generating dynamic response for:', query);
     console.log('Found flashcards:', flashcards.length);
@@ -473,6 +476,7 @@ export default function ChatbotScreen() {
     console.log('Found AHA guidelines:', ahaGuidelines.length);
     console.log('Found ESC guidelines:', escGuidelines.length);
     console.log('Found HFSA guidelines:', hfsaGuidelines.length);
+    console.log('Found HRS guidelines:', hrsGuidelines.length);
     console.log('Found references:', references.length);
     console.log('Found websites:', websites.length);
     console.log('Found Merck links:', merckLinks.length);
@@ -483,7 +487,7 @@ export default function ChatbotScreen() {
     const isClinicalQuery = /symptom|sign|present|clinical feature|manifestation|appear|clinical finding|physical exam/i.test(query);
     const isDiagnosticQuery = /diagnos|test|workup|evaluation|assess|detect|diagnostic approach|lab|imaging/i.test(query);
     const isTreatmentQuery = /treat|therap|manage|medication|drug|intervention|management|therapy/i.test(query);
-    const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|esc|hfsa|american college|american heart|european society|heart failure society/i.test(query);
+    const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|esc|hfsa|hrs|american college|american heart|european society|heart failure society|heart rhythm society/i.test(query);
     
     console.log('Query intent hooks:', {
       isPathophysiologyQuery,
@@ -493,8 +497,8 @@ export default function ChatbotScreen() {
       isGuidelineQuery
     });
 
-    // Priority 0: Clinical Practice Guidelines (ACC/AHA/ESC/HFSA) - Highest priority for guideline queries
-    if (isGuidelineQuery && (accGuidelines.length > 0 || ahaGuidelines.length > 0 || escGuidelines.length > 0 || hfsaGuidelines.length > 0)) {
+    // Priority 0: Clinical Practice Guidelines (ACC/AHA/ESC/HFSA/HRS) - Highest priority for guideline queries
+    if (isGuidelineQuery && (accGuidelines.length > 0 || ahaGuidelines.length > 0 || escGuidelines.length > 0 || hfsaGuidelines.length > 0 || hrsGuidelines.length > 0)) {
       let response = '';
       
       // ACC Guidelines
@@ -720,6 +724,63 @@ export default function ChatbotScreen() {
         response += `**Level of Evidence:** ${guideline.levelOfEvidence}\n\n`;
         response += `**Publication Year:** ${guideline.publicationYear}\n\n`;
         response += `*This information is from the Heart Failure Society of America (HFSA) clinical practice guidelines. These are evidence-based recommendations with specific Class of Recommendation and Level of Evidence ratings.*\n\n`;
+      }
+      
+      // HRS Guidelines
+      if (hrsGuidelines.length > 0) {
+        const guideline = hrsGuidelines[0];
+        if (accGuidelines.length > 0 || ahaGuidelines.length > 0 || escGuidelines.length > 0 || hfsaGuidelines.length > 0) {
+          response += '\n---\n\n';
+        }
+        response += `**${guideline.topic}**\n\n`;
+        response += `**Guideline Summary:**\n\n${guideline.guidelineSummary}\n\n`;
+        
+        if (guideline.classIRecommendations.length > 0) {
+          response += '**Class I Recommendations (Strong Recommendation):**\n\n';
+          guideline.classIRecommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        if (guideline.classIIARecommendations.length > 0) {
+          response += '**Class IIA Recommendations (Moderate Recommendation):**\n\n';
+          guideline.classIIARecommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        if (guideline.classIIBRecommendations.length > 0) {
+          response += '**Class IIB Recommendations (Weak Recommendation):**\n\n';
+          guideline.classIIBRecommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        if (guideline.classIIIRecommendations.length > 0) {
+          response += '**Class III Recommendations (Not Recommended):**\n\n';
+          guideline.classIIIRecommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        response += '**Clinical Implementation:**\n\n';
+        response += `${guideline.clinicalImplementation}\n\n`;
+        
+        if (guideline.keyPoints.length > 0) {
+          response += '**Key Points:**\n\n';
+          guideline.keyPoints.forEach(point => {
+            response += `• ${point}\n`;
+          });
+          response += '\n';
+        }
+        
+        response += `**Level of Evidence:** ${guideline.levelOfEvidence}\n\n`;
+        response += `**Publication Year:** ${guideline.publicationYear}\n\n`;
+        response += `*This information is from the Heart Rhythm Society (HRS) clinical practice guidelines. These are evidence-based recommendations with specific Class of Recommendation and Level of Evidence ratings.*\n\n`;
       }
       
       return response;
@@ -1134,7 +1195,7 @@ export default function ChatbotScreen() {
       
       // Detect if query is asking for guidelines
       const lowerQuery = currentQuery.toLowerCase();
-      const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|esc|american college|american heart|european society/i.test(currentQuery);
+      const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|esc|hfsa|hrs|american college|american heart|european society|heart failure society|heart rhythm society/i.test(currentQuery);
       
       // Search all data sources
       const merckEntries = searchMerckManualKnowledge(currentQuery);
@@ -1142,6 +1203,7 @@ export default function ChatbotScreen() {
       const ahaGuidelines = isGuidelineQuery ? searchAHAGuidelines(currentQuery) : [];
       const escGuidelines = isGuidelineQuery ? searchESCGuidelines(currentQuery) : [];
       const hfsaGuidelines = isGuidelineQuery ? searchHFSAGuidelines(currentQuery) : [];
+      const hrsGuidelines = isGuidelineQuery ? searchHRSGuidelines(currentQuery) : [];
       const relevantFlashcards = findRelevantFlashcards(currentQuery);
       const relevantReferences = findRelevantReferences(currentQuery);
       const relevantWebsites = findRelevantWebsites(currentQuery);
@@ -1168,6 +1230,10 @@ export default function ChatbotScreen() {
       if (hfsaGuidelines.length > 0) {
         console.log('  Top HFSA guideline:', hfsaGuidelines[0].topic);
       }
+      console.log('- HRS Guidelines:', hrsGuidelines.length);
+      if (hrsGuidelines.length > 0) {
+        console.log('  Top HRS guideline:', hrsGuidelines[0].topic);
+      }
       console.log('- Flashcards:', relevantFlashcards.length);
       if (relevantFlashcards.length > 0) {
         console.log('  Top flashcard:', relevantFlashcards[0].front);
@@ -1187,7 +1253,8 @@ export default function ChatbotScreen() {
         accGuidelines,
         ahaGuidelines,
         escGuidelines,
-        hfsaGuidelines
+        hfsaGuidelines,
+        hrsGuidelines
       );
 
       // Detect medical system
@@ -1217,6 +1284,7 @@ export default function ChatbotScreen() {
         ahaGuidelines: ahaGuidelines.length > 0 ? ahaGuidelines : undefined,
         escGuidelines: escGuidelines.length > 0 ? escGuidelines : undefined,
         hfsaGuidelines: hfsaGuidelines.length > 0 ? hfsaGuidelines : undefined,
+        hrsGuidelines: hrsGuidelines.length > 0 ? hrsGuidelines : undefined,
         flashcards: relevantFlashcards.length > 0 ? relevantFlashcards : undefined,
         references: relevantReferences.length > 0 ? relevantReferences : undefined,
         websites: relevantWebsites.length > 0 ? relevantWebsites : undefined,

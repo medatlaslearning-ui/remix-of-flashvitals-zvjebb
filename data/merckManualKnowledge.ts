@@ -55,6 +55,11 @@ import { infectiousDiseaseKnowledge } from './infectiousDiseaseKnowledge';
 import { emergencyMedicineKnowledge } from './emergencyMedicineKnowledge';
 import { urologyKnowledge } from './urologyKnowledge';
 
+// Import guideline knowledge from separate files (Phases 10-16)
+import { ahaGuidelinesKnowledge } from './ahaGuidelinesKnowledge';
+import { hfsaGuidelinesKnowledge } from './hfsaGuidelinesKnowledge';
+import { hrsGuidelinesKnowledge } from './hrsGuidelinesKnowledge';
+
 export interface MerckManualEntry {
   topic: string;
   keywords: string[];
