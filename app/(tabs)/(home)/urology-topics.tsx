@@ -50,6 +50,11 @@ export default function UrologyTopicsScreen() {
     });
   };
 
+  const handleReferencesPress = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    router.push('/(tabs)/(home)/urology-references');
+  };
+
   const handleBackPress = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     router.back();
@@ -120,7 +125,7 @@ export default function UrologyTopicsScreen() {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Reference Materials</Text>
           
-          <Pressable style={styles.referenceCard}>
+          <Pressable style={styles.referenceCard} onPress={handleReferencesPress}>
             <View style={styles.referenceContent}>
               <IconSymbol 
                 ios_icon_name="book.fill" 
