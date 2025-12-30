@@ -36,6 +36,7 @@ import { searchKDIGOGuidelines, type KDIGOGuidelineEntry } from '@/data/kdigoGui
 import { searchNIDDKGuidelines, type NIDDKGuidelineEntry } from '@/data/niddkGuidelinesKnowledge';
 import { searchACGGuidelines, type ACGGuidelineEntry } from '@/data/acgGuidelinesKnowledge';
 import { searchADAGuidelines, type ADAGuidelineEntry } from '@/data/adaGuidelinesKnowledge';
+import { searchEndocrineGuidelines, type EndocrineGuidelineEntry } from '@/data/endocrineGuidelinesKnowledge';
 import { cardiologyFlashcards } from '@/data/cardiologyFlashcards';
 import { pulmonaryFlashcards } from '@/data/pulmonaryFlashcards';
 import { neurologyFlashcards } from '@/data/neurologyFlashcards';
@@ -81,6 +82,7 @@ interface Message {
   niddkGuidelines?: NIDDKGuidelineEntry[];
   acgGuidelines?: ACGGuidelineEntry[];
   adaGuidelines?: ADAGuidelineEntry[];
+  endocrineGuidelines?: EndocrineGuidelineEntry[];
   flashcards?: Flashcard[];
   interactionId?: string;
   feedback?: 'positive' | 'negative';
@@ -494,7 +496,8 @@ export default function ChatbotScreen() {
     kdigoGuidelines: KDIGOGuidelineEntry[],
     niddkGuidelines: NIDDKGuidelineEntry[],
     acgGuidelines: ACGGuidelineEntry[],
-    adaGuidelines: ADAGuidelineEntry[]
+    adaGuidelines: ADAGuidelineEntry[],
+    endocrineGuidelines: EndocrineGuidelineEntry[]
   ): string => {
     console.log('Generating dynamic response for:', query);
     console.log('Found flashcards:', flashcards.length);
@@ -519,6 +522,10 @@ export default function ChatbotScreen() {
     if (adaGuidelines.length > 0) {
       console.log('  Top ADA guideline:', adaGuidelines[0].topic);
     }
+    console.log('Found Endocrine Society guidelines:', endocrineGuidelines.length);
+    if (endocrineGuidelines.length > 0) {
+      console.log('  Top Endocrine Society guideline:', endocrineGuidelines[0].topic);
+    }
     console.log('Found references:', references.length);
     console.log('Found websites:', websites.length);
     console.log('Found Merck links:', merckLinks.length);
@@ -539,8 +546,8 @@ export default function ChatbotScreen() {
       isGuidelineQuery
     });
 
-    // Priority 0: Clinical Practice Guidelines (ACC/AHA/ESC/HFSA/HRS/SCAI/EACTS/ATS/CHEST/SCCM/KDIGO/NIDDK/ACG/ADA) - Highest priority for guideline queries
-    if (isGuidelineQuery && (accGuidelines.length > 0 || ahaGuidelines.length > 0 || escGuidelines.length > 0 || hfsaGuidelines.length > 0 || hrsGuidelines.length > 0 || scaiGuidelines.length > 0 || eactsGuidelines.length > 0 || atsGuidelines.length > 0 || chestGuidelines.length > 0 || sccmGuidelines.length > 0 || kdigoGuidelines.length > 0 || niddkGuidelines.length > 0 || acgGuidelines.length > 0 || adaGuidelines.length > 0)) {
+    // Priority 0: Clinical Practice Guidelines (ACC/AHA/ESC/HFSA/HRS/SCAI/EACTS/ATS/CHEST/SCCM/KDIGO/NIDDK/ACG/ADA/Endocrine Society) - Highest priority for guideline queries
+    if (isGuidelineQuery && (accGuidelines.length > 0 || ahaGuidelines.length > 0 || escGuidelines.length > 0 || hfsaGuidelines.length > 0 || hrsGuidelines.length > 0 || scaiGuidelines.length > 0 || eactsGuidelines.length > 0 || atsGuidelines.length > 0 || chestGuidelines.length > 0 || sccmGuidelines.length > 0 || kdigoGuidelines.length > 0 || niddkGuidelines.length > 0 || acgGuidelines.length > 0 || adaGuidelines.length > 0 || endocrineGuidelines.length > 0)) {
       let response = '';
       
       // ACC Guidelines
@@ -1242,6 +1249,47 @@ export default function ChatbotScreen() {
         response += `*This information is from the American Diabetes Association (ADA) Standards of Medical Care in Diabetes. These are evidence-based recommendations with specific levels of evidence (A = High, B = Moderate, C = Low, E = Expert Opinion).*\n\n`;
       }
       
+      // Endocrine Society Guidelines
+      if (endocrineGuidelines.length > 0) {
+        const guideline = endocrineGuidelines[0];
+        if (accGuidelines.length > 0 || ahaGuidelines.length > 0 || escGuidelines.length > 0 || hfsaGuidelines.length > 0 || hrsGuidelines.length > 0 || scaiGuidelines.length > 0 || eactsGuidelines.length > 0 || atsGuidelines.length > 0 || chestGuidelines.length > 0 || sccmGuidelines.length > 0 || kdigoGuidelines.length > 0 || niddkGuidelines.length > 0 || acgGuidelines.length > 0 || adaGuidelines.length > 0) {
+          response += '\n---\n\n';
+        }
+        response += `**${guideline.topic}**\n\n`;
+        response += `**Guideline Summary:**\n\n${guideline.guidelineSummary}\n\n`;
+        
+        if (guideline.strongRecommendations.length > 0) {
+          response += '**Strong Recommendations:**\n\n';
+          guideline.strongRecommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        if (guideline.weakRecommendations.length > 0) {
+          response += '**Weak Recommendations:**\n\n';
+          guideline.weakRecommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        response += '**Clinical Implementation:**\n\n';
+        response += `${guideline.clinicalImplementation}\n\n`;
+        
+        if (guideline.keyPoints.length > 0) {
+          response += '**Key Points:**\n\n';
+          guideline.keyPoints.forEach(point => {
+            response += `• ${point}\n`;
+          });
+          response += '\n';
+        }
+        
+        response += `**Quality of Evidence:** ${guideline.qualityOfEvidence}\n\n`;
+        response += `**Publication Year:** ${guideline.publicationYear}\n\n`;
+        response += `*This information is from the Endocrine Society clinical practice guidelines. These are evidence-based recommendations with specific strength of recommendation (Strong = 1, Weak = 2) and quality of evidence ratings (High = ⊕⊕⊕⊕, Moderate = ⊕⊕⊕○, Low = ⊕⊕○○, Very Low = ⊕○○○).*\n\n`;
+      }
+      
       return response;
     }
 
@@ -1654,7 +1702,7 @@ export default function ChatbotScreen() {
       
       // Detect if query is asking for guidelines
       const lowerQuery = currentQuery.toLowerCase();
-      const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|esc|hfsa|hrs|scai|eacts|ats|chest|sccm|kdigo|niddk|acg|ada|american college|american heart|european society|heart failure society|heart rhythm society|cardiovascular angiography|interventions|cardio-thoracic surgery|european association|american thoracic society|thoracic society|chest physicians|critical care medicine|society of critical care|kidney disease improving global outcomes|national institute of diabetes|digestive and kidney diseases|gastroenterology|american diabetes association|diabetes association/i.test(currentQuery);
+      const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|esc|hfsa|hrs|scai|eacts|ats|chest|sccm|kdigo|niddk|acg|ada|endocrine society|american college|american heart|european society|heart failure society|heart rhythm society|cardiovascular angiography|interventions|cardio-thoracic surgery|european association|american thoracic society|thoracic society|chest physicians|critical care medicine|society of critical care|kidney disease improving global outcomes|national institute of diabetes|digestive and kidney diseases|gastroenterology|american diabetes association|diabetes association/i.test(currentQuery);
       
       // Search all data sources
       const merckEntries = searchMerckManualKnowledge(currentQuery);
@@ -1672,6 +1720,7 @@ export default function ChatbotScreen() {
       const niddkGuidelines = isGuidelineQuery ? searchNIDDKGuidelines(currentQuery) : [];
       const acgGuidelines = isGuidelineQuery ? searchACGGuidelines(currentQuery) : [];
       const adaGuidelines = isGuidelineQuery ? searchADAGuidelines(currentQuery) : [];
+      const endocrineGuidelines = isGuidelineQuery ? searchEndocrineGuidelines(currentQuery) : [];
       const relevantFlashcards = findRelevantFlashcards(currentQuery);
       const relevantReferences = findRelevantReferences(currentQuery);
       const relevantWebsites = findRelevantWebsites(currentQuery);
@@ -1738,6 +1787,10 @@ export default function ChatbotScreen() {
       if (adaGuidelines.length > 0) {
         console.log('  Top ADA guideline:', adaGuidelines[0].topic);
       }
+      console.log('- Endocrine Society Guidelines:', endocrineGuidelines.length);
+      if (endocrineGuidelines.length > 0) {
+        console.log('  Top Endocrine Society guideline:', endocrineGuidelines[0].topic);
+      }
       console.log('- Flashcards:', relevantFlashcards.length);
       if (relevantFlashcards.length > 0) {
         console.log('  Top flashcard:', relevantFlashcards[0].front);
@@ -1767,7 +1820,8 @@ export default function ChatbotScreen() {
         kdigoGuidelines,
         niddkGuidelines,
         acgGuidelines,
-        adaGuidelines
+        adaGuidelines,
+        endocrineGuidelines
       );
 
       // Detect medical system
@@ -1807,6 +1861,7 @@ export default function ChatbotScreen() {
         niddkGuidelines: niddkGuidelines.length > 0 ? niddkGuidelines : undefined,
         acgGuidelines: acgGuidelines.length > 0 ? acgGuidelines : undefined,
         adaGuidelines: adaGuidelines.length > 0 ? adaGuidelines : undefined,
+        endocrineGuidelines: endocrineGuidelines.length > 0 ? endocrineGuidelines : undefined,
         flashcards: relevantFlashcards.length > 0 ? relevantFlashcards : undefined,
         references: relevantReferences.length > 0 ? relevantReferences : undefined,
         websites: relevantWebsites.length > 0 ? relevantWebsites : undefined,
