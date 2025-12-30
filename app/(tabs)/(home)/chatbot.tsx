@@ -38,6 +38,7 @@ import { searchACGGuidelines, type ACGGuidelineEntry } from '@/data/acgGuideline
 import { searchADAGuidelines, type ADAGuidelineEntry } from '@/data/adaGuidelinesKnowledge';
 import { searchEndocrineGuidelines, type EndocrineGuidelineEntry } from '@/data/endocrineGuidelinesKnowledge';
 import { searchNCCNGuidelines, type NCCNGuidelineEntry } from '@/data/nccnGuidelinesKnowledge';
+import { searchIDSAGuidelines, type IDSAGuidelineEntry } from '@/data/idsaGuidelinesKnowledge';
 import { cardiologyFlashcards } from '@/data/cardiologyFlashcards';
 import { pulmonaryFlashcards } from '@/data/pulmonaryFlashcards';
 import { neurologyFlashcards } from '@/data/neurologyFlashcards';
@@ -85,6 +86,7 @@ interface Message {
   adaGuidelines?: ADAGuidelineEntry[];
   endocrineGuidelines?: EndocrineGuidelineEntry[];
   nccnGuidelines?: NCCNGuidelineEntry[];
+  idsaGuidelines?: IDSAGuidelineEntry[];
   flashcards?: Flashcard[];
   interactionId?: string;
   feedback?: 'positive' | 'negative';
@@ -500,7 +502,8 @@ export default function ChatbotScreen() {
     acgGuidelines: ACGGuidelineEntry[],
     adaGuidelines: ADAGuidelineEntry[],
     endocrineGuidelines: EndocrineGuidelineEntry[],
-    nccnGuidelines: NCCNGuidelineEntry[]
+    nccnGuidelines: NCCNGuidelineEntry[],
+    idsaGuidelines: IDSAGuidelineEntry[]
   ): string => {
     console.log('Generating dynamic response for:', query);
     console.log('Found flashcards:', flashcards.length);
@@ -533,6 +536,10 @@ export default function ChatbotScreen() {
     if (nccnGuidelines.length > 0) {
       console.log('  Top NCCN guideline:', nccnGuidelines[0].topic);
     }
+    console.log('Found IDSA guidelines:', idsaGuidelines.length);
+    if (idsaGuidelines.length > 0) {
+      console.log('  Top IDSA guideline:', idsaGuidelines[0].topic);
+    }
     console.log('Found references:', references.length);
     console.log('Found websites:', websites.length);
     console.log('Found Merck links:', merckLinks.length);
@@ -543,7 +550,7 @@ export default function ChatbotScreen() {
     const isClinicalQuery = /symptom|sign|present|clinical feature|manifestation|appear|clinical finding|physical exam/i.test(query);
     const isDiagnosticQuery = /diagnos|test|workup|evaluation|assess|detect|diagnostic approach|lab|imaging/i.test(query);
     const isTreatmentQuery = /treat|therap|manage|medication|drug|intervention|management|therapy/i.test(query);
-    const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|esc|hfsa|hrs|scai|eacts|ats|chest|sccm|kdigo|niddk|acg|ada|endocrine society|nccn|american college|american heart|european society|heart failure society|heart rhythm society|cardiovascular angiography|interventions|cardio-thoracic surgery|european association|american thoracic society|thoracic society|chest physicians|critical care medicine|society of critical care|kidney disease improving global outcomes|national institute of diabetes|digestive and kidney diseases|gastroenterology|american diabetes association|diabetes association|national comprehensive cancer network/i.test(query);
+    const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|esc|hfsa|hrs|scai|eacts|ats|chest|sccm|kdigo|niddk|acg|ada|endocrine society|nccn|idsa|american college|american heart|european society|heart failure society|heart rhythm society|cardiovascular angiography|interventions|cardio-thoracic surgery|european association|american thoracic society|thoracic society|chest physicians|critical care medicine|society of critical care|kidney disease improving global outcomes|national institute of diabetes|digestive and kidney diseases|gastroenterology|american diabetes association|diabetes association|national comprehensive cancer network|infectious diseases society of america/i.test(query);
     
     console.log('Query intent hooks:', {
       isPathophysiologyQuery,
@@ -553,8 +560,8 @@ export default function ChatbotScreen() {
       isGuidelineQuery
     });
 
-    // Priority 0: Clinical Practice Guidelines (ACC/AHA/ESC/HFSA/HRS/SCAI/EACTS/ATS/CHEST/SCCM/KDIGO/NIDDK/ACG/ADA/Endocrine Society/NCCN) - Highest priority for guideline queries
-    if (isGuidelineQuery && (accGuidelines.length > 0 || ahaGuidelines.length > 0 || escGuidelines.length > 0 || hfsaGuidelines.length > 0 || hrsGuidelines.length > 0 || scaiGuidelines.length > 0 || eactsGuidelines.length > 0 || atsGuidelines.length > 0 || chestGuidelines.length > 0 || sccmGuidelines.length > 0 || kdigoGuidelines.length > 0 || niddkGuidelines.length > 0 || acgGuidelines.length > 0 || adaGuidelines.length > 0 || endocrineGuidelines.length > 0 || nccnGuidelines.length > 0)) {
+    // Priority 0: Clinical Practice Guidelines (ACC/AHA/ESC/HFSA/HRS/SCAI/EACTS/ATS/CHEST/SCCM/KDIGO/NIDDK/ACG/ADA/Endocrine Society/NCCN/IDSA) - Highest priority for guideline queries
+    if (isGuidelineQuery && (accGuidelines.length > 0 || ahaGuidelines.length > 0 || escGuidelines.length > 0 || hfsaGuidelines.length > 0 || hrsGuidelines.length > 0 || scaiGuidelines.length > 0 || eactsGuidelines.length > 0 || atsGuidelines.length > 0 || chestGuidelines.length > 0 || sccmGuidelines.length > 0 || kdigoGuidelines.length > 0 || niddkGuidelines.length > 0 || acgGuidelines.length > 0 || adaGuidelines.length > 0 || endocrineGuidelines.length > 0 || nccnGuidelines.length > 0 || idsaGuidelines.length > 0)) {
       let response = '';
       
       // ACC Guidelines
@@ -1354,6 +1361,55 @@ export default function ChatbotScreen() {
         response += `*This information is from the National Comprehensive Cancer Network (NCCN) clinical practice guidelines. These are evidence-based recommendations with specific category ratings (Category 1 = High-level evidence with uniform consensus, Category 2A = Lower-level evidence with uniform consensus, Category 2B = Lower-level evidence with non-uniform consensus, Category 3 = Major disagreement).*\n\n`;
       }
       
+      // IDSA Guidelines
+      if (idsaGuidelines.length > 0) {
+        const guideline = idsaGuidelines[0];
+        if (accGuidelines.length > 0 || ahaGuidelines.length > 0 || escGuidelines.length > 0 || hfsaGuidelines.length > 0 || hrsGuidelines.length > 0 || scaiGuidelines.length > 0 || eactsGuidelines.length > 0 || atsGuidelines.length > 0 || chestGuidelines.length > 0 || sccmGuidelines.length > 0 || kdigoGuidelines.length > 0 || niddkGuidelines.length > 0 || acgGuidelines.length > 0 || adaGuidelines.length > 0 || endocrineGuidelines.length > 0 || nccnGuidelines.length > 0) {
+          response += '\n---\n\n';
+        }
+        response += `**${guideline.topic}**\n\n`;
+        response += `**Guideline Summary:**\n\n${guideline.guidelineSummary}\n\n`;
+        
+        if (guideline.strongRecommendations.length > 0) {
+          response += '**Strong Recommendations:**\n\n';
+          guideline.strongRecommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        if (guideline.moderateRecommendations.length > 0) {
+          response += '**Moderate Recommendations:**\n\n';
+          guideline.moderateRecommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        if (guideline.weakRecommendations.length > 0) {
+          response += '**Weak Recommendations:**\n\n';
+          guideline.weakRecommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        response += '**Clinical Implementation:**\n\n';
+        response += `${guideline.clinicalImplementation}\n\n`;
+        
+        if (guideline.keyPoints.length > 0) {
+          response += '**Key Points:**\n\n';
+          guideline.keyPoints.forEach(point => {
+            response += `• ${point}\n`;
+          });
+          response += '\n';
+        }
+        
+        response += `**Quality of Evidence:** ${guideline.qualityOfEvidence}\n\n`;
+        response += `**Publication Year:** ${guideline.publicationYear}\n\n`;
+        response += `*This information is from the Infectious Diseases Society of America (IDSA) clinical practice guidelines. These are evidence-based recommendations with specific strength of recommendation (Strong = A, Moderate = B, Weak = C) and quality of evidence ratings (High = I, Moderate = II, Low = III).*\n\n`;
+      }
+      
       return response;
     }
 
@@ -1786,6 +1842,7 @@ export default function ChatbotScreen() {
       const adaGuidelines = isGuidelineQuery ? searchADAGuidelines(currentQuery) : [];
       const endocrineGuidelines = isGuidelineQuery ? searchEndocrineGuidelines(currentQuery) : [];
       const nccnGuidelines = isGuidelineQuery ? searchNCCNGuidelines(currentQuery) : [];
+      const idsaGuidelines = isGuidelineQuery ? searchIDSAGuidelines(currentQuery) : [];
       const relevantFlashcards = findRelevantFlashcards(currentQuery);
       const relevantReferences = findRelevantReferences(currentQuery);
       const relevantWebsites = findRelevantWebsites(currentQuery);
@@ -1860,6 +1917,10 @@ export default function ChatbotScreen() {
       if (nccnGuidelines.length > 0) {
         console.log('  Top NCCN guideline:', nccnGuidelines[0].topic);
       }
+      console.log('- IDSA Guidelines:', idsaGuidelines.length);
+      if (idsaGuidelines.length > 0) {
+        console.log('  Top IDSA guideline:', idsaGuidelines[0].topic);
+      }
       console.log('- Flashcards:', relevantFlashcards.length);
       if (relevantFlashcards.length > 0) {
         console.log('  Top flashcard:', relevantFlashcards[0].front);
@@ -1891,7 +1952,8 @@ export default function ChatbotScreen() {
         acgGuidelines,
         adaGuidelines,
         endocrineGuidelines,
-        nccnGuidelines
+        nccnGuidelines,
+        idsaGuidelines
       );
 
       // Detect medical system
@@ -1933,6 +1995,7 @@ export default function ChatbotScreen() {
         adaGuidelines: adaGuidelines.length > 0 ? adaGuidelines : undefined,
         endocrineGuidelines: endocrineGuidelines.length > 0 ? endocrineGuidelines : undefined,
         nccnGuidelines: nccnGuidelines.length > 0 ? nccnGuidelines : undefined,
+        idsaGuidelines: idsaGuidelines.length > 0 ? idsaGuidelines : undefined,
         flashcards: relevantFlashcards.length > 0 ? relevantFlashcards : undefined,
         references: relevantReferences.length > 0 ? relevantReferences : undefined,
         websites: relevantWebsites.length > 0 ? relevantWebsites : undefined,
