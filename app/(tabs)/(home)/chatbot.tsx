@@ -39,6 +39,7 @@ import { searchADAGuidelines, type ADAGuidelineEntry } from '@/data/adaGuideline
 import { searchEndocrineGuidelines, type EndocrineGuidelineEntry } from '@/data/endocrineGuidelinesKnowledge';
 import { searchNCCNGuidelines, type NCCNGuidelineEntry } from '@/data/nccnGuidelinesKnowledge';
 import { searchIDSAGuidelines, type IDSAGuidelineEntry } from '@/data/idsaGuidelinesKnowledge';
+import { searchASAGuidelines, type ASAGuidelineEntry } from '@/data/asaGuidelinesKnowledge';
 import { cardiologyFlashcards } from '@/data/cardiologyFlashcards';
 import { pulmonaryFlashcards } from '@/data/pulmonaryFlashcards';
 import { neurologyFlashcards } from '@/data/neurologyFlashcards';
@@ -87,6 +88,7 @@ interface Message {
   endocrineGuidelines?: EndocrineGuidelineEntry[];
   nccnGuidelines?: NCCNGuidelineEntry[];
   idsaGuidelines?: IDSAGuidelineEntry[];
+  asaGuidelines?: ASAGuidelineEntry[];
   flashcards?: Flashcard[];
   interactionId?: string;
   feedback?: 'positive' | 'negative';
@@ -503,7 +505,8 @@ export default function ChatbotScreen() {
     adaGuidelines: ADAGuidelineEntry[],
     endocrineGuidelines: EndocrineGuidelineEntry[],
     nccnGuidelines: NCCNGuidelineEntry[],
-    idsaGuidelines: IDSAGuidelineEntry[]
+    idsaGuidelines: IDSAGuidelineEntry[],
+    asaGuidelines: ASAGuidelineEntry[]
   ): string => {
     console.log('Generating dynamic response for:', query);
     console.log('Found flashcards:', flashcards.length);
@@ -540,6 +543,10 @@ export default function ChatbotScreen() {
     if (idsaGuidelines.length > 0) {
       console.log('  Top IDSA guideline:', idsaGuidelines[0].topic);
     }
+    console.log('Found ASA guidelines:', asaGuidelines.length);
+    if (asaGuidelines.length > 0) {
+      console.log('  Top ASA guideline:', asaGuidelines[0].topic);
+    }
     console.log('Found references:', references.length);
     console.log('Found websites:', websites.length);
     console.log('Found Merck links:', merckLinks.length);
@@ -550,7 +557,7 @@ export default function ChatbotScreen() {
     const isClinicalQuery = /symptom|sign|present|clinical feature|manifestation|appear|clinical finding|physical exam/i.test(query);
     const isDiagnosticQuery = /diagnos|test|workup|evaluation|assess|detect|diagnostic approach|lab|imaging/i.test(query);
     const isTreatmentQuery = /treat|therap|manage|medication|drug|intervention|management|therapy/i.test(query);
-    const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|esc|hfsa|hrs|scai|eacts|ats|chest|sccm|kdigo|niddk|acg|ada|endocrine society|nccn|idsa|american college|american heart|european society|heart failure society|heart rhythm society|cardiovascular angiography|interventions|cardio-thoracic surgery|european association|american thoracic society|thoracic society|chest physicians|critical care medicine|society of critical care|kidney disease improving global outcomes|national institute of diabetes|digestive and kidney diseases|gastroenterology|american diabetes association|diabetes association|national comprehensive cancer network|infectious diseases society of america/i.test(query);
+    const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|esc|hfsa|hrs|scai|eacts|ats|chest|sccm|kdigo|niddk|acg|ada|endocrine society|nccn|idsa|asa|american college|american heart|european society|heart failure society|heart rhythm society|cardiovascular angiography|interventions|cardio-thoracic surgery|european association|american thoracic society|thoracic society|chest physicians|critical care medicine|society of critical care|kidney disease improving global outcomes|national institute of diabetes|digestive and kidney diseases|gastroenterology|american diabetes association|diabetes association|national comprehensive cancer network|infectious diseases society of america|american stroke association/i.test(query);
     
     console.log('Query intent hooks:', {
       isPathophysiologyQuery,
@@ -560,8 +567,8 @@ export default function ChatbotScreen() {
       isGuidelineQuery
     });
 
-    // Priority 0: Clinical Practice Guidelines (ACC/AHA/ESC/HFSA/HRS/SCAI/EACTS/ATS/CHEST/SCCM/KDIGO/NIDDK/ACG/ADA/Endocrine Society/NCCN/IDSA) - Highest priority for guideline queries
-    if (isGuidelineQuery && (accGuidelines.length > 0 || ahaGuidelines.length > 0 || escGuidelines.length > 0 || hfsaGuidelines.length > 0 || hrsGuidelines.length > 0 || scaiGuidelines.length > 0 || eactsGuidelines.length > 0 || atsGuidelines.length > 0 || chestGuidelines.length > 0 || sccmGuidelines.length > 0 || kdigoGuidelines.length > 0 || niddkGuidelines.length > 0 || acgGuidelines.length > 0 || adaGuidelines.length > 0 || endocrineGuidelines.length > 0 || nccnGuidelines.length > 0 || idsaGuidelines.length > 0)) {
+    // Priority 0: Clinical Practice Guidelines (ACC/AHA/ESC/HFSA/HRS/SCAI/EACTS/ATS/CHEST/SCCM/KDIGO/NIDDK/ACG/ADA/Endocrine Society/NCCN/IDSA/ASA) - Highest priority for guideline queries
+    if (isGuidelineQuery && (accGuidelines.length > 0 || ahaGuidelines.length > 0 || escGuidelines.length > 0 || hfsaGuidelines.length > 0 || hrsGuidelines.length > 0 || scaiGuidelines.length > 0 || eactsGuidelines.length > 0 || atsGuidelines.length > 0 || chestGuidelines.length > 0 || sccmGuidelines.length > 0 || kdigoGuidelines.length > 0 || niddkGuidelines.length > 0 || acgGuidelines.length > 0 || adaGuidelines.length > 0 || endocrineGuidelines.length > 0 || nccnGuidelines.length > 0 || idsaGuidelines.length > 0 || asaGuidelines.length > 0)) {
       let response = '';
       
       // ACC Guidelines
@@ -1410,6 +1417,63 @@ export default function ChatbotScreen() {
         response += `*This information is from the Infectious Diseases Society of America (IDSA) clinical practice guidelines. These are evidence-based recommendations with specific strength of recommendation (Strong = A, Moderate = B, Weak = C) and quality of evidence ratings (High = I, Moderate = II, Low = III).*\n\n`;
       }
       
+      // ASA Guidelines
+      if (asaGuidelines.length > 0) {
+        const guideline = asaGuidelines[0];
+        if (accGuidelines.length > 0 || ahaGuidelines.length > 0 || escGuidelines.length > 0 || hfsaGuidelines.length > 0 || hrsGuidelines.length > 0 || scaiGuidelines.length > 0 || eactsGuidelines.length > 0 || atsGuidelines.length > 0 || chestGuidelines.length > 0 || sccmGuidelines.length > 0 || kdigoGuidelines.length > 0 || niddkGuidelines.length > 0 || acgGuidelines.length > 0 || adaGuidelines.length > 0 || endocrineGuidelines.length > 0 || nccnGuidelines.length > 0 || idsaGuidelines.length > 0) {
+          response += '\n---\n\n';
+        }
+        response += `**${guideline.topic}**\n\n`;
+        response += `**Guideline Summary:**\n\n${guideline.guidelineSummary}\n\n`;
+        
+        if (guideline.classIRecommendations.length > 0) {
+          response += '**Class I Recommendations (Strong Recommendation):**\n\n';
+          guideline.classIRecommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        if (guideline.classIIARecommendations.length > 0) {
+          response += '**Class IIA Recommendations (Moderate Recommendation):**\n\n';
+          guideline.classIIARecommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        if (guideline.classIIBRecommendations.length > 0) {
+          response += '**Class IIB Recommendations (Weak Recommendation):**\n\n';
+          guideline.classIIBRecommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        if (guideline.classIIIRecommendations.length > 0) {
+          response += '**Class III Recommendations (Not Recommended):**\n\n';
+          guideline.classIIIRecommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        response += '**Clinical Implementation:**\n\n';
+        response += `${guideline.clinicalImplementation}\n\n`;
+        
+        if (guideline.keyPoints.length > 0) {
+          response += '**Key Points:**\n\n';
+          guideline.keyPoints.forEach(point => {
+            response += `• ${point}\n`;
+          });
+          response += '\n';
+        }
+        
+        response += `**Level of Evidence:** ${guideline.levelOfEvidence}\n\n`;
+        response += `**Publication Year:** ${guideline.publicationYear}\n\n`;
+        response += `*This information is from the American Stroke Association (ASA) / American Heart Association (AHA) clinical practice guidelines. These are evidence-based recommendations with specific Class of Recommendation (Class I = Strong, Class IIa = Moderate, Class IIb = Weak, Class III = Not Recommended) and Level of Evidence ratings (A = High, B-R = Moderate randomized, B-NR = Moderate non-randomized, C-LD = Low, C-EO = Expert Opinion).*\n\n`;
+      }
+      
       return response;
     }
 
@@ -1822,7 +1886,7 @@ export default function ChatbotScreen() {
       
       // Detect if query is asking for guidelines
       const lowerQuery = currentQuery.toLowerCase();
-      const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|esc|hfsa|hrs|scai|eacts|ats|chest|sccm|kdigo|niddk|acg|ada|endocrine society|nccn|american college|american heart|european society|heart failure society|heart rhythm society|cardiovascular angiography|interventions|cardio-thoracic surgery|european association|american thoracic society|thoracic society|chest physicians|critical care medicine|society of critical care|kidney disease improving global outcomes|national institute of diabetes|digestive and kidney diseases|gastroenterology|american diabetes association|diabetes association|national comprehensive cancer network/i.test(currentQuery);
+      const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|esc|hfsa|hrs|scai|eacts|ats|chest|sccm|kdigo|niddk|acg|ada|endocrine society|nccn|idsa|asa|american college|american heart|european society|heart failure society|heart rhythm society|cardiovascular angiography|interventions|cardio-thoracic surgery|european association|american thoracic society|thoracic society|chest physicians|critical care medicine|society of critical care|kidney disease improving global outcomes|national institute of diabetes|digestive and kidney diseases|gastroenterology|american diabetes association|diabetes association|national comprehensive cancer network|infectious diseases society of america|american stroke association/i.test(currentQuery);
       
       // Search all data sources
       const merckEntries = searchMerckManualKnowledge(currentQuery);
@@ -1843,6 +1907,7 @@ export default function ChatbotScreen() {
       const endocrineGuidelines = isGuidelineQuery ? searchEndocrineGuidelines(currentQuery) : [];
       const nccnGuidelines = isGuidelineQuery ? searchNCCNGuidelines(currentQuery) : [];
       const idsaGuidelines = isGuidelineQuery ? searchIDSAGuidelines(currentQuery) : [];
+      const asaGuidelines = isGuidelineQuery ? searchASAGuidelines(currentQuery) : [];
       const relevantFlashcards = findRelevantFlashcards(currentQuery);
       const relevantReferences = findRelevantReferences(currentQuery);
       const relevantWebsites = findRelevantWebsites(currentQuery);
@@ -1921,6 +1986,10 @@ export default function ChatbotScreen() {
       if (idsaGuidelines.length > 0) {
         console.log('  Top IDSA guideline:', idsaGuidelines[0].topic);
       }
+      console.log('- ASA Guidelines:', asaGuidelines.length);
+      if (asaGuidelines.length > 0) {
+        console.log('  Top ASA guideline:', asaGuidelines[0].topic);
+      }
       console.log('- Flashcards:', relevantFlashcards.length);
       if (relevantFlashcards.length > 0) {
         console.log('  Top flashcard:', relevantFlashcards[0].front);
@@ -1953,7 +2022,8 @@ export default function ChatbotScreen() {
         adaGuidelines,
         endocrineGuidelines,
         nccnGuidelines,
-        idsaGuidelines
+        idsaGuidelines,
+        asaGuidelines
       );
 
       // Detect medical system
@@ -1996,6 +2066,7 @@ export default function ChatbotScreen() {
         endocrineGuidelines: endocrineGuidelines.length > 0 ? endocrineGuidelines : undefined,
         nccnGuidelines: nccnGuidelines.length > 0 ? nccnGuidelines : undefined,
         idsaGuidelines: idsaGuidelines.length > 0 ? idsaGuidelines : undefined,
+        asaGuidelines: asaGuidelines.length > 0 ? asaGuidelines : undefined,
         flashcards: relevantFlashcards.length > 0 ? relevantFlashcards : undefined,
         references: relevantReferences.length > 0 ? relevantReferences : undefined,
         websites: relevantWebsites.length > 0 ? relevantWebsites : undefined,
