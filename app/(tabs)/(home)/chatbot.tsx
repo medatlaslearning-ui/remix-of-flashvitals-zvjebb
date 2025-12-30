@@ -40,6 +40,7 @@ import { searchEndocrineGuidelines, type EndocrineGuidelineEntry } from '@/data/
 import { searchNCCNGuidelines, type NCCNGuidelineEntry } from '@/data/nccnGuidelinesKnowledge';
 import { searchIDSAGuidelines, type IDSAGuidelineEntry } from '@/data/idsaGuidelinesKnowledge';
 import { searchASAGuidelines, type ASAGuidelineEntry } from '@/data/asaGuidelinesKnowledge';
+import { searchACSTraumaGuidelines, type ACSTraumaGuidelineEntry } from '@/data/acsTraumaGuidelinesKnowledge';
 import { cardiologyFlashcards } from '@/data/cardiologyFlashcards';
 import { pulmonaryFlashcards } from '@/data/pulmonaryFlashcards';
 import { neurologyFlashcards } from '@/data/neurologyFlashcards';
@@ -89,6 +90,7 @@ interface Message {
   nccnGuidelines?: NCCNGuidelineEntry[];
   idsaGuidelines?: IDSAGuidelineEntry[];
   asaGuidelines?: ASAGuidelineEntry[];
+  acsTraumaGuidelines?: ACSTraumaGuidelineEntry[];
   flashcards?: Flashcard[];
   interactionId?: string;
   feedback?: 'positive' | 'negative';
@@ -116,7 +118,7 @@ export default function ChatbotScreen() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: 'Hello! I\'m your Medical Expert Chatbot powered by the **Perpetual System Logic Learning Engine**.\n\n**🔄 Continuous Learning System:**\n\nI continuously learn from your interactions to provide better responses:\n\n• **Feedback Loop** - Rate my responses with 👍 or 👎 to help me improve\n• **Follow-Up Questions** - I suggest related questions to enhance your learning\n• **Self-Monitoring** - I run internal audits and stress tests to maintain quality\n• **Auto-Repair** - I fix issues automatically and alert you when needed\n\n**📚 Complete Knowledge Base:**\n\n• **Cardiology** - Arrhythmias, heart failure, ischemic heart disease, valvular disorders\n• **Pulmonary** - Asthma, COPD, pneumonia, interstitial lung diseases\n• **Gastroenterology** - GI disorders, liver disease, IBD, pancreatic conditions\n• **Endocrine** - Diabetes, thyroid disorders, adrenal disorders\n• **Hematology** - Anemias, bleeding disorders, thrombotic disorders, malignancies\n• **Renal** - AKI, CKD, glomerular diseases, electrolyte disorders\n• **Neurology** - Stroke, seizures, movement disorders, dementia, MS\n• **Infectious Disease** - Bacterial, viral, fungal, parasitic infections\n• **Emergency Medicine** - Shock, trauma, cardiovascular emergencies, toxicology\n• **Urology** - Urinary tract disorders, prostate conditions, kidney stones\n\n**📋 Clinical Practice Guidelines (NEW!):**\n\n• **ACC Guidelines** - American College of Cardiology evidence-based recommendations\n• **AHA Guidelines** - American Heart Association cardiovascular disease prevention and management\n• **ESC Guidelines** - European Society of Cardiology comprehensive cardiovascular guidelines\n• **HFSA Guidelines** - Heart Failure Society of America heart failure management\n• **HRS Guidelines** - Heart Rhythm Society arrhythmia and device therapy guidelines\n• **SCAI Guidelines** - Society for Cardiovascular Angiography and Interventions procedural guidelines\n• **EACTS Guidelines** - European Association for Cardio-Thoracic Surgery surgical guidelines\n• **ATS Guidelines** - American Thoracic Society pulmonary and critical care guidelines\n• **CHEST Guidelines** - American College of Chest Physicians pulmonary and critical care guidelines\n• **SCCM Guidelines** - Society of Critical Care Medicine critical care guidelines\n• **KDIGO Guidelines** - Kidney Disease: Improving Global Outcomes renal guidelines\n• **NIDDK Guidelines** - National Institute of Diabetes and Digestive and Kidney Diseases guidelines\n• **ACG Guidelines** - American College of Gastroenterology gastroenterology and hepatology guidelines\n• **ADA Guidelines** - American Diabetes Association diabetes management guidelines\n• **Endocrine Society Guidelines** - Endocrine Society endocrine disorder guidelines\n• **NCCN Guidelines** - National Comprehensive Cancer Network hematologic malignancy guidelines\n\nAsk about guidelines using keywords like "ACC guideline", "AHA guideline", "ESC guideline", "HFSA guideline", "HRS guideline", "SCAI guideline", "EACTS guideline", "ATS guideline", "CHEST guideline", "SCCM guideline", "KDIGO guideline", "NIDDK guideline", "ACG guideline", "ADA guideline", "Endocrine Society guideline", "NCCN guideline", "recommendation", or "evidence"\n\n**🎯 Focused Responses:**\n\nAsk specific questions using keywords:\n• "What is the **pathophysiology** of..."\n• "What are the **clinical findings** of..."\n• "How do you **diagnose**..."\n• "What is the **treatment** for..."\n• "What are the **ACC/AHA/ESC/HFSA/HRS/SCAI/EACTS/ATS guidelines** for..."\n\n**💡 Interactive Learning:**\n\nAfter each response, I\'ll suggest 3 follow-up questions to deepen your understanding. Select one to continue learning!\n\nLet\'s begin your medical learning journey!',
+      text: 'Hello! I\'m your Medical Expert Chatbot powered by the **Perpetual System Logic Learning Engine**.\n\n**🔄 Continuous Learning System:**\n\nI continuously learn from your interactions to provide better responses:\n\n• **Feedback Loop** - Rate my responses with 👍 or 👎 to help me improve\n• **Follow-Up Questions** - I suggest related questions to enhance your learning\n• **Self-Monitoring** - I run internal audits and stress tests to maintain quality\n• **Auto-Repair** - I fix issues automatically and alert you when needed\n\n**📚 Complete Knowledge Base:**\n\n• **Cardiology** - Arrhythmias, heart failure, ischemic heart disease, valvular disorders\n• **Pulmonary** - Asthma, COPD, pneumonia, interstitial lung diseases\n• **Gastroenterology** - GI disorders, liver disease, IBD, pancreatic conditions\n• **Endocrine** - Diabetes, thyroid disorders, adrenal disorders\n• **Hematology** - Anemias, bleeding disorders, thrombotic disorders, malignancies\n• **Renal** - AKI, CKD, glomerular diseases, electrolyte disorders\n• **Neurology** - Stroke, seizures, movement disorders, dementia, MS\n• **Infectious Disease** - Bacterial, viral, fungal, parasitic infections\n• **Emergency Medicine** - Shock, trauma, cardiovascular emergencies, toxicology\n• **Urology** - Urinary tract disorders, prostate conditions, kidney stones\n\n**📋 Clinical Practice Guidelines (NEW!):**\n\n• **ACC Guidelines** - American College of Cardiology evidence-based recommendations\n• **AHA Guidelines** - American Heart Association cardiovascular disease prevention and management\n• **ESC Guidelines** - European Society of Cardiology comprehensive cardiovascular guidelines\n• **HFSA Guidelines** - Heart Failure Society of America heart failure management\n• **HRS Guidelines** - Heart Rhythm Society arrhythmia and device therapy guidelines\n• **SCAI Guidelines** - Society for Cardiovascular Angiography and Interventions procedural guidelines\n• **EACTS Guidelines** - European Association for Cardio-Thoracic Surgery surgical guidelines\n• **ATS Guidelines** - American Thoracic Society pulmonary and critical care guidelines\n• **CHEST Guidelines** - American College of Chest Physicians pulmonary and critical care guidelines\n• **SCCM Guidelines** - Society of Critical Care Medicine critical care guidelines\n• **KDIGO Guidelines** - Kidney Disease: Improving Global Outcomes renal guidelines\n• **NIDDK Guidelines** - National Institute of Diabetes and Digestive and Kidney Diseases guidelines\n• **ACG Guidelines** - American College of Gastroenterology gastroenterology and hepatology guidelines\n• **ADA Guidelines** - American Diabetes Association diabetes management guidelines\n• **Endocrine Society Guidelines** - Endocrine Society endocrine disorder guidelines\n• **NCCN Guidelines** - National Comprehensive Cancer Network hematologic malignancy guidelines\n\nAsk about guidelines using keywords like "ACC guideline", "AHA guideline", "ESC guideline", "HFSA guideline", "HRS guideline", "SCAI guideline", "EACTS guideline", "ATS guideline", "CHEST guideline", "SCCM guideline", "KDIGO guideline", "NIDDK guideline", "ACG guideline", "ADA guideline", "Endocrine Society guideline", "NCCN guideline", "IDSA guideline", "ASA guideline", "ACS guideline", "ATLS", "recommendation", or "evidence"\n\n**🎯 Focused Responses:**\n\nAsk specific questions using keywords:\n• "What is the **pathophysiology** of..."\n• "What are the **clinical findings** of..."\n• "How do you **diagnose**..."\n• "What is the **treatment** for..."\n• "What are the **ACC/AHA/ESC/HFSA/HRS/SCAI/EACTS/ATS guidelines** for..."\n\n**💡 Interactive Learning:**\n\nAfter each response, I\'ll suggest 3 follow-up questions to deepen your understanding. Select one to continue learning!\n\nLet\'s begin your medical learning journey!',
       isBot: true,
       timestamp: new Date(),
     },
@@ -506,7 +508,8 @@ export default function ChatbotScreen() {
     endocrineGuidelines: EndocrineGuidelineEntry[],
     nccnGuidelines: NCCNGuidelineEntry[],
     idsaGuidelines: IDSAGuidelineEntry[],
-    asaGuidelines: ASAGuidelineEntry[]
+    asaGuidelines: ASAGuidelineEntry[],
+    acsTraumaGuidelines: ACSTraumaGuidelineEntry[]
   ): string => {
     console.log('Generating dynamic response for:', query);
     console.log('Found flashcards:', flashcards.length);
@@ -547,6 +550,10 @@ export default function ChatbotScreen() {
     if (asaGuidelines.length > 0) {
       console.log('  Top ASA guideline:', asaGuidelines[0].topic);
     }
+    console.log('Found ACS Trauma guidelines:', acsTraumaGuidelines.length);
+    if (acsTraumaGuidelines.length > 0) {
+      console.log('  Top ACS Trauma guideline:', acsTraumaGuidelines[0].topic);
+    }
     console.log('Found references:', references.length);
     console.log('Found websites:', websites.length);
     console.log('Found Merck links:', merckLinks.length);
@@ -557,7 +564,7 @@ export default function ChatbotScreen() {
     const isClinicalQuery = /symptom|sign|present|clinical feature|manifestation|appear|clinical finding|physical exam/i.test(query);
     const isDiagnosticQuery = /diagnos|test|workup|evaluation|assess|detect|diagnostic approach|lab|imaging/i.test(query);
     const isTreatmentQuery = /treat|therap|manage|medication|drug|intervention|management|therapy/i.test(query);
-    const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|esc|hfsa|hrs|scai|eacts|ats|chest|sccm|kdigo|niddk|acg|ada|endocrine society|nccn|idsa|asa|american college|american heart|european society|heart failure society|heart rhythm society|cardiovascular angiography|interventions|cardio-thoracic surgery|european association|american thoracic society|thoracic society|chest physicians|critical care medicine|society of critical care|kidney disease improving global outcomes|national institute of diabetes|digestive and kidney diseases|gastroenterology|american diabetes association|diabetes association|national comprehensive cancer network|infectious diseases society of america|american stroke association/i.test(query);
+    const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|esc|hfsa|hrs|scai|eacts|ats|chest|sccm|kdigo|niddk|acg|ada|endocrine society|nccn|idsa|asa|acs|american college|american heart|european society|heart failure society|heart rhythm society|cardiovascular angiography|interventions|cardio-thoracic surgery|european association|american thoracic society|thoracic society|chest physicians|critical care medicine|society of critical care|kidney disease improving global outcomes|national institute of diabetes|digestive and kidney diseases|gastroenterology|american diabetes association|diabetes association|national comprehensive cancer network|infectious diseases society of america|american stroke association|american college of surgeons|trauma programs|atls|advanced trauma life support/i.test(query);
     
     console.log('Query intent hooks:', {
       isPathophysiologyQuery,
@@ -567,8 +574,8 @@ export default function ChatbotScreen() {
       isGuidelineQuery
     });
 
-    // Priority 0: Clinical Practice Guidelines (ACC/AHA/ESC/HFSA/HRS/SCAI/EACTS/ATS/CHEST/SCCM/KDIGO/NIDDK/ACG/ADA/Endocrine Society/NCCN/IDSA/ASA) - Highest priority for guideline queries
-    if (isGuidelineQuery && (accGuidelines.length > 0 || ahaGuidelines.length > 0 || escGuidelines.length > 0 || hfsaGuidelines.length > 0 || hrsGuidelines.length > 0 || scaiGuidelines.length > 0 || eactsGuidelines.length > 0 || atsGuidelines.length > 0 || chestGuidelines.length > 0 || sccmGuidelines.length > 0 || kdigoGuidelines.length > 0 || niddkGuidelines.length > 0 || acgGuidelines.length > 0 || adaGuidelines.length > 0 || endocrineGuidelines.length > 0 || nccnGuidelines.length > 0 || idsaGuidelines.length > 0 || asaGuidelines.length > 0)) {
+    // Priority 0: Clinical Practice Guidelines (ACC/AHA/ESC/HFSA/HRS/SCAI/EACTS/ATS/CHEST/SCCM/KDIGO/NIDDK/ACG/ADA/Endocrine Society/NCCN/IDSA/ASA/ACS Trauma) - Highest priority for guideline queries
+    if (isGuidelineQuery && (accGuidelines.length > 0 || ahaGuidelines.length > 0 || escGuidelines.length > 0 || hfsaGuidelines.length > 0 || hrsGuidelines.length > 0 || scaiGuidelines.length > 0 || eactsGuidelines.length > 0 || atsGuidelines.length > 0 || chestGuidelines.length > 0 || sccmGuidelines.length > 0 || kdigoGuidelines.length > 0 || niddkGuidelines.length > 0 || acgGuidelines.length > 0 || adaGuidelines.length > 0 || endocrineGuidelines.length > 0 || nccnGuidelines.length > 0 || idsaGuidelines.length > 0 || asaGuidelines.length > 0 || acsTraumaGuidelines.length > 0)) {
       let response = '';
       
       // ACC Guidelines
@@ -1474,6 +1481,55 @@ export default function ChatbotScreen() {
         response += `*This information is from the American Stroke Association (ASA) / American Heart Association (AHA) clinical practice guidelines. These are evidence-based recommendations with specific Class of Recommendation (Class I = Strong, Class IIa = Moderate, Class IIb = Weak, Class III = Not Recommended) and Level of Evidence ratings (A = High, B-R = Moderate randomized, B-NR = Moderate non-randomized, C-LD = Low, C-EO = Expert Opinion).*\n\n`;
       }
       
+      // ACS Trauma Guidelines
+      if (acsTraumaGuidelines.length > 0) {
+        const guideline = acsTraumaGuidelines[0];
+        if (accGuidelines.length > 0 || ahaGuidelines.length > 0 || escGuidelines.length > 0 || hfsaGuidelines.length > 0 || hrsGuidelines.length > 0 || scaiGuidelines.length > 0 || eactsGuidelines.length > 0 || atsGuidelines.length > 0 || chestGuidelines.length > 0 || sccmGuidelines.length > 0 || kdigoGuidelines.length > 0 || niddkGuidelines.length > 0 || acgGuidelines.length > 0 || adaGuidelines.length > 0 || endocrineGuidelines.length > 0 || nccnGuidelines.length > 0 || idsaGuidelines.length > 0 || asaGuidelines.length > 0) {
+          response += '\n---\n\n';
+        }
+        response += `**${guideline.topic}**\n\n`;
+        response += `**Guideline Summary:**\n\n${guideline.guidelineSummary}\n\n`;
+        
+        if (guideline.level1Recommendations.length > 0) {
+          response += '**Level 1 Recommendations (Strong Recommendation):**\n\n';
+          guideline.level1Recommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        if (guideline.level2Recommendations.length > 0) {
+          response += '**Level 2 Recommendations (Moderate Recommendation):**\n\n';
+          guideline.level2Recommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        if (guideline.level3Recommendations.length > 0) {
+          response += '**Level 3 Recommendations (Weak Recommendation):**\n\n';
+          guideline.level3Recommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        response += '**Clinical Implementation:**\n\n';
+        response += `${guideline.clinicalImplementation}\n\n`;
+        
+        if (guideline.keyPoints.length > 0) {
+          response += '**Key Points:**\n\n';
+          guideline.keyPoints.forEach(point => {
+            response += `• ${point}\n`;
+          });
+          response += '\n';
+        }
+        
+        response += `**Quality of Evidence:** ${guideline.qualityOfEvidence}\n\n`;
+        response += `**Publication Year:** ${guideline.publicationYear}\n\n`;
+        response += `*This information is from the American College of Surgeons (ACS) Trauma Programs clinical practice guidelines. These are evidence-based recommendations with specific levels of recommendation (Level 1 = Strong, Level 2 = Moderate, Level 3 = Weak) and quality of evidence ratings (A = High, B = Moderate, C = Low).*\n\n`;
+      }
+      
       return response;
     }
 
@@ -1908,6 +1964,7 @@ export default function ChatbotScreen() {
       const nccnGuidelines = isGuidelineQuery ? searchNCCNGuidelines(currentQuery) : [];
       const idsaGuidelines = isGuidelineQuery ? searchIDSAGuidelines(currentQuery) : [];
       const asaGuidelines = isGuidelineQuery ? searchASAGuidelines(currentQuery) : [];
+      const acsTraumaGuidelines = isGuidelineQuery ? searchACSTraumaGuidelines(currentQuery) : [];
       const relevantFlashcards = findRelevantFlashcards(currentQuery);
       const relevantReferences = findRelevantReferences(currentQuery);
       const relevantWebsites = findRelevantWebsites(currentQuery);
@@ -2023,7 +2080,8 @@ export default function ChatbotScreen() {
         endocrineGuidelines,
         nccnGuidelines,
         idsaGuidelines,
-        asaGuidelines
+        asaGuidelines,
+        acsTraumaGuidelines
       );
 
       // Detect medical system
@@ -2067,6 +2125,7 @@ export default function ChatbotScreen() {
         nccnGuidelines: nccnGuidelines.length > 0 ? nccnGuidelines : undefined,
         idsaGuidelines: idsaGuidelines.length > 0 ? idsaGuidelines : undefined,
         asaGuidelines: asaGuidelines.length > 0 ? asaGuidelines : undefined,
+        acsTraumaGuidelines: acsTraumaGuidelines.length > 0 ? acsTraumaGuidelines : undefined,
         flashcards: relevantFlashcards.length > 0 ? relevantFlashcards : undefined,
         references: relevantReferences.length > 0 ? relevantReferences : undefined,
         websites: relevantWebsites.length > 0 ? relevantWebsites : undefined,
