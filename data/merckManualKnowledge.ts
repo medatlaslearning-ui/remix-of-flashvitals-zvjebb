@@ -55,12 +55,16 @@ import { infectiousDiseaseKnowledge } from './infectiousDiseaseKnowledge';
 import { emergencyMedicineKnowledge } from './emergencyMedicineKnowledge';
 import { urologyKnowledge } from './urologyKnowledge';
 
-// Import guideline knowledge from separate files (Phases 10-16)
+// Import guideline knowledge from separate files (Phases 10-18)
 import { ahaGuidelinesKnowledge } from './ahaGuidelinesKnowledge';
 import { hfsaGuidelinesKnowledge } from './hfsaGuidelinesKnowledge';
 import { hrsGuidelinesKnowledge } from './hrsGuidelinesKnowledge';
 import { scaiGuidelinesKnowledge } from './scaiGuidelinesKnowledge';
 import { eactsGuidelinesKnowledge } from './eactsGuidelinesKnowledge';
+import { atsGuidelinesKnowledge } from './atsGuidelinesKnowledge';
+import { chestGuidelinesKnowledge } from './chestGuidelinesKnowledge';
+import { sccmGuidelinesKnowledge } from './sccmGuidelinesKnowledge';
+import { kdigoGuidelinesKnowledge } from './kdigoGuidelinesKnowledge';
 
 export interface MerckManualEntry {
   topic: string;

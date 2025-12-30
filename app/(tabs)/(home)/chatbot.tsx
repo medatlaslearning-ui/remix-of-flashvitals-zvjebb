@@ -32,6 +32,7 @@ import { searchEACTSGuidelines, type EACTSGuidelineEntry } from '@/data/eactsGui
 import { searchATSGuidelines, type ATSGuidelineEntry } from '@/data/atsGuidelinesKnowledge';
 import { searchCHESTGuidelines, type CHESTGuidelineEntry } from '@/data/chestGuidelinesKnowledge';
 import { searchSCCMGuidelines, type SCCMGuidelineEntry } from '@/data/sccmGuidelinesKnowledge';
+import { searchKDIGOGuidelines, type KDIGOGuidelineEntry } from '@/data/kdigoGuidelinesKnowledge';
 import { cardiologyFlashcards } from '@/data/cardiologyFlashcards';
 import { pulmonaryFlashcards } from '@/data/pulmonaryFlashcards';
 import { neurologyFlashcards } from '@/data/neurologyFlashcards';
@@ -73,6 +74,7 @@ interface Message {
   atsGuidelines?: ATSGuidelineEntry[];
   chestGuidelines?: CHESTGuidelineEntry[];
   sccmGuidelines?: SCCMGuidelineEntry[];
+  kdigoGuidelines?: KDIGOGuidelineEntry[];
   flashcards?: Flashcard[];
   interactionId?: string;
   feedback?: 'positive' | 'negative';
@@ -100,7 +102,7 @@ export default function ChatbotScreen() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: 'Hello! I\'m your Medical Expert Chatbot powered by the **Perpetual System Logic Learning Engine**.\n\n**🔄 Continuous Learning System:**\n\nI continuously learn from your interactions to provide better responses:\n\n• **Feedback Loop** - Rate my responses with 👍 or 👎 to help me improve\n• **Follow-Up Questions** - I suggest related questions to enhance your learning\n• **Self-Monitoring** - I run internal audits and stress tests to maintain quality\n• **Auto-Repair** - I fix issues automatically and alert you when needed\n\n**📚 Complete Knowledge Base:**\n\n• **Cardiology** - Arrhythmias, heart failure, ischemic heart disease, valvular disorders\n• **Pulmonary** - Asthma, COPD, pneumonia, interstitial lung diseases\n• **Gastroenterology** - GI disorders, liver disease, IBD, pancreatic conditions\n• **Endocrine** - Diabetes, thyroid disorders, adrenal disorders\n• **Hematology** - Anemias, bleeding disorders, thrombotic disorders, malignancies\n• **Renal** - AKI, CKD, glomerular diseases, electrolyte disorders\n• **Neurology** - Stroke, seizures, movement disorders, dementia, MS\n• **Infectious Disease** - Bacterial, viral, fungal, parasitic infections\n• **Emergency Medicine** - Shock, trauma, cardiovascular emergencies, toxicology\n• **Urology** - Urinary tract disorders, prostate conditions, kidney stones\n\n**📋 Clinical Practice Guidelines (NEW!):**\n\n• **ACC Guidelines** - American College of Cardiology evidence-based recommendations\n• **AHA Guidelines** - American Heart Association cardiovascular disease prevention and management\n• **ESC Guidelines** - European Society of Cardiology comprehensive cardiovascular guidelines\n• **HFSA Guidelines** - Heart Failure Society of America heart failure management\n• **HRS Guidelines** - Heart Rhythm Society arrhythmia and device therapy guidelines\n• **SCAI Guidelines** - Society for Cardiovascular Angiography and Interventions procedural guidelines\n• **EACTS Guidelines** - European Association for Cardio-Thoracic Surgery surgical guidelines\n• **ATS Guidelines** - American Thoracic Society pulmonary and critical care guidelines\n\nAsk about guidelines using keywords like "ACC guideline", "AHA guideline", "ESC guideline", "HFSA guideline", "HRS guideline", "SCAI guideline", "EACTS guideline", "ATS guideline", "recommendation", or "evidence"\n\n**🎯 Focused Responses:**\n\nAsk specific questions using keywords:\n• "What is the **pathophysiology** of..."\n• "What are the **clinical findings** of..."\n• "How do you **diagnose**..."\n• "What is the **treatment** for..."\n• "What are the **ACC/AHA/ESC/HFSA/HRS/SCAI/EACTS/ATS guidelines** for..."\n\n**💡 Interactive Learning:**\n\nAfter each response, I\'ll suggest 3 follow-up questions to deepen your understanding. Select one to continue learning!\n\nLet\'s begin your medical learning journey!',
+      text: 'Hello! I\'m your Medical Expert Chatbot powered by the **Perpetual System Logic Learning Engine**.\n\n**🔄 Continuous Learning System:**\n\nI continuously learn from your interactions to provide better responses:\n\n• **Feedback Loop** - Rate my responses with 👍 or 👎 to help me improve\n• **Follow-Up Questions** - I suggest related questions to enhance your learning\n• **Self-Monitoring** - I run internal audits and stress tests to maintain quality\n• **Auto-Repair** - I fix issues automatically and alert you when needed\n\n**📚 Complete Knowledge Base:**\n\n• **Cardiology** - Arrhythmias, heart failure, ischemic heart disease, valvular disorders\n• **Pulmonary** - Asthma, COPD, pneumonia, interstitial lung diseases\n• **Gastroenterology** - GI disorders, liver disease, IBD, pancreatic conditions\n• **Endocrine** - Diabetes, thyroid disorders, adrenal disorders\n• **Hematology** - Anemias, bleeding disorders, thrombotic disorders, malignancies\n• **Renal** - AKI, CKD, glomerular diseases, electrolyte disorders\n• **Neurology** - Stroke, seizures, movement disorders, dementia, MS\n• **Infectious Disease** - Bacterial, viral, fungal, parasitic infections\n• **Emergency Medicine** - Shock, trauma, cardiovascular emergencies, toxicology\n• **Urology** - Urinary tract disorders, prostate conditions, kidney stones\n\n**📋 Clinical Practice Guidelines (NEW!):**\n\n• **ACC Guidelines** - American College of Cardiology evidence-based recommendations\n• **AHA Guidelines** - American Heart Association cardiovascular disease prevention and management\n• **ESC Guidelines** - European Society of Cardiology comprehensive cardiovascular guidelines\n• **HFSA Guidelines** - Heart Failure Society of America heart failure management\n• **HRS Guidelines** - Heart Rhythm Society arrhythmia and device therapy guidelines\n• **SCAI Guidelines** - Society for Cardiovascular Angiography and Interventions procedural guidelines\n• **EACTS Guidelines** - European Association for Cardio-Thoracic Surgery surgical guidelines\n• **ATS Guidelines** - American Thoracic Society pulmonary and critical care guidelines\n• **CHEST Guidelines** - American College of Chest Physicians pulmonary and critical care guidelines\n• **SCCM Guidelines** - Society of Critical Care Medicine critical care guidelines\n• **KDIGO Guidelines** - Kidney Disease: Improving Global Outcomes renal guidelines\n\nAsk about guidelines using keywords like "ACC guideline", "AHA guideline", "ESC guideline", "HFSA guideline", "HRS guideline", "SCAI guideline", "EACTS guideline", "ATS guideline", "CHEST guideline", "SCCM guideline", "KDIGO guideline", "recommendation", or "evidence"\n\n**🎯 Focused Responses:**\n\nAsk specific questions using keywords:\n• "What is the **pathophysiology** of..."\n• "What are the **clinical findings** of..."\n• "How do you **diagnose**..."\n• "What is the **treatment** for..."\n• "What are the **ACC/AHA/ESC/HFSA/HRS/SCAI/EACTS/ATS guidelines** for..."\n\n**💡 Interactive Learning:**\n\nAfter each response, I\'ll suggest 3 follow-up questions to deepen your understanding. Select one to continue learning!\n\nLet\'s begin your medical learning journey!',
       isBot: true,
       timestamp: new Date(),
     },
@@ -482,7 +484,8 @@ export default function ChatbotScreen() {
     eactsGuidelines: EACTSGuidelineEntry[],
     atsGuidelines: ATSGuidelineEntry[],
     chestGuidelines: CHESTGuidelineEntry[],
-    sccmGuidelines: SCCMGuidelineEntry[]
+    sccmGuidelines: SCCMGuidelineEntry[],
+    kdigoGuidelines: KDIGOGuidelineEntry[]
   ): string => {
     console.log('Generating dynamic response for:', query);
     console.log('Found flashcards:', flashcards.length);
@@ -497,6 +500,7 @@ export default function ChatbotScreen() {
     console.log('Found ATS guidelines:', atsGuidelines.length);
     console.log('Found CHEST guidelines:', chestGuidelines.length);
     console.log('Found SCCM guidelines:', sccmGuidelines.length);
+    console.log('Found KDIGO guidelines:', kdigoGuidelines.length);
     console.log('Found references:', references.length);
     console.log('Found websites:', websites.length);
     console.log('Found Merck links:', merckLinks.length);
@@ -507,7 +511,7 @@ export default function ChatbotScreen() {
     const isClinicalQuery = /symptom|sign|present|clinical feature|manifestation|appear|clinical finding|physical exam/i.test(query);
     const isDiagnosticQuery = /diagnos|test|workup|evaluation|assess|detect|diagnostic approach|lab|imaging/i.test(query);
     const isTreatmentQuery = /treat|therap|manage|medication|drug|intervention|management|therapy/i.test(query);
-    const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|esc|hfsa|hrs|scai|eacts|ats|chest|sccm|american college|american heart|european society|heart failure society|heart rhythm society|cardiovascular angiography|interventions|cardio-thoracic surgery|european association|american thoracic society|thoracic society|chest physicians|critical care medicine|society of critical care/i.test(query);
+    const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|esc|hfsa|hrs|scai|eacts|ats|chest|sccm|kdigo|american college|american heart|european society|heart failure society|heart rhythm society|cardiovascular angiography|interventions|cardio-thoracic surgery|european association|american thoracic society|thoracic society|chest physicians|critical care medicine|society of critical care|kidney disease improving global outcomes/i.test(query);
     
     console.log('Query intent hooks:', {
       isPathophysiologyQuery,
@@ -517,8 +521,8 @@ export default function ChatbotScreen() {
       isGuidelineQuery
     });
 
-    // Priority 0: Clinical Practice Guidelines (ACC/AHA/ESC/HFSA/HRS/SCAI/EACTS/ATS/CHEST/SCCM) - Highest priority for guideline queries
-    if (isGuidelineQuery && (accGuidelines.length > 0 || ahaGuidelines.length > 0 || escGuidelines.length > 0 || hfsaGuidelines.length > 0 || hrsGuidelines.length > 0 || scaiGuidelines.length > 0 || eactsGuidelines.length > 0 || atsGuidelines.length > 0 || chestGuidelines.length > 0 || sccmGuidelines.length > 0)) {
+    // Priority 0: Clinical Practice Guidelines (ACC/AHA/ESC/HFSA/HRS/SCAI/EACTS/ATS/CHEST/SCCM/KDIGO) - Highest priority for guideline queries
+    if (isGuidelineQuery && (accGuidelines.length > 0 || ahaGuidelines.length > 0 || escGuidelines.length > 0 || hfsaGuidelines.length > 0 || hrsGuidelines.length > 0 || scaiGuidelines.length > 0 || eactsGuidelines.length > 0 || atsGuidelines.length > 0 || chestGuidelines.length > 0 || sccmGuidelines.length > 0 || kdigoGuidelines.length > 0)) {
       let response = '';
       
       // ACC Guidelines
@@ -1040,6 +1044,47 @@ export default function ChatbotScreen() {
         response += `*This information is from the Society of Critical Care Medicine (SCCM) clinical practice guidelines. These are evidence-based recommendations with specific strength of recommendation and quality of evidence ratings.*\n\n`;
       }
       
+      // KDIGO Guidelines
+      if (kdigoGuidelines.length > 0) {
+        const guideline = kdigoGuidelines[0];
+        if (accGuidelines.length > 0 || ahaGuidelines.length > 0 || escGuidelines.length > 0 || hfsaGuidelines.length > 0 || hrsGuidelines.length > 0 || scaiGuidelines.length > 0 || eactsGuidelines.length > 0 || atsGuidelines.length > 0 || chestGuidelines.length > 0 || sccmGuidelines.length > 0) {
+          response += '\n---\n\n';
+        }
+        response += `**${guideline.topic}**\n\n`;
+        response += `**Guideline Summary:**\n\n${guideline.guidelineSummary}\n\n`;
+        
+        if (guideline.grade1Recommendations.length > 0) {
+          response += '**Grade 1 Recommendations (Strong Recommendation):**\n\n';
+          guideline.grade1Recommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        if (guideline.grade2Recommendations.length > 0) {
+          response += '**Grade 2 Recommendations (Weak Recommendation):**\n\n';
+          guideline.grade2Recommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        response += '**Clinical Implementation:**\n\n';
+        response += `${guideline.clinicalImplementation}\n\n`;
+        
+        if (guideline.keyPoints.length > 0) {
+          response += '**Key Points:**\n\n';
+          guideline.keyPoints.forEach(point => {
+            response += `• ${point}\n`;
+          });
+          response += '\n';
+        }
+        
+        response += `**Quality of Evidence:** ${guideline.qualityOfEvidence}\n\n`;
+        response += `**Publication Year:** ${guideline.publicationYear}\n\n`;
+        response += `*This information is from the Kidney Disease: Improving Global Outcomes (KDIGO) clinical practice guidelines. These are evidence-based recommendations with specific grade of recommendation and quality of evidence ratings.*\n\n`;
+      }
+      
       return response;
     }
 
@@ -1452,7 +1497,7 @@ export default function ChatbotScreen() {
       
       // Detect if query is asking for guidelines
       const lowerQuery = currentQuery.toLowerCase();
-      const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|esc|hfsa|hrs|scai|eacts|ats|chest|sccm|american college|american heart|european society|heart failure society|heart rhythm society|cardiovascular angiography|interventions|cardio-thoracic surgery|european association|american thoracic society|thoracic society|chest physicians|critical care medicine|society of critical care/i.test(currentQuery);
+      const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|esc|hfsa|hrs|scai|eacts|ats|chest|sccm|kdigo|american college|american heart|european society|heart failure society|heart rhythm society|cardiovascular angiography|interventions|cardio-thoracic surgery|european association|american thoracic society|thoracic society|chest physicians|critical care medicine|society of critical care|kidney disease improving global outcomes/i.test(currentQuery);
       
       // Search all data sources
       const merckEntries = searchMerckManualKnowledge(currentQuery);
@@ -1466,6 +1511,7 @@ export default function ChatbotScreen() {
       const atsGuidelines = isGuidelineQuery ? searchATSGuidelines(currentQuery) : [];
       const chestGuidelines = isGuidelineQuery ? searchCHESTGuidelines(currentQuery) : [];
       const sccmGuidelines = isGuidelineQuery ? searchSCCMGuidelines(currentQuery) : [];
+      const kdigoGuidelines = isGuidelineQuery ? searchKDIGOGuidelines(currentQuery) : [];
       const relevantFlashcards = findRelevantFlashcards(currentQuery);
       const relevantReferences = findRelevantReferences(currentQuery);
       const relevantWebsites = findRelevantWebsites(currentQuery);
@@ -1516,6 +1562,10 @@ export default function ChatbotScreen() {
       if (sccmGuidelines.length > 0) {
         console.log('  Top SCCM guideline:', sccmGuidelines[0].topic);
       }
+      console.log('- KDIGO Guidelines:', kdigoGuidelines.length);
+      if (kdigoGuidelines.length > 0) {
+        console.log('  Top KDIGO guideline:', kdigoGuidelines[0].topic);
+      }
       console.log('- Flashcards:', relevantFlashcards.length);
       if (relevantFlashcards.length > 0) {
         console.log('  Top flashcard:', relevantFlashcards[0].front);
@@ -1541,7 +1591,8 @@ export default function ChatbotScreen() {
         eactsGuidelines,
         atsGuidelines,
         chestGuidelines,
-        sccmGuidelines
+        sccmGuidelines,
+        kdigoGuidelines
       );
 
       // Detect medical system
@@ -1577,6 +1628,7 @@ export default function ChatbotScreen() {
         atsGuidelines: atsGuidelines.length > 0 ? atsGuidelines : undefined,
         chestGuidelines: chestGuidelines.length > 0 ? chestGuidelines : undefined,
         sccmGuidelines: sccmGuidelines.length > 0 ? sccmGuidelines : undefined,
+        kdigoGuidelines: kdigoGuidelines.length > 0 ? kdigoGuidelines : undefined,
         flashcards: relevantFlashcards.length > 0 ? relevantFlashcards : undefined,
         references: relevantReferences.length > 0 ? relevantReferences : undefined,
         websites: relevantWebsites.length > 0 ? relevantWebsites : undefined,
