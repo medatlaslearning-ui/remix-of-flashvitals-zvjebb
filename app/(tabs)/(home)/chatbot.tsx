@@ -30,6 +30,8 @@ import { searchHRSGuidelines, type HRSGuidelineEntry } from '@/data/hrsGuideline
 import { searchSCAIGuidelines, type SCAIGuidelineEntry } from '@/data/scaiGuidelinesKnowledge';
 import { searchEACTSGuidelines, type EACTSGuidelineEntry } from '@/data/eactsGuidelinesKnowledge';
 import { searchATSGuidelines, type ATSGuidelineEntry } from '@/data/atsGuidelinesKnowledge';
+import { searchCHESTGuidelines, type CHESTGuidelineEntry } from '@/data/chestGuidelinesKnowledge';
+import { searchSCCMGuidelines, type SCCMGuidelineEntry } from '@/data/sccmGuidelinesKnowledge';
 import { cardiologyFlashcards } from '@/data/cardiologyFlashcards';
 import { pulmonaryFlashcards } from '@/data/pulmonaryFlashcards';
 import { neurologyFlashcards } from '@/data/neurologyFlashcards';
@@ -69,6 +71,8 @@ interface Message {
   scaiGuidelines?: SCAIGuidelineEntry[];
   eactsGuidelines?: EACTSGuidelineEntry[];
   atsGuidelines?: ATSGuidelineEntry[];
+  chestGuidelines?: CHESTGuidelineEntry[];
+  sccmGuidelines?: SCCMGuidelineEntry[];
   flashcards?: Flashcard[];
   interactionId?: string;
   feedback?: 'positive' | 'negative';
@@ -476,7 +480,9 @@ export default function ChatbotScreen() {
     hrsGuidelines: HRSGuidelineEntry[],
     scaiGuidelines: SCAIGuidelineEntry[],
     eactsGuidelines: EACTSGuidelineEntry[],
-    atsGuidelines: ATSGuidelineEntry[]
+    atsGuidelines: ATSGuidelineEntry[],
+    chestGuidelines: CHESTGuidelineEntry[],
+    sccmGuidelines: SCCMGuidelineEntry[]
   ): string => {
     console.log('Generating dynamic response for:', query);
     console.log('Found flashcards:', flashcards.length);
@@ -489,6 +495,8 @@ export default function ChatbotScreen() {
     console.log('Found SCAI guidelines:', scaiGuidelines.length);
     console.log('Found EACTS guidelines:', eactsGuidelines.length);
     console.log('Found ATS guidelines:', atsGuidelines.length);
+    console.log('Found CHEST guidelines:', chestGuidelines.length);
+    console.log('Found SCCM guidelines:', sccmGuidelines.length);
     console.log('Found references:', references.length);
     console.log('Found websites:', websites.length);
     console.log('Found Merck links:', merckLinks.length);
@@ -499,7 +507,7 @@ export default function ChatbotScreen() {
     const isClinicalQuery = /symptom|sign|present|clinical feature|manifestation|appear|clinical finding|physical exam/i.test(query);
     const isDiagnosticQuery = /diagnos|test|workup|evaluation|assess|detect|diagnostic approach|lab|imaging/i.test(query);
     const isTreatmentQuery = /treat|therap|manage|medication|drug|intervention|management|therapy/i.test(query);
-    const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|esc|hfsa|hrs|scai|eacts|ats|american college|american heart|european society|heart failure society|heart rhythm society|cardiovascular angiography|interventions|cardio-thoracic surgery|european association|american thoracic society|thoracic society/i.test(query);
+    const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|esc|hfsa|hrs|scai|eacts|ats|chest|sccm|american college|american heart|european society|heart failure society|heart rhythm society|cardiovascular angiography|interventions|cardio-thoracic surgery|european association|american thoracic society|thoracic society|chest physicians|critical care medicine|society of critical care/i.test(query);
     
     console.log('Query intent hooks:', {
       isPathophysiologyQuery,
@@ -509,8 +517,8 @@ export default function ChatbotScreen() {
       isGuidelineQuery
     });
 
-    // Priority 0: Clinical Practice Guidelines (ACC/AHA/ESC/HFSA/HRS/SCAI/EACTS/ATS) - Highest priority for guideline queries
-    if (isGuidelineQuery && (accGuidelines.length > 0 || ahaGuidelines.length > 0 || escGuidelines.length > 0 || hfsaGuidelines.length > 0 || hrsGuidelines.length > 0 || scaiGuidelines.length > 0 || eactsGuidelines.length > 0 || atsGuidelines.length > 0)) {
+    // Priority 0: Clinical Practice Guidelines (ACC/AHA/ESC/HFSA/HRS/SCAI/EACTS/ATS/CHEST/SCCM) - Highest priority for guideline queries
+    if (isGuidelineQuery && (accGuidelines.length > 0 || ahaGuidelines.length > 0 || escGuidelines.length > 0 || hfsaGuidelines.length > 0 || hrsGuidelines.length > 0 || scaiGuidelines.length > 0 || eactsGuidelines.length > 0 || atsGuidelines.length > 0 || chestGuidelines.length > 0 || sccmGuidelines.length > 0)) {
       let response = '';
       
       // ACC Guidelines
@@ -950,6 +958,88 @@ export default function ChatbotScreen() {
         response += `*This information is from the American Thoracic Society (ATS) clinical practice guidelines. These are evidence-based recommendations with specific strength of recommendation and quality of evidence ratings.*\n\n`;
       }
       
+      // CHEST Guidelines
+      if (chestGuidelines.length > 0) {
+        const guideline = chestGuidelines[0];
+        if (accGuidelines.length > 0 || ahaGuidelines.length > 0 || escGuidelines.length > 0 || hfsaGuidelines.length > 0 || hrsGuidelines.length > 0 || scaiGuidelines.length > 0 || eactsGuidelines.length > 0 || atsGuidelines.length > 0) {
+          response += '\n---\n\n';
+        }
+        response += `**${guideline.topic}**\n\n`;
+        response += `**Guideline Summary:**\n\n${guideline.guidelineSummary}\n\n`;
+        
+        if (guideline.grade1Recommendations.length > 0) {
+          response += '**Grade 1 Recommendations (Strong Recommendation):**\n\n';
+          guideline.grade1Recommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        if (guideline.grade2Recommendations.length > 0) {
+          response += '**Grade 2 Recommendations (Weak Recommendation):**\n\n';
+          guideline.grade2Recommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        response += '**Clinical Implementation:**\n\n';
+        response += `${guideline.clinicalImplementation}\n\n`;
+        
+        if (guideline.keyPoints.length > 0) {
+          response += '**Key Points:**\n\n';
+          guideline.keyPoints.forEach(point => {
+            response += `• ${point}\n`;
+          });
+          response += '\n';
+        }
+        
+        response += `**Quality of Evidence:** ${guideline.qualityOfEvidence}\n\n`;
+        response += `**Publication Year:** ${guideline.publicationYear}\n\n`;
+        response += `*This information is from the American College of Chest Physicians (CHEST) clinical practice guidelines. These are evidence-based recommendations with specific grade of recommendation and quality of evidence ratings.*\n\n`;
+      }
+      
+      // SCCM Guidelines
+      if (sccmGuidelines.length > 0) {
+        const guideline = sccmGuidelines[0];
+        if (accGuidelines.length > 0 || ahaGuidelines.length > 0 || escGuidelines.length > 0 || hfsaGuidelines.length > 0 || hrsGuidelines.length > 0 || scaiGuidelines.length > 0 || eactsGuidelines.length > 0 || atsGuidelines.length > 0 || chestGuidelines.length > 0) {
+          response += '\n---\n\n';
+        }
+        response += `**${guideline.topic}**\n\n`;
+        response += `**Guideline Summary:**\n\n${guideline.guidelineSummary}\n\n`;
+        
+        if (guideline.strongRecommendations.length > 0) {
+          response += '**Strong Recommendations:**\n\n';
+          guideline.strongRecommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        if (guideline.weakRecommendations.length > 0) {
+          response += '**Weak Recommendations:**\n\n';
+          guideline.weakRecommendations.forEach(rec => {
+            response += `• ${rec}\n`;
+          });
+          response += '\n';
+        }
+        
+        response += '**Clinical Implementation:**\n\n';
+        response += `${guideline.clinicalImplementation}\n\n`;
+        
+        if (guideline.keyPoints.length > 0) {
+          response += '**Key Points:**\n\n';
+          guideline.keyPoints.forEach(point => {
+            response += `• ${point}\n`;
+          });
+          response += '\n';
+        }
+        
+        response += `**Quality of Evidence:** ${guideline.qualityOfEvidence}\n\n`;
+        response += `**Publication Year:** ${guideline.publicationYear}\n\n`;
+        response += `*This information is from the Society of Critical Care Medicine (SCCM) clinical practice guidelines. These are evidence-based recommendations with specific strength of recommendation and quality of evidence ratings.*\n\n`;
+      }
+      
       return response;
     }
 
@@ -1362,7 +1452,7 @@ export default function ChatbotScreen() {
       
       // Detect if query is asking for guidelines
       const lowerQuery = currentQuery.toLowerCase();
-      const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|esc|hfsa|hrs|scai|eacts|ats|american college|american heart|european society|heart failure society|heart rhythm society|cardiovascular angiography|interventions|cardio-thoracic surgery|european association|american thoracic society|thoracic society/i.test(currentQuery);
+      const isGuidelineQuery = /guideline|recommendation|class|evidence|acc|aha|esc|hfsa|hrs|scai|eacts|ats|chest|sccm|american college|american heart|european society|heart failure society|heart rhythm society|cardiovascular angiography|interventions|cardio-thoracic surgery|european association|american thoracic society|thoracic society|chest physicians|critical care medicine|society of critical care/i.test(currentQuery);
       
       // Search all data sources
       const merckEntries = searchMerckManualKnowledge(currentQuery);
@@ -1374,6 +1464,8 @@ export default function ChatbotScreen() {
       const scaiGuidelines = isGuidelineQuery ? searchSCAIGuidelines(currentQuery) : [];
       const eactsGuidelines = isGuidelineQuery ? searchEACTSGuidelines(currentQuery) : [];
       const atsGuidelines = isGuidelineQuery ? searchATSGuidelines(currentQuery) : [];
+      const chestGuidelines = isGuidelineQuery ? searchCHESTGuidelines(currentQuery) : [];
+      const sccmGuidelines = isGuidelineQuery ? searchSCCMGuidelines(currentQuery) : [];
       const relevantFlashcards = findRelevantFlashcards(currentQuery);
       const relevantReferences = findRelevantReferences(currentQuery);
       const relevantWebsites = findRelevantWebsites(currentQuery);
@@ -1416,6 +1508,14 @@ export default function ChatbotScreen() {
       if (atsGuidelines.length > 0) {
         console.log('  Top ATS guideline:', atsGuidelines[0].topic);
       }
+      console.log('- CHEST Guidelines:', chestGuidelines.length);
+      if (chestGuidelines.length > 0) {
+        console.log('  Top CHEST guideline:', chestGuidelines[0].topic);
+      }
+      console.log('- SCCM Guidelines:', sccmGuidelines.length);
+      if (sccmGuidelines.length > 0) {
+        console.log('  Top SCCM guideline:', sccmGuidelines[0].topic);
+      }
       console.log('- Flashcards:', relevantFlashcards.length);
       if (relevantFlashcards.length > 0) {
         console.log('  Top flashcard:', relevantFlashcards[0].front);
@@ -1439,7 +1539,9 @@ export default function ChatbotScreen() {
         hrsGuidelines,
         scaiGuidelines,
         eactsGuidelines,
-        atsGuidelines
+        atsGuidelines,
+        chestGuidelines,
+        sccmGuidelines
       );
 
       // Detect medical system
@@ -1473,6 +1575,8 @@ export default function ChatbotScreen() {
         scaiGuidelines: scaiGuidelines.length > 0 ? scaiGuidelines : undefined,
         eactsGuidelines: eactsGuidelines.length > 0 ? eactsGuidelines : undefined,
         atsGuidelines: atsGuidelines.length > 0 ? atsGuidelines : undefined,
+        chestGuidelines: chestGuidelines.length > 0 ? chestGuidelines : undefined,
+        sccmGuidelines: sccmGuidelines.length > 0 ? sccmGuidelines : undefined,
         flashcards: relevantFlashcards.length > 0 ? relevantFlashcards : undefined,
         references: relevantReferences.length > 0 ? relevantReferences : undefined,
         websites: relevantWebsites.length > 0 ? relevantWebsites : undefined,
