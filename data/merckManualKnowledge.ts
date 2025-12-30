@@ -65,6 +65,7 @@ import { atsGuidelinesKnowledge } from './atsGuidelinesKnowledge';
 import { chestGuidelinesKnowledge } from './chestGuidelinesKnowledge';
 import { sccmGuidelinesKnowledge } from './sccmGuidelinesKnowledge';
 import { kdigoGuidelinesKnowledge } from './kdigoGuidelinesKnowledge';
+import { niddkGuidelinesKnowledge } from './niddkGuidelinesKnowledge';
 
 export interface MerckManualEntry {
   topic: string;
