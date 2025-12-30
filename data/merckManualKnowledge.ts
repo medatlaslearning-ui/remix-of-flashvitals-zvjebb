@@ -59,6 +59,7 @@ import { urologyKnowledge } from './urologyKnowledge';
 import { ahaGuidelinesKnowledge } from './ahaGuidelinesKnowledge';
 import { hfsaGuidelinesKnowledge } from './hfsaGuidelinesKnowledge';
 import { hrsGuidelinesKnowledge } from './hrsGuidelinesKnowledge';
+import { scaiGuidelinesKnowledge } from './scaiGuidelinesKnowledge';
 
 export interface MerckManualEntry {
   topic: string;
