@@ -2,7 +2,7 @@
 /**
  * SYSTEM ARCHITECTURE GUARDRAILS
  * 
- * This file implements the first of nine guardrails to ensure system integrity:
+ * This file implements the first two of nine guardrails to ensure system integrity:
  * 
  * GUARDRAIL #1: SYSTEM ARCHITECTURE ROLES
  * 
@@ -25,6 +25,24 @@
  *    - Integrates core knowledge + live guideline consultation
  *    - Must paraphrase and summarize in original language
  *    - Must cite authoritative sources used
+ * 
+ * GUARDRAIL #2: GUIDELINE CONSULTATION TRIGGERS
+ * 
+ * This guardrail ensures guidelines are consulted ONLY when appropriate:
+ * 
+ * CONSULT GUIDELINES WHEN:
+ * - Treatment recommendations
+ * - Management algorithms
+ * - Diagnostic criteria thresholds
+ * - First-line vs second-line therapy
+ * - Updated practice standards
+ * - "Current", "latest", or "guideline" phrasing
+ * 
+ * DO NOT CONSULT GUIDELINES FOR:
+ * - Basic definitions
+ * - Fundamental pathophysiology
+ * - Stable anatomy or physiology
+ * - Flashcard recall questions
  */
 
 import { merckManualKnowledge, type MerckManualEntry } from './merckManualKnowledge';
@@ -237,6 +255,13 @@ export interface GuidelineWebsiteLayer {
    * Verify that guidelines are NOT being cached
    */
   verifyNoCaching(): GuidelineCachingCheck;
+  
+  /**
+   * GUARDRAIL #2: Determine if guidelines should be consulted for this query
+   * @param query - Medical query string
+   * @returns Decision on whether to consult guidelines
+   */
+  shouldConsultGuidelines(query: string): GuidelineConsultationDecision;
 }
 
 export interface GuidelineWebsite {
@@ -255,14 +280,116 @@ export interface GuidelineCachingCheck {
 }
 
 /**
+ * GUARDRAIL #2: Guideline Consultation Decision
+ */
+export interface GuidelineConsultationDecision {
+  shouldConsult: boolean;
+  reason: string;
+  triggeredBy: string[];
+  blockedBy: string[];
+  confidence: number; // 0-100
+}
+
+/**
  * Guideline Website Layer Implementation
  * 
  * This class provides runtime access to guideline websites WITHOUT caching.
  * Guidelines are consulted at runtime and used for context only.
  */
 class GuidelineWebsiteLayerImpl implements GuidelineWebsiteLayer {
+  // GUARDRAIL #2: Patterns that TRIGGER guideline consultation
+  private readonly consultTriggers = {
+    treatment: [
+      /treat(ment)?/i,
+      /therap(y|ies)/i,
+      /medication/i,
+      /drug/i,
+      /intervention/i,
+      /management/i,
+      /first[- ]line/i,
+      /second[- ]line/i,
+      /third[- ]line/i,
+      /initial therapy/i,
+      /preferred (treatment|therapy)/i,
+      /alternative (treatment|therapy)/i,
+    ],
+    management: [
+      /manage(ment)?/i,
+      /algorithm/i,
+      /approach to/i,
+      /how to (treat|manage)/i,
+      /step[- ]by[- ]step/i,
+      /protocol/i,
+      /clinical pathway/i,
+    ],
+    diagnostic: [
+      /diagnostic criteria/i,
+      /diagnosis threshold/i,
+      /cutoff/i,
+      /screening criteria/i,
+      /when to (diagnose|screen)/i,
+      /diagnostic algorithm/i,
+    ],
+    guidelines: [
+      /guideline/i,
+      /recommendation/i,
+      /current (practice|standard)/i,
+      /latest (practice|standard)/i,
+      /updated (practice|standard)/i,
+      /evidence[- ]based/i,
+      /class (I|II|III) recommendation/i,
+      /level (A|B|C) evidence/i,
+    ],
+    standards: [
+      /practice standard/i,
+      /standard of care/i,
+      /best practice/i,
+      /quality measure/i,
+      /performance measure/i,
+    ],
+  };
+
+  // GUARDRAIL #2: Patterns that BLOCK guideline consultation
+  private readonly consultBlockers = {
+    definitions: [
+      /^what is/i,
+      /^define/i,
+      /definition of/i,
+      /meaning of/i,
+      /^explain/i,
+    ],
+    pathophysiology: [
+      /pathophysiology/i,
+      /mechanism of/i,
+      /how does .* work/i,
+      /why does .* occur/i,
+      /etiology/i,
+      /pathogenesis/i,
+    ],
+    anatomy: [
+      /anatomy/i,
+      /structure of/i,
+      /location of/i,
+      /where is/i,
+      /composed of/i,
+    ],
+    physiology: [
+      /physiology/i,
+      /normal function/i,
+      /how does .* function/i,
+      /role of/i,
+    ],
+    flashcard: [
+      /flashcard/i,
+      /recall/i,
+      /memorize/i,
+      /list (the )?(symptoms|signs|features)/i,
+      /name (the )?(symptoms|signs|features)/i,
+    ],
+  };
+
   constructor() {
-    console.log('[GUIDELINE WEBSITE LAYER] Initialized');
+    console.log('[GUIDELINE WEBSITE LAYER] Initialized with GUARDRAIL #2: Guideline Consultation Triggers');
   }
 
   /**
@@ -280,6 +407,76 @@ class GuidelineWebsiteLayerImpl implements GuidelineWebsiteLayer {
       console.error('[GUIDELINE WEBSITE LAYER] Error checking internet:', error);
       return false;
     }
+  }
+
+  /**
+   * GUARDRAIL #2: Determine if guidelines should be consulted for this query
+   */
+  shouldConsultGuidelines(query: string): GuidelineConsultationDecision {
+    console.log('[GUARDRAIL #2] Evaluating guideline consultation for:', query);
+    
+    const triggeredBy: string[] = [];
+    const blockedBy: string[] = [];
+    
+    // Check for blockers first (higher priority)
+    for (const [category, patterns] of Object.entries(this.consultBlockers)) {
+      for (const pattern of patterns) {
+        if (pattern.test(query)) {
+          blockedBy.push(`${category}: ${pattern.source}`);
+        }
+      }
+    }
+    
+    // If blocked, don't consult guidelines
+    if (blockedBy.length > 0) {
+      const decision: GuidelineConsultationDecision = {
+        shouldConsult: false,
+        reason: 'Query matches blocker patterns - guidelines not needed for basic knowledge',
+        triggeredBy: [],
+        blockedBy,
+        confidence: 95,
+      };
+      
+      console.log('[GUARDRAIL #2] Decision: DO NOT CONSULT', decision);
+      return decision;
+    }
+    
+    // Check for triggers
+    for (const [category, patterns] of Object.entries(this.consultTriggers)) {
+      for (const pattern of patterns) {
+        if (pattern.test(query)) {
+          triggeredBy.push(`${category}: ${pattern.source}`);
+        }
+      }
+    }
+    
+    // If triggered, consult guidelines
+    if (triggeredBy.length > 0) {
+      const confidence = Math.min(95, 70 + (triggeredBy.length * 5));
+      
+      const decision: GuidelineConsultationDecision = {
+        shouldConsult: true,
+        reason: 'Query matches trigger patterns - guidelines consultation recommended',
+        triggeredBy,
+        blockedBy: [],
+        confidence,
+      };
+      
+      console.log('[GUARDRAIL #2] Decision: CONSULT GUIDELINES', decision);
+      return decision;
+    }
+    
+    // Default: don't consult (conservative approach)
+    const decision: GuidelineConsultationDecision = {
+      shouldConsult: false,
+      reason: 'No clear triggers or blockers - defaulting to core knowledge only',
+      triggeredBy: [],
+      blockedBy: [],
+      confidence: 50,
+    };
+    
+    console.log('[GUARDRAIL #2] Decision: DEFAULT (NO CONSULT)', decision);
+    return decision;
   }
 
   /**
@@ -566,8 +763,19 @@ export interface SystemArchitectureIntegrityCheck {
   isValid: boolean;
   coreKnowledgeIntegrity: KnowledgeIntegrityCheck;
   guidelineCachingCheck: GuidelineCachingCheck;
+  guidelineConsultationCheck?: GuidelineConsultationIntegrityCheck;
   timestamp: Date;
   overallWarnings: string[];
+}
+
+/**
+ * GUARDRAIL #2: Guideline Consultation Integrity Check
+ */
+export interface GuidelineConsultationIntegrityCheck {
+  isValid: boolean;
+  testsPassed: number;
+  testsFailed: number;
+  warnings: string[];
 }
 
 /**
@@ -582,11 +790,15 @@ export async function verifySystemArchitectureIntegrity(): Promise<SystemArchite
   const coreKnowledgeIntegrity = coreEngine.verifyIntegrity();
   const guidelineCachingCheck = guidelineLayer.verifyNoCaching();
   
+  // GUARDRAIL #2: Test guideline consultation triggers
+  const guidelineConsultationCheck = testGuidelineConsultationTriggers(guidelineLayer);
+  
   const overallWarnings: string[] = [];
   
   // Collect all warnings
   overallWarnings.push(...coreKnowledgeIntegrity.warnings);
   overallWarnings.push(...guidelineCachingCheck.warnings);
+  overallWarnings.push(...guidelineConsultationCheck.warnings);
   
   // Check if internet is available for guideline consultation
   const internetAvailable = await guidelineLayer.isInternetAvailable();
@@ -596,12 +808,14 @@ export async function verifySystemArchitectureIntegrity(): Promise<SystemArchite
   
   const isValid = 
     coreKnowledgeIntegrity.isValid &&
-    guidelineCachingCheck.isValid;
+    guidelineCachingCheck.isValid &&
+    guidelineConsultationCheck.isValid;
   
   const result: SystemArchitectureIntegrityCheck = {
     isValid,
     coreKnowledgeIntegrity,
     guidelineCachingCheck,
+    guidelineConsultationCheck,
     timestamp: new Date(),
     overallWarnings,
   };
@@ -612,6 +826,67 @@ export async function verifySystemArchitectureIntegrity(): Promise<SystemArchite
   });
   
   return result;
+}
+
+/**
+ * GUARDRAIL #2: Test guideline consultation triggers
+ */
+function testGuidelineConsultationTriggers(guidelineLayer: GuidelineWebsiteLayer): GuidelineConsultationIntegrityCheck {
+  console.log('[GUARDRAIL #2] Testing guideline consultation triggers...');
+  
+  const testCases = [
+    // Should CONSULT guidelines
+    { query: 'What is the treatment for heart failure?', shouldConsult: true },
+    { query: 'What are the current guidelines for hypertension management?', shouldConsult: true },
+    { query: 'What is first-line therapy for atrial fibrillation?', shouldConsult: true },
+    { query: 'What are the diagnostic criteria for diabetes?', shouldConsult: true },
+    { query: 'What is the latest recommendation for stroke prevention?', shouldConsult: true },
+    { query: 'What is the management algorithm for sepsis?', shouldConsult: true },
+    
+    // Should NOT consult guidelines
+    { query: 'What is the definition of heart failure?', shouldConsult: false },
+    { query: 'What is the pathophysiology of atrial fibrillation?', shouldConsult: false },
+    { query: 'What is the anatomy of the heart?', shouldConsult: false },
+    { query: 'What is the normal physiology of the kidney?', shouldConsult: false },
+    { query: 'List the symptoms of pneumonia', shouldConsult: false },
+    { query: 'Explain the mechanism of action of beta blockers', shouldConsult: false },
+  ];
+  
+  let testsPassed = 0;
+  let testsFailed = 0;
+  const warnings: string[] = [];
+  
+  for (const testCase of testCases) {
+    const decision = guidelineLayer.shouldConsultGuidelines(testCase.query);
+    
+    if (decision.shouldConsult === testCase.shouldConsult) {
+      testsPassed++;
+    } else {
+      testsFailed++;
+      warnings.push(
+        `FAILED: "${testCase.query}" - Expected ${testCase.shouldConsult ? 'CONSULT' : 'NO CONSULT'}, got ${decision.shouldConsult ? 'CONSULT' : 'NO CONSULT'}`
+      );
+    }
+  }
+  
+  const isValid = testsFailed === 0;
+  
+  if (!isValid) {
+    warnings.unshift('CRITICAL: Guideline consultation trigger tests failed!');
+  }
+  
+  console.log('[GUARDRAIL #2] Test results:', {
+    passed: testsPassed,
+    failed: testsFailed,
+    isValid,
+  });
+  
+  return {
+    isValid,
+    testsPassed,
+    testsFailed,
+    warnings,
+  };
 }
 
 /**
@@ -630,6 +905,11 @@ export async function runSystemArchitectureTest(): Promise<{
       passed: boolean;
       hasCachedGuidelines: boolean;
       internetAvailable: boolean;
+    };
+    guidelineConsultationTriggers: {
+      passed: boolean;
+      testsPassed: number;
+      testsFailed: number;
     };
     synthesizerEngine: {
       passed: boolean;
@@ -670,7 +950,18 @@ export async function runSystemArchitectureTest(): Promise<{
   
   warnings.push(...cachingCheck.warnings);
   
-  // Test 3: Synthesizer Engine
+  // Test 3: Guideline Consultation Triggers (GUARDRAIL #2)
+  const consultationCheck = testGuidelineConsultationTriggers(guidelineLayer);
+  
+  const guidelineConsultationTest = {
+    passed: consultationCheck.isValid,
+    testsPassed: consultationCheck.testsPassed,
+    testsFailed: consultationCheck.testsFailed,
+  };
+  
+  warnings.push(...consultationCheck.warnings);
+  
+  // Test 4: Synthesizer Engine
   const synthesizerGuardrails = getSynthesizerEngineGuardrails();
   
   const testQuery = 'What is the pathophysiology of heart failure?';
@@ -697,6 +988,7 @@ export async function runSystemArchitectureTest(): Promise<{
   const passed = 
     coreKnowledgeTest.passed &&
     guidelineWebsiteTest.passed &&
+    guidelineConsultationTest.passed &&
     synthesizerEngineTest.passed;
   
   console.log('[SYSTEM ARCHITECTURE TEST] Test complete:', {
@@ -709,6 +1001,7 @@ export async function runSystemArchitectureTest(): Promise<{
     results: {
       coreKnowledgeEngine: coreKnowledgeTest,
       guidelineWebsiteLayer: guidelineWebsiteTest,
+      guidelineConsultationTriggers: guidelineConsultationTest,
       synthesizerEngine: synthesizerEngineTest,
     },
     warnings,
