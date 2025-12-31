@@ -2,7 +2,14 @@
 /**
  * SYNTHESIZER ENGINE - Figure-Eight Data Flow Architecture
  * 
- * This engine implements a figure-eight data flow with one-way valves:
+ * GUARDRAIL #1: SYSTEM ARCHITECTURE ROLES (IMPLEMENTED)
+ * 
+ * This engine implements a figure-eight data flow with one-way valves AND
+ * enforces strict architectural roles:
+ * 
+ * • Core Knowledge Engine: READ-ONLY stable medical knowledge
+ * • Guideline Website Layer: Runtime consultation (NOT cached)
+ * • Synthesizer Engine: Original educational responses with citations
  * 
  * FIGURE-EIGHT FLOW:
  * ┌─────────────────────────────────────────────────────────────┐
@@ -38,6 +45,7 @@
  * - Refines response through iterative loop
  * - Maintains conversation context for natural interaction
  * - Stress testing and quality monitoring
+ * - GUARDRAIL #1: Enforces architectural roles and integrity
  */
 
 import { searchMerckManualKnowledge, type MerckManualEntry } from './merckManualKnowledge';
@@ -61,6 +69,13 @@ import { searchIDSAGuidelines, type IDSAGuidelineEntry } from './idsaGuidelinesK
 import { searchASAGuidelines, type ASAGuidelineEntry } from './asaGuidelinesKnowledge';
 import { searchACSTraumaGuidelines, type ACSTraumaGuidelineEntry } from './acsTraumaGuidelinesKnowledge';
 import { Flashcard } from '@/types/flashcard';
+import {
+  getCoreKnowledgeEngine,
+  getGuidelineWebsiteLayer,
+  getSynthesizerEngineGuardrails,
+  verifySystemArchitectureIntegrity,
+  type SystemArchitectureIntegrityCheck,
+} from './architectureGuardrails';
 
 // ============================================================================
 // VALVE 1: USER INPUT PROCESSING
@@ -182,7 +197,7 @@ export function processUserInput(input: UserInput): ProcessedQuery {
 }
 
 // ============================================================================
-// VALVE 2: CORE KNOWLEDGE RETRIEVAL
+// VALVE 2: CORE KNOWLEDGE RETRIEVAL (WITH GUARDRAILS)
 // ============================================================================
 
 export interface CoreKnowledge {
@@ -208,17 +223,26 @@ export interface CoreKnowledge {
   acsTraumaGuidelines: ACSTraumaGuidelineEntry[];
   flashcards: Flashcard[];
   timestamp: Date;
+  integrityCheck?: SystemArchitectureIntegrityCheck;
 }
 
 /**
- * VALVE 2: Retrieve core knowledge (one-way flow)
+ * VALVE 2: Retrieve core knowledge (one-way flow with guardrails)
  * Core knowledge → Knowledge retriever → Intersection
  */
-export function retrieveCoreKnowledge(
+export async function retrieveCoreKnowledge(
   processedQuery: ProcessedQuery,
   flashcards: Flashcard[]
-): CoreKnowledge {
+): Promise<CoreKnowledge> {
   console.log('[VALVE 2] Retrieving core knowledge for:', processedQuery.originalQuery);
+  
+  // GUARDRAIL #1: Verify system architecture integrity
+  const integrityCheck = await verifySystemArchitectureIntegrity();
+  
+  if (!integrityCheck.isValid) {
+    console.error('[VALVE 2] CRITICAL: System architecture integrity check failed!');
+    console.error('[VALVE 2] Warnings:', integrityCheck.overallWarnings);
+  }
   
   // Don't retrieve medical knowledge for conversational queries
   if (processedQuery.isConversational) {
@@ -245,11 +269,13 @@ export function retrieveCoreKnowledge(
       acsTraumaGuidelines: [],
       flashcards: [],
       timestamp: new Date(),
+      integrityCheck,
     };
   }
   
-  // Retrieve from all knowledge sources
-  const merckEntries = searchMerckManualKnowledge(processedQuery.originalQuery);
+  // GUARDRAIL #1: Use Core Knowledge Engine (READ-ONLY)
+  const coreEngine = getCoreKnowledgeEngine();
+  const merckEntries = coreEngine.searchKnowledge(processedQuery.originalQuery);
   
   // Only search guidelines if intent is guideline-related
   const isGuidelineQuery = processedQuery.intent === 'guideline';
@@ -277,12 +303,14 @@ export function retrieveCoreKnowledge(
     acsTraumaGuidelines: isGuidelineQuery ? searchACSTraumaGuidelines(processedQuery.originalQuery) : [],
     flashcards: filterRelevantFlashcards(processedQuery, flashcards),
     timestamp: new Date(),
+    integrityCheck,
   };
   
   console.log('[VALVE 2] Retrieved knowledge:', {
     merckEntries: knowledge.merckEntries.length,
     guidelines: knowledge.accGuidelines.length + knowledge.ahaGuidelines.length + knowledge.escGuidelines.length,
     flashcards: knowledge.flashcards.length,
+    integrityValid: integrityCheck.isValid,
   });
   
   return knowledge;
@@ -366,6 +394,13 @@ export function synthesizeAtIntersection(
   // Boost quality if query intent is clear
   if (processedQuery.intent !== 'general') synthesisQuality += 10;
   
+  // GUARDRAIL #1: Boost quality if integrity check passed
+  if (coreKnowledge.integrityCheck?.isValid) {
+    synthesisQuality += 10;
+  } else {
+    synthesisQuality -= 20;
+  }
+  
   // Calculate content bleeding risk
   let contentBleedingRisk = 0;
   
@@ -405,7 +440,7 @@ export function synthesizeAtIntersection(
 }
 
 // ============================================================================
-// VALVE 3: RESPONSE SYNTHESIS
+// VALVE 3: RESPONSE SYNTHESIS (WITH GUARDRAILS)
 // ============================================================================
 
 export interface SynthesizedResponse {
@@ -420,7 +455,7 @@ export interface SynthesizedResponse {
 }
 
 /**
- * VALVE 3: Synthesize response (one-way flow)
+ * VALVE 3: Synthesize response (one-way flow with guardrails)
  * Intersection → Response synthesizer → Refinement loop
  */
 export function synthesizeResponse(synthesizedData: SynthesizedData): SynthesizedResponse {
@@ -733,6 +768,10 @@ export interface FinalOutput {
       guidelines: boolean;
       flashcards: boolean;
     };
+    architectureIntegrity?: {
+      isValid: boolean;
+      warnings: string[];
+    };
   };
   timestamp: Date;
 }
@@ -750,6 +789,12 @@ export function generateFinalOutput(
   
   const processingTime = new Date().getTime() - startTime.getTime();
   
+  // GUARDRAIL #1: Include architecture integrity information
+  const architectureIntegrity = synthesizedData.coreKnowledge.integrityCheck ? {
+    isValid: synthesizedData.coreKnowledge.integrityCheck.isValid,
+    warnings: synthesizedData.coreKnowledge.integrityCheck.overallWarnings,
+  } : undefined;
+  
   const output: FinalOutput = {
     response: refinedResponse.text,
     quality: refinedResponse.quality,
@@ -762,6 +807,7 @@ export function generateFinalOutput(
         guidelines: hasGuidelines(synthesizedData.coreKnowledge),
         flashcards: synthesizedData.coreKnowledge.flashcards.length > 0,
       },
+      architectureIntegrity,
     },
     timestamp: new Date(),
   };
@@ -770,6 +816,7 @@ export function generateFinalOutput(
     quality: output.quality,
     processingTime: output.metadata.processingTime,
     bleedingRisk: output.metadata.contentBleedingRisk,
+    architectureValid: architectureIntegrity?.isValid,
   });
   
   return output;
@@ -780,13 +827,13 @@ export function generateFinalOutput(
 // ============================================================================
 
 /**
- * Main synthesizer engine - orchestrates the figure-eight flow
+ * Main synthesizer engine - orchestrates the figure-eight flow with guardrails
  */
 export class SynthesizerEngine {
   private static instance: SynthesizerEngine;
   
   private constructor() {
-    console.log('[SYNTHESIZER ENGINE] Initialized');
+    console.log('[SYNTHESIZER ENGINE] Initialized with GUARDRAIL #1: System Architecture Roles');
   }
   
   static getInstance(): SynthesizerEngine {
@@ -797,7 +844,7 @@ export class SynthesizerEngine {
   }
   
   /**
-   * Process query through the figure-eight flow
+   * Process query through the figure-eight flow with guardrails
    */
   async processQuery(
     rawQuery: string,
@@ -815,13 +862,13 @@ export class SynthesizerEngine {
     };
     const processedQuery = processUserInput(userInput);
     
-    // VALVE 2: Retrieve core knowledge
-    const coreKnowledge = retrieveCoreKnowledge(processedQuery, flashcards);
+    // VALVE 2: Retrieve core knowledge (with guardrails)
+    const coreKnowledge = await retrieveCoreKnowledge(processedQuery, flashcards);
     
     // INTERSECTION: Synthesize at intersection point
     const synthesizedData = synthesizeAtIntersection(processedQuery, coreKnowledge);
     
-    // VALVE 3: Synthesize response
+    // VALVE 3: Synthesize response (with guardrails)
     const synthesizedResponse = synthesizeResponse(synthesizedData);
     
     // REFINEMENT LOOP: Refine response
