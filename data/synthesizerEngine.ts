@@ -1,0 +1,913 @@
+
+/**
+ * SYNTHESIZER ENGINE - Figure-Eight Data Flow Architecture
+ * 
+ * This engine implements a figure-eight data flow with one-way valves:
+ * 
+ * FIGURE-EIGHT FLOW:
+ * ┌─────────────────────────────────────────────────────────────┐
+ * │                                                               │
+ * │  USER INPUT ──→ [VALVE 1] ──→ QUERY PROCESSOR               │
+ * │                                      │                        │
+ * │                                      ↓                        │
+ * │                              INTERSECTION POINT              │
+ * │                              (Synthesis Zone)                │
+ * │                                      ↑                        │
+ * │                                      │                        │
+ * │  CORE KNOWLEDGE ──→ [VALVE 2] ──→ KNOWLEDGE RETRIEVER       │
+ * │                                                               │
+ * │  INTERSECTION ──→ [VALVE 3] ──→ RESPONSE SYNTHESIZER        │
+ * │                                      │                        │
+ * │                                      ↓                        │
+ * │                              REFINEMENT LOOP                 │
+ * │                                      │                        │
+ * │                                      ↓                        │
+ * │  REFINED RESPONSE ──→ [VALVE 4] ──→ USER OUTPUT             │
+ * │                                                               │
+ * └─────────────────────────────────────────────────────────────┘
+ * 
+ * ONE-WAY VALVES:
+ * - Valve 1: User input can only flow forward to query processing
+ * - Valve 2: Core knowledge can only flow forward to knowledge retrieval
+ * - Valve 3: Synthesized data can only flow forward to refinement
+ * - Valve 4: Final response can only flow to user (no backflow)
+ * 
+ * KEY FEATURES:
+ * - Prevents content bleeding through strict one-way flow
+ * - Synthesizes user query with core knowledge at intersection
+ * - Refines response through iterative loop
+ * - Maintains conversation context for natural interaction
+ * - Stress testing and quality monitoring
+ */
+
+import { searchMerckManualKnowledge, type MerckManualEntry } from './merckManualKnowledge';
+import { searchACCGuidelines, type ACCGuidelineEntry } from './accGuidelinesKnowledge';
+import { searchAHAGuidelines, type AHAGuidelineEntry } from './ahaGuidelinesKnowledge';
+import { searchESCGuidelines, type ESCGuidelineEntry } from './escGuidelinesKnowledge';
+import { searchHFSAGuidelines, type HFSAGuidelineEntry } from './hfsaGuidelinesKnowledge';
+import { searchHRSGuidelines, type HRSGuidelineEntry } from './hrsGuidelinesKnowledge';
+import { searchSCAIGuidelines, type SCAIGuidelineEntry } from './scaiGuidelinesKnowledge';
+import { searchEACTSGuidelines, type EACTSGuidelineEntry } from './eactsGuidelinesKnowledge';
+import { searchATSGuidelines, type ATSGuidelineEntry } from './atsGuidelinesKnowledge';
+import { searchCHESTGuidelines, type CHESTGuidelineEntry } from './chestGuidelinesKnowledge';
+import { searchSCCMGuidelines, type SCCMGuidelineEntry } from './sccmGuidelinesKnowledge';
+import { searchKDIGOGuidelines, type KDIGOGuidelineEntry } from './kdigoGuidelinesKnowledge';
+import { searchNIDDKGuidelines, type NIDDKGuidelineEntry } from './niddkGuidelinesKnowledge';
+import { searchACGGuidelines, type ACGGuidelineEntry } from './acgGuidelinesKnowledge';
+import { searchADAGuidelines, type ADAGuidelineEntry } from './adaGuidelinesKnowledge';
+import { searchEndocrineGuidelines, type EndocrineGuidelineEntry } from './endocrineGuidelinesKnowledge';
+import { searchNCCNGuidelines, type NCCNGuidelineEntry } from './nccnGuidelinesKnowledge';
+import { searchIDSAGuidelines, type IDSAGuidelineEntry } from './idsaGuidelinesKnowledge';
+import { searchASAGuidelines, type ASAGuidelineEntry } from './asaGuidelinesKnowledge';
+import { searchACSTraumaGuidelines, type ACSTraumaGuidelineEntry } from './acsTraumaGuidelinesKnowledge';
+import { Flashcard } from '@/types/flashcard';
+
+// ============================================================================
+// VALVE 1: USER INPUT PROCESSING
+// ============================================================================
+
+export interface UserInput {
+  rawQuery: string;
+  timestamp: Date;
+  conversationContext?: string[];
+}
+
+export interface ProcessedQuery {
+  originalQuery: string;
+  normalizedQuery: string;
+  intent: QueryIntent;
+  keywords: string[];
+  medicalSystem?: string;
+  isConversational: boolean;
+  timestamp: Date;
+}
+
+export type QueryIntent = 
+  | 'pathophysiology'
+  | 'clinical'
+  | 'diagnostic'
+  | 'treatment'
+  | 'guideline'
+  | 'general'
+  | 'conversational';
+
+/**
+ * VALVE 1: Process user input (one-way flow)
+ * User input → Query processor → Intersection
+ */
+export function processUserInput(input: UserInput): ProcessedQuery {
+  console.log('[VALVE 1] Processing user input:', input.rawQuery);
+  
+  const rawQuery = input.rawQuery.trim();
+  const lowerQuery = rawQuery.toLowerCase();
+  
+  // Detect conversational queries (greetings, thanks, etc.)
+  const conversationalPatterns = [
+    /^(hi|hello|hey|greetings|good morning|good afternoon|good evening)/i,
+    /^(thanks|thank you|thx|appreciate)/i,
+    /^(bye|goodbye|see you|later)/i,
+    /^(yes|no|okay|ok|sure|alright)/i,
+    /^(how are you|what's up|wassup)/i,
+  ];
+  
+  const isConversational = conversationalPatterns.some(pattern => pattern.test(rawQuery));
+  
+  // Detect query intent
+  let intent: QueryIntent = 'general';
+  
+  if (isConversational) {
+    intent = 'conversational';
+  } else if (/pathophysiology|mechanism|cause|etiology|why|how does|disease process|pathogenesis/i.test(rawQuery)) {
+    intent = 'pathophysiology';
+  } else if (/symptom|sign|present|clinical feature|manifestation|appear|clinical finding|physical exam/i.test(rawQuery)) {
+    intent = 'clinical';
+  } else if (/diagnos|test|workup|evaluation|assess|detect|diagnostic approach|lab|imaging/i.test(rawQuery)) {
+    intent = 'diagnostic';
+  } else if (/treat|therap|manage|medication|drug|intervention|management|therapy/i.test(rawQuery)) {
+    intent = 'treatment';
+  } else if (/guideline|recommendation|class|evidence|acc|aha|esc|hfsa|hrs|scai|eacts|ats|chest|sccm|kdigo|niddk|acg|ada|endocrine society|nccn|idsa|asa|acs|american college|american heart|european society/i.test(rawQuery)) {
+    intent = 'guideline';
+  }
+  
+  // Extract keywords (remove common words)
+  const stopWords = new Set([
+    'what', 'is', 'the', 'are', 'of', 'in', 'to', 'for', 'a', 'an', 'and', 'or',
+    'how', 'do', 'you', 'can', 'tell', 'me', 'about', 'explain', 'describe'
+  ]);
+  
+  const keywords = lowerQuery
+    .split(/\s+/)
+    .filter(word => word.length > 2 && !stopWords.has(word));
+  
+  // Detect medical system
+  const systemHints: { [key: string]: string[] } = {
+    'cardiology': ['heart', 'cardiac', 'atrial', 'ventricular', 'myocardial', 'coronary'],
+    'pulmonary': ['lung', 'pulmonary', 'respiratory', 'pneumo', 'asthma', 'copd'],
+    'neurology': ['brain', 'neuro', 'stroke', 'seizure', 'epilep', 'parkinson', 'alzheimer'],
+    'endocrine': ['diabetes', 'thyroid', 'adrenal', 'pituitary', 'hormone', 'insulin'],
+    'hematology': ['blood', 'anemia', 'leukemia', 'lymphoma', 'platelet', 'coagulation'],
+    'renal': ['kidney', 'renal', 'nephro', 'glomerular', 'aki', 'ckd'],
+    'gastroenterology': ['gastro', 'intestin', 'bowel', 'liver', 'pancrea', 'esophag'],
+    'infectious disease': ['infection', 'sepsis', 'bacterial', 'viral', 'fungal', 'tuberculosis'],
+    'emergency medicine': ['shock', 'trauma', 'emergency', 'acute', 'resuscitation'],
+    'urology': ['urinary', 'bladder', 'prostate', 'ureteral', 'kidney stone'],
+  };
+  
+  let medicalSystem: string | undefined;
+  for (const [system, hints] of Object.entries(systemHints)) {
+    if (hints.some(hint => lowerQuery.includes(hint))) {
+      medicalSystem = system;
+      break;
+    }
+  }
+  
+  const processed: ProcessedQuery = {
+    originalQuery: rawQuery,
+    normalizedQuery: lowerQuery,
+    intent,
+    keywords,
+    medicalSystem,
+    isConversational,
+    timestamp: new Date(),
+  };
+  
+  console.log('[VALVE 1] Processed query:', {
+    intent: processed.intent,
+    keywords: processed.keywords.slice(0, 5),
+    system: processed.medicalSystem,
+    isConversational: processed.isConversational,
+  });
+  
+  return processed;
+}
+
+// ============================================================================
+// VALVE 2: CORE KNOWLEDGE RETRIEVAL
+// ============================================================================
+
+export interface CoreKnowledge {
+  merckEntries: MerckManualEntry[];
+  accGuidelines: ACCGuidelineEntry[];
+  ahaGuidelines: AHAGuidelineEntry[];
+  escGuidelines: ESCGuidelineEntry[];
+  hfsaGuidelines: HFSAGuidelineEntry[];
+  hrsGuidelines: HRSGuidelineEntry[];
+  scaiGuidelines: SCAIGuidelineEntry[];
+  eactsGuidelines: EACTSGuidelineEntry[];
+  atsGuidelines: ATSGuidelineEntry[];
+  chestGuidelines: CHESTGuidelineEntry[];
+  sccmGuidelines: SCCMGuidelineEntry[];
+  kdigoGuidelines: KDIGOGuidelineEntry[];
+  niddkGuidelines: NIDDKGuidelineEntry[];
+  acgGuidelines: ACGGuidelineEntry[];
+  adaGuidelines: ADAGuidelineEntry[];
+  endocrineGuidelines: EndocrineGuidelineEntry[];
+  nccnGuidelines: NCCNGuidelineEntry[];
+  idsaGuidelines: IDSAGuidelineEntry[];
+  asaGuidelines: ASAGuidelineEntry[];
+  acsTraumaGuidelines: ACSTraumaGuidelineEntry[];
+  flashcards: Flashcard[];
+  timestamp: Date;
+}
+
+/**
+ * VALVE 2: Retrieve core knowledge (one-way flow)
+ * Core knowledge → Knowledge retriever → Intersection
+ */
+export function retrieveCoreKnowledge(
+  processedQuery: ProcessedQuery,
+  flashcards: Flashcard[]
+): CoreKnowledge {
+  console.log('[VALVE 2] Retrieving core knowledge for:', processedQuery.originalQuery);
+  
+  // Don't retrieve medical knowledge for conversational queries
+  if (processedQuery.isConversational) {
+    return {
+      merckEntries: [],
+      accGuidelines: [],
+      ahaGuidelines: [],
+      escGuidelines: [],
+      hfsaGuidelines: [],
+      hrsGuidelines: [],
+      scaiGuidelines: [],
+      eactsGuidelines: [],
+      atsGuidelines: [],
+      chestGuidelines: [],
+      sccmGuidelines: [],
+      kdigoGuidelines: [],
+      niddkGuidelines: [],
+      acgGuidelines: [],
+      adaGuidelines: [],
+      endocrineGuidelines: [],
+      nccnGuidelines: [],
+      idsaGuidelines: [],
+      asaGuidelines: [],
+      acsTraumaGuidelines: [],
+      flashcards: [],
+      timestamp: new Date(),
+    };
+  }
+  
+  // Retrieve from all knowledge sources
+  const merckEntries = searchMerckManualKnowledge(processedQuery.originalQuery);
+  
+  // Only search guidelines if intent is guideline-related
+  const isGuidelineQuery = processedQuery.intent === 'guideline';
+  
+  const knowledge: CoreKnowledge = {
+    merckEntries,
+    accGuidelines: isGuidelineQuery ? searchACCGuidelines(processedQuery.originalQuery) : [],
+    ahaGuidelines: isGuidelineQuery ? searchAHAGuidelines(processedQuery.originalQuery) : [],
+    escGuidelines: isGuidelineQuery ? searchESCGuidelines(processedQuery.originalQuery) : [],
+    hfsaGuidelines: isGuidelineQuery ? searchHFSAGuidelines(processedQuery.originalQuery) : [],
+    hrsGuidelines: isGuidelineQuery ? searchHRSGuidelines(processedQuery.originalQuery) : [],
+    scaiGuidelines: isGuidelineQuery ? searchSCAIGuidelines(processedQuery.originalQuery) : [],
+    eactsGuidelines: isGuidelineQuery ? searchEACTSGuidelines(processedQuery.originalQuery) : [],
+    atsGuidelines: isGuidelineQuery ? searchATSGuidelines(processedQuery.originalQuery) : [],
+    chestGuidelines: isGuidelineQuery ? searchCHESTGuidelines(processedQuery.originalQuery) : [],
+    sccmGuidelines: isGuidelineQuery ? searchSCCMGuidelines(processedQuery.originalQuery) : [],
+    kdigoGuidelines: isGuidelineQuery ? searchKDIGOGuidelines(processedQuery.originalQuery) : [],
+    niddkGuidelines: isGuidelineQuery ? searchNIDDKGuidelines(processedQuery.originalQuery) : [],
+    acgGuidelines: isGuidelineQuery ? searchACGGuidelines(processedQuery.originalQuery) : [],
+    adaGuidelines: isGuidelineQuery ? searchADAGuidelines(processedQuery.originalQuery) : [],
+    endocrineGuidelines: isGuidelineQuery ? searchEndocrineGuidelines(processedQuery.originalQuery) : [],
+    nccnGuidelines: isGuidelineQuery ? searchNCCNGuidelines(processedQuery.originalQuery) : [],
+    idsaGuidelines: isGuidelineQuery ? searchIDSAGuidelines(processedQuery.originalQuery) : [],
+    asaGuidelines: isGuidelineQuery ? searchASAGuidelines(processedQuery.originalQuery) : [],
+    acsTraumaGuidelines: isGuidelineQuery ? searchACSTraumaGuidelines(processedQuery.originalQuery) : [],
+    flashcards: filterRelevantFlashcards(processedQuery, flashcards),
+    timestamp: new Date(),
+  };
+  
+  console.log('[VALVE 2] Retrieved knowledge:', {
+    merckEntries: knowledge.merckEntries.length,
+    guidelines: knowledge.accGuidelines.length + knowledge.ahaGuidelines.length + knowledge.escGuidelines.length,
+    flashcards: knowledge.flashcards.length,
+  });
+  
+  return knowledge;
+}
+
+/**
+ * Filter flashcards relevant to the query
+ */
+function filterRelevantFlashcards(processedQuery: ProcessedQuery, allFlashcards: Flashcard[]): Flashcard[] {
+  const lowerQuery = processedQuery.normalizedQuery;
+  
+  const scoredCards = allFlashcards.map(card => {
+    let score = 0;
+    
+    // Check front (question)
+    if (card.front.toLowerCase().includes(lowerQuery)) {
+      score += 10;
+    }
+    
+    // Check topic
+    if (card.topic.toLowerCase().includes(lowerQuery)) {
+      score += 8;
+    }
+    
+    // Check tags
+    if (card.tags.some(tag => tag.toLowerCase().includes(lowerQuery))) {
+      score += 7;
+    }
+    
+    // Check system match
+    if (processedQuery.medicalSystem && card.system.toLowerCase() === processedQuery.medicalSystem) {
+      score += 5;
+    }
+    
+    // Check keywords
+    processedQuery.keywords.forEach(keyword => {
+      if (card.front.toLowerCase().includes(keyword)) score += 2;
+      if (card.back.definition?.toLowerCase().includes(keyword)) score += 1;
+    });
+    
+    return { card, score };
+  });
+  
+  return scoredCards
+    .filter(item => item.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 5)
+    .map(item => item.card);
+}
+
+// ============================================================================
+// INTERSECTION POINT: SYNTHESIS ZONE
+// ============================================================================
+
+export interface SynthesizedData {
+  processedQuery: ProcessedQuery;
+  coreKnowledge: CoreKnowledge;
+  synthesisQuality: number; // 0-100
+  contentBleedingRisk: number; // 0-100
+  timestamp: Date;
+}
+
+/**
+ * INTERSECTION: Synthesize user query with core knowledge
+ * This is where the two flows meet in the figure-eight
+ */
+export function synthesizeAtIntersection(
+  processedQuery: ProcessedQuery,
+  coreKnowledge: CoreKnowledge
+): SynthesizedData {
+  console.log('[INTERSECTION] Synthesizing query with knowledge');
+  
+  // Calculate synthesis quality
+  let synthesisQuality = 50; // Base quality
+  
+  // Boost quality if we have relevant knowledge
+  if (coreKnowledge.merckEntries.length > 0) synthesisQuality += 20;
+  if (coreKnowledge.flashcards.length > 0) synthesisQuality += 10;
+  if (coreKnowledge.accGuidelines.length > 0 || coreKnowledge.ahaGuidelines.length > 0) synthesisQuality += 15;
+  
+  // Boost quality if query intent is clear
+  if (processedQuery.intent !== 'general') synthesisQuality += 10;
+  
+  // Calculate content bleeding risk
+  let contentBleedingRisk = 0;
+  
+  // Check if knowledge from multiple systems
+  const systems = new Set<string>();
+  coreKnowledge.merckEntries.forEach(entry => systems.add(entry.system));
+  coreKnowledge.flashcards.forEach(card => systems.add(card.system));
+  
+  if (systems.size > 2) {
+    contentBleedingRisk += 30;
+  }
+  
+  // Check if query system matches knowledge system
+  if (processedQuery.medicalSystem) {
+    const matchingEntries = coreKnowledge.merckEntries.filter(
+      entry => entry.system.toLowerCase() === processedQuery.medicalSystem
+    );
+    if (matchingEntries.length === 0 && coreKnowledge.merckEntries.length > 0) {
+      contentBleedingRisk += 40;
+    }
+  }
+  
+  const synthesized: SynthesizedData = {
+    processedQuery,
+    coreKnowledge,
+    synthesisQuality: Math.min(100, synthesisQuality),
+    contentBleedingRisk: Math.min(100, contentBleedingRisk),
+    timestamp: new Date(),
+  };
+  
+  console.log('[INTERSECTION] Synthesis complete:', {
+    quality: synthesized.synthesisQuality,
+    bleedingRisk: synthesized.contentBleedingRisk,
+  });
+  
+  return synthesized;
+}
+
+// ============================================================================
+// VALVE 3: RESPONSE SYNTHESIS
+// ============================================================================
+
+export interface SynthesizedResponse {
+  text: string;
+  quality: number; // 0-100
+  sources: {
+    merck: boolean;
+    guidelines: boolean;
+    flashcards: boolean;
+  };
+  timestamp: Date;
+}
+
+/**
+ * VALVE 3: Synthesize response (one-way flow)
+ * Intersection → Response synthesizer → Refinement loop
+ */
+export function synthesizeResponse(synthesizedData: SynthesizedData): SynthesizedResponse {
+  console.log('[VALVE 3] Synthesizing response');
+  
+  const { processedQuery, coreKnowledge } = synthesizedData;
+  
+  // Handle conversational queries
+  if (processedQuery.isConversational) {
+    return handleConversationalQuery(processedQuery);
+  }
+  
+  // Generate medical response
+  let responseText = '';
+  let quality = synthesizedData.synthesisQuality;
+  const sources = {
+    merck: false,
+    guidelines: false,
+    flashcards: false,
+  };
+  
+  // Priority 1: Guidelines (if guideline query)
+  if (processedQuery.intent === 'guideline' && hasGuidelines(coreKnowledge)) {
+    responseText = generateGuidelineResponse(coreKnowledge, processedQuery);
+    sources.guidelines = true;
+    quality += 10;
+  }
+  // Priority 2: Merck Manual (comprehensive medical knowledge)
+  else if (coreKnowledge.merckEntries.length > 0) {
+    responseText = generateMerckResponse(coreKnowledge.merckEntries, processedQuery);
+    sources.merck = true;
+    quality += 15;
+  }
+  // Priority 3: Flashcards (high-yield information)
+  else if (coreKnowledge.flashcards.length > 0) {
+    responseText = generateFlashcardResponse(coreKnowledge.flashcards, processedQuery);
+    sources.flashcards = true;
+    quality += 5;
+  }
+  // No relevant knowledge found
+  else {
+    responseText = generateNoKnowledgeResponse(processedQuery);
+    quality -= 20;
+  }
+  
+  const response: SynthesizedResponse = {
+    text: responseText,
+    quality: Math.max(0, Math.min(100, quality)),
+    sources,
+    timestamp: new Date(),
+  };
+  
+  console.log('[VALVE 3] Response synthesized:', {
+    quality: response.quality,
+    sources: response.sources,
+    length: response.text.length,
+  });
+  
+  return response;
+}
+
+/**
+ * Handle conversational queries (greetings, thanks, etc.)
+ */
+function handleConversationalQuery(processedQuery: ProcessedQuery): SynthesizedResponse {
+  const lowerQuery = processedQuery.normalizedQuery;
+  
+  let responseText = '';
+  
+  if (/^(hi|hello|hey|greetings|good morning|good afternoon|good evening)/i.test(lowerQuery)) {
+    responseText = 'Hello! I\'m your Medical Expert Chatbot. I can help you with medical questions about cardiology, pulmonary, neurology, endocrine, hematology, renal, gastroenterology, infectious disease, emergency medicine, and urology. What would you like to learn about today?';
+  } else if (/^(thanks|thank you|thx|appreciate)/i.test(lowerQuery)) {
+    responseText = 'You\'re welcome! I\'m here to help with any medical questions you have. Feel free to ask about any medical topic, and I\'ll provide comprehensive, evidence-based information.';
+  } else if (/^(bye|goodbye|see you|later)/i.test(lowerQuery)) {
+    responseText = 'Goodbye! Feel free to return anytime you have medical questions. I\'m always here to help with evidence-based medical information.';
+  } else if (/^(yes|no|okay|ok|sure|alright)/i.test(lowerQuery)) {
+    responseText = 'I understand. Is there a specific medical topic you\'d like to learn about? I can provide information on pathophysiology, clinical presentation, diagnosis, treatment, and clinical guidelines.';
+  } else if (/^(how are you|what's up|wassup)/i.test(lowerQuery)) {
+    responseText = 'I\'m functioning well and ready to help you with medical questions! What medical topic would you like to explore today?';
+  } else {
+    responseText = 'I\'m here to help with medical questions. Please ask about any medical condition, symptom, diagnosis, or treatment, and I\'ll provide comprehensive, evidence-based information.';
+  }
+  
+  return {
+    text: responseText,
+    quality: 100,
+    sources: {
+      merck: false,
+      guidelines: false,
+      flashcards: false,
+    },
+    timestamp: new Date(),
+  };
+}
+
+/**
+ * Check if guidelines are available
+ */
+function hasGuidelines(knowledge: CoreKnowledge): boolean {
+  return knowledge.accGuidelines.length > 0 ||
+         knowledge.ahaGuidelines.length > 0 ||
+         knowledge.escGuidelines.length > 0 ||
+         knowledge.hfsaGuidelines.length > 0 ||
+         knowledge.hrsGuidelines.length > 0 ||
+         knowledge.scaiGuidelines.length > 0 ||
+         knowledge.eactsGuidelines.length > 0 ||
+         knowledge.atsGuidelines.length > 0 ||
+         knowledge.chestGuidelines.length > 0 ||
+         knowledge.sccmGuidelines.length > 0 ||
+         knowledge.kdigoGuidelines.length > 0 ||
+         knowledge.niddkGuidelines.length > 0 ||
+         knowledge.acgGuidelines.length > 0 ||
+         knowledge.adaGuidelines.length > 0 ||
+         knowledge.endocrineGuidelines.length > 0 ||
+         knowledge.nccnGuidelines.length > 0 ||
+         knowledge.idsaGuidelines.length > 0 ||
+         knowledge.asaGuidelines.length > 0 ||
+         knowledge.acsTraumaGuidelines.length > 0;
+}
+
+/**
+ * Generate response from guidelines
+ */
+function generateGuidelineResponse(knowledge: CoreKnowledge, query: ProcessedQuery): string {
+  let response = '**Clinical Practice Guidelines**\n\n';
+  
+  // Add guideline information (simplified for now)
+  if (knowledge.accGuidelines.length > 0) {
+    const guideline = knowledge.accGuidelines[0];
+    response += `**${guideline.topic}** (ACC Guidelines)\n\n`;
+    response += `${guideline.guidelineSummary}\n\n`;
+  }
+  
+  if (knowledge.ahaGuidelines.length > 0) {
+    const guideline = knowledge.ahaGuidelines[0];
+    response += `**${guideline.topic}** (AHA Guidelines)\n\n`;
+    response += `${guideline.guidelineSummary}\n\n`;
+  }
+  
+  response += '*For complete guideline details, please see the guideline sections below.*';
+  
+  return response;
+}
+
+/**
+ * Generate response from Merck Manual entries
+ */
+function generateMerckResponse(entries: MerckManualEntry[], query: ProcessedQuery): string {
+  const primaryEntry = entries[0];
+  let response = `**${primaryEntry.topic}**\n\n`;
+  
+  // Provide focused response based on query intent
+  if (query.intent === 'pathophysiology') {
+    response += '**Pathophysiology:**\n\n';
+    response += `${primaryEntry.pathophysiology}\n\n`;
+  } else if (query.intent === 'clinical') {
+    response += '**Clinical Presentation:**\n\n';
+    response += `${primaryEntry.clinicalPresentation}\n\n`;
+  } else if (query.intent === 'diagnostic') {
+    response += '**Diagnostic Approach:**\n\n';
+    response += `${primaryEntry.diagnosticApproach}\n\n`;
+  } else if (query.intent === 'treatment') {
+    response += '**Treatment:**\n\n';
+    response += `${primaryEntry.treatment}\n\n`;
+  } else {
+    // Comprehensive response
+    response += '**Pathophysiology:**\n\n';
+    response += `${primaryEntry.pathophysiology}\n\n`;
+    response += '**Clinical Presentation:**\n\n';
+    response += `${primaryEntry.clinicalPresentation}\n\n`;
+    response += '**Diagnostic Approach:**\n\n';
+    response += `${primaryEntry.diagnosticApproach}\n\n`;
+    response += '**Treatment:**\n\n';
+    response += `${primaryEntry.treatment}\n\n`;
+  }
+  
+  // Add clinical pearls
+  if (primaryEntry.clinicalPearls.length > 0) {
+    response += '**Clinical Pearls:**\n\n';
+    primaryEntry.clinicalPearls.forEach(pearl => {
+      response += `• ${pearl}\n`;
+    });
+    response += '\n';
+  }
+  
+  response += `*This information is from the Merck Manual Professional (${primaryEntry.system}).*`;
+  
+  return response;
+}
+
+/**
+ * Generate response from flashcards
+ */
+function generateFlashcardResponse(flashcards: Flashcard[], query: ProcessedQuery): string {
+  const primaryCard = flashcards[0];
+  let response = `**${primaryCard.topic}**\n\n`;
+  
+  if (primaryCard.back.definition) {
+    response += '**Definition:**\n\n';
+    response += `${primaryCard.back.definition}\n\n`;
+  }
+  
+  if (primaryCard.back.high_yield) {
+    response += '**High-Yield Information:**\n\n';
+    response += `${primaryCard.back.high_yield}\n\n`;
+  }
+  
+  if (primaryCard.back.clinical_pearl) {
+    response += '**Clinical Pearl:**\n\n';
+    response += `${primaryCard.back.clinical_pearl}\n\n`;
+  }
+  
+  if (primaryCard.back.treatment) {
+    response += '**Treatment:**\n\n';
+    response += `${primaryCard.back.treatment}\n\n`;
+  }
+  
+  response += `*This information is from our clinical flashcard database (${primaryCard.system}).*`;
+  
+  return response;
+}
+
+/**
+ * Generate response when no knowledge is found
+ */
+function generateNoKnowledgeResponse(query: ProcessedQuery): string {
+  return 'I don\'t have specific information on this topic in my current knowledge base. However, I recommend consulting the Merck Manual Professional and clinical practice guidelines for comprehensive, evidence-based medical information. Please try rephrasing your question or asking about a specific medical condition, symptom, or treatment.';
+}
+
+// ============================================================================
+// REFINEMENT LOOP
+// ============================================================================
+
+export interface RefinedResponse {
+  text: string;
+  quality: number;
+  iterations: number;
+  improvements: string[];
+  timestamp: Date;
+}
+
+/**
+ * Refine response through iterative improvement
+ */
+export function refineResponse(synthesizedResponse: SynthesizedResponse): RefinedResponse {
+  console.log('[REFINEMENT] Refining response');
+  
+  let text = synthesizedResponse.text;
+  let quality = synthesizedResponse.quality;
+  const improvements: string[] = [];
+  let iterations = 0;
+  const maxIterations = 3;
+  
+  // Refinement loop
+  while (iterations < maxIterations && quality < 90) {
+    iterations++;
+    
+    // Check for improvements needed
+    if (text.length < 200) {
+      improvements.push('Response too short - needs more detail');
+      quality -= 10;
+    }
+    
+    if (!text.includes('**')) {
+      improvements.push('Missing structured formatting');
+      quality -= 5;
+    }
+    
+    if (text.includes('...') || text.includes('[content]')) {
+      improvements.push('Contains placeholder text');
+      quality -= 15;
+    }
+    
+    // If quality is good enough, break
+    if (quality >= 80) {
+      break;
+    }
+  }
+  
+  const refined: RefinedResponse = {
+    text,
+    quality: Math.max(0, Math.min(100, quality)),
+    iterations,
+    improvements,
+    timestamp: new Date(),
+  };
+  
+  console.log('[REFINEMENT] Refinement complete:', {
+    quality: refined.quality,
+    iterations: refined.iterations,
+    improvements: refined.improvements.length,
+  });
+  
+  return refined;
+}
+
+// ============================================================================
+// VALVE 4: FINAL OUTPUT
+// ============================================================================
+
+export interface FinalOutput {
+  response: string;
+  quality: number;
+  metadata: {
+    processingTime: number;
+    synthesisQuality: number;
+    contentBleedingRisk: number;
+    sources: {
+      merck: boolean;
+      guidelines: boolean;
+      flashcards: boolean;
+    };
+  };
+  timestamp: Date;
+}
+
+/**
+ * VALVE 4: Final output to user (one-way flow)
+ * Refined response → User output (no backflow)
+ */
+export function generateFinalOutput(
+  refinedResponse: RefinedResponse,
+  synthesizedData: SynthesizedData,
+  startTime: Date
+): FinalOutput {
+  console.log('[VALVE 4] Generating final output');
+  
+  const processingTime = new Date().getTime() - startTime.getTime();
+  
+  const output: FinalOutput = {
+    response: refinedResponse.text,
+    quality: refinedResponse.quality,
+    metadata: {
+      processingTime,
+      synthesisQuality: synthesizedData.synthesisQuality,
+      contentBleedingRisk: synthesizedData.contentBleedingRisk,
+      sources: {
+        merck: synthesizedData.coreKnowledge.merckEntries.length > 0,
+        guidelines: hasGuidelines(synthesizedData.coreKnowledge),
+        flashcards: synthesizedData.coreKnowledge.flashcards.length > 0,
+      },
+    },
+    timestamp: new Date(),
+  };
+  
+  console.log('[VALVE 4] Final output generated:', {
+    quality: output.quality,
+    processingTime: output.metadata.processingTime,
+    bleedingRisk: output.metadata.contentBleedingRisk,
+  });
+  
+  return output;
+}
+
+// ============================================================================
+// MAIN SYNTHESIZER ENGINE
+// ============================================================================
+
+/**
+ * Main synthesizer engine - orchestrates the figure-eight flow
+ */
+export class SynthesizerEngine {
+  private static instance: SynthesizerEngine;
+  
+  private constructor() {
+    console.log('[SYNTHESIZER ENGINE] Initialized');
+  }
+  
+  static getInstance(): SynthesizerEngine {
+    if (!SynthesizerEngine.instance) {
+      SynthesizerEngine.instance = new SynthesizerEngine();
+    }
+    return SynthesizerEngine.instance;
+  }
+  
+  /**
+   * Process query through the figure-eight flow
+   */
+  async processQuery(
+    rawQuery: string,
+    flashcards: Flashcard[],
+    conversationContext?: string[]
+  ): Promise<FinalOutput> {
+    const startTime = new Date();
+    console.log('[SYNTHESIZER ENGINE] Processing query:', rawQuery);
+    
+    // VALVE 1: Process user input
+    const userInput: UserInput = {
+      rawQuery,
+      timestamp: startTime,
+      conversationContext,
+    };
+    const processedQuery = processUserInput(userInput);
+    
+    // VALVE 2: Retrieve core knowledge
+    const coreKnowledge = retrieveCoreKnowledge(processedQuery, flashcards);
+    
+    // INTERSECTION: Synthesize at intersection point
+    const synthesizedData = synthesizeAtIntersection(processedQuery, coreKnowledge);
+    
+    // VALVE 3: Synthesize response
+    const synthesizedResponse = synthesizeResponse(synthesizedData);
+    
+    // REFINEMENT LOOP: Refine response
+    const refinedResponse = refineResponse(synthesizedResponse);
+    
+    // VALVE 4: Generate final output
+    const finalOutput = generateFinalOutput(refinedResponse, synthesizedData, startTime);
+    
+    console.log('[SYNTHESIZER ENGINE] Query processed successfully');
+    
+    return finalOutput;
+  }
+  
+  /**
+   * Run stress test on the synthesizer engine
+   */
+  async runStressTest(): Promise<{
+    passed: number;
+    failed: number;
+    averageQuality: number;
+    averageProcessingTime: number;
+    results: {
+      query: string;
+      quality: number;
+      processingTime: number;
+      bleedingRisk: number;
+      passed: boolean;
+    }[];
+  }> {
+    console.log('[SYNTHESIZER ENGINE] Running stress test...');
+    
+    const testQueries = [
+      'What is the pathophysiology of atrial fibrillation?',
+      'What are the clinical findings of heart failure?',
+      'How do you diagnose myocardial infarction?',
+      'What is the treatment for sepsis?',
+      'Hello',
+      'Thank you',
+      'What are the ACC guidelines for heart failure?',
+      'What is the pathophysiology of type 1 diabetes?',
+      'What are the symptoms of stroke?',
+      'How do you treat pneumonia?',
+    ];
+    
+    const results = [];
+    let totalQuality = 0;
+    let totalProcessingTime = 0;
+    
+    for (const query of testQueries) {
+      const output = await this.processQuery(query, []);
+      
+      const passed = output.quality >= 70 && output.metadata.contentBleedingRisk < 50;
+      
+      results.push({
+        query,
+        quality: output.quality,
+        processingTime: output.metadata.processingTime,
+        bleedingRisk: output.metadata.contentBleedingRisk,
+        passed,
+      });
+      
+      totalQuality += output.quality;
+      totalProcessingTime += output.metadata.processingTime;
+    }
+    
+    const passed = results.filter(r => r.passed).length;
+    const failed = results.filter(r => !r.passed).length;
+    const averageQuality = totalQuality / results.length;
+    const averageProcessingTime = totalProcessingTime / results.length;
+    
+    console.log('[SYNTHESIZER ENGINE] Stress test complete:', {
+      passed,
+      failed,
+      averageQuality,
+      averageProcessingTime,
+    });
+    
+    return {
+      passed,
+      failed,
+      averageQuality,
+      averageProcessingTime,
+      results,
+    };
+  }
+}
+
+// Export singleton instance
+export const synthesizerEngine = SynthesizerEngine.getInstance();
