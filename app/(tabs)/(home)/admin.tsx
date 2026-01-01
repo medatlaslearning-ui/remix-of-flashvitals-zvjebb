@@ -9,6 +9,7 @@ import { Flashcard } from '@/types/flashcard';
 import * as Haptics from 'expo-haptics';
 import { runKeywordStressTest } from '@/data/merckManualKnowledge';
 import SystemHealthMonitor from '@/components/SystemHealthMonitor';
+import SupabaseUsageRulesMonitor from '@/components/SupabaseUsageRulesMonitor';
 
 export default function AdminScreen() {
   const router = useRouter();
@@ -17,6 +18,7 @@ export default function AdminScreen() {
   const [isEditing, setIsEditing] = useState(false);
   const [testResults, setTestResults] = useState<ReturnType<typeof runKeywordStressTest> | null>(null);
   const [showTestDetails, setShowTestDetails] = useState(false);
+  const [activeTab, setActiveTab] = useState<'overview' | 'health' | 'supabase' | 'flashcards'>('overview');
 
   // Form state
   const [system, setSystem] = useState('Cardiology');
@@ -52,6 +54,7 @@ export default function AdminScreen() {
     setClinicalPearl(card.back.clinical_pearl);
     setTags(card.tags.join(', '));
     setIsEditing(true);
+    setActiveTab('flashcards');
   };
 
   const handleDelete = (card: Flashcard) => {
@@ -152,355 +155,435 @@ export default function AdminScreen() {
           headerBackTitle: 'Back',
         }}
       />
-      <ScrollView 
-        style={commonStyles.container}
-        contentContainerStyle={[
-          styles.scrollContent,
-          Platform.OS !== 'ios' && styles.scrollContentWithTabBar
-        ]}
-      >
-        <View style={styles.header}>
-          <Text style={styles.title}>Admin Panel</Text>
-          <Text style={styles.subtitle}>Manage Flashcards & Run Tests</Text>
-        </View>
-
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Perpetual Learning Engine</Text>
-          <SystemHealthMonitor />
-        </View>
-
-        <View style={styles.statsCard}>
-          <Text style={styles.statsTitle}>Statistics</Text>
-          <View style={styles.statsGrid}>
-            <View style={styles.statItem}>
-              <Text style={styles.statValue}>{flashcards.length}</Text>
-              <Text style={styles.statLabel}>Total Cards</Text>
-            </View>
-            <View style={styles.statItem}>
-              <Text style={styles.statValue}>{reviewedCards}</Text>
-              <Text style={styles.statLabel}>Reviewed</Text>
-            </View>
-            <View style={styles.statItem}>
-              <Text style={styles.statValue}>{averageReviews}</Text>
-              <Text style={styles.statLabel}>Avg Reviews</Text>
-            </View>
-          </View>
-        </View>
-
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Keyword Search Testing</Text>
-          <Text style={styles.sectionDescription}>
-            Run stress tests to validate keyword matching accuracy and prevent content bleeding between diseases.
-          </Text>
-          
-          <Pressable style={styles.stressTestButton} onPress={handleRunStressTests}>
-            <IconSymbol
-              ios_icon_name="play.circle.fill"
-              android_material_icon_name="play_circle"
-              size={24}
-              color="#FFFFFF"
-            />
-            <Text style={styles.stressTestButtonText}>Run Stress Tests</Text>
+      <View style={commonStyles.container}>
+        {/* Tab Navigation */}
+        <View style={styles.tabBar}>
+          <Pressable
+            style={[styles.tab, activeTab === 'overview' && styles.tabActive]}
+            onPress={() => setActiveTab('overview')}
+          >
+            <Text style={[styles.tabText, activeTab === 'overview' && styles.tabTextActive]}>
+              Overview
+            </Text>
           </Pressable>
+          <Pressable
+            style={[styles.tab, activeTab === 'health' && styles.tabActive]}
+            onPress={() => setActiveTab('health')}
+          >
+            <Text style={[styles.tabText, activeTab === 'health' && styles.tabTextActive]}>
+              System Health
+            </Text>
+          </Pressable>
+          <Pressable
+            style={[styles.tab, activeTab === 'supabase' && styles.tabActive]}
+            onPress={() => setActiveTab('supabase')}
+          >
+            <Text style={[styles.tabText, activeTab === 'supabase' && styles.tabTextActive]}>
+              Supabase Rules
+            </Text>
+          </Pressable>
+          <Pressable
+            style={[styles.tab, activeTab === 'flashcards' && styles.tabActive]}
+            onPress={() => setActiveTab('flashcards')}
+          >
+            <Text style={[styles.tabText, activeTab === 'flashcards' && styles.tabTextActive]}>
+              Flashcards
+            </Text>
+          </Pressable>
+        </View>
 
-          {testResults && (
-            <View style={styles.testResultsContainer}>
-              <View style={styles.testSummaryCard}>
-                <View style={styles.testSummaryRow}>
-                  <View style={styles.testSummaryItem}>
+        {/* Tab Content */}
+        <ScrollView 
+          style={styles.scrollView}
+          contentContainerStyle={[
+            styles.scrollContent,
+            Platform.OS !== 'ios' && styles.scrollContentWithTabBar
+          ]}
+        >
+          {activeTab === 'overview' && (
+            <>
+              <View style={styles.header}>
+                <Text style={styles.title}>Admin Panel</Text>
+                <Text style={styles.subtitle}>Manage Flashcards & Run Tests</Text>
+              </View>
+
+              <View style={styles.statsCard}>
+                <Text style={styles.statsTitle}>Statistics</Text>
+                <View style={styles.statsGrid}>
+                  <View style={styles.statItem}>
+                    <Text style={styles.statValue}>{flashcards.length}</Text>
+                    <Text style={styles.statLabel}>Total Cards</Text>
+                  </View>
+                  <View style={styles.statItem}>
+                    <Text style={styles.statValue}>{reviewedCards}</Text>
+                    <Text style={styles.statLabel}>Reviewed</Text>
+                  </View>
+                  <View style={styles.statItem}>
+                    <Text style={styles.statValue}>{averageReviews}</Text>
+                    <Text style={styles.statLabel}>Avg Reviews</Text>
+                  </View>
+                </View>
+              </View>
+
+              <View style={styles.section}>
+                <Text style={styles.sectionTitle}>Keyword Search Testing</Text>
+                <Text style={styles.sectionDescription}>
+                  Run stress tests to validate keyword matching accuracy and prevent content bleeding between diseases.
+                </Text>
+                
+                <Pressable style={styles.stressTestButton} onPress={handleRunStressTests}>
+                  <IconSymbol
+                    ios_icon_name="play.circle.fill"
+                    android_material_icon_name="play_circle"
+                    size={24}
+                    color="#FFFFFF"
+                  />
+                  <Text style={styles.stressTestButtonText}>Run Stress Tests</Text>
+                </Pressable>
+
+                {testResults && (
+                  <View style={styles.testResultsContainer}>
+                    <View style={styles.testSummaryCard}>
+                      <View style={styles.testSummaryRow}>
+                        <View style={styles.testSummaryItem}>
+                          <IconSymbol
+                            ios_icon_name="checkmark.circle.fill"
+                            android_material_icon_name="check_circle"
+                            size={32}
+                            color="#27AE60"
+                          />
+                          <Text style={styles.testSummaryNumber}>{testResults.passed}</Text>
+                          <Text style={styles.testSummaryLabel}>Passed</Text>
+                        </View>
+                        <View style={styles.testSummaryItem}>
+                          <IconSymbol
+                            ios_icon_name="xmark.circle.fill"
+                            android_material_icon_name="cancel"
+                            size={32}
+                            color="#E74C3C"
+                          />
+                          <Text style={styles.testSummaryNumber}>{testResults.failed}</Text>
+                          <Text style={styles.testSummaryLabel}>Failed</Text>
+                        </View>
+                        <View style={styles.testSummaryItem}>
+                          <IconSymbol
+                            ios_icon_name="chart.bar.fill"
+                            android_material_icon_name="bar_chart"
+                            size={32}
+                            color={colors.primary}
+                          />
+                          <Text style={styles.testSummaryNumber}>
+                            {Math.round((testResults.passed / (testResults.passed + testResults.failed)) * 100)}%
+                          </Text>
+                          <Text style={styles.testSummaryLabel}>Success Rate</Text>
+                        </View>
+                      </View>
+                    </View>
+
+                    <Pressable
+                      style={styles.detailsToggle}
+                      onPress={() => setShowTestDetails(!showTestDetails)}
+                    >
+                      <Text style={styles.detailsToggleText}>
+                        {showTestDetails ? 'Hide' : 'Show'} Detailed Results
+                      </Text>
+                      <IconSymbol
+                        ios_icon_name={showTestDetails ? 'chevron.up' : 'chevron.down'}
+                        android_material_icon_name={showTestDetails ? 'expand_less' : 'expand_more'}
+                        size={20}
+                        color={colors.primary}
+                      />
+                    </Pressable>
+
+                    {showTestDetails && (
+                      <View style={styles.detailsContainer}>
+                        {testResults.results.map((result, index) => (
+                          <View
+                            key={index}
+                            style={[
+                              styles.testCard,
+                              result.passed ? styles.testCardPassed : styles.testCardFailed,
+                            ]}
+                          >
+                            <View style={styles.testHeader}>
+                              <IconSymbol
+                                ios_icon_name={result.passed ? 'checkmark.circle.fill' : 'xmark.circle.fill'}
+                                android_material_icon_name={result.passed ? 'check_circle' : 'cancel'}
+                                size={20}
+                                color={result.passed ? '#27AE60' : '#E74C3C'}
+                              />
+                              <Text style={[styles.testQuery, { color: getSystemColor(result.query) }]}>
+                                &quot;{result.query}&quot;
+                              </Text>
+                            </View>
+                            <View style={styles.testDetails}>
+                              <Text style={styles.testLabel}>Expected:</Text>
+                              <Text style={styles.testValue}>{result.expectedTopic}</Text>
+                            </View>
+                            <View style={styles.testDetails}>
+                              <Text style={styles.testLabel}>Actual:</Text>
+                              <Text style={[
+                                styles.testValue,
+                                !result.passed && styles.testValueError
+                              ]}>
+                                {result.actualTopic || 'No match found'}
+                              </Text>
+                            </View>
+                          </View>
+                        ))}
+
+                        {testResults.failed > 0 && (
+                          <View style={styles.failedSection}>
+                            <Text style={styles.failedTitle}>Failed Tests Summary:</Text>
+                            {testResults.results
+                              .filter(r => !r.passed)
+                              .map((result, index) => (
+                                <View key={index} style={styles.failedItem}>
+                                  <Text style={styles.failedQuery}>• &quot;{result.query}&quot;</Text>
+                                  <Text style={styles.failedDetail}>
+                                    Expected: {result.expectedTopic}
+                                  </Text>
+                                  <Text style={styles.failedDetail}>
+                                    Got: {result.actualTopic || 'No match'}
+                                  </Text>
+                                </View>
+                              ))}
+                          </View>
+                        )}
+                      </View>
+                    )}
+                  </View>
+                )}
+              </View>
+
+              <View style={styles.section}>
+                <Text style={styles.sectionTitle}>Topics Overview</Text>
+                {topics.map((topicName, index) => (
+                  <View key={index} style={styles.topicRow}>
+                    <Text style={styles.topicName}>{topicName}</Text>
+                    <Text style={styles.topicCount}>{getTopicStats(topicName)} cards</Text>
+                  </View>
+                ))}
+              </View>
+            </>
+          )}
+
+          {activeTab === 'health' && (
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Perpetual Learning Engine</Text>
+              <SystemHealthMonitor />
+            </View>
+          )}
+
+          {activeTab === 'supabase' && (
+            <SupabaseUsageRulesMonitor />
+          )}
+
+          {activeTab === 'flashcards' && (
+            <>
+              <View style={styles.section}>
+                <View style={styles.sectionHeader}>
+                  <Text style={styles.sectionTitle}>
+                    {isEditing ? 'Edit Flashcard' : 'Add New Flashcard'}
+                  </Text>
+                  {isEditing && (
+                    <Pressable onPress={resetForm} style={styles.cancelButton}>
+                      <Text style={styles.cancelButtonText}>Cancel</Text>
+                    </Pressable>
+                  )}
+                </View>
+
+                <View style={styles.form}>
+                  <View style={styles.formGroup}>
+                    <Text style={styles.label}>System</Text>
+                    <TextInput
+                      style={styles.input}
+                      value={system}
+                      onChangeText={setSystem}
+                      placeholder="e.g., Cardiology"
+                      placeholderTextColor={colors.textSecondary}
+                    />
+                  </View>
+
+                  <View style={styles.formGroup}>
+                    <Text style={styles.label}>Topic *</Text>
+                    <TextInput
+                      style={styles.input}
+                      value={topic}
+                      onChangeText={setTopic}
+                      placeholder="e.g., Arrhythmias"
+                      placeholderTextColor={colors.textSecondary}
+                    />
+                  </View>
+
+                  <View style={styles.formGroup}>
+                    <Text style={styles.label}>Question (Front) *</Text>
+                    <TextInput
+                      style={[styles.input, styles.textArea]}
+                      value={front}
+                      onChangeText={setFront}
+                      placeholder="Enter the question or keyword"
+                      placeholderTextColor={colors.textSecondary}
+                      multiline
+                      numberOfLines={3}
+                    />
+                  </View>
+
+                  <View style={styles.formGroup}>
+                    <Text style={styles.label}>Definition *</Text>
+                    <TextInput
+                      style={[styles.input, styles.textArea]}
+                      value={definition}
+                      onChangeText={setDefinition}
+                      placeholder="Enter the definition"
+                      placeholderTextColor={colors.textSecondary}
+                      multiline
+                      numberOfLines={3}
+                    />
+                  </View>
+
+                  <View style={styles.formGroup}>
+                    <Text style={styles.label}>High-Yield Summary</Text>
+                    <TextInput
+                      style={[styles.input, styles.textArea]}
+                      value={highYield}
+                      onChangeText={setHighYield}
+                      placeholder="Enter high-yield points"
+                      placeholderTextColor={colors.textSecondary}
+                      multiline
+                      numberOfLines={2}
+                    />
+                  </View>
+
+                  <View style={styles.formGroup}>
+                    <Text style={styles.label}>Clinical Pearl</Text>
+                    <TextInput
+                      style={[styles.input, styles.textArea]}
+                      value={clinicalPearl}
+                      onChangeText={setClinicalPearl}
+                      placeholder="Enter clinical pearl"
+                      placeholderTextColor={colors.textSecondary}
+                      multiline
+                      numberOfLines={3}
+                    />
+                  </View>
+
+                  <View style={styles.formGroup}>
+                    <Text style={styles.label}>Tags (comma-separated)</Text>
+                    <TextInput
+                      style={styles.input}
+                      value={tags}
+                      onChangeText={setTags}
+                      placeholder="e.g., ECG, AFib, Arrhythmia"
+                      placeholderTextColor={colors.textSecondary}
+                    />
+                  </View>
+
+                  <Pressable onPress={handleSave} style={styles.saveButton}>
                     <IconSymbol
                       ios_icon_name="checkmark.circle.fill"
                       android_material_icon_name="check_circle"
-                      size={32}
-                      color="#27AE60"
+                      size={20}
+                      color={colors.card}
                     />
-                    <Text style={styles.testSummaryNumber}>{testResults.passed}</Text>
-                    <Text style={styles.testSummaryLabel}>Passed</Text>
-                  </View>
-                  <View style={styles.testSummaryItem}>
-                    <IconSymbol
-                      ios_icon_name="xmark.circle.fill"
-                      android_material_icon_name="cancel"
-                      size={32}
-                      color="#E74C3C"
-                    />
-                    <Text style={styles.testSummaryNumber}>{testResults.failed}</Text>
-                    <Text style={styles.testSummaryLabel}>Failed</Text>
-                  </View>
-                  <View style={styles.testSummaryItem}>
-                    <IconSymbol
-                      ios_icon_name="chart.bar.fill"
-                      android_material_icon_name="bar_chart"
-                      size={32}
-                      color={colors.primary}
-                    />
-                    <Text style={styles.testSummaryNumber}>
-                      {Math.round((testResults.passed / (testResults.passed + testResults.failed)) * 100)}%
+                    <Text style={styles.saveButtonText}>
+                      {isEditing ? 'Update Flashcard' : 'Add Flashcard'}
                     </Text>
-                    <Text style={styles.testSummaryLabel}>Success Rate</Text>
-                  </View>
+                  </Pressable>
                 </View>
               </View>
 
-              <Pressable
-                style={styles.detailsToggle}
-                onPress={() => setShowTestDetails(!showTestDetails)}
-              >
-                <Text style={styles.detailsToggleText}>
-                  {showTestDetails ? 'Hide' : 'Show'} Detailed Results
-                </Text>
-                <IconSymbol
-                  ios_icon_name={showTestDetails ? 'chevron.up' : 'chevron.down'}
-                  android_material_icon_name={showTestDetails ? 'expand_less' : 'expand_more'}
-                  size={20}
-                  color={colors.primary}
-                />
-              </Pressable>
-
-              {showTestDetails && (
-                <View style={styles.detailsContainer}>
-                  {testResults.results.map((result, index) => (
-                    <View
-                      key={index}
-                      style={[
-                        styles.testCard,
-                        result.passed ? styles.testCardPassed : styles.testCardFailed,
-                      ]}
-                    >
-                      <View style={styles.testHeader}>
+              <View style={styles.section}>
+                <Text style={styles.sectionTitle}>All Flashcards ({flashcards.length})</Text>
+                {flashcards.map((card) => (
+                  <View key={card.id} style={styles.cardItem}>
+                    <View style={styles.cardItemHeader}>
+                      <View style={styles.cardItemBadge}>
+                        <Text style={styles.cardItemBadgeText}>{card.topic}</Text>
+                      </View>
+                      <View style={styles.cardItemActions}>
+                        <Pressable onPress={() => handleEdit(card)} style={styles.iconButton}>
+                          <IconSymbol
+                            ios_icon_name="pencil"
+                            android_material_icon_name="edit"
+                            size={20}
+                            color={colors.primary}
+                          />
+                        </Pressable>
+                        <Pressable onPress={() => handleDelete(card)} style={styles.iconButton}>
+                          <IconSymbol
+                            ios_icon_name="trash"
+                            android_material_icon_name="delete"
+                            size={20}
+                            color={colors.error}
+                          />
+                        </Pressable>
+                      </View>
+                    </View>
+                    <Text style={styles.cardItemQuestion}>{card.front}</Text>
+                    <Text style={styles.cardItemAnswer} numberOfLines={2}>
+                      {card.back.definition}
+                    </Text>
+                    <View style={styles.cardItemFooter}>
+                      <Text style={styles.cardItemMeta}>
+                        Reviews: {card.reviewCount}
+                      </Text>
+                      {card.bookmarked && (
                         <IconSymbol
-                          ios_icon_name={result.passed ? 'checkmark.circle.fill' : 'xmark.circle.fill'}
-                          android_material_icon_name={result.passed ? 'check_circle' : 'cancel'}
-                          size={20}
-                          color={result.passed ? '#27AE60' : '#E74C3C'}
+                          ios_icon_name="bookmark.fill"
+                          android_material_icon_name="bookmark"
+                          size={16}
+                          color={colors.primary}
                         />
-                        <Text style={[styles.testQuery, { color: getSystemColor(result.query) }]}>
-                          &quot;{result.query}&quot;
-                        </Text>
-                      </View>
-                      <View style={styles.testDetails}>
-                        <Text style={styles.testLabel}>Expected:</Text>
-                        <Text style={styles.testValue}>{result.expectedTopic}</Text>
-                      </View>
-                      <View style={styles.testDetails}>
-                        <Text style={styles.testLabel}>Actual:</Text>
-                        <Text style={[
-                          styles.testValue,
-                          !result.passed && styles.testValueError
-                        ]}>
-                          {result.actualTopic || 'No match found'}
-                        </Text>
-                      </View>
+                      )}
+                      {card.favorite && (
+                        <IconSymbol
+                          ios_icon_name="heart.fill"
+                          android_material_icon_name="favorite"
+                          size={16}
+                          color={colors.error}
+                        />
+                      )}
                     </View>
-                  ))}
-
-                  {testResults.failed > 0 && (
-                    <View style={styles.failedSection}>
-                      <Text style={styles.failedTitle}>Failed Tests Summary:</Text>
-                      {testResults.results
-                        .filter(r => !r.passed)
-                        .map((result, index) => (
-                          <View key={index} style={styles.failedItem}>
-                            <Text style={styles.failedQuery}>• &quot;{result.query}&quot;</Text>
-                            <Text style={styles.failedDetail}>
-                              Expected: {result.expectedTopic}
-                            </Text>
-                            <Text style={styles.failedDetail}>
-                              Got: {result.actualTopic || 'No match'}
-                            </Text>
-                          </View>
-                        ))}
-                    </View>
-                  )}
-                </View>
-              )}
-            </View>
+                  </View>
+                ))}
+              </View>
+            </>
           )}
-        </View>
-
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Topics Overview</Text>
-          {topics.map((topicName, index) => (
-            <View key={index} style={styles.topicRow}>
-              <Text style={styles.topicName}>{topicName}</Text>
-              <Text style={styles.topicCount}>{getTopicStats(topicName)} cards</Text>
-            </View>
-          ))}
-        </View>
-
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>
-              {isEditing ? 'Edit Flashcard' : 'Add New Flashcard'}
-            </Text>
-            {isEditing && (
-              <Pressable onPress={resetForm} style={styles.cancelButton}>
-                <Text style={styles.cancelButtonText}>Cancel</Text>
-              </Pressable>
-            )}
-          </View>
-
-          <View style={styles.form}>
-            <View style={styles.formGroup}>
-              <Text style={styles.label}>System</Text>
-              <TextInput
-                style={styles.input}
-                value={system}
-                onChangeText={setSystem}
-                placeholder="e.g., Cardiology"
-                placeholderTextColor={colors.textSecondary}
-              />
-            </View>
-
-            <View style={styles.formGroup}>
-              <Text style={styles.label}>Topic *</Text>
-              <TextInput
-                style={styles.input}
-                value={topic}
-                onChangeText={setTopic}
-                placeholder="e.g., Arrhythmias"
-                placeholderTextColor={colors.textSecondary}
-              />
-            </View>
-
-            <View style={styles.formGroup}>
-              <Text style={styles.label}>Question (Front) *</Text>
-              <TextInput
-                style={[styles.input, styles.textArea]}
-                value={front}
-                onChangeText={setFront}
-                placeholder="Enter the question or keyword"
-                placeholderTextColor={colors.textSecondary}
-                multiline
-                numberOfLines={3}
-              />
-            </View>
-
-            <View style={styles.formGroup}>
-              <Text style={styles.label}>Definition *</Text>
-              <TextInput
-                style={[styles.input, styles.textArea]}
-                value={definition}
-                onChangeText={setDefinition}
-                placeholder="Enter the definition"
-                placeholderTextColor={colors.textSecondary}
-                multiline
-                numberOfLines={3}
-              />
-            </View>
-
-            <View style={styles.formGroup}>
-              <Text style={styles.label}>High-Yield Summary</Text>
-              <TextInput
-                style={[styles.input, styles.textArea]}
-                value={highYield}
-                onChangeText={setHighYield}
-                placeholder="Enter high-yield points"
-                placeholderTextColor={colors.textSecondary}
-                multiline
-                numberOfLines={2}
-              />
-            </View>
-
-            <View style={styles.formGroup}>
-              <Text style={styles.label}>Clinical Pearl</Text>
-              <TextInput
-                style={[styles.input, styles.textArea]}
-                value={clinicalPearl}
-                onChangeText={setClinicalPearl}
-                placeholder="Enter clinical pearl"
-                placeholderTextColor={colors.textSecondary}
-                multiline
-                numberOfLines={3}
-              />
-            </View>
-
-            <View style={styles.formGroup}>
-              <Text style={styles.label}>Tags (comma-separated)</Text>
-              <TextInput
-                style={styles.input}
-                value={tags}
-                onChangeText={setTags}
-                placeholder="e.g., ECG, AFib, Arrhythmia"
-                placeholderTextColor={colors.textSecondary}
-              />
-            </View>
-
-            <Pressable onPress={handleSave} style={styles.saveButton}>
-              <IconSymbol
-                ios_icon_name="checkmark.circle.fill"
-                android_material_icon_name="check_circle"
-                size={20}
-                color={colors.card}
-              />
-              <Text style={styles.saveButtonText}>
-                {isEditing ? 'Update Flashcard' : 'Add Flashcard'}
-              </Text>
-            </Pressable>
-          </View>
-        </View>
-
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>All Flashcards ({flashcards.length})</Text>
-          {flashcards.map((card) => (
-            <View key={card.id} style={styles.cardItem}>
-              <View style={styles.cardItemHeader}>
-                <View style={styles.cardItemBadge}>
-                  <Text style={styles.cardItemBadgeText}>{card.topic}</Text>
-                </View>
-                <View style={styles.cardItemActions}>
-                  <Pressable onPress={() => handleEdit(card)} style={styles.iconButton}>
-                    <IconSymbol
-                      ios_icon_name="pencil"
-                      android_material_icon_name="edit"
-                      size={20}
-                      color={colors.primary}
-                    />
-                  </Pressable>
-                  <Pressable onPress={() => handleDelete(card)} style={styles.iconButton}>
-                    <IconSymbol
-                      ios_icon_name="trash"
-                      android_material_icon_name="delete"
-                      size={20}
-                      color={colors.error}
-                    />
-                  </Pressable>
-                </View>
-              </View>
-              <Text style={styles.cardItemQuestion}>{card.front}</Text>
-              <Text style={styles.cardItemAnswer} numberOfLines={2}>
-                {card.back.definition}
-              </Text>
-              <View style={styles.cardItemFooter}>
-                <Text style={styles.cardItemMeta}>
-                  Reviews: {card.reviewCount}
-                </Text>
-                {card.bookmarked && (
-                  <IconSymbol
-                    ios_icon_name="bookmark.fill"
-                    android_material_icon_name="bookmark"
-                    size={16}
-                    color={colors.primary}
-                  />
-                )}
-                {card.favorite && (
-                  <IconSymbol
-                    ios_icon_name="heart.fill"
-                    android_material_icon_name="favorite"
-                    size={16}
-                    color={colors.error}
-                  />
-                )}
-              </View>
-            </View>
-          ))}
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     </>
   );
 }
 
 const styles = StyleSheet.create({
+  tabBar: {
+    flexDirection: 'row',
+    backgroundColor: colors.card,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border,
+  },
+  tab: {
+    flex: 1,
+    paddingVertical: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  tabActive: {
+    borderBottomWidth: 2,
+    borderBottomColor: colors.primary,
+  },
+  tabText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: colors.textSecondary,
+  },
+  tabTextActive: {
+    color: colors.primary,
+  },
+  scrollView: {
+    flex: 1,
+  },
   scrollContent: {
     padding: 20,
   },
