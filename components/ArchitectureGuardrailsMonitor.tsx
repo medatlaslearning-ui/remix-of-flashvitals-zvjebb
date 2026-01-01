@@ -13,9 +13,11 @@ import {
 export default function ArchitectureGuardrailsMonitor() {
   const [integrityCheck, setIntegrityCheck] = useState<SystemArchitectureIntegrityCheck | null>(null);
   const [testResults, setTestResults] = useState<any>(null);
+  const [stressTestResults, setStressTestResults] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [expandedGuardrail1, setExpandedGuardrail1] = useState(false);
   const [expandedGuardrail2, setExpandedGuardrail2] = useState(false);
+  const [expandedGuardrail3, setExpandedGuardrail3] = useState(false);
 
   useEffect(() => {
     runIntegrityCheck();
@@ -39,6 +41,12 @@ export default function ArchitectureGuardrailsMonitor() {
     try {
       const results = await runSystemArchitectureTest();
       setTestResults(results);
+      
+      // Also run synthesizer stress test
+      const { synthesizerEngine } = await import('@/data/synthesizerEngine');
+      const stressResults = await synthesizerEngine.runStressTest();
+      setStressTestResults(stressResults);
+      
       await runIntegrityCheck();
     } catch (error) {
       console.error('Error running full test:', error);
@@ -57,6 +65,11 @@ export default function ArchitectureGuardrailsMonitor() {
     setExpandedGuardrail2(!expandedGuardrail2);
   };
 
+  const toggleGuardrail3 = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    setExpandedGuardrail3(!expandedGuardrail3);
+  };
+
   if (isLoading && !integrityCheck) {
     return (
       <View style={styles.container}>
@@ -71,7 +84,7 @@ export default function ArchitectureGuardrailsMonitor() {
   }
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       {/* Overall Status */}
       <View style={styles.overallStatus}>
         <IconSymbol
@@ -245,6 +258,113 @@ export default function ArchitectureGuardrailsMonitor() {
         )}
       </View>
 
+      {/* Guardrail #3: Guideline Usage Rules */}
+      <View style={styles.guardrailCard}>
+        <Pressable style={styles.guardrailHeader} onPress={toggleGuardrail3}>
+          <View style={styles.guardrailHeaderLeft}>
+            <IconSymbol
+              ios_icon_name={stressTestResults ? 'checkmark.circle.fill' : 'circle'}
+              android_material_icon_name={stressTestResults ? 'check_circle' : 'circle'}
+              size={20}
+              color={stressTestResults ? '#27AE60' : colors.textSecondary}
+            />
+            <Text style={styles.guardrailTitle}>Guardrail #3: Guideline Usage Rules</Text>
+          </View>
+          <IconSymbol
+            ios_icon_name={expandedGuardrail3 ? 'chevron.up' : 'chevron.down'}
+            android_material_icon_name={expandedGuardrail3 ? 'expand_less' : 'expand_more'}
+            size={20}
+            color={colors.textSecondary}
+          />
+        </Pressable>
+
+        {expandedGuardrail3 && (
+          <View style={styles.guardrailContent}>
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>📋 Guideline Usage Principles</Text>
+              <Text style={styles.infoText}>
+                • Use guideline information to CONTEXTUALIZE, not overwrite
+              </Text>
+              <Text style={styles.infoText}>
+                • Compare live guidance to core medical framework
+              </Text>
+              <Text style={styles.infoText}>
+                • Validate consistency with known mechanisms
+              </Text>
+              <Text style={styles.infoText}>
+                • If guidance differs from historical practice, explicitly state this
+              </Text>
+              <Text style={styles.infoText}>
+                • Never claim &quot;absolute correctness&quot; or &quot;verification&quot;
+              </Text>
+            </View>
+
+            <View style={styles.infoBox}>
+              <Text style={styles.infoTitle}>✅ Required Phrasing:</Text>
+              <Text style={styles.infoText}>- &quot;Based on current guidelines...&quot;</Text>
+              <Text style={styles.infoText}>- &quot;This recommendation aligns with...&quot;</Text>
+              <Text style={styles.infoText}>- &quot;Recent guidance now emphasizes...&quot;</Text>
+            </View>
+
+            <View style={styles.infoBox}>
+              <Text style={styles.infoTitle}>❌ Prohibited Language:</Text>
+              <Text style={styles.infoText}>- &quot;This confirms the information is correct&quot;</Text>
+              <Text style={styles.infoText}>- &quot;The core engine verifies this as true&quot;</Text>
+              <Text style={styles.infoText}>- &quot;This replaces previous knowledge&quot;</Text>
+            </View>
+
+            {stressTestResults && (
+              <View style={styles.section}>
+                <Text style={styles.sectionTitle}>🧪 Stress Test Results</Text>
+                <View style={styles.metric}>
+                  <Text style={styles.metricLabel}>Tests Passed:</Text>
+                  <Text style={[styles.metricValue, styles.metricGood]}>
+                    {stressTestResults.passed}
+                  </Text>
+                </View>
+                <View style={styles.metric}>
+                  <Text style={styles.metricLabel}>Tests Failed:</Text>
+                  <Text style={[
+                    styles.metricValue,
+                    stressTestResults.failed > 0 ? styles.metricBad : styles.metricGood
+                  ]}>
+                    {stressTestResults.failed}
+                  </Text>
+                </View>
+                <View style={styles.metric}>
+                  <Text style={styles.metricLabel}>Average Quality:</Text>
+                  <Text style={[
+                    styles.metricValue,
+                    stressTestResults.averageQuality >= 80 ? styles.metricGood :
+                    stressTestResults.averageQuality >= 60 ? styles.metricWarning :
+                    styles.metricBad
+                  ]}>
+                    {Math.round(stressTestResults.averageQuality)}%
+                  </Text>
+                </View>
+                <View style={styles.metric}>
+                  <Text style={styles.metricLabel}>Avg Guideline Usage Score:</Text>
+                  <Text style={[
+                    styles.metricValue,
+                    stressTestResults.averageGuidelineUsageScore >= 80 ? styles.metricGood :
+                    stressTestResults.averageGuidelineUsageScore >= 60 ? styles.metricWarning :
+                    styles.metricBad
+                  ]}>
+                    {Math.round(stressTestResults.averageGuidelineUsageScore)}%
+                  </Text>
+                </View>
+                <View style={styles.metric}>
+                  <Text style={styles.metricLabel}>Avg Processing Time:</Text>
+                  <Text style={styles.metricValue}>
+                    {Math.round(stressTestResults.averageProcessingTime)}ms
+                  </Text>
+                </View>
+              </View>
+            )}
+          </View>
+        )}
+      </View>
+
       {/* Warnings */}
       {integrityCheck.overallWarnings.length > 0 && (
         <View style={styles.warningsSection}>
@@ -350,7 +470,7 @@ export default function ArchitectureGuardrailsMonitor() {
           )}
         </Pressable>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -452,6 +572,9 @@ const styles = StyleSheet.create({
   },
   metricGood: {
     color: '#27AE60',
+  },
+  metricWarning: {
+    color: '#F39C12',
   },
   metricBad: {
     color: '#E74C3C',

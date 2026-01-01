@@ -3,13 +3,33 @@
  * SYNTHESIZER ENGINE - Figure-Eight Data Flow Architecture
  * 
  * GUARDRAIL #1: SYSTEM ARCHITECTURE ROLES (IMPLEMENTED)
+ * GUARDRAIL #2: GUIDELINE CONSULTATION TRIGGERS (IMPLEMENTED)
+ * GUARDRAIL #3: GUIDELINE USAGE RULES (IMPLEMENTED)
  * 
  * This engine implements a figure-eight data flow with one-way valves AND
- * enforces strict architectural roles:
+ * enforces strict architectural roles and guideline usage rules:
  * 
  * • Core Knowledge Engine: READ-ONLY stable medical knowledge
  * • Guideline Website Layer: Runtime consultation (NOT cached)
  * • Synthesizer Engine: Original educational responses with citations
+ * 
+ * GUARDRAIL #3: GUIDELINE USAGE RULES
+ * 
+ * • Use guideline information to CONTEXTUALIZE, not overwrite
+ * • Compare live guidance to core medical framework
+ * • Validate consistency with known mechanisms
+ * • If guidance differs from historical practice, explicitly state this
+ * • Never claim "absolute correctness" or "verification"
+ * 
+ * REQUIRED PHRASING:
+ * - "Based on current guidelines..."
+ * - "This recommendation aligns with..."
+ * - "Recent guidance now emphasizes..."
+ * 
+ * PROHIBITED LANGUAGE:
+ * - "This confirms the information is correct"
+ * - "The core engine verifies this as true"
+ * - "This replaces previous knowledge"
  * 
  * FIGURE-EIGHT FLOW:
  * ┌─────────────────────────────────────────────────────────────┐
@@ -46,6 +66,8 @@
  * - Maintains conversation context for natural interaction
  * - Stress testing and quality monitoring
  * - GUARDRAIL #1: Enforces architectural roles and integrity
+ * - GUARDRAIL #2: Intelligent guideline consultation triggers
+ * - GUARDRAIL #3: Proper guideline usage and contextualization
  */
 
 import { searchMerckManualKnowledge, type MerckManualEntry } from './merckManualKnowledge';
@@ -76,6 +98,222 @@ import {
   verifySystemArchitectureIntegrity,
   type SystemArchitectureIntegrityCheck,
 } from './architectureGuardrails';
+
+// ============================================================================
+// GUARDRAIL #3: GUIDELINE USAGE RULES
+// ============================================================================
+
+/**
+ * GUARDRAIL #3: Prohibited language patterns that must NEVER appear in responses
+ */
+const PROHIBITED_LANGUAGE_PATTERNS = [
+  /this confirms? (the )?information is correct/i,
+  /the core engine verifies? (this|that) as true/i,
+  /this replaces? previous knowledge/i,
+  /verified as (absolutely )?correct/i,
+  /confirms? (the )?accuracy/i,
+  /proven to be (absolutely )?true/i,
+  /replaces? (the )?old (information|knowledge)/i,
+  /overrides? (the )?previous (information|knowledge)/i,
+  /supersedes? (the )?core knowledge/i,
+  /validates? (the )?truth/i,
+  /certifies? (the )?correctness/i,
+];
+
+/**
+ * GUARDRAIL #3: Required phrasing patterns for guideline contextualization
+ */
+const REQUIRED_GUIDELINE_PHRASES = [
+  'based on current guidelines',
+  'this recommendation aligns with',
+  'recent guidance now emphasizes',
+  'according to current practice guidelines',
+  'current guidelines suggest',
+  'guidelines recommend',
+  'per current recommendations',
+  'in line with current standards',
+];
+
+/**
+ * GUARDRAIL #3: Phrases indicating historical practice differences
+ */
+const HISTORICAL_DIFFERENCE_PHRASES = [
+  'this differs from historical practice',
+  'this represents a change from previous recommendations',
+  'historically, the approach was different',
+  'this is a departure from earlier guidelines',
+  'previous practice recommended',
+  'this updates earlier recommendations',
+];
+
+/**
+ * GUARDRAIL #3: Guideline Usage Validation Result
+ */
+export interface GuidelineUsageValidation {
+  isValid: boolean;
+  hasProhibitedLanguage: boolean;
+  prohibitedPhrases: string[];
+  hasProperContextualization: boolean;
+  contextualizationPhrases: string[];
+  indicatesHistoricalDifferences: boolean;
+  historicalDifferencePhrases: string[];
+  usesGuidelinesAsContext: boolean;
+  overwritesCoreKnowledge: boolean;
+  warnings: string[];
+  score: number; // 0-100
+}
+
+/**
+ * GUARDRAIL #3: Validate guideline usage in a response
+ */
+export function validateGuidelineUsage(
+  responseText: string,
+  hasGuidelines: boolean,
+  hasCoreKnowledge: boolean
+): GuidelineUsageValidation {
+  console.log('[GUARDRAIL #3] Validating guideline usage');
+  
+  const warnings: string[] = [];
+  const lowerResponse = responseText.toLowerCase();
+  
+  // Check for prohibited language
+  const prohibitedPhrases: string[] = [];
+  for (const pattern of PROHIBITED_LANGUAGE_PATTERNS) {
+    const match = responseText.match(pattern);
+    if (match) {
+      prohibitedPhrases.push(match[0]);
+      warnings.push(`CRITICAL: Prohibited language detected: "${match[0]}"`);
+    }
+  }
+  
+  const hasProhibitedLanguage = prohibitedPhrases.length > 0;
+  
+  // Check for proper contextualization phrases (if guidelines are used)
+  const contextualizationPhrases: string[] = [];
+  if (hasGuidelines) {
+    for (const phrase of REQUIRED_GUIDELINE_PHRASES) {
+      if (lowerResponse.includes(phrase)) {
+        contextualizationPhrases.push(phrase);
+      }
+    }
+    
+    if (contextualizationPhrases.length === 0) {
+      warnings.push('WARNING: Guidelines used but no proper contextualization phrases found');
+    }
+  }
+  
+  const hasProperContextualization = hasGuidelines ? contextualizationPhrases.length > 0 : true;
+  
+  // Check for historical difference indicators
+  const historicalDifferencePhrases: string[] = [];
+  for (const phrase of HISTORICAL_DIFFERENCE_PHRASES) {
+    if (lowerResponse.includes(phrase)) {
+      historicalDifferencePhrases.push(phrase);
+    }
+  }
+  
+  const indicatesHistoricalDifferences = historicalDifferencePhrases.length > 0;
+  
+  // Check if guidelines are used as context (not replacement)
+  const usesGuidelinesAsContext = hasGuidelines ? 
+    (hasProperContextualization && hasCoreKnowledge) : true;
+  
+  if (hasGuidelines && !hasCoreKnowledge) {
+    warnings.push('CRITICAL: Guidelines used without core knowledge foundation');
+  }
+  
+  // Check if response overwrites core knowledge
+  const overwritesCoreKnowledge = 
+    lowerResponse.includes('replaces') ||
+    lowerResponse.includes('overrides') ||
+    lowerResponse.includes('supersedes');
+  
+  if (overwritesCoreKnowledge) {
+    warnings.push('CRITICAL: Response appears to overwrite core knowledge');
+  }
+  
+  // Calculate validation score
+  let score = 100;
+  
+  if (hasProhibitedLanguage) score -= 50; // Major penalty
+  if (!hasProperContextualization && hasGuidelines) score -= 30;
+  if (!usesGuidelinesAsContext) score -= 25;
+  if (overwritesCoreKnowledge) score -= 40;
+  if (hasGuidelines && !hasCoreKnowledge) score -= 35;
+  
+  // Bonus for good practices
+  if (indicatesHistoricalDifferences && hasGuidelines) score += 10;
+  if (contextualizationPhrases.length > 2) score += 5;
+  
+  score = Math.max(0, Math.min(100, score));
+  
+  const isValid = 
+    !hasProhibitedLanguage &&
+    hasProperContextualization &&
+    usesGuidelinesAsContext &&
+    !overwritesCoreKnowledge &&
+    score >= 70;
+  
+  const validation: GuidelineUsageValidation = {
+    isValid,
+    hasProhibitedLanguage,
+    prohibitedPhrases,
+    hasProperContextualization,
+    contextualizationPhrases,
+    indicatesHistoricalDifferences,
+    historicalDifferencePhrases,
+    usesGuidelinesAsContext,
+    overwritesCoreKnowledge,
+    warnings,
+    score,
+  };
+  
+  console.log('[GUARDRAIL #3] Validation result:', {
+    isValid: validation.isValid,
+    score: validation.score,
+    warnings: validation.warnings.length,
+  });
+  
+  return validation;
+}
+
+/**
+ * GUARDRAIL #3: Apply guideline usage rules to response text
+ */
+export function applyGuidelineUsageRules(
+  responseText: string,
+  hasGuidelines: boolean,
+  hasCoreKnowledge: boolean
+): string {
+  console.log('[GUARDRAIL #3] Applying guideline usage rules');
+  
+  let processedText = responseText;
+  
+  // Remove any prohibited language
+  for (const pattern of PROHIBITED_LANGUAGE_PATTERNS) {
+    processedText = processedText.replace(pattern, '[REMOVED: Prohibited language]');
+  }
+  
+  // If guidelines are used, ensure proper contextualization
+  if (hasGuidelines && hasCoreKnowledge) {
+    // Check if response already has contextualization
+    const hasContextualization = REQUIRED_GUIDELINE_PHRASES.some(phrase =>
+      processedText.toLowerCase().includes(phrase)
+    );
+    
+    if (!hasContextualization) {
+      // Add contextualization note at the beginning of guideline sections
+      processedText = processedText.replace(
+        /\*\*Clinical Practice Guidelines\*\*/i,
+        '**Clinical Practice Guidelines** (Based on current guidelines)'
+      );
+    }
+  }
+  
+  console.log('[GUARDRAIL #3] Rules applied successfully');
+  
+  return processedText;
+}
 
 // ============================================================================
 // VALVE 1: USER INPUT PROCESSING
@@ -277,30 +515,39 @@ export async function retrieveCoreKnowledge(
   const coreEngine = getCoreKnowledgeEngine();
   const merckEntries = coreEngine.searchKnowledge(processedQuery.originalQuery);
   
-  // Only search guidelines if intent is guideline-related
-  const isGuidelineQuery = processedQuery.intent === 'guideline';
+  // GUARDRAIL #2: Only search guidelines if consultation is recommended
+  const guidelineLayer = getGuidelineWebsiteLayer();
+  const consultationDecision = guidelineLayer.shouldConsultGuidelines(processedQuery.originalQuery);
+  
+  console.log('[VALVE 2] Guideline consultation decision:', {
+    shouldConsult: consultationDecision.shouldConsult,
+    reason: consultationDecision.reason,
+    confidence: consultationDecision.confidence,
+  });
+  
+  const shouldSearchGuidelines = consultationDecision.shouldConsult;
   
   const knowledge: CoreKnowledge = {
     merckEntries,
-    accGuidelines: isGuidelineQuery ? searchACCGuidelines(processedQuery.originalQuery) : [],
-    ahaGuidelines: isGuidelineQuery ? searchAHAGuidelines(processedQuery.originalQuery) : [],
-    escGuidelines: isGuidelineQuery ? searchESCGuidelines(processedQuery.originalQuery) : [],
-    hfsaGuidelines: isGuidelineQuery ? searchHFSAGuidelines(processedQuery.originalQuery) : [],
-    hrsGuidelines: isGuidelineQuery ? searchHRSGuidelines(processedQuery.originalQuery) : [],
-    scaiGuidelines: isGuidelineQuery ? searchSCAIGuidelines(processedQuery.originalQuery) : [],
-    eactsGuidelines: isGuidelineQuery ? searchEACTSGuidelines(processedQuery.originalQuery) : [],
-    atsGuidelines: isGuidelineQuery ? searchATSGuidelines(processedQuery.originalQuery) : [],
-    chestGuidelines: isGuidelineQuery ? searchCHESTGuidelines(processedQuery.originalQuery) : [],
-    sccmGuidelines: isGuidelineQuery ? searchSCCMGuidelines(processedQuery.originalQuery) : [],
-    kdigoGuidelines: isGuidelineQuery ? searchKDIGOGuidelines(processedQuery.originalQuery) : [],
-    niddkGuidelines: isGuidelineQuery ? searchNIDDKGuidelines(processedQuery.originalQuery) : [],
-    acgGuidelines: isGuidelineQuery ? searchACGGuidelines(processedQuery.originalQuery) : [],
-    adaGuidelines: isGuidelineQuery ? searchADAGuidelines(processedQuery.originalQuery) : [],
-    endocrineGuidelines: isGuidelineQuery ? searchEndocrineGuidelines(processedQuery.originalQuery) : [],
-    nccnGuidelines: isGuidelineQuery ? searchNCCNGuidelines(processedQuery.originalQuery) : [],
-    idsaGuidelines: isGuidelineQuery ? searchIDSAGuidelines(processedQuery.originalQuery) : [],
-    asaGuidelines: isGuidelineQuery ? searchASAGuidelines(processedQuery.originalQuery) : [],
-    acsTraumaGuidelines: isGuidelineQuery ? searchACSTraumaGuidelines(processedQuery.originalQuery) : [],
+    accGuidelines: shouldSearchGuidelines ? searchACCGuidelines(processedQuery.originalQuery) : [],
+    ahaGuidelines: shouldSearchGuidelines ? searchAHAGuidelines(processedQuery.originalQuery) : [],
+    escGuidelines: shouldSearchGuidelines ? searchESCGuidelines(processedQuery.originalQuery) : [],
+    hfsaGuidelines: shouldSearchGuidelines ? searchHFSAGuidelines(processedQuery.originalQuery) : [],
+    hrsGuidelines: shouldSearchGuidelines ? searchHRSGuidelines(processedQuery.originalQuery) : [],
+    scaiGuidelines: shouldSearchGuidelines ? searchSCAIGuidelines(processedQuery.originalQuery) : [],
+    eactsGuidelines: shouldSearchGuidelines ? searchEACTSGuidelines(processedQuery.originalQuery) : [],
+    atsGuidelines: shouldSearchGuidelines ? searchATSGuidelines(processedQuery.originalQuery) : [],
+    chestGuidelines: shouldSearchGuidelines ? searchCHESTGuidelines(processedQuery.originalQuery) : [],
+    sccmGuidelines: shouldSearchGuidelines ? searchSCCMGuidelines(processedQuery.originalQuery) : [],
+    kdigoGuidelines: shouldSearchGuidelines ? searchKDIGOGuidelines(processedQuery.originalQuery) : [],
+    niddkGuidelines: shouldSearchGuidelines ? searchNIDDKGuidelines(processedQuery.originalQuery) : [],
+    acgGuidelines: shouldSearchGuidelines ? searchACGGuidelines(processedQuery.originalQuery) : [],
+    adaGuidelines: shouldSearchGuidelines ? searchADAGuidelines(processedQuery.originalQuery) : [],
+    endocrineGuidelines: shouldSearchGuidelines ? searchEndocrineGuidelines(processedQuery.originalQuery) : [],
+    nccnGuidelines: shouldSearchGuidelines ? searchNCCNGuidelines(processedQuery.originalQuery) : [],
+    idsaGuidelines: shouldSearchGuidelines ? searchIDSAGuidelines(processedQuery.originalQuery) : [],
+    asaGuidelines: shouldSearchGuidelines ? searchASAGuidelines(processedQuery.originalQuery) : [],
+    acsTraumaGuidelines: shouldSearchGuidelines ? searchACSTraumaGuidelines(processedQuery.originalQuery) : [],
     flashcards: filterRelevantFlashcards(processedQuery, flashcards),
     timestamp: new Date(),
     integrityCheck,
@@ -452,6 +699,7 @@ export interface SynthesizedResponse {
     flashcards: boolean;
   };
   timestamp: Date;
+  guidelineUsageValidation?: GuidelineUsageValidation; // GUARDRAIL #3
 }
 
 /**
@@ -477,14 +725,17 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
     flashcards: false,
   };
   
-  // Priority 1: Guidelines (if guideline query)
-  if (processedQuery.intent === 'guideline' && hasGuidelines(coreKnowledge)) {
+  const hasGuidelinesData = hasGuidelines(coreKnowledge);
+  const hasCoreKnowledgeData = coreKnowledge.merckEntries.length > 0;
+  
+  // Priority 1: Guidelines (if guideline query) - WITH GUARDRAIL #3
+  if (processedQuery.intent === 'guideline' && hasGuidelinesData) {
     responseText = generateGuidelineResponse(coreKnowledge, processedQuery);
     sources.guidelines = true;
     quality += 10;
   }
   // Priority 2: Merck Manual (comprehensive medical knowledge)
-  else if (coreKnowledge.merckEntries.length > 0) {
+  else if (hasCoreKnowledgeData) {
     responseText = generateMerckResponse(coreKnowledge.merckEntries, processedQuery);
     sources.merck = true;
     quality += 15;
@@ -501,17 +752,35 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
     quality -= 20;
   }
   
+  // GUARDRAIL #3: Apply guideline usage rules
+  responseText = applyGuidelineUsageRules(responseText, hasGuidelinesData, hasCoreKnowledgeData);
+  
+  // GUARDRAIL #3: Validate guideline usage
+  const guidelineUsageValidation = validateGuidelineUsage(
+    responseText,
+    hasGuidelinesData,
+    hasCoreKnowledgeData
+  );
+  
+  // Adjust quality based on guideline usage validation
+  if (!guidelineUsageValidation.isValid) {
+    quality -= (100 - guidelineUsageValidation.score) * 0.3; // Penalty for poor guideline usage
+  }
+  
   const response: SynthesizedResponse = {
     text: responseText,
     quality: Math.max(0, Math.min(100, quality)),
     sources,
     timestamp: new Date(),
+    guidelineUsageValidation,
   };
   
   console.log('[VALVE 3] Response synthesized:', {
     quality: response.quality,
     sources: response.sources,
     length: response.text.length,
+    guidelineUsageValid: guidelineUsageValidation.isValid,
+    guidelineUsageScore: guidelineUsageValidation.score,
   });
   
   return response;
@@ -577,23 +846,29 @@ function hasGuidelines(knowledge: CoreKnowledge): boolean {
 }
 
 /**
- * Generate response from guidelines
+ * Generate response from guidelines - WITH GUARDRAIL #3
  */
 function generateGuidelineResponse(knowledge: CoreKnowledge, query: ProcessedQuery): string {
   let response = '**Clinical Practice Guidelines**\n\n';
+  
+  // GUARDRAIL #3: Use proper contextualization phrasing
+  response += '*Based on current guidelines, the following recommendations apply:*\n\n';
   
   // Add guideline information (simplified for now)
   if (knowledge.accGuidelines.length > 0) {
     const guideline = knowledge.accGuidelines[0];
     response += `**${guideline.topic}** (ACC Guidelines)\n\n`;
-    response += `${guideline.guidelineSummary}\n\n`;
+    response += `According to current practice guidelines, ${guideline.guidelineSummary}\n\n`;
   }
   
   if (knowledge.ahaGuidelines.length > 0) {
     const guideline = knowledge.ahaGuidelines[0];
     response += `**${guideline.topic}** (AHA Guidelines)\n\n`;
-    response += `${guideline.guidelineSummary}\n\n`;
+    response += `Current guidelines suggest that ${guideline.guidelineSummary}\n\n`;
   }
+  
+  // GUARDRAIL #3: Add note about guideline contextualization
+  response += '\n*Note: These guidelines provide current, time-sensitive recommendations that contextualize core medical knowledge. They do not replace fundamental medical understanding but rather inform current clinical practice standards.*\n\n';
   
   response += '*For complete guideline details, please see the guideline sections below.*';
   
@@ -695,6 +970,7 @@ export interface RefinedResponse {
   iterations: number;
   improvements: string[];
   timestamp: Date;
+  guidelineUsageValidation?: GuidelineUsageValidation; // GUARDRAIL #3
 }
 
 /**
@@ -729,6 +1005,12 @@ export function refineResponse(synthesizedResponse: SynthesizedResponse): Refine
       quality -= 15;
     }
     
+    // GUARDRAIL #3: Check for prohibited language
+    if (synthesizedResponse.guidelineUsageValidation?.hasProhibitedLanguage) {
+      improvements.push('Contains prohibited language - removed');
+      quality -= 20;
+    }
+    
     // If quality is good enough, break
     if (quality >= 80) {
       break;
@@ -741,6 +1023,7 @@ export function refineResponse(synthesizedResponse: SynthesizedResponse): Refine
     iterations,
     improvements,
     timestamp: new Date(),
+    guidelineUsageValidation: synthesizedResponse.guidelineUsageValidation,
   };
   
   console.log('[REFINEMENT] Refinement complete:', {
@@ -772,6 +1055,7 @@ export interface FinalOutput {
       isValid: boolean;
       warnings: string[];
     };
+    guidelineUsageValidation?: GuidelineUsageValidation; // GUARDRAIL #3
   };
   timestamp: Date;
 }
@@ -808,6 +1092,7 @@ export function generateFinalOutput(
         flashcards: synthesizedData.coreKnowledge.flashcards.length > 0,
       },
       architectureIntegrity,
+      guidelineUsageValidation: refinedResponse.guidelineUsageValidation, // GUARDRAIL #3
     },
     timestamp: new Date(),
   };
@@ -817,6 +1102,7 @@ export function generateFinalOutput(
     processingTime: output.metadata.processingTime,
     bleedingRisk: output.metadata.contentBleedingRisk,
     architectureValid: architectureIntegrity?.isValid,
+    guidelineUsageValid: output.metadata.guidelineUsageValidation?.isValid,
   });
   
   return output;
@@ -833,7 +1119,7 @@ export class SynthesizerEngine {
   private static instance: SynthesizerEngine;
   
   private constructor() {
-    console.log('[SYNTHESIZER ENGINE] Initialized with GUARDRAIL #1: System Architecture Roles');
+    console.log('[SYNTHESIZER ENGINE] Initialized with GUARDRAILS #1, #2, and #3');
   }
   
   static getInstance(): SynthesizerEngine {
@@ -883,50 +1169,88 @@ export class SynthesizerEngine {
   }
   
   /**
-   * Run stress test on the synthesizer engine
+   * Run stress test on the synthesizer engine - WITH GUARDRAIL #3 TESTS
    */
   async runStressTest(): Promise<{
     passed: number;
     failed: number;
     averageQuality: number;
     averageProcessingTime: number;
+    averageGuidelineUsageScore: number;
     results: {
       query: string;
       quality: number;
       processingTime: number;
       bleedingRisk: number;
+      guidelineUsageScore: number;
+      guidelineUsageValid: boolean;
+      hasProhibitedLanguage: boolean;
       passed: boolean;
     }[];
   }> {
-    console.log('[SYNTHESIZER ENGINE] Running stress test...');
+    console.log('[SYNTHESIZER ENGINE] Running comprehensive stress test with GUARDRAIL #3...');
     
     const testQueries = [
+      // Basic queries (no guidelines)
       'What is the pathophysiology of atrial fibrillation?',
       'What are the clinical findings of heart failure?',
       'How do you diagnose myocardial infarction?',
+      
+      // Treatment queries (should consult guidelines)
       'What is the treatment for sepsis?',
+      'What is the first-line therapy for hypertension?',
+      'What is the management of acute stroke?',
+      
+      // Guideline queries (should consult guidelines)
+      'What are the ACC guidelines for heart failure?',
+      'What are the current guidelines for diabetes management?',
+      'What are the latest recommendations for anticoagulation in AFib?',
+      
+      // Conversational queries
       'Hello',
       'Thank you',
-      'What are the ACC guidelines for heart failure?',
+      
+      // Definition queries (should NOT consult guidelines)
+      'What is the definition of diabetes?',
+      'What is the anatomy of the heart?',
+      
+      // Pathophysiology queries (should NOT consult guidelines)
       'What is the pathophysiology of type 1 diabetes?',
-      'What are the symptoms of stroke?',
-      'How do you treat pneumonia?',
+      'What is the mechanism of action of beta blockers?',
     ];
     
     const results = [];
     let totalQuality = 0;
     let totalProcessingTime = 0;
+    let totalGuidelineUsageScore = 0;
+    let guidelineUsageCount = 0;
     
     for (const query of testQueries) {
       const output = await this.processQuery(query, []);
       
-      const passed = output.quality >= 70 && output.metadata.contentBleedingRisk < 50;
+      const guidelineUsageScore = output.metadata.guidelineUsageValidation?.score || 100;
+      const guidelineUsageValid = output.metadata.guidelineUsageValidation?.isValid !== false;
+      const hasProhibitedLanguage = output.metadata.guidelineUsageValidation?.hasProhibitedLanguage || false;
+      
+      if (output.metadata.guidelineUsageValidation) {
+        totalGuidelineUsageScore += guidelineUsageScore;
+        guidelineUsageCount++;
+      }
+      
+      const passed = 
+        output.quality >= 70 &&
+        output.metadata.contentBleedingRisk < 50 &&
+        guidelineUsageValid &&
+        !hasProhibitedLanguage;
       
       results.push({
         query,
         quality: output.quality,
         processingTime: output.metadata.processingTime,
         bleedingRisk: output.metadata.contentBleedingRisk,
+        guidelineUsageScore,
+        guidelineUsageValid,
+        hasProhibitedLanguage,
         passed,
       });
       
@@ -938,12 +1262,14 @@ export class SynthesizerEngine {
     const failed = results.filter(r => !r.passed).length;
     const averageQuality = totalQuality / results.length;
     const averageProcessingTime = totalProcessingTime / results.length;
+    const averageGuidelineUsageScore = guidelineUsageCount > 0 ? totalGuidelineUsageScore / guidelineUsageCount : 100;
     
     console.log('[SYNTHESIZER ENGINE] Stress test complete:', {
       passed,
       failed,
       averageQuality,
       averageProcessingTime,
+      averageGuidelineUsageScore,
     });
     
     return {
@@ -951,6 +1277,7 @@ export class SynthesizerEngine {
       failed,
       averageQuality,
       averageProcessingTime,
+      averageGuidelineUsageScore,
       results,
     };
   }
