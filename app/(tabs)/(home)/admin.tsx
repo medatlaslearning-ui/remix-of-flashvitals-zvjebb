@@ -12,6 +12,7 @@ import SystemHealthMonitor from '@/components/SystemHealthMonitor';
 import SupabaseUsageRulesMonitor from '@/components/SupabaseUsageRulesMonitor';
 import SourceAttributionMonitor from '@/components/SourceAttributionMonitor';
 import { ConsistencyValidationMonitor } from '@/components/ConsistencyValidationMonitor';
+import { FailSafeRulesMonitor } from '@/components/FailSafeRulesMonitor';
 
 export default function AdminScreen() {
   const router = useRouter();
@@ -20,7 +21,7 @@ export default function AdminScreen() {
   const [isEditing, setIsEditing] = useState(false);
   const [testResults, setTestResults] = useState<ReturnType<typeof runKeywordStressTest> | null>(null);
   const [showTestDetails, setShowTestDetails] = useState(false);
-  const [activeTab, setActiveTab] = useState<'overview' | 'health' | 'supabase' | 'attribution' | 'consistency' | 'flashcards'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'health' | 'supabase' | 'attribution' | 'consistency' | 'failsafe' | 'flashcards'>('overview');
 
   // Form state
   const [system, setSystem] = useState('Cardiology');
@@ -203,6 +204,14 @@ export default function AdminScreen() {
           >
             <Text style={[styles.tabText, activeTab === 'consistency' && styles.tabTextActive]}>
               Consistency
+            </Text>
+          </Pressable>
+          <Pressable
+            style={[styles.tab, activeTab === 'failsafe' && styles.tabActive]}
+            onPress={() => setActiveTab('failsafe')}
+          >
+            <Text style={[styles.tabText, activeTab === 'failsafe' && styles.tabTextActive]}>
+              Fail-Safe
             </Text>
           </Pressable>
           <Pressable
@@ -408,6 +417,10 @@ export default function AdminScreen() {
 
           {activeTab === 'consistency' && (
             <ConsistencyValidationMonitor />
+          )}
+
+          {activeTab === 'failsafe' && (
+            <FailSafeRulesMonitor />
           )}
 
           {activeTab === 'flashcards' && (

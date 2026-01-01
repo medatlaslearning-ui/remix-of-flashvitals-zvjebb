@@ -8,10 +8,11 @@
  * GUARDRAIL #4: SYNTHESIS REQUIREMENTS (IMPLEMENTED)
  * GUARDRAIL #6: SOURCE ATTRIBUTION RULES (IMPLEMENTED)
  * GUARDRAIL #7: CONSISTENCY VALIDATION LOGIC (IMPLEMENTED)
+ * GUARDRAIL #8: FAIL-SAFE RULES (IMPLEMENTED)
  * 
  * This engine implements a figure-eight data flow with one-way valves AND
  * enforces strict architectural roles, guideline usage rules, synthesis requirements,
- * source attribution rules, and consistency validation logic:
+ * source attribution rules, consistency validation logic, and fail-safe rules:
  * 
  * • Core Knowledge Engine: READ-ONLY stable medical knowledge
  * • Guideline Website Layer: Runtime consultation (NOT cached)
@@ -122,6 +123,17 @@ import {
   type ConsistencyValidation,
   type GuidelineEntry,
 } from './consistencyValidationLogic';
+import {
+  checkSystemAvailability,
+  assessEvidenceQuality,
+  makeFailSafeDecision,
+  validateFailSafeResponse,
+  applyFailSafeRules,
+  type SystemAvailability,
+  type EvidenceQuality,
+  type FailSafeDecision,
+  type FailSafeValidation,
+} from './failSafeRules';
 
 // ============================================================================
 // GUARDRAIL #3: GUIDELINE USAGE RULES
@@ -719,6 +731,8 @@ export interface CoreKnowledge {
   flashcards: Flashcard[];
   timestamp: Date;
   integrityCheck?: SystemArchitectureIntegrityCheck;
+  systemAvailability?: SystemAvailability; // GUARDRAIL #8
+  evidenceQuality?: EvidenceQuality; // GUARDRAIL #8
 }
 
 /**
@@ -738,6 +752,15 @@ export async function retrieveCoreKnowledge(
     console.error('[VALVE 2] CRITICAL: System architecture integrity check failed!');
     console.error('[VALVE 2] Warnings:', integrityCheck.overallWarnings);
   }
+  
+  // GUARDRAIL #8: Check system availability
+  const systemAvailability = await checkSystemAvailability();
+  
+  console.log('[VALVE 2] System availability:', {
+    internet: systemAvailability.internetAvailable,
+    guidelines: systemAvailability.guidelinesAccessible,
+    coreKnowledge: systemAvailability.coreKnowledgeAvailable,
+  });
   
   // Don't retrieve medical knowledge for conversational queries
   if (processedQuery.isConversational) {
@@ -782,32 +805,106 @@ export async function retrieveCoreKnowledge(
     confidence: consultationDecision.confidence,
   });
   
-  const shouldSearchGuidelines = consultationDecision.shouldConsult;
+  // GUARDRAIL #8: Only search guidelines if system availability allows
+  const shouldSearchGuidelines = 
+    consultationDecision.shouldConsult && 
+    systemAvailability.internetAvailable && 
+    systemAvailability.guidelinesAccessible;
+  
+  if (consultationDecision.shouldConsult && !systemAvailability.internetAvailable) {
+    console.log('[VALVE 2] Guidelines consultation recommended but internet unavailable - falling back to core knowledge');
+  }
+  
+  if (consultationDecision.shouldConsult && !systemAvailability.guidelinesAccessible) {
+    console.log('[VALVE 2] Guidelines consultation recommended but guidelines inaccessible - falling back to core knowledge');
+  }
+  
+  const accGuidelines = shouldSearchGuidelines ? searchACCGuidelines(processedQuery.originalQuery) : [];
+  const ahaGuidelines = shouldSearchGuidelines ? searchAHAGuidelines(processedQuery.originalQuery) : [];
+  const escGuidelines = shouldSearchGuidelines ? searchESCGuidelines(processedQuery.originalQuery) : [];
+  const hfsaGuidelines = shouldSearchGuidelines ? searchHFSAGuidelines(processedQuery.originalQuery) : [];
+  const hrsGuidelines = shouldSearchGuidelines ? searchHRSGuidelines(processedQuery.originalQuery) : [];
+  const scaiGuidelines = shouldSearchGuidelines ? searchSCAIGuidelines(processedQuery.originalQuery) : [];
+  const eactsGuidelines = shouldSearchGuidelines ? searchEACTSGuidelines(processedQuery.originalQuery) : [];
+  const atsGuidelines = shouldSearchGuidelines ? searchATSGuidelines(processedQuery.originalQuery) : [];
+  const chestGuidelines = shouldSearchGuidelines ? searchCHESTGuidelines(processedQuery.originalQuery) : [];
+  const sccmGuidelines = shouldSearchGuidelines ? searchSCCMGuidelines(processedQuery.originalQuery) : [];
+  const kdigoGuidelines = shouldSearchGuidelines ? searchKDIGOGuidelines(processedQuery.originalQuery) : [];
+  const niddkGuidelines = shouldSearchGuidelines ? searchNIDDKGuidelines(processedQuery.originalQuery) : [];
+  const acgGuidelines = shouldSearchGuidelines ? searchACGGuidelines(processedQuery.originalQuery) : [];
+  const adaGuidelines = shouldSearchGuidelines ? searchADAGuidelines(processedQuery.originalQuery) : [];
+  const endocrineGuidelines = shouldSearchGuidelines ? searchEndocrineGuidelines(processedQuery.originalQuery) : [];
+  const nccnGuidelines = shouldSearchGuidelines ? searchNCCNGuidelines(processedQuery.originalQuery) : [];
+  const idsaGuidelines = shouldSearchGuidelines ? searchIDSAGuidelines(processedQuery.originalQuery) : [];
+  const asaGuidelines = shouldSearchGuidelines ? searchASAGuidelines(processedQuery.originalQuery) : [];
+  const acsTraumaGuidelines = shouldSearchGuidelines ? searchACSTraumaGuidelines(processedQuery.originalQuery) : [];
+  
+  // GUARDRAIL #8: Assess evidence quality
+  const allGuidelineTopics = [
+    ...accGuidelines.map(g => g.topic),
+    ...ahaGuidelines.map(g => g.topic),
+    ...escGuidelines.map(g => g.topic),
+    ...hfsaGuidelines.map(g => g.topic),
+    ...hrsGuidelines.map(g => g.topic),
+    ...scaiGuidelines.map(g => g.topic),
+    ...eactsGuidelines.map(g => g.topic),
+    ...atsGuidelines.map(g => g.topic),
+    ...chestGuidelines.map(g => g.topic),
+    ...sccmGuidelines.map(g => g.topic),
+    ...kdigoGuidelines.map(g => g.topic),
+    ...niddkGuidelines.map(g => g.topic),
+    ...acgGuidelines.map(g => g.topic),
+    ...adaGuidelines.map(g => g.topic),
+    ...endocrineGuidelines.map(g => g.topic),
+    ...nccnGuidelines.map(g => g.topic),
+    ...idsaGuidelines.map(g => g.topic),
+    ...asaGuidelines.map(g => g.topic),
+    ...acsTraumaGuidelines.map(g => g.topic),
+  ];
+  
+  const totalGuidelineCount = allGuidelineTopics.length;
+  const coreKnowledgeTopics = merckEntries.map(e => e.topic);
+  
+  const evidenceQuality = assessEvidenceQuality(
+    merckEntries.length,
+    totalGuidelineCount,
+    coreKnowledgeTopics,
+    allGuidelineTopics
+  );
+  
+  console.log('[VALVE 2] Evidence quality:', {
+    isConflicting: evidenceQuality.isConflicting,
+    isUnclear: evidenceQuality.isUnclear,
+    isSufficient: evidenceQuality.isSufficient,
+    confidence: evidenceQuality.confidence,
+  });
   
   const knowledge: CoreKnowledge = {
     merckEntries,
-    accGuidelines: shouldSearchGuidelines ? searchACCGuidelines(processedQuery.originalQuery) : [],
-    ahaGuidelines: shouldSearchGuidelines ? searchAHAGuidelines(processedQuery.originalQuery) : [],
-    escGuidelines: shouldSearchGuidelines ? searchESCGuidelines(processedQuery.originalQuery) : [],
-    hfsaGuidelines: shouldSearchGuidelines ? searchHFSAGuidelines(processedQuery.originalQuery) : [],
-    hrsGuidelines: shouldSearchGuidelines ? searchHRSGuidelines(processedQuery.originalQuery) : [],
-    scaiGuidelines: shouldSearchGuidelines ? searchSCAIGuidelines(processedQuery.originalQuery) : [],
-    eactsGuidelines: shouldSearchGuidelines ? searchEACTSGuidelines(processedQuery.originalQuery) : [],
-    atsGuidelines: shouldSearchGuidelines ? searchATSGuidelines(processedQuery.originalQuery) : [],
-    chestGuidelines: shouldSearchGuidelines ? searchCHESTGuidelines(processedQuery.originalQuery) : [],
-    sccmGuidelines: shouldSearchGuidelines ? searchSCCMGuidelines(processedQuery.originalQuery) : [],
-    kdigoGuidelines: shouldSearchGuidelines ? searchKDIGOGuidelines(processedQuery.originalQuery) : [],
-    niddkGuidelines: shouldSearchGuidelines ? searchNIDDKGuidelines(processedQuery.originalQuery) : [],
-    acgGuidelines: shouldSearchGuidelines ? searchACGGuidelines(processedQuery.originalQuery) : [],
-    adaGuidelines: shouldSearchGuidelines ? searchADAGuidelines(processedQuery.originalQuery) : [],
-    endocrineGuidelines: shouldSearchGuidelines ? searchEndocrineGuidelines(processedQuery.originalQuery) : [],
-    nccnGuidelines: shouldSearchGuidelines ? searchNCCNGuidelines(processedQuery.originalQuery) : [],
-    idsaGuidelines: shouldSearchGuidelines ? searchIDSAGuidelines(processedQuery.originalQuery) : [],
-    asaGuidelines: shouldSearchGuidelines ? searchASAGuidelines(processedQuery.originalQuery) : [],
-    acsTraumaGuidelines: shouldSearchGuidelines ? searchACSTraumaGuidelines(processedQuery.originalQuery) : [],
+    accGuidelines,
+    ahaGuidelines,
+    escGuidelines,
+    hfsaGuidelines,
+    hrsGuidelines,
+    scaiGuidelines,
+    eactsGuidelines,
+    atsGuidelines,
+    chestGuidelines,
+    sccmGuidelines,
+    kdigoGuidelines,
+    niddkGuidelines,
+    acgGuidelines,
+    adaGuidelines,
+    endocrineGuidelines,
+    nccnGuidelines,
+    idsaGuidelines,
+    asaGuidelines,
+    acsTraumaGuidelines,
     flashcards: filterRelevantFlashcards(processedQuery, flashcards),
     timestamp: new Date(),
     integrityCheck,
+    systemAvailability, // GUARDRAIL #8
+    evidenceQuality, // GUARDRAIL #8
   };
   
   console.log('[VALVE 2] Retrieved knowledge:', {
@@ -962,6 +1059,8 @@ export interface SynthesizedResponse {
   sourceAttributionValidation?: AttributionValidation; // GUARDRAIL #6
   consistencyValidation?: ConsistencyValidation; // GUARDRAIL #7
   consistencyAssessments?: ConsistencyAssessment[]; // GUARDRAIL #7
+  failSafeDecision?: FailSafeDecision; // GUARDRAIL #8
+  failSafeValidation?: FailSafeValidation; // GUARDRAIL #8
 }
 
 /**
@@ -972,6 +1071,30 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
   console.log('[VALVE 3] Synthesizing response');
   
   const { processedQuery, coreKnowledge } = synthesizedData;
+  
+  // GUARDRAIL #8: Make fail-safe decision
+  const failSafeDecision = makeFailSafeDecision(
+    coreKnowledge.systemAvailability || {
+      internetAvailable: true,
+      guidelinesAccessible: true,
+      coreKnowledgeAvailable: true,
+      timestamp: new Date(),
+    },
+    coreKnowledge.evidenceQuality || {
+      isConflicting: false,
+      isUnclear: false,
+      isSufficient: true,
+      conflictingAreas: [],
+      unclearAreas: [],
+      confidence: 100,
+    }
+  );
+  
+  console.log('[VALVE 3] Fail-safe decision:', {
+    shouldFallback: failSafeDecision.shouldFallback,
+    mode: failSafeDecision.mode,
+    confidence: failSafeDecision.confidence,
+  });
   
   // Handle conversational queries
   if (processedQuery.isConversational) {
@@ -1084,6 +1207,9 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
     hasCoreKnowledgeData
   );
   
+  // GUARDRAIL #8: Apply fail-safe rules
+  responseText = applyFailSafeRules(responseText, failSafeDecision);
+  
   // GUARDRAIL #3: Validate guideline usage
   const guidelineUsageValidation = validateGuidelineUsage(
     responseText,
@@ -1111,6 +1237,9 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
     consistencyAssessments
   );
   
+  // GUARDRAIL #8: Validate fail-safe response
+  const failSafeValidation = validateFailSafeResponse(responseText, failSafeDecision);
+  
   // Adjust quality based on validations
   if (!guidelineUsageValidation.isValid) {
     quality -= (100 - guidelineUsageValidation.score) * 0.3;
@@ -1128,6 +1257,10 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
     quality -= (100 - consistencyValidation.score) * 0.2;
   }
   
+  if (!failSafeValidation.isValid) {
+    quality -= (100 - failSafeValidation.score) * 0.3;
+  }
+  
   const response: SynthesizedResponse = {
     text: responseText,
     quality: Math.max(0, Math.min(100, quality)),
@@ -1139,6 +1272,8 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
     sourceAttributionValidation,
     consistencyValidation,
     consistencyAssessments,
+    failSafeDecision, // GUARDRAIL #8
+    failSafeValidation, // GUARDRAIL #8
   };
   
   console.log('[VALVE 3] Response synthesized:', {
@@ -1154,6 +1289,9 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
     sourceAttributionScore: sourceAttributionValidation.score,
     consistencyValid: consistencyValidation.isValid,
     consistencyScore: consistencyValidation.score,
+    failSafeValid: failSafeValidation.isValid,
+    failSafeScore: failSafeValidation.score,
+    failSafeMode: failSafeDecision.mode,
   });
   
   return response;
@@ -1364,6 +1502,7 @@ export interface RefinedResponse {
   synthesisRequirementsValidation?: SynthesisRequirementsValidation; // GUARDRAIL #4
   sourceAttributionValidation?: AttributionValidation; // GUARDRAIL #6
   consistencyValidation?: ConsistencyValidation; // GUARDRAIL #7
+  failSafeValidation?: FailSafeValidation; // GUARDRAIL #8
 }
 
 /**
@@ -1429,6 +1568,17 @@ export function refineResponse(synthesizedResponse: SynthesizedResponse): Refine
       quality -= 15;
     }
     
+    // GUARDRAIL #8: Check for fail-safe compliance
+    if (synthesizedResponse.failSafeValidation && !synthesizedResponse.failSafeValidation.hasTransparentLimitations) {
+      improvements.push('Missing transparent limitations in degraded mode');
+      quality -= 20;
+    }
+    
+    if (synthesizedResponse.failSafeValidation && !synthesizedResponse.failSafeValidation.avoidsDefinitiveClaims) {
+      improvements.push('Contains definitive claims in degraded mode');
+      quality -= 25;
+    }
+    
     // If quality is good enough, break
     if (quality >= 80) {
       break;
@@ -1445,6 +1595,7 @@ export function refineResponse(synthesizedResponse: SynthesizedResponse): Refine
     synthesisRequirementsValidation: synthesizedResponse.synthesisRequirementsValidation,
     sourceAttributionValidation: synthesizedResponse.sourceAttributionValidation,
     consistencyValidation: synthesizedResponse.consistencyValidation,
+    failSafeValidation: synthesizedResponse.failSafeValidation, // GUARDRAIL #8
   };
   
   console.log('[REFINEMENT] Refinement complete:', {
@@ -1481,6 +1632,8 @@ export interface FinalOutput {
     synthesisRequirementsValidation?: SynthesisRequirementsValidation; // GUARDRAIL #4
     sourceAttributionValidation?: AttributionValidation; // GUARDRAIL #6
     consistencyValidation?: ConsistencyValidation; // GUARDRAIL #7
+    failSafeValidation?: FailSafeValidation; // GUARDRAIL #8
+    failSafeDecision?: FailSafeDecision; // GUARDRAIL #8
   };
   timestamp: Date;
 }
@@ -1519,6 +1672,8 @@ export function generateFinalOutput(
       synthesisRequirementsValidation: refinedResponse.synthesisRequirementsValidation, // GUARDRAIL #4
       sourceAttributionValidation: refinedResponse.sourceAttributionValidation, // GUARDRAIL #6
       consistencyValidation: refinedResponse.consistencyValidation, // GUARDRAIL #7
+      failSafeValidation: refinedResponse.failSafeValidation, // GUARDRAIL #8
+      failSafeDecision: synthesizedResponse.failSafeDecision, // GUARDRAIL #8
     },
     timestamp: new Date(),
   };
@@ -1533,6 +1688,8 @@ export function generateFinalOutput(
     synthesisRequirementsValid: output.metadata.synthesisRequirementsValidation?.isValid,
     sourceAttributionValid: output.metadata.sourceAttributionValidation?.isValid,
     consistencyValid: output.metadata.consistencyValidation?.isValid,
+    failSafeValid: output.metadata.failSafeValidation?.isValid,
+    failSafeMode: output.metadata.failSafeDecision?.mode,
   });
   
   return output;
@@ -1549,7 +1706,7 @@ export class SynthesizerEngine {
   private static instance: SynthesizerEngine;
   
   private constructor() {
-    console.log('[SYNTHESIZER ENGINE] Initialized with GUARDRAILS #1, #2, #3, #4, and #6');
+    console.log('[SYNTHESIZER ENGINE] Initialized with GUARDRAILS #1, #2, #3, #4, #6, #7, and #8');
   }
   
   static getInstance(): SynthesizerEngine {
@@ -1599,7 +1756,7 @@ export class SynthesizerEngine {
   }
   
   /**
-   * Run stress test on the synthesizer engine - WITH GUARDRAILS #3, #4, #6, and #7 TESTS
+   * Run stress test on the synthesizer engine - WITH GUARDRAILS #3, #4, #6, #7, and #8 TESTS
    */
   async runStressTest(): Promise<{
     passed: number;
@@ -1610,6 +1767,7 @@ export class SynthesizerEngine {
     averageSynthesisRequirementsScore: number;
     averageSourceAttributionScore: number;
     averageConsistencyScore: number;
+    averageFailSafeScore: number;
     results: {
       query: string;
       quality: number;
@@ -1629,10 +1787,13 @@ export class SynthesizerEngine {
       consistencyScore: number;
       consistencyValid: boolean;
       hasConsistencyCheck: boolean;
+      failSafeScore: number;
+      failSafeValid: boolean;
+      failSafeMode: string;
       passed: boolean;
     }[];
   }> {
-    console.log('[SYNTHESIZER ENGINE] Running comprehensive stress test with GUARDRAILS #3, #4, #6, and #7...');
+    console.log('[SYNTHESIZER ENGINE] Running comprehensive stress test with GUARDRAILS #3, #4, #6, #7, and #8...');
     
     const testQueries = [
       // Basic queries (no guidelines)
@@ -1674,10 +1835,12 @@ export class SynthesizerEngine {
     let totalSynthesisRequirementsScore = 0;
     let totalSourceAttributionScore = 0;
     let totalConsistencyScore = 0;
+    let totalFailSafeScore = 0;
     let guidelineUsageCount = 0;
     let synthesisRequirementsCount = 0;
     let sourceAttributionCount = 0;
     let consistencyCount = 0;
+    let failSafeCount = 0;
     
     for (const query of testQueries) {
       const output = await this.processQuery(query, []);
@@ -1699,6 +1862,10 @@ export class SynthesizerEngine {
       const consistencyValid = output.metadata.consistencyValidation?.isValid !== false;
       const hasConsistencyCheck = output.metadata.consistencyValidation?.hasConsistencyCheck !== false;
       
+      const failSafeScore = output.metadata.failSafeValidation?.score || 100;
+      const failSafeValid = output.metadata.failSafeValidation?.isValid !== false;
+      const failSafeMode = output.metadata.failSafeDecision?.mode || 'full';
+      
       if (output.metadata.guidelineUsageValidation) {
         totalGuidelineUsageScore += guidelineUsageScore;
         guidelineUsageCount++;
@@ -1719,6 +1886,11 @@ export class SynthesizerEngine {
         consistencyCount++;
       }
       
+      if (output.metadata.failSafeValidation) {
+        totalFailSafeScore += failSafeScore;
+        failSafeCount++;
+      }
+      
       const passed = 
         output.quality >= 70 &&
         output.metadata.contentBleedingRisk < 50 &&
@@ -1730,7 +1902,8 @@ export class SynthesizerEngine {
         sourceAttributionValid &&
         hasProperAttribution &&
         consistencyValid &&
-        hasConsistencyCheck;
+        hasConsistencyCheck &&
+        failSafeValid;
       
       results.push({
         query,
@@ -1751,6 +1924,9 @@ export class SynthesizerEngine {
         consistencyScore,
         consistencyValid,
         hasConsistencyCheck,
+        failSafeScore,
+        failSafeValid,
+        failSafeMode,
         passed,
       });
       
@@ -1766,6 +1942,7 @@ export class SynthesizerEngine {
     const averageSynthesisRequirementsScore = synthesisRequirementsCount > 0 ? totalSynthesisRequirementsScore / synthesisRequirementsCount : 100;
     const averageSourceAttributionScore = sourceAttributionCount > 0 ? totalSourceAttributionScore / sourceAttributionCount : 100;
     const averageConsistencyScore = consistencyCount > 0 ? totalConsistencyScore / consistencyCount : 100;
+    const averageFailSafeScore = failSafeCount > 0 ? totalFailSafeScore / failSafeCount : 100;
     
     console.log('[SYNTHESIZER ENGINE] Stress test complete:', {
       passed,
@@ -1776,6 +1953,7 @@ export class SynthesizerEngine {
       averageSynthesisRequirementsScore,
       averageSourceAttributionScore,
       averageConsistencyScore,
+      averageFailSafeScore,
     });
     
     return {
@@ -1787,6 +1965,7 @@ export class SynthesizerEngine {
       averageSynthesisRequirementsScore,
       averageSourceAttributionScore,
       averageConsistencyScore,
+      averageFailSafeScore,
       results,
     };
   }
