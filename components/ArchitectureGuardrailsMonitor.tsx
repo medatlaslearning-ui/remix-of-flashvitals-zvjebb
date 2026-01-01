@@ -18,6 +18,7 @@ export default function ArchitectureGuardrailsMonitor() {
   const [expandedGuardrail1, setExpandedGuardrail1] = useState(false);
   const [expandedGuardrail2, setExpandedGuardrail2] = useState(false);
   const [expandedGuardrail3, setExpandedGuardrail3] = useState(false);
+  const [expandedGuardrail4, setExpandedGuardrail4] = useState(false);
 
   useEffect(() => {
     runIntegrityCheck();
@@ -68,6 +69,11 @@ export default function ArchitectureGuardrailsMonitor() {
   const toggleGuardrail3 = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     setExpandedGuardrail3(!expandedGuardrail3);
+  };
+
+  const toggleGuardrail4 = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    setExpandedGuardrail4(!expandedGuardrail4);
   };
 
   if (isLoading && !integrityCheck) {
@@ -315,7 +321,89 @@ export default function ArchitectureGuardrailsMonitor() {
 
             {stressTestResults && (
               <View style={styles.section}>
-                <Text style={styles.sectionTitle}>🧪 Stress Test Results</Text>
+                <Text style={styles.sectionTitle}>🧪 Guideline Usage Test Results</Text>
+                <View style={styles.metric}>
+                  <Text style={styles.metricLabel}>Avg Guideline Usage Score:</Text>
+                  <Text style={[
+                    styles.metricValue,
+                    stressTestResults.averageGuidelineUsageScore >= 80 ? styles.metricGood :
+                    stressTestResults.averageGuidelineUsageScore >= 60 ? styles.metricWarning :
+                    styles.metricBad
+                  ]}>
+                    {Math.round(stressTestResults.averageGuidelineUsageScore)}%
+                  </Text>
+                </View>
+              </View>
+            )}
+          </View>
+        )}
+      </View>
+
+      {/* Guardrail #4: Synthesis Requirements */}
+      <View style={styles.guardrailCard}>
+        <Pressable style={styles.guardrailHeader} onPress={toggleGuardrail4}>
+          <View style={styles.guardrailHeaderLeft}>
+            <IconSymbol
+              ios_icon_name={stressTestResults ? 'checkmark.circle.fill' : 'circle'}
+              android_material_icon_name={stressTestResults ? 'check_circle' : 'circle'}
+              size={20}
+              color={stressTestResults ? '#27AE60' : colors.textSecondary}
+            />
+            <Text style={styles.guardrailTitle}>Guardrail #4: Synthesis Requirements</Text>
+          </View>
+          <IconSymbol
+            ios_icon_name={expandedGuardrail4 ? 'chevron.up' : 'chevron.down'}
+            android_material_icon_name={expandedGuardrail4 ? 'expand_less' : 'expand_more'}
+            size={20}
+            color={colors.textSecondary}
+          />
+        </Pressable>
+
+        {expandedGuardrail4 && (
+          <View style={styles.guardrailContent}>
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>✍️ Synthesis Principles</Text>
+              <Text style={styles.infoText}>
+                • All responses must be written in original language
+              </Text>
+              <Text style={styles.infoText}>
+                • Do NOT copy or closely paraphrase source text
+              </Text>
+              <Text style={styles.infoText}>
+                • Do NOT reproduce tables, algorithms, or figures
+              </Text>
+              <Text style={styles.infoText}>
+                • Summarize concepts at an educational level
+              </Text>
+              <Text style={styles.infoText}>
+                • Always prioritize clarity and teaching value
+              </Text>
+            </View>
+
+            <View style={styles.infoBox}>
+              <Text style={styles.infoTitle}>⚠️ Uncertainty Handling:</Text>
+              <Text style={styles.infoText}>
+                • Explicitly state uncertainty when evidence is insufficient
+              </Text>
+              <Text style={styles.infoText}>
+                • Say: &quot;There is insufficient evidence in the approved sources to answer this definitively.&quot;
+              </Text>
+              <Text style={styles.infoText}>
+                • Do NOT speculate or extrapolate
+              </Text>
+            </View>
+
+            <View style={styles.infoBox}>
+              <Text style={styles.infoTitle}>❌ Prohibited Practices:</Text>
+              <Text style={styles.infoText}>- Direct copying from source text</Text>
+              <Text style={styles.infoText}>- Reproducing tables or algorithms</Text>
+              <Text style={styles.infoText}>- Including figure references</Text>
+              <Text style={styles.infoText}>- Speculation when evidence is lacking</Text>
+            </View>
+
+            {stressTestResults && (
+              <View style={styles.section}>
+                <Text style={styles.sectionTitle}>🧪 Synthesis Requirements Test Results</Text>
                 <View style={styles.metric}>
                   <Text style={styles.metricLabel}>Tests Passed:</Text>
                   <Text style={[styles.metricValue, styles.metricGood]}>
@@ -343,14 +431,14 @@ export default function ArchitectureGuardrailsMonitor() {
                   </Text>
                 </View>
                 <View style={styles.metric}>
-                  <Text style={styles.metricLabel}>Avg Guideline Usage Score:</Text>
+                  <Text style={styles.metricLabel}>Avg Synthesis Score:</Text>
                   <Text style={[
                     styles.metricValue,
-                    stressTestResults.averageGuidelineUsageScore >= 80 ? styles.metricGood :
-                    stressTestResults.averageGuidelineUsageScore >= 60 ? styles.metricWarning :
+                    stressTestResults.averageSynthesisRequirementsScore >= 80 ? styles.metricGood :
+                    stressTestResults.averageSynthesisRequirementsScore >= 60 ? styles.metricWarning :
                     styles.metricBad
                   ]}>
-                    {Math.round(stressTestResults.averageGuidelineUsageScore)}%
+                    {Math.round(stressTestResults.averageSynthesisRequirementsScore)}%
                   </Text>
                 </View>
                 <View style={styles.metric}>

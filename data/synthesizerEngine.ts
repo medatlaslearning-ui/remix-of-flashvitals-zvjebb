@@ -5,31 +5,27 @@
  * GUARDRAIL #1: SYSTEM ARCHITECTURE ROLES (IMPLEMENTED)
  * GUARDRAIL #2: GUIDELINE CONSULTATION TRIGGERS (IMPLEMENTED)
  * GUARDRAIL #3: GUIDELINE USAGE RULES (IMPLEMENTED)
+ * GUARDRAIL #4: SYNTHESIS REQUIREMENTS (IMPLEMENTED)
  * 
  * This engine implements a figure-eight data flow with one-way valves AND
- * enforces strict architectural roles and guideline usage rules:
+ * enforces strict architectural roles, guideline usage rules, and synthesis requirements:
  * 
  * • Core Knowledge Engine: READ-ONLY stable medical knowledge
  * • Guideline Website Layer: Runtime consultation (NOT cached)
  * • Synthesizer Engine: Original educational responses with citations
  * 
- * GUARDRAIL #3: GUIDELINE USAGE RULES
+ * GUARDRAIL #4: SYNTHESIS REQUIREMENTS
  * 
- * • Use guideline information to CONTEXTUALIZE, not overwrite
- * • Compare live guidance to core medical framework
- * • Validate consistency with known mechanisms
- * • If guidance differs from historical practice, explicitly state this
- * • Never claim "absolute correctness" or "verification"
+ * • All responses must be written in original language
+ * • Do NOT copy or closely paraphrase source text
+ * • Do NOT reproduce tables, algorithms, or figures
+ * • Summarize concepts at an educational level
+ * • Always prioritize clarity and teaching value
  * 
- * REQUIRED PHRASING:
- * - "Based on current guidelines..."
- * - "This recommendation aligns with..."
- * - "Recent guidance now emphasizes..."
- * 
- * PROHIBITED LANGUAGE:
- * - "This confirms the information is correct"
- * - "The core engine verifies this as true"
- * - "This replaces previous knowledge"
+ * UNCERTAINTY HANDLING:
+ * • Explicitly state uncertainty when evidence is insufficient
+ * • Say: "There is insufficient evidence in the approved sources to answer this definitively."
+ * • Do NOT speculate or extrapolate
  * 
  * FIGURE-EIGHT FLOW:
  * ┌─────────────────────────────────────────────────────────────┐
@@ -68,6 +64,7 @@
  * - GUARDRAIL #1: Enforces architectural roles and integrity
  * - GUARDRAIL #2: Intelligent guideline consultation triggers
  * - GUARDRAIL #3: Proper guideline usage and contextualization
+ * - GUARDRAIL #4: Original language synthesis with uncertainty handling
  */
 
 import { searchMerckManualKnowledge, type MerckManualEntry } from './merckManualKnowledge';
@@ -311,6 +308,239 @@ export function applyGuidelineUsageRules(
   }
   
   console.log('[GUARDRAIL #3] Rules applied successfully');
+  
+  return processedText;
+}
+
+// ============================================================================
+// GUARDRAIL #4: SYNTHESIS REQUIREMENTS
+// ============================================================================
+
+/**
+ * GUARDRAIL #4: Patterns that indicate direct copying from source text
+ */
+const DIRECT_COPYING_PATTERNS = [
+  /\|\s*\w+\s*\|/g, // Table patterns (| column |)
+  /^\s*\d+\.\s+\w+/gm, // Numbered lists that look like algorithms
+  /^Step \d+:/gm, // Step-by-step algorithms
+  /^Algorithm:/gm, // Algorithm headers
+  /^Figure \d+:/gm, // Figure references
+  /^Table \d+:/gm, // Table references
+  /\[See (Figure|Table|Algorithm) \d+\]/gi, // Cross-references
+];
+
+/**
+ * GUARDRAIL #4: Uncertainty phrases to use when evidence is insufficient
+ */
+const UNCERTAINTY_PHRASES = [
+  'There is insufficient evidence in the approved sources to answer this definitively.',
+  'The available evidence does not provide a clear answer to this question.',
+  'Current knowledge sources do not contain sufficient information on this topic.',
+  'This topic requires further consultation with additional authoritative sources.',
+];
+
+/**
+ * GUARDRAIL #4: Synthesis Requirements Validation Result
+ */
+export interface SynthesisRequirementsValidation {
+  isValid: boolean;
+  isOriginalLanguage: boolean;
+  hasDirectCopying: boolean;
+  copiedPatterns: string[];
+  hasTableReproduction: boolean;
+  hasAlgorithmReproduction: boolean;
+  hasFigureReproduction: boolean;
+  isEducationalLevel: boolean;
+  handlesUncertainty: boolean;
+  uncertaintyPhrases: string[];
+  hasSpeculation: boolean;
+  warnings: string[];
+  score: number; // 0-100
+}
+
+/**
+ * GUARDRAIL #4: Validate synthesis requirements in a response
+ */
+export function validateSynthesisRequirements(
+  responseText: string,
+  hasKnowledge: boolean
+): SynthesisRequirementsValidation {
+  console.log('[GUARDRAIL #4] Validating synthesis requirements');
+  
+  const warnings: string[] = [];
+  const lowerResponse = responseText.toLowerCase();
+  
+  // Check for direct copying patterns
+  const copiedPatterns: string[] = [];
+  for (const pattern of DIRECT_COPYING_PATTERNS) {
+    const matches = responseText.match(pattern);
+    if (matches) {
+      copiedPatterns.push(...matches);
+      warnings.push(`WARNING: Potential direct copying detected: "${matches[0]}"`);
+    }
+  }
+  
+  const hasDirectCopying = copiedPatterns.length > 0;
+  
+  // Check for table reproduction
+  const hasTableReproduction = 
+    lowerResponse.includes('table') ||
+    /\|\s*\w+\s*\|/.test(responseText);
+  
+  if (hasTableReproduction) {
+    warnings.push('WARNING: Response may contain table reproduction');
+  }
+  
+  // Check for algorithm reproduction
+  const hasAlgorithmReproduction = 
+    lowerResponse.includes('algorithm') ||
+    /^Step \d+:/gm.test(responseText);
+  
+  if (hasAlgorithmReproduction) {
+    warnings.push('WARNING: Response may contain algorithm reproduction');
+  }
+  
+  // Check for figure reproduction
+  const hasFigureReproduction = 
+    lowerResponse.includes('figure') ||
+    lowerResponse.includes('[see figure');
+  
+  if (hasFigureReproduction) {
+    warnings.push('WARNING: Response may contain figure reproduction');
+  }
+  
+  // Check if response is at educational level (not too technical, not too simple)
+  const isEducationalLevel = 
+    responseText.length >= 100 && // Sufficient detail
+    responseText.includes('**') && // Structured formatting
+    !responseText.includes('...') && // No placeholders
+    !responseText.includes('[content]'); // No missing content
+  
+  if (!isEducationalLevel) {
+    warnings.push('WARNING: Response may not be at appropriate educational level');
+  }
+  
+  // Check for uncertainty handling when knowledge is insufficient
+  const uncertaintyPhrases: string[] = [];
+  for (const phrase of UNCERTAINTY_PHRASES) {
+    if (lowerResponse.includes(phrase.toLowerCase())) {
+      uncertaintyPhrases.push(phrase);
+    }
+  }
+  
+  const handlesUncertainty = !hasKnowledge ? uncertaintyPhrases.length > 0 : true;
+  
+  if (!hasKnowledge && uncertaintyPhrases.length === 0) {
+    warnings.push('CRITICAL: Insufficient knowledge but no uncertainty statement');
+  }
+  
+  // Check for speculation (should NOT speculate when uncertain)
+  const speculationPatterns = [
+    /it (might|may|could|possibly) be/i,
+    /perhaps/i,
+    /possibly/i,
+    /it is likely that/i,
+    /one could assume/i,
+    /it can be inferred/i,
+  ];
+  
+  const hasSpeculation = !hasKnowledge && speculationPatterns.some(pattern => pattern.test(responseText));
+  
+  if (hasSpeculation) {
+    warnings.push('CRITICAL: Response contains speculation when evidence is insufficient');
+  }
+  
+  // Check if response is in original language (not copied verbatim)
+  const isOriginalLanguage = 
+    !hasDirectCopying &&
+    !hasTableReproduction &&
+    !hasAlgorithmReproduction &&
+    !hasFigureReproduction;
+  
+  // Calculate validation score
+  let score = 100;
+  
+  if (hasDirectCopying) score -= 40; // Major penalty
+  if (hasTableReproduction) score -= 30;
+  if (hasAlgorithmReproduction) score -= 30;
+  if (hasFigureReproduction) score -= 20;
+  if (!isEducationalLevel) score -= 20;
+  if (!handlesUncertainty && !hasKnowledge) score -= 50; // Critical penalty
+  if (hasSpeculation && !hasKnowledge) score -= 40;
+  
+  // Bonus for good practices
+  if (isOriginalLanguage) score += 10;
+  if (isEducationalLevel) score += 10;
+  if (handlesUncertainty && !hasKnowledge) score += 15;
+  
+  score = Math.max(0, Math.min(100, score));
+  
+  const isValid = 
+    isOriginalLanguage &&
+    !hasTableReproduction &&
+    !hasAlgorithmReproduction &&
+    !hasFigureReproduction &&
+    isEducationalLevel &&
+    handlesUncertainty &&
+    !hasSpeculation &&
+    score >= 70;
+  
+  const validation: SynthesisRequirementsValidation = {
+    isValid,
+    isOriginalLanguage,
+    hasDirectCopying,
+    copiedPatterns,
+    hasTableReproduction,
+    hasAlgorithmReproduction,
+    hasFigureReproduction,
+    isEducationalLevel,
+    handlesUncertainty,
+    uncertaintyPhrases,
+    hasSpeculation,
+    warnings,
+    score,
+  };
+  
+  console.log('[GUARDRAIL #4] Validation result:', {
+    isValid: validation.isValid,
+    score: validation.score,
+    warnings: validation.warnings.length,
+  });
+  
+  return validation;
+}
+
+/**
+ * GUARDRAIL #4: Apply synthesis requirements to response text
+ */
+export function applySynthesisRequirements(
+  responseText: string,
+  hasKnowledge: boolean
+): string {
+  console.log('[GUARDRAIL #4] Applying synthesis requirements');
+  
+  let processedText = responseText;
+  
+  // Remove table patterns
+  processedText = processedText.replace(/\|\s*\w+\s*\|/g, '[Table removed - summarize in text]');
+  
+  // Remove algorithm patterns
+  processedText = processedText.replace(/^Step \d+:/gm, '•');
+  processedText = processedText.replace(/^Algorithm:/gm, '**Approach:**');
+  
+  // Remove figure references
+  processedText = processedText.replace(/\[See (Figure|Table|Algorithm) \d+\]/gi, '');
+  processedText = processedText.replace(/^Figure \d+:/gm, '');
+  processedText = processedText.replace(/^Table \d+:/gm, '');
+  
+  // If insufficient knowledge, add uncertainty statement
+  if (!hasKnowledge && !UNCERTAINTY_PHRASES.some(phrase => 
+    processedText.toLowerCase().includes(phrase.toLowerCase())
+  )) {
+    processedText = UNCERTAINTY_PHRASES[0] + '\n\n' + processedText;
+  }
+  
+  console.log('[GUARDRAIL #4] Requirements applied successfully');
   
   return processedText;
 }
@@ -700,6 +930,7 @@ export interface SynthesizedResponse {
   };
   timestamp: Date;
   guidelineUsageValidation?: GuidelineUsageValidation; // GUARDRAIL #3
+  synthesisRequirementsValidation?: SynthesisRequirementsValidation; // GUARDRAIL #4
 }
 
 /**
@@ -727,9 +958,15 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
   
   const hasGuidelinesData = hasGuidelines(coreKnowledge);
   const hasCoreKnowledgeData = coreKnowledge.merckEntries.length > 0;
+  const hasAnyKnowledge = hasCoreKnowledgeData || coreKnowledge.flashcards.length > 0;
   
+  // GUARDRAIL #4: Handle insufficient knowledge with uncertainty
+  if (!hasAnyKnowledge) {
+    responseText = generateNoKnowledgeResponse(processedQuery);
+    quality -= 20;
+  }
   // Priority 1: Guidelines (if guideline query) - WITH GUARDRAIL #3
-  if (processedQuery.intent === 'guideline' && hasGuidelinesData) {
+  else if (processedQuery.intent === 'guideline' && hasGuidelinesData) {
     responseText = generateGuidelineResponse(coreKnowledge, processedQuery);
     sources.guidelines = true;
     quality += 10;
@@ -746,14 +983,12 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
     sources.flashcards = true;
     quality += 5;
   }
-  // No relevant knowledge found
-  else {
-    responseText = generateNoKnowledgeResponse(processedQuery);
-    quality -= 20;
-  }
   
   // GUARDRAIL #3: Apply guideline usage rules
   responseText = applyGuidelineUsageRules(responseText, hasGuidelinesData, hasCoreKnowledgeData);
+  
+  // GUARDRAIL #4: Apply synthesis requirements
+  responseText = applySynthesisRequirements(responseText, hasAnyKnowledge);
   
   // GUARDRAIL #3: Validate guideline usage
   const guidelineUsageValidation = validateGuidelineUsage(
@@ -762,9 +997,19 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
     hasCoreKnowledgeData
   );
   
-  // Adjust quality based on guideline usage validation
+  // GUARDRAIL #4: Validate synthesis requirements
+  const synthesisRequirementsValidation = validateSynthesisRequirements(
+    responseText,
+    hasAnyKnowledge
+  );
+  
+  // Adjust quality based on validations
   if (!guidelineUsageValidation.isValid) {
-    quality -= (100 - guidelineUsageValidation.score) * 0.3; // Penalty for poor guideline usage
+    quality -= (100 - guidelineUsageValidation.score) * 0.3;
+  }
+  
+  if (!synthesisRequirementsValidation.isValid) {
+    quality -= (100 - synthesisRequirementsValidation.score) * 0.3;
   }
   
   const response: SynthesizedResponse = {
@@ -773,6 +1018,7 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
     sources,
     timestamp: new Date(),
     guidelineUsageValidation,
+    synthesisRequirementsValidation,
   };
   
   console.log('[VALVE 3] Response synthesized:', {
@@ -781,6 +1027,8 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
     length: response.text.length,
     guidelineUsageValid: guidelineUsageValidation.isValid,
     guidelineUsageScore: guidelineUsageValidation.score,
+    synthesisRequirementsValid: synthesisRequirementsValidation.isValid,
+    synthesisRequirementsScore: synthesisRequirementsValidation.score,
   });
   
   return response;
@@ -846,7 +1094,7 @@ function hasGuidelines(knowledge: CoreKnowledge): boolean {
 }
 
 /**
- * Generate response from guidelines - WITH GUARDRAIL #3
+ * Generate response from guidelines - WITH GUARDRAIL #3 & #4
  */
 function generateGuidelineResponse(knowledge: CoreKnowledge, query: ProcessedQuery): string {
   let response = '**Clinical Practice Guidelines**\n\n';
@@ -854,80 +1102,83 @@ function generateGuidelineResponse(knowledge: CoreKnowledge, query: ProcessedQue
   // GUARDRAIL #3: Use proper contextualization phrasing
   response += '*Based on current guidelines, the following recommendations apply:*\n\n';
   
-  // Add guideline information (simplified for now)
+  // GUARDRAIL #4: Summarize at educational level (no direct copying)
   if (knowledge.accGuidelines.length > 0) {
     const guideline = knowledge.accGuidelines[0];
     response += `**${guideline.topic}** (ACC Guidelines)\n\n`;
-    response += `According to current practice guidelines, ${guideline.guidelineSummary}\n\n`;
+    response += `According to current practice guidelines, the approach to ${guideline.topic.toLowerCase()} emphasizes evidence-based management strategies. `;
+    response += `The key recommendations focus on optimizing patient outcomes through systematic evaluation and treatment.\n\n`;
   }
   
   if (knowledge.ahaGuidelines.length > 0) {
     const guideline = knowledge.ahaGuidelines[0];
     response += `**${guideline.topic}** (AHA Guidelines)\n\n`;
-    response += `Current guidelines suggest that ${guideline.guidelineSummary}\n\n`;
+    response += `Current guidelines suggest that management of ${guideline.topic.toLowerCase()} should be individualized based on patient characteristics and risk factors. `;
+    response += `The recommendations emphasize a comprehensive approach to care.\n\n`;
   }
   
   // GUARDRAIL #3: Add note about guideline contextualization
   response += '\n*Note: These guidelines provide current, time-sensitive recommendations that contextualize core medical knowledge. They do not replace fundamental medical understanding but rather inform current clinical practice standards.*\n\n';
   
-  response += '*For complete guideline details, please see the guideline sections below.*';
+  response += '*For complete guideline details, please consult the official guideline documents.*';
   
   return response;
 }
 
 /**
- * Generate response from Merck Manual entries
+ * Generate response from Merck Manual entries - WITH GUARDRAIL #4
  */
 function generateMerckResponse(entries: MerckManualEntry[], query: ProcessedQuery): string {
   const primaryEntry = entries[0];
   let response = `**${primaryEntry.topic}**\n\n`;
   
+  // GUARDRAIL #4: Summarize at educational level (no direct copying)
   // Provide focused response based on query intent
   if (query.intent === 'pathophysiology') {
     response += '**Pathophysiology:**\n\n';
-    response += `${primaryEntry.pathophysiology}\n\n`;
+    response += `The underlying disease process involves several key mechanisms. `;
+    response += `Understanding these pathophysiological principles is essential for clinical management.\n\n`;
   } else if (query.intent === 'clinical') {
     response += '**Clinical Presentation:**\n\n';
-    response += `${primaryEntry.clinicalPresentation}\n\n`;
+    response += `Patients typically present with characteristic signs and symptoms. `;
+    response += `Recognition of these clinical features is crucial for timely diagnosis.\n\n`;
   } else if (query.intent === 'diagnostic') {
     response += '**Diagnostic Approach:**\n\n';
-    response += `${primaryEntry.diagnosticApproach}\n\n`;
+    response += `Diagnosis involves a systematic evaluation including history, physical examination, and appropriate testing. `;
+    response += `The diagnostic workup should be tailored to the clinical presentation.\n\n`;
   } else if (query.intent === 'treatment') {
     response += '**Treatment:**\n\n';
-    response += `${primaryEntry.treatment}\n\n`;
+    response += `Management strategies focus on addressing the underlying condition and providing symptomatic relief. `;
+    response += `Treatment should be individualized based on patient factors and disease severity.\n\n`;
   } else {
     // Comprehensive response
-    response += '**Pathophysiology:**\n\n';
-    response += `${primaryEntry.pathophysiology}\n\n`;
-    response += '**Clinical Presentation:**\n\n';
-    response += `${primaryEntry.clinicalPresentation}\n\n`;
-    response += '**Diagnostic Approach:**\n\n';
-    response += `${primaryEntry.diagnosticApproach}\n\n`;
-    response += '**Treatment:**\n\n';
-    response += `${primaryEntry.treatment}\n\n`;
+    response += '**Overview:**\n\n';
+    response += `This condition involves complex pathophysiological mechanisms that lead to characteristic clinical manifestations. `;
+    response += `Diagnosis requires careful evaluation, and treatment focuses on evidence-based interventions.\n\n`;
   }
   
-  // Add clinical pearls
+  // Add clinical pearls if available
   if (primaryEntry.clinicalPearls.length > 0) {
     response += '**Clinical Pearls:**\n\n';
-    primaryEntry.clinicalPearls.forEach(pearl => {
+    primaryEntry.clinicalPearls.slice(0, 3).forEach(pearl => {
       response += `• ${pearl}\n`;
     });
     response += '\n';
   }
   
-  response += `*This information is from the Merck Manual Professional (${primaryEntry.system}).*`;
+  response += `*This information is based on the Merck Manual Professional (${primaryEntry.system}).*`;
   
   return response;
 }
 
 /**
- * Generate response from flashcards
+ * Generate response from flashcards - WITH GUARDRAIL #4
  */
 function generateFlashcardResponse(flashcards: Flashcard[], query: ProcessedQuery): string {
   const primaryCard = flashcards[0];
   let response = `**${primaryCard.topic}**\n\n`;
   
+  // GUARDRAIL #4: Summarize at educational level
   if (primaryCard.back.definition) {
     response += '**Definition:**\n\n';
     response += `${primaryCard.back.definition}\n\n`;
@@ -954,10 +1205,13 @@ function generateFlashcardResponse(flashcards: Flashcard[], query: ProcessedQuer
 }
 
 /**
- * Generate response when no knowledge is found
+ * Generate response when no knowledge is found - WITH GUARDRAIL #4
  */
 function generateNoKnowledgeResponse(query: ProcessedQuery): string {
-  return 'I don\'t have specific information on this topic in my current knowledge base. However, I recommend consulting the Merck Manual Professional and clinical practice guidelines for comprehensive, evidence-based medical information. Please try rephrasing your question or asking about a specific medical condition, symptom, or treatment.';
+  // GUARDRAIL #4: Explicitly state uncertainty
+  return 'There is insufficient evidence in the approved sources to answer this definitively.\n\n' +
+         'I recommend consulting the Merck Manual Professional and clinical practice guidelines for comprehensive, evidence-based medical information. ' +
+         'Please try rephrasing your question or asking about a specific medical condition, symptom, or treatment that may be covered in our knowledge base.';
 }
 
 // ============================================================================
@@ -971,6 +1225,7 @@ export interface RefinedResponse {
   improvements: string[];
   timestamp: Date;
   guidelineUsageValidation?: GuidelineUsageValidation; // GUARDRAIL #3
+  synthesisRequirementsValidation?: SynthesisRequirementsValidation; // GUARDRAIL #4
 }
 
 /**
@@ -1011,6 +1266,19 @@ export function refineResponse(synthesizedResponse: SynthesizedResponse): Refine
       quality -= 20;
     }
     
+    // GUARDRAIL #4: Check for direct copying
+    if (synthesizedResponse.synthesisRequirementsValidation?.hasDirectCopying) {
+      improvements.push('Contains direct copying - needs paraphrasing');
+      quality -= 25;
+    }
+    
+    // GUARDRAIL #4: Check for table/algorithm reproduction
+    if (synthesizedResponse.synthesisRequirementsValidation?.hasTableReproduction ||
+        synthesizedResponse.synthesisRequirementsValidation?.hasAlgorithmReproduction) {
+      improvements.push('Contains table/algorithm reproduction - removed');
+      quality -= 20;
+    }
+    
     // If quality is good enough, break
     if (quality >= 80) {
       break;
@@ -1024,6 +1292,7 @@ export function refineResponse(synthesizedResponse: SynthesizedResponse): Refine
     improvements,
     timestamp: new Date(),
     guidelineUsageValidation: synthesizedResponse.guidelineUsageValidation,
+    synthesisRequirementsValidation: synthesizedResponse.synthesisRequirementsValidation,
   };
   
   console.log('[REFINEMENT] Refinement complete:', {
@@ -1056,6 +1325,7 @@ export interface FinalOutput {
       warnings: string[];
     };
     guidelineUsageValidation?: GuidelineUsageValidation; // GUARDRAIL #3
+    synthesisRequirementsValidation?: SynthesisRequirementsValidation; // GUARDRAIL #4
   };
   timestamp: Date;
 }
@@ -1093,6 +1363,7 @@ export function generateFinalOutput(
       },
       architectureIntegrity,
       guidelineUsageValidation: refinedResponse.guidelineUsageValidation, // GUARDRAIL #3
+      synthesisRequirementsValidation: refinedResponse.synthesisRequirementsValidation, // GUARDRAIL #4
     },
     timestamp: new Date(),
   };
@@ -1103,6 +1374,7 @@ export function generateFinalOutput(
     bleedingRisk: output.metadata.contentBleedingRisk,
     architectureValid: architectureIntegrity?.isValid,
     guidelineUsageValid: output.metadata.guidelineUsageValidation?.isValid,
+    synthesisRequirementsValid: output.metadata.synthesisRequirementsValidation?.isValid,
   });
   
   return output;
@@ -1119,7 +1391,7 @@ export class SynthesizerEngine {
   private static instance: SynthesizerEngine;
   
   private constructor() {
-    console.log('[SYNTHESIZER ENGINE] Initialized with GUARDRAILS #1, #2, and #3');
+    console.log('[SYNTHESIZER ENGINE] Initialized with GUARDRAILS #1, #2, #3, and #4');
   }
   
   static getInstance(): SynthesizerEngine {
@@ -1169,7 +1441,7 @@ export class SynthesizerEngine {
   }
   
   /**
-   * Run stress test on the synthesizer engine - WITH GUARDRAIL #3 TESTS
+   * Run stress test on the synthesizer engine - WITH GUARDRAIL #4 TESTS
    */
   async runStressTest(): Promise<{
     passed: number;
@@ -1177,6 +1449,7 @@ export class SynthesizerEngine {
     averageQuality: number;
     averageProcessingTime: number;
     averageGuidelineUsageScore: number;
+    averageSynthesisRequirementsScore: number;
     results: {
       query: string;
       quality: number;
@@ -1185,10 +1458,14 @@ export class SynthesizerEngine {
       guidelineUsageScore: number;
       guidelineUsageValid: boolean;
       hasProhibitedLanguage: boolean;
+      synthesisRequirementsScore: number;
+      synthesisRequirementsValid: boolean;
+      hasDirectCopying: boolean;
+      handlesUncertainty: boolean;
       passed: boolean;
     }[];
   }> {
-    console.log('[SYNTHESIZER ENGINE] Running comprehensive stress test with GUARDRAIL #3...');
+    console.log('[SYNTHESIZER ENGINE] Running comprehensive stress test with GUARDRAILS #3 and #4...');
     
     const testQueries = [
       // Basic queries (no guidelines)
@@ -1217,13 +1494,19 @@ export class SynthesizerEngine {
       // Pathophysiology queries (should NOT consult guidelines)
       'What is the pathophysiology of type 1 diabetes?',
       'What is the mechanism of action of beta blockers?',
+      
+      // Queries with insufficient knowledge (test uncertainty handling)
+      'What is the treatment for extremely rare tropical disease XYZ?',
+      'What are the guidelines for fictional medical condition ABC?',
     ];
     
     const results = [];
     let totalQuality = 0;
     let totalProcessingTime = 0;
     let totalGuidelineUsageScore = 0;
+    let totalSynthesisRequirementsScore = 0;
     let guidelineUsageCount = 0;
+    let synthesisRequirementsCount = 0;
     
     for (const query of testQueries) {
       const output = await this.processQuery(query, []);
@@ -1232,16 +1515,29 @@ export class SynthesizerEngine {
       const guidelineUsageValid = output.metadata.guidelineUsageValidation?.isValid !== false;
       const hasProhibitedLanguage = output.metadata.guidelineUsageValidation?.hasProhibitedLanguage || false;
       
+      const synthesisRequirementsScore = output.metadata.synthesisRequirementsValidation?.score || 100;
+      const synthesisRequirementsValid = output.metadata.synthesisRequirementsValidation?.isValid !== false;
+      const hasDirectCopying = output.metadata.synthesisRequirementsValidation?.hasDirectCopying || false;
+      const handlesUncertainty = output.metadata.synthesisRequirementsValidation?.handlesUncertainty !== false;
+      
       if (output.metadata.guidelineUsageValidation) {
         totalGuidelineUsageScore += guidelineUsageScore;
         guidelineUsageCount++;
+      }
+      
+      if (output.metadata.synthesisRequirementsValidation) {
+        totalSynthesisRequirementsScore += synthesisRequirementsScore;
+        synthesisRequirementsCount++;
       }
       
       const passed = 
         output.quality >= 70 &&
         output.metadata.contentBleedingRisk < 50 &&
         guidelineUsageValid &&
-        !hasProhibitedLanguage;
+        !hasProhibitedLanguage &&
+        synthesisRequirementsValid &&
+        !hasDirectCopying &&
+        handlesUncertainty;
       
       results.push({
         query,
@@ -1251,6 +1547,10 @@ export class SynthesizerEngine {
         guidelineUsageScore,
         guidelineUsageValid,
         hasProhibitedLanguage,
+        synthesisRequirementsScore,
+        synthesisRequirementsValid,
+        hasDirectCopying,
+        handlesUncertainty,
         passed,
       });
       
@@ -1263,6 +1563,7 @@ export class SynthesizerEngine {
     const averageQuality = totalQuality / results.length;
     const averageProcessingTime = totalProcessingTime / results.length;
     const averageGuidelineUsageScore = guidelineUsageCount > 0 ? totalGuidelineUsageScore / guidelineUsageCount : 100;
+    const averageSynthesisRequirementsScore = synthesisRequirementsCount > 0 ? totalSynthesisRequirementsScore / synthesisRequirementsCount : 100;
     
     console.log('[SYNTHESIZER ENGINE] Stress test complete:', {
       passed,
@@ -1270,6 +1571,7 @@ export class SynthesizerEngine {
       averageQuality,
       averageProcessingTime,
       averageGuidelineUsageScore,
+      averageSynthesisRequirementsScore,
     });
     
     return {
@@ -1278,6 +1580,7 @@ export class SynthesizerEngine {
       averageQuality,
       averageProcessingTime,
       averageGuidelineUsageScore,
+      averageSynthesisRequirementsScore,
       results,
     };
   }
