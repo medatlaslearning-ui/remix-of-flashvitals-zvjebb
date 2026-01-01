@@ -10,6 +10,7 @@ import * as Haptics from 'expo-haptics';
 import { runKeywordStressTest } from '@/data/merckManualKnowledge';
 import SystemHealthMonitor from '@/components/SystemHealthMonitor';
 import SupabaseUsageRulesMonitor from '@/components/SupabaseUsageRulesMonitor';
+import SourceAttributionMonitor from '@/components/SourceAttributionMonitor';
 
 export default function AdminScreen() {
   const router = useRouter();
@@ -18,7 +19,7 @@ export default function AdminScreen() {
   const [isEditing, setIsEditing] = useState(false);
   const [testResults, setTestResults] = useState<ReturnType<typeof runKeywordStressTest> | null>(null);
   const [showTestDetails, setShowTestDetails] = useState(false);
-  const [activeTab, setActiveTab] = useState<'overview' | 'health' | 'supabase' | 'flashcards'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'health' | 'supabase' | 'attribution' | 'flashcards'>('overview');
 
   // Form state
   const [system, setSystem] = useState('Cardiology');
@@ -157,7 +158,12 @@ export default function AdminScreen() {
       />
       <View style={commonStyles.container}>
         {/* Tab Navigation */}
-        <View style={styles.tabBar}>
+        <ScrollView 
+          horizontal 
+          showsHorizontalScrollIndicator={false}
+          style={styles.tabBar}
+          contentContainerStyle={styles.tabBarContent}
+        >
           <Pressable
             style={[styles.tab, activeTab === 'overview' && styles.tabActive]}
             onPress={() => setActiveTab('overview')}
@@ -183,6 +189,14 @@ export default function AdminScreen() {
             </Text>
           </Pressable>
           <Pressable
+            style={[styles.tab, activeTab === 'attribution' && styles.tabActive]}
+            onPress={() => setActiveTab('attribution')}
+          >
+            <Text style={[styles.tabText, activeTab === 'attribution' && styles.tabTextActive]}>
+              Source Attribution
+            </Text>
+          </Pressable>
+          <Pressable
             style={[styles.tab, activeTab === 'flashcards' && styles.tabActive]}
             onPress={() => setActiveTab('flashcards')}
           >
@@ -190,7 +204,7 @@ export default function AdminScreen() {
               Flashcards
             </Text>
           </Pressable>
-        </View>
+        </ScrollView>
 
         {/* Tab Content */}
         <ScrollView 
@@ -379,6 +393,10 @@ export default function AdminScreen() {
             <SupabaseUsageRulesMonitor />
           )}
 
+          {activeTab === 'attribution' && (
+            <SourceAttributionMonitor />
+          )}
+
           {activeTab === 'flashcards' && (
             <>
               <View style={styles.section}>
@@ -558,13 +576,15 @@ export default function AdminScreen() {
 
 const styles = StyleSheet.create({
   tabBar: {
-    flexDirection: 'row',
     backgroundColor: colors.card,
     borderBottomWidth: 1,
     borderBottomColor: colors.border,
   },
+  tabBarContent: {
+    paddingHorizontal: 4,
+  },
   tab: {
-    flex: 1,
+    paddingHorizontal: 16,
     paddingVertical: 12,
     alignItems: 'center',
     justifyContent: 'center',
@@ -577,6 +597,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '600',
     color: colors.textSecondary,
+    whiteSpace: 'nowrap',
   },
   tabTextActive: {
     color: colors.primary,

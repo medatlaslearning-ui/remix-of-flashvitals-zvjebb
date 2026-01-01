@@ -6,26 +6,24 @@
  * GUARDRAIL #2: GUIDELINE CONSULTATION TRIGGERS (IMPLEMENTED)
  * GUARDRAIL #3: GUIDELINE USAGE RULES (IMPLEMENTED)
  * GUARDRAIL #4: SYNTHESIS REQUIREMENTS (IMPLEMENTED)
+ * GUARDRAIL #6: SOURCE ATTRIBUTION RULES (IMPLEMENTED)
  * 
  * This engine implements a figure-eight data flow with one-way valves AND
- * enforces strict architectural roles, guideline usage rules, and synthesis requirements:
+ * enforces strict architectural roles, guideline usage rules, synthesis requirements,
+ * and source attribution rules:
  * 
  * • Core Knowledge Engine: READ-ONLY stable medical knowledge
  * • Guideline Website Layer: Runtime consultation (NOT cached)
  * • Synthesizer Engine: Original educational responses with citations
+ * • Source Attribution: Proper attribution with direct links
  * 
- * GUARDRAIL #4: SYNTHESIS REQUIREMENTS
+ * GUARDRAIL #6: SOURCE ATTRIBUTION RULES
  * 
- * • All responses must be written in original language
- * • Do NOT copy or closely paraphrase source text
- * • Do NOT reproduce tables, algorithms, or figures
- * • Summarize concepts at an educational level
- * • Always prioritize clarity and teaching value
- * 
- * UNCERTAINTY HANDLING:
- * • Explicitly state uncertainty when evidence is insufficient
- * • Say: "There is insufficient evidence in the approved sources to answer this definitively."
- * • Do NOT speculate or extrapolate
+ * • Attribute sources using proper phrasing
+ * • Provide direct links to original sources
+ * • Do NOT embed proprietary text
+ * • Encourage users to consult original references
+ * • Include global footer (optional but recommended)
  * 
  * FIGURE-EIGHT FLOW:
  * ┌─────────────────────────────────────────────────────────────┐
@@ -65,6 +63,7 @@
  * - GUARDRAIL #2: Intelligent guideline consultation triggers
  * - GUARDRAIL #3: Proper guideline usage and contextualization
  * - GUARDRAIL #4: Original language synthesis with uncertainty handling
+ * - GUARDRAIL #6: Proper source attribution with direct links
  */
 
 import { searchMerckManualKnowledge, type MerckManualEntry } from './merckManualKnowledge';
@@ -95,6 +94,25 @@ import {
   verifySystemArchitectureIntegrity,
   type SystemArchitectureIntegrityCheck,
 } from './architectureGuardrails';
+import {
+  validateGuidelineUsage,
+  applyGuidelineUsageRules,
+  type GuidelineUsageValidation,
+} from './synthesizerEngine';
+import {
+  validateSynthesisRequirements,
+  applySynthesisRequirements,
+  type SynthesisRequirementsValidation,
+} from './synthesizerEngine';
+import {
+  generateMerckAttribution,
+  generateGuidelineAttribution,
+  generateFlashcardAttribution,
+  validateSourceAttribution,
+  applySourceAttributionRules,
+  type SourceAttribution,
+  type AttributionValidation,
+} from './sourceAttributionRules';
 
 // ============================================================================
 // GUARDRAIL #3: GUIDELINE USAGE RULES
@@ -928,9 +946,11 @@ export interface SynthesizedResponse {
     guidelines: boolean;
     flashcards: boolean;
   };
+  attributions: SourceAttribution[]; // GUARDRAIL #6
   timestamp: Date;
   guidelineUsageValidation?: GuidelineUsageValidation; // GUARDRAIL #3
   synthesisRequirementsValidation?: SynthesisRequirementsValidation; // GUARDRAIL #4
+  sourceAttributionValidation?: AttributionValidation; // GUARDRAIL #6
 }
 
 /**
@@ -955,6 +975,7 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
     guidelines: false,
     flashcards: false,
   };
+  const attributions: SourceAttribution[] = []; // GUARDRAIL #6
   
   const hasGuidelinesData = hasGuidelines(coreKnowledge);
   const hasCoreKnowledgeData = coreKnowledge.merckEntries.length > 0;
@@ -965,21 +986,27 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
     responseText = generateNoKnowledgeResponse(processedQuery);
     quality -= 20;
   }
-  // Priority 1: Guidelines (if guideline query) - WITH GUARDRAIL #3
+  // Priority 1: Guidelines (if guideline query) - WITH GUARDRAIL #3 & #6
   else if (processedQuery.intent === 'guideline' && hasGuidelinesData) {
-    responseText = generateGuidelineResponse(coreKnowledge, processedQuery);
+    const result = generateGuidelineResponse(coreKnowledge, processedQuery);
+    responseText = result.text;
+    attributions.push(...result.attributions);
     sources.guidelines = true;
     quality += 10;
   }
-  // Priority 2: Merck Manual (comprehensive medical knowledge)
+  // Priority 2: Merck Manual (comprehensive medical knowledge) - WITH GUARDRAIL #6
   else if (hasCoreKnowledgeData) {
-    responseText = generateMerckResponse(coreKnowledge.merckEntries, processedQuery);
+    const result = generateMerckResponse(coreKnowledge.merckEntries, processedQuery);
+    responseText = result.text;
+    attributions.push(...result.attributions);
     sources.merck = true;
     quality += 15;
   }
-  // Priority 3: Flashcards (high-yield information)
+  // Priority 3: Flashcards (high-yield information) - WITH GUARDRAIL #6
   else if (coreKnowledge.flashcards.length > 0) {
-    responseText = generateFlashcardResponse(coreKnowledge.flashcards, processedQuery);
+    const result = generateFlashcardResponse(coreKnowledge.flashcards, processedQuery);
+    responseText = result.text;
+    attributions.push(...result.attributions);
     sources.flashcards = true;
     quality += 5;
   }
@@ -989,6 +1016,9 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
   
   // GUARDRAIL #4: Apply synthesis requirements
   responseText = applySynthesisRequirements(responseText, hasAnyKnowledge);
+  
+  // GUARDRAIL #6: Apply source attribution rules
+  responseText = applySourceAttributionRules(responseText, attributions, true);
   
   // GUARDRAIL #3: Validate guideline usage
   const guidelineUsageValidation = validateGuidelineUsage(
@@ -1003,6 +1033,12 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
     hasAnyKnowledge
   );
   
+  // GUARDRAIL #6: Validate source attribution
+  const sourceAttributionValidation = validateSourceAttribution(
+    responseText,
+    attributions.length > 0
+  );
+  
   // Adjust quality based on validations
   if (!guidelineUsageValidation.isValid) {
     quality -= (100 - guidelineUsageValidation.score) * 0.3;
@@ -1012,23 +1048,32 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
     quality -= (100 - synthesisRequirementsValidation.score) * 0.3;
   }
   
+  if (!sourceAttributionValidation.isValid) {
+    quality -= (100 - sourceAttributionValidation.score) * 0.2;
+  }
+  
   const response: SynthesizedResponse = {
     text: responseText,
     quality: Math.max(0, Math.min(100, quality)),
     sources,
+    attributions,
     timestamp: new Date(),
     guidelineUsageValidation,
     synthesisRequirementsValidation,
+    sourceAttributionValidation,
   };
   
   console.log('[VALVE 3] Response synthesized:', {
     quality: response.quality,
     sources: response.sources,
+    attributions: response.attributions.length,
     length: response.text.length,
     guidelineUsageValid: guidelineUsageValidation.isValid,
     guidelineUsageScore: guidelineUsageValidation.score,
     synthesisRequirementsValid: synthesisRequirementsValidation.isValid,
     synthesisRequirementsScore: synthesisRequirementsValidation.score,
+    sourceAttributionValid: sourceAttributionValidation.isValid,
+    sourceAttributionScore: sourceAttributionValidation.score,
   });
   
   return response;
@@ -1064,6 +1109,7 @@ function handleConversationalQuery(processedQuery: ProcessedQuery): SynthesizedR
       guidelines: false,
       flashcards: false,
     },
+    attributions: [],
     timestamp: new Date(),
   };
 }
@@ -1094,20 +1140,24 @@ function hasGuidelines(knowledge: CoreKnowledge): boolean {
 }
 
 /**
- * Generate response from guidelines - WITH GUARDRAIL #3 & #4
+ * Generate response from guidelines - WITH GUARDRAIL #3, #4, & #6
  */
-function generateGuidelineResponse(knowledge: CoreKnowledge, query: ProcessedQuery): string {
+function generateGuidelineResponse(knowledge: CoreKnowledge, query: ProcessedQuery): { text: string; attributions: SourceAttribution[] } {
   let response = '**Clinical Practice Guidelines**\n\n';
+  const attributions: SourceAttribution[] = [];
   
   // GUARDRAIL #3: Use proper contextualization phrasing
   response += '*Based on current guidelines, the following recommendations apply:*\n\n';
   
   // GUARDRAIL #4: Summarize at educational level (no direct copying)
+  // GUARDRAIL #6: Add proper source attribution
   if (knowledge.accGuidelines.length > 0) {
     const guideline = knowledge.accGuidelines[0];
     response += `**${guideline.topic}** (ACC Guidelines)\n\n`;
     response += `According to current practice guidelines, the approach to ${guideline.topic.toLowerCase()} emphasizes evidence-based management strategies. `;
     response += `The key recommendations focus on optimizing patient outcomes through systematic evaluation and treatment.\n\n`;
+    
+    attributions.push(generateGuidelineAttribution('ACC', guideline.topic, 'https://www.acc.org/guidelines'));
   }
   
   if (knowledge.ahaGuidelines.length > 0) {
@@ -1115,6 +1165,8 @@ function generateGuidelineResponse(knowledge: CoreKnowledge, query: ProcessedQue
     response += `**${guideline.topic}** (AHA Guidelines)\n\n`;
     response += `Current guidelines suggest that management of ${guideline.topic.toLowerCase()} should be individualized based on patient characteristics and risk factors. `;
     response += `The recommendations emphasize a comprehensive approach to care.\n\n`;
+    
+    attributions.push(generateGuidelineAttribution('AHA', guideline.topic, 'https://www.heart.org/guidelines'));
   }
   
   // GUARDRAIL #3: Add note about guideline contextualization
@@ -1122,15 +1174,16 @@ function generateGuidelineResponse(knowledge: CoreKnowledge, query: ProcessedQue
   
   response += '*For complete guideline details, please consult the official guideline documents.*';
   
-  return response;
+  return { text: response, attributions };
 }
 
 /**
- * Generate response from Merck Manual entries - WITH GUARDRAIL #4
+ * Generate response from Merck Manual entries - WITH GUARDRAIL #4 & #6
  */
-function generateMerckResponse(entries: MerckManualEntry[], query: ProcessedQuery): string {
+function generateMerckResponse(entries: MerckManualEntry[], query: ProcessedQuery): { text: string; attributions: SourceAttribution[] } {
   const primaryEntry = entries[0];
   let response = `**${primaryEntry.topic}**\n\n`;
+  const attributions: SourceAttribution[] = [];
   
   // GUARDRAIL #4: Summarize at educational level (no direct copying)
   // Provide focused response based on query intent
@@ -1166,17 +1219,19 @@ function generateMerckResponse(entries: MerckManualEntry[], query: ProcessedQuer
     response += '\n';
   }
   
-  response += `*This information is based on the Merck Manual Professional (${primaryEntry.system}).*`;
+  // GUARDRAIL #6: Add source attribution
+  attributions.push(generateMerckAttribution(primaryEntry.topic));
   
-  return response;
+  return { text: response, attributions };
 }
 
 /**
- * Generate response from flashcards - WITH GUARDRAIL #4
+ * Generate response from flashcards - WITH GUARDRAIL #4 & #6
  */
-function generateFlashcardResponse(flashcards: Flashcard[], query: ProcessedQuery): string {
+function generateFlashcardResponse(flashcards: Flashcard[], query: ProcessedQuery): { text: string; attributions: SourceAttribution[] } {
   const primaryCard = flashcards[0];
   let response = `**${primaryCard.topic}**\n\n`;
+  const attributions: SourceAttribution[] = [];
   
   // GUARDRAIL #4: Summarize at educational level
   if (primaryCard.back.definition) {
@@ -1199,9 +1254,10 @@ function generateFlashcardResponse(flashcards: Flashcard[], query: ProcessedQuer
     response += `${primaryCard.back.treatment}\n\n`;
   }
   
-  response += `*This information is from our clinical flashcard database (${primaryCard.system}).*`;
+  // GUARDRAIL #6: Add source attribution
+  attributions.push(generateFlashcardAttribution(primaryCard.system));
   
-  return response;
+  return { text: response, attributions };
 }
 
 /**
@@ -1226,6 +1282,7 @@ export interface RefinedResponse {
   timestamp: Date;
   guidelineUsageValidation?: GuidelineUsageValidation; // GUARDRAIL #3
   synthesisRequirementsValidation?: SynthesisRequirementsValidation; // GUARDRAIL #4
+  sourceAttributionValidation?: AttributionValidation; // GUARDRAIL #6
 }
 
 /**
@@ -1279,6 +1336,12 @@ export function refineResponse(synthesizedResponse: SynthesizedResponse): Refine
       quality -= 20;
     }
     
+    // GUARDRAIL #6: Check for source attribution
+    if (synthesizedResponse.sourceAttributionValidation && !synthesizedResponse.sourceAttributionValidation.hasProperAttribution) {
+      improvements.push('Missing proper source attribution');
+      quality -= 15;
+    }
+    
     // If quality is good enough, break
     if (quality >= 80) {
       break;
@@ -1293,6 +1356,7 @@ export function refineResponse(synthesizedResponse: SynthesizedResponse): Refine
     timestamp: new Date(),
     guidelineUsageValidation: synthesizedResponse.guidelineUsageValidation,
     synthesisRequirementsValidation: synthesizedResponse.synthesisRequirementsValidation,
+    sourceAttributionValidation: synthesizedResponse.sourceAttributionValidation,
   };
   
   console.log('[REFINEMENT] Refinement complete:', {
@@ -1320,12 +1384,14 @@ export interface FinalOutput {
       guidelines: boolean;
       flashcards: boolean;
     };
+    attributions: SourceAttribution[]; // GUARDRAIL #6
     architectureIntegrity?: {
       isValid: boolean;
       warnings: string[];
     };
     guidelineUsageValidation?: GuidelineUsageValidation; // GUARDRAIL #3
     synthesisRequirementsValidation?: SynthesisRequirementsValidation; // GUARDRAIL #4
+    sourceAttributionValidation?: AttributionValidation; // GUARDRAIL #6
   };
   timestamp: Date;
 }
@@ -1337,6 +1403,7 @@ export interface FinalOutput {
 export function generateFinalOutput(
   refinedResponse: RefinedResponse,
   synthesizedData: SynthesizedData,
+  synthesizedResponse: SynthesizedResponse,
   startTime: Date
 ): FinalOutput {
   console.log('[VALVE 4] Generating final output');
@@ -1356,14 +1423,12 @@ export function generateFinalOutput(
       processingTime,
       synthesisQuality: synthesizedData.synthesisQuality,
       contentBleedingRisk: synthesizedData.contentBleedingRisk,
-      sources: {
-        merck: synthesizedData.coreKnowledge.merckEntries.length > 0,
-        guidelines: hasGuidelines(synthesizedData.coreKnowledge),
-        flashcards: synthesizedData.coreKnowledge.flashcards.length > 0,
-      },
+      sources: synthesizedResponse.sources,
+      attributions: synthesizedResponse.attributions, // GUARDRAIL #6
       architectureIntegrity,
       guidelineUsageValidation: refinedResponse.guidelineUsageValidation, // GUARDRAIL #3
       synthesisRequirementsValidation: refinedResponse.synthesisRequirementsValidation, // GUARDRAIL #4
+      sourceAttributionValidation: refinedResponse.sourceAttributionValidation, // GUARDRAIL #6
     },
     timestamp: new Date(),
   };
@@ -1372,9 +1437,11 @@ export function generateFinalOutput(
     quality: output.quality,
     processingTime: output.metadata.processingTime,
     bleedingRisk: output.metadata.contentBleedingRisk,
+    attributions: output.metadata.attributions.length,
     architectureValid: architectureIntegrity?.isValid,
     guidelineUsageValid: output.metadata.guidelineUsageValidation?.isValid,
     synthesisRequirementsValid: output.metadata.synthesisRequirementsValidation?.isValid,
+    sourceAttributionValid: output.metadata.sourceAttributionValidation?.isValid,
   });
   
   return output;
@@ -1391,7 +1458,7 @@ export class SynthesizerEngine {
   private static instance: SynthesizerEngine;
   
   private constructor() {
-    console.log('[SYNTHESIZER ENGINE] Initialized with GUARDRAILS #1, #2, #3, and #4');
+    console.log('[SYNTHESIZER ENGINE] Initialized with GUARDRAILS #1, #2, #3, #4, and #6');
   }
   
   static getInstance(): SynthesizerEngine {
@@ -1433,7 +1500,7 @@ export class SynthesizerEngine {
     const refinedResponse = refineResponse(synthesizedResponse);
     
     // VALVE 4: Generate final output
-    const finalOutput = generateFinalOutput(refinedResponse, synthesizedData, startTime);
+    const finalOutput = generateFinalOutput(refinedResponse, synthesizedData, synthesizedResponse, startTime);
     
     console.log('[SYNTHESIZER ENGINE] Query processed successfully');
     
@@ -1441,7 +1508,7 @@ export class SynthesizerEngine {
   }
   
   /**
-   * Run stress test on the synthesizer engine - WITH GUARDRAIL #4 TESTS
+   * Run stress test on the synthesizer engine - WITH GUARDRAIL #6 TESTS
    */
   async runStressTest(): Promise<{
     passed: number;
@@ -1450,11 +1517,13 @@ export class SynthesizerEngine {
     averageProcessingTime: number;
     averageGuidelineUsageScore: number;
     averageSynthesisRequirementsScore: number;
+    averageSourceAttributionScore: number;
     results: {
       query: string;
       quality: number;
       processingTime: number;
       bleedingRisk: number;
+      attributions: number;
       guidelineUsageScore: number;
       guidelineUsageValid: boolean;
       hasProhibitedLanguage: boolean;
@@ -1462,10 +1531,13 @@ export class SynthesizerEngine {
       synthesisRequirementsValid: boolean;
       hasDirectCopying: boolean;
       handlesUncertainty: boolean;
+      sourceAttributionScore: number;
+      sourceAttributionValid: boolean;
+      hasProperAttribution: boolean;
       passed: boolean;
     }[];
   }> {
-    console.log('[SYNTHESIZER ENGINE] Running comprehensive stress test with GUARDRAILS #3 and #4...');
+    console.log('[SYNTHESIZER ENGINE] Running comprehensive stress test with GUARDRAILS #3, #4, and #6...');
     
     const testQueries = [
       // Basic queries (no guidelines)
@@ -1505,8 +1577,10 @@ export class SynthesizerEngine {
     let totalProcessingTime = 0;
     let totalGuidelineUsageScore = 0;
     let totalSynthesisRequirementsScore = 0;
+    let totalSourceAttributionScore = 0;
     let guidelineUsageCount = 0;
     let synthesisRequirementsCount = 0;
+    let sourceAttributionCount = 0;
     
     for (const query of testQueries) {
       const output = await this.processQuery(query, []);
@@ -1520,6 +1594,10 @@ export class SynthesizerEngine {
       const hasDirectCopying = output.metadata.synthesisRequirementsValidation?.hasDirectCopying || false;
       const handlesUncertainty = output.metadata.synthesisRequirementsValidation?.handlesUncertainty !== false;
       
+      const sourceAttributionScore = output.metadata.sourceAttributionValidation?.score || 100;
+      const sourceAttributionValid = output.metadata.sourceAttributionValidation?.isValid !== false;
+      const hasProperAttribution = output.metadata.sourceAttributionValidation?.hasProperAttribution !== false;
+      
       if (output.metadata.guidelineUsageValidation) {
         totalGuidelineUsageScore += guidelineUsageScore;
         guidelineUsageCount++;
@@ -1530,6 +1608,11 @@ export class SynthesizerEngine {
         synthesisRequirementsCount++;
       }
       
+      if (output.metadata.sourceAttributionValidation) {
+        totalSourceAttributionScore += sourceAttributionScore;
+        sourceAttributionCount++;
+      }
+      
       const passed = 
         output.quality >= 70 &&
         output.metadata.contentBleedingRisk < 50 &&
@@ -1537,13 +1620,16 @@ export class SynthesizerEngine {
         !hasProhibitedLanguage &&
         synthesisRequirementsValid &&
         !hasDirectCopying &&
-        handlesUncertainty;
+        handlesUncertainty &&
+        sourceAttributionValid &&
+        hasProperAttribution;
       
       results.push({
         query,
         quality: output.quality,
         processingTime: output.metadata.processingTime,
         bleedingRisk: output.metadata.contentBleedingRisk,
+        attributions: output.metadata.attributions.length,
         guidelineUsageScore,
         guidelineUsageValid,
         hasProhibitedLanguage,
@@ -1551,6 +1637,9 @@ export class SynthesizerEngine {
         synthesisRequirementsValid,
         hasDirectCopying,
         handlesUncertainty,
+        sourceAttributionScore,
+        sourceAttributionValid,
+        hasProperAttribution,
         passed,
       });
       
@@ -1564,6 +1653,7 @@ export class SynthesizerEngine {
     const averageProcessingTime = totalProcessingTime / results.length;
     const averageGuidelineUsageScore = guidelineUsageCount > 0 ? totalGuidelineUsageScore / guidelineUsageCount : 100;
     const averageSynthesisRequirementsScore = synthesisRequirementsCount > 0 ? totalSynthesisRequirementsScore / synthesisRequirementsCount : 100;
+    const averageSourceAttributionScore = sourceAttributionCount > 0 ? totalSourceAttributionScore / sourceAttributionCount : 100;
     
     console.log('[SYNTHESIZER ENGINE] Stress test complete:', {
       passed,
@@ -1572,6 +1662,7 @@ export class SynthesizerEngine {
       averageProcessingTime,
       averageGuidelineUsageScore,
       averageSynthesisRequirementsScore,
+      averageSourceAttributionScore,
     });
     
     return {
@@ -1581,6 +1672,7 @@ export class SynthesizerEngine {
       averageProcessingTime,
       averageGuidelineUsageScore,
       averageSynthesisRequirementsScore,
+      averageSourceAttributionScore,
       results,
     };
   }
