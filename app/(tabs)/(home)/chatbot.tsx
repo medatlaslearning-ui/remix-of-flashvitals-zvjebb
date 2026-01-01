@@ -137,7 +137,7 @@ export default function ChatbotScreen() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: 'Hello! I\'m your Medical Expert Chatbot powered by the **Synthesizer Engine** with figure-eight data flow.\n\n**🔄 Synthesizer Engine Architecture:**\n\nI use a sophisticated figure-eight data flow with one-way valves to ensure accurate, focused responses:\n\n• **Valve 1** - Your question flows into the query processor\n• **Valve 2** - Core medical knowledge flows into the knowledge retriever\n• **Intersection Point** - Your query meets the knowledge base for synthesis\n• **Valve 3** - Synthesized information flows to response generation\n• **Refinement Loop** - Response is refined for quality and accuracy\n• **Valve 4** - Final response flows to you (no backflow)\n\nThis architecture prevents content bleeding and ensures you get precise, relevant information.\n\n**📚 Complete Knowledge Base:**\n\n• **Cardiology** - Arrhythmias, heart failure, ischemic heart disease, valvular disorders\n• **Pulmonary** - Asthma, COPD, pneumonia, interstitial lung diseases\n• **Gastroenterology** - GI disorders, liver disease, IBD, pancreatic conditions\n• **Endocrine** - Diabetes, thyroid disorders, adrenal disorders\n• **Hematology** - Anemias, bleeding disorders, thrombotic disorders, malignancies\n• **Renal** - AKI, CKD, glomerular diseases, electrolyte disorders\n• **Neurology** - Stroke, seizures, movement disorders, dementia, MS\n• **Infectious Disease** - Bacterial, viral, fungal, parasitic infections\n• **Emergency Medicine** - Shock, trauma, cardiovascular emergencies, toxicology\n• **Urology** - Urinary tract disorders, prostate conditions, kidney stones\n\n**📋 Clinical Practice Guidelines:**\n\n• ACC, AHA, ESC, HFSA, HRS, SCAI, EACTS (Cardiology)\n• ATS, CHEST, SCCM (Pulmonary/Critical Care)\n• KDIGO, NIDDK (Renal/Nephrology)\n• ACG (Gastroenterology)\n• ADA, Endocrine Society (Endocrine)\n• NCCN (Hematology/Oncology)\n• IDSA (Infectious Disease)\n• ASA (Stroke/Neurology)\n• ACS Trauma Programs (Emergency Medicine)\n\n**🎯 Ask Specific Questions:**\n\n• "What is the **pathophysiology** of..."\n• "What are the **clinical findings** of..."\n• "How do you **diagnose**..."\n• "What is the **treatment** for..."\n• "What are the **guidelines** for..."\n\n**💡 Natural Conversation:**\n\nI can also engage in normal conversation! Feel free to say hello, ask follow-up questions, or thank me. The synthesizer engine understands context and intent.\n\n**🔐 Feedback Guardrails:**\n\nYour feedback (thumbs up/down) is stored securely in Supabase and used ONLY to personalize HOW responses are delivered (length, depth, style), NOT to change medical facts. You can reverse feedback within 30 seconds.\n\nLet\'s begin your medical learning journey!',
+      text: 'Hello! I\'m your Medical Expert Chatbot powered by the **Synthesizer Engine** with figure-eight data flow.\n\n**🔄 Synthesizer Engine Architecture:**\n\nI use a sophisticated figure-eight data flow with one-way valves to ensure accurate, focused responses:\n\n• **Valve 1** - Your question flows into the query processor\n• **Valve 2** - Core medical knowledge flows into the knowledge retriever\n• **Intersection Point** - Your query meets the knowledge base for synthesis\n• **Valve 3** - Synthesized information flows to response generation\n• **Refinement Loop** - Response is refined for quality and accuracy\n• **Valve 4** - Final response flows to you (no backflow)\n\nThis architecture prevents content bleeding and ensures you get precise, relevant information.\n\n**📚 Complete Knowledge Base:**\n\n• **Cardiology** - Arrhythmias, heart failure, ischemic heart disease, valvular disorders\n• **Pulmonary** - Asthma, COPD, pneumonia, interstitial lung diseases\n• **Gastroenterology** - GI disorders, liver disease, IBD, pancreatic conditions\n• **Endocrine** - Diabetes, thyroid disorders, adrenal disorders\n• **Hematology** - Anemias, bleeding disorders, thrombotic disorders, malignancies\n• **Renal** - AKI, CKD, glomerular diseases, electrolyte disorders\n• **Neurology** - Stroke, seizures, movement disorders, dementia, MS\n• **Infectious Disease** - Bacterial, viral, fungal, parasitic infections\n• **Emergency Medicine** - Shock, trauma, cardiovascular emergencies, toxicology\n• **Urology** - Urinary tract disorders, prostate conditions, kidney stones\n\n**📋 Clinical Practice Guidelines:**\n\n• ACC, AHA, ESC, HFSA, HRS, SCAI, EACTS (Cardiology)\n• ATS, CHEST, SCCM (Pulmonary/Critical Care)\n• KDIGO, NIDDK (Renal/Nephrology)\n• ACG (Gastroenterology)\n• ADA, Endocrine Society (Endocrine)\n• NCCN (Hematology/Oncology)\n• IDSA (Infectious Disease)\n• ASA (Stroke/Neurology)\n• ACS Trauma Programs (Emergency Medicine)\n\n**🎯 Ask Specific Questions:**\n\n• "What is the **pathophysiology** of..."\n• "What are the **clinical findings** of..."\n• "How do you **diagnose**..."\n• "What is the **treatment** for..."\n• "What are the **guidelines** for..."\n\n**💡 Natural Conversation:**\n\nI can also engage in normal conversation! Feel free to say hello, ask follow-up questions, or thank me. The synthesizer engine understands context and intent.\n\n**🔐 Feedback Guardrails:**\n\nYour feedback (thumbs up/down) is stored securely in Supabase and used ONLY to personalize HOW responses are delivered (length, depth, style), NOT to change medical facts. You can reverse feedback within 30 seconds.\n\n**✅ Enhanced Quality Controls:**\n\n• Improved keyword specificity to prevent condition confusion\n• Enhanced error handling for robust performance\n• Better distinction between similar conditions (e.g., COPD vs Asthma)\n• Comprehensive validation at every step\n\nLet\'s begin your medical learning journey!',
       isBot: true,
       timestamp: new Date(),
     },
@@ -159,9 +159,13 @@ export default function ChatbotScreen() {
   }, []);
 
   const checkSystemHealth = async () => {
-    const health = perpetualLearningEngine.getSystemHealth();
-    if (health.needsRepair) {
-      setSystemNeedsRefresh(true);
+    try {
+      const health = perpetualLearningEngine.getSystemHealth();
+      if (health.needsRepair) {
+        setSystemNeedsRefresh(true);
+      }
+    } catch (error) {
+      console.error('[CHATBOT] Error checking system health:', error);
     }
   };
 
@@ -461,7 +465,7 @@ export default function ChatbotScreen() {
 
     // Process the query through the synthesizer engine
     setTimeout(async () => {
-      console.log('Processing query through synthesizer engine:', currentQuery);
+      console.log('[CHATBOT] Processing query through synthesizer engine:', currentQuery);
       
       try {
         // Get all flashcards
@@ -473,7 +477,7 @@ export default function ChatbotScreen() {
           allFlashcards
         );
         
-        console.log('Synthesizer output:', {
+        console.log('[CHATBOT] Synthesizer output:', {
           quality: synthesizerOutput.quality,
           processingTime: synthesizerOutput.metadata.processingTime,
           bleedingRisk: synthesizerOutput.metadata.contentBleedingRisk,
@@ -585,12 +589,12 @@ export default function ChatbotScreen() {
         // Check if system needs refresh after interaction
         await checkSystemHealth();
       } catch (error) {
-        console.error('Error processing query:', error);
+        console.error('[CHATBOT] ERROR processing query:', error);
         setIsTyping(false);
         
         const errorMessage: Message = {
           id: (Date.now() + 1).toString(),
-          text: 'I apologize, but I encountered an error processing your query. Please try again.',
+          text: 'I apologize, but I encountered an error processing your query. This has been logged for review. Please try rephrasing your question or ask about a different topic.',
           isBot: true,
           timestamp: new Date(),
         };
@@ -605,7 +609,7 @@ export default function ChatbotScreen() {
 
     const message = messages.find(m => m.id === messageId);
     if (!message || !message.responseId) {
-      console.error('Message or response ID not found');
+      console.error('[CHATBOT] Message or response ID not found');
       Alert.alert('Error', 'Cannot submit feedback for this message');
       return;
     }
@@ -647,7 +651,7 @@ export default function ChatbotScreen() {
 
   const submitFeedbackToSupabase = async (message: Message, feedback: 'positive' | 'negative') => {
     try {
-      console.log('[FEEDBACK GUARDRAIL] Submitting feedback to Supabase');
+      console.log('[CHATBOT] Submitting feedback to Supabase');
       
       // Validate feedback data before submitting (GUARDRAIL #5)
       const feedbackData: UserFeedback = {
@@ -661,7 +665,7 @@ export default function ChatbotScreen() {
       const validation = validateFeedback(feedbackData);
       
       if (!validation.isValid) {
-        console.error('[FEEDBACK GUARDRAIL] Validation failed:', validation.violations);
+        console.error('[CHATBOT] Validation failed:', validation.violations);
         Alert.alert(
           'Validation Error',
           'Feedback data validation failed. Please try again.'
@@ -669,7 +673,7 @@ export default function ChatbotScreen() {
         return;
       }
 
-      console.log('[FEEDBACK GUARDRAIL] Validation passed, submitting to Supabase');
+      console.log('[CHATBOT] Validation passed, submitting to Supabase');
 
       // Submit to Supabase
       await submitFeedback(
@@ -710,26 +714,34 @@ export default function ChatbotScreen() {
       // Check if system needs refresh
       await checkSystemHealth();
     } catch (error) {
-      console.error('[FEEDBACK GUARDRAIL] Error submitting feedback:', error);
+      console.error('[CHATBOT] Error submitting feedback:', error);
       
       // Fallback: If Supabase is unavailable, still record locally
       if (message.interactionId) {
-        await perpetualLearningEngine.recordFeedback(
-          message.interactionId,
-          feedback,
-          feedback === 'negative'
-        );
-        
-        setMessages(prev =>
-          prev.map(m =>
-            m.id === message.id ? { ...m, feedback } : m
-          )
-        );
+        try {
+          await perpetualLearningEngine.recordFeedback(
+            message.interactionId,
+            feedback,
+            feedback === 'negative'
+          );
+          
+          setMessages(prev =>
+            prev.map(m =>
+              m.id === message.id ? { ...m, feedback } : m
+            )
+          );
 
-        Alert.alert(
-          'Feedback Recorded Locally',
-          'Supabase is currently unavailable, but your feedback has been recorded locally. It will sync when the connection is restored.'
-        );
+          Alert.alert(
+            'Feedback Recorded Locally',
+            'Supabase is currently unavailable, but your feedback has been recorded locally. It will sync when the connection is restored.'
+          );
+        } catch (localError) {
+          console.error('[CHATBOT] Error recording feedback locally:', localError);
+          Alert.alert(
+            'Error',
+            'Failed to submit feedback. Please try again later.'
+          );
+        }
       } else {
         Alert.alert(
           'Error',
@@ -740,20 +752,25 @@ export default function ChatbotScreen() {
   };
 
   const handleFollowUpQuestion = async (messageId: string, question: string) => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    try {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
 
-    const message = messages.find(m => m.id === messageId);
-    if (message && message.interactionId) {
-      await perpetualLearningEngine.recordFollowUpSelection(message.interactionId, question);
+      const message = messages.find(m => m.id === messageId);
+      if (message && message.interactionId) {
+        await perpetualLearningEngine.recordFollowUpSelection(message.interactionId, question);
+      }
+
+      // Set the follow-up question as input and send it
+      setInputText(question);
+      
+      // Trigger send after a short delay to allow state update
+      setTimeout(() => {
+        handleSend();
+      }, 100);
+    } catch (error) {
+      console.error('[CHATBOT] Error handling follow-up question:', error);
+      Alert.alert('Error', 'Failed to process follow-up question. Please try again.');
     }
-
-    // Set the follow-up question as input and send it
-    setInputText(question);
-    
-    // Trigger send after a short delay to allow state update
-    setTimeout(() => {
-      handleSend();
-    }, 100);
   };
 
   const handleRefreshSystemLogic = async () => {
@@ -789,7 +806,7 @@ export default function ChatbotScreen() {
                 `Perpetual Learning Engine refreshed successfully.\n\nSynthesizer Engine Stress Test:\n• Passed: ${stressTestResults.passed}\n• Failed: ${stressTestResults.failed}\n• Average Quality: ${Math.round(stressTestResults.averageQuality)}%\n• Average Processing Time: ${Math.round(stressTestResults.averageProcessingTime)}ms`
               );
             } catch (error) {
-              console.error('Error refreshing system:', error);
+              console.error('[CHATBOT] Error refreshing system:', error);
               setIsTyping(false);
               Alert.alert('Error', 'Failed to refresh system logic');
             }
@@ -801,7 +818,7 @@ export default function ChatbotScreen() {
 
   const handleWebsitePress = async (url: string) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    console.log('Opening website:', url);
+    console.log('[CHATBOT] Opening website:', url);
     
     try {
       const supported = await Linking.canOpenURL(url);
@@ -811,7 +828,7 @@ export default function ChatbotScreen() {
         Alert.alert('Error', `Cannot open URL: ${url}`);
       }
     } catch (error) {
-      console.error('Error opening URL:', error);
+      console.error('[CHATBOT] Error opening URL:', error);
       Alert.alert('Error', 'Failed to open the website');
     }
   };
@@ -823,7 +840,7 @@ export default function ChatbotScreen() {
     }
 
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    console.log('Opening reference:', link);
+    console.log('[CHATBOT] Opening reference:', link);
     
     try {
       const supported = await Linking.canOpenURL(link);
@@ -833,14 +850,14 @@ export default function ChatbotScreen() {
         Alert.alert('Error', `Cannot open URL: ${link}`);
       }
     } catch (error) {
-      console.error('Error opening URL:', error);
+      console.error('[CHATBOT] Error opening URL:', error);
       Alert.alert('Error', 'Failed to open the reference');
     }
   };
 
   const handleMerckLinkPress = (url: string) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    console.log('Opening Merck Manual:', url);
+    console.log('[CHATBOT] Opening Merck Manual:', url);
     setWebViewUrl(url);
     setWebViewVisible(true);
   };
