@@ -95,16 +95,6 @@ import {
   type SystemArchitectureIntegrityCheck,
 } from './architectureGuardrails';
 import {
-  validateGuidelineUsage,
-  applyGuidelineUsageRules,
-  type GuidelineUsageValidation,
-} from './synthesizerEngine';
-import {
-  validateSynthesisRequirements,
-  applySynthesisRequirements,
-  type SynthesisRequirementsValidation,
-} from './synthesizerEngine';
-import {
   generateMerckAttribution,
   generateGuidelineAttribution,
   generateFlashcardAttribution,
