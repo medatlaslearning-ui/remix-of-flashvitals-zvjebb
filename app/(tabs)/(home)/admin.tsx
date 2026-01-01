@@ -13,6 +13,7 @@ import SupabaseUsageRulesMonitor from '@/components/SupabaseUsageRulesMonitor';
 import SourceAttributionMonitor from '@/components/SourceAttributionMonitor';
 import { ConsistencyValidationMonitor } from '@/components/ConsistencyValidationMonitor';
 import { FailSafeRulesMonitor } from '@/components/FailSafeRulesMonitor';
+import GuardrailsListAndStressTest from '@/components/GuardrailsListAndStressTest';
 
 export default function AdminScreen() {
   const router = useRouter();
@@ -21,7 +22,7 @@ export default function AdminScreen() {
   const [isEditing, setIsEditing] = useState(false);
   const [testResults, setTestResults] = useState<ReturnType<typeof runKeywordStressTest> | null>(null);
   const [showTestDetails, setShowTestDetails] = useState(false);
-  const [activeTab, setActiveTab] = useState<'overview' | 'health' | 'supabase' | 'attribution' | 'consistency' | 'failsafe' | 'flashcards'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'guardrails' | 'health' | 'supabase' | 'attribution' | 'consistency' | 'failsafe' | 'flashcards'>('overview');
 
   // Form state
   const [system, setSystem] = useState('Cardiology');
@@ -172,6 +173,14 @@ export default function AdminScreen() {
           >
             <Text style={[styles.tabText, activeTab === 'overview' && styles.tabTextActive]}>
               Overview
+            </Text>
+          </Pressable>
+          <Pressable
+            style={[styles.tab, activeTab === 'guardrails' && styles.tabActive]}
+            onPress={() => setActiveTab('guardrails')}
+          >
+            <Text style={[styles.tabText, activeTab === 'guardrails' && styles.tabTextActive]}>
+              Guardrails
             </Text>
           </Pressable>
           <Pressable
@@ -398,6 +407,10 @@ export default function AdminScreen() {
                 ))}
               </View>
             </>
+          )}
+
+          {activeTab === 'guardrails' && (
+            <GuardrailsListAndStressTest />
           )}
 
           {activeTab === 'health' && (
