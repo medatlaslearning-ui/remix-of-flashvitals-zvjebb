@@ -819,10 +819,19 @@ export async function verifySystemArchitectureIntegrity(): Promise<SystemArchite
     overallWarnings,
   };
   
-  console.log('[SYSTEM ARCHITECTURE] Integrity verification complete:', {
-    isValid: result.isValid,
-    warnings: result.overallWarnings.length,
-  });
+  // Changed from console.error to console.log since this is expected behavior
+  if (!result.isValid) {
+    console.log('[SYSTEM ARCHITECTURE] Integrity check detected issues:', {
+      isValid: result.isValid,
+      warnings: result.overallWarnings.length,
+    });
+    console.log('[SYSTEM ARCHITECTURE] Warnings:', result.overallWarnings);
+  } else {
+    console.log('[SYSTEM ARCHITECTURE] Integrity verification complete:', {
+      isValid: result.isValid,
+      warnings: result.overallWarnings.length,
+    });
+  }
   
   return result;
 }
