@@ -448,6 +448,8 @@ export default function ChatbotScreen() {
       return;
     }
 
+    console.log('[CHATBOT] handleSend called with text:', inputText);
+
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
 
     // Add user message
@@ -1113,17 +1115,23 @@ export default function ChatbotScreen() {
             multiline
             maxLength={500}
             returnKeyType="send"
-            onSubmitEditing={handleSend}
-            blurOnSubmit={false}
+            enablesReturnKeyAutomatically={true}
+            onSubmitEditing={() => {
+              console.log('[CHATBOT] onSubmitEditing triggered');
+              handleSend();
+            }}
           />
           <Pressable
             style={[styles.sendButton, !inputText.trim() && styles.sendButtonDisabled]}
-            onPress={handleSend}
+            onPress={() => {
+              console.log('[CHATBOT] Send button pressed');
+              handleSend();
+            }}
             disabled={!inputText.trim()}
           >
             <IconSymbol
               ios_icon_name="arrow.up.circle.fill"
-              android_material_icon_name="arrow_circle_up"
+              android_material_icon_name="send"
               size={36}
               color={inputText.trim() ? colors.primary : colors.textSecondary}
             />
@@ -1413,6 +1421,7 @@ const styles = StyleSheet.create({
   sendButton: {
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 4,
   },
   sendButtonDisabled: {
     opacity: 0.5,
