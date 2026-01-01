@@ -54,6 +54,9 @@ import { urologyFlashcards } from '@/data/urologyFlashcards';
 import { Flashcard } from '@/types/flashcard';
 import { perpetualLearningEngine, type FollowUpQuestion } from '@/data/perpetualLearningEngine';
 import { synthesizerEngine } from '@/data/synthesizerEngine';
+import { useFeedback } from '@/app/integrations/supabase/hooks/useFeedback';
+import { useAuth } from '@/app/integrations/supabase/hooks/useAuth';
+import { validateFeedback, type UserFeedback } from '@/data/supabaseUsageRules';
 
 interface Message {
   id: string;
@@ -94,7 +97,9 @@ interface Message {
   acsTraumaGuidelines?: ACSTraumaGuidelineEntry[];
   flashcards?: Flashcard[];
   interactionId?: string;
+  responseId?: string;
   feedback?: 'positive' | 'negative';
+  feedbackReversible?: boolean;
   followUpQuestions?: FollowUpQuestion[];
   system?: string;
   synthesizerMetadata?: {
@@ -120,11 +125,16 @@ const getAllFlashcards = (): Flashcard[] => {
   ];
 };
 
+// Feedback reversal window (30 seconds)
+const FEEDBACK_REVERSAL_WINDOW_MS = 30000;
+
 export default function ChatbotScreen() {
+  const { user } = useAuth();
+  const { submitFeedback, submitting } = useFeedback();
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: 'Hello! I\'m your Medical Expert Chatbot powered by the **Synthesizer Engine** with figure-eight data flow.\n\n**🔄 Synthesizer Engine Architecture:**\n\nI use a sophisticated figure-eight data flow with one-way valves to ensure accurate, focused responses:\n\n• **Valve 1** - Your question flows into the query processor\n• **Valve 2** - Core medical knowledge flows into the knowledge retriever\n• **Intersection Point** - Your query meets the knowledge base for synthesis\n• **Valve 3** - Synthesized information flows to response generation\n• **Refinement Loop** - Response is refined for quality and accuracy\n• **Valve 4** - Final response flows to you (no backflow)\n\nThis architecture prevents content bleeding and ensures you get precise, relevant information.\n\n**📚 Complete Knowledge Base:**\n\n• **Cardiology** - Arrhythmias, heart failure, ischemic heart disease, valvular disorders\n• **Pulmonary** - Asthma, COPD, pneumonia, interstitial lung diseases\n• **Gastroenterology** - GI disorders, liver disease, IBD, pancreatic conditions\n• **Endocrine** - Diabetes, thyroid disorders, adrenal disorders\n• **Hematology** - Anemias, bleeding disorders, thrombotic disorders, malignancies\n• **Renal** - AKI, CKD, glomerular diseases, electrolyte disorders\n• **Neurology** - Stroke, seizures, movement disorders, dementia, MS\n• **Infectious Disease** - Bacterial, viral, fungal, parasitic infections\n• **Emergency Medicine** - Shock, trauma, cardiovascular emergencies, toxicology\n• **Urology** - Urinary tract disorders, prostate conditions, kidney stones\n\n**📋 Clinical Practice Guidelines:**\n\n• ACC, AHA, ESC, HFSA, HRS, SCAI, EACTS (Cardiology)\n• ATS, CHEST, SCCM (Pulmonary/Critical Care)\n• KDIGO, NIDDK (Renal/Nephrology)\n• ACG (Gastroenterology)\n• ADA, Endocrine Society (Endocrine)\n• NCCN (Hematology/Oncology)\n• IDSA (Infectious Disease)\n• ASA (Stroke/Neurology)\n• ACS Trauma Programs (Emergency Medicine)\n\n**🎯 Ask Specific Questions:**\n\n• "What is the **pathophysiology** of..."\n• "What are the **clinical findings** of..."\n• "How do you **diagnose**..."\n• "What is the **treatment** for..."\n• "What are the **guidelines** for..."\n\n**💡 Natural Conversation:**\n\nI can also engage in normal conversation! Feel free to say hello, ask follow-up questions, or thank me. The synthesizer engine understands context and intent.\n\nLet\'s begin your medical learning journey!',
+      text: 'Hello! I\'m your Medical Expert Chatbot powered by the **Synthesizer Engine** with figure-eight data flow.\n\n**🔄 Synthesizer Engine Architecture:**\n\nI use a sophisticated figure-eight data flow with one-way valves to ensure accurate, focused responses:\n\n• **Valve 1** - Your question flows into the query processor\n• **Valve 2** - Core medical knowledge flows into the knowledge retriever\n• **Intersection Point** - Your query meets the knowledge base for synthesis\n• **Valve 3** - Synthesized information flows to response generation\n• **Refinement Loop** - Response is refined for quality and accuracy\n• **Valve 4** - Final response flows to you (no backflow)\n\nThis architecture prevents content bleeding and ensures you get precise, relevant information.\n\n**📚 Complete Knowledge Base:**\n\n• **Cardiology** - Arrhythmias, heart failure, ischemic heart disease, valvular disorders\n• **Pulmonary** - Asthma, COPD, pneumonia, interstitial lung diseases\n• **Gastroenterology** - GI disorders, liver disease, IBD, pancreatic conditions\n• **Endocrine** - Diabetes, thyroid disorders, adrenal disorders\n• **Hematology** - Anemias, bleeding disorders, thrombotic disorders, malignancies\n• **Renal** - AKI, CKD, glomerular diseases, electrolyte disorders\n• **Neurology** - Stroke, seizures, movement disorders, dementia, MS\n• **Infectious Disease** - Bacterial, viral, fungal, parasitic infections\n• **Emergency Medicine** - Shock, trauma, cardiovascular emergencies, toxicology\n• **Urology** - Urinary tract disorders, prostate conditions, kidney stones\n\n**📋 Clinical Practice Guidelines:**\n\n• ACC, AHA, ESC, HFSA, HRS, SCAI, EACTS (Cardiology)\n• ATS, CHEST, SCCM (Pulmonary/Critical Care)\n• KDIGO, NIDDK (Renal/Nephrology)\n• ACG (Gastroenterology)\n• ADA, Endocrine Society (Endocrine)\n• NCCN (Hematology/Oncology)\n• IDSA (Infectious Disease)\n• ASA (Stroke/Neurology)\n• ACS Trauma Programs (Emergency Medicine)\n\n**🎯 Ask Specific Questions:**\n\n• "What is the **pathophysiology** of..."\n• "What are the **clinical findings** of..."\n• "How do you **diagnose**..."\n• "What is the **treatment** for..."\n• "What are the **guidelines** for..."\n\n**💡 Natural Conversation:**\n\nI can also engage in normal conversation! Feel free to say hello, ask follow-up questions, or thank me. The synthesizer engine understands context and intent.\n\n**🔐 Feedback Guardrails:**\n\nYour feedback (thumbs up/down) is stored securely in Supabase and used ONLY to personalize HOW responses are delivered (length, depth, style), NOT to change medical facts. You can reverse feedback within 30 seconds.\n\nLet\'s begin your medical learning journey!',
       isBot: true,
       timestamp: new Date(),
     },
@@ -497,6 +507,9 @@ export default function ChatbotScreen() {
         // Detect medical system
         const system = detectMedicalSystem(currentQuery, merckEntries);
 
+        // Generate unique response ID for Supabase feedback
+        const responseId = `resp_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+
         // Ingest interaction into Perpetual Learning Engine
         const interactionId = await perpetualLearningEngine.ingestInteraction(
           currentQuery,
@@ -540,6 +553,8 @@ export default function ChatbotScreen() {
           websites: relevantWebsites.length > 0 ? relevantWebsites : undefined,
           merckManualLinks: merckManualLinks.length > 0 ? merckManualLinks : undefined,
           interactionId,
+          responseId,
+          feedbackReversible: true,
           followUpQuestions,
           system,
           synthesizerMetadata: {
@@ -551,6 +566,15 @@ export default function ChatbotScreen() {
 
         setMessages(prev => [...prev, botMessage]);
         setIsTyping(false);
+
+        // Set timer to disable feedback reversal after 30 seconds
+        setTimeout(() => {
+          setMessages(prev =>
+            prev.map(m =>
+              m.id === botMessage.id ? { ...m, feedbackReversible: false } : m
+            )
+          );
+        }, FEEDBACK_REVERSAL_WINDOW_MS);
 
         // Check if system needs refresh after interaction
         await checkSystemHealth();
@@ -574,8 +598,19 @@ export default function ChatbotScreen() {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
 
     const message = messages.find(m => m.id === messageId);
-    if (!message || !message.interactionId) {
-      console.error('Message or interaction ID not found');
+    if (!message || !message.responseId) {
+      console.error('Message or response ID not found');
+      Alert.alert('Error', 'Cannot submit feedback for this message');
+      return;
+    }
+
+    // Check if user is authenticated
+    if (!user) {
+      Alert.alert(
+        'Authentication Required',
+        'Please sign in to provide feedback. Your feedback helps us personalize your learning experience.',
+        [{ text: 'OK' }]
+      );
       return;
     }
 
@@ -583,7 +618,7 @@ export default function ChatbotScreen() {
     if (feedback === 'negative') {
       Alert.alert(
         'Negative Feedback',
-        'Are you sure this response was not helpful? This will trigger an internal audit to improve future responses.',
+        'Are you sure this response was not helpful? This will help us improve future responses.\n\n⚠️ Note: Feedback influences HOW responses are delivered (length, depth, style), NOT medical facts.',
         [
           {
             text: 'Cancel',
@@ -593,38 +628,108 @@ export default function ChatbotScreen() {
             text: 'Confirm',
             style: 'destructive',
             onPress: async () => {
-              await perpetualLearningEngine.recordFeedback(message.interactionId!, feedback, true);
-              
-              // Update message with feedback
-              setMessages(prev =>
-                prev.map(m =>
-                  m.id === messageId ? { ...m, feedback } : m
-                )
-              );
-
-              Alert.alert(
-                'Feedback Recorded',
-                'Thank you for your feedback. The system will audit this response and learn from it to provide better answers in the future.'
-              );
-
-              // Check if system needs refresh
-              await checkSystemHealth();
+              await submitFeedbackToSupabase(message, feedback);
             },
           },
         ]
       );
     } else {
-      // Positive feedback - record immediately
-      await perpetualLearningEngine.recordFeedback(message.interactionId, feedback);
+      // Positive feedback - submit immediately
+      await submitFeedbackToSupabase(message, feedback);
+    }
+  };
+
+  const submitFeedbackToSupabase = async (message: Message, feedback: 'positive' | 'negative') => {
+    try {
+      console.log('[FEEDBACK GUARDRAIL] Submitting feedback to Supabase');
       
+      // Validate feedback data before submitting (GUARDRAIL #5)
+      const feedbackData: UserFeedback = {
+        userId: user!.id,
+        responseId: message.responseId!,
+        feedbackType: feedback === 'positive' ? 'thumbs_up' : 'thumbs_down',
+        responseTopic: message.system,
+        responseSystem: message.system,
+      };
+
+      const validation = validateFeedback(feedbackData);
+      
+      if (!validation.isValid) {
+        console.error('[FEEDBACK GUARDRAIL] Validation failed:', validation.violations);
+        Alert.alert(
+          'Validation Error',
+          'Feedback data validation failed. Please try again.'
+        );
+        return;
+      }
+
+      console.log('[FEEDBACK GUARDRAIL] Validation passed, submitting to Supabase');
+
+      // Submit to Supabase
+      await submitFeedback(
+        message.responseId!,
+        feedback === 'positive' ? 'thumbs_up' : 'thumbs_down',
+        {
+          topic: message.system,
+          system: message.system,
+        }
+      );
+
+      // Also record in Perpetual Learning Engine for local learning
+      if (message.interactionId) {
+        await perpetualLearningEngine.recordFeedback(
+          message.interactionId,
+          feedback,
+          feedback === 'negative'
+        );
+      }
+
       // Update message with feedback
       setMessages(prev =>
         prev.map(m =>
-          m.id === messageId ? { ...m, feedback } : m
+          m.id === message.id ? { ...m, feedback } : m
         )
       );
 
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+
+      // Show appropriate message
+      if (feedback === 'negative') {
+        Alert.alert(
+          'Feedback Recorded',
+          'Thank you for your feedback. The system will use this to personalize HOW future responses are delivered (not WHAT is medically true).\n\n✓ Stored securely in Supabase\n✓ Used only for presentation preferences\n✓ Does not change medical facts'
+        );
+      }
+
+      // Check if system needs refresh
+      await checkSystemHealth();
+    } catch (error) {
+      console.error('[FEEDBACK GUARDRAIL] Error submitting feedback:', error);
+      
+      // Fallback: If Supabase is unavailable, still record locally
+      if (message.interactionId) {
+        await perpetualLearningEngine.recordFeedback(
+          message.interactionId,
+          feedback,
+          feedback === 'negative'
+        );
+        
+        setMessages(prev =>
+          prev.map(m =>
+            m.id === message.id ? { ...m, feedback } : m
+          )
+        );
+
+        Alert.alert(
+          'Feedback Recorded Locally',
+          'Supabase is currently unavailable, but your feedback has been recorded locally. It will sync when the connection is restored.'
+        );
+      } else {
+        Alert.alert(
+          'Error',
+          'Failed to submit feedback. Please try again later.'
+        );
+      }
     }
   };
 
@@ -794,9 +899,14 @@ export default function ChatbotScreen() {
           )}
           
           {/* Feedback Buttons for Bot Messages */}
-          {message.isBot && message.interactionId && (
+          {message.isBot && message.responseId && (
             <View style={styles.feedbackContainer}>
-              <Text style={styles.feedbackLabel}>Was this response helpful?</Text>
+              <Text style={styles.feedbackLabel}>
+                Was this response helpful?
+                {message.feedbackReversible && message.feedback && (
+                  <Text style={styles.feedbackReversibleHint}> (reversible for 30s)</Text>
+                )}
+              </Text>
               <View style={styles.feedbackButtons}>
                 <Pressable
                   style={[
@@ -804,7 +914,7 @@ export default function ChatbotScreen() {
                     message.feedback === 'positive' && styles.feedbackButtonActive,
                   ]}
                   onPress={() => handleFeedback(message.id, 'positive')}
-                  disabled={message.feedback !== undefined}
+                  disabled={message.feedback !== undefined && !message.feedbackReversible}
                 >
                   <IconSymbol
                     ios_icon_name="hand.thumbsup.fill"
@@ -827,7 +937,7 @@ export default function ChatbotScreen() {
                     message.feedback === 'negative' && styles.feedbackButtonActive,
                   ]}
                   onPress={() => handleFeedback(message.id, 'negative')}
-                  disabled={message.feedback !== undefined}
+                  disabled={message.feedback !== undefined && !message.feedbackReversible}
                 >
                   <IconSymbol
                     ios_icon_name="hand.thumbsdown.fill"
@@ -846,9 +956,19 @@ export default function ChatbotScreen() {
                 </Pressable>
               </View>
               {message.feedback && (
-                <Text style={styles.feedbackThankYou}>
-                  Thank you for your feedback! The Perpetual Learning Engine is learning from your input.
-                </Text>
+                <View style={styles.feedbackInfoBox}>
+                  <Text style={styles.feedbackThankYou}>
+                    ✓ Feedback recorded in Supabase
+                  </Text>
+                  <Text style={styles.feedbackGuardrail}>
+                    🔐 Guardrail: Feedback influences HOW responses are delivered (length, depth, style), NOT medical facts
+                  </Text>
+                  {!message.feedbackReversible && (
+                    <Text style={styles.feedbackLocked}>
+                      🔒 Feedback locked (30s window expired)
+                    </Text>
+                  )}
+                </View>
               )}
             </View>
           )}
@@ -882,9 +1002,6 @@ export default function ChatbotScreen() {
               </Text>
             </View>
           )}
-          
-          {/* Additional sections (Merck Manual, Guidelines, References, etc.) remain the same */}
-          {/* ... (keeping existing rendering code for these sections) ... */}
         </View>
         <Text style={styles.timestamp}>
           {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -1114,6 +1231,12 @@ const styles = StyleSheet.create({
     color: colors.text,
     marginBottom: 8,
   },
+  feedbackReversibleHint: {
+    fontSize: 11,
+    fontWeight: '400',
+    color: colors.textSecondary,
+    fontStyle: 'italic',
+  },
   feedbackButtons: {
     flexDirection: 'row',
     gap: 8,
@@ -1142,12 +1265,31 @@ const styles = StyleSheet.create({
   feedbackButtonTextActive: {
     color: colors.primary,
   },
+  feedbackInfoBox: {
+    marginTop: 12,
+    padding: 10,
+    backgroundColor: colors.background,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
   feedbackThankYou: {
     fontSize: 12,
+    color: '#27AE60',
+    fontWeight: '600',
+    marginBottom: 4,
+  },
+  feedbackGuardrail: {
+    fontSize: 11,
     color: colors.textSecondary,
     fontStyle: 'italic',
-    marginTop: 8,
-    textAlign: 'center',
+    lineHeight: 16,
+    marginBottom: 4,
+  },
+  feedbackLocked: {
+    fontSize: 11,
+    color: colors.textSecondary,
+    fontWeight: '600',
   },
   followUpContainer: {
     marginTop: 16,

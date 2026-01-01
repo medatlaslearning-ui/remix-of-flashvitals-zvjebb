@@ -43,5 +43,6 @@
     "extra": {
       "router": {}
     }
-  }
+  },
+  "scheme": "Remix of FlashVitals"
 }
