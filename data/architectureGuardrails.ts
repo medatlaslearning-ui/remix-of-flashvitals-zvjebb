@@ -45,7 +45,7 @@
  * - Flashcard recall questions
  */
 
-import { merckManualKnowledge, type MerckManualEntry } from './merckManualKnowledge';
+import { merckManualKnowledge, searchMerckManualKnowledge, type MerckManualEntry } from './merckManualKnowledge';
 import { getAllGuidelineWebsites } from './allGuidelineWebsites';
 import * as Network from 'expo-network';
 
@@ -104,7 +104,7 @@ export interface KnowledgeIntegrityCheck {
  * It enforces the principle that core medical facts must NOT be auto-updated.
  */
 class CoreKnowledgeEngineImpl implements CoreKnowledgeEngine {
-  private readonly knowledgeBase: ReadonlyArray<MerckManualEntry>;
+  private readonly knowledgeBase: readonly MerckManualEntry[];
   private readonly creationTimestamp: Date;
   private readonly originalChecksum: string;
 
@@ -138,8 +138,7 @@ class CoreKnowledgeEngineImpl implements CoreKnowledgeEngine {
   searchKnowledge(query: string): MerckManualEntry[] {
     console.log('[CORE KNOWLEDGE ENGINE] Searching for:', query);
     
-    // Import search function from merckManualKnowledge
-    const { searchMerckManualKnowledge } = require('./merckManualKnowledge');
+    // Use imported search function
     const results = searchMerckManualKnowledge(query);
     
     console.log('[CORE KNOWLEDGE ENGINE] Found', results.length, 'results');
