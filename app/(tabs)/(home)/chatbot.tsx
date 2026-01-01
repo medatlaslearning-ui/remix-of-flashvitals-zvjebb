@@ -106,6 +106,9 @@ interface Message {
     quality: number;
     processingTime: number;
     contentBleedingRisk: number;
+    consistencyScore?: number;
+    consistencyValid?: boolean;
+    hasConsistencyCheck?: boolean;
   };
 }
 
@@ -561,6 +564,9 @@ export default function ChatbotScreen() {
             quality: synthesizerOutput.quality,
             processingTime: synthesizerOutput.metadata.processingTime,
             contentBleedingRisk: synthesizerOutput.metadata.contentBleedingRisk,
+            consistencyScore: synthesizerOutput.metadata.consistencyValidation?.score,
+            consistencyValid: synthesizerOutput.metadata.consistencyValidation?.isValid,
+            hasConsistencyCheck: synthesizerOutput.metadata.consistencyValidation?.hasConsistencyCheck,
           },
         };
 
@@ -895,6 +901,30 @@ export default function ChatbotScreen() {
                   {Math.round(message.synthesizerMetadata.contentBleedingRisk)}%
                 </Text>
               </View>
+              {message.synthesizerMetadata.consistencyScore !== undefined && (
+                <View style={styles.metadataRow}>
+                  <Text style={styles.metadataLabel}>Consistency Score:</Text>
+                  <Text style={[
+                    styles.metadataValue,
+                    message.synthesizerMetadata.consistencyScore >= 80 ? styles.metadataGood :
+                    message.synthesizerMetadata.consistencyScore >= 60 ? styles.metadataWarning :
+                    styles.metadataBad
+                  ]}>
+                    {Math.round(message.synthesizerMetadata.consistencyScore)}%
+                  </Text>
+                </View>
+              )}
+              {message.synthesizerMetadata.hasConsistencyCheck !== undefined && (
+                <View style={styles.metadataRow}>
+                  <Text style={styles.metadataLabel}>Consistency Check:</Text>
+                  <Text style={[
+                    styles.metadataValue,
+                    message.synthesizerMetadata.hasConsistencyCheck ? styles.metadataGood : styles.metadataBad
+                  ]}>
+                    {message.synthesizerMetadata.hasConsistencyCheck ? '✓ Performed' : '✗ Not Performed'}
+                  </Text>
+                </View>
+              )}
             </View>
           )}
           

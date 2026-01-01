@@ -11,6 +11,7 @@ import { runKeywordStressTest } from '@/data/merckManualKnowledge';
 import SystemHealthMonitor from '@/components/SystemHealthMonitor';
 import SupabaseUsageRulesMonitor from '@/components/SupabaseUsageRulesMonitor';
 import SourceAttributionMonitor from '@/components/SourceAttributionMonitor';
+import { ConsistencyValidationMonitor } from '@/components/ConsistencyValidationMonitor';
 
 export default function AdminScreen() {
   const router = useRouter();
@@ -19,7 +20,7 @@ export default function AdminScreen() {
   const [isEditing, setIsEditing] = useState(false);
   const [testResults, setTestResults] = useState<ReturnType<typeof runKeywordStressTest> | null>(null);
   const [showTestDetails, setShowTestDetails] = useState(false);
-  const [activeTab, setActiveTab] = useState<'overview' | 'health' | 'supabase' | 'attribution' | 'flashcards'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'health' | 'supabase' | 'attribution' | 'consistency' | 'flashcards'>('overview');
 
   // Form state
   const [system, setSystem] = useState('Cardiology');
@@ -194,6 +195,14 @@ export default function AdminScreen() {
           >
             <Text style={[styles.tabText, activeTab === 'attribution' && styles.tabTextActive]}>
               Source Attribution
+            </Text>
+          </Pressable>
+          <Pressable
+            style={[styles.tab, activeTab === 'consistency' && styles.tabActive]}
+            onPress={() => setActiveTab('consistency')}
+          >
+            <Text style={[styles.tabText, activeTab === 'consistency' && styles.tabTextActive]}>
+              Consistency
             </Text>
           </Pressable>
           <Pressable
@@ -395,6 +404,10 @@ export default function AdminScreen() {
 
           {activeTab === 'attribution' && (
             <SourceAttributionMonitor />
+          )}
+
+          {activeTab === 'consistency' && (
+            <ConsistencyValidationMonitor />
           )}
 
           {activeTab === 'flashcards' && (
