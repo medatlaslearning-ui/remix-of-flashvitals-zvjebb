@@ -1,12 +1,14 @@
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, Platform, Pressable, Modal, Alert } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
 import { colors, commonStyles } from '@/styles/commonStyles';
 import { useFlashcards } from '@/hooks/useFlashcards';
+import { useQuiz } from '@/hooks/useQuiz';
 import { IconSymbol } from '@/components/IconSymbol';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Haptics from 'expo-haptics';
+import type { QuizStats } from '@/types/quiz';
 
 const SPECIALTY_KEY = '@user_specialty';
 
@@ -23,9 +25,11 @@ type TabType = 'expert' | 'progress';
 export default function ProfileScreen() {
   const router = useRouter();
   const { flashcards, getBookmarkedFlashcards, getFavoriteFlashcards, resetAllReviews } = useFlashcards();
+  const { getQuizStats } = useQuiz();
   const [specialty, setSpecialty] = useState<string>('Medical');
   const [showSpecialtyPicker, setShowSpecialtyPicker] = useState(false);
   const [activeTab, setActiveTab] = useState<TabType>('expert');
+  const [quizStats, setQuizStats] = useState<QuizStats | null>(null);
 
   // Load specialty from storage
   React.useEffect(() => {
@@ -40,6 +44,18 @@ export default function ProfileScreen() {
       }
     };
     loadSpecialty();
+  }, []);
+
+  // Load quiz stats
+  useEffect(() => {
+    const loadQuizStats = async () => {
+      const stats = await getQuizStats();
+      if (stats) {
+        setQuizStats(stats);
+        console.log('[Profile] Loaded quiz stats:', stats);
+      }
+    };
+    loadQuizStats();
   }, []);
 
   const handleSpecialtySelect = async (selectedSpecialty: string) => {
@@ -353,11 +369,26 @@ export default function ProfileScreen() {
                     {reviewedCards > 0 ? '✓ Unlocked' : 'Locked'}
                   </Text>
                 </View>
-                <View style={styles.achievementCard}>
+                <Pressable 
+                  style={styles.achievementCard}
+                  onPress={() => {
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                    // Scroll to quiz stats section or show modal
+                    Alert.alert(
+                      'Quiz Master',
+                      quizStats 
+                        ? `Total Quizzes: ${quizStats.total_quizzes}\nAverage Score: ${quizStats.average_score?.toFixed(1)}%\nBest Score: ${quizStats.best_score}/${quizStats.total_questions_answered > 0 ? Math.round(quizStats.total_questions_answered / quizStats.total_quizzes) : 0}`
+                        : 'Complete your first quiz to unlock this achievement!',
+                      [{ text: 'OK' }]
+                    );
+                  }}
+                >
                   <IconSymbol name="trophy.fill" size={32} color={colors.warning} />
                   <Text style={styles.achievementName}>Quiz Master</Text>
-                  <Text style={styles.achievementStatus}>Coming Soon</Text>
-                </View>
+                  <Text style={styles.achievementStatus}>
+                    {quizStats && quizStats.total_quizzes > 0 ? `${quizStats.total_quizzes} Quizzes` : 'Tap to View'}
+                  </Text>
+                </Pressable>
                 <View style={styles.achievementCard}>
                   <IconSymbol name="bolt.fill" size={32} color={colors.warning} />
                   <Text style={styles.achievementName}>Speed Learner</Text>
@@ -365,6 +396,43 @@ export default function ProfileScreen() {
                 </View>
               </View>
             </View>
+
+            {quizStats && quizStats.total_quizzes > 0 && (
+              <View style={styles.section}>
+                <Text style={styles.sectionTitle}>Quiz Statistics</Text>
+                <View style={styles.quizStatsCard}>
+                  <View style={styles.quizStatRow}>
+                    <View style={styles.quizStatItem}>
+                      <IconSymbol name="doc.text.fill" size={28} color={colors.primary} />
+                      <Text style={styles.quizStatValue}>{quizStats.total_quizzes}</Text>
+                      <Text style={styles.quizStatLabel}>Total Quizzes</Text>
+                    </View>
+                    <View style={styles.quizStatItem}>
+                      <IconSymbol name="checkmark.circle.fill" size={28} color={colors.success} />
+                      <Text style={styles.quizStatValue}>{quizStats.total_correct_answers}</Text>
+                      <Text style={styles.quizStatLabel}>Correct Answers</Text>
+                    </View>
+                  </View>
+                  <View style={styles.quizStatRow}>
+                    <View style={styles.quizStatItem}>
+                      <IconSymbol name="chart.bar.fill" size={28} color={colors.warning} />
+                      <Text style={styles.quizStatValue}>{quizStats.average_score?.toFixed(1)}%</Text>
+                      <Text style={styles.quizStatLabel}>Average Score</Text>
+                    </View>
+                    <View style={styles.quizStatItem}>
+                      <IconSymbol name="star.fill" size={28} color={colors.error} />
+                      <Text style={styles.quizStatValue}>{quizStats.best_score}</Text>
+                      <Text style={styles.quizStatLabel}>Best Score</Text>
+                    </View>
+                  </View>
+                  {quizStats.best_system && (
+                    <View style={styles.bestSystemBadge}>
+                      <Text style={styles.bestSystemText}>Best System: {quizStats.best_system}</Text>
+                    </View>
+                  )}
+                </View>
+              </View>
+            )}
           </>
         )}
       </ScrollView>
@@ -673,6 +741,48 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: colors.textSecondary,
     marginTop: 4,
+  },
+  quizStatsCard: {
+    backgroundColor: colors.card,
+    borderRadius: 16,
+    padding: 24,
+    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
+    elevation: 4,
+  },
+  quizStatRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 20,
+  },
+  quizStatItem: {
+    alignItems: 'center',
+    flex: 1,
+  },
+  quizStatValue: {
+    fontSize: 24,
+    fontWeight: '700',
+    color: colors.text,
+    marginTop: 8,
+  },
+  quizStatLabel: {
+    fontSize: 12,
+    color: colors.textSecondary,
+    marginTop: 4,
+    textAlign: 'center',
+  },
+  bestSystemBadge: {
+    backgroundColor: colors.highlight,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderRadius: 20,
+    alignSelf: 'center',
+    borderWidth: 1,
+    borderColor: colors.primary,
+  },
+  bestSystemText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: colors.primary,
   },
   modalOverlay: {
     flex: 1,
