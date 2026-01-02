@@ -82,6 +82,8 @@ export async function generateConversationalResponse(
     // Call OpenAI edge function
     const startTime = performance.now();
     
+    console.log('[OPENAI INTEGRATION] Calling Edge Function: generate-conversational-response');
+    
     const { data, error } = await supabase.functions.invoke('generate-conversational-response', {
       body: {
         medicalContent: params.medicalContent,
@@ -92,14 +94,26 @@ export async function generateConversationalResponse(
     });
     
     if (error) {
-      console.error('[OPENAI INTEGRATION] Edge function error:', error);
+      console.error('[OPENAI INTEGRATION] Edge function error:', JSON.stringify(error, null, 2));
       console.log('[OPENAI INTEGRATION] Falling back to original content');
       return {
         conversationalText: params.medicalContent,
         duration_ms: Math.round(performance.now() - startTime),
         model: 'fallback',
         usedOpenAI: false,
-        fallbackReason: `Edge function error: ${error.message}`,
+        fallbackReason: `Edge function error: ${error.message || JSON.stringify(error)}`,
+      };
+    }
+    
+    if (!data) {
+      console.error('[OPENAI INTEGRATION] No data returned from Edge Function');
+      console.log('[OPENAI INTEGRATION] Falling back to original content');
+      return {
+        conversationalText: params.medicalContent,
+        duration_ms: Math.round(performance.now() - startTime),
+        model: 'fallback',
+        usedOpenAI: false,
+        fallbackReason: 'No data returned from Edge Function',
       };
     }
     
@@ -110,10 +124,23 @@ export async function generateConversationalResponse(
       tokens?: { prompt?: number; completion?: number; total?: number };
     };
     
+    if (!result.conversationalText) {
+      console.error('[OPENAI INTEGRATION] No conversational text in response');
+      console.log('[OPENAI INTEGRATION] Falling back to original content');
+      return {
+        conversationalText: params.medicalContent,
+        duration_ms: Math.round(performance.now() - startTime),
+        model: 'fallback',
+        usedOpenAI: false,
+        fallbackReason: 'No conversational text in response',
+      };
+    }
+    
     console.log('[OPENAI INTEGRATION] Success:', {
       model: result.model,
       duration: result.duration_ms,
       tokens: result.tokens?.total,
+      textLength: result.conversationalText.length,
     });
     
     return {
@@ -122,6 +149,7 @@ export async function generateConversationalResponse(
     };
   } catch (error) {
     console.error('[OPENAI INTEGRATION] Unexpected error:', error);
+    console.error('[OPENAI INTEGRATION] Error details:', JSON.stringify(error, null, 2));
     console.log('[OPENAI INTEGRATION] Falling back to original content');
     
     return {

@@ -33,12 +33,16 @@ export function useOpenAI() {
     const userQuery = (params.userQuery ?? '').trim();
     
     if (medicalContent.length < 10) {
-      setState({ status: 'error', data: null, error: 'Medical content must be at least 10 characters.' });
+      const errorMsg = 'Medical content must be at least 10 characters.';
+      console.log('[useOpenAI] Validation error:', errorMsg);
+      setState({ status: 'error', data: null, error: errorMsg });
       return null;
     }
     
     if (userQuery.length < 3) {
-      setState({ status: 'error', data: null, error: 'User query must be at least 3 characters.' });
+      const errorMsg = 'User query must be at least 3 characters.';
+      console.log('[useOpenAI] Validation error:', errorMsg);
+      setState({ status: 'error', data: null, error: errorMsg });
       return null;
     }
     
@@ -46,6 +50,8 @@ export function useOpenAI() {
     
     try {
       console.log('[useOpenAI] Calling generate-conversational-response edge function');
+      console.log('[useOpenAI] Medical content length:', medicalContent.length);
+      console.log('[useOpenAI] User query:', userQuery);
       
       const { data, error } = await supabase.functions.invoke('generate-conversational-response', {
         body: {
@@ -58,23 +64,36 @@ export function useOpenAI() {
       });
 
       if (error) {
-        console.error('[useOpenAI] Edge function error:', error);
-        throw new Error(error.message || 'Function error');
+        console.error('[useOpenAI] Edge function error:', JSON.stringify(error, null, 2));
+        const errorMsg = error.message || error.details || JSON.stringify(error);
+        throw new Error(errorMsg);
+      }
+
+      if (!data) {
+        console.error('[useOpenAI] No data returned from Edge Function');
+        throw new Error('No data returned from Edge Function');
       }
 
       const result = data as OpenAIResult;
+      
+      if (!result.conversationalText) {
+        console.error('[useOpenAI] No conversational text in response');
+        throw new Error('No conversational text in response');
+      }
       
       console.log('[useOpenAI] Success:', {
         model: result.model,
         duration: result.duration_ms,
         tokens: result.tokens?.total,
+        textLength: result.conversationalText.length,
       });
       
       setState({ status: 'success', data: result, error: null });
       return result;
     } catch (e: any) {
       console.error('[useOpenAI] Error:', e);
-      const errorMessage = e?.message ?? 'Unknown error';
+      console.error('[useOpenAI] Error details:', JSON.stringify(e, null, 2));
+      const errorMessage = e?.message ?? String(e) ?? 'Unknown error';
       setState({ status: 'error', data: null, error: errorMessage });
       return null;
     }
