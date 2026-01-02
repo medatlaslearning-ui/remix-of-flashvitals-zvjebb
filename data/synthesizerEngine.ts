@@ -1737,6 +1737,111 @@ export interface FinalOutput {
 }
 
 /**
+ * Build comprehensive medical content string for OpenAI
+ * This includes ALL raw medical data so OpenAI can preserve terminology
+ */
+function buildComprehensiveMedicalContent(
+  synthesizedData: SynthesizedData,
+  refinedResponse: RefinedResponse
+): string {
+  const { coreKnowledge } = synthesizedData;
+  let content = '';
+  
+  // Add Merck Manual entries (detailed medical knowledge)
+  if (coreKnowledge.merckEntries.length > 0) {
+    content += '=== MERCK MANUAL PROFESSIONAL ENTRIES ===\n\n';
+    coreKnowledge.merckEntries.forEach((entry, index) => {
+      content += `Entry ${index + 1}: ${entry.topic}\n`;
+      content += `System: ${entry.system}\n\n`;
+      content += `Pathophysiology: ${entry.pathophysiology}\n\n`;
+      content += `Clinical Presentation: ${entry.clinicalPresentation}\n\n`;
+      content += `Diagnostic Approach: ${entry.diagnosticApproach}\n\n`;
+      content += `Treatment: ${entry.treatment}\n\n`;
+      if (entry.clinicalPearls.length > 0) {
+        content += `Clinical Pearls:\n`;
+        entry.clinicalPearls.forEach(pearl => {
+          content += `- ${pearl}\n`;
+        });
+        content += '\n';
+      }
+      content += '---\n\n';
+    });
+  }
+  
+  // Add guideline entries (detailed recommendations)
+  const allGuidelines = [
+    ...coreKnowledge.accGuidelines,
+    ...coreKnowledge.ahaGuidelines,
+    ...coreKnowledge.escGuidelines,
+    ...coreKnowledge.hfsaGuidelines,
+    ...coreKnowledge.hrsGuidelines,
+    ...coreKnowledge.scaiGuidelines,
+    ...coreKnowledge.eactsGuidelines,
+    ...coreKnowledge.atsGuidelines,
+    ...coreKnowledge.chestGuidelines,
+    ...coreKnowledge.sccmGuidelines,
+    ...coreKnowledge.kdigoGuidelines,
+    ...coreKnowledge.niddkGuidelines,
+    ...coreKnowledge.acgGuidelines,
+    ...coreKnowledge.adaGuidelines,
+    ...coreKnowledge.endocrineGuidelines,
+    ...coreKnowledge.nccnGuidelines,
+    ...coreKnowledge.idsaGuidelines,
+    ...coreKnowledge.asaGuidelines,
+    ...coreKnowledge.acsTraumaGuidelines,
+  ];
+  
+  if (allGuidelines.length > 0) {
+    content += '=== CLINICAL PRACTICE GUIDELINES ===\n\n';
+    allGuidelines.forEach((guideline, index) => {
+      content += `Guideline ${index + 1}: ${guideline.topic}\n`;
+      content += `Organization: ${guideline.organization}\n`;
+      content += `Year: ${guideline.year}\n\n`;
+      content += `Recommendation: ${guideline.recommendation}\n\n`;
+      content += `Class of Recommendation: ${guideline.classOfRecommendation}\n`;
+      content += `Level of Evidence: ${guideline.levelOfEvidence}\n\n`;
+      if (guideline.keyPoints && guideline.keyPoints.length > 0) {
+        content += `Key Points:\n`;
+        guideline.keyPoints.forEach(point => {
+          content += `- ${point}\n`;
+        });
+        content += '\n';
+      }
+      content += '---\n\n';
+    });
+  }
+  
+  // Add flashcard content (high-yield information)
+  if (coreKnowledge.flashcards.length > 0) {
+    content += '=== HIGH-YIELD FLASHCARD CONTENT ===\n\n';
+    coreKnowledge.flashcards.forEach((card, index) => {
+      content += `Flashcard ${index + 1}: ${card.topic}\n`;
+      content += `System: ${card.system}\n\n`;
+      if (card.back.definition) {
+        content += `Definition: ${card.back.definition}\n\n`;
+      }
+      if (card.back.high_yield) {
+        content += `High-Yield: ${card.back.high_yield}\n\n`;
+      }
+      if (card.back.clinical_pearl) {
+        content += `Clinical Pearl: ${card.back.clinical_pearl}\n\n`;
+      }
+      if (card.back.treatment) {
+        content += `Treatment: ${card.back.treatment}\n\n`;
+      }
+      content += '---\n\n';
+    });
+  }
+  
+  // Add the synthesized response as a reference structure
+  content += '=== SYNTHESIZED RESPONSE STRUCTURE (for reference) ===\n\n';
+  content += refinedResponse.text;
+  content += '\n\n';
+  
+  return content;
+}
+
+/**
  * VALVE 4: Final output to user (one-way flow with OpenAI language generation)
  * Refined response → OpenAI (Language Generator) → User output (no backflow)
  */
@@ -1774,8 +1879,13 @@ export async function generateFinalOutput(
   try {
     console.log('[VALVE 4] Calling OpenAI for conversational response generation');
     
+    // Build comprehensive medical content with ALL raw data
+    const comprehensiveMedicalContent = buildComprehensiveMedicalContent(synthesizedData, refinedResponse);
+    
+    console.log('[VALVE 4] Comprehensive medical content length:', comprehensiveMedicalContent.length);
+    
     const openAIResult = await generateConversationalResponse({
-      medicalContent: refinedResponse.text,
+      medicalContent: comprehensiveMedicalContent,
       userQuery: userQuery,
       temperature: 0.3, // Low temperature for consistency
       max_tokens: 1500,
@@ -1784,8 +1894,8 @@ export async function generateFinalOutput(
     if (openAIResult.usedOpenAI) {
       console.log('[VALVE 4] OpenAI generated conversational response');
       
-      // Validate OpenAI response
-      const validation = validateOpenAIResponse(refinedResponse.text, openAIResult.conversationalText);
+      // Validate OpenAI response against the comprehensive content
+      const validation = validateOpenAIResponse(comprehensiveMedicalContent, openAIResult.conversationalText);
       
       if (validation.isValid) {
         console.log('[VALVE 4] OpenAI response validated successfully');

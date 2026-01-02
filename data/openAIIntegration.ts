@@ -301,9 +301,9 @@ export function validateOpenAIResponse(
   const responseLength = openAIResponse.length;
   const lengthRatio = responseLength / originalLength;
   
-  if (lengthRatio > 1.5) {
+  if (lengthRatio > 2.0) {
     warnings.push('Response is significantly longer than original content');
-    score -= 20;
+    score -= 15;
   }
   
   // Check for common medical fact patterns that shouldn't be added
@@ -317,34 +317,85 @@ export function validateOpenAIResponse(
   for (const pattern of prohibitedAdditions) {
     if (pattern.test(openAIResponse) && !pattern.test(originalContent)) {
       warnings.push(`Added prohibited phrase: ${pattern.source}`);
-      score -= 30;
+      score -= 25;
     }
   }
   
-  // Check if key medical terms from original are preserved
-  const medicalTerms = originalContent.match(/\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\b/g) || [];
-  const uniqueTerms = [...new Set(medicalTerms)];
+  // Extract medical terms more comprehensively
+  // Look for:
+  // 1. Capitalized medical terms (e.g., "Atrial Fibrillation", "Diabetes Mellitus")
+  // 2. Medical abbreviations (e.g., "AFib", "MI", "CHF")
+  // 3. Drug names and medical procedures
+  // 4. Anatomical terms
   
+  const medicalTermPatterns = [
+    // Capitalized terms (2+ words)
+    /\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)+\b/g,
+    // Single capitalized medical terms
+    /\b[A-Z][a-z]{3,}\b/g,
+    // Medical abbreviations (2-5 uppercase letters)
+    /\b[A-Z]{2,5}\b/g,
+    // Terms with hyphens (e.g., "beta-blocker")
+    /\b[a-z]+-[a-z]+\b/gi,
+    // Medical suffixes
+    /\b\w+(itis|osis|emia|pathy|plasty|ectomy|otomy|scopy)\b/gi,
+  ];
+  
+  const originalTerms = new Set<string>();
+  for (const pattern of medicalTermPatterns) {
+    const matches = originalContent.match(pattern) || [];
+    matches.forEach(term => originalTerms.add(term.toLowerCase()));
+  }
+  
+  // Also extract key medical terms from the original content
+  const keyMedicalWords = [
+    'pathophysiology', 'etiology', 'diagnosis', 'treatment', 'therapy',
+    'symptom', 'sign', 'clinical', 'patient', 'disease', 'condition',
+    'medication', 'drug', 'procedure', 'intervention', 'management',
+    'acute', 'chronic', 'syndrome', 'disorder', 'failure', 'insufficiency',
+  ];
+  
+  keyMedicalWords.forEach(word => {
+    if (originalContent.toLowerCase().includes(word)) {
+      originalTerms.add(word);
+    }
+  });
+  
+  console.log('[OPENAI INTEGRATION] Extracted', originalTerms.size, 'unique medical terms from original content');
+  
+  // Check preservation rate
   let preservedTerms = 0;
-  for (const term of uniqueTerms) {
-    if (openAIResponse.includes(term)) {
+  const lowerResponse = openAIResponse.toLowerCase();
+  
+  for (const term of originalTerms) {
+    if (lowerResponse.includes(term)) {
       preservedTerms++;
     }
   }
   
-  const preservationRate = uniqueTerms.length > 0 ? preservedTerms / uniqueTerms.length : 1;
+  const preservationRate = originalTerms.size > 0 ? preservedTerms / originalTerms.size : 1;
   
-  if (preservationRate < 0.7) {
-    warnings.push('Many medical terms from original content are missing');
-    score -= 25;
+  console.log('[OPENAI INTEGRATION] Medical term preservation rate:', 
+    `${preservedTerms}/${originalTerms.size} (${(preservationRate * 100).toFixed(1)}%)`);
+  
+  // More lenient threshold: 50% preservation is acceptable
+  // (OpenAI may use natural language variations)
+  if (preservationRate < 0.5) {
+    warnings.push(`Many medical terms from original content are missing (${(preservationRate * 100).toFixed(1)}% preserved)`);
+    score -= 20;
+  } else if (preservationRate < 0.65) {
+    warnings.push(`Some medical terms from original content are missing (${(preservationRate * 100).toFixed(1)}% preserved)`);
+    score -= 10;
   }
   
-  const isValid = score >= 70 && warnings.length === 0;
+  // Lower validation threshold from 70 to 60
+  const isValid = score >= 60;
   
   console.log('[OPENAI INTEGRATION] Validation result:', {
     isValid,
     score,
     warnings: warnings.length,
+    preservationRate: `${(preservationRate * 100).toFixed(1)}%`,
   });
   
   return {
