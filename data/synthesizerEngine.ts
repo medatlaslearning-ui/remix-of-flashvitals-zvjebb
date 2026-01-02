@@ -137,6 +137,11 @@ import {
   type FailSafeDecision,
   type FailSafeValidation,
 } from './failSafeRules';
+import {
+  generateConversationalResponse,
+  validateOpenAIResponse,
+  type OpenAILanguageGenerationResult,
+} from './openAIIntegration';
 
 // ============================================================================
 // GUARDRAIL #3: GUIDELINE USAGE RULES
@@ -1718,21 +1723,31 @@ export interface FinalOutput {
     consistencyValidation?: ConsistencyValidation; // GUARDRAIL #7
     failSafeValidation?: FailSafeValidation; // GUARDRAIL #8
     failSafeDecision?: FailSafeDecision; // GUARDRAIL #8
+    openAI?: {
+      usedOpenAI: boolean;
+      model?: string;
+      duration_ms?: number;
+      tokens?: { prompt?: number; completion?: number; total?: number };
+      validationScore?: number;
+      validationWarnings?: string[];
+      fallbackReason?: string;
+    };
   };
   timestamp: Date;
 }
 
 /**
- * VALVE 4: Final output to user (one-way flow)
- * Refined response → User output (no backflow)
+ * VALVE 4: Final output to user (one-way flow with OpenAI language generation)
+ * Refined response → OpenAI (Language Generator) → User output (no backflow)
  */
-export function generateFinalOutput(
+export async function generateFinalOutput(
   refinedResponse: RefinedResponse,
   synthesizedData: SynthesizedData,
   synthesizedResponse: SynthesizedResponse,
-  startTime: Date
-): FinalOutput {
-  console.log('[VALVE 4] Generating final output');
+  startTime: Date,
+  userQuery: string
+): Promise<FinalOutput> {
+  console.log('[VALVE 4] Generating final output with OpenAI language generation');
   
   const processingTime = new Date().getTime() - startTime.getTime();
   
@@ -1742,8 +1757,78 @@ export function generateFinalOutput(
     warnings: synthesizedData.coreKnowledge.integrityCheck.overallWarnings,
   } : undefined;
   
+  // OPENAI INTEGRATION: Use OpenAI as language generator
+  let finalResponseText = refinedResponse.text;
+  let openAIMetadata: {
+    usedOpenAI: boolean;
+    model?: string;
+    duration_ms?: number;
+    tokens?: { prompt?: number; completion?: number; total?: number };
+    validationScore?: number;
+    validationWarnings?: string[];
+    fallbackReason?: string;
+  } = {
+    usedOpenAI: false,
+  };
+  
+  try {
+    console.log('[VALVE 4] Calling OpenAI for conversational response generation');
+    
+    const openAIResult = await generateConversationalResponse({
+      medicalContent: refinedResponse.text,
+      userQuery: userQuery,
+      temperature: 0.3, // Low temperature for consistency
+      max_tokens: 1500,
+    });
+    
+    if (openAIResult.usedOpenAI) {
+      console.log('[VALVE 4] OpenAI generated conversational response');
+      
+      // Validate OpenAI response
+      const validation = validateOpenAIResponse(refinedResponse.text, openAIResult.conversationalText);
+      
+      if (validation.isValid) {
+        console.log('[VALVE 4] OpenAI response validated successfully');
+        finalResponseText = openAIResult.conversationalText;
+        
+        openAIMetadata = {
+          usedOpenAI: true,
+          model: openAIResult.model,
+          duration_ms: openAIResult.duration_ms,
+          tokens: openAIResult.tokens,
+          validationScore: validation.score,
+          validationWarnings: validation.warnings,
+        };
+      } else {
+        console.log('[VALVE 4] OpenAI response validation failed - using original content');
+        console.log('[VALVE 4] Validation warnings:', validation.warnings);
+        
+        openAIMetadata = {
+          usedOpenAI: false,
+          fallbackReason: `Validation failed (score: ${validation.score}): ${validation.warnings.join(', ')}`,
+        };
+      }
+    } else {
+      console.log('[VALVE 4] OpenAI not used - using original content');
+      console.log('[VALVE 4] Fallback reason:', openAIResult.fallbackReason);
+      
+      openAIMetadata = {
+        usedOpenAI: false,
+        fallbackReason: openAIResult.fallbackReason,
+      };
+    }
+  } catch (error) {
+    console.error('[VALVE 4] Error calling OpenAI:', error);
+    console.log('[VALVE 4] Falling back to original content');
+    
+    openAIMetadata = {
+      usedOpenAI: false,
+      fallbackReason: `Error: ${String(error)}`,
+    };
+  }
+  
   const output: FinalOutput = {
-    response: refinedResponse.text,
+    response: finalResponseText,
     quality: refinedResponse.quality,
     metadata: {
       processingTime,
@@ -1758,6 +1843,7 @@ export function generateFinalOutput(
       consistencyValidation: refinedResponse.consistencyValidation, // GUARDRAIL #7
       failSafeValidation: refinedResponse.failSafeValidation, // GUARDRAIL #8
       failSafeDecision: synthesizedResponse.failSafeDecision, // GUARDRAIL #8
+      openAI: openAIMetadata,
     },
     timestamp: new Date(),
   };
@@ -1774,6 +1860,8 @@ export function generateFinalOutput(
     consistencyValid: output.metadata.consistencyValidation?.isValid,
     failSafeValid: output.metadata.failSafeValidation?.isValid,
     failSafeMode: output.metadata.failSafeDecision?.mode,
+    usedOpenAI: output.metadata.openAI?.usedOpenAI,
+    openAIModel: output.metadata.openAI?.model,
   });
   
   return output;
@@ -1802,9 +1890,10 @@ export class SynthesizerEngine {
   }
   
   /**
-   * Process query through the figure-eight flow with guardrails
+   * Process query through the figure-eight flow with guardrails and OpenAI language generation
    * 
    * CRITICAL FIX: Enhanced error handling
+   * OPENAI INTEGRATION: Added OpenAI as language generator
    */
   async processQuery(
     rawQuery: string,
@@ -1812,7 +1901,7 @@ export class SynthesizerEngine {
     conversationContext?: string[]
   ): Promise<FinalOutput> {
     const startTime = new Date();
-    console.log('[SYNTHESIZER ENGINE] Processing query:', rawQuery);
+    console.log('[SYNTHESIZER ENGINE] Processing query with OpenAI integration:', rawQuery);
     
     try {
       // VALVE 1: Process user input
@@ -1835,10 +1924,16 @@ export class SynthesizerEngine {
       // REFINEMENT LOOP: Refine response
       const refinedResponse = refineResponse(synthesizedResponse);
       
-      // VALVE 4: Generate final output
-      const finalOutput = generateFinalOutput(refinedResponse, synthesizedData, synthesizedResponse, startTime);
+      // VALVE 4: Generate final output with OpenAI language generation
+      const finalOutput = await generateFinalOutput(
+        refinedResponse, 
+        synthesizedData, 
+        synthesizedResponse, 
+        startTime,
+        rawQuery
+      );
       
-      console.log('[SYNTHESIZER ENGINE] Query processed successfully');
+      console.log('[SYNTHESIZER ENGINE] Query processed successfully with OpenAI');
       
       return finalOutput;
     } catch (error) {
@@ -1858,6 +1953,10 @@ export class SynthesizerEngine {
             flashcards: false,
           },
           attributions: [],
+          openAI: {
+            usedOpenAI: false,
+            fallbackReason: 'Critical error in synthesizer engine',
+          },
         },
         timestamp: new Date(),
       };

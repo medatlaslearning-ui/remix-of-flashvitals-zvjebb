@@ -109,6 +109,15 @@ interface Message {
     consistencyScore?: number;
     consistencyValid?: boolean;
     hasConsistencyCheck?: boolean;
+    openAI?: {
+      usedOpenAI: boolean;
+      model?: string;
+      duration_ms?: number;
+      tokens?: { prompt?: number; completion?: number; total?: number };
+      validationScore?: number;
+      validationWarnings?: string[];
+      fallbackReason?: string;
+    };
   };
 }
 
@@ -137,7 +146,7 @@ export default function ChatbotScreen() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: 'Hello! I\'m your Medical Expert Chatbot powered by the **Synthesizer Engine** with figure-eight data flow.\n\n**🔄 Synthesizer Engine Architecture:**\n\nI use a sophisticated figure-eight data flow with one-way valves to ensure accurate, focused responses:\n\n• **Valve 1** - Your question flows into the query processor\n• **Valve 2** - Core medical knowledge flows into the knowledge retriever\n• **Intersection Point** - Your query meets the knowledge base for synthesis\n• **Valve 3** - Synthesized information flows to response generation\n• **Refinement Loop** - Response is refined for quality and accuracy\n• **Valve 4** - Final response flows to you (no backflow)\n\nThis architecture prevents content bleeding and ensures you get precise, relevant information.\n\n**📚 Complete Knowledge Base:**\n\n• **Cardiology** - Arrhythmias, heart failure, ischemic heart disease, valvular disorders\n• **Pulmonary** - Asthma, COPD, pneumonia, interstitial lung diseases\n• **Gastroenterology** - GI disorders, liver disease, IBD, pancreatic conditions\n• **Endocrine** - Diabetes, thyroid disorders, adrenal disorders\n• **Hematology** - Anemias, bleeding disorders, thrombotic disorders, malignancies\n• **Renal** - AKI, CKD, glomerular diseases, electrolyte disorders\n• **Neurology** - Stroke, seizures, movement disorders, dementia, MS\n• **Infectious Disease** - Bacterial, viral, fungal, parasitic infections\n• **Emergency Medicine** - Shock, trauma, cardiovascular emergencies, toxicology\n• **Urology** - Urinary tract disorders, prostate conditions, kidney stones\n\n**📋 Clinical Practice Guidelines:**\n\n• ACC, AHA, ESC, HFSA, HRS, SCAI, EACTS (Cardiology)\n• ATS, CHEST, SCCM (Pulmonary/Critical Care)\n• KDIGO, NIDDK (Renal/Nephrology)\n• ACG (Gastroenterology)\n• ADA, Endocrine Society (Endocrine)\n• NCCN (Hematology/Oncology)\n• IDSA (Infectious Disease)\n• ASA (Stroke/Neurology)\n• ACS Trauma Programs (Emergency Medicine)\n\n**🎯 Ask Specific Questions:**\n\n• "What is the **pathophysiology** of..."\n• "What are the **clinical findings** of..."\n• "How do you **diagnose**..."\n• "What is the **treatment** for..."\n• "What are the **guidelines** for..."\n\n**💡 Natural Conversation:**\n\nI can also engage in normal conversation! Feel free to say hello, ask follow-up questions, or thank me. The synthesizer engine understands context and intent.\n\n**🔐 Feedback Guardrails:**\n\nYour feedback (thumbs up/down) is stored securely in Supabase and used ONLY to personalize HOW responses are delivered (length, depth, style), NOT to change medical facts. You can reverse feedback within 30 seconds.\n\n**✅ Enhanced Quality Controls:**\n\n• Improved keyword specificity to prevent condition confusion\n• Enhanced error handling for robust performance\n• Better distinction between similar conditions (e.g., COPD vs Asthma)\n• Comprehensive validation at every step\n\nLet\'s begin your medical learning journey!',
+      text: 'Hello! I\'m your Medical Expert Chatbot powered by the **Synthesizer Engine** with **OpenAI Language Generation**.\n\n**🔄 Synthesizer Engine Architecture with OpenAI:**\n\nI use a sophisticated figure-eight data flow with one-way valves to ensure accurate, focused responses:\n\n• **Valve 1** - Your question flows into the query processor\n• **Valve 2** - Core medical knowledge flows into the knowledge retriever\n• **Intersection Point** - Your query meets the knowledge base for synthesis\n• **Valve 3** - Synthesized information flows to response generation\n• **Refinement Loop** - Response is refined for quality and accuracy\n• **Valve 4** - OpenAI generates conversational presentation (no medical facts added)\n• **Final Output** - Clear, conversational response flows to you (no backflow)\n\n**🤖 OpenAI Role Definition:**\n\nOpenAI functions as:\n• ✅ The **language generator** - Makes responses clear and conversational\n• ✅ The **reasoning surface** - Explains medical concepts effectively\n• ✅ The **conversational interface** - Provides warm, professional tone\n\nOpenAI does NOT function as:\n• ❌ The source of medical truth (that\'s the Core Knowledge Engine)\n• ❌ A replacement for the knowledge engine\n• ❌ A decision-maker for guidelines\n• ❌ A memory store\n\n**🔐 Guardrails:**\n\nOpenAI responses are validated to ensure:\n• No medical facts are added beyond the core knowledge\n• All key medical terms are preserved\n• Response length is appropriate\n• Medical accuracy is maintained 100%\n\nThis architecture prevents content bleeding and ensures you get precise, relevant information presented in a clear, conversational manner.\n\n**📚 Complete Knowledge Base:**\n\n• **Cardiology** - Arrhythmias, heart failure, ischemic heart disease, valvular disorders\n• **Pulmonary** - Asthma, COPD, pneumonia, interstitial lung diseases\n• **Gastroenterology** - GI disorders, liver disease, IBD, pancreatic conditions\n• **Endocrine** - Diabetes, thyroid disorders, adrenal disorders\n• **Hematology** - Anemias, bleeding disorders, thrombotic disorders, malignancies\n• **Renal** - AKI, CKD, glomerular diseases, electrolyte disorders\n• **Neurology** - Stroke, seizures, movement disorders, dementia, MS\n• **Infectious Disease** - Bacterial, viral, fungal, parasitic infections\n• **Emergency Medicine** - Shock, trauma, cardiovascular emergencies, toxicology\n• **Urology** - Urinary tract disorders, prostate conditions, kidney stones\n\n**📋 Clinical Practice Guidelines:**\n\n• ACC, AHA, ESC, HFSA, HRS, SCAI, EACTS (Cardiology)\n• ATS, CHEST, SCCM (Pulmonary/Critical Care)\n• KDIGO, NIDDK (Renal/Nephrology)\n• ACG (Gastroenterology)\n• ADA, Endocrine Society (Endocrine)\n• NCCN (Hematology/Oncology)\n• IDSA (Infectious Disease)\n• ASA (Stroke/Neurology)\n• ACS Trauma Programs (Emergency Medicine)\n\n**🎯 Ask Specific Questions:**\n\n• "What is the **pathophysiology** of..."\n• "What are the **clinical findings** of..."\n• "How do you **diagnose**..."\n• "What is the **treatment** for..."\n• "What are the **guidelines** for..."\n\n**💡 Natural Conversation:**\n\nI can also engage in normal conversation! Feel free to say hello, ask follow-up questions, or thank me. The synthesizer engine understands context and intent.\n\n**🔐 Feedback Guardrails:**\n\nYour feedback (thumbs up/down) is stored securely in Supabase and used ONLY to personalize HOW responses are delivered (length, depth, style), NOT to change medical facts. You can reverse feedback within 30 seconds.\n\n**✅ Enhanced Quality Controls:**\n\n• Improved keyword specificity to prevent condition confusion\n• Enhanced error handling for robust performance\n• Better distinction between similar conditions (e.g., COPD vs Asthma)\n• Comprehensive validation at every step\n\nLet\'s begin your medical learning journey!',
       isBot: true,
       timestamp: new Date(),
     },
@@ -573,6 +582,7 @@ export default function ChatbotScreen() {
             consistencyScore: synthesizerOutput.metadata.consistencyValidation?.score,
             consistencyValid: synthesizerOutput.metadata.consistencyValidation?.isValid,
             hasConsistencyCheck: synthesizerOutput.metadata.consistencyValidation?.hasConsistencyCheck,
+            openAI: synthesizerOutput.metadata.openAI,
           },
         };
 
@@ -943,6 +953,64 @@ export default function ChatbotScreen() {
                     {message.synthesizerMetadata.hasConsistencyCheck ? '✓ Performed' : '✗ Not Performed'}
                   </Text>
                 </View>
+              )}
+              {message.synthesizerMetadata.openAI && (
+                <>
+                  <View style={styles.metadataRow}>
+                    <Text style={styles.metadataLabel}>OpenAI Language Generation:</Text>
+                    <Text style={[
+                      styles.metadataValue,
+                      message.synthesizerMetadata.openAI.usedOpenAI ? styles.metadataGood : styles.metadataWarning
+                    ]}>
+                      {message.synthesizerMetadata.openAI.usedOpenAI ? '✓ Active' : '✗ Fallback'}
+                    </Text>
+                  </View>
+                  {message.synthesizerMetadata.openAI.usedOpenAI && (
+                    <>
+                      <View style={styles.metadataRow}>
+                        <Text style={styles.metadataLabel}>Model:</Text>
+                        <Text style={styles.metadataValue}>
+                          {message.synthesizerMetadata.openAI.model}
+                        </Text>
+                      </View>
+                      <View style={styles.metadataRow}>
+                        <Text style={styles.metadataLabel}>OpenAI Duration:</Text>
+                        <Text style={styles.metadataValue}>
+                          {message.synthesizerMetadata.openAI.duration_ms}ms
+                        </Text>
+                      </View>
+                      {message.synthesizerMetadata.openAI.tokens && (
+                        <View style={styles.metadataRow}>
+                          <Text style={styles.metadataLabel}>Tokens:</Text>
+                          <Text style={styles.metadataValue}>
+                            {message.synthesizerMetadata.openAI.tokens.total}
+                          </Text>
+                        </View>
+                      )}
+                      {message.synthesizerMetadata.openAI.validationScore !== undefined && (
+                        <View style={styles.metadataRow}>
+                          <Text style={styles.metadataLabel}>Validation Score:</Text>
+                          <Text style={[
+                            styles.metadataValue,
+                            message.synthesizerMetadata.openAI.validationScore >= 80 ? styles.metadataGood :
+                            message.synthesizerMetadata.openAI.validationScore >= 60 ? styles.metadataWarning :
+                            styles.metadataBad
+                          ]}>
+                            {Math.round(message.synthesizerMetadata.openAI.validationScore)}%
+                          </Text>
+                        </View>
+                      )}
+                    </>
+                  )}
+                  {!message.synthesizerMetadata.openAI.usedOpenAI && message.synthesizerMetadata.openAI.fallbackReason && (
+                    <View style={styles.metadataRow}>
+                      <Text style={styles.metadataLabel}>Fallback Reason:</Text>
+                      <Text style={[styles.metadataValue, styles.metadataWarning]}>
+                        {message.synthesizerMetadata.openAI.fallbackReason}
+                      </Text>
+                    </View>
+                  )}
+                </>
               )}
             </View>
           )}
