@@ -64,6 +64,18 @@ export interface QuizGenerationParams {
   guidelinesContext?: string;
 }
 
+export interface GeneratedQuestion {
+  questionNumber: number;
+  questionText: string;
+  optionA: string;
+  optionB: string;
+  optionC: string;
+  optionD: string;
+  correctAnswer: 'A' | 'B' | 'C' | 'D';
+  rationale: string;
+  references: string;
+}
+
 export interface QuizGenerationResult {
   quizId: string;
   questionCount: number;
@@ -76,4 +88,5 @@ export interface QuizGenerationResult {
     completion?: number;
     total?: number;
   };
+  questions?: GeneratedQuestion[];
 }

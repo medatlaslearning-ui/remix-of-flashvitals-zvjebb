@@ -5,36 +5,68 @@ import { Stack, useRouter, useLocalSearchParams } from 'expo-router';
 import { colors, commonStyles } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
 import { useQuiz } from '@/hooks/useQuiz';
-import type { Quiz, QuizQuestion } from '@/types/quiz';
+import type { Quiz, QuizQuestion, GeneratedQuestion } from '@/types/quiz';
 import * as Haptics from 'expo-haptics';
 
 export default function QuizSessionScreen() {
   const router = useRouter();
-  const { quizId } = useLocalSearchParams<{ quizId: string }>();
+  const { quizId, questionsData, medicalSystem, questionCount } = useLocalSearchParams<{ 
+    quizId: string;
+    questionsData?: string;
+    medicalSystem?: string;
+    questionCount?: string;
+  }>();
   const { getQuiz, getQuizQuestions, submitAnswer, completeQuiz, loading } = useQuiz();
   
   const [quiz, setQuiz] = useState<Quiz | null>(null);
-  const [questions, setQuestions] = useState<QuizQuestion[]>([]);
+  const [questions, setQuestions] = useState<(QuizQuestion | GeneratedQuestion)[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<'A' | 'B' | 'C' | 'D' | null>(null);
   const [showRationale, setShowRationale] = useState(false);
   const [isAnswerSubmitted, setIsAnswerSubmitted] = useState(false);
+  const [userAnswers, setUserAnswers] = useState<Record<number, { answer: 'A' | 'B' | 'C' | 'D', isCorrect: boolean }>>({});
+  const [isAnonymous, setIsAnonymous] = useState(false);
 
   useEffect(() => {
-    if (quizId) {
+    if (questionsData) {
+      // Load questions from passed data (anonymous mode)
+      try {
+        const parsedQuestions: GeneratedQuestion[] = JSON.parse(questionsData);
+        setQuestions(parsedQuestions);
+        setIsAnonymous(true);
+        setQuiz({
+          id: quizId,
+          user_id: 'anonymous',
+          medical_system: medicalSystem || 'Unknown',
+          question_count: parseInt(questionCount || '0'),
+          status: 'in_progress',
+          total_questions: parsedQuestions.length,
+          created_at: new Date().toISOString(),
+        } as Quiz);
+        console.log('[QuizSession] Loaded', parsedQuestions.length, 'questions from data');
+      } catch (error) {
+        console.error('[QuizSession] Error parsing questions:', error);
+        Alert.alert('Error', 'Failed to load quiz questions');
+        router.back();
+      }
+    } else if (quizId && quizId !== 'anonymous') {
+      // Load from database
       loadQuizData();
+    } else {
+      Alert.alert('Error', 'No quiz data provided');
+      router.back();
     }
-  }, [quizId]);
+  }, [quizId, questionsData]);
 
   const loadQuizData = async () => {
-    console.log('[QuizSession] Loading quiz:', quizId);
+    console.log('[QuizSession] Loading quiz from database:', quizId);
     const quizData = await getQuiz(quizId);
     const questionsData = await getQuizQuestions(quizId);
     
     if (quizData && questionsData.length > 0) {
       setQuiz(quizData);
       setQuestions(questionsData);
-      console.log('[QuizSession] Loaded', questionsData.length, 'questions');
+      console.log('[QuizSession] Loaded', questionsData.length, 'questions from database');
     } else {
       Alert.alert('Error', 'Failed to load quiz data');
       router.back();
@@ -42,6 +74,34 @@ export default function QuizSessionScreen() {
   };
 
   const currentQuestion = questions[currentQuestionIndex];
+
+  const getQuestionText = (q: QuizQuestion | GeneratedQuestion): string => {
+    return 'question_text' in q ? q.question_text : q.questionText;
+  };
+
+  const getOptionText = (q: QuizQuestion | GeneratedQuestion, option: 'A' | 'B' | 'C' | 'D'): string => {
+    if ('option_a' in q) {
+      return q[`option_${option.toLowerCase()}` as keyof QuizQuestion] as string;
+    } else {
+      return q[`option${option}` as keyof GeneratedQuestion] as string;
+    }
+  };
+
+  const getCorrectAnswer = (q: QuizQuestion | GeneratedQuestion): 'A' | 'B' | 'C' | 'D' => {
+    return 'correct_answer' in q ? q.correct_answer : q.correctAnswer;
+  };
+
+  const getRationale = (q: QuizQuestion | GeneratedQuestion): string => {
+    return 'rationale' in q ? q.rationale : q.rationale;
+  };
+
+  const getReferences = (q: QuizQuestion | GeneratedQuestion): string => {
+    return 'reference_text' in q ? q.reference_text : q.references;
+  };
+
+  const getQuestionNumber = (q: QuizQuestion | GeneratedQuestion): number => {
+    return 'question_number' in q ? q.question_number : q.questionNumber;
+  };
 
   const handleAnswerSelect = (answer: 'A' | 'B' | 'C' | 'D') => {
     if (isAnswerSubmitted) return;
@@ -56,12 +116,24 @@ export default function QuizSessionScreen() {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     console.log('[QuizSession] Submitting answer:', selectedAnswer);
 
-    // TODO: Backend Integration - Submit answer to the quiz API endpoint
-    const isCorrect = await submitAnswer(
-      currentQuestion.id,
-      selectedAnswer,
-      currentQuestion.correct_answer
-    );
+    const correctAnswer = getCorrectAnswer(currentQuestion);
+    const isCorrect = selectedAnswer === correctAnswer;
+
+    // Store answer in local state
+    setUserAnswers(prev => ({
+      ...prev,
+      [currentQuestionIndex]: { answer: selectedAnswer, isCorrect }
+    }));
+
+    // Submit to database if not anonymous
+    if (!isAnonymous && 'id' in currentQuestion) {
+      // TODO: Backend Integration - Submit answer to the quiz API endpoint
+      await submitAnswer(
+        currentQuestion.id,
+        selectedAnswer,
+        correctAnswer
+      );
+    }
 
     setIsAnswerSubmitted(true);
     setShowRationale(true);
@@ -91,20 +163,21 @@ export default function QuizSessionScreen() {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     console.log('[QuizSession] Finishing quiz');
 
-    // TODO: Backend Integration - Complete quiz and calculate score
-    const score = await completeQuiz(quizId);
+    const score = Object.values(userAnswers).filter(a => a.isCorrect).length;
+
+    if (!isAnonymous && quizId !== 'anonymous') {
+      // TODO: Backend Integration - Complete quiz and calculate score
+      await completeQuiz(quizId);
+    }
     
     Alert.alert(
       'Quiz Complete!',
       `You scored ${score} out of ${questions.length}`,
       [
         {
-          text: 'View Results',
+          text: 'OK',
           onPress: () => {
-            router.replace({
-              pathname: '/quiz-results',
-              params: { quizId }
-            });
+            router.back();
           }
         }
       ]
@@ -125,11 +198,12 @@ export default function QuizSessionScreen() {
       return selectedAnswer === option ? styles.optionSelected : styles.option;
     }
     
-    if (option === currentQuestion.correct_answer) {
+    const correctAnswer = getCorrectAnswer(currentQuestion);
+    if (option === correctAnswer) {
       return styles.optionCorrect;
     }
     
-    if (selectedAnswer === option && option !== currentQuestion.correct_answer) {
+    if (selectedAnswer === option && option !== correctAnswer) {
       return styles.optionIncorrect;
     }
     
@@ -138,18 +212,19 @@ export default function QuizSessionScreen() {
 
   const getOptionIcon = (option: 'A' | 'B' | 'C' | 'D') => {
     if (!isAnswerSubmitted) {
-      return selectedAnswer === option ? 'checkmark.circle.fill' : 'circle';
+      return selectedAnswer === option ? 'check-circle' : 'radio-button-unchecked';
     }
     
-    if (option === currentQuestion.correct_answer) {
-      return 'checkmark.circle.fill';
+    const correctAnswer = getCorrectAnswer(currentQuestion);
+    if (option === correctAnswer) {
+      return 'check-circle';
     }
     
-    if (selectedAnswer === option && option !== currentQuestion.correct_answer) {
-      return 'xmark.circle.fill';
+    if (selectedAnswer === option && option !== correctAnswer) {
+      return 'cancel';
     }
     
-    return 'circle';
+    return 'radio-button-unchecked';
   };
 
   const getOptionIconColor = (option: 'A' | 'B' | 'C' | 'D') => {
@@ -157,11 +232,12 @@ export default function QuizSessionScreen() {
       return selectedAnswer === option ? colors.primary : colors.textSecondary;
     }
     
-    if (option === currentQuestion.correct_answer) {
+    const correctAnswer = getCorrectAnswer(currentQuestion);
+    if (option === correctAnswer) {
       return colors.success;
     }
     
-    if (selectedAnswer === option && option !== currentQuestion.correct_answer) {
+    if (selectedAnswer === option && option !== correctAnswer) {
       return colors.error;
     }
     
@@ -186,8 +262,8 @@ export default function QuizSessionScreen() {
         </View>
 
         <View style={styles.questionCard}>
-          <Text style={styles.questionNumber}>Question {currentQuestion.question_number}</Text>
-          <Text style={styles.questionText}>{currentQuestion.question_text}</Text>
+          <Text style={styles.questionNumber}>Question {getQuestionNumber(currentQuestion)}</Text>
+          <Text style={styles.questionText}>{getQuestionText(currentQuestion)}</Text>
         </View>
 
         <View style={styles.optionsContainer}>
@@ -200,14 +276,15 @@ export default function QuizSessionScreen() {
             >
               <View style={styles.optionHeader}>
                 <IconSymbol 
-                  name={getOptionIcon(option) as any} 
+                  ios_icon_name={getOptionIcon(option) as any}
+                  android_material_icon_name={getOptionIcon(option)}
                   size={24} 
                   color={getOptionIconColor(option)} 
                 />
                 <Text style={styles.optionLabel}>{option}</Text>
               </View>
               <Text style={styles.optionText}>
-                {currentQuestion[`option_${option.toLowerCase()}` as keyof QuizQuestion] as string}
+                {getOptionText(currentQuestion, option)}
               </Text>
             </Pressable>
           ))}
@@ -226,22 +303,37 @@ export default function QuizSessionScreen() {
         {showRationale && (
           <View style={styles.rationaleCard}>
             <View style={styles.rationaleHeader}>
-              <IconSymbol name="lightbulb.fill" size={24} color={colors.warning} />
+              <IconSymbol 
+                ios_icon_name="lightbulb.fill" 
+                android_material_icon_name="lightbulb" 
+                size={24} 
+                color={colors.warning} 
+              />
               <Text style={styles.rationaleTitle}>Rationale</Text>
             </View>
-            <Text style={styles.rationaleText}>{currentQuestion.rationale}</Text>
+            <Text style={styles.rationaleText}>{getRationale(currentQuestion)}</Text>
             
             <View style={styles.referencesSection}>
-              <IconSymbol name="book.fill" size={20} color={colors.info} />
+              <IconSymbol 
+                ios_icon_name="book.fill" 
+                android_material_icon_name="menu-book" 
+                size={20} 
+                color={colors.info} 
+              />
               <Text style={styles.referencesTitle}>References</Text>
             </View>
-            <Text style={styles.referencesText}>{currentQuestion.reference_text}</Text>
+            <Text style={styles.referencesText}>{getReferences(currentQuestion)}</Text>
 
             <Pressable style={styles.nextButton} onPress={handleNextQuestion}>
               <Text style={styles.nextButtonText}>
                 {currentQuestionIndex < questions.length - 1 ? 'Next Question' : 'Finish Quiz'}
               </Text>
-              <IconSymbol name="arrow.right" size={20} color={colors.background} />
+              <IconSymbol 
+                ios_icon_name="arrow.right" 
+                android_material_icon_name="arrow-forward" 
+                size={20} 
+                color={colors.background} 
+              />
             </Pressable>
           </View>
         )}

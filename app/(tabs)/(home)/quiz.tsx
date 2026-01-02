@@ -19,16 +19,16 @@ import { urologyFlashcards } from '@/data/urologyFlashcards';
 import { getAllGuidelineWebsites } from '@/data/allGuidelineWebsites';
 
 const MEDICAL_SYSTEMS = [
-  { name: 'Cardiology', icon: 'heart.fill', color: colors.error },
-  { name: 'Pulmonary', icon: 'wind', color: colors.info },
-  { name: 'Neurology', icon: 'brain.head.profile', color: colors.warning },
-  { name: 'Renal', icon: 'drop.fill', color: colors.primary },
-  { name: 'Gastroenterology', icon: 'stomach', color: colors.success },
-  { name: 'Endocrine', icon: 'waveform.path.ecg', color: colors.secondary },
-  { name: 'Hematology', icon: 'drop.circle.fill', color: colors.error },
-  { name: 'Infectious Disease', icon: 'bandage.fill', color: colors.warning },
-  { name: 'Emergency Medicine', icon: 'cross.case.fill', color: colors.error },
-  { name: 'Urology', icon: 'staroflife.fill', color: colors.info },
+  { name: 'Cardiology', icon: 'favorite', color: colors.error },
+  { name: 'Pulmonary', icon: 'air', color: colors.info },
+  { name: 'Neurology', icon: 'psychology', color: colors.warning },
+  { name: 'Renal', icon: 'water-drop', color: colors.primary },
+  { name: 'Gastroenterology', icon: 'restaurant', color: colors.success },
+  { name: 'Endocrine', icon: 'science', color: colors.secondary },
+  { name: 'Hematology', icon: 'bloodtype', color: colors.error },
+  { name: 'Infectious Disease', icon: 'coronavirus', color: colors.warning },
+  { name: 'Emergency Medicine', icon: 'local-hospital', color: colors.error },
+  { name: 'Urology', icon: 'medical-services', color: colors.info },
 ];
 
 const QUESTION_COUNTS = [5, 10];
@@ -109,14 +109,19 @@ export default function QuizCreatorScreen() {
         guidelinesContext,
       });
 
-      if (result) {
+      if (result && result.questions && result.questions.length > 0) {
         console.log('[QuizCreator] Quiz generated successfully:', result.quizId);
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
         
-        // Navigate to the quiz taking screen
+        // Navigate to the quiz taking screen with the generated questions
         router.push({
           pathname: '/quiz-session',
-          params: { quizId: result.quizId }
+          params: { 
+            quizId: result.quizId,
+            questionsData: JSON.stringify(result.questions),
+            medicalSystem: result.medicalSystem,
+            questionCount: result.questionCount.toString(),
+          }
         });
       } else {
         Alert.alert('Error', 'Failed to generate quiz. Please try again.');
@@ -137,7 +142,12 @@ export default function QuizCreatorScreen() {
       />
       <ScrollView style={commonStyles.container} contentContainerStyle={styles.scrollContent}>
         <View style={styles.header}>
-          <IconSymbol name="brain.head.profile" size={64} color={colors.primary} />
+          <IconSymbol 
+            ios_icon_name="brain.head.profile" 
+            android_material_icon_name="psychology" 
+            size={64} 
+            color={colors.primary} 
+          />
           <Text style={styles.title}>AI Quiz Creator</Text>
           <Text style={styles.subtitle}>
             Generate board-style questions powered by OpenAI, linked to flashcards, core knowledge, and clinical guidelines
@@ -157,7 +167,8 @@ export default function QuizCreatorScreen() {
                 onPress={() => handleSystemSelect(system.name)}
               >
                 <IconSymbol 
-                  name={system.icon as any} 
+                  ios_icon_name={system.icon as any}
+                  android_material_icon_name={system.icon}
                   size={32} 
                   color={selectedSystem === system.name ? colors.background : system.color} 
                 />
@@ -169,7 +180,12 @@ export default function QuizCreatorScreen() {
                 </Text>
                 {selectedSystem === system.name && (
                   <View style={styles.selectedBadge}>
-                    <IconSymbol name="checkmark" size={16} color={colors.background} />
+                    <IconSymbol 
+                      ios_icon_name="checkmark" 
+                      android_material_icon_name="check" 
+                      size={16} 
+                      color={colors.background} 
+                    />
                   </View>
                 )}
               </Pressable>
@@ -204,19 +220,39 @@ export default function QuizCreatorScreen() {
           <Text style={styles.sectionTitle}>Guardrails & Features</Text>
           <View style={styles.featuresList}>
             <View style={styles.featureItem}>
-              <IconSymbol name="checkmark.shield.fill" size={20} color={colors.success} />
+              <IconSymbol 
+                ios_icon_name="checkmark.shield.fill" 
+                android_material_icon_name="verified-user" 
+                size={20} 
+                color={colors.success} 
+              />
               <Text style={styles.featureText}>Medical accuracy validation</Text>
             </View>
             <View style={styles.featureItem}>
-              <IconSymbol name="book.fill" size={20} color={colors.primary} />
+              <IconSymbol 
+                ios_icon_name="book.fill" 
+                android_material_icon_name="menu-book" 
+                size={20} 
+                color={colors.primary} 
+              />
               <Text style={styles.featureText}>Linked to clinical guidelines</Text>
             </View>
             <View style={styles.featureItem}>
-              <IconSymbol name="doc.text.fill" size={20} color={colors.info} />
+              <IconSymbol 
+                ios_icon_name="doc.text.fill" 
+                android_material_icon_name="description" 
+                size={20} 
+                color={colors.info} 
+              />
               <Text style={styles.featureText}>Detailed rationale & references</Text>
             </View>
             <View style={styles.featureItem}>
-              <IconSymbol name="graduationcap.fill" size={20} color={colors.warning} />
+              <IconSymbol 
+                ios_icon_name="graduationcap.fill" 
+                android_material_icon_name="school" 
+                size={20} 
+                color={colors.warning} 
+              />
               <Text style={styles.featureText}>Board-style format</Text>
             </View>
           </View>
@@ -237,14 +273,24 @@ export default function QuizCreatorScreen() {
             </>
           ) : (
             <>
-              <IconSymbol name="sparkles" size={24} color={colors.background} />
+              <IconSymbol 
+                ios_icon_name="sparkles" 
+                android_material_icon_name="auto-awesome" 
+                size={24} 
+                color={colors.background} 
+              />
               <Text style={styles.generateButtonText}>Generate Quiz</Text>
             </>
           )}
         </Pressable>
 
         <View style={styles.infoCard}>
-          <IconSymbol name="info.circle.fill" size={24} color={colors.info} />
+          <IconSymbol 
+            ios_icon_name="info.circle.fill" 
+            android_material_icon_name="info" 
+            size={24} 
+            color={colors.info} 
+          />
           <Text style={styles.infoText}>
             Your quiz scores will be tracked in your Profile under Achievements → Quiz Master
           </Text>
