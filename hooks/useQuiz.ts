@@ -13,26 +13,84 @@ export function useQuiz() {
     setError(null);
     
     try {
-      console.log('[useQuiz] Generating quiz with params:', params);
+      console.log('[useQuiz] Generating quiz with params:', {
+        medicalSystem: params.medicalSystem,
+        questionCount: params.questionCount,
+        topic: params.topic,
+        flashcardsContextLength: params.flashcardsContext?.length || 0,
+        coreKnowledgeContextLength: params.coreKnowledgeContext?.length || 0,
+        guidelinesContextLength: params.guidelinesContext?.length || 0,
+      });
+      
+      const startTime = performance.now();
       
       const { data, error: functionError } = await supabase.functions.invoke('generate-quiz', {
-        body: params,
+        body: {
+          medicalSystem: params.medicalSystem,
+          topic: params.topic,
+          questionCount: params.questionCount || 5,
+          flashcardsContext: params.flashcardsContext || '',
+          coreKnowledgeContext: params.coreKnowledgeContext || '',
+          guidelinesContext: params.guidelinesContext || '',
+        },
       });
 
+      const duration = Math.round(performance.now() - startTime);
+      console.log('[useQuiz] Edge function call completed in', duration, 'ms');
+
       if (functionError) {
-        console.error('[useQuiz] Edge function error:', functionError);
-        throw new Error(functionError.message || 'Failed to generate quiz');
+        console.error('[useQuiz] Edge function error:', {
+          message: functionError.message,
+          details: functionError.details,
+          hint: functionError.hint,
+          code: functionError.code,
+        });
+        throw new Error(functionError.message || functionError.details || 'Failed to generate quiz');
       }
 
       if (!data) {
+        console.error('[useQuiz] No data returned from quiz generation');
         throw new Error('No data returned from quiz generation');
       }
 
-      console.log('[useQuiz] Quiz generated successfully:', data);
+      console.log('[useQuiz] Quiz generated successfully:', {
+        quizId: data.quizId,
+        questionCount: data.questionCount,
+        medicalSystem: data.medicalSystem,
+        duration_ms: data.duration_ms,
+        model: data.model,
+        tokens: data.tokens,
+        questionsReceived: data.questions?.length || 0,
+      });
+      
+      // Validate the response
+      if (!data.questions || data.questions.length === 0) {
+        console.error('[useQuiz] No questions in response');
+        throw new Error('No questions generated. Please try again.');
+      }
+      
       return data as QuizGenerationResult;
     } catch (err: any) {
-      console.error('[useQuiz] Error generating quiz:', err);
-      setError(err.message || 'Failed to generate quiz');
+      console.error('[useQuiz] Error generating quiz:', {
+        name: err.name,
+        message: err.message,
+        stack: err.stack,
+      });
+      
+      // Provide user-friendly error messages
+      let errorMessage = 'Failed to generate quiz. Please try again.';
+      
+      if (err.message?.includes('timeout')) {
+        errorMessage = 'Quiz generation timed out. Try generating fewer questions.';
+      } else if (err.message?.includes('network')) {
+        errorMessage = 'Network error. Please check your connection and try again.';
+      } else if (err.message?.includes('No questions')) {
+        errorMessage = err.message;
+      } else if (err.message) {
+        errorMessage = err.message;
+      }
+      
+      setError(errorMessage);
       return null;
     } finally {
       setLoading(false);

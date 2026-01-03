@@ -100,7 +100,13 @@ export default function QuizCreatorScreen() {
       const guidelinesContext = buildGuidelinesContext(selectedSystem);
       const coreKnowledgeContext = `Medical System: ${selectedSystem}\nGenerate board-style questions that test clinical application and decision-making.`;
 
-      // TODO: Backend Integration - Call the quiz generation API endpoint
+      console.log('[QuizCreator] Context sizes:', {
+        flashcards: flashcardsContext.length,
+        guidelines: guidelinesContext.length,
+        coreKnowledge: coreKnowledgeContext.length,
+      });
+
+      // Call the quiz generation API endpoint
       const result = await generateQuiz({
         medicalSystem: selectedSystem,
         questionCount,
@@ -110,7 +116,11 @@ export default function QuizCreatorScreen() {
       });
 
       if (result && result.questions && result.questions.length > 0) {
-        console.log('[QuizCreator] Quiz generated successfully:', result.quizId);
+        console.log('[QuizCreator] Quiz generated successfully:', {
+          quizId: result.quizId,
+          questionCount: result.questions.length,
+          duration: result.duration_ms,
+        });
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
         
         // Navigate to the quiz taking screen with the generated questions
@@ -124,11 +134,28 @@ export default function QuizCreatorScreen() {
           }
         });
       } else {
-        Alert.alert('Error', 'Failed to generate quiz. Please try again.');
+        console.error('[QuizCreator] Invalid result:', result);
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+        Alert.alert(
+          'Generation Failed', 
+          'Failed to generate quiz questions. Please try again or select fewer questions.'
+        );
       }
     } catch (error: any) {
       console.error('[QuizCreator] Error:', error);
-      Alert.alert('Error', error.message || 'Failed to generate quiz. Please try again.');
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+      
+      // Provide helpful error message
+      let errorMessage = 'Failed to generate quiz. Please try again.';
+      if (error.message?.includes('timeout')) {
+        errorMessage = 'Quiz generation timed out. Try generating 5 questions instead of 10.';
+      } else if (error.message?.includes('network')) {
+        errorMessage = 'Network error. Please check your connection and try again.';
+      } else if (error.message) {
+        errorMessage = error.message;
+      }
+      
+      Alert.alert('Error', errorMessage);
     }
   };
 
