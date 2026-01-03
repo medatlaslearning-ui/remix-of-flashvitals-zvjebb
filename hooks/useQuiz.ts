@@ -1,212 +1,124 @@
 
 import { useState, useCallback } from 'react';
 import { supabase } from '@/app/integrations/supabase/client';
-import type { Quiz, QuizQuestion, QuizStats, QuizGenerationParams, QuizGenerationResult } from '@/types/quiz';
+import type { Quiz, QuizQuestion, QuizGenerationParams, QuizGenerationResult, QuizStats } from '@/types/quiz';
 
-export function useQuiz() {
+export interface QuizAnswer {
+  questionId: string;
+  selectedAnswer: 'A' | 'B' | 'C' | 'D';
+  isCorrect: boolean;
+}
+
+export interface QuizResult {
+  quizId: string;
+  score: number;
+  totalQuestions: number;
+  percentage: number;
+  completedAt: Date;
+  answers: QuizAnswer[];
+}
+
+export const useQuiz = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Generate a new quiz using OpenAI
   const generateQuiz = useCallback(async (params: QuizGenerationParams): Promise<QuizGenerationResult | null> => {
-    setLoading(true);
-    setError(null);
-    
     try {
-      console.log('[useQuiz] Generating quiz with params:', {
-        medicalSystem: params.medicalSystem,
-        questionCount: params.questionCount,
-        topic: params.topic,
-        flashcardsContextLength: params.flashcardsContext?.length || 0,
-        coreKnowledgeContextLength: params.coreKnowledgeContext?.length || 0,
-        guidelinesContextLength: params.guidelinesContext?.length || 0,
-      });
-      
-      const startTime = performance.now();
-      
+      setLoading(true);
+      setError(null);
+      console.log('[useQuiz] Generating quiz with params:', params);
+
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
+        throw new Error('User not authenticated');
+      }
+
+      // Call the Edge Function to generate quiz
       const { data, error: functionError } = await supabase.functions.invoke('generate-quiz', {
         body: {
+          userId: user.id,
           medicalSystem: params.medicalSystem,
           topic: params.topic,
-          questionCount: params.questionCount || 5,
-          flashcardsContext: params.flashcardsContext || '',
-          coreKnowledgeContext: params.coreKnowledgeContext || '',
-          guidelinesContext: params.guidelinesContext || '',
+          questionCount: params.questionCount || 10,
+          flashcardsContext: params.flashcardsContext,
+          coreKnowledgeContext: params.coreKnowledgeContext,
+          guidelinesContext: params.guidelinesContext,
         },
       });
 
-      const duration = Math.round(performance.now() - startTime);
-      console.log('[useQuiz] Edge function call completed in', duration, 'ms');
-
       if (functionError) {
-        console.error('[useQuiz] Edge function error:', {
-          message: functionError.message,
-          details: functionError.details,
-          hint: functionError.hint,
-          code: functionError.code,
-        });
-        throw new Error(functionError.message || functionError.details || 'Failed to generate quiz');
+        console.error('[useQuiz] Edge Function error:', functionError);
+        throw functionError;
       }
 
-      if (!data) {
-        console.error('[useQuiz] No data returned from quiz generation');
-        throw new Error('No data returned from quiz generation');
+      if (!data || !data.quizId) {
+        console.error('[useQuiz] Invalid response from Edge Function:', data);
+        throw new Error('Invalid response from quiz generation service');
       }
 
-      console.log('[useQuiz] Quiz generated successfully:', {
-        quizId: data.quizId,
-        questionCount: data.questionCount,
-        medicalSystem: data.medicalSystem,
-        duration_ms: data.duration_ms,
-        model: data.model,
-        tokens: data.tokens,
-        questionsReceived: data.questions?.length || 0,
-      });
-      
-      // Validate the response
-      if (!data.questions || data.questions.length === 0) {
-        console.error('[useQuiz] No questions in response');
-        throw new Error('No questions generated. Please try again.');
-      }
-      
+      console.log('[useQuiz] Quiz generated successfully:', data.quizId);
       return data as QuizGenerationResult;
-    } catch (err: any) {
-      console.error('[useQuiz] Error generating quiz:', {
-        name: err.name,
-        message: err.message,
-        stack: err.stack,
-      });
-      
-      // Provide user-friendly error messages
-      let errorMessage = 'Failed to generate quiz. Please try again.';
-      
-      if (err.message?.includes('timeout')) {
-        errorMessage = 'Quiz generation timed out. Try generating fewer questions.';
-      } else if (err.message?.includes('network')) {
-        errorMessage = 'Network error. Please check your connection and try again.';
-      } else if (err.message?.includes('No questions')) {
-        errorMessage = err.message;
-      } else if (err.message) {
-        errorMessage = err.message;
-      }
-      
-      setError(errorMessage);
+    } catch (err) {
+      const errorMsg = err instanceof Error ? err.message : 'Failed to generate quiz';
+      console.error('[useQuiz] Error generating quiz:', errorMsg);
+      setError(errorMsg);
       return null;
     } finally {
       setLoading(false);
     }
   }, []);
 
-  // Fetch quiz by ID
-  const getQuiz = useCallback(async (quizId: string): Promise<Quiz | null> => {
-    setLoading(true);
-    setError(null);
-    
+  const completeQuiz = useCallback(async (
+    quizId: string,
+    answers: QuizAnswer[]
+  ): Promise<QuizResult | null> => {
     try {
-      const { data, error: fetchError } = await supabase
+      setLoading(true);
+      setError(null);
+      console.log('[useQuiz] Completing quiz:', quizId, 'with', answers.length, 'answers');
+
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
+        throw new Error('User not authenticated');
+      }
+
+      // Get the quiz details
+      const { data: quiz, error: quizError } = await supabase
         .from('quizzes')
         .select('*')
         .eq('id', quizId)
         .single();
 
-      if (fetchError) {
-        console.error('[useQuiz] Error fetching quiz:', fetchError);
-        throw new Error(fetchError.message);
+      if (quizError || !quiz) {
+        console.error('[useQuiz] Error fetching quiz:', quizError);
+        throw new Error('Quiz not found');
       }
 
-      return data as Quiz;
-    } catch (err: any) {
-      console.error('[useQuiz] Error:', err);
-      setError(err.message || 'Failed to fetch quiz');
-      return null;
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+      // Calculate score
+      const score = answers.filter(a => a.isCorrect).length;
+      const totalQuestions = answers.length;
+      const percentage = (score / totalQuestions) * 100;
 
-  // Fetch questions for a quiz
-  const getQuizQuestions = useCallback(async (quizId: string): Promise<QuizQuestion[]> => {
-    setLoading(true);
-    setError(null);
-    
-    try {
-      const { data, error: fetchError } = await supabase
-        .from('quiz_questions')
-        .select('*')
-        .eq('quiz_id', quizId)
-        .order('question_number', { ascending: true });
+      console.log('[useQuiz] Quiz score:', score, '/', totalQuestions, '=', percentage.toFixed(1), '%');
 
-      if (fetchError) {
-        console.error('[useQuiz] Error fetching questions:', fetchError);
-        throw new Error(fetchError.message);
+      // Update quiz questions with user answers first
+      for (const answer of answers) {
+        const { error: questionError } = await supabase
+          .from('quiz_questions')
+          .update({
+            user_answer: answer.selectedAnswer,
+            is_correct: answer.isCorrect,
+            answered_at: new Date().toISOString(),
+          })
+          .eq('id', answer.questionId);
+
+        if (questionError) {
+          console.error('[useQuiz] Error updating question:', questionError);
+        }
       }
 
-      return (data as QuizQuestion[]) || [];
-    } catch (err: any) {
-      console.error('[useQuiz] Error:', err);
-      setError(err.message || 'Failed to fetch questions');
-      return [];
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  // Submit an answer to a question
-  const submitAnswer = useCallback(async (
-    questionId: string,
-    answer: 'A' | 'B' | 'C' | 'D',
-    correctAnswer: 'A' | 'B' | 'C' | 'D'
-  ): Promise<boolean> => {
-    setLoading(true);
-    setError(null);
-    
-    try {
-      const isCorrect = answer === correctAnswer;
-      
-      const { error: updateError } = await supabase
-        .from('quiz_questions')
-        .update({
-          user_answer: answer,
-          is_correct: isCorrect,
-          answered_at: new Date().toISOString(),
-        })
-        .eq('id', questionId);
-
-      if (updateError) {
-        console.error('[useQuiz] Error submitting answer:', updateError);
-        throw new Error(updateError.message);
-      }
-
-      return isCorrect;
-    } catch (err: any) {
-      console.error('[useQuiz] Error:', err);
-      setError(err.message || 'Failed to submit answer');
-      return false;
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  // Complete a quiz and calculate score
-  const completeQuiz = useCallback(async (quizId: string): Promise<number> => {
-    setLoading(true);
-    setError(null);
-    
-    try {
-      // Get all questions for this quiz
-      const { data: questions, error: questionsError } = await supabase
-        .from('quiz_questions')
-        .select('is_correct')
-        .eq('quiz_id', quizId);
-
-      if (questionsError) {
-        throw new Error(questionsError.message);
-      }
-
-      const score = questions?.filter(q => q.is_correct === true).length || 0;
-      const totalQuestions = questions?.length || 0;
-
-      // Update quiz status
+      // Update quiz status and score
+      // This will trigger the database function to automatically update quiz_stats
       const { error: updateError } = await supabase
         .from('quizzes')
         .update({
@@ -218,97 +130,154 @@ export function useQuiz() {
         .eq('id', quizId);
 
       if (updateError) {
-        throw new Error(updateError.message);
+        console.error('[useQuiz] Error updating quiz:', updateError);
+        throw updateError;
       }
 
-      console.log('[useQuiz] Quiz completed. Score:', score, '/', totalQuestions);
-      return score;
-    } catch (err: any) {
-      console.error('[useQuiz] Error completing quiz:', err);
-      setError(err.message || 'Failed to complete quiz');
-      return 0;
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+      console.log('[useQuiz] Quiz completed successfully. Database trigger will update quiz_stats automatically.');
 
-  // Get user's quiz stats
-  const getQuizStats = useCallback(async (): Promise<QuizStats | null> => {
-    setLoading(true);
-    setError(null);
-    
-    try {
-      const { data: { user } } = await supabase.auth.getUser();
-      
-      if (!user) {
-        throw new Error('User not authenticated');
+      // Check for achievements
+      if (score === totalQuestions) {
+        // Perfect score achievement
+        const { error: achievementError } = await supabase
+          .from('quiz_achievements')
+          .insert({
+            user_id: user.id,
+            achievement_type: 'perfect_score',
+            achievement_name: 'Perfect Score',
+            achievement_description: `Achieved a perfect score on ${quiz.medical_system} quiz`,
+            metadata: { quiz_id: quizId, system: quiz.medical_system },
+          });
+
+        if (achievementError) {
+          console.error('[useQuiz] Error creating achievement:', achievementError);
+        }
       }
 
-      const { data, error: fetchError } = await supabase
-        .from('quiz_stats')
-        .select('*')
-        .eq('user_id', user.id)
-        .single();
-
-      if (fetchError && fetchError.code !== 'PGRST116') {
-        // PGRST116 is "no rows returned" - that's okay for new users
-        console.error('[useQuiz] Error fetching stats:', fetchError);
-        throw new Error(fetchError.message);
-      }
-
-      return data as QuizStats | null;
-    } catch (err: any) {
-      console.error('[useQuiz] Error:', err);
-      setError(err.message || 'Failed to fetch stats');
+      return {
+        quizId,
+        score,
+        totalQuestions,
+        percentage,
+        completedAt: new Date(),
+        answers,
+      };
+    } catch (err) {
+      const errorMsg = err instanceof Error ? err.message : 'Failed to complete quiz';
+      console.error('[useQuiz] Error completing quiz:', errorMsg);
+      setError(errorMsg);
       return null;
     } finally {
       setLoading(false);
     }
   }, []);
 
-  // Get user's quiz history
-  const getQuizHistory = useCallback(async (limit: number = 10): Promise<Quiz[]> => {
-    setLoading(true);
-    setError(null);
-    
+  const getQuizStats = useCallback(async (userId?: string): Promise<QuizStats | null> => {
     try {
-      const { data: { user } } = await supabase.auth.getUser();
+      let targetUserId = userId;
       
-      if (!user) {
-        throw new Error('User not authenticated');
+      if (!targetUserId) {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) {
+          console.log('[useQuiz] No user authenticated');
+          return null;
+        }
+        targetUserId = user.id;
       }
 
-      const { data, error: fetchError } = await supabase
+      const { data, error: dbError } = await supabase
+        .from('quiz_stats')
+        .select('*')
+        .eq('user_id', targetUserId)
+        .single();
+
+      if (dbError) {
+        if (dbError.code === 'PGRST116') {
+          // No stats found, return empty stats
+          console.log('[useQuiz] No quiz stats found for user');
+          return null;
+        }
+        throw dbError;
+      }
+
+      console.log('[useQuiz] Quiz stats loaded:', data);
+      return data as QuizStats;
+    } catch (err) {
+      console.error('[useQuiz] Error fetching stats:', err);
+      setError(err instanceof Error ? err.message : 'Failed to fetch stats');
+      return null;
+    }
+  }, []);
+
+  const getQuiz = useCallback(async (quizId: string): Promise<Quiz | null> => {
+    try {
+      const { data, error: dbError } = await supabase
         .from('quizzes')
         .select('*')
-        .eq('user_id', user.id)
-        .order('created_at', { ascending: false })
-        .limit(limit);
+        .eq('id', quizId)
+        .single();
 
-      if (fetchError) {
-        console.error('[useQuiz] Error fetching history:', fetchError);
-        throw new Error(fetchError.message);
+      if (dbError) throw dbError;
+      return data as Quiz;
+    } catch (err) {
+      console.error('[useQuiz] Error fetching quiz:', err);
+      setError(err instanceof Error ? err.message : 'Failed to fetch quiz');
+      return null;
+    }
+  }, []);
+
+  const getQuizQuestions = useCallback(async (quizId: string): Promise<QuizQuestion[]> => {
+    try {
+      const { data, error: dbError } = await supabase
+        .from('quiz_questions')
+        .select('*')
+        .eq('quiz_id', quizId)
+        .order('question_number', { ascending: true });
+
+      if (dbError) throw dbError;
+      return (data as QuizQuestion[]) || [];
+    } catch (err) {
+      console.error('[useQuiz] Error fetching quiz questions:', err);
+      setError(err instanceof Error ? err.message : 'Failed to fetch quiz questions');
+      return [];
+    }
+  }, []);
+
+  const getQuizHistory = useCallback(async (userId?: string): Promise<Quiz[]> => {
+    try {
+      let targetUserId = userId;
+      
+      if (!targetUserId) {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) return [];
+        targetUserId = user.id;
       }
 
+      const { data, error: dbError } = await supabase
+        .from('quizzes')
+        .select('*')
+        .eq('user_id', targetUserId)
+        .eq('status', 'completed')
+        .order('completed_at', { ascending: false })
+        .limit(20);
+
+      if (dbError) throw dbError;
       return (data as Quiz[]) || [];
-    } catch (err: any) {
-      console.error('[useQuiz] Error:', err);
-      setError(err.message || 'Failed to fetch quiz history');
+    } catch (err) {
+      console.error('[useQuiz] Error fetching quiz history:', err);
+      setError(err instanceof Error ? err.message : 'Failed to fetch quiz history');
       return [];
-    } finally {
-      setLoading(false);
     }
   }, []);
 
   return {
-    loading,
-    error,
     generateQuiz,
-    getQuiz,
-    getQuizQuestions,
-    submitAnswer,
     completeQuiz,
     getQuizStats,
+    getQuiz,
+    getQuizQuestions,
     getQuizHistory,
+    loading,
+    error,
   };
-}
+};

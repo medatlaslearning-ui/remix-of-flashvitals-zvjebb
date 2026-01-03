@@ -6,6 +6,7 @@ import { colors, commonStyles } from '@/styles/commonStyles';
 import { useFlashcards } from '@/hooks/useFlashcards';
 import { useQuiz } from '@/hooks/useQuiz';
 import { IconSymbol } from '@/components/IconSymbol';
+import QuizMasterTile from '@/components/QuizMasterTile';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Haptics from 'expo-haptics';
 import type { QuizStats } from '@/types/quiz';
@@ -361,6 +362,10 @@ export default function ProfileScreen() {
 
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Achievements</Text>
+              
+              {/* Quiz Master Tile */}
+              <QuizMasterTile />
+              
               <View style={styles.achievementsGrid}>
                 <View style={styles.achievementCard}>
                   <IconSymbol name="star.fill" size={32} color={colors.warning} />
@@ -369,29 +374,14 @@ export default function ProfileScreen() {
                     {reviewedCards > 0 ? '✓ Unlocked' : 'Locked'}
                   </Text>
                 </View>
-                <Pressable 
-                  style={styles.achievementCard}
-                  onPress={() => {
-                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                    // Scroll to quiz stats section or show modal
-                    Alert.alert(
-                      'Quiz Master',
-                      quizStats 
-                        ? `Total Quizzes: ${quizStats.total_quizzes}\nAverage Score: ${quizStats.average_score?.toFixed(1)}%\nBest Score: ${quizStats.best_score}/${quizStats.total_questions_answered > 0 ? Math.round(quizStats.total_questions_answered / quizStats.total_quizzes) : 0}`
-                        : 'Complete your first quiz to unlock this achievement!',
-                      [{ text: 'OK' }]
-                    );
-                  }}
-                >
-                  <IconSymbol name="trophy.fill" size={32} color={colors.warning} />
-                  <Text style={styles.achievementName}>Quiz Master</Text>
-                  <Text style={styles.achievementStatus}>
-                    {quizStats && quizStats.total_quizzes > 0 ? `${quizStats.total_quizzes} Quizzes` : 'Tap to View'}
-                  </Text>
-                </Pressable>
                 <View style={styles.achievementCard}>
                   <IconSymbol name="bolt.fill" size={32} color={colors.warning} />
                   <Text style={styles.achievementName}>Speed Learner</Text>
+                  <Text style={styles.achievementStatus}>Coming Soon</Text>
+                </View>
+                <View style={styles.achievementCard}>
+                  <IconSymbol name="flame.fill" size={32} color={colors.error} />
+                  <Text style={styles.achievementName}>Study Streak</Text>
                   <Text style={styles.achievementStatus}>Coming Soon</Text>
                 </View>
               </View>
