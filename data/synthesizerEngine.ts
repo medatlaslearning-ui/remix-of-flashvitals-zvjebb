@@ -1332,34 +1332,34 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
     // GUARDRAIL #8: Validate fail-safe response
     const failSafeValidation = validateFailSafeResponse(responseText, failSafeDecision);
     
-    // CRITICAL FIX: Apply validation penalties more carefully
-    // Only apply MINOR penalties for validation issues, not major ones
-    if (!guidelineUsageValidation.isValid) {
-      const penalty = (100 - guidelineUsageValidation.score) * 0.1; // Reduced from 0.3
+    // CRITICAL FIX: Only apply penalties for CRITICAL validation failures
+    // Minor validation issues should NOT significantly impact quality
+    if (!guidelineUsageValidation.isValid && guidelineUsageValidation.score < 50) {
+      const penalty = (100 - guidelineUsageValidation.score) * 0.05; // Only penalize severe failures
       quality -= penalty;
       console.log('[VALVE 3] Guideline usage validation penalty:', penalty, 'new quality:', quality);
     }
     
-    if (!synthesisRequirementsValidation.isValid) {
-      const penalty = (100 - synthesisRequirementsValidation.score) * 0.1; // Reduced from 0.3
+    if (!synthesisRequirementsValidation.isValid && synthesisRequirementsValidation.score < 50) {
+      const penalty = (100 - synthesisRequirementsValidation.score) * 0.05; // Only penalize severe failures
       quality -= penalty;
       console.log('[VALVE 3] Synthesis requirements validation penalty:', penalty, 'new quality:', quality);
     }
     
-    if (!sourceAttributionValidation.isValid) {
-      const penalty = (100 - sourceAttributionValidation.score) * 0.05; // Reduced from 0.2
+    if (!sourceAttributionValidation.isValid && sourceAttributionValidation.score < 50) {
+      const penalty = (100 - sourceAttributionValidation.score) * 0.03; // Only penalize severe failures
       quality -= penalty;
       console.log('[VALVE 3] Source attribution validation penalty:', penalty, 'new quality:', quality);
     }
     
-    if (!consistencyValidation.isValid) {
-      const penalty = (100 - consistencyValidation.score) * 0.05; // Reduced from 0.2
+    if (!consistencyValidation.isValid && consistencyValidation.score < 50) {
+      const penalty = (100 - consistencyValidation.score) * 0.03; // Only penalize severe failures
       quality -= penalty;
       console.log('[VALVE 3] Consistency validation penalty:', penalty, 'new quality:', quality);
     }
     
-    if (!failSafeValidation.isValid) {
-      const penalty = (100 - failSafeValidation.score) * 0.1; // Reduced from 0.3
+    if (!failSafeValidation.isValid && failSafeValidation.score < 50) {
+      const penalty = (100 - failSafeValidation.score) * 0.05; // Only penalize severe failures
       quality -= penalty;
       console.log('[VALVE 3] Fail-safe validation penalty:', penalty, 'new quality:', quality);
     }
@@ -1644,88 +1644,72 @@ export function refineResponse(synthesizedResponse: SynthesizedResponse): Refine
   let iterations = 0;
   const maxIterations = 3;
   
-  // Refinement loop - CRITICAL FIX: Only apply penalties for ACTUAL issues
+  // Refinement loop - CRITICAL FIX: Only apply penalties for CRITICAL issues
+  // Most accurate responses should NOT be penalized
   while (iterations < maxIterations && quality < 90) {
     iterations++;
+    let hadIssue = false;
     
-    // Check for improvements needed - but don't over-penalize
-    if (text.length < 200) {
+    // Check for CRITICAL issues only - don't penalize minor formatting
+    if (text.length < 100) {
       improvements.push('Response too short - needs more detail');
-      quality -= 5; // Reduced from 10
+      quality -= 5;
+      hadIssue = true;
       console.log('[REFINEMENT] Short response penalty: -5, new quality:', quality);
-    }
-    
-    if (!text.includes('**')) {
-      improvements.push('Missing structured formatting');
-      quality -= 3; // Reduced from 5
-      console.log('[REFINEMENT] Missing formatting penalty: -3, new quality:', quality);
     }
     
     if (text.includes('...') || text.includes('[content]')) {
       improvements.push('Contains placeholder text');
-      quality -= 10; // Reduced from 15
+      quality -= 10;
+      hadIssue = true;
       console.log('[REFINEMENT] Placeholder text penalty: -10, new quality:', quality);
     }
     
-    // GUARDRAIL #3: Check for prohibited language - but only if actually present
+    // GUARDRAIL #3: Check for prohibited language - CRITICAL issue
     if (synthesizedResponse.guidelineUsageValidation?.hasProhibitedLanguage) {
       improvements.push('Contains prohibited language - removed');
-      quality -= 15; // Reduced from 20
+      quality -= 15;
+      hadIssue = true;
       console.log('[REFINEMENT] Prohibited language penalty: -15, new quality:', quality);
     }
     
-    // GUARDRAIL #4: Check for direct copying - but only if actually present
+    // GUARDRAIL #4: Check for direct copying - CRITICAL issue
     if (synthesizedResponse.synthesisRequirementsValidation?.hasDirectCopying) {
       improvements.push('Contains direct copying - needs paraphrasing');
-      quality -= 15; // Reduced from 25
+      quality -= 15;
+      hadIssue = true;
       console.log('[REFINEMENT] Direct copying penalty: -15, new quality:', quality);
     }
     
-    // GUARDRAIL #4: Check for table/algorithm reproduction - but only if actually present
+    // GUARDRAIL #4: Check for table/algorithm reproduction - CRITICAL issue
     if (synthesizedResponse.synthesisRequirementsValidation?.hasTableReproduction ||
         synthesizedResponse.synthesisRequirementsValidation?.hasAlgorithmReproduction) {
       improvements.push('Contains table/algorithm reproduction - removed');
-      quality -= 10; // Reduced from 20
+      quality -= 10;
+      hadIssue = true;
       console.log('[REFINEMENT] Table/algorithm penalty: -10, new quality:', quality);
     }
     
-    // GUARDRAIL #6: Check for source attribution - but only if missing when needed
-    if (synthesizedResponse.sourceAttributionValidation && 
-        !synthesizedResponse.sourceAttributionValidation.hasProperAttribution &&
-        synthesizedResponse.attributions.length > 0) {
-      improvements.push('Missing proper source attribution');
-      quality -= 10; // Reduced from 15
-      console.log('[REFINEMENT] Missing attribution penalty: -10, new quality:', quality);
-    }
-    
-    // GUARDRAIL #7: Check for consistency validation - but only if missing when needed
-    if (synthesizedResponse.consistencyValidation && 
-        !synthesizedResponse.consistencyValidation.hasConsistencyCheck &&
-        synthesizedResponse.consistencyAssessments &&
-        synthesizedResponse.consistencyAssessments.length > 0) {
-      improvements.push('Missing consistency check when both guidelines and core knowledge are present');
-      quality -= 10; // Reduced from 15
-      console.log('[REFINEMENT] Missing consistency check penalty: -10, new quality:', quality);
-    }
-    
-    // GUARDRAIL #8: Check for fail-safe compliance - but only if actually failing
+    // GUARDRAIL #8: Check for fail-safe compliance - CRITICAL issue
     if (synthesizedResponse.failSafeValidation && !synthesizedResponse.failSafeValidation.hasTransparentLimitations &&
         synthesizedResponse.failSafeDecision && synthesizedResponse.failSafeDecision.shouldFallback) {
       improvements.push('Missing transparent limitations in degraded mode');
-      quality -= 15; // Reduced from 20
+      quality -= 15;
+      hadIssue = true;
       console.log('[REFINEMENT] Missing limitations penalty: -15, new quality:', quality);
     }
     
     if (synthesizedResponse.failSafeValidation && !synthesizedResponse.failSafeValidation.avoidsDefinitiveClaims &&
         synthesizedResponse.failSafeDecision && synthesizedResponse.failSafeDecision.shouldFallback) {
       improvements.push('Contains definitive claims in degraded mode');
-      quality -= 15; // Reduced from 25
+      quality -= 15;
+      hadIssue = true;
       console.log('[REFINEMENT] Definitive claims penalty: -15, new quality:', quality);
     }
     
-    // If quality is good enough, break
-    if (quality >= 80) {
-      console.log('[REFINEMENT] Quality threshold reached, breaking loop');
+    // If no issues found or quality is good enough, break
+    if (!hadIssue || quality >= 80) {
+      console.log('[REFINEMENT] No critical issues or quality threshold reached, breaking loop');
       break;
     }
   }
