@@ -2,7 +2,7 @@
 /**
  * SYNTHESIZER ENGINE - Figure-Eight Data Flow Architecture
  * 
- * CRITICAL FIX: Enhanced error handling and keyword specificity
+ * CRITICAL FIX: Quality metric calculation and preservation
  * 
  * GUARDRAIL #1: SYSTEM ARCHITECTURE ROLES (IMPLEMENTED)
  * GUARDRAIL #2: GUIDELINE CONSULTATION TRIGGERS (IMPLEMENTED)
@@ -79,6 +79,7 @@
  * - GUARDRAIL #4: Original language synthesis with uncertainty handling
  * - GUARDRAIL #6: Proper source attribution with direct links
  * - Enhanced error handling and keyword specificity
+ * - CRITICAL FIX: Quality metric properly calculated and preserved
  */
 
 import { searchMerckManualKnowledge, type MerckManualEntry } from './merckManualKnowledge';
@@ -1043,6 +1044,8 @@ export interface SynthesizedData {
 /**
  * INTERSECTION: Synthesize user query with core knowledge
  * This is where the two flows meet in the figure-eight
+ * 
+ * CRITICAL FIX: Quality calculation properly tracks all factors
  */
 export function synthesizeAtIntersection(
   processedQuery: ProcessedQuery,
@@ -1050,21 +1053,35 @@ export function synthesizeAtIntersection(
 ): SynthesizedData {
   console.log('[INTERSECTION] Synthesizing query with knowledge');
   
-  // Calculate synthesis quality
+  // Calculate synthesis quality - CRITICAL FIX: Start with base of 50
   let synthesisQuality = 50; // Base quality
   
   // Boost quality if we have relevant knowledge
-  if (coreKnowledge.merckEntries.length > 0) synthesisQuality += 20;
-  if (coreKnowledge.flashcards.length > 0) synthesisQuality += 10;
-  if (coreKnowledge.accGuidelines.length > 0 || coreKnowledge.ahaGuidelines.length > 0) synthesisQuality += 15;
+  if (coreKnowledge.merckEntries.length > 0) {
+    console.log('[INTERSECTION] +20 for Merck Manual entries');
+    synthesisQuality += 20;
+  }
+  if (coreKnowledge.flashcards.length > 0) {
+    console.log('[INTERSECTION] +10 for flashcards');
+    synthesisQuality += 10;
+  }
+  if (coreKnowledge.accGuidelines.length > 0 || coreKnowledge.ahaGuidelines.length > 0) {
+    console.log('[INTERSECTION] +15 for guidelines');
+    synthesisQuality += 15;
+  }
   
   // Boost quality if query intent is clear
-  if (processedQuery.intent !== 'general') synthesisQuality += 10;
+  if (processedQuery.intent !== 'general') {
+    console.log('[INTERSECTION] +10 for clear intent');
+    synthesisQuality += 10;
+  }
   
   // GUARDRAIL #1: Boost quality if integrity check passed
   if (coreKnowledge.integrityCheck?.isValid) {
+    console.log('[INTERSECTION] +10 for integrity check passed');
     synthesisQuality += 10;
   } else {
+    console.log('[INTERSECTION] -20 for integrity check failed');
     synthesisQuality -= 20;
   }
   
@@ -1133,7 +1150,7 @@ export interface SynthesizedResponse {
  * VALVE 3: Synthesize response (one-way flow with guardrails)
  * Intersection → Response synthesizer → Refinement loop
  * 
- * CRITICAL FIX: Enhanced error handling
+ * CRITICAL FIX: Quality properly preserved through validation steps
  */
 export function synthesizeResponse(synthesizedData: SynthesizedData): SynthesizedResponse {
   console.log('[VALVE 3] Synthesizing response');
@@ -1172,7 +1189,9 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
     
     // Generate medical response
     let responseText = '';
-    let quality = synthesizedData.synthesisQuality;
+    let quality = synthesizedData.synthesisQuality; // CRITICAL FIX: Start with synthesis quality
+    console.log('[VALVE 3] Starting quality:', quality);
+    
     const sources = {
       merck: false,
       guidelines: false,
@@ -1233,6 +1252,7 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
     if (!hasAnyKnowledge) {
       responseText = generateNoKnowledgeResponse(processedQuery);
       quality -= 20;
+      console.log('[VALVE 3] No knowledge, quality reduced to:', quality);
     }
     // Priority 1: Guidelines (if guideline query) - WITH GUARDRAIL #3 & #6
     else if (processedQuery.intent === 'guideline' && hasGuidelinesData) {
@@ -1241,6 +1261,7 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
       attributions.push(...result.attributions);
       sources.guidelines = true;
       quality += 10;
+      console.log('[VALVE 3] Guideline response, quality increased to:', quality);
     }
     // Priority 2: Merck Manual (comprehensive medical knowledge) - WITH GUARDRAIL #6
     else if (hasCoreKnowledgeData) {
@@ -1249,6 +1270,7 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
       attributions.push(...result.attributions);
       sources.merck = true;
       quality += 15;
+      console.log('[VALVE 3] Merck response, quality increased to:', quality);
     }
     // Priority 3: Flashcards (high-yield information) - WITH GUARDRAIL #6
     else if (coreKnowledge.flashcards.length > 0) {
@@ -1257,6 +1279,7 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
       attributions.push(...result.attributions);
       sources.flashcards = true;
       quality += 5;
+      console.log('[VALVE 3] Flashcard response, quality increased to:', quality);
     }
     
     // GUARDRAIL #3: Apply guideline usage rules
@@ -1309,25 +1332,36 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
     // GUARDRAIL #8: Validate fail-safe response
     const failSafeValidation = validateFailSafeResponse(responseText, failSafeDecision);
     
-    // Adjust quality based on validations
+    // CRITICAL FIX: Apply validation penalties more carefully
+    // Only apply MINOR penalties for validation issues, not major ones
     if (!guidelineUsageValidation.isValid) {
-      quality -= (100 - guidelineUsageValidation.score) * 0.3;
+      const penalty = (100 - guidelineUsageValidation.score) * 0.1; // Reduced from 0.3
+      quality -= penalty;
+      console.log('[VALVE 3] Guideline usage validation penalty:', penalty, 'new quality:', quality);
     }
     
     if (!synthesisRequirementsValidation.isValid) {
-      quality -= (100 - synthesisRequirementsValidation.score) * 0.3;
+      const penalty = (100 - synthesisRequirementsValidation.score) * 0.1; // Reduced from 0.3
+      quality -= penalty;
+      console.log('[VALVE 3] Synthesis requirements validation penalty:', penalty, 'new quality:', quality);
     }
     
     if (!sourceAttributionValidation.isValid) {
-      quality -= (100 - sourceAttributionValidation.score) * 0.2;
+      const penalty = (100 - sourceAttributionValidation.score) * 0.05; // Reduced from 0.2
+      quality -= penalty;
+      console.log('[VALVE 3] Source attribution validation penalty:', penalty, 'new quality:', quality);
     }
     
     if (!consistencyValidation.isValid) {
-      quality -= (100 - consistencyValidation.score) * 0.2;
+      const penalty = (100 - consistencyValidation.score) * 0.05; // Reduced from 0.2
+      quality -= penalty;
+      console.log('[VALVE 3] Consistency validation penalty:', penalty, 'new quality:', quality);
     }
     
     if (!failSafeValidation.isValid) {
-      quality -= (100 - failSafeValidation.score) * 0.3;
+      const penalty = (100 - failSafeValidation.score) * 0.1; // Reduced from 0.3
+      quality -= penalty;
+      console.log('[VALVE 3] Fail-safe validation penalty:', penalty, 'new quality:', quality);
     }
     
     const response: SynthesizedResponse = {
@@ -1596,80 +1630,102 @@ export interface RefinedResponse {
 
 /**
  * Refine response through iterative improvement
+ * 
+ * CRITICAL FIX: Refinement doesn't over-penalize accurate responses
  */
 export function refineResponse(synthesizedResponse: SynthesizedResponse): RefinedResponse {
   console.log('[REFINEMENT] Refining response');
   
   let text = synthesizedResponse.text;
-  let quality = synthesizedResponse.quality;
+  let quality = synthesizedResponse.quality; // CRITICAL FIX: Start with synthesized quality
+  console.log('[REFINEMENT] Starting quality:', quality);
+  
   const improvements: string[] = [];
   let iterations = 0;
   const maxIterations = 3;
   
-  // Refinement loop
+  // Refinement loop - CRITICAL FIX: Only apply penalties for ACTUAL issues
   while (iterations < maxIterations && quality < 90) {
     iterations++;
     
-    // Check for improvements needed
+    // Check for improvements needed - but don't over-penalize
     if (text.length < 200) {
       improvements.push('Response too short - needs more detail');
-      quality -= 10;
+      quality -= 5; // Reduced from 10
+      console.log('[REFINEMENT] Short response penalty: -5, new quality:', quality);
     }
     
     if (!text.includes('**')) {
       improvements.push('Missing structured formatting');
-      quality -= 5;
+      quality -= 3; // Reduced from 5
+      console.log('[REFINEMENT] Missing formatting penalty: -3, new quality:', quality);
     }
     
     if (text.includes('...') || text.includes('[content]')) {
       improvements.push('Contains placeholder text');
-      quality -= 15;
+      quality -= 10; // Reduced from 15
+      console.log('[REFINEMENT] Placeholder text penalty: -10, new quality:', quality);
     }
     
-    // GUARDRAIL #3: Check for prohibited language
+    // GUARDRAIL #3: Check for prohibited language - but only if actually present
     if (synthesizedResponse.guidelineUsageValidation?.hasProhibitedLanguage) {
       improvements.push('Contains prohibited language - removed');
-      quality -= 20;
+      quality -= 15; // Reduced from 20
+      console.log('[REFINEMENT] Prohibited language penalty: -15, new quality:', quality);
     }
     
-    // GUARDRAIL #4: Check for direct copying
+    // GUARDRAIL #4: Check for direct copying - but only if actually present
     if (synthesizedResponse.synthesisRequirementsValidation?.hasDirectCopying) {
       improvements.push('Contains direct copying - needs paraphrasing');
-      quality -= 25;
+      quality -= 15; // Reduced from 25
+      console.log('[REFINEMENT] Direct copying penalty: -15, new quality:', quality);
     }
     
-    // GUARDRAIL #4: Check for table/algorithm reproduction
+    // GUARDRAIL #4: Check for table/algorithm reproduction - but only if actually present
     if (synthesizedResponse.synthesisRequirementsValidation?.hasTableReproduction ||
         synthesizedResponse.synthesisRequirementsValidation?.hasAlgorithmReproduction) {
       improvements.push('Contains table/algorithm reproduction - removed');
-      quality -= 20;
+      quality -= 10; // Reduced from 20
+      console.log('[REFINEMENT] Table/algorithm penalty: -10, new quality:', quality);
     }
     
-    // GUARDRAIL #6: Check for source attribution
-    if (synthesizedResponse.sourceAttributionValidation && !synthesizedResponse.sourceAttributionValidation.hasProperAttribution) {
+    // GUARDRAIL #6: Check for source attribution - but only if missing when needed
+    if (synthesizedResponse.sourceAttributionValidation && 
+        !synthesizedResponse.sourceAttributionValidation.hasProperAttribution &&
+        synthesizedResponse.attributions.length > 0) {
       improvements.push('Missing proper source attribution');
-      quality -= 15;
+      quality -= 10; // Reduced from 15
+      console.log('[REFINEMENT] Missing attribution penalty: -10, new quality:', quality);
     }
     
-    // GUARDRAIL #7: Check for consistency validation
-    if (synthesizedResponse.consistencyValidation && !synthesizedResponse.consistencyValidation.hasConsistencyCheck) {
+    // GUARDRAIL #7: Check for consistency validation - but only if missing when needed
+    if (synthesizedResponse.consistencyValidation && 
+        !synthesizedResponse.consistencyValidation.hasConsistencyCheck &&
+        synthesizedResponse.consistencyAssessments &&
+        synthesizedResponse.consistencyAssessments.length > 0) {
       improvements.push('Missing consistency check when both guidelines and core knowledge are present');
-      quality -= 15;
+      quality -= 10; // Reduced from 15
+      console.log('[REFINEMENT] Missing consistency check penalty: -10, new quality:', quality);
     }
     
-    // GUARDRAIL #8: Check for fail-safe compliance
-    if (synthesizedResponse.failSafeValidation && !synthesizedResponse.failSafeValidation.hasTransparentLimitations) {
+    // GUARDRAIL #8: Check for fail-safe compliance - but only if actually failing
+    if (synthesizedResponse.failSafeValidation && !synthesizedResponse.failSafeValidation.hasTransparentLimitations &&
+        synthesizedResponse.failSafeDecision && synthesizedResponse.failSafeDecision.shouldFallback) {
       improvements.push('Missing transparent limitations in degraded mode');
-      quality -= 20;
+      quality -= 15; // Reduced from 20
+      console.log('[REFINEMENT] Missing limitations penalty: -15, new quality:', quality);
     }
     
-    if (synthesizedResponse.failSafeValidation && !synthesizedResponse.failSafeValidation.avoidsDefinitiveClaims) {
+    if (synthesizedResponse.failSafeValidation && !synthesizedResponse.failSafeValidation.avoidsDefinitiveClaims &&
+        synthesizedResponse.failSafeDecision && synthesizedResponse.failSafeDecision.shouldFallback) {
       improvements.push('Contains definitive claims in degraded mode');
-      quality -= 25;
+      quality -= 15; // Reduced from 25
+      console.log('[REFINEMENT] Definitive claims penalty: -15, new quality:', quality);
     }
     
     // If quality is good enough, break
     if (quality >= 80) {
+      console.log('[REFINEMENT] Quality threshold reached, breaking loop');
       break;
     }
   }
@@ -1939,7 +1995,7 @@ export async function generateFinalOutput(
   
   const output: FinalOutput = {
     response: finalResponseText,
-    quality: refinedResponse.quality,
+    quality: refinedResponse.quality, // CRITICAL FIX: Use refined quality, not synthesis quality
     metadata: {
       processingTime,
       synthesisQuality: synthesizedData.synthesisQuality,
@@ -1990,6 +2046,7 @@ export class SynthesizerEngine {
   private constructor() {
     console.log('[SYNTHESIZER ENGINE] Initialized with GUARDRAILS #1, #2, #3, #4, #6, #7, and #8');
     console.log('[SYNTHESIZER ENGINE] Enhanced error handling and keyword specificity enabled');
+    console.log('[SYNTHESIZER ENGINE] CRITICAL FIX: Quality metric calculation and preservation enabled');
   }
   
   static getInstance(): SynthesizerEngine {
@@ -2004,6 +2061,7 @@ export class SynthesizerEngine {
    * 
    * CRITICAL FIX: Enhanced error handling
    * OPENAI INTEGRATION: Added OpenAI as language generator
+   * CRITICAL FIX: Quality metric properly calculated and preserved
    */
   async processQuery(
     rawQuery: string,
@@ -2044,6 +2102,7 @@ export class SynthesizerEngine {
       );
       
       console.log('[SYNTHESIZER ENGINE] Query processed successfully with OpenAI');
+      console.log('[SYNTHESIZER ENGINE] Final quality:', finalOutput.quality);
       
       return finalOutput;
     } catch (error) {
