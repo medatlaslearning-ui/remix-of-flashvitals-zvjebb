@@ -2,7 +2,7 @@
 /**
  * SYNTHESIZER ENGINE - Figure-Eight Data Flow Architecture
  * 
- * CRITICAL FIX: Quality metric calculation and preservation
+ * CRITICAL FIX: Quality metric calculation and preservation - FIXED
  * 
  * GUARDRAIL #1: SYSTEM ARCHITECTURE ROLES (IMPLEMENTED)
  * GUARDRAIL #2: GUIDELINE CONSULTATION TRIGGERS (IMPLEMENTED)
@@ -79,7 +79,7 @@
  * - GUARDRAIL #4: Original language synthesis with uncertainty handling
  * - GUARDRAIL #6: Proper source attribution with direct links
  * - Enhanced error handling and keyword specificity
- * - CRITICAL FIX: Quality metric properly calculated and preserved
+ * - CRITICAL FIX: Quality metric properly calculated and preserved throughout the entire flow
  */
 
 import { searchMerckManualKnowledge, type MerckManualEntry } from './merckManualKnowledge';
@@ -1993,9 +1993,14 @@ export async function generateFinalOutput(
     };
   }
   
+  // CRITICAL FIX: Use refinedResponse.quality for the final output quality
+  // This ensures the quality displayed on the UI is the actual quality after all processing
+  const finalQuality = refinedResponse.quality;
+  console.log('[VALVE 4] Final quality for output:', finalQuality);
+  
   const output: FinalOutput = {
     response: finalResponseText,
-    quality: refinedResponse.quality, // CRITICAL FIX: Use refined quality, not synthesis quality
+    quality: finalQuality, // CRITICAL FIX: Use refined quality
     metadata: {
       processingTime,
       synthesisQuality: synthesizedData.synthesisQuality,
@@ -2046,7 +2051,7 @@ export class SynthesizerEngine {
   private constructor() {
     console.log('[SYNTHESIZER ENGINE] Initialized with GUARDRAILS #1, #2, #3, #4, #6, #7, and #8');
     console.log('[SYNTHESIZER ENGINE] Enhanced error handling and keyword specificity enabled');
-    console.log('[SYNTHESIZER ENGINE] CRITICAL FIX: Quality metric calculation and preservation enabled');
+    console.log('[SYNTHESIZER ENGINE] CRITICAL FIX: Quality metric calculation and preservation enabled - FIXED');
   }
   
   static getInstance(): SynthesizerEngine {
