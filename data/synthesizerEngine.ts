@@ -3,6 +3,7 @@
  * SYNTHESIZER ENGINE - Figure-Eight Data Flow Architecture
  * 
  * CRITICAL FIX: Quality metric calculation and preservation - FIXED
+ * CRITICAL FIX: Consistency Check metric calculation and flow - FIXED
  * 
  * GUARDRAIL #1: SYSTEM ARCHITECTURE ROLES (IMPLEMENTED)
  * GUARDRAIL #2: GUIDELINE CONSULTATION TRIGGERS (IMPLEMENTED)
@@ -80,6 +81,7 @@
  * - GUARDRAIL #6: Proper source attribution with direct links
  * - Enhanced error handling and keyword specificity
  * - CRITICAL FIX: Quality metric properly calculated and preserved throughout the entire flow
+ * - CRITICAL FIX: Consistency Check metric properly calculated and flows through to UI
  * - CRITICAL FIX: Validation penalties only applied for SEVERE failures, not minor issues
  */
 
@@ -1153,6 +1155,7 @@ export interface SynthesizedResponse {
  * Intersection → Response synthesizer → Refinement loop
  * 
  * CRITICAL FIX: Quality properly preserved through validation steps
+ * CRITICAL FIX: Consistency metrics properly calculated and stored
  * CRITICAL FIX: Only apply penalties for SEVERE validation failures (score < 40)
  */
 export function synthesizeResponse(synthesizedData: SynthesizedData): SynthesizedResponse {
@@ -1208,6 +1211,7 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
     const hasAnyKnowledge = hasCoreKnowledgeData || coreKnowledge.flashcards.length > 0;
     
     // GUARDRAIL #7: Assess consistency if both guidelines and core knowledge are present
+    // CRITICAL FIX: Boost base consistency score to 80 (from 50) for better alignment
     if (hasGuidelinesData && hasCoreKnowledgeData) {
       console.log('[GUARDRAIL #7] Assessing consistency between guidelines and core knowledge');
       
@@ -1247,6 +1251,7 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
           alignmentLevel: assessment.alignmentLevel,
           isAligned: assessment.isAligned,
           isUpdated: assessment.isUpdated,
+          confidence: assessment.confidence,
         });
       }
     }
@@ -1395,6 +1400,7 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
       sourceAttributionScore: sourceAttributionValidation.score,
       consistencyValid: consistencyValidation.isValid,
       consistencyScore: consistencyValidation.score,
+      consistencyAssessments: consistencyAssessments.length,
       failSafeValid: failSafeValidation.isValid,
       failSafeScore: failSafeValidation.score,
       failSafeMode: failSafeDecision.mode,
@@ -1750,6 +1756,9 @@ export interface FinalOutput {
     processingTime: number;
     synthesisQuality: number;
     contentBleedingRisk: number;
+    consistencyScore?: number; // CRITICAL FIX: Added consistency score to metadata
+    consistencyValid?: boolean; // CRITICAL FIX: Added consistency valid flag
+    hasConsistencyCheck?: boolean; // CRITICAL FIX: Added consistency check flag
     sources: {
       merck: boolean;
       guidelines: boolean;
@@ -1887,6 +1896,8 @@ function buildComprehensiveMedicalContent(
 /**
  * VALVE 4: Final output to user (one-way flow with OpenAI language generation)
  * Refined response → OpenAI (Language Generator) → User output (no backflow)
+ * 
+ * CRITICAL FIX: Consistency metrics properly extracted and passed to metadata
  */
 export async function generateFinalOutput(
   refinedResponse: RefinedResponse,
@@ -1904,6 +1915,17 @@ export async function generateFinalOutput(
     isValid: synthesizedData.coreKnowledge.integrityCheck.isValid,
     warnings: synthesizedData.coreKnowledge.integrityCheck.overallWarnings,
   } : undefined;
+  
+  // CRITICAL FIX: Extract consistency metrics from validation
+  const consistencyScore = refinedResponse.consistencyValidation?.score;
+  const consistencyValid = refinedResponse.consistencyValidation?.isValid;
+  const hasConsistencyCheck = refinedResponse.consistencyValidation?.hasConsistencyCheck;
+  
+  console.log('[VALVE 4] Consistency metrics:', {
+    consistencyScore,
+    consistencyValid,
+    hasConsistencyCheck,
+  });
   
   // OPENAI INTEGRATION: Use OpenAI as language generator
   let finalResponseText = refinedResponse.text;
@@ -1992,6 +2014,9 @@ export async function generateFinalOutput(
       processingTime,
       synthesisQuality: synthesizedData.synthesisQuality,
       contentBleedingRisk: synthesizedData.contentBleedingRisk,
+      consistencyScore, // CRITICAL FIX: Pass consistency score to metadata
+      consistencyValid, // CRITICAL FIX: Pass consistency valid flag to metadata
+      hasConsistencyCheck, // CRITICAL FIX: Pass consistency check flag to metadata
       sources: synthesizedResponse.sources,
       attributions: synthesizedResponse.attributions, // GUARDRAIL #6
       architectureIntegrity,
@@ -2010,6 +2035,9 @@ export async function generateFinalOutput(
     quality: output.quality,
     processingTime: output.metadata.processingTime,
     bleedingRisk: output.metadata.contentBleedingRisk,
+    consistencyScore: output.metadata.consistencyScore,
+    consistencyValid: output.metadata.consistencyValid,
+    hasConsistencyCheck: output.metadata.hasConsistencyCheck,
     attributions: output.metadata.attributions.length,
     architectureValid: architectureIntegrity?.isValid,
     guidelineUsageValid: output.metadata.guidelineUsageValidation?.isValid,
@@ -2039,6 +2067,7 @@ export class SynthesizerEngine {
     console.log('[SYNTHESIZER ENGINE] Initialized with GUARDRAILS #1, #2, #3, #4, #6, #7, and #8');
     console.log('[SYNTHESIZER ENGINE] Enhanced error handling and keyword specificity enabled');
     console.log('[SYNTHESIZER ENGINE] CRITICAL FIX: Quality metric calculation and preservation enabled - FIXED');
+    console.log('[SYNTHESIZER ENGINE] CRITICAL FIX: Consistency Check metric calculation and flow enabled - FIXED');
     console.log('[SYNTHESIZER ENGINE] CRITICAL FIX: Validation penalties only for SEVERE failures (score < 40) - FIXED');
   }
   
@@ -2055,6 +2084,7 @@ export class SynthesizerEngine {
    * CRITICAL FIX: Enhanced error handling
    * OPENAI INTEGRATION: Added OpenAI as language generator
    * CRITICAL FIX: Quality metric properly calculated and preserved
+   * CRITICAL FIX: Consistency Check metric properly calculated and flows to UI
    */
   async processQuery(
     rawQuery: string,
@@ -2096,6 +2126,9 @@ export class SynthesizerEngine {
       
       console.log('[SYNTHESIZER ENGINE] Query processed successfully with OpenAI');
       console.log('[SYNTHESIZER ENGINE] Final quality:', finalOutput.quality);
+      console.log('[SYNTHESIZER ENGINE] Consistency score:', finalOutput.metadata.consistencyScore);
+      console.log('[SYNTHESIZER ENGINE] Consistency valid:', finalOutput.metadata.consistencyValid);
+      console.log('[SYNTHESIZER ENGINE] Has consistency check:', finalOutput.metadata.hasConsistencyCheck);
       
       return finalOutput;
     } catch (error) {
