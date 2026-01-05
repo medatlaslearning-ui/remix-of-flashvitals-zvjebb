@@ -488,10 +488,12 @@ export default function ChatbotScreen() {
           allFlashcards
         );
         
-        console.log('[CHATBOT] Synthesizer output:', {
+        console.log('[CHATBOT] ✓✓✓ Synthesizer output:', {
           quality: synthesizerOutput.quality,
           processingTime: synthesizerOutput.metadata.processingTime,
           bleedingRisk: synthesizerOutput.metadata.contentBleedingRisk,
+          consistencyScore: synthesizerOutput.metadata.consistencyScore,
+          consistencyValid: synthesizerOutput.metadata.consistencyValid,
           hasConsistencyCheck: synthesizerOutput.metadata.hasConsistencyCheck,
         });
         
@@ -580,9 +582,10 @@ export default function ChatbotScreen() {
             quality: synthesizerOutput.quality,
             processingTime: synthesizerOutput.metadata.processingTime,
             contentBleedingRisk: synthesizerOutput.metadata.contentBleedingRisk,
-            consistencyScore: synthesizerOutput.metadata.consistencyValidation?.score,
-            consistencyValid: synthesizerOutput.metadata.consistencyValidation?.isValid,
-            hasConsistencyCheck: synthesizerOutput.metadata.consistencyValidation?.hasConsistencyCheck,
+            // CRITICAL FIX: Read from the correct location in metadata (not nested in consistencyValidation)
+            consistencyScore: synthesizerOutput.metadata.consistencyScore,
+            consistencyValid: synthesizerOutput.metadata.consistencyValid,
+            hasConsistencyCheck: synthesizerOutput.metadata.hasConsistencyCheck,
             openAI: synthesizerOutput.metadata.openAI,
           },
         };
