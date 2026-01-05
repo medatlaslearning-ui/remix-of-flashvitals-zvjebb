@@ -69,8 +69,8 @@ export default function QuizCreatorScreen() {
 
   const buildFlashcardsContext = (system: string): string => {
     const flashcards = getFlashcardsForSystem(system);
-    // Reduce context size for better performance
-    const maxCards = questionCount === 10 ? 15 : 20;
+    // Reduce context size - limit to 10 cards for 10 questions, 15 for 5 questions
+    const maxCards = questionCount === 10 ? 10 : 15;
     const contextParts = flashcards.slice(0, maxCards).map(card => 
       `Topic: ${card.topic}\nQ: ${card.front}\nA: ${card.back.definition}\nClinical Pearl: ${card.back.clinical_pearl}`
     );
@@ -81,9 +81,9 @@ export default function QuizCreatorScreen() {
     const guidelines = getAllGuidelineWebsites().filter(g => 
       g.system.toLowerCase() === system.toLowerCase()
     );
-    // Truncate guidelines for better performance
-    const maxLength = questionCount === 10 ? 200 : 300;
-    const contextParts = guidelines.map(g => {
+    // Truncate guidelines - 150 chars for 10 questions, 250 for 5 questions
+    const maxLength = questionCount === 10 ? 150 : 250;
+    const contextParts = guidelines.slice(0, 5).map(g => {
       const desc = g.description.length > maxLength 
         ? g.description.substring(0, maxLength) + '...'
         : g.description;
@@ -102,12 +102,12 @@ export default function QuizCreatorScreen() {
     console.log('[QuizCreator] Generating quiz for:', selectedSystem, 'with', questionCount, 'questions');
 
     try {
-      // Build context from flashcards and guidelines
+      // Build context from flashcards and guidelines with aggressive truncation
       const flashcardsContext = buildFlashcardsContext(selectedSystem);
       const guidelinesContext = buildGuidelinesContext(selectedSystem);
       const coreKnowledgeContext = `Medical System: ${selectedSystem}\nGenerate board-style questions that test clinical application and decision-making.`;
 
-      console.log('[QuizCreator] Context sizes:', {
+      console.log('[QuizCreator] Context sizes (REDUCED):', {
         flashcards: flashcardsContext.length,
         guidelines: guidelinesContext.length,
         coreKnowledge: coreKnowledgeContext.length,
@@ -132,13 +132,15 @@ export default function QuizCreatorScreen() {
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
         
         // Navigate to the quiz taking screen with the generated questions
+        // Pass questions directly instead of fetching from database
         router.push({
           pathname: '/quiz-session',
           params: { 
             quizId: result.quizId,
-            questionsData: JSON.stringify(result.questions),
             medicalSystem: result.medicalSystem,
             questionCount: result.questionCount.toString(),
+            // Pass questions as JSON string
+            questionsJson: JSON.stringify(result.questions),
           }
         });
       } else {

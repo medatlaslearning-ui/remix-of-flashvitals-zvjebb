@@ -7,60 +7,71 @@ import { useAuth } from '@/app/integrations/supabase/hooks/useAuth';
 import { colors } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
 import * as Haptics from 'expo-haptics';
-import type { QuizQuestion } from '@/types/quiz';
+
+// Interface for questions passed from quiz generation
+interface GeneratedQuestion {
+  questionNumber: number;
+  questionText: string;
+  optionA: string;
+  optionB: string;
+  optionC: string;
+  optionD: string;
+  correctAnswer: 'A' | 'B' | 'C' | 'D';
+  rationale: string;
+  references: string;
+}
 
 export default function QuizSessionScreen() {
   const params = useLocalSearchParams();
   const router = useRouter();
   const { user } = useAuth();
-  const { completeQuiz, getQuizQuestions, loading: quizLoading } = useQuiz();
+  const { completeQuiz, loading: quizLoading } = useQuiz();
   
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<QuizAnswer[]>([]);
   const [showResults, setShowResults] = useState(false);
   const [quizResult, setQuizResult] = useState<any>(null);
-  const [questions, setQuestions] = useState<QuizQuestion[]>([]);
+  const [questions, setQuestions] = useState<GeneratedQuestion[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch questions from database
-  const loadQuestions = useCallback(async () => {
-    if (!params.quizId) {
-      Alert.alert('Error', 'Quiz ID not found');
-      router.back();
-      return;
-    }
-
+  // Load questions from params (passed directly from quiz generation)
+  useEffect(() => {
     try {
-      console.log('[QuizSession] Loading questions for quiz:', params.quizId);
-      const fetchedQuestions = await getQuizQuestions(params.quizId as string);
+      console.log('[QuizSession] Loading questions from params');
       
-      if (fetchedQuestions.length === 0) {
-        Alert.alert('Error', 'No questions found for this quiz');
+      if (!params.questionsJson) {
+        console.error('[QuizSession] No questionsJson in params');
+        Alert.alert('Error', 'No questions found. Please generate a new quiz.');
         router.back();
         return;
       }
 
-      setQuestions(fetchedQuestions);
+      const parsedQuestions = JSON.parse(params.questionsJson as string);
+      
+      if (!Array.isArray(parsedQuestions) || parsedQuestions.length === 0) {
+        console.error('[QuizSession] Invalid questions data:', parsedQuestions);
+        Alert.alert('Error', 'Invalid quiz data. Please generate a new quiz.');
+        router.back();
+        return;
+      }
+
+      console.log('[QuizSession] Loaded', parsedQuestions.length, 'questions from params');
+      setQuestions(parsedQuestions);
       setLoading(false);
-      console.log('[QuizSession] Loaded', fetchedQuestions.length, 'questions');
     } catch (error) {
-      console.error('[QuizSession] Error loading questions:', error);
-      Alert.alert('Error', 'Failed to load quiz questions');
+      console.error('[QuizSession] Error parsing questions:', error);
+      Alert.alert('Error', 'Failed to load quiz questions. Please try again.');
       router.back();
     }
-  }, [params.quizId, getQuizQuestions, router]);
-
-  useEffect(() => {
-    loadQuestions();
-  }, [loadQuestions]);
+  }, [params.questionsJson, router]);
 
   const handleAnswer = (selectedAnswer: 'A' | 'B' | 'C' | 'D') => {
     const question = questions[currentIndex];
-    const isCorrect = selectedAnswer === question.correct_answer;
+    const isCorrect = selectedAnswer === question.correctAnswer;
     
-    // Create answer object with the actual question ID from the database
+    // Create answer object with question number as ID (since we don't have DB IDs yet)
     const answer: QuizAnswer = {
-      questionId: question.id,
+      questionId: `q${question.questionNumber}`,
       selectedAnswer,
       isCorrect,
     };
@@ -69,10 +80,9 @@ export default function QuizSessionScreen() {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
 
     console.log('[QuizSession] Answer recorded:', {
-      questionId: question.id,
-      questionNumber: question.question_number,
+      questionNumber: question.questionNumber,
       selected: selectedAnswer,
-      correct: question.correct_answer,
+      correct: question.correctAnswer,
       isCorrect,
     });
 
@@ -85,28 +95,45 @@ export default function QuizSessionScreen() {
   };
 
   const handleFinishQuiz = async () => {
-    if (!user || !params.quizId) {
-      Alert.alert('Error', 'Unable to save quiz results. Please try again.');
-      return;
-    }
-
     try {
-      console.log('[QuizSession] Finishing quiz:', params.quizId);
+      console.log('[QuizSession] Finishing quiz');
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       
-      const result = await completeQuiz(params.quizId as string, answers);
-      
-      if (result) {
-        console.log('[QuizSession] Quiz completed successfully:', result);
-        setQuizResult(result);
-        setShowResults(true);
+      // Calculate results locally
+      const score = answers.filter(a => a.isCorrect).length;
+      const totalQuestions = questions.length;
+      const percentage = (score / totalQuestions) * 100;
+
+      const result = {
+        quizId: params.quizId as string || 'local',
+        score,
+        totalQuestions,
+        percentage,
+        completedAt: new Date(),
+        answers,
+      };
+
+      console.log('[QuizSession] Quiz completed:', result);
+      setQuizResult(result);
+      setShowResults(true);
+
+      // If user is authenticated and we have a quizId, save to database
+      if (user && params.quizId && params.quizId !== 'anonymous') {
+        console.log('[QuizSession] Saving quiz results to database...');
+        try {
+          await completeQuiz(params.quizId as string, answers);
+          console.log('[QuizSession] Quiz results saved to database');
+        } catch (dbError) {
+          console.error('[QuizSession] Error saving to database:', dbError);
+          // Don't show error to user - local results are already calculated
+        }
       } else {
-        throw new Error('Failed to save quiz results');
+        console.log('[QuizSession] Skipping database save (anonymous or no quizId)');
       }
     } catch (error) {
       console.error('[QuizSession] Error finishing quiz:', error);
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
-      Alert.alert('Error', 'Failed to save quiz results. Please try again.');
+      Alert.alert('Error', 'Failed to complete quiz. Please try again.');
     }
   };
 
@@ -122,11 +149,28 @@ export default function QuizSessionScreen() {
     router.push('/(tabs)/(home)');
   };
 
-  if (questions.length === 0) {
+  if (loading) {
     return (
       <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color={colors.primary} />
         <Text style={styles.loadingText}>Loading quiz...</Text>
+      </View>
+    );
+  }
+
+  if (questions.length === 0) {
+    return (
+      <View style={styles.loadingContainer}>
+        <IconSymbol 
+          ios_icon_name="exclamationmark.triangle.fill" 
+          android_material_icon_name="warning" 
+          size={64} 
+          color={colors.warning} 
+        />
+        <Text style={styles.errorText}>No questions available</Text>
+        <Pressable style={styles.backButton} onPress={() => router.back()}>
+          <Text style={styles.backButtonText}>Go Back</Text>
+        </Pressable>
       </View>
     );
   }
@@ -158,18 +202,18 @@ export default function QuizSessionScreen() {
         <ScrollView contentContainerStyle={styles.content}>
           <View style={styles.questionCard}>
             <Text style={styles.system}>{params.medicalSystem || 'General'}</Text>
-            <Text style={styles.question}>{currentQuestion?.question_text}</Text>
+            <Text style={styles.question}>{currentQuestion?.questionText}</Text>
           </View>
 
           <View style={styles.optionsContainer}>
             {[
-              { letter: 'A', text: currentQuestion?.option_a },
-              { letter: 'B', text: currentQuestion?.option_b },
-              { letter: 'C', text: currentQuestion?.option_c },
-              { letter: 'D', text: currentQuestion?.option_d },
+              { letter: 'A', text: currentQuestion?.optionA },
+              { letter: 'B', text: currentQuestion?.optionB },
+              { letter: 'C', text: currentQuestion?.optionC },
+              { letter: 'D', text: currentQuestion?.optionD },
             ].map((option) => {
               const isSelected = hasAnswered && answers[currentIndex].selectedAnswer === option.letter;
-              const isCorrect = option.letter === currentQuestion?.correct_answer;
+              const isCorrect = option.letter === currentQuestion?.correctAnswer;
               
               let optionStyle = styles.option;
               if (hasAnswered) {
@@ -228,10 +272,10 @@ export default function QuizSessionScreen() {
                 <Text style={styles.rationaleTitle}>Rationale</Text>
               </View>
               <Text style={styles.rationaleText}>{currentQuestion?.rationale}</Text>
-              {currentQuestion?.reference_text && (
+              {currentQuestion?.references && (
                 <View style={styles.referencesContainer}>
                   <Text style={styles.referencesLabel}>References:</Text>
-                  <Text style={styles.referencesText}>{currentQuestion.reference_text}</Text>
+                  <Text style={styles.referencesText}>{currentQuestion.references}</Text>
                 </View>
               )}
             </View>
@@ -309,8 +353,11 @@ export default function QuizSessionScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.background },
-  loadingContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.background },
+  loadingContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.background, padding: 20 },
   loadingText: { fontSize: 16, color: colors.textSecondary, marginTop: 16 },
+  errorText: { fontSize: 18, color: colors.text, marginTop: 16, marginBottom: 24, textAlign: 'center' },
+  backButton: { backgroundColor: colors.primary, paddingHorizontal: 24, paddingVertical: 12, borderRadius: 8 },
+  backButtonText: { color: '#fff', fontSize: 16, fontWeight: '600' },
   progressHeader: { padding: 16, backgroundColor: colors.card, boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)', elevation: 2 },
   progressText: { fontSize: 14, fontWeight: '600', color: colors.text, marginBottom: 8, textAlign: 'center' },
   progressBar: { height: 6, backgroundColor: colors.highlight, borderRadius: 3, overflow: 'hidden' },
