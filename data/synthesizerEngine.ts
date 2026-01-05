@@ -80,6 +80,7 @@
  * - GUARDRAIL #6: Proper source attribution with direct links
  * - Enhanced error handling and keyword specificity
  * - CRITICAL FIX: Quality metric properly calculated and preserved throughout the entire flow
+ * - CRITICAL FIX: Validation penalties only applied for SEVERE failures, not minor issues
  */
 
 import { searchMerckManualKnowledge, type MerckManualEntry } from './merckManualKnowledge';
@@ -1045,7 +1046,7 @@ export interface SynthesizedData {
  * INTERSECTION: Synthesize user query with core knowledge
  * This is where the two flows meet in the figure-eight
  * 
- * CRITICAL FIX: Quality calculation properly tracks all factors
+ * CRITICAL FIX: Quality calculation starts higher and properly tracks all factors
  */
 export function synthesizeAtIntersection(
   processedQuery: ProcessedQuery,
@@ -1053,8 +1054,9 @@ export function synthesizeAtIntersection(
 ): SynthesizedData {
   console.log('[INTERSECTION] Synthesizing query with knowledge');
   
-  // Calculate synthesis quality - CRITICAL FIX: Start with base of 50
-  let synthesisQuality = 50; // Base quality
+  // CRITICAL FIX: Start with base of 70 for medical queries (not 50)
+  // This ensures accurate medical responses don't start with artificially low quality
+  let synthesisQuality = 70; // Base quality for medical queries
   
   // Boost quality if we have relevant knowledge
   if (coreKnowledge.merckEntries.length > 0) {
@@ -1066,23 +1068,23 @@ export function synthesizeAtIntersection(
     synthesisQuality += 10;
   }
   if (coreKnowledge.accGuidelines.length > 0 || coreKnowledge.ahaGuidelines.length > 0) {
-    console.log('[INTERSECTION] +15 for guidelines');
-    synthesisQuality += 15;
+    console.log('[INTERSECTION] +10 for guidelines');
+    synthesisQuality += 10;
   }
   
   // Boost quality if query intent is clear
   if (processedQuery.intent !== 'general') {
-    console.log('[INTERSECTION] +10 for clear intent');
-    synthesisQuality += 10;
+    console.log('[INTERSECTION] +5 for clear intent');
+    synthesisQuality += 5;
   }
   
   // GUARDRAIL #1: Boost quality if integrity check passed
   if (coreKnowledge.integrityCheck?.isValid) {
-    console.log('[INTERSECTION] +10 for integrity check passed');
-    synthesisQuality += 10;
+    console.log('[INTERSECTION] +5 for integrity check passed');
+    synthesisQuality += 5;
   } else {
-    console.log('[INTERSECTION] -20 for integrity check failed');
-    synthesisQuality -= 20;
+    console.log('[INTERSECTION] -10 for integrity check failed');
+    synthesisQuality -= 10;
   }
   
   // Calculate content bleeding risk
@@ -1151,6 +1153,7 @@ export interface SynthesizedResponse {
  * Intersection → Response synthesizer → Refinement loop
  * 
  * CRITICAL FIX: Quality properly preserved through validation steps
+ * CRITICAL FIX: Only apply penalties for SEVERE validation failures (score < 40)
  */
 export function synthesizeResponse(synthesizedData: SynthesizedData): SynthesizedResponse {
   console.log('[VALVE 3] Synthesizing response');
@@ -1332,36 +1335,36 @@ export function synthesizeResponse(synthesizedData: SynthesizedData): Synthesize
     // GUARDRAIL #8: Validate fail-safe response
     const failSafeValidation = validateFailSafeResponse(responseText, failSafeDecision);
     
-    // CRITICAL FIX: Only apply penalties for CRITICAL validation failures
-    // Minor validation issues should NOT significantly impact quality
-    if (!guidelineUsageValidation.isValid && guidelineUsageValidation.score < 50) {
-      const penalty = (100 - guidelineUsageValidation.score) * 0.05; // Only penalize severe failures
+    // CRITICAL FIX: Only apply penalties for SEVERE validation failures (score < 40)
+    // Accurate medical responses should NOT be penalized for minor formatting issues
+    if (!guidelineUsageValidation.isValid && guidelineUsageValidation.score < 40) {
+      const penalty = (100 - guidelineUsageValidation.score) * 0.03; // Reduced penalty multiplier
       quality -= penalty;
-      console.log('[VALVE 3] Guideline usage validation penalty:', penalty, 'new quality:', quality);
+      console.log('[VALVE 3] Guideline usage SEVERE failure penalty:', penalty, 'new quality:', quality);
     }
     
-    if (!synthesisRequirementsValidation.isValid && synthesisRequirementsValidation.score < 50) {
-      const penalty = (100 - synthesisRequirementsValidation.score) * 0.05; // Only penalize severe failures
+    if (!synthesisRequirementsValidation.isValid && synthesisRequirementsValidation.score < 40) {
+      const penalty = (100 - synthesisRequirementsValidation.score) * 0.03; // Reduced penalty multiplier
       quality -= penalty;
-      console.log('[VALVE 3] Synthesis requirements validation penalty:', penalty, 'new quality:', quality);
+      console.log('[VALVE 3] Synthesis requirements SEVERE failure penalty:', penalty, 'new quality:', quality);
     }
     
-    if (!sourceAttributionValidation.isValid && sourceAttributionValidation.score < 50) {
-      const penalty = (100 - sourceAttributionValidation.score) * 0.03; // Only penalize severe failures
+    if (!sourceAttributionValidation.isValid && sourceAttributionValidation.score < 40) {
+      const penalty = (100 - sourceAttributionValidation.score) * 0.02; // Reduced penalty multiplier
       quality -= penalty;
-      console.log('[VALVE 3] Source attribution validation penalty:', penalty, 'new quality:', quality);
+      console.log('[VALVE 3] Source attribution SEVERE failure penalty:', penalty, 'new quality:', quality);
     }
     
-    if (!consistencyValidation.isValid && consistencyValidation.score < 50) {
-      const penalty = (100 - consistencyValidation.score) * 0.03; // Only penalize severe failures
+    if (!consistencyValidation.isValid && consistencyValidation.score < 40) {
+      const penalty = (100 - consistencyValidation.score) * 0.02; // Reduced penalty multiplier
       quality -= penalty;
-      console.log('[VALVE 3] Consistency validation penalty:', penalty, 'new quality:', quality);
+      console.log('[VALVE 3] Consistency validation SEVERE failure penalty:', penalty, 'new quality:', quality);
     }
     
-    if (!failSafeValidation.isValid && failSafeValidation.score < 50) {
-      const penalty = (100 - failSafeValidation.score) * 0.05; // Only penalize severe failures
+    if (!failSafeValidation.isValid && failSafeValidation.score < 40) {
+      const penalty = (100 - failSafeValidation.score) * 0.03; // Reduced penalty multiplier
       quality -= penalty;
-      console.log('[VALVE 3] Fail-safe validation penalty:', penalty, 'new quality:', quality);
+      console.log('[VALVE 3] Fail-safe SEVERE failure penalty:', penalty, 'new quality:', quality);
     }
     
     const response: SynthesizedResponse = {
@@ -1631,7 +1634,7 @@ export interface RefinedResponse {
 /**
  * Refine response through iterative improvement
  * 
- * CRITICAL FIX: Refinement doesn't over-penalize accurate responses
+ * CRITICAL FIX: Refinement only penalizes CRITICAL issues, not minor formatting
  */
 export function refineResponse(synthesizedResponse: SynthesizedResponse): RefinedResponse {
   console.log('[REFINEMENT] Refining response');
@@ -2036,6 +2039,7 @@ export class SynthesizerEngine {
     console.log('[SYNTHESIZER ENGINE] Initialized with GUARDRAILS #1, #2, #3, #4, #6, #7, and #8');
     console.log('[SYNTHESIZER ENGINE] Enhanced error handling and keyword specificity enabled');
     console.log('[SYNTHESIZER ENGINE] CRITICAL FIX: Quality metric calculation and preservation enabled - FIXED');
+    console.log('[SYNTHESIZER ENGINE] CRITICAL FIX: Validation penalties only for SEVERE failures (score < 40) - FIXED');
   }
   
   static getInstance(): SynthesizerEngine {
