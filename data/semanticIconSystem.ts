@@ -154,9 +154,9 @@ export function validateSemanticIconUsage(text: string): {
   // Check if icons are used
   const hasIcons = Object.values(SEMANTIC_ICONS).some(icon => text.includes(icon));
   
-  // Count icons
+  // Count icons - use 'u' flag to properly handle Unicode emoji
   const iconCount = Object.values(SEMANTIC_ICONS).reduce(
-    (count, icon) => count + (text.match(new RegExp(icon, 'g'))?.length || 0),
+    (count, icon) => count + (text.match(new RegExp(icon, 'gu'))?.length || 0),
     0
   );
   
@@ -172,8 +172,8 @@ export function validateSemanticIconUsage(text: string): {
     warnings.push(`Too many semantic icons (${iconCount} icons for ${wordCount} words - max 1 per 15 words recommended)`);
   }
   
-  // Check if icons are at the start of sections (good practice)
-  const iconAtStartPattern = /\n\n[🧠🔍💊📌⚠️✅🔒✍️⚙️📊🛡️📈]/g;
+  // Check if icons are at the start of sections (good practice) - use 'u' flag
+  const iconAtStartPattern = /\n\n[🧠🔍💊📌⚠️✅🔒✍️⚙️📊🛡️📈]/gu;
   const iconsAtStart = (text.match(iconAtStartPattern) || []).length;
   
   if (hasIcons && iconsAtStart === 0) {
@@ -201,8 +201,8 @@ export interface SemanticSection {
 export function extractSemanticSections(text: string): SemanticSection[] {
   const sections: SemanticSection[] = [];
   
-  // Find all icon positions
-  const iconPattern = /[🧠🔍💊📌⚠️✅🔒✍️⚙️📊🛡️📈]/g;
+  // Find all icon positions - use 'u' flag to properly handle Unicode emoji
+  const iconPattern = /[🧠🔍💊📌⚠️✅🔒✍️⚙️📊🛡️📈]/gu;
   const matches = [...text.matchAll(iconPattern)];
   
   if (matches.length === 0) {
