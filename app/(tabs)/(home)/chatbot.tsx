@@ -1300,7 +1300,7 @@ Let's begin your medical learning journey!`,
             <View style={[styles.messageContainer, styles.botMessageContainer]}>
               <View style={[styles.messageBubble, styles.botBubble]}>
                 <ActivityIndicator size="small" color={colors.text} />
-                <Text style={styles.typingText}>Synthesizing response with semantic icons...</Text>
+                <Text style={styles.typingText}>Synthesizing response</Text>
               </View>
             </View>
           )}
