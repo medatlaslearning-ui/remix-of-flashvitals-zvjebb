@@ -64,6 +64,7 @@ export interface QuizGenerationParams {
   guidelinesContext?: string;
 }
 
+// This matches what the Edge Function returns
 export interface GeneratedQuestion {
   questionNumber: number;
   questionText: string;
@@ -76,17 +77,18 @@ export interface GeneratedQuestion {
   references: string;
 }
 
+// This matches what the Edge Function returns
 export interface QuizGenerationResult {
   quizId: string;
   questionCount: number;
   medicalSystem: string;
   topic?: string;
   duration_ms: number;
-  model: string;
+  model?: string;
   tokens?: {
     prompt?: number;
     completion?: number;
     total?: number;
   };
-  questions?: GeneratedQuestion[];
+  questions: GeneratedQuestion[]; // Required, not optional
 }

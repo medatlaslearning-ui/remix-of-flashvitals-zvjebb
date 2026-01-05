@@ -29,38 +29,76 @@ export const useQuiz = () => {
       console.log('[useQuiz] Generating quiz with params:', params);
 
       const { data: { user } } = await supabase.auth.getUser();
-      if (!user) {
-        throw new Error('User not authenticated');
-      }
+      
+      // Build the request body
+      const requestBody = {
+        medicalSystem: params.medicalSystem,
+        topic: params.topic,
+        questionCount: params.questionCount || 10,
+        flashcardsContext: params.flashcardsContext || '',
+        coreKnowledgeContext: params.coreKnowledgeContext || '',
+        guidelinesContext: params.guidelinesContext || '',
+      };
 
-      // Call the Edge Function to generate quiz
-      const { data, error: functionError } = await supabase.functions.invoke('generate-quiz', {
-        body: {
-          userId: user.id,
-          medicalSystem: params.medicalSystem,
-          topic: params.topic,
-          questionCount: params.questionCount || 10,
-          flashcardsContext: params.flashcardsContext,
-          coreKnowledgeContext: params.coreKnowledgeContext,
-          guidelinesContext: params.guidelinesContext,
+      console.log('[useQuiz] Calling Edge Function with body:', {
+        medicalSystem: requestBody.medicalSystem,
+        topic: requestBody.topic,
+        questionCount: requestBody.questionCount,
+        contextSizes: {
+          flashcards: requestBody.flashcardsContext.length,
+          coreKnowledge: requestBody.coreKnowledgeContext.length,
+          guidelines: requestBody.guidelinesContext.length,
         },
       });
 
+      // Call the Edge Function to generate quiz
+      const { data, error: functionError } = await supabase.functions.invoke('generate-quiz', {
+        body: requestBody,
+      });
+
       if (functionError) {
-        console.log('[useQuiz] Edge Function error:', functionError);
-        throw functionError;
+        console.error('[useQuiz] Edge Function error:', functionError);
+        throw new Error(functionError.message || 'Failed to generate quiz');
       }
 
-      if (!data || !data.quizId) {
-        console.log('[useQuiz] Invalid response from Edge Function:', data);
-        throw new Error('Invalid response from quiz generation service');
+      if (!data) {
+        console.error('[useQuiz] No data returned from Edge Function');
+        throw new Error('No data returned from quiz generation service');
       }
 
-      console.log('[useQuiz] Quiz generated successfully:', data.quizId);
-      return data as QuizGenerationResult;
+      console.log('[useQuiz] Edge Function response:', {
+        quizId: data.quizId,
+        questionCount: data.questionCount,
+        hasQuestions: !!data.questions,
+        questionsLength: data.questions?.length,
+      });
+
+      // Validate the response
+      if (!data.questions || !Array.isArray(data.questions) || data.questions.length === 0) {
+        console.error('[useQuiz] Invalid response - no questions:', data);
+        throw new Error('No questions generated. Please try again.');
+      }
+
+      console.log('[useQuiz] Quiz generated successfully:', {
+        quizId: data.quizId,
+        questionCount: data.questions.length,
+        duration: data.duration_ms,
+      });
+
+      // Return the result in the expected format
+      const result: QuizGenerationResult = {
+        quizId: data.quizId,
+        questionCount: data.questions.length,
+        medicalSystem: data.medicalSystem,
+        topic: data.topic,
+        duration_ms: data.duration_ms,
+        questions: data.questions,
+      };
+
+      return result;
     } catch (err) {
       const errorMsg = err instanceof Error ? err.message : 'Failed to generate quiz';
-      console.log('[useQuiz] Error generating quiz:', errorMsg);
+      console.error('[useQuiz] Error generating quiz:', errorMsg, err);
       setError(errorMsg);
       return null;
     } finally {
@@ -90,7 +128,7 @@ export const useQuiz = () => {
         .single();
 
       if (quizError || !quiz) {
-        console.log('[useQuiz] Error fetching quiz:', quizError);
+        console.error('[useQuiz] Error fetching quiz:', quizError);
         throw new Error('Quiz not found');
       }
 
@@ -113,7 +151,7 @@ export const useQuiz = () => {
           .eq('id', answer.questionId);
 
         if (questionError) {
-          console.log('[useQuiz] Error updating question:', questionError);
+          console.error('[useQuiz] Error updating question:', questionError);
         }
       }
 
@@ -130,7 +168,7 @@ export const useQuiz = () => {
         .eq('id', quizId);
 
       if (updateError) {
-        console.log('[useQuiz] Error updating quiz:', updateError);
+        console.error('[useQuiz] Error updating quiz:', updateError);
         throw updateError;
       }
 
@@ -150,7 +188,7 @@ export const useQuiz = () => {
           });
 
         if (achievementError) {
-          console.log('[useQuiz] Error creating achievement:', achievementError);
+          console.error('[useQuiz] Error creating achievement:', achievementError);
         }
       }
 
@@ -164,7 +202,7 @@ export const useQuiz = () => {
       };
     } catch (err) {
       const errorMsg = err instanceof Error ? err.message : 'Failed to complete quiz';
-      console.log('[useQuiz] Error completing quiz:', errorMsg);
+      console.error('[useQuiz] Error completing quiz:', errorMsg);
       setError(errorMsg);
       return null;
     } finally {
@@ -203,7 +241,7 @@ export const useQuiz = () => {
       console.log('[useQuiz] Quiz stats loaded:', data);
       return data as QuizStats;
     } catch (err) {
-      console.log('[useQuiz] Error fetching stats:', err);
+      console.error('[useQuiz] Error fetching stats:', err);
       setError(err instanceof Error ? err.message : 'Failed to fetch stats');
       return null;
     }
@@ -220,7 +258,7 @@ export const useQuiz = () => {
       if (dbError) throw dbError;
       return data as Quiz;
     } catch (err) {
-      console.log('[useQuiz] Error fetching quiz:', err);
+      console.error('[useQuiz] Error fetching quiz:', err);
       setError(err instanceof Error ? err.message : 'Failed to fetch quiz');
       return null;
     }
@@ -237,7 +275,7 @@ export const useQuiz = () => {
       if (dbError) throw dbError;
       return (data as QuizQuestion[]) || [];
     } catch (err) {
-      console.log('[useQuiz] Error fetching quiz questions:', err);
+      console.error('[useQuiz] Error fetching quiz questions:', err);
       setError(err instanceof Error ? err.message : 'Failed to fetch quiz questions');
       return [];
     }
@@ -264,7 +302,7 @@ export const useQuiz = () => {
       if (dbError) throw dbError;
       return (data as Quiz[]) || [];
     } catch (err) {
-      console.log('[useQuiz] Error fetching quiz history:', err);
+      console.error('[useQuiz] Error fetching quiz history:', err);
       setError(err instanceof Error ? err.message : 'Failed to fetch quiz history');
       return [];
     }

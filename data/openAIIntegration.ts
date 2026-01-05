@@ -456,9 +456,12 @@ export function validateOpenAIResponse(
   }
   
   // SEMANTIC ICONS: Check for semantic icons (bonus points for using them appropriately)
-  const semanticIconPattern = /[🧠🔍💊📌⚠️✅🔒✍️⚙️📊🛡️📈]/gu;
-  const iconMatches = openAIResponse.match(semanticIconPattern);
-  const iconCount = iconMatches ? iconMatches.length : 0;
+  // Use string-based approach instead of regex with emoji to avoid linting errors
+  const semanticIcons = ['🧠', '💊', '📌', '⚠️', '✅', '🔍', '🔒', '✍️', '⚙️', '📊', '🛡️', '📈'];
+  let iconCount = 0;
+  for (const icon of semanticIcons) {
+    iconCount += (openAIResponse.split(icon).length - 1);
+  }
   
   if (iconCount > 0) {
     console.log('[OPENAI INTEGRATION] ✓ Response uses semantic icons:', iconCount);

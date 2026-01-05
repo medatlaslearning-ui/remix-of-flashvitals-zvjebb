@@ -134,7 +134,7 @@ export default function QuizCreatorScreen() {
           }
         });
       } else {
-        console.log('[QuizCreator] Invalid result - no questions generated:', result);
+        console.error('[QuizCreator] Invalid result - no questions generated:', result);
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
         Alert.alert(
           'Generation Failed', 
@@ -142,7 +142,7 @@ export default function QuizCreatorScreen() {
         );
       }
     } catch (error: any) {
-      console.log('[QuizCreator] Error during quiz generation:', error);
+      console.error('[QuizCreator] Error during quiz generation:', error);
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
       
       // Provide helpful error message

@@ -154,11 +154,12 @@ export function validateSemanticIconUsage(text: string): {
   // Check if icons are used
   const hasIcons = Object.values(SEMANTIC_ICONS).some(icon => text.includes(icon));
   
-  // Count icons
-  const iconCount = Object.values(SEMANTIC_ICONS).reduce(
-    (count, icon) => count + (text.match(new RegExp(icon, 'g'))?.length || 0),
-    0
-  );
+  // Count icons using string-based approach (avoid regex with emoji)
+  let iconCount = 0;
+  for (const icon of Object.values(SEMANTIC_ICONS)) {
+    const iconOccurrences = text.split(icon).length - 1;
+    iconCount += iconOccurrences;
+  }
   
   // Check for leftover *** markers (should be replaced)
   const hasUnprocessedMarkers = /\*\*\*[A-Z\s]+\*\*\*/.test(text);
@@ -173,8 +174,17 @@ export function validateSemanticIconUsage(text: string): {
   }
   
   // Check if icons are at the start of sections (good practice)
-  const iconAtStartPattern = /\n\n[🧠🔍💊📌⚠️✅🔒✍️⚙️📊🛡️📈]/gu;
-  const iconsAtStart = (text.match(iconAtStartPattern) || []).length;
+  // Use string-based approach instead of regex with emoji
+  let iconsAtStart = 0;
+  const lines = text.split('\n\n');
+  for (const line of lines) {
+    for (const icon of Object.values(SEMANTIC_ICONS)) {
+      if (line.startsWith(icon)) {
+        iconsAtStart++;
+        break;
+      }
+    }
+  }
   
   if (hasIcons && iconsAtStart === 0) {
     warnings.push('Icons should typically appear at the start of sections for better readability');
@@ -201,31 +211,39 @@ export interface SemanticSection {
 export function extractSemanticSections(text: string): SemanticSection[] {
   const sections: SemanticSection[] = [];
   
-  // Find all icon positions
-  const iconPattern = /[🧠🔍💊📌⚠️✅🔒✍️⚙️📊🛡️📈]/gu;
-  const matches = [...text.matchAll(iconPattern)];
+  // Find all icon positions using string-based approach (avoid regex with emoji)
+  const iconPositions: Array<{ icon: string; index: number; type: SemanticIconType | 'UNKNOWN' }> = [];
   
-  if (matches.length === 0) {
+  for (const [key, icon] of Object.entries(SEMANTIC_ICONS)) {
+    let searchIndex = 0;
+    while (true) {
+      const index = text.indexOf(icon, searchIndex);
+      if (index === -1) break;
+      
+      iconPositions.push({
+        icon,
+        index,
+        type: key as SemanticIconType,
+      });
+      
+      searchIndex = index + icon.length;
+    }
+  }
+  
+  // Sort by position
+  iconPositions.sort((a, b) => a.index - b.index);
+  
+  if (iconPositions.length === 0) {
     return sections;
   }
   
   // Extract sections between icons
-  for (let i = 0; i < matches.length; i++) {
-    const match = matches[i];
-    const icon = match[0];
-    const startIndex = match.index!;
-    const endIndex = i < matches.length - 1 ? matches[i + 1].index! : text.length;
+  for (let i = 0; i < iconPositions.length; i++) {
+    const { icon, index, type } = iconPositions[i];
+    const startIndex = index;
+    const endIndex = i < iconPositions.length - 1 ? iconPositions[i + 1].index : text.length;
     
-    const content = text.substring(startIndex + 1, endIndex).trim();
-    
-    // Find icon type
-    let type: SemanticIconType | 'UNKNOWN' = 'UNKNOWN';
-    for (const [key, value] of Object.entries(SEMANTIC_ICONS)) {
-      if (value === icon) {
-        type = key as SemanticIconType;
-        break;
-      }
-    }
+    const content = text.substring(startIndex + icon.length, endIndex).trim();
     
     sections.push({
       icon,
