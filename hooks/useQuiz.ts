@@ -51,6 +51,15 @@ export const useQuiz = () => {
         },
       });
 
+      // TODO: Backend Integration - Call the generate-quiz Edge Function
+      // This Edge Function uses OpenAI GPT-4o to generate quiz questions
+      // It follows the figure-8 architecture with guardrails:
+      // 1. Retrieves core knowledge from Supabase (guideline_sources table)
+      // 2. Strips semantic icons (quiz generator path - separate from conversational path)
+      // 3. Validates structure (4 options, rationale, references)
+      // 4. Validates medical accuracy
+      // 5. Stores quiz in Supabase (quizzes and quiz_questions tables)
+      
       // Create AbortController for timeout protection (90 seconds)
       const controller = new AbortController();
       const timeoutId = setTimeout(() => {
@@ -81,6 +90,7 @@ export const useQuiz = () => {
           questionCount: data.questionCount,
           hasQuestions: !!data.questions,
           questionsLength: data.questions?.length,
+          guardrails: data.guardrails,
         });
 
         // Validate the response
@@ -93,6 +103,8 @@ export const useQuiz = () => {
           quizId: data.quizId,
           questionCount: data.questions.length,
           duration: data.duration_ms,
+          model: data.model,
+          guardrails: data.guardrails,
         });
 
         // Return the result in the expected format
@@ -102,6 +114,8 @@ export const useQuiz = () => {
           medicalSystem: data.medicalSystem,
           topic: data.topic,
           duration_ms: data.duration_ms,
+          model: data.model,
+          tokens: data.tokens,
           questions: data.questions,
         };
 
@@ -138,6 +152,7 @@ export const useQuiz = () => {
         throw new Error('User not authenticated');
       }
 
+      // TODO: Backend Integration - Fetch quiz details from Supabase
       // Get the quiz details
       const { data: quiz, error: quizError } = await supabase
         .from('quizzes')
@@ -157,6 +172,7 @@ export const useQuiz = () => {
 
       console.log('[useQuiz] Quiz score:', score, '/', totalQuestions, '=', percentage.toFixed(1), '%');
 
+      // TODO: Backend Integration - Update quiz questions with user answers
       // Update quiz questions with user answers first
       for (const answer of answers) {
         const { error: questionError } = await supabase
@@ -173,7 +189,7 @@ export const useQuiz = () => {
         }
       }
 
-      // Update quiz status and score
+      // TODO: Backend Integration - Update quiz status and score
       // This will trigger the database function to automatically update quiz_stats
       const { error: updateError } = await supabase
         .from('quizzes')
@@ -192,6 +208,7 @@ export const useQuiz = () => {
 
       console.log('[useQuiz] Quiz completed successfully. Database trigger will update quiz_stats automatically.');
 
+      // TODO: Backend Integration - Create achievement for perfect score
       // Check for achievements
       if (score === totalQuestions) {
         // Perfect score achievement
@@ -241,6 +258,7 @@ export const useQuiz = () => {
         targetUserId = user.id;
       }
 
+      // TODO: Backend Integration - Fetch quiz statistics from Supabase
       const { data, error: dbError } = await supabase
         .from('quiz_stats')
         .select('*')
@@ -267,6 +285,7 @@ export const useQuiz = () => {
 
   const getQuiz = useCallback(async (quizId: string): Promise<Quiz | null> => {
     try {
+      // TODO: Backend Integration - Fetch quiz from Supabase
       const { data, error: dbError } = await supabase
         .from('quizzes')
         .select('*')
@@ -284,6 +303,7 @@ export const useQuiz = () => {
 
   const getQuizQuestions = useCallback(async (quizId: string): Promise<QuizQuestion[]> => {
     try {
+      // TODO: Backend Integration - Fetch quiz questions from Supabase
       const { data, error: dbError } = await supabase
         .from('quiz_questions')
         .select('*')
@@ -309,6 +329,7 @@ export const useQuiz = () => {
         targetUserId = user.id;
       }
 
+      // TODO: Backend Integration - Fetch quiz history from Supabase
       const { data, error: dbError } = await supabase
         .from('quizzes')
         .select('*')
