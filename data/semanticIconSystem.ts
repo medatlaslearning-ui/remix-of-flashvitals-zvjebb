@@ -154,9 +154,9 @@ export function validateSemanticIconUsage(text: string): {
   // Check if icons are used
   const hasIcons = Object.values(SEMANTIC_ICONS).some(icon => text.includes(icon));
   
-  // Count icons - use unicode-aware regex
+  // Count icons
   const iconCount = Object.values(SEMANTIC_ICONS).reduce(
-    (count, icon) => count + (text.match(new RegExp(icon, 'gu'))?.length || 0),
+    (count, icon) => count + (text.match(new RegExp(icon, 'g'))?.length || 0),
     0
   );
   
@@ -172,8 +172,8 @@ export function validateSemanticIconUsage(text: string): {
     warnings.push(`Too many semantic icons (${iconCount} icons for ${wordCount} words - max 1 per 15 words recommended)`);
   }
   
-  // Check if icons are at the start of sections (good practice) - use unicode-aware regex
-  const iconAtStartPattern = /\n\n[\u{1F9E0}\u{1F50D}\u{1F48A}\u{1F4CC}\u{26A0}\u{2705}\u{1F512}\u{270D}\u{2699}\u{1F4CA}\u{1F6E1}\u{1F4C8}]/gu;
+  // Check if icons are at the start of sections (good practice)
+  const iconAtStartPattern = /\n\n[🧠🔍💊📌⚠️✅🔒✍️⚙️📊🛡️📈]/g;
   const iconsAtStart = (text.match(iconAtStartPattern) || []).length;
   
   if (hasIcons && iconsAtStart === 0) {
@@ -201,8 +201,8 @@ export interface SemanticSection {
 export function extractSemanticSections(text: string): SemanticSection[] {
   const sections: SemanticSection[] = [];
   
-  // Find all icon positions - use unicode-aware regex
-  const iconPattern = /[\u{1F9E0}\u{1F50D}\u{1F48A}\u{1F4CC}\u{26A0}\u{2705}\u{1F512}\u{270D}\u{2699}\u{1F4CA}\u{1F6E1}\u{1F4C8}]/gu;
+  // Find all icon positions
+  const iconPattern = /[🧠🔍💊📌⚠️✅🔒✍️⚙️📊🛡️📈]/g;
   const matches = [...text.matchAll(iconPattern)];
   
   if (matches.length === 0) {

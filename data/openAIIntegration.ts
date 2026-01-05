@@ -456,7 +456,7 @@ export function validateOpenAIResponse(
   }
   
   // SEMANTIC ICONS: Check for semantic icons (bonus points for using them appropriately)
-  const semanticIconPattern = /[\u{1F9E0}\u{1F50D}\u{1F48A}\u{1F4CC}\u{26A0}\u{2705}\u{1F512}\u{270D}\u{2699}\u{1F4CA}\u{1F6E1}\u{1F4C8}]/gu;
+  const semanticIconPattern = /[🧠🔍💊📌⚠️✅🔒✍️⚙️📊🛡️📈]/g;
   const iconMatches = openAIResponse.match(semanticIconPattern);
   const iconCount = iconMatches ? iconMatches.length : 0;
   
