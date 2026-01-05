@@ -216,6 +216,7 @@ export function extractSemanticSections(text: string): SemanticSection[] {
   
   for (const [key, icon] of Object.entries(SEMANTIC_ICONS)) {
     let searchIndex = 0;
+    // eslint-disable-next-line no-constant-condition
     while (true) {
       const index = text.indexOf(icon, searchIndex);
       if (index === -1) break;

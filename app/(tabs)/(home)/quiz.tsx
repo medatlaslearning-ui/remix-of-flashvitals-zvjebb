@@ -69,7 +69,9 @@ export default function QuizCreatorScreen() {
 
   const buildFlashcardsContext = (system: string): string => {
     const flashcards = getFlashcardsForSystem(system);
-    const contextParts = flashcards.slice(0, 20).map(card => 
+    // Reduce context size for better performance
+    const maxCards = questionCount === 10 ? 15 : 20;
+    const contextParts = flashcards.slice(0, maxCards).map(card => 
       `Topic: ${card.topic}\nQ: ${card.front}\nA: ${card.back.definition}\nClinical Pearl: ${card.back.clinical_pearl}`
     );
     return contextParts.join('\n\n');
@@ -79,9 +81,14 @@ export default function QuizCreatorScreen() {
     const guidelines = getAllGuidelineWebsites().filter(g => 
       g.system.toLowerCase() === system.toLowerCase()
     );
-    const contextParts = guidelines.map(g => 
-      `${g.name}: ${g.description}`
-    );
+    // Truncate guidelines for better performance
+    const maxLength = questionCount === 10 ? 200 : 300;
+    const contextParts = guidelines.map(g => {
+      const desc = g.description.length > maxLength 
+        ? g.description.substring(0, maxLength) + '...'
+        : g.description;
+      return `${g.name}: ${desc}`;
+    });
     return contextParts.join('\n');
   };
 
@@ -104,6 +111,7 @@ export default function QuizCreatorScreen() {
         flashcards: flashcardsContext.length,
         guidelines: guidelinesContext.length,
         coreKnowledge: coreKnowledgeContext.length,
+        total: flashcardsContext.length + guidelinesContext.length + coreKnowledgeContext.length,
       });
 
       // Call the quiz generation API endpoint
@@ -134,7 +142,7 @@ export default function QuizCreatorScreen() {
           }
         });
       } else {
-        console.error('[QuizCreator] Invalid result - no questions generated:', result);
+        console.log('[QuizCreator] Invalid result - no questions generated:', result);
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
         Alert.alert(
           'Generation Failed', 
@@ -142,13 +150,13 @@ export default function QuizCreatorScreen() {
         );
       }
     } catch (error: any) {
-      console.error('[QuizCreator] Error during quiz generation:', error);
+      console.log('[QuizCreator] Error during quiz generation:', error);
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
       
       // Provide helpful error message
       let errorMessage = 'Failed to generate quiz. Please try again.';
-      if (error.message?.includes('timeout')) {
-        errorMessage = 'Quiz generation timed out. Try generating 5 questions instead of 10.';
+      if (error.message?.includes('timeout') || error.message?.includes('timed out')) {
+        errorMessage = 'Quiz generation timed out. Try generating 5 questions instead of 10, or try again in a moment.';
       } else if (error.message?.includes('network')) {
         errorMessage = 'Network error. Please check your connection and try again.';
       } else if (error.message) {
@@ -241,6 +249,9 @@ export default function QuizCreatorScreen() {
               </Pressable>
             ))}
           </View>
+          <Text style={styles.recommendationText}>
+            💡 Tip: Start with 5 questions for faster generation
+          </Text>
         </View>
 
         <View style={styles.section}>
@@ -428,6 +439,12 @@ const styles = StyleSheet.create({
   },
   countTextSelected: {
     color: colors.primary,
+  },
+  recommendationText: {
+    fontSize: 13,
+    color: colors.textSecondary,
+    marginTop: 8,
+    fontStyle: 'italic',
   },
   featuresList: {
     gap: 12,
