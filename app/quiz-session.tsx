@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, StyleSheet, Pressable, ScrollView, Modal, ActivityIndicator, Alert } from 'react-native';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { useQuiz, QuizAnswer } from '@/hooks/useQuiz';
@@ -23,36 +23,36 @@ export default function QuizSessionScreen() {
   const [loading, setLoading] = useState(true);
 
   // Fetch questions from database
-  useEffect(() => {
-    const loadQuestions = async () => {
-      if (!params.quizId) {
-        Alert.alert('Error', 'Quiz ID not found');
+  const loadQuestions = useCallback(async () => {
+    if (!params.quizId) {
+      Alert.alert('Error', 'Quiz ID not found');
+      router.back();
+      return;
+    }
+
+    try {
+      console.log('[QuizSession] Loading questions for quiz:', params.quizId);
+      const fetchedQuestions = await getQuizQuestions(params.quizId as string);
+      
+      if (fetchedQuestions.length === 0) {
+        Alert.alert('Error', 'No questions found for this quiz');
         router.back();
         return;
       }
 
-      try {
-        console.log('[QuizSession] Loading questions for quiz:', params.quizId);
-        const fetchedQuestions = await getQuizQuestions(params.quizId as string);
-        
-        if (fetchedQuestions.length === 0) {
-          Alert.alert('Error', 'No questions found for this quiz');
-          router.back();
-          return;
-        }
+      setQuestions(fetchedQuestions);
+      setLoading(false);
+      console.log('[QuizSession] Loaded', fetchedQuestions.length, 'questions');
+    } catch (error) {
+      console.error('[QuizSession] Error loading questions:', error);
+      Alert.alert('Error', 'Failed to load quiz questions');
+      router.back();
+    }
+  }, [params.quizId, getQuizQuestions, router]);
 
-        setQuestions(fetchedQuestions);
-        setLoading(false);
-        console.log('[QuizSession] Loaded', fetchedQuestions.length, 'questions');
-      } catch (error) {
-        console.error('[QuizSession] Error loading questions:', error);
-        Alert.alert('Error', 'Failed to load quiz questions');
-        router.back();
-      }
-    };
-
+  useEffect(() => {
     loadQuestions();
-  }, [params.quizId]);
+  }, [loadQuestions]);
 
   const handleAnswer = (selectedAnswer: 'A' | 'B' | 'C' | 'D') => {
     const question = questions[currentIndex];

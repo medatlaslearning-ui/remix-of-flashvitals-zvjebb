@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { View, Text, StyleSheet, Pressable, ActivityIndicator } from 'react-native';
 import { IconSymbol } from './IconSymbol';
 import { useQuiz } from '@/hooks/useQuiz';
@@ -15,11 +15,7 @@ export default function QuizMasterTile() {
   const [stats, setStats] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    loadStats();
-  }, [user]);
-
-  const loadStats = async () => {
+  const loadStats = useCallback(async () => {
     if (!user) {
       setLoading(false);
       return;
@@ -30,7 +26,11 @@ export default function QuizMasterTile() {
     setStats(data);
     setLoading(false);
     console.log('[QuizMasterTile] Loaded stats:', data);
-  };
+  }, [user, getQuizStats]);
+
+  useEffect(() => {
+    loadStats();
+  }, [loadStats]);
 
   const handlePress = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);

@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, StyleSheet, ScrollView, Pressable, ActivityIndicator } from 'react-native';
 import { Stack, useRouter, useLocalSearchParams } from 'expo-router';
 import { colors, commonStyles } from '@/styles/commonStyles';
@@ -16,13 +16,7 @@ export default function QuizResultsScreen() {
   const [quiz, setQuiz] = useState<Quiz | null>(null);
   const [questions, setQuestions] = useState<QuizQuestion[]>([]);
 
-  useEffect(() => {
-    if (quizId) {
-      loadQuizData();
-    }
-  }, [quizId]);
-
-  const loadQuizData = async () => {
+  const loadQuizData = useCallback(async () => {
     console.log('[QuizResults] Loading quiz:', quizId);
     const quizData = await getQuiz(quizId);
     const questionsData = await getQuizQuestions(quizId);
@@ -32,7 +26,13 @@ export default function QuizResultsScreen() {
       setQuestions(questionsData);
       console.log('[QuizResults] Loaded results');
     }
-  };
+  }, [quizId, getQuiz, getQuizQuestions]);
+
+  useEffect(() => {
+    if (quizId) {
+      loadQuizData();
+    }
+  }, [quizId, loadQuizData]);
 
   const handleBackToHome = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
