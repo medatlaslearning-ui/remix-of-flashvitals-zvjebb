@@ -173,7 +173,7 @@ export function validateSemanticIconUsage(text: string): {
   }
   
   // Check if icons are at the start of sections (good practice)
-  const iconAtStartPattern = /\n\n[🧠🔍💊📌⚠️✅🔒✍️⚙️📊🛡️📈]/g;
+  const iconAtStartPattern = /\n\n[🧠🔍💊📌⚠️✅🔒✍️⚙️📊🛡️📈]/gu;
   const iconsAtStart = (text.match(iconAtStartPattern) || []).length;
   
   if (hasIcons && iconsAtStart === 0) {
@@ -202,7 +202,7 @@ export function extractSemanticSections(text: string): SemanticSection[] {
   const sections: SemanticSection[] = [];
   
   // Find all icon positions
-  const iconPattern = /[🧠🔍💊📌⚠️✅🔒✍️⚙️📊🛡️📈]/g;
+  const iconPattern = /[🧠🔍💊📌⚠️✅🔒✍️⚙️📊🛡️📈]/gu;
   const matches = [...text.matchAll(iconPattern)];
   
   if (matches.length === 0) {

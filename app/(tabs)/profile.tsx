@@ -57,7 +57,7 @@ export default function ProfileScreen() {
       }
     };
     loadQuizStats();
-  }, []);
+  }, [getQuizStats]);
 
   const handleSpecialtySelect = async (selectedSpecialty: string) => {
     try {

@@ -47,12 +47,12 @@ export const useQuiz = () => {
       });
 
       if (functionError) {
-        console.error('[useQuiz] Edge Function error:', functionError);
+        console.log('[useQuiz] Edge Function error:', functionError);
         throw functionError;
       }
 
       if (!data || !data.quizId) {
-        console.error('[useQuiz] Invalid response from Edge Function:', data);
+        console.log('[useQuiz] Invalid response from Edge Function:', data);
         throw new Error('Invalid response from quiz generation service');
       }
 
@@ -60,7 +60,7 @@ export const useQuiz = () => {
       return data as QuizGenerationResult;
     } catch (err) {
       const errorMsg = err instanceof Error ? err.message : 'Failed to generate quiz';
-      console.error('[useQuiz] Error generating quiz:', errorMsg);
+      console.log('[useQuiz] Error generating quiz:', errorMsg);
       setError(errorMsg);
       return null;
     } finally {
@@ -90,7 +90,7 @@ export const useQuiz = () => {
         .single();
 
       if (quizError || !quiz) {
-        console.error('[useQuiz] Error fetching quiz:', quizError);
+        console.log('[useQuiz] Error fetching quiz:', quizError);
         throw new Error('Quiz not found');
       }
 
@@ -113,7 +113,7 @@ export const useQuiz = () => {
           .eq('id', answer.questionId);
 
         if (questionError) {
-          console.error('[useQuiz] Error updating question:', questionError);
+          console.log('[useQuiz] Error updating question:', questionError);
         }
       }
 
@@ -130,7 +130,7 @@ export const useQuiz = () => {
         .eq('id', quizId);
 
       if (updateError) {
-        console.error('[useQuiz] Error updating quiz:', updateError);
+        console.log('[useQuiz] Error updating quiz:', updateError);
         throw updateError;
       }
 
@@ -150,7 +150,7 @@ export const useQuiz = () => {
           });
 
         if (achievementError) {
-          console.error('[useQuiz] Error creating achievement:', achievementError);
+          console.log('[useQuiz] Error creating achievement:', achievementError);
         }
       }
 
@@ -164,7 +164,7 @@ export const useQuiz = () => {
       };
     } catch (err) {
       const errorMsg = err instanceof Error ? err.message : 'Failed to complete quiz';
-      console.error('[useQuiz] Error completing quiz:', errorMsg);
+      console.log('[useQuiz] Error completing quiz:', errorMsg);
       setError(errorMsg);
       return null;
     } finally {
@@ -203,7 +203,7 @@ export const useQuiz = () => {
       console.log('[useQuiz] Quiz stats loaded:', data);
       return data as QuizStats;
     } catch (err) {
-      console.error('[useQuiz] Error fetching stats:', err);
+      console.log('[useQuiz] Error fetching stats:', err);
       setError(err instanceof Error ? err.message : 'Failed to fetch stats');
       return null;
     }
@@ -220,7 +220,7 @@ export const useQuiz = () => {
       if (dbError) throw dbError;
       return data as Quiz;
     } catch (err) {
-      console.error('[useQuiz] Error fetching quiz:', err);
+      console.log('[useQuiz] Error fetching quiz:', err);
       setError(err instanceof Error ? err.message : 'Failed to fetch quiz');
       return null;
     }
@@ -237,7 +237,7 @@ export const useQuiz = () => {
       if (dbError) throw dbError;
       return (data as QuizQuestion[]) || [];
     } catch (err) {
-      console.error('[useQuiz] Error fetching quiz questions:', err);
+      console.log('[useQuiz] Error fetching quiz questions:', err);
       setError(err instanceof Error ? err.message : 'Failed to fetch quiz questions');
       return [];
     }
@@ -264,7 +264,7 @@ export const useQuiz = () => {
       if (dbError) throw dbError;
       return (data as Quiz[]) || [];
     } catch (err) {
-      console.error('[useQuiz] Error fetching quiz history:', err);
+      console.log('[useQuiz] Error fetching quiz history:', err);
       setError(err instanceof Error ? err.message : 'Failed to fetch quiz history');
       return [];
     }
