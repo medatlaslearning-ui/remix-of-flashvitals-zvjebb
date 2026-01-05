@@ -1,13 +1,6 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  Pressable,
-  ActivityIndicator,
-} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Pressable, ActivityIndicator } from 'react-native';
 import { Stack, useRouter, useLocalSearchParams } from 'expo-router';
 import { colors, commonStyles } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
@@ -17,83 +10,68 @@ import * as Haptics from 'expo-haptics';
 
 export default function QuizResultsScreen() {
   const router = useRouter();
-  const params = useLocalSearchParams();
-  const { getQuiz, getQuizQuestions } = useQuiz();
+  const { quizId } = useLocalSearchParams<{ quizId: string }>();
+  const { getQuiz, getQuizQuestions, loading } = useQuiz();
   
   const [quiz, setQuiz] = useState<Quiz | null>(null);
   const [questions, setQuestions] = useState<QuizQuestion[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  const quizId = params.quizId as string;
-  const score = parseInt(params.score as string) || 0;
-  const totalQuestions = parseInt(params.totalQuestions as string) || 0;
-  const percentage = parseFloat(params.percentage as string) || 0;
-  const medicalSystem = params.medicalSystem as string;
 
   const loadQuizData = useCallback(async () => {
-    try {
-      setLoading(true);
-      console.log('[QuizResults] Loading quiz data for:', quizId);
-
-      const [quizData, questionsData] = await Promise.all([
-        getQuiz(quizId),
-        getQuizQuestions(quizId),
-      ]);
-
+    console.log('[QuizResults] Loading quiz:', quizId);
+    const quizData = await getQuiz(quizId);
+    const questionsData = await getQuizQuestions(quizId);
+    
+    if (quizData && questionsData.length > 0) {
       setQuiz(quizData);
       setQuestions(questionsData);
-      console.log('[QuizResults] Quiz data loaded:', {
-        quiz: quizData,
-        questionCount: questionsData.length,
-      });
-    } catch (error) {
-      console.error('[QuizResults] Error loading quiz data:', error);
-    } finally {
-      setLoading(false);
+      console.log('[QuizResults] Loaded results');
     }
   }, [quizId, getQuiz, getQuizQuestions]);
 
   useEffect(() => {
-    loadQuizData();
-  }, [loadQuizData]);
+    if (quizId) {
+      loadQuizData();
+    }
+  }, [quizId, loadQuizData]);
 
-  const getPerformanceLevel = () => {
-    if (percentage >= 90) return { label: 'Excellent!', color: colors.success, icon: 'star' };
-    if (percentage >= 80) return { label: 'Great Job!', color: colors.primary, icon: 'thumb-up' };
-    if (percentage >= 70) return { label: 'Good Work!', color: colors.info, icon: 'check-circle' };
-    if (percentage >= 60) return { label: 'Keep Practicing', color: colors.warning, icon: 'trending-up' };
-    return { label: 'Review Needed', color: colors.error, icon: 'school' };
-  };
-
-  const performance = getPerformanceLevel();
-
-  const handleReviewQuestions = () => {
+  const handleBackToHome = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    // Navigate to a review screen (to be implemented)
-    console.log('[QuizResults] Review questions feature coming soon');
+    router.push('/(tabs)/(home)');
   };
 
-  const handleRetakeQuiz = () => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    router.replace('/quiz');
-  };
-
-  const handleGoHome = () => {
+  const handleViewAchievements = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    router.replace('/(tabs)/(home)');
+    router.push('/(tabs)/profile');
   };
 
-  if (loading) {
+  if (loading || !quiz || questions.length === 0) {
     return (
-      <>
-        <Stack.Screen options={{ title: 'Quiz Results' }} />
-        <View style={[commonStyles.container, styles.loadingContainer]}>
-          <ActivityIndicator size="large" color={colors.primary} />
-          <Text style={styles.loadingText}>Loading results...</Text>
-        </View>
-      </>
+      <View style={[commonStyles.container, styles.loadingContainer]}>
+        <ActivityIndicator size="large" color={colors.primary} />
+        <Text style={styles.loadingText}>Loading results...</Text>
+      </View>
     );
   }
+
+  const score = quiz.score || 0;
+  const totalQuestions = quiz.total_questions || questions.length;
+  const percentage = Math.round((score / totalQuestions) * 100);
+  const correctQuestions = questions.filter(q => q.is_correct === true);
+  const incorrectQuestions = questions.filter(q => q.is_correct === false);
+
+  const getPerformanceMessage = () => {
+    if (percentage >= 90) return 'Outstanding! 🎉';
+    if (percentage >= 80) return 'Excellent Work! 🌟';
+    if (percentage >= 70) return 'Good Job! 👍';
+    if (percentage >= 60) return 'Keep Practicing! 💪';
+    return 'Review and Try Again! 📚';
+  };
+
+  const getPerformanceColor = () => {
+    if (percentage >= 80) return colors.success;
+    if (percentage >= 60) return colors.warning;
+    return colors.error;
+  };
 
   return (
     <>
@@ -101,310 +79,183 @@ export default function QuizResultsScreen() {
         options={{
           title: 'Quiz Results',
           headerBackTitle: 'Back',
-          headerLeft: () => null, // Prevent going back to quiz session
         }}
       />
       <ScrollView style={commonStyles.container} contentContainerStyle={styles.scrollContent}>
-        {/* Performance Header */}
-        <View style={styles.performanceCard}>
-          <IconSymbol
-            ios_icon_name={performance.icon as any}
-            android_material_icon_name={performance.icon}
-            size={64}
-            color={performance.color}
-          />
-          <Text style={[styles.performanceLabel, { color: performance.color }]}>
-            {performance.label}
-          </Text>
-          <Text style={styles.percentageText}>{percentage.toFixed(1)}%</Text>
+        <View style={styles.header}>
+          <View style={[styles.scoreCircle, { borderColor: getPerformanceColor() }]}>
+            <Text style={[styles.scorePercentage, { color: getPerformanceColor() }]}>
+              {percentage}%
+            </Text>
+            <Text style={styles.scoreLabel}>{score}/{totalQuestions}</Text>
+          </View>
+          <Text style={styles.performanceMessage}>{getPerformanceMessage()}</Text>
         </View>
 
-        {/* Score Card */}
-        <View style={styles.scoreCard}>
-          <View style={styles.scoreRow}>
-            <View style={styles.scoreItem}>
-              <IconSymbol
-                ios_icon_name="checkmark.circle.fill"
-                android_material_icon_name="check-circle"
-                size={32}
-                color={colors.success}
-              />
-              <Text style={styles.scoreValue}>{score}</Text>
-              <Text style={styles.scoreLabel}>Correct</Text>
+        <View style={styles.statsCard}>
+          <View style={styles.statRow}>
+            <View style={styles.statItem}>
+              <IconSymbol name="checkmark.circle.fill" size={32} color={colors.success} />
+              <Text style={styles.statValue}>{correctQuestions.length}</Text>
+              <Text style={styles.statLabel}>Correct</Text>
             </View>
-            <View style={styles.scoreDivider} />
-            <View style={styles.scoreItem}>
-              <IconSymbol
-                ios_icon_name="xmark.circle.fill"
-                android_material_icon_name="cancel"
-                size={32}
-                color={colors.error}
-              />
-              <Text style={styles.scoreValue}>{totalQuestions - score}</Text>
-              <Text style={styles.scoreLabel}>Incorrect</Text>
+            <View style={styles.statItem}>
+              <IconSymbol name="xmark.circle.fill" size={32} color={colors.error} />
+              <Text style={styles.statValue}>{incorrectQuestions.length}</Text>
+              <Text style={styles.statLabel}>Incorrect</Text>
             </View>
-            <View style={styles.scoreDivider} />
-            <View style={styles.scoreItem}>
-              <IconSymbol
-                ios_icon_name="doc.text.fill"
-                android_material_icon_name="description"
-                size={32}
-                color={colors.primary}
-              />
-              <Text style={styles.scoreValue}>{totalQuestions}</Text>
-              <Text style={styles.scoreLabel}>Total</Text>
+            <View style={styles.statItem}>
+              <IconSymbol name="chart.bar.fill" size={32} color={colors.primary} />
+              <Text style={styles.statValue}>{percentage}%</Text>
+              <Text style={styles.statLabel}>Score</Text>
             </View>
           </View>
         </View>
 
-        {/* System Info */}
-        <View style={styles.infoCard}>
-          <View style={styles.infoRow}>
-            <IconSymbol
-              ios_icon_name="heart.text.square.fill"
-              android_material_icon_name="favorite"
-              size={24}
-              color={colors.primary}
-            />
-            <View style={styles.infoContent}>
-              <Text style={styles.infoLabel}>Medical System</Text>
-              <Text style={styles.infoValue}>{medicalSystem}</Text>
-            </View>
-          </View>
-          {quiz?.topic && (
-            <View style={styles.infoRow}>
-              <IconSymbol
-                ios_icon_name="tag.fill"
-                android_material_icon_name="label"
-                size={24}
-                color={colors.info}
-              />
-              <View style={styles.infoContent}>
-                <Text style={styles.infoLabel}>Topic</Text>
-                <Text style={styles.infoValue}>{quiz.topic}</Text>
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Question Breakdown</Text>
+          {questions.map((question, index) => (
+            <View key={question.id} style={styles.questionItem}>
+              <View style={styles.questionHeader}>
+                <Text style={styles.questionNumber}>Q{question.question_number}</Text>
+                <IconSymbol 
+                  name={question.is_correct ? 'checkmark.circle.fill' : 'xmark.circle.fill'} 
+                  size={24} 
+                  color={question.is_correct ? colors.success : colors.error} 
+                />
+              </View>
+              <Text style={styles.questionPreview} numberOfLines={2}>
+                {question.question_text}
+              </Text>
+              <View style={styles.answerRow}>
+                <Text style={styles.answerLabel}>Your answer:</Text>
+                <Text style={[
+                  styles.answerValue,
+                  { color: question.is_correct ? colors.success : colors.error }
+                ]}>
+                  {question.user_answer}
+                </Text>
+                {!question.is_correct && (
+                  <>
+                    <Text style={styles.answerLabel}>Correct:</Text>
+                    <Text style={[styles.answerValue, { color: colors.success }]}>
+                      {question.correct_answer}
+                    </Text>
+                  </>
+                )}
               </View>
             </View>
-          )}
-          <View style={styles.infoRow}>
-            <IconSymbol
-              ios_icon_name="clock.fill"
-              android_material_icon_name="access-time"
-              size={24}
-              color={colors.warning}
-            />
-            <View style={styles.infoContent}>
-              <Text style={styles.infoLabel}>Completed</Text>
-              <Text style={styles.infoValue}>
-                {quiz?.completed_at
-                  ? new Date(quiz.completed_at).toLocaleString()
-                  : 'Just now'}
-              </Text>
-            </View>
-          </View>
+          ))}
         </View>
 
-        {/* Question Breakdown */}
-        {questions.length > 0 && (
-          <View style={styles.breakdownCard}>
-            <Text style={styles.breakdownTitle}>Question Breakdown</Text>
-            {questions.map((question, index) => {
-              const isCorrect = question.is_correct;
-              return (
-                <View key={question.id} style={styles.questionItem}>
-                  <View style={styles.questionHeader}>
-                    <Text style={styles.questionNumber}>Q{index + 1}</Text>
-                    <IconSymbol
-                      ios_icon_name={isCorrect ? 'checkmark.circle.fill' : 'xmark.circle.fill'}
-                      android_material_icon_name={isCorrect ? 'check-circle' : 'cancel'}
-                      size={24}
-                      color={isCorrect ? colors.success : colors.error}
-                    />
-                  </View>
-                  <Text style={styles.questionPreview} numberOfLines={2}>
-                    {question.question_text}
-                  </Text>
-                  {!isCorrect && question.user_answer && (
-                    <View style={styles.answerInfo}>
-                      <Text style={styles.answerLabel}>
-                        Your answer: <Text style={styles.answerWrong}>{question.user_answer}</Text>
-                      </Text>
-                      <Text style={styles.answerLabel}>
-                        Correct: <Text style={styles.answerCorrect}>{question.correct_answer}</Text>
-                      </Text>
-                    </View>
-                  )}
-                </View>
-              );
-            })}
-          </View>
-        )}
-
-        {/* Action Buttons */}
-        <View style={styles.actionButtons}>
-          <Pressable style={styles.reviewButton} onPress={handleReviewQuestions}>
-            <IconSymbol
-              ios_icon_name="book.fill"
-              android_material_icon_name="menu-book"
-              size={20}
-              color={colors.background}
-            />
-            <Text style={styles.reviewButtonText}>Review Questions</Text>
-          </Pressable>
-
-          <Pressable style={styles.retakeButton} onPress={handleRetakeQuiz}>
-            <IconSymbol
-              ios_icon_name="arrow.clockwise"
-              android_material_icon_name="refresh"
-              size={20}
-              color={colors.background}
-            />
-            <Text style={styles.retakeButtonText}>New Quiz</Text>
-          </Pressable>
-
-          <Pressable style={styles.homeButton} onPress={handleGoHome}>
-            <IconSymbol
-              ios_icon_name="house.fill"
-              android_material_icon_name="home"
-              size={20}
-              color={colors.primary}
-            />
-            <Text style={styles.homeButtonText}>Go Home</Text>
+        <View style={styles.achievementCard}>
+          <IconSymbol name="trophy.fill" size={48} color={colors.warning} />
+          <Text style={styles.achievementTitle}>Quiz Master Achievement</Text>
+          <Text style={styles.achievementText}>
+            Your quiz scores are tracked in your Profile under Achievements
+          </Text>
+          <Pressable style={styles.achievementButton} onPress={handleViewAchievements}>
+            <Text style={styles.achievementButtonText}>View Achievements</Text>
+            <IconSymbol name="arrow.right" size={20} color={colors.background} />
           </Pressable>
         </View>
 
-        {/* Achievement Notice */}
-        {percentage === 100 && (
-          <View style={styles.achievementCard}>
-            <IconSymbol
-              ios_icon_name="trophy.fill"
-              android_material_icon_name="emoji-events"
-              size={32}
-              color={colors.warning}
-            />
-            <Text style={styles.achievementText}>
-              🎉 Perfect Score! Achievement unlocked!
-            </Text>
-          </View>
-        )}
+        <Pressable style={styles.homeButton} onPress={handleBackToHome}>
+          <IconSymbol name="house.fill" size={20} color={colors.primary} />
+          <Text style={styles.homeButtonText}>Back to Home</Text>
+        </Pressable>
       </ScrollView>
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  scrollContent: {
-    padding: 20,
-    paddingBottom: 100,
-  },
   loadingContainer: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   loadingText: {
-    marginTop: 16,
     fontSize: 16,
     color: colors.textSecondary,
+    marginTop: 16,
   },
-  performanceCard: {
-    backgroundColor: colors.card,
-    borderRadius: 16,
-    padding: 32,
+  scrollContent: {
+    padding: 20,
+    paddingBottom: 100,
+  },
+  header: {
     alignItems: 'center',
-    marginBottom: 24,
-    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
-    elevation: 5,
+    marginBottom: 32,
   },
-  performanceLabel: {
+  scoreCircle: {
+    width: 160,
+    height: 160,
+    borderRadius: 80,
+    borderWidth: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.card,
+    marginBottom: 16,
+    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
+    elevation: 4,
+  },
+  scorePercentage: {
+    fontSize: 48,
+    fontWeight: '700',
+  },
+  scoreLabel: {
+    fontSize: 16,
+    color: colors.textSecondary,
+    marginTop: 4,
+  },
+  performanceMessage: {
     fontSize: 24,
     fontWeight: '700',
-    marginTop: 16,
-    marginBottom: 8,
-  },
-  percentageText: {
-    fontSize: 48,
-    fontWeight: '800',
     color: colors.text,
+    textAlign: 'center',
   },
-  scoreCard: {
+  statsCard: {
     backgroundColor: colors.card,
-    borderRadius: 12,
-    padding: 20,
-    marginBottom: 24,
-    boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
-    elevation: 3,
+    borderRadius: 16,
+    padding: 24,
+    marginBottom: 32,
+    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
+    elevation: 4,
   },
-  scoreRow: {
+  statRow: {
     flexDirection: 'row',
     justifyContent: 'space-around',
+  },
+  statItem: {
     alignItems: 'center',
   },
-  scoreItem: {
-    alignItems: 'center',
-    flex: 1,
-  },
-  scoreDivider: {
-    width: 1,
-    height: 60,
-    backgroundColor: colors.border,
-  },
-  scoreValue: {
-    fontSize: 28,
+  statValue: {
+    fontSize: 24,
     fontWeight: '700',
     color: colors.text,
     marginTop: 8,
   },
-  scoreLabel: {
+  statLabel: {
     fontSize: 14,
     color: colors.textSecondary,
     marginTop: 4,
   },
-  infoCard: {
-    backgroundColor: colors.card,
-    borderRadius: 12,
-    padding: 20,
-    marginBottom: 24,
-    gap: 16,
-    boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
-    elevation: 3,
+  section: {
+    marginBottom: 32,
   },
-  infoRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-  },
-  infoContent: {
-    flex: 1,
-  },
-  infoLabel: {
-    fontSize: 14,
-    color: colors.textSecondary,
-    marginBottom: 4,
-  },
-  infoValue: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: colors.text,
-  },
-  breakdownCard: {
-    backgroundColor: colors.card,
-    borderRadius: 12,
-    padding: 20,
-    marginBottom: 24,
-    boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
-    elevation: 3,
-  },
-  breakdownTitle: {
-    fontSize: 18,
+  sectionTitle: {
+    fontSize: 20,
     fontWeight: '700',
     color: colors.text,
     marginBottom: 16,
   },
   questionItem: {
-    backgroundColor: colors.background,
-    borderRadius: 8,
-    padding: 12,
+    backgroundColor: colors.card,
+    borderRadius: 12,
+    padding: 16,
     marginBottom: 12,
+    boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
+    elevation: 3,
   },
   questionHeader: {
     flexDirection: 'row',
@@ -413,7 +264,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   questionNumber: {
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: '700',
     color: colors.primary,
   },
@@ -423,53 +274,56 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     marginBottom: 8,
   },
-  answerInfo: {
-    gap: 4,
+  answerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    flexWrap: 'wrap',
   },
   answerLabel: {
     fontSize: 13,
     color: colors.textSecondary,
   },
-  answerWrong: {
-    fontWeight: '600',
-    color: colors.error,
-  },
-  answerCorrect: {
-    fontWeight: '600',
-    color: colors.success,
-  },
-  actionButtons: {
-    gap: 12,
-    marginBottom: 24,
-  },
-  reviewButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 8,
-    backgroundColor: colors.primary,
-    borderRadius: 12,
-    padding: 16,
-    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
-    elevation: 5,
-  },
-  reviewButtonText: {
-    fontSize: 16,
+  answerValue: {
+    fontSize: 14,
     fontWeight: '700',
-    color: colors.background,
   },
-  retakeButton: {
+  achievementCard: {
+    backgroundColor: colors.card,
+    borderRadius: 16,
+    padding: 32,
+    alignItems: 'center',
+    marginBottom: 24,
+    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
+    elevation: 4,
+  },
+  achievementTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: colors.text,
+    marginTop: 16,
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  achievementText: {
+    fontSize: 15,
+    color: colors.textSecondary,
+    textAlign: 'center',
+    lineHeight: 22,
+    marginBottom: 20,
+  },
+  achievementButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    gap: 8,
-    backgroundColor: colors.success,
+    gap: 12,
+    backgroundColor: colors.primary,
+    paddingHorizontal: 24,
+    paddingVertical: 14,
     borderRadius: 12,
-    padding: 16,
-    boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
-    elevation: 3,
+    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.15)',
+    elevation: 4,
   },
-  retakeButtonText: {
+  achievementButtonText: {
     fontSize: 16,
     fontWeight: '700',
     color: colors.background,
@@ -478,34 +332,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 8,
-    backgroundColor: colors.card,
+    gap: 12,
+    backgroundColor: colors.highlight,
     borderRadius: 12,
-    padding: 16,
+    padding: 18,
     borderWidth: 2,
     borderColor: colors.primary,
-    boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
-    elevation: 3,
   },
   homeButtonText: {
     fontSize: 16,
     fontWeight: '700',
     color: colors.primary,
-  },
-  achievementCard: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-    backgroundColor: '#fff9c4',
-    borderRadius: 12,
-    padding: 16,
-    borderWidth: 2,
-    borderColor: colors.warning,
-  },
-  achievementText: {
-    flex: 1,
-    fontSize: 16,
-    fontWeight: '600',
-    color: colors.text,
   },
 });
