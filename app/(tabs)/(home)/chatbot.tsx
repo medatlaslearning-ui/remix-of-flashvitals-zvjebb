@@ -492,6 +492,7 @@ export default function ChatbotScreen() {
           quality: synthesizerOutput.quality,
           processingTime: synthesizerOutput.metadata.processingTime,
           bleedingRisk: synthesizerOutput.metadata.contentBleedingRisk,
+          hasConsistencyCheck: synthesizerOutput.metadata.hasConsistencyCheck,
         });
         
         // Search all data sources for additional context
@@ -943,17 +944,15 @@ export default function ChatbotScreen() {
                   </Text>
                 </View>
               )}
-              {message.synthesizerMetadata.hasConsistencyCheck !== undefined && (
-                <View style={styles.metadataRow}>
-                  <Text style={styles.metadataLabel}>Consistency Check:</Text>
-                  <Text style={[
-                    styles.metadataValue,
-                    message.synthesizerMetadata.hasConsistencyCheck ? styles.metadataGood : styles.metadataBad
-                  ]}>
-                    {message.synthesizerMetadata.hasConsistencyCheck ? '✓ Performed' : '✗ Not Performed'}
-                  </Text>
-                </View>
-              )}
+              <View style={styles.metadataRow}>
+                <Text style={styles.metadataLabel}>Consistency Check:</Text>
+                <Text style={[
+                  styles.metadataValue,
+                  message.synthesizerMetadata.hasConsistencyCheck ? styles.metadataGood : styles.metadataBad
+                ]}>
+                  {message.synthesizerMetadata.hasConsistencyCheck ? '✓ Performed' : '✗ Not Performed'}
+                </Text>
+              </View>
               {message.synthesizerMetadata.openAI && (
                 <>
                   <View style={styles.metadataRow}>
