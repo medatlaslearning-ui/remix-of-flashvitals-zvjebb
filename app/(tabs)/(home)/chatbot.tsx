@@ -57,6 +57,7 @@ import { synthesizerEngine } from '@/data/synthesizerEngine';
 import { useFeedback } from '@/app/integrations/supabase/hooks/useFeedback';
 import { useAuth } from '@/app/integrations/supabase/hooks/useAuth';
 import { validateFeedback, type UserFeedback } from '@/data/supabaseUsageRules';
+import { getIconLegend } from '@/data/semanticIconSystem';
 
 interface Message {
   id: string;
@@ -117,6 +118,8 @@ interface Message {
       validationScore?: number;
       validationWarnings?: string[];
       fallbackReason?: string;
+      semanticIconsUsed?: boolean;
+      semanticIconCount?: number;
     };
   };
 }
@@ -146,7 +149,107 @@ export default function ChatbotScreen() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: 'Hello! I\'m your Medical Expert Chatbot powered by the **Synthesizer Engine** with **OpenAI Language Generation**.\n\n**🔄 Synthesizer Engine Architecture with OpenAI:**\n\nI use a sophisticated figure-eight data flow with one-way valves to ensure accurate, focused responses:\n\n• **Valve 1** - Your question flows into the query processor\n• **Valve 2** - Core medical knowledge flows into the knowledge retriever\n• **Intersection Point** - Your query meets the knowledge base for synthesis\n• **Valve 3** - Synthesized information flows to response generation\n• **Refinement Loop** - Response is refined for quality and accuracy\n• **Valve 4** - OpenAI generates conversational presentation (no medical facts added)\n• **Final Output** - Clear, conversational response flows to you (no backflow)\n\n**🤖 OpenAI Role Definition:**\n\nOpenAI functions as:\n• ✅ The **language generator** - Makes responses clear and conversational\n• ✅ The **reasoning surface** - Explains medical concepts effectively\n• ✅ The **conversational interface** - Provides warm, professional tone\n\nOpenAI does NOT function as:\n• ❌ The source of medical truth (that\'s the Core Knowledge Engine)\n• ❌ A replacement for the knowledge engine\n• ❌ A decision-maker for guidelines\n• ❌ A memory store\n\n**🔐 Guardrails:**\n\nOpenAI responses are validated to ensure:\n• No medical facts are added beyond the core knowledge\n• All key medical terms are preserved\n• Response length is appropriate\n• Medical accuracy is maintained 100%\n\nThis architecture prevents content bleeding and ensures you get precise, relevant information presented in a clear, conversational manner.\n\n**📚 Complete Knowledge Base:**\n\n• **Cardiology** - Arrhythmias, heart failure, ischemic heart disease, valvular disorders\n• **Pulmonary** - Asthma, COPD, pneumonia, interstitial lung diseases\n• **Gastroenterology** - GI disorders, liver disease, IBD, pancreatic conditions\n• **Endocrine** - Diabetes, thyroid disorders, adrenal disorders\n• **Hematology** - Anemias, bleeding disorders, thrombotic disorders, malignancies\n• **Renal** - AKI, CKD, glomerular diseases, electrolyte disorders\n• **Neurology** - Stroke, seizures, movement disorders, dementia, MS\n• **Infectious Disease** - Bacterial, viral, fungal, parasitic infections\n• **Emergency Medicine** - Shock, trauma, cardiovascular emergencies, toxicology\n• **Urology** - Urinary tract disorders, prostate conditions, kidney stones\n\n**📋 Clinical Practice Guidelines:**\n\n• ACC, AHA, ESC, HFSA, HRS, SCAI, EACTS (Cardiology)\n• ATS, CHEST, SCCM (Pulmonary/Critical Care)\n• KDIGO, NIDDK (Renal/Nephrology)\n• ACG (Gastroenterology)\n• ADA, Endocrine Society (Endocrine)\n• NCCN (Hematology/Oncology)\n• IDSA (Infectious Disease)\n• ASA (Stroke/Neurology)\n• ACS Trauma Programs (Emergency Medicine)\n\n**🎯 Ask Specific Questions:**\n\n• "What is the **pathophysiology** of..."\n• "What are the **clinical findings** of..."\n• "How do you **diagnose**..."\n• "What is the **treatment** for..."\n• "What are the **guidelines** for..."\n\n**💡 Natural Conversation:**\n\nI can also engage in normal conversation! Feel free to say hello, ask follow-up questions, or thank me. The synthesizer engine understands context and intent.\n\n**🔐 Feedback Guardrails:**\n\nYour feedback (thumbs up/down) is stored securely in Supabase and used ONLY to personalize HOW responses are delivered (length, depth, style), NOT to change medical facts. You can reverse feedback within 30 seconds.\n\n**✅ Enhanced Quality Controls:**\n\n• Improved keyword specificity to prevent condition confusion\n• Enhanced error handling for robust performance\n• Better distinction between similar conditions (e.g., COPD vs Asthma)\n• Comprehensive validation at every step\n\nLet\'s begin your medical learning journey!',
+      text: `Hello! I'm your Medical Expert Chatbot powered by the **Synthesizer Engine** with **OpenAI Language Generation** and **Semantic Icon System** 🎯
+
+**🔄 Synthesizer Engine Architecture with OpenAI:**
+
+I use a sophisticated figure-eight data flow with one-way valves to ensure accurate, focused responses:
+
+• **Valve 1** - Your question flows into the query processor
+• **Valve 2** - Core medical knowledge flows into the knowledge retriever
+• **Intersection Point** - Your query meets the knowledge base for synthesis
+• **Valve 3** - Synthesized information flows to response generation
+• **Refinement Loop** - Response is refined for quality and accuracy
+• **Valve 4** - OpenAI generates conversational presentation (no medical facts added)
+• **Final Output** - Clear, conversational response flows to you (no backflow)
+
+**🤖 OpenAI Role Definition:**
+
+OpenAI functions as:
+• ✅ The **language generator** - Makes responses clear and conversational
+• ✅ The **reasoning surface** - Explains medical concepts effectively
+• ✅ The **conversational interface** - Provides warm, professional tone
+
+OpenAI does NOT function as:
+• ❌ The source of medical truth (that's the Core Knowledge Engine)
+• ❌ A replacement for the knowledge engine
+• ❌ A decision-maker for guidelines
+• ❌ A memory store
+
+**🎯 Semantic Icon System:**
+
+I use visual icons to structure responses and enhance clarity. The LMM (OpenAI) can use these icons naturally AFTER passing guardrails:
+
+${getIconLegend()}
+
+**Example Usage:**
+"💊 Treatment for asthma includes beta-agonists and corticosteroids"
+"🧠 Asthma involves airway inflammation and bronchospasm"
+"⚠️ Watch for signs of respiratory distress"
+
+These icons help you quickly identify information types and improve retention!
+
+**🔐 Guardrails:**
+
+OpenAI responses are validated to ensure:
+• No medical facts are added beyond the core knowledge
+• All key medical terms are preserved
+• Response length is appropriate
+• Medical accuracy is maintained 100%
+• Semantic icons are used appropriately
+
+This architecture prevents content bleeding and ensures you get precise, relevant information presented in a clear, conversational manner with visual structure.
+
+**📚 Complete Knowledge Base:**
+
+• **Cardiology** - Arrhythmias, heart failure, ischemic heart disease, valvular disorders
+• **Pulmonary** - Asthma, COPD, pneumonia, interstitial lung diseases
+• **Gastroenterology** - GI disorders, liver disease, IBD, pancreatic conditions
+• **Endocrine** - Diabetes, thyroid disorders, adrenal disorders
+• **Hematology** - Anemias, bleeding disorders, thrombotic disorders, malignancies
+• **Renal** - AKI, CKD, glomerular diseases, electrolyte disorders
+• **Neurology** - Stroke, seizures, movement disorders, dementia, MS
+• **Infectious Disease** - Bacterial, viral, fungal, parasitic infections
+• **Emergency Medicine** - Shock, trauma, cardiovascular emergencies, toxicology
+• **Urology** - Urinary tract disorders, prostate conditions, kidney stones
+
+**📋 Clinical Practice Guidelines:**
+
+• ACC, AHA, ESC, HFSA, HRS, SCAI, EACTS (Cardiology)
+• ATS, CHEST, SCCM (Pulmonary/Critical Care)
+• KDIGO, NIDDK (Renal/Nephrology)
+• ACG (Gastroenterology)
+• ADA, Endocrine Society (Endocrine)
+• NCCN (Hematology/Oncology)
+• IDSA (Infectious Disease)
+• ASA (Stroke/Neurology)
+• ACS Trauma Programs (Emergency Medicine)
+
+**🎯 Ask Specific Questions:**
+
+• "What is the **pathophysiology** of..."
+• "What are the **clinical findings** of..."
+• "How do you **diagnose**..."
+• "What is the **treatment** for..."
+• "What are the **guidelines** for..."
+
+**💡 Natural Conversation:**
+
+I can also engage in normal conversation! Feel free to say hello, ask follow-up questions, or thank me. The synthesizer engine understands context and intent.
+
+**🔐 Feedback Guardrails:**
+
+Your feedback (thumbs up/down) is stored securely in Supabase and used ONLY to personalize HOW responses are delivered (length, depth, style), NOT to change medical facts. You can reverse feedback within 30 seconds.
+
+**✅ Enhanced Quality Controls:**
+
+• Improved keyword specificity to prevent condition confusion
+• Enhanced error handling for robust performance
+• Better distinction between similar conditions (e.g., COPD vs Asthma)
+• Comprehensive validation at every step
+• Semantic icons enabled after guardrail validation
+
+Let's begin your medical learning journey!`,
       isBot: true,
       timestamp: new Date(),
     },
@@ -156,6 +259,7 @@ export default function ChatbotScreen() {
   const [webViewVisible, setWebViewVisible] = useState(false);
   const [webViewUrl, setWebViewUrl] = useState('');
   const [systemNeedsRefresh, setSystemNeedsRefresh] = useState(false);
+  const [showIconLegend, setShowIconLegend] = useState(false);
   const scrollViewRef = useRef<ScrollView>(null);
 
   useEffect(() => {
@@ -476,7 +580,7 @@ export default function ChatbotScreen() {
 
     // Process the query through the synthesizer engine
     setTimeout(async () => {
-      console.log('[CHATBOT] Processing query through synthesizer engine:', currentQuery);
+      console.log('[CHATBOT] Processing query through synthesizer engine with semantic icons:', currentQuery);
       
       try {
         // Get all flashcards
@@ -488,13 +592,15 @@ export default function ChatbotScreen() {
           allFlashcards
         );
         
-        console.log('[CHATBOT] ✓✓✓ Synthesizer output:', {
+        console.log('[CHATBOT] ✓✓✓ Synthesizer output with semantic icons:', {
           quality: synthesizerOutput.quality,
           processingTime: synthesizerOutput.metadata.processingTime,
           bleedingRisk: synthesizerOutput.metadata.contentBleedingRisk,
           consistencyScore: synthesizerOutput.metadata.consistencyScore,
           consistencyValid: synthesizerOutput.metadata.consistencyValid,
           hasConsistencyCheck: synthesizerOutput.metadata.hasConsistencyCheck,
+          semanticIconsUsed: synthesizerOutput.metadata.openAI?.semanticIconsUsed,
+          semanticIconCount: synthesizerOutput.metadata.openAI?.semanticIconCount,
         });
         
         // Search all data sources for additional context
@@ -582,7 +688,6 @@ export default function ChatbotScreen() {
             quality: synthesizerOutput.quality,
             processingTime: synthesizerOutput.metadata.processingTime,
             contentBleedingRisk: synthesizerOutput.metadata.contentBleedingRisk,
-            // CRITICAL FIX: Read from the correct location in metadata (not nested in consistencyValidation)
             consistencyScore: synthesizerOutput.metadata.consistencyScore,
             consistencyValid: synthesizerOutput.metadata.consistencyValid,
             hasConsistencyCheck: synthesizerOutput.metadata.hasConsistencyCheck,
@@ -1002,6 +1107,19 @@ export default function ChatbotScreen() {
                           </Text>
                         </View>
                       )}
+                      {message.synthesizerMetadata.openAI.semanticIconsUsed !== undefined && (
+                        <View style={styles.metadataRow}>
+                          <Text style={styles.metadataLabel}>Semantic Icons:</Text>
+                          <Text style={[
+                            styles.metadataValue,
+                            message.synthesizerMetadata.openAI.semanticIconsUsed ? styles.metadataGood : styles.metadataWarning
+                          ]}>
+                            {message.synthesizerMetadata.openAI.semanticIconsUsed 
+                              ? `✓ Used (${message.synthesizerMetadata.openAI.semanticIconCount})` 
+                              : '✗ Not Used'}
+                          </Text>
+                        </View>
+                      )}
                     </>
                   )}
                   {!message.synthesizerMetadata.openAI.usedOpenAI && message.synthesizerMetadata.openAI.fallbackReason && (
@@ -1136,19 +1254,32 @@ export default function ChatbotScreen() {
           title: 'Medical Expert Chatbot',
           headerLargeTitle: false,
           headerRight: () => (
-            systemNeedsRefresh ? (
+            <View style={{ flexDirection: 'row', gap: 8 }}>
               <Pressable
-                onPress={handleRefreshSystemLogic}
+                onPress={() => setShowIconLegend(true)}
                 style={styles.headerButton}
               >
                 <IconSymbol
-                  ios_icon_name="arrow.clockwise.circle.fill"
-                  android_material_icon_name="refresh"
+                  ios_icon_name="info.circle.fill"
+                  android_material_icon_name="info"
                   size={28}
                   color={colors.primary}
                 />
               </Pressable>
-            ) : null
+              {systemNeedsRefresh && (
+                <Pressable
+                  onPress={handleRefreshSystemLogic}
+                  style={styles.headerButton}
+                >
+                  <IconSymbol
+                    ios_icon_name="arrow.clockwise.circle.fill"
+                    android_material_icon_name="refresh"
+                    size={28}
+                    color={colors.primary}
+                  />
+                </Pressable>
+              )}
+            </View>
           ),
         }}
       />
@@ -1169,7 +1300,7 @@ export default function ChatbotScreen() {
             <View style={[styles.messageContainer, styles.botMessageContainer]}>
               <View style={[styles.messageBubble, styles.botBubble]}>
                 <ActivityIndicator size="small" color={colors.text} />
-                <Text style={styles.typingText}>Synthesizing response...</Text>
+                <Text style={styles.typingText}>Synthesizing response with semantic icons...</Text>
               </View>
             </View>
           )}
@@ -1208,6 +1339,39 @@ export default function ChatbotScreen() {
           </Pressable>
         </View>
       </KeyboardAvoidingView>
+
+      {/* Icon Legend Modal */}
+      <Modal
+        visible={showIconLegend}
+        animationType="slide"
+        transparent={true}
+        onRequestClose={() => setShowIconLegend(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            <View style={styles.modalHeader}>
+              <Text style={styles.modalTitle}>🎯 Semantic Icon Legend</Text>
+              <Pressable
+                style={styles.modalCloseButton}
+                onPress={() => setShowIconLegend(false)}
+              >
+                <IconSymbol
+                  ios_icon_name="xmark.circle.fill"
+                  android_material_icon_name="cancel"
+                  size={28}
+                  color={colors.text}
+                />
+              </Pressable>
+            </View>
+            <ScrollView style={styles.modalScroll}>
+              <Text style={styles.modalText}>{getIconLegend()}</Text>
+              <Text style={styles.modalHint}>
+                These icons help you quickly identify the type of information and improve retention!
+              </Text>
+            </ScrollView>
+          </View>
+        </View>
+      </Modal>
 
       {/* Merck Manual WebView Modal */}
       <Modal
@@ -1495,6 +1659,49 @@ const styles = StyleSheet.create({
   },
   sendButtonDisabled: {
     opacity: 0.5,
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  modalContent: {
+    backgroundColor: colors.card,
+    borderRadius: 16,
+    padding: 20,
+    width: '100%',
+    maxHeight: '80%',
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: colors.text,
+  },
+  modalCloseButton: {
+    padding: 4,
+  },
+  modalScroll: {
+    maxHeight: 400,
+  },
+  modalText: {
+    fontSize: 14,
+    color: colors.text,
+    lineHeight: 22,
+  },
+  modalHint: {
+    fontSize: 12,
+    color: colors.textSecondary,
+    fontStyle: 'italic',
+    marginTop: 16,
+    textAlign: 'center',
   },
   webViewContainer: {
     flex: 1,

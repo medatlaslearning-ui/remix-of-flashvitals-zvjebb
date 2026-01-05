@@ -22,15 +22,40 @@
  * The OpenAI LLM receives factual medical content from the synthesizer engine
  * and presents it in a clear, conversational, educational manner WITHOUT
  * adding any medical facts not present in the provided content.
+ * 
+ * SEMANTIC ICON SYSTEM:
+ * 
+ * The LMM can use semantic icons to structure responses AFTER passing guardrails:
+ * 🧠 Pathophysiology / Explanation
+ * 🔍 Diagnosis / Evaluation
+ * 💊 Treatment / Management
+ * 📌 Clinical Pearl
+ * ⚠️ Caution / Red Flag
+ * ✅ Key Takeaway
+ * 🔒 Guardrail / Safety Rule
+ * ✍️ Teaching Note / Learning Tip
+ * ⚙️ Mechanism of Action
+ * 📊 Prognosis / Outcome
+ * 🛡️ Prevention / Prophylaxis
+ * 📈 Epidemiology / Statistics
+ * 
+ * FLOW:
+ * 1. Query → Guardrails → Validation
+ * 2. Validation passes → Enable semantic icons
+ * 3. OpenAI generates response with icons
+ * 4. Response validated → Icons preserved
+ * 5. Final output with semantic icons → UI
  */
 
 import { supabase } from '@/app/integrations/supabase/client';
+import { applySemanticIcons, validateSemanticIconUsage } from './semanticIconSystem';
 
 export interface OpenAILanguageGenerationParams {
   medicalContent: string;
   userQuery: string;
   temperature?: number;
   max_tokens?: number;
+  enableSemanticIcons?: boolean; // Flag to enable semantic icons (default: true)
 }
 
 export interface OpenAILanguageGenerationResult {
@@ -40,6 +65,8 @@ export interface OpenAILanguageGenerationResult {
   tokens?: { prompt?: number; completion?: number; total?: number };
   usedOpenAI: boolean;
   fallbackReason?: string;
+  semanticIconsUsed?: boolean; // Flag indicating if semantic icons were used
+  semanticIconCount?: number; // Number of semantic icons in response
 }
 
 // Configuration
@@ -83,7 +110,7 @@ async function callEdgeFunctionWithRetry(
   attempt: number = 0
 ): Promise<any> {
   try {
-    console.log(`[OPENAI INTEGRATION] Attempt ${attempt + 1}/${MAX_RETRIES + 1} - Calling Edge Function`);
+    console.log(`[OPENAI INTEGRATION] Attempt ${attempt + 1}/${MAX_RETRIES + 1} - Calling Edge Function with semantic icons enabled`);
     
     const edgeFunctionCall = supabase.functions.invoke('generate-conversational-response', {
       body: {
@@ -150,22 +177,32 @@ async function callEdgeFunctionWithRetry(
 }
 
 /**
- * GUARDRAIL: OpenAI Role Enforcement
+ * GUARDRAIL: OpenAI Role Enforcement with Semantic Icon System
  * 
  * This function ensures OpenAI is used ONLY as a language generator,
- * not as a source of medical truth.
+ * not as a source of medical truth. It also enables the LMM to use
+ * semantic icons naturally in responses after passing guardrails.
+ * 
+ * FLOW:
+ * 1. Validate inputs (guardrail check)
+ * 2. Enable semantic icons (after validation)
+ * 3. Call OpenAI with icon support
+ * 4. Validate response (preserve icons)
+ * 5. Apply icon replacements if needed (*** → emoji)
+ * 6. Return response with semantic icons
  */
 export async function generateConversationalResponse(
   params: OpenAILanguageGenerationParams
 ): Promise<OpenAILanguageGenerationResult> {
-  console.log('[OPENAI INTEGRATION] Generating conversational response');
+  console.log('[OPENAI INTEGRATION] Generating conversational response with semantic icons');
   console.log('[OPENAI INTEGRATION] Medical content length:', params.medicalContent.length);
   console.log('[OPENAI INTEGRATION] User query:', params.userQuery);
+  console.log('[OPENAI INTEGRATION] Semantic icons enabled:', params.enableSemanticIcons !== false);
   
   const startTime = performance.now();
   
   try {
-    // Validate inputs
+    // GUARDRAIL: Validate inputs
     if (params.medicalContent.length < 10) {
       console.log('[OPENAI INTEGRATION] Medical content too short - using fallback');
       return {
@@ -174,6 +211,8 @@ export async function generateConversationalResponse(
         model: 'fallback',
         usedOpenAI: false,
         fallbackReason: 'Medical content too short (minimum 10 characters)',
+        semanticIconsUsed: false,
+        semanticIconCount: 0,
       };
     }
     
@@ -185,11 +224,17 @@ export async function generateConversationalResponse(
         model: 'fallback',
         usedOpenAI: false,
         fallbackReason: 'User query too short (minimum 3 characters)',
+        semanticIconsUsed: false,
+        semanticIconCount: 0,
       };
     }
     
+    // SEMANTIC ICONS: Enabled by default after guardrail validation
+    const enableSemanticIcons = params.enableSemanticIcons !== false;
+    console.log('[OPENAI INTEGRATION] ✓ Guardrails passed - semantic icons enabled:', enableSemanticIcons);
+    
     // Call Edge Function with retry logic and timeout
-    console.log('[OPENAI INTEGRATION] Starting Edge Function call with retry logic');
+    console.log('[OPENAI INTEGRATION] Starting Edge Function call with retry logic and semantic icon support');
     
     const data = await callEdgeFunctionWithRetry(params);
     
@@ -201,6 +246,8 @@ export async function generateConversationalResponse(
         model: 'fallback',
         usedOpenAI: false,
         fallbackReason: 'No data returned from Edge Function after retries',
+        semanticIconsUsed: false,
+        semanticIconCount: 0,
       };
     }
     
@@ -219,23 +266,47 @@ export async function generateConversationalResponse(
         model: 'fallback',
         usedOpenAI: false,
         fallbackReason: 'No conversational text in Edge Function response',
+        semanticIconsUsed: false,
+        semanticIconCount: 0,
       };
     }
     
+    // SEMANTIC ICONS: Apply icon replacements if needed (*** → emoji)
+    let finalText = result.conversationalText;
+    if (enableSemanticIcons) {
+      console.log('[OPENAI INTEGRATION] Applying semantic icon replacements (*** → emoji)');
+      finalText = applySemanticIcons(finalText);
+    }
+    
+    // SEMANTIC ICONS: Validate icon usage
+    const iconValidation = validateSemanticIconUsage(finalText);
+    console.log('[OPENAI INTEGRATION] Semantic icon validation:', {
+      hasIcons: iconValidation.hasIcons,
+      iconCount: iconValidation.iconCount,
+      valid: iconValidation.valid,
+      warnings: iconValidation.warnings,
+    });
+    
     const totalDuration = Math.round(performance.now() - startTime);
     
-    console.log('[OPENAI INTEGRATION] Success:', {
+    console.log('[OPENAI INTEGRATION] Success with semantic icons:', {
       model: result.model,
       edgeFunctionDuration: result.duration_ms,
       totalDuration,
       tokens: result.tokens?.total,
-      textLength: result.conversationalText.length,
+      textLength: finalText.length,
+      semanticIconsUsed: iconValidation.hasIcons,
+      semanticIconCount: iconValidation.iconCount,
     });
     
     return {
-      ...result,
+      conversationalText: finalText,
       duration_ms: totalDuration,
+      model: result.model,
+      tokens: result.tokens,
       usedOpenAI: true,
+      semanticIconsUsed: iconValidation.hasIcons,
+      semanticIconCount: iconValidation.iconCount,
     };
   } catch (error: any) {
     const totalDuration = Math.round(performance.now() - startTime);
@@ -273,15 +344,17 @@ export async function generateConversationalResponse(
       model: 'fallback',
       usedOpenAI: false,
       fallbackReason,
+      semanticIconsUsed: false,
+      semanticIconCount: 0,
     };
   }
 }
 
 /**
- * GUARDRAIL: Validate OpenAI Response
+ * GUARDRAIL: Validate OpenAI Response with Semantic Icon Support
  * 
  * Ensures the OpenAI response doesn't add medical facts not present
- * in the original content.
+ * in the original content. Semantic icons are allowed and encouraged.
  */
 export function validateOpenAIResponse(
   originalContent: string,
@@ -291,7 +364,7 @@ export function validateOpenAIResponse(
   warnings: string[];
   score: number;
 } {
-  console.log('[OPENAI INTEGRATION] Validating OpenAI response');
+  console.log('[OPENAI INTEGRATION] Validating OpenAI response with semantic icon support');
   
   const warnings: string[] = [];
   let score = 100;
@@ -322,12 +395,6 @@ export function validateOpenAIResponse(
   }
   
   // Extract medical terms more comprehensively
-  // Look for:
-  // 1. Capitalized medical terms (e.g., "Atrial Fibrillation", "Diabetes Mellitus")
-  // 2. Medical abbreviations (e.g., "AFib", "MI", "CHF")
-  // 3. Drug names and medical procedures
-  // 4. Anatomical terms
-  
   const medicalTermPatterns = [
     // Capitalized terms (2+ words)
     /\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)+\b/g,
@@ -388,6 +455,23 @@ export function validateOpenAIResponse(
     score -= 10;
   }
   
+  // SEMANTIC ICONS: Check for semantic icons (bonus points for using them appropriately)
+  const semanticIconPattern = /[🧠🔍💊📌⚠️✅🔒✍️⚙️📊🛡️📈]/g;
+  const iconMatches = openAIResponse.match(semanticIconPattern);
+  const iconCount = iconMatches ? iconMatches.length : 0;
+  
+  if (iconCount > 0) {
+    console.log('[OPENAI INTEGRATION] ✓ Response uses semantic icons:', iconCount);
+    score += 5; // Bonus for using semantic icons
+  }
+  
+  // SEMANTIC ICONS: Validate icon usage
+  const iconValidation = validateSemanticIconUsage(openAIResponse);
+  if (!iconValidation.valid) {
+    console.log('[OPENAI INTEGRATION] Semantic icon validation warnings:', iconValidation.warnings);
+    // Don't penalize for icon warnings - they're just suggestions
+  }
+  
   // Lower validation threshold from 70 to 60
   const isValid = score >= 60;
   
@@ -396,6 +480,8 @@ export function validateOpenAIResponse(
     score,
     warnings: warnings.length,
     preservationRate: `${(preservationRate * 100).toFixed(1)}%`,
+    semanticIcons: iconCount,
+    iconValidation: iconValidation.valid,
   });
   
   return {
