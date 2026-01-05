@@ -115,32 +115,46 @@ export default function QuizCreatorScreen() {
         guidelinesContext,
       });
 
-      if (result && result.questions && result.questions.length > 0) {
-        console.log('[QuizCreator] Quiz generated successfully:', {
-          quizId: result.quizId,
-          questionCount: result.questions.length,
-          duration: result.duration_ms,
-        });
-        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-        
-        // Navigate to the quiz taking screen with the generated questions
-        router.push({
-          pathname: '/quiz-session',
-          params: { 
-            quizId: result.quizId,
-            questionsData: JSON.stringify(result.questions),
-            medicalSystem: result.medicalSystem,
-            questionCount: result.questionCount.toString(),
-          }
-        });
-      } else {
-        console.error('[QuizCreator] Invalid result:', result);
+      // CRITICAL: Validate result before accessing properties
+      if (!result) {
+        console.error('[QuizCreator] Null result from generateQuiz');
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
         Alert.alert(
           'Generation Failed', 
-          'Failed to generate quiz questions. Please try again or select fewer questions.'
+          'Failed to generate quiz. Please check your internet connection and try again.'
         );
+        return;
       }
+
+      if (!result.questions || !Array.isArray(result.questions) || result.questions.length === 0) {
+        console.error('[QuizCreator] Invalid result - missing or empty questions:', result);
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+        Alert.alert(
+          'Generation Failed', 
+          'No questions were generated. Please try again or select fewer questions.'
+        );
+        return;
+      }
+
+      // Success - navigate to quiz session
+      console.log('[QuizCreator] ✓ Quiz generated successfully:', {
+        quizId: result.quizId,
+        questionCount: result.questions.length,
+        duration: result.duration_ms,
+      });
+      
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      
+      // Navigate to the quiz taking screen with the generated questions
+      router.push({
+        pathname: '/quiz-session',
+        params: { 
+          quizId: result.quizId,
+          questionsData: JSON.stringify(result.questions),
+          medicalSystem: result.medicalSystem,
+          questionCount: result.questionCount.toString(),
+        }
+      });
     } catch (error: any) {
       console.error('[QuizCreator] Error:', error);
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
@@ -151,6 +165,8 @@ export default function QuizCreatorScreen() {
         errorMessage = 'Quiz generation timed out. Try generating 5 questions instead of 10.';
       } else if (error.message?.includes('network')) {
         errorMessage = 'Network error. Please check your connection and try again.';
+      } else if (error.message?.includes('authenticated')) {
+        errorMessage = 'Please sign in to generate quizzes.';
       } else if (error.message) {
         errorMessage = error.message;
       }

@@ -18,15 +18,32 @@ export interface QuizResult {
   answers: QuizAnswer[];
 }
 
+// Retry configuration
+const MAX_RETRIES = 2;
+const RETRY_DELAY_MS = 2000;
+
+/**
+ * Sleep utility for retry delays
+ */
+function sleep(ms: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 export const useQuiz = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const generateQuiz = useCallback(async (params: QuizGenerationParams): Promise<QuizGenerationResult | null> => {
+  const generateQuiz = useCallback(async (params: QuizGenerationParams, retryCount = 0): Promise<QuizGenerationResult | null> => {
     try {
       setLoading(true);
       setError(null);
-      console.log('[useQuiz] Generating quiz with params:', params);
+      console.log('[useQuiz] Generating quiz with params:', {
+        medicalSystem: params.medicalSystem,
+        topic: params.topic,
+        questionCount: params.questionCount,
+        attempt: retryCount + 1,
+        maxRetries: MAX_RETRIES + 1,
+      });
 
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) {
@@ -48,19 +65,80 @@ export const useQuiz = () => {
 
       if (functionError) {
         console.error('[useQuiz] Edge Function error:', functionError);
+        
+        // Check if we should retry
+        if (retryCount < MAX_RETRIES) {
+          const isRetryableError = 
+            functionError.message?.includes('timeout') ||
+            functionError.message?.includes('network') ||
+            functionError.message?.includes('Failed to send') ||
+            functionError.message?.includes('fetch') ||
+            (functionError as any).status === 500 ||
+            (functionError as any).status === 502 ||
+            (functionError as any).status === 503 ||
+            (functionError as any).status === 504;
+          
+          if (isRetryableError) {
+            console.log(`[useQuiz] Retryable error detected. Retrying in ${RETRY_DELAY_MS}ms... (attempt ${retryCount + 2}/${MAX_RETRIES + 1})`);
+            await sleep(RETRY_DELAY_MS);
+            return generateQuiz(params, retryCount + 1);
+          }
+        }
+        
         throw functionError;
       }
 
-      if (!data || !data.quizId) {
-        console.error('[useQuiz] Invalid response from Edge Function:', data);
-        throw new Error('Invalid response from quiz generation service');
+      // CRITICAL: Validate response structure before accessing properties
+      if (!data) {
+        console.error('[useQuiz] Null response from Edge Function');
+        
+        // Retry on null response
+        if (retryCount < MAX_RETRIES) {
+          console.log(`[useQuiz] Null response - retrying in ${RETRY_DELAY_MS}ms... (attempt ${retryCount + 2}/${MAX_RETRIES + 1})`);
+          await sleep(RETRY_DELAY_MS);
+          return generateQuiz(params, retryCount + 1);
+        }
+        
+        throw new Error('No response from quiz generation service. Please try again.');
       }
 
-      console.log('[useQuiz] Quiz generated successfully:', data.quizId);
+      // Validate required fields
+      if (!data.quizId) {
+        console.error('[useQuiz] Missing quizId in response:', data);
+        throw new Error('Invalid response: missing quiz ID');
+      }
+
+      if (!data.questions || !Array.isArray(data.questions)) {
+        console.error('[useQuiz] Missing or invalid questions array in response:', data);
+        throw new Error('Invalid response: missing questions');
+      }
+
+      if (data.questions.length === 0) {
+        console.error('[useQuiz] Empty questions array in response:', data);
+        throw new Error('No questions were generated. Please try again.');
+      }
+
+      // Validate each question has required fields
+      for (let i = 0; i < data.questions.length; i++) {
+        const q = data.questions[i];
+        if (!q.questionText || !q.optionA || !q.optionB || !q.optionC || !q.optionD || !q.correctAnswer || !q.rationale) {
+          console.error('[useQuiz] Invalid question at index', i, ':', q);
+          throw new Error(`Invalid question structure at position ${i + 1}`);
+        }
+      }
+
+      console.log('[useQuiz] ✓ Quiz generated successfully:', {
+        quizId: data.quizId,
+        questionCount: data.questions.length,
+        duration: data.duration_ms,
+        model: data.model,
+      });
+
       return data as QuizGenerationResult;
     } catch (err) {
       const errorMsg = err instanceof Error ? err.message : 'Failed to generate quiz';
       console.error('[useQuiz] Error generating quiz:', errorMsg);
+      console.error('[useQuiz] Full error:', err);
       setError(errorMsg);
       return null;
     } finally {
