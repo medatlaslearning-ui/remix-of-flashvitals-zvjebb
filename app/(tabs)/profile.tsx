@@ -1,5 +1,5 @@
 
-import React, { useState, useMemo, useEffect, useCallback } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, Platform, Pressable, Modal, Alert } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
 import { colors, commonStyles } from '@/styles/commonStyles';
@@ -47,19 +47,17 @@ export default function ProfileScreen() {
     loadSpecialty();
   }, []);
 
-  // Wrap getQuizStats in useCallback to fix dependency warning
-  const loadQuizStats = useCallback(async () => {
-    const stats = await getQuizStats();
-    if (stats) {
-      setQuizStats(stats);
-      console.log('[Profile] Loaded quiz stats:', stats);
-    }
-  }, [getQuizStats]);
-
   // Load quiz stats
   useEffect(() => {
+    const loadQuizStats = async () => {
+      const stats = await getQuizStats();
+      if (stats) {
+        setQuizStats(stats);
+        console.log('[Profile] Loaded quiz stats:', stats);
+      }
+    };
     loadQuizStats();
-  }, [loadQuizStats]);
+  }, []);
 
   const handleSpecialtySelect = async (selectedSpecialty: string) => {
     try {

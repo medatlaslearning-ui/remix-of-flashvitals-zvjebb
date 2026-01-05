@@ -456,8 +456,7 @@ export function validateOpenAIResponse(
   }
   
   // SEMANTIC ICONS: Check for semantic icons (bonus points for using them appropriately)
-  // Use 'u' flag to properly handle Unicode emoji
-  const semanticIconPattern = /[🧠🔍💊📌⚠️✅🔒✍️⚙️📊🛡️📈]/gu;
+  const semanticIconPattern = /[🧠🔍💊📌⚠️✅🔒✍️⚙️📊🛡️📈]/g;
   const iconMatches = openAIResponse.match(semanticIconPattern);
   const iconCount = iconMatches ? iconMatches.length : 0;
   
