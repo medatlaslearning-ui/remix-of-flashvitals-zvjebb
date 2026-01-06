@@ -33,6 +33,7 @@ export default function QuizSessionScreen() {
   const [quizResult, setQuizResult] = useState<any>(null);
   const [questions, setQuestions] = useState<GeneratedQuestion[]>([]);
   const [loading, setLoading] = useState(true);
+  const [hasAnsweredCurrent, setHasAnsweredCurrent] = useState(false);
 
   // Load questions from params (passed directly from quiz generation)
   useEffect(() => {
@@ -77,6 +78,7 @@ export default function QuizSessionScreen() {
     };
     
     setAnswers([...answers, answer]);
+    setHasAnsweredCurrent(true);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
 
     console.log('[QuizSession] Answer recorded:', {
@@ -85,13 +87,15 @@ export default function QuizSessionScreen() {
       correct: question.correctAnswer,
       isCorrect,
     });
+  };
 
-    // Auto-advance to next question after a short delay
-    setTimeout(() => {
-      if (currentIndex < questions.length - 1) {
-        setCurrentIndex(currentIndex + 1);
-      }
-    }, 500);
+  const handleNextQuestion = () => {
+    if (currentIndex < questions.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+      setHasAnsweredCurrent(false);
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      console.log('[QuizSession] Moving to next question:', currentIndex + 2);
+    }
   };
 
   const handleFinishQuiz = async () => {
@@ -177,7 +181,6 @@ export default function QuizSessionScreen() {
 
   const currentQuestion = questions[currentIndex];
   const isLastQuestion = currentIndex === questions.length - 1;
-  const hasAnswered = answers.length > currentIndex;
   const progress = ((currentIndex + 1) / questions.length) * 100;
 
   return (
@@ -212,11 +215,11 @@ export default function QuizSessionScreen() {
               { letter: 'C', text: currentQuestion?.optionC },
               { letter: 'D', text: currentQuestion?.optionD },
             ].map((option) => {
-              const isSelected = hasAnswered && answers[currentIndex].selectedAnswer === option.letter;
+              const isSelected = hasAnsweredCurrent && answers[currentIndex]?.selectedAnswer === option.letter;
               const isCorrect = option.letter === currentQuestion?.correctAnswer;
               
               let optionStyle = styles.option;
-              if (hasAnswered) {
+              if (hasAnsweredCurrent) {
                 if (isCorrect) {
                   optionStyle = styles.optionCorrect;
                 } else if (isSelected) {
@@ -230,8 +233,8 @@ export default function QuizSessionScreen() {
                 <Pressable
                   key={option.letter}
                   style={[styles.optionButton, optionStyle]}
-                  onPress={() => !hasAnswered && handleAnswer(option.letter as 'A' | 'B' | 'C' | 'D')}
-                  disabled={hasAnswered}
+                  onPress={() => !hasAnsweredCurrent && handleAnswer(option.letter as 'A' | 'B' | 'C' | 'D')}
+                  disabled={hasAnsweredCurrent}
                 >
                   <View style={styles.optionContent}>
                     <View style={styles.optionLetter}>
@@ -239,7 +242,7 @@ export default function QuizSessionScreen() {
                     </View>
                     <Text style={styles.optionText}>{option.text}</Text>
                   </View>
-                  {hasAnswered && isCorrect && (
+                  {hasAnsweredCurrent && isCorrect && (
                     <IconSymbol 
                       ios_icon_name="checkmark.circle.fill" 
                       android_material_icon_name="check-circle" 
@@ -247,7 +250,7 @@ export default function QuizSessionScreen() {
                       color={colors.success} 
                     />
                   )}
-                  {hasAnswered && isSelected && !isCorrect && (
+                  {hasAnsweredCurrent && isSelected && !isCorrect && (
                     <IconSymbol 
                       ios_icon_name="xmark.circle.fill" 
                       android_material_icon_name="cancel" 
@@ -260,7 +263,7 @@ export default function QuizSessionScreen() {
             })}
           </View>
 
-          {hasAnswered && (
+          {hasAnsweredCurrent && (
             <View style={styles.rationaleCard}>
               <View style={styles.rationaleHeader}>
                 <IconSymbol 
@@ -281,7 +284,22 @@ export default function QuizSessionScreen() {
             </View>
           )}
 
-          {hasAnswered && isLastQuestion && (
+          {hasAnsweredCurrent && !isLastQuestion && (
+            <Pressable
+              style={styles.nextButton}
+              onPress={handleNextQuestion}
+            >
+              <Text style={styles.nextButtonText}>Next Question</Text>
+              <IconSymbol 
+                ios_icon_name="arrow.right.circle.fill" 
+                android_material_icon_name="arrow-forward" 
+                size={24} 
+                color="#fff" 
+              />
+            </Pressable>
+          )}
+
+          {hasAnsweredCurrent && isLastQuestion && (
             <Pressable
               style={[styles.finishButton, quizLoading && styles.finishButtonDisabled]}
               onPress={handleFinishQuiz}
@@ -383,6 +401,8 @@ const styles = StyleSheet.create({
   referencesContainer: { marginTop: 8, paddingTop: 12, borderTopWidth: 1, borderTopColor: colors.card },
   referencesLabel: { fontSize: 13, fontWeight: '700', color: colors.textSecondary, marginBottom: 4 },
   referencesText: { fontSize: 13, color: colors.textSecondary, lineHeight: 20 },
+  nextButton: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 12, marginTop: 8, padding: 18, backgroundColor: colors.primary, borderRadius: 12, boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)', elevation: 5 },
+  nextButtonText: { color: '#fff', fontSize: 18, fontWeight: '700' },
   finishButton: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 12, marginTop: 8, padding: 18, backgroundColor: colors.primary, borderRadius: 12, boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)', elevation: 5 },
   finishButtonDisabled: { opacity: 0.6 },
   finishButtonText: { color: '#fff', fontSize: 18, fontWeight: '700' },
