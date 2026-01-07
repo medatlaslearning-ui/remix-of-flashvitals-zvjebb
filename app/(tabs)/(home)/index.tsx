@@ -15,11 +15,11 @@ export default function HomeScreen() {
   // Recalculate counts when screen is focused or flashcards change
   const bookmarkedCount = useMemo(() => getBookmarkedFlashcards().length, [getBookmarkedFlashcards]);
   const favoritesCount = useMemo(() => getFavoriteFlashcards().length, [getFavoriteFlashcards]);
-  const difficultCount = useMemo(() => getDifficultFlashcards().length, [getDifficultFlashcards]); // NEW: Get difficult count
+  const difficultCount = useMemo(() => getDifficultFlashcards().length, [getDifficultFlashcards]);
 
   console.log('Home screen - Bookmarked count:', bookmarkedCount);
   console.log('Home screen - Favorites count:', favoritesCount);
-  console.log('Home screen - Difficult count:', difficultCount); // NEW: Log difficult count
+  console.log('Home screen - Difficult count:', difficultCount);
 
   // Get unique topics for Cardiology
   const cardiologyTopics = useMemo(() => {
@@ -155,7 +155,6 @@ export default function HomeScreen() {
     });
   };
 
-  // NEW: Handle difficult cards press
   const handleDifficultPress = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     console.log('Navigating to difficult cards');
@@ -199,68 +198,37 @@ export default function HomeScreen() {
           <Text style={styles.sectionTitle}>Quick Actions</Text>
           <View style={styles.quickActionsGrid}>
             <Pressable style={styles.quickActionCard} onPress={handleQuickStart}>
-              <IconSymbol 
-                ios_icon_name="play.circle.fill"
-                android_material_icon_name="play-circle"
-                size={32} 
-                color={colors.primary} 
-              />
+              <Text style={styles.quickActionEmoji}>▶️</Text>
               <Text style={styles.quickActionTitle}>Quick Start</Text>
               <Text style={styles.quickActionSubtitle}>Random cards</Text>
             </Pressable>
 
             <Pressable style={styles.quickActionCard} onPress={handleQuizMode}>
-              <IconSymbol 
-                ios_icon_name="checkmark.circle.fill"
-                android_material_icon_name="check-circle"
-                size={32} 
-                color={colors.accent} 
-              />
+              <Text style={styles.quickActionEmoji}>✅</Text>
               <Text style={styles.quickActionTitle}>Quiz Mode</Text>
               <Text style={styles.quickActionSubtitle}>Test yourself</Text>
             </Pressable>
 
             <Pressable style={styles.quickActionCard} onPress={handleChatbot}>
-              <IconSymbol 
-                ios_icon_name="message.fill"
-                android_material_icon_name="chat"
-                size={32} 
-                color={colors.secondary} 
-              />
+              <Text style={styles.quickActionEmoji}>💬</Text>
               <Text style={styles.quickActionTitle}>Medical Guidelines Chatbot</Text>
               <Text style={styles.quickActionSubtitle}>Ask guidelines</Text>
             </Pressable>
 
             <Pressable style={styles.quickActionCard} onPress={handleBookmarkedPress}>
-              <IconSymbol 
-                ios_icon_name="bookmark.fill"
-                android_material_icon_name="bookmark"
-                size={32} 
-                color={colors.primary} 
-              />
+              <Text style={styles.quickActionEmoji}>🔖</Text>
               <Text style={styles.quickActionTitle}>Bookmarked</Text>
               <Text style={styles.quickActionCount}>{bookmarkedCount}</Text>
             </Pressable>
 
             <Pressable style={styles.quickActionCard} onPress={handleFavoritesPress}>
-              <IconSymbol 
-                ios_icon_name="heart.fill"
-                android_material_icon_name="favorite"
-                size={32} 
-                color={colors.error} 
-              />
+              <Text style={styles.quickActionEmoji}>❤️</Text>
               <Text style={styles.quickActionTitle}>Favorites</Text>
               <Text style={styles.quickActionCount}>{favoritesCount}</Text>
             </Pressable>
 
-            {/* NEW: Difficult tile */}
             <Pressable style={styles.quickActionCard} onPress={handleDifficultPress}>
-              <IconSymbol 
-                ios_icon_name="exclamationmark.triangle.fill"
-                android_material_icon_name="warning"
-                size={32} 
-                color={colors.warning} 
-              />
+              <Text style={styles.quickActionEmoji}>⚠️</Text>
               <Text style={styles.quickActionTitle}>Difficult</Text>
               <Text style={styles.quickActionCount}>{difficultCount}</Text>
             </Pressable>
@@ -586,18 +554,22 @@ const styles = StyleSheet.create({
   quickActionCard: {
     flex: 1,
     minWidth: '45%',
-    backgroundColor: colors.card,
+    backgroundColor: '#E3F2FD',
     padding: 20,
     borderRadius: 16,
     alignItems: 'center',
     boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
     elevation: 3,
   },
+  quickActionEmoji: {
+    fontSize: 32,
+    marginBottom: 8,
+  },
   quickActionTitle: {
     fontSize: 16,
     fontWeight: '600',
     color: colors.text,
-    marginTop: 12,
+    marginTop: 4,
     textAlign: 'center',
   },
   quickActionSubtitle: {

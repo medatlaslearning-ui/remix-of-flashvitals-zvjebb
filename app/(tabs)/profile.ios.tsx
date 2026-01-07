@@ -31,46 +31,41 @@ export default function ProfileScreen() {
   // Calculate counts
   const bookmarkedCount = useMemo(() => getBookmarkedFlashcards().length, [getBookmarkedFlashcards]);
   const favoritesCount = useMemo(() => getFavoriteFlashcards().length, [getFavoriteFlashcards]);
-  const difficultCount = useMemo(() => getDifficultFlashcards().length, [getDifficultFlashcards]); // NEW: Get difficult count
+  const difficultCount = useMemo(() => getDifficultFlashcards().length, [getDifficultFlashcards]);
 
   const quickActions = [
     { 
-      title: "❤️ Favorites", 
+      title: "Favorites", 
+      emoji: "❤️",
       route: "/(tabs)/(home)/flashcards",
       params: { filter: 'favorites' },
-      color: "#FF3B30",
-      icon: "favorite",
       count: favoritesCount
     },
     { 
-      title: "🔖 Bookmarked", 
+      title: "Bookmarked", 
+      emoji: "🔖",
       route: "/(tabs)/(home)/flashcards",
       params: { filter: 'bookmarked' },
-      color: "#FF9500",
-      icon: "bookmark",
       count: bookmarkedCount
     },
     { 
-      title: "⚠️ Difficult", 
+      title: "Difficult", 
+      emoji: "⚠️",
       route: "/(tabs)/(home)/flashcards",
       params: { filter: 'difficult' },
-      color: "#FF9500",
-      icon: "warning",
       count: difficultCount
     },
     { 
-      title: "💬 Ask Expert", 
+      title: "Ask Expert", 
+      emoji: "💬",
       route: "/(tabs)/(home)/chatbot", 
-      params: {},
-      color: "#007AFF",
-      icon: "chat"
+      params: {}
     },
     { 
-      title: "📊 Progress Report", 
+      title: "Progress Report", 
+      emoji: "📊",
       route: "/progress-report", 
-      params: {},
-      color: "#34C759",
-      icon: "bar-chart"
+      params: {}
     }
   ];
 
@@ -130,11 +125,9 @@ export default function ProfileScreen() {
                   { opacity: pressed ? 0.7 : 1 }
                 ]}
               >
-                <View style={[styles.iconContainer, { backgroundColor: action.color }]}>
-                  <Text style={styles.tileEmoji}>{action.title.split(' ')[0]}</Text>
-                </View>
+                <Text style={styles.tileEmoji}>{action.emoji}</Text>
                 <Text style={[styles.tileTitle, { color: theme.colors.text }]}>
-                  {action.title.substring(action.title.indexOf(' ') + 1)}
+                  {action.title}
                 </Text>
                 {action.count !== undefined && (
                   <Text style={[styles.tileCount, { color: theme.colors.primary }]}>
@@ -244,20 +237,14 @@ const styles = StyleSheet.create({
   },
   tile: {
     width: '48%',
+    backgroundColor: '#E3F2FD',
     borderRadius: 12,
     padding: 16,
     alignItems: 'center',
     gap: 8,
   },
-  iconContainer: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   tileEmoji: {
-    fontSize: 28,
+    fontSize: 32,
   },
   tileTitle: {
     fontSize: 16,
