@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { View, Text, StyleSheet, ScrollView, Platform, Pressable } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { IconSymbol } from "@/components/IconSymbol";
 import { GlassView } from "expo-glass-effect";
@@ -14,9 +14,7 @@ export default function ProfileScreen() {
   const [isTopicBreakdownExpanded, setIsTopicBreakdownExpanded] = useState(false);
 
   const handleQuickAction = (route: string) => {
-    if (Platform.OS !== 'web') {
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    }
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     router.push(route as any);
   };
 
@@ -24,24 +22,15 @@ export default function ProfileScreen() {
     <SafeAreaView style={[styles.safeArea, { backgroundColor: theme.colors.background }]} edges={['top']}>
       <ScrollView
         style={styles.container}
-        contentContainerStyle={[
-          styles.contentContainer,
-          Platform.OS !== 'ios' && styles.contentContainerWithTabBar
-        ]}
+        contentContainerStyle={styles.contentContainer}
       >
-        <GlassView style={[
-          styles.profileHeader,
-          Platform.OS !== 'ios' && { backgroundColor: theme.dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }
-        ]} glassEffectStyle="regular">
+        <GlassView style={styles.profileHeader} glassEffectStyle="regular">
           <IconSymbol ios_icon_name="person.circle.fill" android_material_icon_name="account-circle" size={80} color={theme.colors.primary} />
           <Text style={[styles.name, { color: theme.colors.text }]}>John Doe</Text>
           <Text style={[styles.email, { color: theme.dark ? '#98989D' : '#666' }]}>john.doe@example.com</Text>
         </GlassView>
 
-        <GlassView style={[
-          styles.section,
-          Platform.OS !== 'ios' && { backgroundColor: theme.dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }
-        ]} glassEffectStyle="regular">
+        <GlassView style={styles.section} glassEffectStyle="regular">
           <View style={styles.infoRow}>
             <IconSymbol ios_icon_name="phone.fill" android_material_icon_name="phone" size={20} color={theme.dark ? '#98989D' : '#666'} />
             <Text style={[styles.infoText, { color: theme.colors.text }]}>+1 (555) 123-4567</Text>
@@ -62,10 +51,7 @@ export default function ProfileScreen() {
             style={styles.actionTile}
             onPress={() => handleQuickAction('/(tabs)/(home)/flashcards')}
           >
-            <GlassView style={[
-              styles.actionTileContent,
-              Platform.OS !== 'ios' && { backgroundColor: theme.dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }
-            ]} glassEffectStyle="regular">
+            <GlassView style={styles.actionTileContent} glassEffectStyle="regular">
               <View style={[styles.actionIconCircle, { backgroundColor: '#007AFF' }]}>
                 <IconSymbol ios_icon_name="bookmark.fill" android_material_icon_name="bookmark" color="#FFFFFF" size={28} />
               </View>
@@ -78,10 +64,7 @@ export default function ProfileScreen() {
             style={styles.actionTile}
             onPress={() => handleQuickAction('/(tabs)/(home)/flashcards')}
           >
-            <GlassView style={[
-              styles.actionTileContent,
-              Platform.OS !== 'ios' && { backgroundColor: theme.dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }
-            ]} glassEffectStyle="regular">
+            <GlassView style={styles.actionTileContent} glassEffectStyle="regular">
               <View style={[styles.actionIconCircle, { backgroundColor: '#FF2D55' }]}>
                 <IconSymbol ios_icon_name="heart.fill" android_material_icon_name="favorite" color="#FFFFFF" size={28} />
               </View>
@@ -94,10 +77,7 @@ export default function ProfileScreen() {
             style={styles.actionTile}
             onPress={() => handleQuickAction('/(tabs)/(home)/chatbot')}
           >
-            <GlassView style={[
-              styles.actionTileContent,
-              Platform.OS !== 'ios' && { backgroundColor: theme.dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }
-            ]} glassEffectStyle="regular">
+            <GlassView style={styles.actionTileContent} glassEffectStyle="regular">
               <View style={[styles.actionIconCircle, { backgroundColor: '#34C759' }]}>
                 <IconSymbol ios_icon_name="message.fill" android_material_icon_name="chat" color="#FFFFFF" size={28} />
               </View>
@@ -112,10 +92,7 @@ export default function ProfileScreen() {
           <Text style={[styles.sectionTitle, { color: theme.colors.text }]}>Your Progress</Text>
         </View>
 
-        <GlassView style={[
-          styles.section,
-          Platform.OS !== 'ios' && { backgroundColor: theme.dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }
-        ]} glassEffectStyle="regular">
+        <GlassView style={styles.section} glassEffectStyle="regular">
           <View style={styles.progressRow}>
             <Text style={[styles.progressLabel, { color: theme.dark ? '#98989D' : '#666' }]}>Cards Reviewed</Text>
             <Text style={[styles.progressValue, { color: theme.colors.text }]}>156</Text>
@@ -133,16 +110,11 @@ export default function ProfileScreen() {
         {/* Topic Breakdown - Collapsible */}
         <Pressable 
           onPress={() => {
-            if (Platform.OS !== 'web') {
-              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-            }
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
             setIsTopicBreakdownExpanded(!isTopicBreakdownExpanded);
           }}
         >
-          <GlassView style={[
-            styles.topicBreakdownHeader,
-            Platform.OS !== 'ios' && { backgroundColor: theme.dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }
-          ]} glassEffectStyle="regular">
+          <GlassView style={styles.topicBreakdownHeader} glassEffectStyle="regular">
             <Text style={[styles.topicBreakdownTitle, { color: theme.colors.text }]}>Topic Breakdown</Text>
             <IconSymbol 
               ios_icon_name={isTopicBreakdownExpanded ? "chevron.up" : "chevron.down"} 
@@ -154,10 +126,7 @@ export default function ProfileScreen() {
         </Pressable>
 
         {isTopicBreakdownExpanded && (
-          <GlassView style={[
-            styles.section,
-            Platform.OS !== 'ios' && { backgroundColor: theme.dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }
-          ]} glassEffectStyle="regular">
+          <GlassView style={styles.section} glassEffectStyle="regular">
             <View style={styles.topicRow}>
               <Text style={[styles.topicName, { color: theme.colors.text }]}>Cardiology</Text>
               <Text style={[styles.topicProgress, { color: theme.dark ? '#98989D' : '#666' }]}>45/60 cards</Text>
@@ -194,8 +163,6 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     padding: 20,
-  },
-  contentContainerWithTabBar: {
     paddingBottom: 100,
   },
   profileHeader: {
