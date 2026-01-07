@@ -20,9 +20,11 @@ export default function FlashcardsScreen() {
     allFlashcards, 
     toggleBookmark, 
     toggleFavorite, 
+    toggleDifficult, // NEW: Get toggleDifficult function
     incrementReviewCount,
     getBookmarkedFlashcards,
     getFavoriteFlashcards,
+    getDifficultFlashcards, // NEW: Get getDifficultFlashcards function
   } = useFlashcards();
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -54,6 +56,13 @@ export default function FlashcardsScreen() {
       return favorites;
     }
     
+    // NEW: Filter for difficult cards
+    if (filter === 'difficult') {
+      const difficult = getDifficultFlashcards();
+      console.log('Difficult flashcards:', difficult.length);
+      return difficult;
+    }
+    
     if (topic) {
       let filtered = allFlashcards.filter(card => card.topic === topic);
       console.log(`Cards matching topic "${topic}":`, filtered.length);
@@ -80,7 +89,7 @@ export default function FlashcardsScreen() {
     
     console.log('Returning all flashcards:', allFlashcards.length);
     return allFlashcards;
-  }, [topic, filter, system, allFlashcards, getBookmarkedFlashcards, getFavoriteFlashcards]);
+  }, [topic, filter, system, allFlashcards, getBookmarkedFlashcards, getFavoriteFlashcards, getDifficultFlashcards]);
 
   console.log('Filtered flashcards count:', flashcards.length);
   console.log('Current index:', currentIndex);
@@ -143,6 +152,7 @@ export default function FlashcardsScreen() {
   const getScreenTitle = () => {
     if (filter === 'bookmarked') return 'Bookmarked Cards';
     if (filter === 'favorites') return 'Favorite Cards';
+    if (filter === 'difficult') return 'Difficult Cards'; // NEW: Title for difficult cards
     if (topic) return topic;
     return 'All Flashcards';
   };
@@ -175,9 +185,29 @@ export default function FlashcardsScreen() {
     }
   };
 
-  const handleMarkDifficult = () => {
-    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
-    Alert.alert('Mark as Difficult', 'This feature will be available in a future update.');
+  // NEW: Handle marking card as difficult
+  const handleMarkDifficult = async () => {
+    const currentCard = flashcards[currentIndex];
+    const newDifficultState = !currentCard.difficult;
+    
+    console.log('[Difficult] Toggling difficult status for card:', currentCard.id, 'new state:', newDifficultState);
+    
+    if (newDifficultState) {
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
+    } else {
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+    }
+    
+    await toggleDifficult(currentCard.id);
+    
+    // Show feedback to user
+    Alert.alert(
+      newDifficultState ? 'Marked as Difficult' : 'Removed from Difficult',
+      newDifficultState 
+        ? 'This card has been added to your Difficult cards. You can review it from the Home or Profile page.'
+        : 'This card has been removed from your Difficult cards.',
+      [{ text: 'OK' }]
+    );
   };
 
   const handleBookmark = (id: string) => {
@@ -208,6 +238,7 @@ export default function FlashcardsScreen() {
           <Text style={styles.emptySubtext}>
             {filter === 'bookmarked' && 'You haven&apos;t bookmarked any cards yet.'}
             {filter === 'favorites' && 'You haven&apos;t favorited any cards yet.'}
+            {filter === 'difficult' && 'You haven&apos;t marked any cards as difficult yet.'}
             {!filter && 'No flashcards found for this topic.'}
           </Text>
           <Pressable style={styles.backButton} onPress={() => router.back()}>
@@ -227,6 +258,7 @@ export default function FlashcardsScreen() {
     topic: currentCard.topic,
     isFlipped: isFlipped,
     reviewCount: currentCard.reviewCount,
+    difficult: currentCard.difficult,
     reviewedInSession: reviewedInSession.has(currentCard.id)
   });
 
@@ -298,9 +330,25 @@ export default function FlashcardsScreen() {
 
         {/* Additional Actions */}
         <View style={styles.actionsContainer}>
-          <Pressable style={styles.actionButton} onPress={handleMarkDifficult}>
-            <IconSymbol ios_icon_name="exclamationmark.triangle" android_material_icon_name="warning" size={20} color={colors.error} />
-            <Text style={styles.actionButtonText}>Mark Difficult</Text>
+          <Pressable 
+            style={[
+              styles.actionButton,
+              currentCard.difficult && styles.actionButtonActive
+            ]} 
+            onPress={handleMarkDifficult}
+          >
+            <IconSymbol 
+              ios_icon_name={currentCard.difficult ? "exclamationmark.triangle.fill" : "exclamationmark.triangle"} 
+              android_material_icon_name="warning" 
+              size={20} 
+              color={currentCard.difficult ? colors.card : colors.error} 
+            />
+            <Text style={[
+              styles.actionButtonText,
+              currentCard.difficult && styles.actionButtonTextActive
+            ]}>
+              {currentCard.difficult ? 'Remove from Difficult' : 'Mark Difficult'}
+            </Text>
           </Pressable>
         </View>
       </ScrollView>
@@ -376,10 +424,16 @@ const styles = StyleSheet.create({
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
     elevation: 2,
   },
+  actionButtonActive: {
+    backgroundColor: colors.error,
+  },
   actionButtonText: {
     fontSize: 14,
     fontWeight: '600',
     color: colors.error,
+  },
+  actionButtonTextActive: {
+    color: colors.card,
   },
   emptyContainer: {
     flex: 1,

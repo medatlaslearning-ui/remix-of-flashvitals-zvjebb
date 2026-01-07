@@ -1,11 +1,12 @@
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { View, Text, StyleSheet, ScrollView, Platform, Pressable, Modal } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { IconSymbol } from "@/components/IconSymbol";
 import { GlassView } from "expo-glass-effect";
 import { useTheme } from "@react-navigation/native";
 import { useRouter } from "expo-router";
+import { useFlashcards } from "@/hooks/useFlashcards";
 import * as Haptics from "expo-haptics";
 
 const PROFESSIONS = [
@@ -22,42 +23,66 @@ const PROFESSIONS = [
 export default function ProfileScreen() {
   const theme = useTheme();
   const router = useRouter();
+  const { getBookmarkedFlashcards, getFavoriteFlashcards, getDifficultFlashcards } = useFlashcards();
   const [name, setName] = useState("John Doe");
   const [profession, setProfession] = useState("Nurse Practitioner");
   const [showProfessionPicker, setShowProfessionPicker] = useState(false);
 
+  // Calculate counts
+  const bookmarkedCount = useMemo(() => getBookmarkedFlashcards().length, [getBookmarkedFlashcards]);
+  const favoritesCount = useMemo(() => getFavoriteFlashcards().length, [getFavoriteFlashcards]);
+  const difficultCount = useMemo(() => getDifficultFlashcards().length, [getDifficultFlashcards]); // NEW: Get difficult count
+
   const quickActions = [
     { 
       title: "❤️ Favorites", 
-      route: "/favorites", 
+      route: "/(tabs)/(home)/flashcards",
+      params: { filter: 'favorites' },
       color: "#FF3B30",
-      icon: "favorite"
+      icon: "favorite",
+      count: favoritesCount
     },
     { 
       title: "🔖 Bookmarked", 
-      route: "/bookmarked", 
+      route: "/(tabs)/(home)/flashcards",
+      params: { filter: 'bookmarked' },
       color: "#FF9500",
-      icon: "bookmark"
+      icon: "bookmark",
+      count: bookmarkedCount
+    },
+    { 
+      title: "⚠️ Difficult", 
+      route: "/(tabs)/(home)/flashcards",
+      params: { filter: 'difficult' },
+      color: "#FF9500",
+      icon: "warning",
+      count: difficultCount
     },
     { 
       title: "💬 Ask Expert", 
       route: "/(tabs)/(home)/chatbot", 
+      params: {},
       color: "#007AFF",
       icon: "chat"
     },
     { 
       title: "📊 Progress Report", 
       route: "/progress-report", 
+      params: {},
       color: "#34C759",
       icon: "bar-chart"
     }
   ];
 
-  const handleQuickAction = (route: string) => {
+  const handleQuickAction = (route: string, params?: any) => {
     if (Platform.OS === 'ios') {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
-    router.push(route as any);
+    if (params && Object.keys(params).length > 0) {
+      router.push({ pathname: route as any, params });
+    } else {
+      router.push(route as any);
+    }
   };
 
   const handleProfessionPress = () => {
@@ -111,7 +136,7 @@ export default function ProfileScreen() {
             {quickActions.map((action, index) => (
               <Pressable
                 key={index}
-                onPress={() => handleQuickAction(action.route)}
+                onPress={() => handleQuickAction(action.route, action.params)}
                 style={({ pressed }) => [
                   styles.tile,
                   { 
@@ -126,6 +151,11 @@ export default function ProfileScreen() {
                 <Text style={[styles.tileTitle, { color: theme.colors.text }]}>
                   {action.title.substring(action.title.indexOf(' ') + 1)}
                 </Text>
+                {action.count !== undefined && (
+                  <Text style={[styles.tileCount, { color: theme.colors.primary }]}>
+                    {action.count}
+                  </Text>
+                )}
               </Pressable>
             ))}
           </View>
@@ -234,7 +264,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 16,
     alignItems: 'center',
-    gap: 12,
+    gap: 8,
   },
   iconContainer: {
     width: 56,
@@ -250,6 +280,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     textAlign: 'center',
+  },
+  tileCount: {
+    fontSize: 18,
+    fontWeight: '700',
   },
   modalOverlay: {
     flex: 1,

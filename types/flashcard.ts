@@ -15,6 +15,7 @@ export interface Flashcard {
   tags?: string[];
   bookmarked: boolean;
   favorite: boolean;
+  difficult: boolean; // NEW: Track if user marked this as difficult
   reviewCount: number;
   lastReviewed?: Date;
   nextReview?: Date;
@@ -46,4 +47,5 @@ export interface UserProgress {
   masteredCards: number;
   bookmarkedCards: number;
   favoriteCards: number;
+  difficultCards: number; // NEW: Track difficult cards count
 }

@@ -36,11 +36,13 @@ export function useFlashcards() {
           ...baseCard,
           bookmarked: stored.bookmarked,
           favorite: stored.favorite,
+          difficult: stored.difficult || false, // NEW: Merge difficult state
           reviewCount: Math.max(stored.reviewCount || 0, reviewCount),
         };
       }
       return {
         ...baseCard,
+        difficult: false, // NEW: Default to false for new cards
         reviewCount: reviewCount,
       };
     });
@@ -72,6 +74,7 @@ export function useFlashcards() {
         // Merge stored state with base flashcards
         const merged = mergeFlashcards(baseCards, storedCards, reviews);
         console.log('Loaded flashcards with review data:', merged.filter(c => c.reviewCount > 0).length, 'reviewed');
+        console.log('Difficult cards:', merged.filter(c => c.difficult).length);
         setAllFlashcards(merged);
       } else {
         console.log('No stored data, using base flashcards');
@@ -146,6 +149,15 @@ export function useFlashcards() {
     }
   };
 
+  // NEW: Toggle difficult status
+  const toggleDifficult = async (id: string) => {
+    const card = allFlashcards.find(c => c.id === id);
+    if (card) {
+      console.log('Toggling difficult for card:', id, 'current:', card.difficult);
+      await updateFlashcard(id, { difficult: !card.difficult });
+    }
+  };
+
   const incrementReviewCount = async (id: string) => {
     const card = allFlashcards.find(c => c.id === id);
     if (card) {
@@ -188,6 +200,11 @@ export function useFlashcards() {
     return allFlashcards.filter(card => card.favorite);
   };
 
+  // NEW: Get difficult flashcards
+  const getDifficultFlashcards = () => {
+    return allFlashcards.filter(card => card.difficult);
+  };
+
   const getTopicStats = (system: string, topic: string) => {
     const topicCards = allFlashcards.filter(
       card => card.system === system && card.topic === topic
@@ -209,10 +226,12 @@ export function useFlashcards() {
     updateFlashcard,
     toggleBookmark,
     toggleFavorite,
+    toggleDifficult, // NEW: Export toggleDifficult
     incrementReviewCount,
     resetAllReviews,
     getBookmarkedFlashcards,
     getFavoriteFlashcards,
+    getDifficultFlashcards, // NEW: Export getDifficultFlashcards
     getTopicStats,
     updateTrigger,
     isLoading,

@@ -1,11 +1,12 @@
 
-import React, { useState } from "react";
-import { View, Text, StyleSheet, ScrollView, Pressable, Modal } from "react-native";
+import React, { useState, useMemo } from "react";
+import { View, Text, StyleSheet, ScrollView, Platform, Pressable, Modal } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { IconSymbol } from "@/components/IconSymbol";
 import { GlassView } from "expo-glass-effect";
 import { useTheme } from "@react-navigation/native";
 import { useRouter } from "expo-router";
+import { useFlashcards } from "@/hooks/useFlashcards";
 import * as Haptics from "expo-haptics";
 
 const PROFESSIONS = [
@@ -22,40 +23,64 @@ const PROFESSIONS = [
 export default function ProfileScreen() {
   const theme = useTheme();
   const router = useRouter();
+  const { getBookmarkedFlashcards, getFavoriteFlashcards, getDifficultFlashcards } = useFlashcards();
   const [name, setName] = useState("John Doe");
   const [profession, setProfession] = useState("Nurse Practitioner");
   const [showProfessionPicker, setShowProfessionPicker] = useState(false);
 
+  // Calculate counts
+  const bookmarkedCount = useMemo(() => getBookmarkedFlashcards().length, [getBookmarkedFlashcards]);
+  const favoritesCount = useMemo(() => getFavoriteFlashcards().length, [getFavoriteFlashcards]);
+  const difficultCount = useMemo(() => getDifficultFlashcards().length, [getDifficultFlashcards]); // NEW: Get difficult count
+
   const quickActions = [
     { 
       title: "❤️ Favorites", 
-      route: "/favorites", 
+      route: "/(tabs)/(home)/flashcards",
+      params: { filter: 'favorites' },
       color: "#FF3B30",
-      icon: "heart.fill"
+      icon: "favorite",
+      count: favoritesCount
     },
     { 
       title: "🔖 Bookmarked", 
-      route: "/bookmarked", 
+      route: "/(tabs)/(home)/flashcards",
+      params: { filter: 'bookmarked' },
       color: "#FF9500",
-      icon: "bookmark.fill"
+      icon: "bookmark",
+      count: bookmarkedCount
+    },
+    { 
+      title: "⚠️ Difficult", 
+      route: "/(tabs)/(home)/flashcards",
+      params: { filter: 'difficult' },
+      color: "#FF9500",
+      icon: "warning",
+      count: difficultCount
     },
     { 
       title: "💬 Ask Expert", 
       route: "/(tabs)/(home)/chatbot", 
+      params: {},
       color: "#007AFF",
-      icon: "message.fill"
+      icon: "chat"
     },
     { 
       title: "📊 Progress Report", 
       route: "/progress-report", 
+      params: {},
       color: "#34C759",
-      icon: "chart.bar.fill"
+      icon: "bar-chart"
     }
   ];
 
-  const handleQuickAction = (route: string) => {
+  const handleQuickAction = (route: string, params?: any) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    router.push(route as any);
+    if (params && Object.keys(params).length > 0) {
+      router.push({ pathname: route as any, params });
+    } else {
+      router.push(route as any);
+    }
   };
 
   const handleProfessionPress = () => {
@@ -87,10 +112,8 @@ export default function ProfileScreen() {
             style={styles.professionButton}
             onPress={handleProfessionPress}
           >
-            <GlassView style={styles.professionButtonGlass} glassEffectStyle="regular">
-              <Text style={[styles.profession, { color: theme.dark ? '#98989D' : '#666' }]}>{profession}</Text>
-              <IconSymbol ios_icon_name="chevron.down" android_material_icon_name="arrow-drop-down" size={20} color={theme.dark ? '#98989D' : '#666'} />
-            </GlassView>
+            <Text style={[styles.profession, { color: theme.dark ? '#98989D' : '#666' }]}>{profession}</Text>
+            <IconSymbol ios_icon_name="chevron.down" android_material_icon_name="arrow-drop-down" size={20} color={theme.dark ? '#98989D' : '#666'} />
           </Pressable>
         </GlassView>
 
@@ -101,20 +124,23 @@ export default function ProfileScreen() {
             {quickActions.map((action, index) => (
               <Pressable
                 key={index}
-                onPress={() => handleQuickAction(action.route)}
+                onPress={() => handleQuickAction(action.route, action.params)}
                 style={({ pressed }) => [
                   styles.tile,
                   { opacity: pressed ? 0.7 : 1 }
                 ]}
               >
-                <GlassView style={styles.tileGlass} glassEffectStyle="regular">
-                  <View style={[styles.iconContainer, { backgroundColor: action.color }]}>
-                    <Text style={styles.tileEmoji}>{action.title.split(' ')[0]}</Text>
-                  </View>
-                  <Text style={[styles.tileTitle, { color: theme.colors.text }]}>
-                    {action.title.substring(action.title.indexOf(' ') + 1)}
+                <View style={[styles.iconContainer, { backgroundColor: action.color }]}>
+                  <Text style={styles.tileEmoji}>{action.title.split(' ')[0]}</Text>
+                </View>
+                <Text style={[styles.tileTitle, { color: theme.colors.text }]}>
+                  {action.title.substring(action.title.indexOf(' ') + 1)}
+                </Text>
+                {action.count !== undefined && (
+                  <Text style={[styles.tileCount, { color: theme.colors.primary }]}>
+                    {action.count}
                   </Text>
-                </GlassView>
+                )}
               </Pressable>
             ))}
           </View>
@@ -132,7 +158,7 @@ export default function ProfileScreen() {
           style={styles.modalOverlay}
           onPress={() => setShowProfessionPicker(false)}
         >
-          <GlassView style={styles.modalContent} glassEffectStyle="regular">
+          <View style={[styles.modalContent, { backgroundColor: theme.colors.card }]}>
             <View style={styles.modalHeader}>
               <Text style={[styles.modalTitle, { color: theme.colors.text }]}>Select Profession</Text>
               <Pressable onPress={() => setShowProfessionPicker(false)}>
@@ -163,7 +189,7 @@ export default function ProfileScreen() {
                 </Pressable>
               ))}
             </ScrollView>
-          </GlassView>
+          </View>
         </Pressable>
       </Modal>
     </SafeAreaView>
@@ -179,6 +205,7 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     padding: 20,
+    paddingBottom: 100,
   },
   profileHeader: {
     alignItems: 'center',
@@ -192,12 +219,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   professionButton: {
-    width: '100%',
-  },
-  professionButtonGlass: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 8,
@@ -221,12 +244,10 @@ const styles = StyleSheet.create({
   },
   tile: {
     width: '48%',
-  },
-  tileGlass: {
     borderRadius: 12,
     padding: 16,
     alignItems: 'center',
-    gap: 12,
+    gap: 8,
   },
   iconContainer: {
     width: 56,
@@ -242,6 +263,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     textAlign: 'center',
+  },
+  tileCount: {
+    fontSize: 18,
+    fontWeight: '700',
   },
   modalOverlay: {
     flex: 1,

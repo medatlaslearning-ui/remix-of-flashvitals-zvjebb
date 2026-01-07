@@ -10,14 +10,16 @@ import * as Haptics from 'expo-haptics';
 
 export default function HomeScreen() {
   const router = useRouter();
-  const { allFlashcards, updateTrigger, getBookmarkedFlashcards, getFavoriteFlashcards } = useFlashcards();
+  const { allFlashcards, updateTrigger, getBookmarkedFlashcards, getFavoriteFlashcards, getDifficultFlashcards } = useFlashcards();
 
   // Recalculate counts when screen is focused or flashcards change
   const bookmarkedCount = useMemo(() => getBookmarkedFlashcards().length, [getBookmarkedFlashcards]);
   const favoritesCount = useMemo(() => getFavoriteFlashcards().length, [getFavoriteFlashcards]);
+  const difficultCount = useMemo(() => getDifficultFlashcards().length, [getDifficultFlashcards]); // NEW: Get difficult count
 
   console.log('Home screen - Bookmarked count:', bookmarkedCount);
   console.log('Home screen - Favorites count:', favoritesCount);
+  console.log('Home screen - Difficult count:', difficultCount); // NEW: Log difficult count
 
   // Get unique topics for Cardiology
   const cardiologyTopics = useMemo(() => {
@@ -153,6 +155,16 @@ export default function HomeScreen() {
     });
   };
 
+  // NEW: Handle difficult cards press
+  const handleDifficultPress = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    console.log('Navigating to difficult cards');
+    router.push({
+      pathname: '/(tabs)/(home)/flashcards',
+      params: { filter: 'difficult' }
+    });
+  };
+
   const handleQuickStart = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     router.push('/(tabs)/(home)/flashcards');
@@ -188,7 +200,8 @@ export default function HomeScreen() {
           <View style={styles.quickActionsGrid}>
             <Pressable style={styles.quickActionCard} onPress={handleQuickStart}>
               <IconSymbol 
-                name="play.circle.fill"
+                ios_icon_name="play.circle.fill"
+                android_material_icon_name="play-circle"
                 size={32} 
                 color={colors.primary} 
               />
@@ -198,7 +211,8 @@ export default function HomeScreen() {
 
             <Pressable style={styles.quickActionCard} onPress={handleQuizMode}>
               <IconSymbol 
-                name="checkmark.circle.fill"
+                ios_icon_name="checkmark.circle.fill"
+                android_material_icon_name="check-circle"
                 size={32} 
                 color={colors.accent} 
               />
@@ -208,7 +222,8 @@ export default function HomeScreen() {
 
             <Pressable style={styles.quickActionCard} onPress={handleChatbot}>
               <IconSymbol 
-                name="message.fill"
+                ios_icon_name="message.fill"
+                android_material_icon_name="chat"
                 size={32} 
                 color={colors.secondary} 
               />
@@ -218,7 +233,8 @@ export default function HomeScreen() {
 
             <Pressable style={styles.quickActionCard} onPress={handleBookmarkedPress}>
               <IconSymbol 
-                name="bookmark.fill"
+                ios_icon_name="bookmark.fill"
+                android_material_icon_name="bookmark"
                 size={32} 
                 color={colors.primary} 
               />
@@ -228,12 +244,25 @@ export default function HomeScreen() {
 
             <Pressable style={styles.quickActionCard} onPress={handleFavoritesPress}>
               <IconSymbol 
-                name="heart.fill"
+                ios_icon_name="heart.fill"
+                android_material_icon_name="favorite"
                 size={32} 
                 color={colors.error} 
               />
               <Text style={styles.quickActionTitle}>Favorites</Text>
               <Text style={styles.quickActionCount}>{favoritesCount}</Text>
+            </Pressable>
+
+            {/* NEW: Difficult tile */}
+            <Pressable style={styles.quickActionCard} onPress={handleDifficultPress}>
+              <IconSymbol 
+                ios_icon_name="exclamationmark.triangle.fill"
+                android_material_icon_name="warning"
+                size={32} 
+                color={colors.warning} 
+              />
+              <Text style={styles.quickActionTitle}>Difficult</Text>
+              <Text style={styles.quickActionCount}>{difficultCount}</Text>
             </Pressable>
           </View>
         </View>
@@ -250,7 +279,8 @@ export default function HomeScreen() {
             <View style={styles.systemHeader}>
               <View style={styles.systemIconContainer}>
                 <IconSymbol 
-                  name="heart.fill"
+                  ios_icon_name="heart.fill"
+                  android_material_icon_name="favorite"
                   size={32} 
                   color={colors.primary} 
                 />
@@ -262,7 +292,8 @@ export default function HomeScreen() {
                 </Text>
               </View>
               <IconSymbol 
-                name="chevron.right"
+                ios_icon_name="chevron.right"
+                android_material_icon_name="chevron-right"
                 size={24} 
                 color={colors.textSecondary} 
               />
@@ -277,7 +308,8 @@ export default function HomeScreen() {
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
                 <IconSymbol 
-                  name="lungs.fill"
+                  ios_icon_name="lungs.fill"
+                  android_material_icon_name="air"
                   size={32} 
                   color={colors.accent} 
                 />
@@ -289,7 +321,8 @@ export default function HomeScreen() {
                 </Text>
               </View>
               <IconSymbol 
-                name="chevron.right"
+                ios_icon_name="chevron.right"
+                android_material_icon_name="chevron-right"
                 size={24} 
                 color={colors.textSecondary} 
               />
@@ -312,7 +345,8 @@ export default function HomeScreen() {
                 </Text>
               </View>
               <IconSymbol 
-                name="chevron.right"
+                ios_icon_name="chevron.right"
+                android_material_icon_name="chevron-right"
                 size={24} 
                 color={colors.textSecondary} 
               />
@@ -335,7 +369,8 @@ export default function HomeScreen() {
                 </Text>
               </View>
               <IconSymbol 
-                name="chevron.right"
+                ios_icon_name="chevron.right"
+                android_material_icon_name="chevron-right"
                 size={24} 
                 color={colors.textSecondary} 
               />
@@ -350,7 +385,8 @@ export default function HomeScreen() {
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
                 <IconSymbol 
-                  name="facemask.fill"
+                  ios_icon_name="facemask.fill"
+                  android_material_icon_name="science"
                   size={32} 
                   color={colors.secondary} 
                 />
@@ -362,7 +398,8 @@ export default function HomeScreen() {
                 </Text>
               </View>
               <IconSymbol 
-                name="chevron.right"
+                ios_icon_name="chevron.right"
+                android_material_icon_name="chevron-right"
                 size={24} 
                 color={colors.textSecondary} 
               />
@@ -377,7 +414,8 @@ export default function HomeScreen() {
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
                 <IconSymbol 
-                  name="drop.fill"
+                  ios_icon_name="drop.fill"
+                  android_material_icon_name="water-drop"
                   size={32} 
                   color={colors.error} 
                 />
@@ -389,7 +427,8 @@ export default function HomeScreen() {
                 </Text>
               </View>
               <IconSymbol 
-                name="chevron.right"
+                ios_icon_name="chevron.right"
+                android_material_icon_name="chevron-right"
                 size={24} 
                 color={colors.textSecondary} 
               />
@@ -404,7 +443,8 @@ export default function HomeScreen() {
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
                 <IconSymbol 
-                  name="ant.fill"
+                  ios_icon_name="ant.fill"
+                  android_material_icon_name="bug-report"
                   size={32} 
                   color={colors.accent} 
                 />
@@ -416,7 +456,8 @@ export default function HomeScreen() {
                 </Text>
               </View>
               <IconSymbol 
-                name="chevron.right"
+                ios_icon_name="chevron.right"
+                android_material_icon_name="chevron-right"
                 size={24} 
                 color={colors.textSecondary} 
               />
@@ -431,7 +472,8 @@ export default function HomeScreen() {
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
                 <IconSymbol 
-                  name="brain"
+                  ios_icon_name="brain"
+                  android_material_icon_name="psychology"
                   size={32} 
                   color={colors.secondary} 
                 />
@@ -443,7 +485,8 @@ export default function HomeScreen() {
                 </Text>
               </View>
               <IconSymbol 
-                name="chevron.right"
+                ios_icon_name="chevron.right"
+                android_material_icon_name="chevron-right"
                 size={24} 
                 color={colors.textSecondary} 
               />
@@ -458,7 +501,8 @@ export default function HomeScreen() {
             <View style={styles.systemHeader}>
               <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
                 <IconSymbol 
-                  name="cross.case.fill"
+                  ios_icon_name="cross.case.fill"
+                  android_material_icon_name="local-hospital"
                   size={32} 
                   color={colors.error} 
                 />
@@ -470,7 +514,8 @@ export default function HomeScreen() {
                 </Text>
               </View>
               <IconSymbol 
-                name="chevron.right"
+                ios_icon_name="chevron.right"
+                android_material_icon_name="chevron-right"
                 size={24} 
                 color={colors.textSecondary} 
               />
@@ -493,7 +538,8 @@ export default function HomeScreen() {
                 </Text>
               </View>
               <IconSymbol 
-                name="chevron.right"
+                ios_icon_name="chevron.right"
+                android_material_icon_name="chevron-right"
                 size={24} 
                 color={colors.textSecondary} 
               />
@@ -505,7 +551,8 @@ export default function HomeScreen() {
         <View style={styles.section}>
           <Pressable style={styles.adminButton} onPress={handleAdminPanel}>
             <IconSymbol 
-              name="gear"
+              ios_icon_name="gear"
+              android_material_icon_name="settings"
               size={20} 
               color={colors.primary} 
             />
