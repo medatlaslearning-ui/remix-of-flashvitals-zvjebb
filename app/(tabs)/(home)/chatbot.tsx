@@ -53,6 +53,7 @@ import { infectiousDiseaseFlashcards } from '@/data/infectiousDiseaseFlashcards'
 import { urologyFlashcards } from '@/data/urologyFlashcards';
 import { Flashcard } from '@/types/flashcard';
 import { perpetualLearningEngine, type FollowUpQuestion } from '@/data/perpetualLearningEngine';
+import { generateFollowUpQuestionsWithLMM } from '@/data/followUpQuestionGenerator';
 import { synthesizerEngine } from '@/data/synthesizerEngine';
 import { useFeedback } from '@/app/integrations/supabase/hooks/useFeedback';
 import { useAuth } from '@/app/integrations/supabase/hooks/useAuth';
@@ -145,7 +146,7 @@ const FEEDBACK_REVERSAL_WINDOW_MS = 30000;
 
 export default function ChatbotScreen() {
   const { user } = useAuth();
-  const { submitFeedback, submitting } = useFeedback();
+  const { submitFeedback, recordFollowUpSelection, submitting } = useFeedback();
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
@@ -644,12 +645,30 @@ Let's begin your medical learning journey!`,
           system
         );
 
-        // Generate follow-up questions
-        const followUpQuestions = perpetualLearningEngine.generateFollowUpQuestions(
-          currentQuery,
-          synthesizerOutput.response,
-          system
-        );
+        // Generate follow-up questions through LMM pipeline
+        console.log('[CHATBOT] Generating follow-up questions through LMM pipeline');
+        const followUpResult = await generateFollowUpQuestionsWithLMM({
+          userQuery: currentQuery,
+          botResponse: synthesizerOutput.response,
+          medicalSystem: system,
+          responseMetadata: {
+            quality: synthesizerOutput.quality,
+            sources: {
+              merck: merckEntries.length > 0,
+              guidelines: isGuidelineQuery,
+              flashcards: false,
+            },
+          },
+        });
+        
+        const followUpQuestions = followUpResult.questions;
+        
+        console.log('[CHATBOT] Follow-up questions generated:', {
+          count: followUpQuestions.length,
+          usedLMM: followUpResult.usedLMM,
+          generationTime: followUpResult.generationTime,
+          fallbackReason: followUpResult.fallbackReason,
+        });
 
         const botMessage: Message = {
           id: (Date.now() + 1).toString(),
@@ -872,13 +891,31 @@ Let's begin your medical learning journey!`,
     }
   };
 
-  const handleFollowUpQuestion = async (messageId: string, question: string) => {
+  const handleFollowUpQuestion = async (messageId: string, question: string, category?: string) => {
     try {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
 
       const message = messages.find(m => m.id === messageId);
+      
+      // Record selection in Perpetual Learning Engine (local)
       if (message && message.interactionId) {
         await perpetualLearningEngine.recordFollowUpSelection(message.interactionId, question);
+      }
+      
+      // Record selection in Supabase (for personalized learning)
+      if (message && message.responseId && user) {
+        try {
+          console.log('[CHATBOT] Recording follow-up selection in Supabase');
+          await recordFollowUpSelection(
+            message.responseId,
+            question,
+            category
+          );
+          console.log('[CHATBOT] Follow-up selection recorded in Supabase');
+        } catch (supabaseError) {
+          console.error('[CHATBOT] Error recording follow-up in Supabase:', supabaseError);
+          // Don't block the user - continue with the question
+        }
       }
 
       // Set the follow-up question as input and send it
@@ -1220,7 +1257,7 @@ Let's begin your medical learning journey!`,
                 <Pressable
                   key={fq.id}
                   style={styles.followUpButton}
-                  onPress={() => handleFollowUpQuestion(message.id, fq.question)}
+                  onPress={() => handleFollowUpQuestion(message.id, fq.question, fq.category)}
                 >
                   <View style={styles.followUpNumber}>
                     <Text style={styles.followUpNumberText}>{index + 1}</Text>
