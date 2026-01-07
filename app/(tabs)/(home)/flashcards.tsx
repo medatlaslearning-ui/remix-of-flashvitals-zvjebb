@@ -102,7 +102,10 @@ export default function FlashcardsScreen() {
     // Only increment review count when flipping to the back (showing answer)
     // and only once per card in this session
     if (newFlipState && !reviewedInSession.has(currentCard.id)) {
-      console.log('[Flashcard] Card flipped to back, incrementing review count for card:', currentCard.id);
+      console.log('[Flashcard] 🔄 Card flipped to back - triggering review count and Progress Report save');
+      console.log('[Flashcard] Card ID:', currentCard.id);
+      console.log('[Flashcard] Topic:', currentCard.topic);
+      console.log('[Flashcard] System:', currentCard.system);
       console.log('[Flashcard] Current review count:', currentCard.reviewCount);
       
       // Mark as reviewed in this session
@@ -110,25 +113,30 @@ export default function FlashcardsScreen() {
       
       // Increment the review count
       await incrementReviewCount(currentCard.id);
+      console.log('[Flashcard] ✅ Review count incremented');
       
-      // Save flashcard view to Progress Report (Supabase)
+      // Save flashcard view to Progress Report (Supabase) - CRITICAL BRIDGE
       if (user) {
+        console.log('[Flashcard] 🌉 BRIDGE: Saving flashcard view to Progress Report...');
         try {
-          await saveFlashcardView({
+          const saveResult = await saveFlashcardView({
             flashcard_id: currentCard.id,
             medical_topic: currentCard.topic,
             medical_system: currentCard.system,
           });
-          console.log('[Flashcard] ✅ Flashcard view saved to Progress Report (Supabase)');
+          
+          if (saveResult?.success) {
+            console.log('[Flashcard] ✅ BRIDGE SUCCESS: Flashcard view saved to Progress Report (Supabase)');
+          } else {
+            console.error('[Flashcard] ❌ BRIDGE FAILED:', saveResult?.error);
+          }
         } catch (error) {
-          console.error('[Flashcard] ❌ Error saving flashcard view:', error);
+          console.error('[Flashcard] ❌ BRIDGE ERROR: Failed to save flashcard view:', error);
           // Don't show error to user - this is background tracking
         }
       } else {
-        console.log('[Flashcard] ⚠️ User not authenticated - skipping Progress Report save');
+        console.log('[Flashcard] ⚠️ BRIDGE SKIPPED: User not authenticated - cannot save to Progress Report');
       }
-      
-      console.log('[Flashcard] Review count incremented for card:', currentCard.id);
     }
   };
 

@@ -102,7 +102,7 @@ export default function QuizSessionScreen() {
 
   const handleFinishQuiz = async () => {
     try {
-      console.log('[QuizSession] Finishing quiz');
+      console.log('[QuizSession] 🏁 Finishing quiz...');
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       
       // Calculate results locally
@@ -123,24 +123,30 @@ export default function QuizSessionScreen() {
       setQuizResult(result);
       setShowResults(true);
 
-      // Save quiz result to Progress Report (Supabase)
+      // Save quiz result to Progress Report (Supabase) - CRITICAL BRIDGE
       if (user) {
+        console.log('[QuizSession] 🌉 BRIDGE: Saving quiz result to Progress Report...');
         try {
           const quizType = totalQuestions === 5 ? '5-question' : '10-question';
-          await saveQuizResult({
+          const saveResult = await saveQuizResult({
             quiz_type: quizType,
             score,
             total_questions: totalQuestions,
             medical_topic: (params.topic as string) || 'General',
             medical_system: (params.medicalSystem as string) || 'General',
           });
-          console.log('[QuizSession] ✅ Quiz result saved to Progress Report (Supabase)');
+          
+          if (saveResult?.success) {
+            console.log('[QuizSession] ✅ BRIDGE SUCCESS: Quiz result saved to Progress Report (Supabase)');
+          } else {
+            console.error('[QuizSession] ❌ BRIDGE FAILED:', saveResult?.error);
+          }
         } catch (progressError) {
-          console.error('[QuizSession] ❌ Error saving to Progress Report:', progressError);
+          console.error('[QuizSession] ❌ BRIDGE ERROR: Failed to save to Progress Report:', progressError);
           // Don't show error to user - local results are already calculated
         }
       } else {
-        console.log('[QuizSession] ⚠️ User not authenticated - skipping Progress Report save');
+        console.log('[QuizSession] ⚠️ BRIDGE SKIPPED: User not authenticated - cannot save to Progress Report');
       }
 
       // If user is authenticated and we have a quizId, save to database
