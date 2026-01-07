@@ -565,57 +565,6 @@ export default function GuardrailsListAndStressTest() {
           })}
         </View>
       )}
-
-      {/* Summary */}
-      <View style={styles.summarySection}>
-        <Text style={styles.sectionTitle}>System Summary</Text>
-        <View style={styles.summaryCard}>
-          <View style={styles.summaryItem}>
-            <IconSymbol
-              ios_icon_name="shield.checkered"
-              android_material_icon_name="security"
-              size={20}
-              color={colors.primary}
-            />
-            <Text style={styles.summaryText}>
-              {guardrails.length} active guardrails protecting system integrity
-            </Text>
-          </View>
-          <View style={styles.summaryItem}>
-            <IconSymbol
-              ios_icon_name="arrow.triangle.2.circlepath"
-              android_material_icon_name="sync"
-              size={20}
-              color={colors.primary}
-            />
-            <Text style={styles.summaryText}>
-              Figure-eight data flow with one-way valves
-            </Text>
-          </View>
-          <View style={styles.summaryItem}>
-            <IconSymbol
-              ios_icon_name="lock.shield.fill"
-              android_material_icon_name="lock"
-              size={20}
-              color={colors.primary}
-            />
-            <Text style={styles.summaryText}>
-              Core knowledge engine is READ-ONLY
-            </Text>
-          </View>
-          <View style={styles.summaryItem}>
-            <IconSymbol
-              ios_icon_name="checkmark.seal.fill"
-              android_material_icon_name="verified"
-              size={20}
-              color={colors.primary}
-            />
-            <Text style={styles.summaryText}>
-              Continuous validation and stress testing
-            </Text>
-          </View>
-        </View>
-      </View>
     </ScrollView>
   );
 }
@@ -820,27 +769,5 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
     fontStyle: 'italic',
     marginTop: 4,
-  },
-  summarySection: {
-    padding: 20,
-    paddingTop: 0,
-  },
-  summaryCard: {
-    backgroundColor: colors.card,
-    borderRadius: 12,
-    padding: 16,
-    borderWidth: 1,
-    borderColor: colors.border,
-    gap: 12,
-  },
-  summaryItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-  },
-  summaryText: {
-    fontSize: 13,
-    color: colors.text,
-    flex: 1,
   },
 });
