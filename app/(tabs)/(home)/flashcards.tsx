@@ -7,11 +7,15 @@ import { useFlashcards } from '@/hooks/useFlashcards';
 import { Flashcard } from '@/types/flashcard';
 import { FlashcardComponent } from '@/components/FlashcardComponent';
 import { IconSymbol } from '@/components/IconSymbol';
+import { useAuth } from '@/app/integrations/supabase/hooks/useAuth';
+import { useProgressReport } from '@/hooks/useProgressReport';
 import * as Haptics from 'expo-haptics';
 
 export default function FlashcardsScreen() {
   const params = useLocalSearchParams();
   const router = useRouter();
+  const { user } = useAuth();
+  const { saveFlashcardView } = useProgressReport(user?.id || null);
   const { 
     allFlashcards, 
     toggleBookmark, 
@@ -107,6 +111,22 @@ export default function FlashcardsScreen() {
       // Increment the review count
       await incrementReviewCount(currentCard.id);
       
+      // TODO: Backend Integration - Save flashcard view to Progress Report
+      // Save to Progress Report if user is authenticated
+      if (user) {
+        try {
+          await saveFlashcardView({
+            flashcard_id: currentCard.id,
+            medical_topic: currentCard.topic,
+            medical_system: currentCard.system,
+          });
+          console.log('Flashcard view saved to Progress Report');
+        } catch (error) {
+          console.error('Error saving flashcard view:', error);
+          // Don't show error to user - this is background tracking
+        }
+      }
+      
       console.log('Review count incremented for card:', currentCard.id);
     }
   };
@@ -174,7 +194,7 @@ export default function FlashcardsScreen() {
           }}
         />
         <View style={[commonStyles.container, styles.emptyContainer]}>
-          <IconSymbol name="tray" size={64} color={colors.textSecondary} />
+          <IconSymbol ios_icon_name="tray" android_material_icon_name="inbox" size={64} color={colors.textSecondary} />
           <Text style={styles.emptyText}>No flashcards available</Text>
           <Text style={styles.emptySubtext}>
             {filter === 'bookmarked' && 'You haven&apos;t bookmarked any cards yet.'}
@@ -243,7 +263,8 @@ export default function FlashcardsScreen() {
             disabled={currentIndex === 0}
           >
             <IconSymbol 
-              name="chevron.left" 
+              ios_icon_name="chevron.left" 
+              android_material_icon_name="chevron-left" 
               size={24} 
               color={currentIndex === 0 ? colors.textSecondary : colors.primary} 
             />
@@ -262,14 +283,14 @@ export default function FlashcardsScreen() {
             <Text style={styles.navButtonText}>
               {currentIndex === flashcards.length - 1 ? 'Finish' : 'Next'}
             </Text>
-            <IconSymbol name="chevron.right" size={24} color={colors.primary} />
+            <IconSymbol ios_icon_name="chevron.right" android_material_icon_name="chevron-right" size={24} color={colors.primary} />
           </Pressable>
         </View>
 
         {/* Additional Actions */}
         <View style={styles.actionsContainer}>
           <Pressable style={styles.actionButton} onPress={handleMarkDifficult}>
-            <IconSymbol name="exclamationmark.triangle" size={20} color={colors.error} />
+            <IconSymbol ios_icon_name="exclamationmark.triangle" android_material_icon_name="warning" size={20} color={colors.error} />
             <Text style={styles.actionButtonText}>Mark Difficult</Text>
           </Pressable>
         </View>

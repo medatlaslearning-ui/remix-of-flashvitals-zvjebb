@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, Pressable, ScrollView, Modal, ActivityIndicator
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { useQuiz, QuizAnswer } from '@/hooks/useQuiz';
 import { useAuth } from '@/app/integrations/supabase/hooks/useAuth';
+import { useProgressReport } from '@/hooks/useProgressReport';
 import { colors } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
 import * as Haptics from 'expo-haptics';
@@ -26,6 +27,7 @@ export default function QuizSessionScreen() {
   const router = useRouter();
   const { user } = useAuth();
   const { completeQuiz, loading: quizLoading } = useQuiz();
+  const { saveQuizResult } = useProgressReport(user?.id || null);
   
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<QuizAnswer[]>([]);
@@ -120,6 +122,25 @@ export default function QuizSessionScreen() {
       console.log('[QuizSession] Quiz completed:', result);
       setQuizResult(result);
       setShowResults(true);
+
+      // TODO: Backend Integration - Save quiz result to Progress Report
+      // Save to Progress Report if user is authenticated
+      if (user) {
+        try {
+          const quizType = totalQuestions === 5 ? '5-question' : '10-question';
+          await saveQuizResult({
+            quiz_type: quizType,
+            score,
+            total_questions: totalQuestions,
+            medical_topic: (params.topic as string) || 'General',
+            medical_system: (params.medicalSystem as string) || 'General',
+          });
+          console.log('[QuizSession] Quiz result saved to Progress Report');
+        } catch (progressError) {
+          console.error('[QuizSession] Error saving to Progress Report:', progressError);
+          // Don't show error to user - local results are already calculated
+        }
+      }
 
       // If user is authenticated and we have a quizId, save to database
       if (user && params.quizId && params.quizId !== 'anonymous') {
@@ -355,7 +376,7 @@ export default function QuizSessionScreen() {
                   size={20} 
                   color="#fff" 
                 />
-                <Text style={styles.viewStatsButtonText}>View Quiz Master Stats</Text>
+                <Text style={styles.viewStatsButtonText}>View Progress Report</Text>
               </Pressable>
               
               <Pressable style={styles.closeButton} onPress={handleClose}>

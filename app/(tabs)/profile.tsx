@@ -1,21 +1,25 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, ScrollView, Platform, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { IconSymbol } from "@/components/IconSymbol";
 import { GlassView } from "expo-glass-effect";
 import { useTheme } from "@react-navigation/native";
-import { useRouter } from "expo-router";
+import { ProgressReport } from "@/components/ProgressReport";
+import { useAuth } from "@/app/integrations/supabase/hooks/useAuth";
+import * as Haptics from 'expo-haptics';
 
 export default function ProfileScreen() {
   const theme = useTheme();
-  const router = useRouter();
+  const { user } = useAuth();
+  const [showProgressReport, setShowProgressReport] = useState(false);
 
-  const quickActions = [
-    { id: 'bookmarked', emoji: '🔖', title: 'Bookmarked', color: '#FF9500', route: '/bookmarked' },
-    { id: 'favorites', emoji: '❤️', title: 'Favorites', color: '#FF3B30', route: '/favorites' },
-    { id: 'ask-expert', emoji: '💬', title: 'Ask Expert', color: '#007AFF', route: '/chatbot' },
-  ];
+  const handleToggleProgressReport = () => {
+    if (Platform.OS !== 'web') {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    }
+    setShowProgressReport(!showProgressReport);
+  };
 
   return (
     <SafeAreaView style={[styles.safeArea, { backgroundColor: theme.colors.background }]} edges={['top']}>
@@ -31,9 +35,41 @@ export default function ProfileScreen() {
           Platform.OS !== 'ios' && { backgroundColor: theme.dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }
         ]} glassEffectStyle="regular">
           <IconSymbol ios_icon_name="person.circle.fill" android_material_icon_name="person" size={80} color={theme.colors.primary} />
-          <Text style={[styles.name, { color: theme.colors.text }]}>John Doe</Text>
-          <Text style={[styles.email, { color: theme.dark ? '#98989D' : '#666' }]}>john.doe@example.com</Text>
+          <Text style={[styles.name, { color: theme.colors.text }]}>{user?.email?.split('@')[0] || 'Medical Learner'}</Text>
+          <Text style={[styles.email, { color: theme.dark ? '#98989D' : '#666' }]}>{user?.email || 'student@example.com'}</Text>
         </GlassView>
+
+        {/* Quick Actions */}
+        <View style={styles.quickActionsGrid}>
+          <Pressable onPress={handleToggleProgressReport}>
+            <GlassView style={[styles.actionTile, { backgroundColor: 'rgba(0, 122, 255, 0.15)' }]} glassEffectStyle="regular">
+              <Text style={styles.actionIcon}>📊</Text>
+              <Text style={[styles.actionLabel, { color: theme.colors.text }]}>Progress Report</Text>
+            </GlassView>
+          </Pressable>
+
+          <GlassView style={[styles.actionTile, { backgroundColor: 'rgba(255, 45, 85, 0.15)' }]} glassEffectStyle="regular">
+            <Text style={styles.actionIcon}>❤️</Text>
+            <Text style={[styles.actionLabel, { color: theme.colors.text }]}>Favorites</Text>
+          </GlassView>
+
+          <GlassView style={[styles.actionTile, { backgroundColor: 'rgba(255, 149, 0, 0.15)' }]} glassEffectStyle="regular">
+            <Text style={styles.actionIcon}>🔖</Text>
+            <Text style={[styles.actionLabel, { color: theme.colors.text }]}>Bookmarked</Text>
+          </GlassView>
+
+          <GlassView style={[styles.actionTile, { backgroundColor: 'rgba(52, 199, 89, 0.15)' }]} glassEffectStyle="regular">
+            <Text style={styles.actionIcon}>💬</Text>
+            <Text style={[styles.actionLabel, { color: theme.colors.text }]}>Ask Expert</Text>
+          </GlassView>
+        </View>
+
+        {/* Progress Report Section */}
+        {showProgressReport && (
+          <View style={styles.progressReportContainer}>
+            <ProgressReport />
+          </View>
+        )}
 
         <GlassView style={[
           styles.section,
@@ -48,35 +84,6 @@ export default function ProfileScreen() {
             <Text style={[styles.infoText, { color: theme.colors.text }]}>San Francisco, CA</Text>
           </View>
         </GlassView>
-
-        <Text style={[styles.sectionTitle, { color: theme.colors.text }]}>Quick Actions</Text>
-        
-        {quickActions.map((action) => (
-          <Pressable key={action.id} onPress={() => router.push(action.route as any)}>
-            <GlassView
-              style={[
-                styles.quickActionCard,
-                Platform.OS !== 'ios' && { backgroundColor: theme.dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }
-              ]}
-              glassEffectStyle="regular"
-            >
-              <View style={[styles.quickActionIcon, { backgroundColor: action.color }]}>
-                <Text style={styles.emojiIcon}>{action.emoji}</Text>
-              </View>
-              <View style={styles.quickActionContent}>
-                <Text style={[styles.quickActionTitle, { color: theme.colors.text }]}>
-                  {action.emoji} {action.title}
-                </Text>
-              </View>
-              <IconSymbol 
-                ios_icon_name="chevron.right" 
-                android_material_icon_name="chevron-right" 
-                size={20} 
-                color={theme.dark ? '#98989D' : '#666'} 
-              />
-            </GlassView>
-          </Pressable>
-        ))}
       </ScrollView>
     </SafeAreaView>
   );
@@ -109,11 +116,36 @@ const styles = StyleSheet.create({
   email: {
     fontSize: 16,
   },
+  quickActionsGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 12,
+    marginBottom: 16,
+  },
+  actionTile: {
+    width: '48%',
+    aspectRatio: 1.5,
+    borderRadius: 12,
+    padding: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 8,
+  },
+  actionIcon: {
+    fontSize: 32,
+  },
+  actionLabel: {
+    fontSize: 14,
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+  progressReportContainer: {
+    marginBottom: 16,
+  },
   section: {
     borderRadius: 12,
     padding: 20,
     gap: 12,
-    marginBottom: 24,
   },
   infoRow: {
     flexDirection: 'row',
@@ -122,36 +154,5 @@ const styles = StyleSheet.create({
   },
   infoText: {
     fontSize: 16,
-  },
-  sectionTitle: {
-    fontSize: 20,
-    fontWeight: '600',
-    marginBottom: 12,
-    marginLeft: 4,
-  },
-  quickActionCard: {
-    borderRadius: 12,
-    padding: 16,
-    marginBottom: 12,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  quickActionIcon: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 16,
-  },
-  emojiIcon: {
-    fontSize: 24,
-  },
-  quickActionContent: {
-    flex: 1,
-  },
-  quickActionTitle: {
-    fontSize: 18,
-    fontWeight: '600',
   },
 });
