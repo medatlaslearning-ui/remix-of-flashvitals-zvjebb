@@ -66,15 +66,18 @@ export default function ProfileScreen() {
   const systemStats = useMemo(() => {
     const stats: Record<string, { total: number; reviewed: number }> = {};
     
-    flashcards.forEach(card => {
-      if (!stats[card.system]) {
-        stats[card.system] = { total: 0, reviewed: 0 };
-      }
-      stats[card.system].total++;
-      if (card.reviewCount && card.reviewCount > 0) {
-        stats[card.system].reviewed++;
-      }
-    });
+    // Add null check for flashcards
+    if (flashcards && Array.isArray(flashcards)) {
+      flashcards.forEach(card => {
+        if (!stats[card.system]) {
+          stats[card.system] = { total: 0, reviewed: 0 };
+        }
+        stats[card.system].total++;
+        if (card.reviewCount && card.reviewCount > 0) {
+          stats[card.system].reviewed++;
+        }
+      });
+    }
 
     return stats;
   }, [flashcards]);
@@ -82,15 +85,18 @@ export default function ProfileScreen() {
   const topicStats = useMemo(() => {
     const stats: Record<string, { total: number; reviewed: number }> = {};
     
-    flashcards.forEach(card => {
-      if (!stats[card.topic]) {
-        stats[card.topic] = { total: 0, reviewed: 0 };
-      }
-      stats[card.topic].total++;
-      if (card.reviewCount && card.reviewCount > 0) {
-        stats[card.topic].reviewed++;
-      }
-    });
+    // Add null check for flashcards
+    if (flashcards && Array.isArray(flashcards)) {
+      flashcards.forEach(card => {
+        if (!stats[card.topic]) {
+          stats[card.topic] = { total: 0, reviewed: 0 };
+        }
+        stats[card.topic].total++;
+        if (card.reviewCount && card.reviewCount > 0) {
+          stats[card.topic].reviewed++;
+        }
+      });
+    }
 
     return stats;
   }, [flashcards]);
@@ -217,7 +223,7 @@ export default function ProfileScreen() {
                 <View style={styles.actionContent}>
                   <Text style={styles.actionTitle}>Bookmarked</Text>
                   <Text style={styles.actionSubtitle}>
-                    {bookmarkedFlashcards.length} cards
+                    {(bookmarkedFlashcards && bookmarkedFlashcards.length) || 0} cards
                   </Text>
                 </View>
                 <IconSymbol
@@ -238,7 +244,7 @@ export default function ProfileScreen() {
                 <View style={styles.actionContent}>
                   <Text style={styles.actionTitle}>Favorites</Text>
                   <Text style={styles.actionSubtitle}>
-                    {favoriteFlashcards.length} cards
+                    {(favoriteFlashcards && favoriteFlashcards.length) || 0} cards
                   </Text>
                 </View>
                 <IconSymbol

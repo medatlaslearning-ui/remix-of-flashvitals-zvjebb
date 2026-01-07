@@ -125,19 +125,19 @@ interface Message {
   };
 }
 
-// Combine all flashcards
+// Combine all flashcards with null checks
 const getAllFlashcards = (): Flashcard[] => {
   return [
-    ...cardiologyFlashcards,
-    ...pulmonaryFlashcards,
-    ...neurologyFlashcards,
-    ...gastroenterologyFlashcards,
-    ...endocrineFlashcards,
-    ...hematologyFlashcards,
-    ...renalFlashcards,
-    ...emergencyMedicineFlashcards,
-    ...infectiousDiseaseFlashcards,
-    ...urologyFlashcards,
+    ...(cardiologyFlashcards || []),
+    ...(pulmonaryFlashcards || []),
+    ...(neurologyFlashcards || []),
+    ...(gastroenterologyFlashcards || []),
+    ...(endocrineFlashcards || []),
+    ...(hematologyFlashcards || []),
+    ...(renalFlashcards || []),
+    ...(emergencyMedicineFlashcards || []),
+    ...(infectiousDiseaseFlashcards || []),
+    ...(urologyFlashcards || []),
   ];
 };
 
@@ -541,7 +541,7 @@ Let's begin your medical learning journey!`,
   };
 
   const detectMedicalSystem = (query: string, merckEntries: MerckManualEntry[]): string => {
-    if (merckEntries.length > 0) {
+    if (merckEntries && merckEntries.length > 0) {
       return merckEntries[0].system;
     }
 
@@ -661,7 +661,7 @@ Let's begin your medical learning journey!`,
           },
         });
         
-        const followUpQuestions = followUpResult.questions;
+        const followUpQuestions = followUpResult.questions || [];
         
         console.log('[CHATBOT] Follow-up questions generated:', {
           count: followUpQuestions.length,
@@ -675,29 +675,29 @@ Let's begin your medical learning journey!`,
           text: synthesizerOutput.response,
           isBot: true,
           timestamp: new Date(),
-          merckManualEntries: merckEntries.length > 0 ? merckEntries : undefined,
-          accGuidelines: accGuidelines.length > 0 ? accGuidelines : undefined,
-          ahaGuidelines: ahaGuidelines.length > 0 ? ahaGuidelines : undefined,
-          escGuidelines: escGuidelines.length > 0 ? escGuidelines : undefined,
-          hfsaGuidelines: hfsaGuidelines.length > 0 ? hfsaGuidelines : undefined,
-          hrsGuidelines: hrsGuidelines.length > 0 ? hrsGuidelines : undefined,
-          scaiGuidelines: scaiGuidelines.length > 0 ? scaiGuidelines : undefined,
-          eactsGuidelines: eactsGuidelines.length > 0 ? eactsGuidelines : undefined,
-          atsGuidelines: atsGuidelines.length > 0 ? atsGuidelines : undefined,
-          chestGuidelines: chestGuidelines.length > 0 ? chestGuidelines : undefined,
-          sccmGuidelines: sccmGuidelines.length > 0 ? sccmGuidelines : undefined,
-          kdigoGuidelines: kdigoGuidelines.length > 0 ? kdigoGuidelines : undefined,
-          niddkGuidelines: niddkGuidelines.length > 0 ? niddkGuidelines : undefined,
-          acgGuidelines: acgGuidelines.length > 0 ? acgGuidelines : undefined,
-          adaGuidelines: adaGuidelines.length > 0 ? adaGuidelines : undefined,
-          endocrineGuidelines: endocrineGuidelines.length > 0 ? endocrineGuidelines : undefined,
-          nccnGuidelines: nccnGuidelines.length > 0 ? nccnGuidelines : undefined,
-          idsaGuidelines: idsaGuidelines.length > 0 ? idsaGuidelines : undefined,
-          asaGuidelines: asaGuidelines.length > 0 ? asaGuidelines : undefined,
-          acsTraumaGuidelines: acsTraumaGuidelines.length > 0 ? acsTraumaGuidelines : undefined,
-          references: relevantReferences.length > 0 ? relevantReferences : undefined,
-          websites: relevantWebsites.length > 0 ? relevantWebsites : undefined,
-          merckManualLinks: merckManualLinks.length > 0 ? merckManualLinks : undefined,
+          merckManualEntries: merckEntries && merckEntries.length > 0 ? merckEntries : undefined,
+          accGuidelines: accGuidelines && accGuidelines.length > 0 ? accGuidelines : undefined,
+          ahaGuidelines: ahaGuidelines && ahaGuidelines.length > 0 ? ahaGuidelines : undefined,
+          escGuidelines: escGuidelines && escGuidelines.length > 0 ? escGuidelines : undefined,
+          hfsaGuidelines: hfsaGuidelines && hfsaGuidelines.length > 0 ? hfsaGuidelines : undefined,
+          hrsGuidelines: hrsGuidelines && hrsGuidelines.length > 0 ? hrsGuidelines : undefined,
+          scaiGuidelines: scaiGuidelines && scaiGuidelines.length > 0 ? scaiGuidelines : undefined,
+          eactsGuidelines: eactsGuidelines && eactsGuidelines.length > 0 ? eactsGuidelines : undefined,
+          atsGuidelines: atsGuidelines && atsGuidelines.length > 0 ? atsGuidelines : undefined,
+          chestGuidelines: chestGuidelines && chestGuidelines.length > 0 ? chestGuidelines : undefined,
+          sccmGuidelines: sccmGuidelines && sccmGuidelines.length > 0 ? sccmGuidelines : undefined,
+          kdigoGuidelines: kdigoGuidelines && kdigoGuidelines.length > 0 ? kdigoGuidelines : undefined,
+          niddkGuidelines: niddkGuidelines && niddkGuidelines.length > 0 ? niddkGuidelines : undefined,
+          acgGuidelines: acgGuidelines && acgGuidelines.length > 0 ? acgGuidelines : undefined,
+          adaGuidelines: adaGuidelines && adaGuidelines.length > 0 ? adaGuidelines : undefined,
+          endocrineGuidelines: endocrineGuidelines && endocrineGuidelines.length > 0 ? endocrineGuidelines : undefined,
+          nccnGuidelines: nccnGuidelines && nccnGuidelines.length > 0 ? nccnGuidelines : undefined,
+          idsaGuidelines: idsaGuidelines && idsaGuidelines.length > 0 ? idsaGuidelines : undefined,
+          asaGuidelines: asaGuidelines && asaGuidelines.length > 0 ? asaGuidelines : undefined,
+          acsTraumaGuidelines: acsTraumaGuidelines && acsTraumaGuidelines.length > 0 ? acsTraumaGuidelines : undefined,
+          references: relevantReferences && relevantReferences.length > 0 ? relevantReferences : undefined,
+          websites: relevantWebsites && relevantWebsites.length > 0 ? relevantWebsites : undefined,
+          merckManualLinks: merckManualLinks && merckManualLinks.length > 0 ? merckManualLinks : undefined,
           interactionId,
           responseId,
           feedbackReversible: true,
@@ -1192,7 +1192,7 @@ Let's begin your medical learning journey!`,
                 >
                   <IconSymbol
                     ios_icon_name="hand.thumbsup.fill"
-                    android_material_icon_name="thumb_up"
+                    android_material_icon_name="thumb-up"
                     size={20}
                     color={message.feedback === 'positive' ? '#27AE60' : colors.textSecondary}
                   />
@@ -1215,7 +1215,7 @@ Let's begin your medical learning journey!`,
                 >
                   <IconSymbol
                     ios_icon_name="hand.thumbsdown.fill"
-                    android_material_icon_name="thumb_down"
+                    android_material_icon_name="thumb-down"
                     size={20}
                     color={message.feedback === 'negative' ? '#E74C3C' : colors.textSecondary}
                   />
@@ -1265,7 +1265,7 @@ Let's begin your medical learning journey!`,
                   <Text style={styles.followUpQuestion}>{fq.question}</Text>
                   <IconSymbol
                     ios_icon_name="arrow.right.circle.fill"
-                    android_material_icon_name="arrow_circle_right"
+                    android_material_icon_name="arrow-forward"
                     size={20}
                     color={colors.primary}
                   />
