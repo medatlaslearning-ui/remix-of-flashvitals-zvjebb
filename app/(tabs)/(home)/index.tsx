@@ -5,7 +5,7 @@ import { Stack, useRouter, useFocusEffect } from 'expo-router';
 import { colors, commonStyles } from '@/styles/commonStyles';
 import { useFlashcards } from '@/hooks/useFlashcards';
 import { IconSymbol } from '@/components/IconSymbol';
-import { RenalIcon, StomachIcon, UrologyIcon } from '@/components/MedicalIcons';
+import { modalDemos } from '@/components/homeData';
 import * as Haptics from 'expo-haptics';
 
 export default function HomeScreen() {
@@ -21,118 +21,53 @@ export default function HomeScreen() {
   console.log('Home screen - Favorites count:', favoritesCount);
   console.log('Home screen - Difficult count:', difficultCount);
 
-  // Get unique topics for Cardiology
-  const cardiologyTopics = useMemo(() => {
-    return Array.from(new Set(
-      allFlashcards
-        .filter(card => card.system === 'Cardiology')
-        .map(card => card.topic)
-    ));
-  }, [allFlashcards]);
+  // Map system names from homeData to actual system names in flashcards
+  const systemNameMap: { [key: string]: string } = {
+    'Cardiology': 'Cardiology',
+    'Pulmonary': 'Pulmonary',
+    'Neurology': 'Neurology',
+    'Hematology': 'Hematology',
+    'Gastroenterology': 'Gastroenterology',
+    'Endocrine': 'Endocrine',
+    'Renal': 'Renal',
+    'Infectious Disease': 'Infectious Disease',
+    'Emergency Medicine': 'Emergency Medicine & Trauma',
+    'Urology': 'Urology',
+  };
 
-  // Get unique topics for Pulmonary
-  const pulmonaryTopics = useMemo(() => {
-    return Array.from(new Set(
-      allFlashcards
-        .filter(card => card.system === 'Pulmonary')
-        .map(card => card.topic)
-    ));
-  }, [allFlashcards]);
+  // Get system stats
+  const getSystemStats = (systemName: string) => {
+    const mappedName = systemNameMap[systemName] || systemName;
+    const cards = allFlashcards.filter(c => c.system === mappedName);
+    const topics = Array.from(new Set(cards.map(card => card.topic)));
+    return { cardCount: cards.length, topicCount: topics.length };
+  };
 
-  // Get unique topics for Renal
-  const renalTopics = useMemo(() => {
-    return Array.from(new Set(
-      allFlashcards
-        .filter(card => card.system === 'Renal')
-        .map(card => card.topic)
-    ));
-  }, [allFlashcards]);
-
-  // Get unique topics for Gastroenterology
-  const gastroenterologyTopics = useMemo(() => {
-    return Array.from(new Set(
-      allFlashcards
-        .filter(card => card.system === 'Gastroenterology')
-        .map(card => card.topic)
-    ));
-  }, [allFlashcards]);
-
-  // Get unique topics for Endocrine
-  const endocrineTopics = useMemo(() => {
-    return Array.from(new Set(
-      allFlashcards
-        .filter(card => card.system === 'Endocrine')
-        .map(card => card.topic)
-    ));
-  }, [allFlashcards]);
-
-  // Get unique topics for Hematology
-  const hematologyTopics = useMemo(() => {
-    return Array.from(new Set(
-      allFlashcards
-        .filter(card => card.system === 'Hematology')
-        .map(card => card.topic)
-    ));
-  }, [allFlashcards]);
-
-  // Get unique topics for Infectious Disease
-  const infectiousDiseaseTopics = useMemo(() => {
-    return Array.from(new Set(
-      allFlashcards
-        .filter(card => card.system === 'Infectious Disease')
-        .map(card => card.topic)
-    ));
-  }, [allFlashcards]);
-
-  // Get unique topics for Neurology
-  const neurologyTopics = useMemo(() => {
-    return Array.from(new Set(
-      allFlashcards
-        .filter(card => card.system === 'Neurology')
-        .map(card => card.topic)
-    ));
-  }, [allFlashcards]);
-
-  // Get unique topics for Emergency Medicine & Trauma
-  const emergencyMedicineTopics = useMemo(() => {
-    return Array.from(new Set(
-      allFlashcards
-        .filter(card => card.system === 'Emergency Medicine & Trauma')
-        .map(card => card.topic)
-    ));
-  }, [allFlashcards]);
-
-  // Get unique topics for Urology
-  const urologyTopics = useMemo(() => {
-    return Array.from(new Set(
-      allFlashcards
-        .filter(card => card.system === 'Urology')
-        .map(card => card.topic)
-    ));
-  }, [allFlashcards]);
-
-  const handleSystemPress = (system: string) => {
+  const handleSystemPress = (systemName: string) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    console.log('Navigating to system:', system);
-    if (system === 'Cardiology') {
+    console.log('Navigating to system:', systemName);
+    
+    const mappedName = systemNameMap[systemName] || systemName;
+    
+    if (mappedName === 'Cardiology') {
       router.push('/(tabs)/(home)/cardiology-topics');
-    } else if (system === 'Pulmonary') {
+    } else if (mappedName === 'Pulmonary') {
       router.push('/(tabs)/(home)/pulmonary-topics');
-    } else if (system === 'Renal') {
+    } else if (mappedName === 'Renal') {
       router.push('/(tabs)/(home)/renal-topics');
-    } else if (system === 'Gastroenterology') {
+    } else if (mappedName === 'Gastroenterology') {
       router.push('/(tabs)/(home)/gastroenterology-topics');
-    } else if (system === 'Endocrine') {
+    } else if (mappedName === 'Endocrine') {
       router.push('/(tabs)/(home)/endocrine-topics');
-    } else if (system === 'Hematology') {
+    } else if (mappedName === 'Hematology') {
       router.push('/(tabs)/(home)/hematology-topics');
-    } else if (system === 'Infectious Disease') {
+    } else if (mappedName === 'Infectious Disease') {
       router.push('/(tabs)/(home)/infectious-disease-topics');
-    } else if (system === 'Neurology') {
+    } else if (mappedName === 'Neurology') {
       router.push('/(tabs)/(home)/neurology-topics');
-    } else if (system === 'Emergency Medicine & Trauma') {
+    } else if (mappedName === 'Emergency Medicine & Trauma') {
       router.push('/(tabs)/(home)/emergency-medicine-topics');
-    } else if (system === 'Urology') {
+    } else if (mappedName === 'Urology') {
       router.push('/(tabs)/(home)/urology-topics');
     }
   };
@@ -239,280 +174,37 @@ export default function HomeScreen() {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Medical Systems</Text>
           
-          {/* Cardiology System */}
-          <Pressable 
-            style={styles.systemCard}
-            onPress={() => handleSystemPress('Cardiology')}
-          >
-            <View style={styles.systemHeader}>
-              <View style={styles.systemIconContainer}>
-                <IconSymbol 
-                  ios_icon_name="heart.fill"
-                  android_material_icon_name="favorite"
-                  size={32} 
-                  color={colors.primary} 
-                />
-              </View>
-              <View style={styles.systemInfo}>
-                <Text style={styles.systemTitle}>Cardiology</Text>
-                <Text style={styles.systemSubtitle}>
-                  {allFlashcards.filter(c => c.system === 'Cardiology').length} cards • {cardiologyTopics.length} topics
-                </Text>
-              </View>
-              <IconSymbol 
-                ios_icon_name="chevron.right"
-                android_material_icon_name="chevron-right"
-                size={24} 
-                color={colors.textSecondary} 
-              />
-            </View>
-          </Pressable>
-
-          {/* Pulmonology System */}
-          <Pressable 
-            style={styles.systemCard}
-            onPress={() => handleSystemPress('Pulmonary')}
-          >
-            <View style={styles.systemHeader}>
-              <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
-                <IconSymbol 
-                  ios_icon_name="lungs.fill"
-                  android_material_icon_name="air"
-                  size={32} 
-                  color={colors.accent} 
-                />
-              </View>
-              <View style={styles.systemInfo}>
-                <Text style={styles.systemTitle}>Pulmonology</Text>
-                <Text style={styles.systemSubtitle}>
-                  {allFlashcards.filter(c => c.system === 'Pulmonary').length} cards • {pulmonaryTopics.length} topics
-                </Text>
-              </View>
-              <IconSymbol 
-                ios_icon_name="chevron.right"
-                android_material_icon_name="chevron-right"
-                size={24} 
-                color={colors.textSecondary} 
-              />
-            </View>
-          </Pressable>
-
-          {/* Renal System */}
-          <Pressable 
-            style={styles.systemCard}
-            onPress={() => handleSystemPress('Renal')}
-          >
-            <View style={styles.systemHeader}>
-              <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
-                <RenalIcon size={40} color={colors.accent} />
-              </View>
-              <View style={styles.systemInfo}>
-                <Text style={styles.systemTitle}>Renal</Text>
-                <Text style={styles.systemSubtitle}>
-                  {allFlashcards.filter(c => c.system === 'Renal').length} cards • {renalTopics.length} topics
-                </Text>
-              </View>
-              <IconSymbol 
-                ios_icon_name="chevron.right"
-                android_material_icon_name="chevron-right"
-                size={24} 
-                color={colors.textSecondary} 
-              />
-            </View>
-          </Pressable>
-
-          {/* Gastroenterology System */}
-          <Pressable 
-            style={styles.systemCard}
-            onPress={() => handleSystemPress('Gastroenterology')}
-          >
-            <View style={styles.systemHeader}>
-              <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
-                <StomachIcon size={40} color={colors.accent} />
-              </View>
-              <View style={styles.systemInfo}>
-                <Text style={styles.systemTitle}>Gastroenterology</Text>
-                <Text style={styles.systemSubtitle}>
-                  {allFlashcards.filter(c => c.system === 'Gastroenterology').length} cards • {gastroenterologyTopics.length} topics
-                </Text>
-              </View>
-              <IconSymbol 
-                ios_icon_name="chevron.right"
-                android_material_icon_name="chevron-right"
-                size={24} 
-                color={colors.textSecondary} 
-              />
-            </View>
-          </Pressable>
-
-          {/* Endocrine System */}
-          <Pressable 
-            style={styles.systemCard}
-            onPress={() => handleSystemPress('Endocrine')}
-          >
-            <View style={styles.systemHeader}>
-              <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
-                <IconSymbol 
-                  ios_icon_name="facemask.fill"
-                  android_material_icon_name="science"
-                  size={32} 
-                  color={colors.secondary} 
-                />
-              </View>
-              <View style={styles.systemInfo}>
-                <Text style={styles.systemTitle}>Endocrine</Text>
-                <Text style={styles.systemSubtitle}>
-                  {allFlashcards.filter(c => c.system === 'Endocrine').length} cards • {endocrineTopics.length} topics
-                </Text>
-              </View>
-              <IconSymbol 
-                ios_icon_name="chevron.right"
-                android_material_icon_name="chevron-right"
-                size={24} 
-                color={colors.textSecondary} 
-              />
-            </View>
-          </Pressable>
-
-          {/* Hematology System */}
-          <Pressable 
-            style={styles.systemCard}
-            onPress={() => handleSystemPress('Hematology')}
-          >
-            <View style={styles.systemHeader}>
-              <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
-                <IconSymbol 
-                  ios_icon_name="drop.fill"
-                  android_material_icon_name="water-drop"
-                  size={32} 
-                  color={colors.error} 
-                />
-              </View>
-              <View style={styles.systemInfo}>
-                <Text style={styles.systemTitle}>Hematology</Text>
-                <Text style={styles.systemSubtitle}>
-                  {allFlashcards.filter(c => c.system === 'Hematology').length} cards • {hematologyTopics.length} topics
-                </Text>
-              </View>
-              <IconSymbol 
-                ios_icon_name="chevron.right"
-                android_material_icon_name="chevron-right"
-                size={24} 
-                color={colors.textSecondary} 
-              />
-            </View>
-          </Pressable>
-
-          {/* Infectious Disease System */}
-          <Pressable 
-            style={styles.systemCard}
-            onPress={() => handleSystemPress('Infectious Disease')}
-          >
-            <View style={styles.systemHeader}>
-              <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
-                <IconSymbol 
-                  ios_icon_name="ant.fill"
-                  android_material_icon_name="bug-report"
-                  size={32} 
-                  color={colors.accent} 
-                />
-              </View>
-              <View style={styles.systemInfo}>
-                <Text style={styles.systemTitle}>Infectious Disease</Text>
-                <Text style={styles.systemSubtitle}>
-                  {allFlashcards.filter(c => c.system === 'Infectious Disease').length} cards • {infectiousDiseaseTopics.length} topics
-                </Text>
-              </View>
-              <IconSymbol 
-                ios_icon_name="chevron.right"
-                android_material_icon_name="chevron-right"
-                size={24} 
-                color={colors.textSecondary} 
-              />
-            </View>
-          </Pressable>
-
-          {/* Neurology System */}
-          <Pressable 
-            style={styles.systemCard}
-            onPress={() => handleSystemPress('Neurology')}
-          >
-            <View style={styles.systemHeader}>
-              <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
-                <IconSymbol 
-                  ios_icon_name="brain"
-                  android_material_icon_name="psychology"
-                  size={32} 
-                  color={colors.secondary} 
-                />
-              </View>
-              <View style={styles.systemInfo}>
-                <Text style={styles.systemTitle}>Neurology</Text>
-                <Text style={styles.systemSubtitle}>
-                  {allFlashcards.filter(c => c.system === 'Neurology').length} cards • {neurologyTopics.length} topics
-                </Text>
-              </View>
-              <IconSymbol 
-                ios_icon_name="chevron.right"
-                android_material_icon_name="chevron-right"
-                size={24} 
-                color={colors.textSecondary} 
-              />
-            </View>
-          </Pressable>
-
-          {/* Emergency Medicine & Trauma System */}
-          <Pressable 
-            style={styles.systemCard}
-            onPress={() => handleSystemPress('Emergency Medicine & Trauma')}
-          >
-            <View style={styles.systemHeader}>
-              <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
-                <IconSymbol 
-                  ios_icon_name="cross.case.fill"
-                  android_material_icon_name="local-hospital"
-                  size={32} 
-                  color={colors.error} 
-                />
-              </View>
-              <View style={styles.systemInfo}>
-                <Text style={styles.systemTitle}>Emergency Medicine & Trauma</Text>
-                <Text style={styles.systemSubtitle}>
-                  {allFlashcards.filter(c => c.system === 'Emergency Medicine & Trauma').length} cards • {emergencyMedicineTopics.length} topics
-                </Text>
-              </View>
-              <IconSymbol 
-                ios_icon_name="chevron.right"
-                android_material_icon_name="chevron-right"
-                size={24} 
-                color={colors.textSecondary} 
-              />
-            </View>
-          </Pressable>
-
-          {/* Urology System */}
-          <Pressable 
-            style={styles.systemCard}
-            onPress={() => handleSystemPress('Urology')}
-          >
-            <View style={styles.systemHeader}>
-              <View style={[styles.systemIconContainer, { backgroundColor: colors.highlight }]}>
-                <UrologyIcon size={40} color={colors.secondary} />
-              </View>
-              <View style={styles.systemInfo}>
-                <Text style={styles.systemTitle}>Urology</Text>
-                <Text style={styles.systemSubtitle}>
-                  {allFlashcards.filter(c => c.system === 'Urology').length} cards • {urologyTopics.length} topics
-                </Text>
-              </View>
-              <IconSymbol 
-                ios_icon_name="chevron.right"
-                android_material_icon_name="chevron-right"
-                size={24} 
-                color={colors.textSecondary} 
-              />
-            </View>
-          </Pressable>
+          {modalDemos.map((system, index) => {
+            const stats = getSystemStats(system.title.replace(/^[^\s]+\s/, '')); // Remove emoji from title
+            const systemName = system.title.replace(/^[^\s]+\s/, ''); // Remove emoji from title
+            
+            return (
+              <Pressable 
+                key={index}
+                style={[styles.systemCard, { backgroundColor: system.color }]}
+                onPress={() => handleSystemPress(systemName)}
+              >
+                <View style={styles.systemHeader}>
+                  <View style={styles.systemEmojiContainer}>
+                    <Text style={styles.systemEmoji}>{system.emoji}</Text>
+                  </View>
+                  <View style={styles.systemInfo}>
+                    <Text style={styles.systemTitle}>{systemName}</Text>
+                    <Text style={styles.systemDescription}>{system.description}</Text>
+                    <Text style={styles.systemSubtitle}>
+                      {stats.cardCount} cards • {stats.topicCount} topics
+                    </Text>
+                  </View>
+                  <IconSymbol 
+                    ios_icon_name="chevron.right"
+                    android_material_icon_name="chevron-right"
+                    size={24} 
+                    color={colors.textSecondary} 
+                  />
+                </View>
+              </Pressable>
+            );
+          })}
         </View>
 
         {/* Admin Access */}
@@ -584,38 +276,46 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   systemCard: {
-    backgroundColor: colors.card,
     padding: 16,
-    borderRadius: 12,
-    marginBottom: 16,
-    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.08)',
+    borderRadius: 16,
+    marginBottom: 12,
+    boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.08)',
     elevation: 2,
   },
   systemHeader: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  systemIconContainer: {
+  systemEmojiContainer: {
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: colors.highlight,
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 16,
+  },
+  systemEmoji: {
+    fontSize: 32,
   },
   systemInfo: {
     flex: 1,
   },
   systemTitle: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: '700',
     color: colors.text,
     marginBottom: 4,
   },
-  systemSubtitle: {
-    fontSize: 14,
+  systemDescription: {
+    fontSize: 13,
     color: colors.textSecondary,
+    marginBottom: 4,
+  },
+  systemSubtitle: {
+    fontSize: 12,
+    color: colors.textSecondary,
+    fontWeight: '500',
   },
   adminButton: {
     flexDirection: 'row',
