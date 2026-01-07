@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, Pressable, TextInput, Alert, Platform } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
+import { LinearGradient } from 'expo-linear-gradient';
 import { colors, commonStyles } from '@/styles/commonStyles';
 import { useFlashcards } from '@/hooks/useFlashcards';
 import { IconSymbol } from '@/components/IconSymbol';
@@ -160,78 +161,85 @@ export default function AdminScreen() {
         }}
       />
       <View style={commonStyles.container}>
-        {/* Tab Navigation */}
-        <ScrollView 
-          horizontal 
-          showsHorizontalScrollIndicator={false}
-          style={styles.tabBar}
-          contentContainerStyle={styles.tabBarContent}
+        {/* Compact Tab Navigation with Gradient */}
+        <LinearGradient
+          colors={['#E3F2FD', '#BBDEFB', '#90CAF9']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          style={styles.tabBarGradient}
         >
-          <Pressable
-            style={[styles.tab, activeTab === 'overview' && styles.tabActive]}
-            onPress={() => setActiveTab('overview')}
+          <ScrollView 
+            horizontal 
+            showsHorizontalScrollIndicator={false}
+            style={styles.tabBar}
+            contentContainerStyle={styles.tabBarContent}
           >
-            <Text style={[styles.tabText, activeTab === 'overview' && styles.tabTextActive]}>
-              Overview
-            </Text>
-          </Pressable>
-          <Pressable
-            style={[styles.tab, activeTab === 'guardrails' && styles.tabActive]}
-            onPress={() => setActiveTab('guardrails')}
-          >
-            <Text style={[styles.tabText, activeTab === 'guardrails' && styles.tabTextActive]}>
-              Guardrails
-            </Text>
-          </Pressable>
-          <Pressable
-            style={[styles.tab, activeTab === 'health' && styles.tabActive]}
-            onPress={() => setActiveTab('health')}
-          >
-            <Text style={[styles.tabText, activeTab === 'health' && styles.tabTextActive]}>
-              System Health
-            </Text>
-          </Pressable>
-          <Pressable
-            style={[styles.tab, activeTab === 'supabase' && styles.tabActive]}
-            onPress={() => setActiveTab('supabase')}
-          >
-            <Text style={[styles.tabText, activeTab === 'supabase' && styles.tabTextActive]}>
-              Supabase Rules
-            </Text>
-          </Pressable>
-          <Pressable
-            style={[styles.tab, activeTab === 'attribution' && styles.tabActive]}
-            onPress={() => setActiveTab('attribution')}
-          >
-            <Text style={[styles.tabText, activeTab === 'attribution' && styles.tabTextActive]}>
-              Source Attribution
-            </Text>
-          </Pressable>
-          <Pressable
-            style={[styles.tab, activeTab === 'consistency' && styles.tabActive]}
-            onPress={() => setActiveTab('consistency')}
-          >
-            <Text style={[styles.tabText, activeTab === 'consistency' && styles.tabTextActive]}>
-              Consistency
-            </Text>
-          </Pressable>
-          <Pressable
-            style={[styles.tab, activeTab === 'failsafe' && styles.tabActive]}
-            onPress={() => setActiveTab('failsafe')}
-          >
-            <Text style={[styles.tabText, activeTab === 'failsafe' && styles.tabTextActive]}>
-              Fail-Safe
-            </Text>
-          </Pressable>
-          <Pressable
-            style={[styles.tab, activeTab === 'flashcards' && styles.tabActive]}
-            onPress={() => setActiveTab('flashcards')}
-          >
-            <Text style={[styles.tabText, activeTab === 'flashcards' && styles.tabTextActive]}>
-              Flashcards
-            </Text>
-          </Pressable>
-        </ScrollView>
+            <Pressable
+              style={[styles.tab, activeTab === 'overview' && styles.tabActive]}
+              onPress={() => setActiveTab('overview')}
+            >
+              <Text style={[styles.tabText, activeTab === 'overview' && styles.tabTextActive]}>
+                Overview
+              </Text>
+            </Pressable>
+            <Pressable
+              style={[styles.tab, activeTab === 'guardrails' && styles.tabActive]}
+              onPress={() => setActiveTab('guardrails')}
+            >
+              <Text style={[styles.tabText, activeTab === 'guardrails' && styles.tabTextActive]}>
+                Guardrails
+              </Text>
+            </Pressable>
+            <Pressable
+              style={[styles.tab, activeTab === 'health' && styles.tabActive]}
+              onPress={() => setActiveTab('health')}
+            >
+              <Text style={[styles.tabText, activeTab === 'health' && styles.tabTextActive]}>
+                System Health
+              </Text>
+            </Pressable>
+            <Pressable
+              style={[styles.tab, activeTab === 'supabase' && styles.tabActive]}
+              onPress={() => setActiveTab('supabase')}
+            >
+              <Text style={[styles.tabText, activeTab === 'supabase' && styles.tabTextActive]}>
+                Supabase Rules
+              </Text>
+            </Pressable>
+            <Pressable
+              style={[styles.tab, activeTab === 'attribution' && styles.tabActive]}
+              onPress={() => setActiveTab('attribution')}
+            >
+              <Text style={[styles.tabText, activeTab === 'attribution' && styles.tabTextActive]}>
+                Source Attribution
+              </Text>
+            </Pressable>
+            <Pressable
+              style={[styles.tab, activeTab === 'consistency' && styles.tabActive]}
+              onPress={() => setActiveTab('consistency')}
+            >
+              <Text style={[styles.tabText, activeTab === 'consistency' && styles.tabTextActive]}>
+                Consistency
+              </Text>
+            </Pressable>
+            <Pressable
+              style={[styles.tab, activeTab === 'failsafe' && styles.tabActive]}
+              onPress={() => setActiveTab('failsafe')}
+            >
+              <Text style={[styles.tabText, activeTab === 'failsafe' && styles.tabTextActive]}>
+                Fail-Safe
+              </Text>
+            </Pressable>
+            <Pressable
+              style={[styles.tab, activeTab === 'flashcards' && styles.tabActive]}
+              onPress={() => setActiveTab('flashcards')}
+            >
+              <Text style={[styles.tabText, activeTab === 'flashcards' && styles.tabTextActive]}>
+                Flashcards
+              </Text>
+            </Pressable>
+          </ScrollView>
+        </LinearGradient>
 
         {/* Tab Content */}
         <ScrollView 
@@ -614,32 +622,37 @@ export default function AdminScreen() {
 }
 
 const styles = StyleSheet.create({
-  tabBar: {
-    backgroundColor: colors.card,
+  tabBarGradient: {
     borderBottomWidth: 1,
-    borderBottomColor: colors.border,
+    borderBottomColor: '#64B5F6',
+  },
+  tabBar: {
+    maxHeight: 44,
   },
   tabBarContent: {
-    paddingHorizontal: 4,
+    paddingHorizontal: 8,
+    alignItems: 'center',
   },
   tab: {
-    paddingHorizontal: 16,
-    paddingVertical: 12,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
     alignItems: 'center',
     justifyContent: 'center',
+    minHeight: 44,
   },
   tabActive: {
-    borderBottomWidth: 2,
-    borderBottomColor: colors.primary,
+    borderBottomWidth: 3,
+    borderBottomColor: '#1976D2',
   },
   tabText: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: '600',
-    color: colors.textSecondary,
+    color: '#1565C0',
     whiteSpace: 'nowrap',
   },
   tabTextActive: {
-    color: colors.primary,
+    color: '#0D47A1',
+    fontWeight: '700',
   },
   scrollView: {
     flex: 1,
