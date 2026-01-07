@@ -123,8 +123,7 @@ export default function QuizSessionScreen() {
       setQuizResult(result);
       setShowResults(true);
 
-      // TODO: Backend Integration - Save quiz result to Progress Report
-      // Save to Progress Report if user is authenticated
+      // Save quiz result to Progress Report (Supabase)
       if (user) {
         try {
           const quizType = totalQuestions === 5 ? '5-question' : '10-question';
@@ -135,11 +134,13 @@ export default function QuizSessionScreen() {
             medical_topic: (params.topic as string) || 'General',
             medical_system: (params.medicalSystem as string) || 'General',
           });
-          console.log('[QuizSession] Quiz result saved to Progress Report');
+          console.log('[QuizSession] ✅ Quiz result saved to Progress Report (Supabase)');
         } catch (progressError) {
-          console.error('[QuizSession] Error saving to Progress Report:', progressError);
+          console.error('[QuizSession] ❌ Error saving to Progress Report:', progressError);
           // Don't show error to user - local results are already calculated
         }
+      } else {
+        console.log('[QuizSession] ⚠️ User not authenticated - skipping Progress Report save');
       }
 
       // If user is authenticated and we have a quizId, save to database
@@ -147,9 +148,9 @@ export default function QuizSessionScreen() {
         console.log('[QuizSession] Saving quiz results to database...');
         try {
           await completeQuiz(params.quizId as string, answers);
-          console.log('[QuizSession] Quiz results saved to database');
+          console.log('[QuizSession] ✅ Quiz results saved to database');
         } catch (dbError) {
-          console.error('[QuizSession] Error saving to database:', dbError);
+          console.error('[QuizSession] ❌ Error saving to database:', dbError);
           // Don't show error to user - local results are already calculated
         }
       } else {
@@ -162,10 +163,10 @@ export default function QuizSessionScreen() {
     }
   };
 
-  const handleViewQuizMaster = () => {
+  const handleViewProgressReport = () => {
     setShowResults(false);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    router.push('/(tabs)/profile');
+    router.push('/progress-report');
   };
 
   const handleClose = () => {
@@ -369,7 +370,13 @@ export default function QuizSessionScreen() {
                   : 'Keep studying! You&apos;ll improve! 📚'}
               </Text>
               
-              <Pressable style={styles.viewStatsButton} onPress={handleViewQuizMaster}>
+              {user && (
+                <Text style={styles.savedMessage}>
+                  ✅ Results saved to Progress Report
+                </Text>
+              )}
+              
+              <Pressable style={styles.viewStatsButton} onPress={handleViewProgressReport}>
                 <IconSymbol 
                   ios_icon_name="chart.bar.fill" 
                   android_material_icon_name="bar-chart" 
@@ -432,7 +439,8 @@ const styles = StyleSheet.create({
   resultsTitle: { fontSize: 24, fontWeight: '700', color: colors.text, marginTop: 16, marginBottom: 8 },
   resultsScore: { fontSize: 48, fontWeight: '700', color: colors.primary, marginBottom: 4 },
   resultsPercentage: { fontSize: 32, fontWeight: '600', color: colors.textSecondary, marginBottom: 16 },
-  resultsMessage: { fontSize: 16, color: colors.text, textAlign: 'center', marginBottom: 24, lineHeight: 24 },
+  resultsMessage: { fontSize: 16, color: colors.text, textAlign: 'center', marginBottom: 12, lineHeight: 24 },
+  savedMessage: { fontSize: 14, color: colors.success, textAlign: 'center', marginBottom: 24, fontWeight: '600' },
   viewStatsButton: { flexDirection: 'row', alignItems: 'center', gap: 10, padding: 16, backgroundColor: colors.primary, borderRadius: 12, width: '100%', justifyContent: 'center', marginBottom: 12, boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.15)', elevation: 4 },
   viewStatsButtonText: { color: '#fff', fontSize: 16, fontWeight: '700' },
   closeButton: { padding: 12, width: '100%', alignItems: 'center' },

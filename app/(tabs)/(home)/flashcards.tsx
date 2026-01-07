@@ -93,7 +93,7 @@ export default function FlashcardsScreen() {
     setReviewedInSession(new Set());
   }, [flashcards.length, topic, filter]);
 
-  // Handle card flip - increment review count when card is flipped to show answer
+  // Handle card flip - increment review count and save to Progress Report when card is flipped to show answer
   const handleFlip = async () => {
     const currentCard = flashcards[currentIndex];
     const newFlipState = !isFlipped;
@@ -102,8 +102,8 @@ export default function FlashcardsScreen() {
     // Only increment review count when flipping to the back (showing answer)
     // and only once per card in this session
     if (newFlipState && !reviewedInSession.has(currentCard.id)) {
-      console.log('Card flipped to back, incrementing review count for card:', currentCard.id);
-      console.log('Current review count:', currentCard.reviewCount);
+      console.log('[Flashcard] Card flipped to back, incrementing review count for card:', currentCard.id);
+      console.log('[Flashcard] Current review count:', currentCard.reviewCount);
       
       // Mark as reviewed in this session
       setReviewedInSession(prev => new Set(prev).add(currentCard.id));
@@ -111,8 +111,7 @@ export default function FlashcardsScreen() {
       // Increment the review count
       await incrementReviewCount(currentCard.id);
       
-      // TODO: Backend Integration - Save flashcard view to Progress Report
-      // Save to Progress Report if user is authenticated
+      // Save flashcard view to Progress Report (Supabase)
       if (user) {
         try {
           await saveFlashcardView({
@@ -120,14 +119,16 @@ export default function FlashcardsScreen() {
             medical_topic: currentCard.topic,
             medical_system: currentCard.system,
           });
-          console.log('Flashcard view saved to Progress Report');
+          console.log('[Flashcard] ✅ Flashcard view saved to Progress Report (Supabase)');
         } catch (error) {
-          console.error('Error saving flashcard view:', error);
+          console.error('[Flashcard] ❌ Error saving flashcard view:', error);
           // Don't show error to user - this is background tracking
         }
+      } else {
+        console.log('[Flashcard] ⚠️ User not authenticated - skipping Progress Report save');
       }
       
-      console.log('Review count incremented for card:', currentCard.id);
+      console.log('[Flashcard] Review count incremented for card:', currentCard.id);
     }
   };
 

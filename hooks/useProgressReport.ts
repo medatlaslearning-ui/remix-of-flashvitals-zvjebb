@@ -70,7 +70,7 @@ export function useProgressReport(userId: string | null) {
 
       console.log('[ProgressReport] Fetching data for user:', userId);
 
-      // TODO: Backend Integration - Fetch quiz results from Supabase
+      // Fetch quiz results from Supabase
       const { data: quizData, error: quizError } = await supabase
         .from('quiz_results')
         .select('*')
@@ -82,7 +82,7 @@ export function useProgressReport(userId: string | null) {
         throw quizError;
       }
 
-      // TODO: Backend Integration - Fetch flashcard views from Supabase
+      // Fetch flashcard views from Supabase
       const { data: flashcardData, error: flashcardError } = await supabase
         .from('flashcard_views')
         .select('*')
@@ -94,8 +94,8 @@ export function useProgressReport(userId: string | null) {
         throw flashcardError;
       }
 
-      console.log('[ProgressReport] Fetched quiz results:', quizData?.length || 0);
-      console.log('[ProgressReport] Fetched flashcard views:', flashcardData?.length || 0);
+      console.log('[ProgressReport] ✅ Fetched quiz results:', quizData?.length || 0);
+      console.log('[ProgressReport] ✅ Fetched flashcard views:', flashcardData?.length || 0);
 
       setQuizResults(quizData || []);
       setFlashcardViews(flashcardData || []);
@@ -104,7 +104,7 @@ export function useProgressReport(userId: string | null) {
       calculateStats(quizData || [], flashcardData || []);
     } catch (err: any) {
       setError(err.message);
-      console.error('[ProgressReport] Error fetching progress data:', err);
+      console.error('[ProgressReport] ❌ Error fetching progress data:', err);
     } finally {
       setLoading(false);
     }
@@ -116,14 +116,13 @@ export function useProgressReport(userId: string | null) {
 
   const saveQuizResult = async (result: Omit<QuizResult, 'id' | 'user_id' | 'completed_at' | 'created_at'>) => {
     if (!userId) {
-      console.log('[ProgressReport] No user ID, skipping quiz result save');
+      console.log('[ProgressReport] ⚠️ No user ID, skipping quiz result save');
       return;
     }
 
     try {
-      console.log('[ProgressReport] Saving quiz result:', result);
+      console.log('[ProgressReport] Saving quiz result to Supabase:', result);
       
-      // TODO: Backend Integration - Save quiz result to Supabase
       const { error } = await supabase.from('quiz_results').insert({
         user_id: userId,
         ...result,
@@ -131,28 +130,27 @@ export function useProgressReport(userId: string | null) {
       });
 
       if (error) {
-        console.error('[ProgressReport] Error saving quiz result:', error);
+        console.error('[ProgressReport] ❌ Error saving quiz result:', error);
         throw error;
       }
       
-      console.log('[ProgressReport] Quiz result saved successfully');
+      console.log('[ProgressReport] ✅ Quiz result saved successfully to Supabase');
       await fetchProgressData();
     } catch (err: any) {
-      console.error('[ProgressReport] Error saving quiz result:', err);
+      console.error('[ProgressReport] ❌ Error saving quiz result:', err);
       throw err;
     }
   };
 
   const saveFlashcardView = async (view: Omit<FlashcardView, 'id' | 'user_id' | 'viewed_at' | 'created_at'>) => {
     if (!userId) {
-      console.log('[ProgressReport] No user ID, skipping flashcard view save');
+      console.log('[ProgressReport] ⚠️ No user ID, skipping flashcard view save');
       return;
     }
 
     try {
-      console.log('[ProgressReport] Saving flashcard view:', view);
+      console.log('[ProgressReport] Saving flashcard view to Supabase:', view);
       
-      // TODO: Backend Integration - Save flashcard view to Supabase
       const { error } = await supabase.from('flashcard_views').insert({
         user_id: userId,
         ...view,
@@ -160,14 +158,14 @@ export function useProgressReport(userId: string | null) {
       });
 
       if (error) {
-        console.error('[ProgressReport] Error saving flashcard view:', error);
+        console.error('[ProgressReport] ❌ Error saving flashcard view:', error);
         throw error;
       }
       
-      console.log('[ProgressReport] Flashcard view saved successfully');
+      console.log('[ProgressReport] ✅ Flashcard view saved successfully to Supabase');
       // Don't refetch immediately for flashcard views to avoid performance issues
     } catch (err: any) {
-      console.error('[ProgressReport] Error saving flashcard view:', err);
+      console.error('[ProgressReport] ❌ Error saving flashcard view:', err);
       // Don't throw - flashcard tracking is non-critical
     }
   };
