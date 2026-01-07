@@ -1,21 +1,75 @@
 
-import React from "react";
-import { View, Text, StyleSheet, ScrollView, Pressable } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, ScrollView, Pressable, Modal } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { IconSymbol } from "@/components/IconSymbol";
 import { GlassView } from "expo-glass-effect";
 import { useTheme } from "@react-navigation/native";
 import { useRouter } from "expo-router";
+import * as Haptics from "expo-haptics";
+
+const PROFESSIONS = [
+  "Nurse Practitioner",
+  "Physician",
+  "Physician Assistant",
+  "Registered Nurse",
+  "NP Student",
+  "Medical Student",
+  "PA Student",
+  "Nursing Student"
+];
 
 export default function ProfileScreen() {
   const theme = useTheme();
   const router = useRouter();
+  const [name, setName] = useState("John Doe");
+  const [profession, setProfession] = useState("Nurse Practitioner");
+  const [showProfessionPicker, setShowProfessionPicker] = useState(false);
 
   const quickActions = [
-    { id: 'bookmarked', emoji: '🔖', title: 'Bookmarked', color: '#FF9500', route: '/bookmarked' },
-    { id: 'favorites', emoji: '❤️', title: 'Favorites', color: '#FF3B30', route: '/favorites' },
-    { id: 'ask-expert', emoji: '💬', title: 'Ask Expert', color: '#007AFF', route: '/chatbot' },
+    { 
+      title: "❤️ Favorites", 
+      route: "/favorites", 
+      color: "#FF3B30",
+      icon: "heart.fill"
+    },
+    { 
+      title: "🔖 Bookmarked", 
+      route: "/bookmarked", 
+      color: "#FF9500",
+      icon: "bookmark.fill"
+    },
+    { 
+      title: "💬 Ask Expert", 
+      route: "/(tabs)/(home)/chatbot", 
+      color: "#007AFF",
+      icon: "message.fill"
+    },
+    { 
+      title: "📊 Progress Report", 
+      route: "/progress-report", 
+      color: "#34C759",
+      icon: "chart.bar.fill"
+    }
   ];
+
+  const handleQuickAction = (route: string) => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    router.push(route as any);
+  };
+
+  const handleProfessionPress = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    setShowProfessionPicker(true);
+  };
+
+  const handleSelectProfession = (selectedProfession: string) => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    setProfession(selectedProfession);
+    setShowProfessionPicker(false);
+    console.log('Selected profession:', selectedProfession);
+    // TODO: Backend Integration - Save profession to user profile
+  };
 
   return (
     <SafeAreaView style={[styles.safeArea, { backgroundColor: theme.colors.background }]} edges={['top']}>
@@ -23,46 +77,95 @@ export default function ProfileScreen() {
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
       >
+        {/* User Information Section */}
         <GlassView style={styles.profileHeader} glassEffectStyle="regular">
           <IconSymbol ios_icon_name="person.circle.fill" android_material_icon_name="person" size={80} color={theme.colors.primary} />
-          <Text style={[styles.name, { color: theme.colors.text }]}>John Doe</Text>
-          <Text style={[styles.email, { color: theme.dark ? '#98989D' : '#666' }]}>john.doe@example.com</Text>
-        </GlassView>
-
-        <GlassView style={styles.section} glassEffectStyle="regular">
-          <View style={styles.infoRow}>
-            <IconSymbol ios_icon_name="phone.fill" android_material_icon_name="phone" size={20} color={theme.dark ? '#98989D' : '#666'} />
-            <Text style={[styles.infoText, { color: theme.colors.text }]}>+1 (555) 123-4567</Text>
-          </View>
-          <View style={styles.infoRow}>
-            <IconSymbol ios_icon_name="location.fill" android_material_icon_name="location-on" size={20} color={theme.dark ? '#98989D' : '#666'} />
-            <Text style={[styles.infoText, { color: theme.colors.text }]}>San Francisco, CA</Text>
-          </View>
-        </GlassView>
-
-        <Text style={[styles.sectionTitle, { color: theme.colors.text }]}>Quick Actions</Text>
-        
-        {quickActions.map((action) => (
-          <Pressable key={action.id} onPress={() => router.push(action.route as any)}>
-            <GlassView style={styles.quickActionCard} glassEffectStyle="regular">
-              <View style={[styles.quickActionIcon, { backgroundColor: action.color }]}>
-                <Text style={styles.emojiIcon}>{action.emoji}</Text>
-              </View>
-              <View style={styles.quickActionContent}>
-                <Text style={[styles.quickActionTitle, { color: theme.colors.text }]}>
-                  {action.emoji} {action.title}
-                </Text>
-              </View>
-              <IconSymbol 
-                ios_icon_name="chevron.right" 
-                android_material_icon_name="chevron-right" 
-                size={20} 
-                color={theme.dark ? '#98989D' : '#666'} 
-              />
+          <Text style={[styles.name, { color: theme.colors.text }]}>{name}</Text>
+          
+          {/* Profession Dropdown */}
+          <Pressable 
+            style={styles.professionButton}
+            onPress={handleProfessionPress}
+          >
+            <GlassView style={styles.professionButtonGlass} glassEffectStyle="regular">
+              <Text style={[styles.profession, { color: theme.dark ? '#98989D' : '#666' }]}>{profession}</Text>
+              <IconSymbol ios_icon_name="chevron.down" android_material_icon_name="arrow-drop-down" size={20} color={theme.dark ? '#98989D' : '#666'} />
             </GlassView>
           </Pressable>
-        ))}
+        </GlassView>
+
+        {/* Quick Actions Section */}
+        <View style={styles.quickActionsContainer}>
+          <Text style={[styles.sectionTitle, { color: theme.colors.text }]}>Quick Actions</Text>
+          <View style={styles.tilesGrid}>
+            {quickActions.map((action, index) => (
+              <Pressable
+                key={index}
+                onPress={() => handleQuickAction(action.route)}
+                style={({ pressed }) => [
+                  styles.tile,
+                  { opacity: pressed ? 0.7 : 1 }
+                ]}
+              >
+                <GlassView style={styles.tileGlass} glassEffectStyle="regular">
+                  <View style={[styles.iconContainer, { backgroundColor: action.color }]}>
+                    <Text style={styles.tileEmoji}>{action.title.split(' ')[0]}</Text>
+                  </View>
+                  <Text style={[styles.tileTitle, { color: theme.colors.text }]}>
+                    {action.title.substring(action.title.indexOf(' ') + 1)}
+                  </Text>
+                </GlassView>
+              </Pressable>
+            ))}
+          </View>
+        </View>
       </ScrollView>
+
+      {/* Profession Picker Modal */}
+      <Modal
+        visible={showProfessionPicker}
+        transparent
+        animationType="fade"
+        onRequestClose={() => setShowProfessionPicker(false)}
+      >
+        <Pressable 
+          style={styles.modalOverlay}
+          onPress={() => setShowProfessionPicker(false)}
+        >
+          <GlassView style={styles.modalContent} glassEffectStyle="regular">
+            <View style={styles.modalHeader}>
+              <Text style={[styles.modalTitle, { color: theme.colors.text }]}>Select Profession</Text>
+              <Pressable onPress={() => setShowProfessionPicker(false)}>
+                <IconSymbol ios_icon_name="xmark.circle.fill" android_material_icon_name="close" size={28} color={theme.dark ? '#98989D' : '#666'} />
+              </Pressable>
+            </View>
+            <ScrollView style={styles.professionList}>
+              {PROFESSIONS.map((prof, index) => (
+                <Pressable
+                  key={index}
+                  style={[
+                    styles.professionItem,
+                    profession === prof && { backgroundColor: theme.colors.primary + '20' },
+                    index < PROFESSIONS.length - 1 && { borderBottomWidth: 1, borderBottomColor: theme.dark ? '#333' : '#E5E5EA' }
+                  ]}
+                  onPress={() => handleSelectProfession(prof)}
+                >
+                  <Text style={[
+                    styles.professionItemText, 
+                    { color: theme.colors.text },
+                    profession === prof && { fontWeight: '600', color: theme.colors.primary }
+                  ]}>
+                    {prof}
+                  </Text>
+                  {profession === prof && (
+                    <IconSymbol ios_icon_name="checkmark" android_material_icon_name="check" size={20} color={theme.colors.primary} />
+                  )}
+                </Pressable>
+              ))}
+            </ScrollView>
+          </GlassView>
+        </Pressable>
+      </Modal>
     </SafeAreaView>
   );
 }
@@ -81,59 +184,101 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 12,
     padding: 32,
-    marginBottom: 16,
+    marginBottom: 24,
     gap: 12,
   },
   name: {
     fontSize: 24,
     fontWeight: 'bold',
   },
-  email: {
-    fontSize: 16,
+  professionButton: {
+    width: '100%',
   },
-  section: {
-    borderRadius: 12,
-    padding: 20,
-    gap: 12,
-    marginBottom: 24,
-  },
-  infoRow: {
+  professionButtonGlass: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
+    justifyContent: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 8,
+    gap: 8,
   },
-  infoText: {
+  profession: {
     fontSize: 16,
+  },
+  quickActionsContainer: {
+    marginTop: 8,
   },
   sectionTitle: {
     fontSize: 20,
     fontWeight: '600',
-    marginBottom: 12,
-    marginLeft: 4,
+    marginBottom: 16,
   },
-  quickActionCard: {
+  tilesGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 12,
+  },
+  tile: {
+    width: '48%',
+  },
+  tileGlass: {
     borderRadius: 12,
     padding: 16,
-    marginBottom: 12,
-    flexDirection: 'row',
     alignItems: 'center',
+    gap: 12,
   },
-  quickActionIcon: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+  iconContainer: {
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  tileEmoji: {
+    fontSize: 28,
+  },
+  tileTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 16,
+    padding: 20,
   },
-  emojiIcon: {
-    fontSize: 24,
+  modalContent: {
+    width: '100%',
+    maxWidth: 400,
+    maxHeight: '70%',
+    borderRadius: 16,
+    overflow: 'hidden',
   },
-  quickActionContent: {
-    flex: 1,
+  modalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#E5E5EA',
   },
-  quickActionTitle: {
-    fontSize: 18,
-    fontWeight: '600',
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  professionList: {
+    maxHeight: 400,
+  },
+  professionItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 16,
+  },
+  professionItemText: {
+    fontSize: 16,
   },
 });
