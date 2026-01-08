@@ -404,16 +404,6 @@ export default function AdminScreen() {
                   </View>
                 )}
               </View>
-
-              <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Topics Overview</Text>
-                {topics.map((topicName, index) => (
-                  <View key={index} style={styles.topicRow}>
-                    <Text style={styles.topicName}>{topicName}</Text>
-                    <Text style={styles.topicCount}>{getTopicStats(topicName)} cards</Text>
-                  </View>
-                ))}
-              </View>
             </>
           )}
 
@@ -736,24 +726,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '600',
     color: colors.error,
-  },
-  topicRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: colors.card,
-    padding: 16,
-    borderRadius: 8,
-    marginBottom: 8,
-  },
-  topicName: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: colors.text,
-  },
-  topicCount: {
-    fontSize: 14,
-    color: colors.textSecondary,
   },
   stressTestButton: {
     flexDirection: 'row',
