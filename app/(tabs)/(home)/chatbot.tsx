@@ -1060,7 +1060,7 @@ Let's begin your medical learning journey!`,
             {message.text}
           </Text>
           
-          {/* Source Attributions Section - PROMINENTLY DISPLAYED */}
+          {/* Source Attributions Section - PROMINENTLY DISPLAYED WITH CLICKABLE LINKS */}
           {message.isBot && message.sourceAttributions && message.sourceAttributions.length > 0 && (
             <View style={styles.sourceAttributionsContainer}>
               <View style={styles.sourceAttributionsHeader}>
@@ -1071,14 +1071,18 @@ Let's begin your medical learning journey!`,
                   color={colors.primary}
                 />
                 <Text style={styles.sourceAttributionsTitle}>
-                  📖 Original Sources Referenced
+                  📖 Click Links Below to Access Original Guidelines
                 </Text>
               </View>
               {message.sourceAttributions.map((attribution, index) => (
                 <Pressable
                   key={index}
-                  style={styles.sourceAttributionItem}
-                  onPress={() => handleSourceAttributionPress(attribution.url)}
+                  style={[
+                    styles.sourceAttributionItem,
+                    attribution.url && styles.sourceAttributionItemClickable
+                  ]}
+                  onPress={() => attribution.url && handleSourceAttributionPress(attribution.url)}
+                  disabled={!attribution.url}
                 >
                   <View style={styles.sourceAttributionNumber}>
                     <Text style={styles.sourceAttributionNumberText}>{index + 1}</Text>
@@ -1091,10 +1095,10 @@ Let's begin your medical learning journey!`,
                         <IconSymbol
                           ios_icon_name="link"
                           android_material_icon_name="link"
-                          size={14}
-                          color={colors.primary}
+                          size={16}
+                          color="#FFFFFF"
                         />
-                        <Text style={styles.sourceAttributionLink}>
+                        <Text style={styles.sourceAttributionLinkText}>
                           {attribution.linkText || 'View Source'}
                         </Text>
                       </View>
@@ -1107,14 +1111,14 @@ Let's begin your medical learning journey!`,
                     <IconSymbol
                       ios_icon_name="arrow.right.circle.fill"
                       android_material_icon_name="arrow-forward"
-                      size={20}
+                      size={24}
                       color={colors.primary}
                     />
                   )}
                 </Pressable>
               ))}
               <Text style={styles.sourceAttributionFootnote}>
-                *For complete clinical guidance, consult the original source.*
+                💡 Tap any link above to open the official guideline website
               </Text>
             </View>
           )}
@@ -1607,9 +1611,9 @@ const styles = StyleSheet.create({
   sourceAttributionsContainer: {
     marginTop: 20,
     paddingTop: 20,
-    borderTopWidth: 2,
+    borderTopWidth: 3,
     borderTopColor: colors.primary,
-    backgroundColor: colors.highlight,
+    backgroundColor: '#E8F5E9',
     padding: 16,
     borderRadius: 12,
   },
@@ -1623,28 +1627,35 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '700',
     color: colors.text,
+    flex: 1,
   },
   sourceAttributionItem: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     gap: 12,
-    padding: 12,
+    padding: 14,
     marginBottom: 12,
-    borderRadius: 10,
+    borderRadius: 12,
     backgroundColor: colors.background,
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: colors.border,
   },
-  sourceAttributionNumber: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
+  sourceAttributionItemClickable: {
     backgroundColor: colors.primary,
+    borderColor: colors.primary,
+    boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.15)',
+    elevation: 3,
+  },
+  sourceAttributionNumber: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: '#4CAF50',
     alignItems: 'center',
     justifyContent: 'center',
   },
   sourceAttributionNumberText: {
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: '700',
     color: '#FFFFFF',
   },
@@ -1652,38 +1663,45 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   sourceAttributionName: {
-    fontSize: 14,
+    fontSize: 15,
     fontWeight: '700',
     color: colors.text,
-    marginBottom: 4,
+    marginBottom: 6,
   },
   sourceAttributionPhrase: {
     fontSize: 13,
     color: colors.textSecondary,
     lineHeight: 18,
-    marginBottom: 6,
+    marginBottom: 8,
   },
   sourceAttributionLinkContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
-    marginBottom: 4,
+    gap: 6,
+    backgroundColor: '#4CAF50',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 8,
+    alignSelf: 'flex-start',
+    marginBottom: 6,
   },
-  sourceAttributionLink: {
-    fontSize: 12,
-    fontWeight: '600',
-    color: colors.primary,
+  sourceAttributionLinkText: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#FFFFFF',
   },
   sourceAttributionYear: {
-    fontSize: 11,
-    color: colors.textSecondary,
-  },
-  sourceAttributionFootnote: {
     fontSize: 12,
     color: colors.textSecondary,
-    fontStyle: 'italic',
-    marginTop: 8,
+    fontWeight: '600',
+  },
+  sourceAttributionFootnote: {
+    fontSize: 13,
+    color: '#2E7D32',
+    fontWeight: '600',
+    marginTop: 12,
     textAlign: 'center',
+    fontStyle: 'italic',
   },
   globalFooterContainer: {
     marginTop: 20,
