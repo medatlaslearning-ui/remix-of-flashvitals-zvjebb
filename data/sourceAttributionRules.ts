@@ -18,9 +18,10 @@
  * • Do NOT embed proprietary text
  * • Encourage users to consult the original reference for full details
  * 
- * GLOBAL FOOTER (optional but recommended):
- * "This response is an original educational summary based on authoritative medical references. 
- * For complete clinical guidance, consult the original source."
+ * GLOBAL FOOTER (MANDATORY for all LMM responses):
+ * "This response is an original educational synthesis based on information from authoritative medical references. 
+ * It is provided for learning purposes and does not replace professional clinical judgment. 
+ * For full clinical guidance, consult the original source(s) linked below."
  */
 
 import type { Reference } from './medicalReferences';
@@ -225,12 +226,15 @@ export const CONSULTATION_PHRASES = [
 ];
 
 /**
- * Global footer template
+ * UPDATED Global footer template - MANDATORY for all LMM responses
+ * This footer provides clear educational disclaimer and directs users to original sources
  */
 export const GLOBAL_FOOTER = 
   '\n\n---\n\n' +
-  '*This response is an original educational summary based on authoritative medical references. ' +
-  'For complete clinical guidance, consult the original source.*';
+  '**📚 Educational Disclaimer:**\n\n' +
+  '*This response is an original educational synthesis based on information from authoritative medical references. ' +
+  'It is provided for learning purposes and does not replace professional clinical judgment. ' +
+  'For full clinical guidance, consult the original source(s) linked below.*';
 
 // ============================================================================
 // PROPRIETARY TEXT DETECTION
@@ -338,24 +342,25 @@ export function generateReferenceAttribution(reference: Reference): SourceAttrib
 // ============================================================================
 
 /**
- * Format source attributions as text
+ * Format source attributions as text with clear section header
  */
 export function formatAttributions(attributions: SourceAttribution[]): string {
   if (attributions.length === 0) {
     return '';
   }
   
-  let formatted = '\n\n**Sources:**\n\n';
+  let formatted = '\n\n**📖 Original Sources Referenced:**\n\n';
   
   attributions.forEach((attribution, index) => {
-    formatted += `${index + 1}. ${attribution.attributionPhrase}\n`;
+    formatted += `${index + 1}. **${attribution.sourceName}**\n`;
+    formatted += `   ${attribution.attributionPhrase}\n`;
     
     if (attribution.url) {
-      formatted += `   [${attribution.linkText || 'View Source'}](${attribution.url})\n`;
+      formatted += `   🔗 [${attribution.linkText || 'View Source'}](${attribution.url})\n`;
     }
     
     if (attribution.year) {
-      formatted += `   (${attribution.year})\n`;
+      formatted += `   📅 Year: ${attribution.year}\n`;
     }
     
     formatted += '\n';
@@ -369,11 +374,11 @@ export function formatAttributions(attributions: SourceAttribution[]): string {
 }
 
 /**
- * Add global footer to response
+ * Add global footer to response - MANDATORY for all LMM responses
  */
 export function addGlobalFooter(responseText: string): string {
   // Check if footer already exists
-  if (responseText.includes(GLOBAL_FOOTER.trim())) {
+  if (responseText.includes('This response is an original educational synthesis')) {
     return responseText;
   }
   
@@ -439,6 +444,7 @@ export function validateSourceAttribution(
   const hasDirectLinks = 
     responseText.includes('[View') ||
     responseText.includes('](http') ||
+    responseText.includes('**📖 Original Sources Referenced:**') ||
     responseText.includes('**Sources:**');
   
   if (hasAttributions && !hasDirectLinks) {
@@ -467,8 +473,14 @@ export function validateSourceAttribution(
     warnings.push('INFO: Response could benefit from consultation encouragement');
   }
   
-  // Check for global footer
-  const hasGlobalFooter = responseText.includes(GLOBAL_FOOTER.trim());
+  // Check for global footer - MANDATORY
+  const hasGlobalFooter = 
+    responseText.includes('This response is an original educational synthesis') ||
+    responseText.includes('This response is an original educational summary');
+  
+  if (!hasGlobalFooter && hasAttributions) {
+    warnings.push('WARNING: Response missing mandatory global footer');
+  }
   
   // Calculate validation score
   let score = 100;
@@ -477,12 +489,13 @@ export function validateSourceAttribution(
   if (!hasDirectLinks && hasAttributions) score -= 30;
   if (hasProprietaryText) score -= 50; // Critical penalty
   if (!encouragesConsultation && hasAttributions) score -= 10;
+  if (!hasGlobalFooter && hasAttributions) score -= 20; // Penalty for missing footer
   
   // Bonus for good practices
   if (hasProperAttribution && hasAttributions) score += 10;
   if (hasDirectLinks && hasAttributions) score += 10;
   if (encouragesConsultation && hasAttributions) score += 5;
-  if (hasGlobalFooter) score += 5;
+  if (hasGlobalFooter) score += 10;
   
   score = Math.max(0, Math.min(100, score));
   
@@ -490,6 +503,7 @@ export function validateSourceAttribution(
     hasProperAttribution &&
     !hasProprietaryText &&
     (hasDirectLinks || !hasAttributions) &&
+    hasGlobalFooter &&
     score >= 70;
   
   const validation: AttributionValidation = {
@@ -516,6 +530,7 @@ export function validateSourceAttribution(
 
 /**
  * Apply source attribution rules to response text
+ * ENSURES: Global footer and source list are ALWAYS added to LMM responses
  */
 export function applySourceAttributionRules(
   responseText: string,
@@ -532,17 +547,17 @@ export function applySourceAttributionRules(
   }
   
   // Add formatted attributions if not already present
-  if (attributions.length > 0 && !processedText.includes('**Sources:**')) {
+  if (attributions.length > 0 && !processedText.includes('**📖 Original Sources Referenced:**') && !processedText.includes('**Sources:**')) {
     const formattedAttributions = formatAttributions(attributions);
     processedText += formattedAttributions;
   }
   
-  // Add global footer if requested
+  // Add global footer if requested - MANDATORY for all LMM responses
   if (includeGlobalFooter) {
     processedText = addGlobalFooter(processedText);
   }
   
-  console.log('[GUARDRAIL #6] Rules applied successfully');
+  console.log('[GUARDRAIL #6] Rules applied successfully - footer and sources added');
   
   return processedText;
 }
@@ -669,50 +684,50 @@ export async function runSourceAttributionStressTest(): Promise<{
   
   const testCases = [
     {
-      testName: 'Proper Merck Manual attribution',
-      responseText: 'Based on information from the Merck Manual (Professional Edition): Heart Failure\n\n**Sources:**\n\n1. Merck Manual (Professional Edition)\n   [View Merck Manual](https://www.merckmanuals.com/professional)\n\n*For complete clinical guidance, consult the original source.*',
+      testName: 'Proper Merck Manual attribution with footer',
+      responseText: 'Based on information from the Merck Manual (Professional Edition): Heart Failure\n\n**📖 Original Sources Referenced:**\n\n1. **Merck Manual (Professional Edition)**\n   Based on information from the Merck Manual (Professional Edition): Heart Failure\n   🔗 [View Merck Manual](https://www.merckmanuals.com/professional)\n\n*For complete clinical guidance, consult the original source.*\n\n---\n\n**📚 Educational Disclaimer:**\n\n*This response is an original educational synthesis based on information from authoritative medical references. It is provided for learning purposes and does not replace professional clinical judgment. For full clinical guidance, consult the original source(s) linked below.*',
       hasAttributions: true,
       shouldBeValid: true,
     },
     {
-      testName: 'Proper guideline attribution',
-      responseText: 'According to current ACC guidelines: Heart Failure Management\n\n**Sources:**\n\n1. ACC Guidelines\n   [View ACC Guidelines](https://www.acc.org)\n\n*For complete clinical guidance, consult the original source.*',
+      testName: 'Proper guideline attribution with footer',
+      responseText: 'According to current ACC guidelines: Heart Failure Management\n\n**📖 Original Sources Referenced:**\n\n1. **ACC Guidelines**\n   According to current ACC guidelines: Heart Failure Management\n   🔗 [View ACC Guidelines](https://www.acc.org)\n\n*For complete clinical guidance, consult the original source.*\n\n---\n\n**📚 Educational Disclaimer:**\n\n*This response is an original educational synthesis based on information from authoritative medical references. It is provided for learning purposes and does not replace professional clinical judgment. For full clinical guidance, consult the original source(s) linked below.*',
       hasAttributions: true,
       shouldBeValid: true,
     },
     {
-      testName: 'Multiple source attributions',
-      responseText: 'Based on information from the Merck Manual (Professional Edition) and according to current AHA guidelines.\n\n**Sources:**\n\n1. Merck Manual (Professional Edition)\n2. AHA Guidelines\n\n*For complete clinical guidance, consult the original source.*',
+      testName: 'Multiple source attributions with footer',
+      responseText: 'Based on information from the Merck Manual (Professional Edition) and according to current AHA guidelines.\n\n**📖 Original Sources Referenced:**\n\n1. **Merck Manual (Professional Edition)**\n2. **AHA Guidelines**\n\n*For complete clinical guidance, consult the original source.*\n\n---\n\n**📚 Educational Disclaimer:**\n\n*This response is an original educational synthesis based on information from authoritative medical references. It is provided for learning purposes and does not replace professional clinical judgment. For full clinical guidance, consult the original source(s) linked below.*',
       hasAttributions: true,
       shouldBeValid: true,
     },
     {
-      testName: 'Attribution with global footer',
-      responseText: 'Based on information from the Merck Manual (Professional Edition).\n\n**Sources:**\n\n1. Merck Manual\n\n*For complete clinical guidance, consult the original source.*\n\n---\n\n*This response is an original educational summary based on authoritative medical references. For complete clinical guidance, consult the original source.*',
+      testName: 'Missing footer (INVALID)',
+      responseText: 'Based on information from the Merck Manual (Professional Edition).\n\n**📖 Original Sources Referenced:**\n\n1. Merck Manual\n\n*For complete clinical guidance, consult the original source.*',
       hasAttributions: true,
-      shouldBeValid: true,
+      shouldBeValid: false,
     },
     {
       testName: 'Missing attribution (INVALID)',
-      responseText: 'Heart failure is a complex condition...',
+      responseText: 'Heart failure is a complex condition...\n\n---\n\n**📚 Educational Disclaimer:**\n\n*This response is an original educational synthesis based on information from authoritative medical references. It is provided for learning purposes and does not replace professional clinical judgment. For full clinical guidance, consult the original source(s) linked below.*',
       hasAttributions: true,
       shouldBeValid: false,
     },
     {
       testName: 'Missing direct links (INVALID)',
-      responseText: 'Based on information from the Merck Manual (Professional Edition): Heart Failure',
+      responseText: 'Based on information from the Merck Manual (Professional Edition): Heart Failure\n\n---\n\n**📚 Educational Disclaimer:**\n\n*This response is an original educational synthesis based on information from authoritative medical references. It is provided for learning purposes and does not replace professional clinical judgment. For full clinical guidance, consult the original source(s) linked below.*',
       hasAttributions: true,
       shouldBeValid: false,
     },
     {
       testName: 'Proprietary text embedding (INVALID)',
-      responseText: 'Copyright 2023. All rights reserved. Based on information from the Merck Manual.',
+      responseText: 'Copyright 2023. All rights reserved. Based on information from the Merck Manual.\n\n---\n\n**📚 Educational Disclaimer:**\n\n*This response is an original educational synthesis based on information from authoritative medical references. It is provided for learning purposes and does not replace professional clinical judgment. For full clinical guidance, consult the original source(s) linked below.*',
       hasAttributions: true,
       shouldBeValid: false,
     },
     {
       testName: 'Direct quote from guideline (INVALID)',
-      responseText: 'According to the guideline text: "Patients should receive..."',
+      responseText: 'According to the guideline text: "Patients should receive..."\n\n---\n\n**📚 Educational Disclaimer:**\n\n*This response is an original educational synthesis based on information from authoritative medical references. It is provided for learning purposes and does not replace professional clinical judgment. For full clinical guidance, consult the original source(s) linked below.*',
       hasAttributions: true,
       shouldBeValid: false,
     },
@@ -771,7 +786,8 @@ export const SOURCE_ATTRIBUTION_RULES_SUMMARY = {
     'Provide direct links to original sources when available',
     'Do NOT embed proprietary text',
     'Encourage users to consult the original reference for full details',
-    'Include global footer (optional but recommended)',
+    'Include global footer (MANDATORY for all LMM responses)',
+    'List all original sources referenced at the end of response',
   ],
   
   attributionPhrases: [
@@ -795,5 +811,7 @@ export const SOURCE_ATTRIBUTION_RULES_SUMMARY = {
     'Avoids copyright infringement',
     'Encourages evidence-based practice',
     'Maintains transparency about information sources',
+    'Provides clear educational disclaimer',
+    'Directs users to consult original sources for complete guidance',
   ],
 };
