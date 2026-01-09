@@ -59,6 +59,7 @@ import { useFeedback } from '@/app/integrations/supabase/hooks/useFeedback';
 import { useAuth } from '@/app/integrations/supabase/hooks/useAuth';
 import { validateFeedback, type UserFeedback } from '@/data/supabaseUsageRules';
 import { getIconLegend } from '@/data/semanticIconSystem';
+import type { SourceAttribution } from '@/data/sourceAttributionRules';
 
 interface Message {
   id: string;
@@ -104,6 +105,7 @@ interface Message {
   feedbackReversible?: boolean;
   followUpQuestions?: FollowUpQuestion[];
   system?: string;
+  sourceAttributions?: SourceAttribution[];
   synthesizerMetadata?: {
     quality: number;
     processingTime: number;
@@ -602,6 +604,7 @@ Let's begin your medical learning journey!`,
           hasConsistencyCheck: synthesizerOutput.metadata.hasConsistencyCheck,
           semanticIconsUsed: synthesizerOutput.metadata.openAI?.semanticIconsUsed,
           semanticIconCount: synthesizerOutput.metadata.openAI?.semanticIconCount,
+          attributions: synthesizerOutput.metadata.attributions?.length || 0,
         });
         
         // Search all data sources for additional context
@@ -703,6 +706,7 @@ Let's begin your medical learning journey!`,
           feedbackReversible: true,
           followUpQuestions,
           system,
+          sourceAttributions: synthesizerOutput.metadata.attributions,
           synthesizerMetadata: {
             quality: synthesizerOutput.quality,
             processingTime: synthesizerOutput.metadata.processingTime,
@@ -1020,6 +1024,18 @@ Let's begin your medical learning journey!`,
     setWebViewVisible(true);
   };
 
+  const handleSourceAttributionPress = (url?: string) => {
+    if (!url) {
+      Alert.alert('Info', 'No direct link available for this source');
+      return;
+    }
+
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    console.log('[CHATBOT] Opening source attribution:', url);
+    
+    handleWebsitePress(url);
+  };
+
   const renderMessage = (message: Message) => {
     return (
       <View
@@ -1043,6 +1059,85 @@ Let's begin your medical learning journey!`,
           >
             {message.text}
           </Text>
+          
+          {/* Source Attributions Section - PROMINENTLY DISPLAYED */}
+          {message.isBot && message.sourceAttributions && message.sourceAttributions.length > 0 && (
+            <View style={styles.sourceAttributionsContainer}>
+              <View style={styles.sourceAttributionsHeader}>
+                <IconSymbol
+                  ios_icon_name="book.fill"
+                  android_material_icon_name="menu-book"
+                  size={20}
+                  color={colors.primary}
+                />
+                <Text style={styles.sourceAttributionsTitle}>
+                  📖 Original Sources Referenced
+                </Text>
+              </View>
+              {message.sourceAttributions.map((attribution, index) => (
+                <Pressable
+                  key={index}
+                  style={styles.sourceAttributionItem}
+                  onPress={() => handleSourceAttributionPress(attribution.url)}
+                >
+                  <View style={styles.sourceAttributionNumber}>
+                    <Text style={styles.sourceAttributionNumberText}>{index + 1}</Text>
+                  </View>
+                  <View style={styles.sourceAttributionContent}>
+                    <Text style={styles.sourceAttributionName}>{attribution.sourceName}</Text>
+                    <Text style={styles.sourceAttributionPhrase}>{attribution.attributionPhrase}</Text>
+                    {attribution.url && (
+                      <View style={styles.sourceAttributionLinkContainer}>
+                        <IconSymbol
+                          ios_icon_name="link"
+                          android_material_icon_name="link"
+                          size={14}
+                          color={colors.primary}
+                        />
+                        <Text style={styles.sourceAttributionLink}>
+                          {attribution.linkText || 'View Source'}
+                        </Text>
+                      </View>
+                    )}
+                    {attribution.year && (
+                      <Text style={styles.sourceAttributionYear}>📅 Year: {attribution.year}</Text>
+                    )}
+                  </View>
+                  {attribution.url && (
+                    <IconSymbol
+                      ios_icon_name="arrow.right.circle.fill"
+                      android_material_icon_name="arrow-forward"
+                      size={20}
+                      color={colors.primary}
+                    />
+                  )}
+                </Pressable>
+              ))}
+              <Text style={styles.sourceAttributionFootnote}>
+                *For complete clinical guidance, consult the original source.*
+              </Text>
+            </View>
+          )}
+
+          {/* Global Footer - PROMINENTLY DISPLAYED */}
+          {message.isBot && message.sourceAttributions && message.sourceAttributions.length > 0 && (
+            <View style={styles.globalFooterContainer}>
+              <View style={styles.globalFooterHeader}>
+                <IconSymbol
+                  ios_icon_name="info.circle.fill"
+                  android_material_icon_name="info"
+                  size={20}
+                  color="#F39C12"
+                />
+                <Text style={styles.globalFooterTitle}>📚 Educational Disclaimer</Text>
+              </View>
+              <Text style={styles.globalFooterText}>
+                This response is an original educational synthesis based on information from authoritative medical references. 
+                It is provided for learning purposes and does not replace professional clinical judgment. 
+                For full clinical guidance, consult the original source(s) linked above.
+              </Text>
+            </View>
+          )}
           
           {/* Synthesizer Metadata */}
           {message.isBot && message.synthesizerMetadata && (
@@ -1507,6 +1602,113 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: colors.textSecondary,
     marginTop: 8,
+    fontStyle: 'italic',
+  },
+  sourceAttributionsContainer: {
+    marginTop: 20,
+    paddingTop: 20,
+    borderTopWidth: 2,
+    borderTopColor: colors.primary,
+    backgroundColor: colors.highlight,
+    padding: 16,
+    borderRadius: 12,
+  },
+  sourceAttributionsHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 16,
+  },
+  sourceAttributionsTitle: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: colors.text,
+  },
+  sourceAttributionItem: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 12,
+    padding: 12,
+    marginBottom: 12,
+    borderRadius: 10,
+    backgroundColor: colors.background,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  sourceAttributionNumber: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: colors.primary,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  sourceAttributionNumberText: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#FFFFFF',
+  },
+  sourceAttributionContent: {
+    flex: 1,
+  },
+  sourceAttributionName: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: colors.text,
+    marginBottom: 4,
+  },
+  sourceAttributionPhrase: {
+    fontSize: 13,
+    color: colors.textSecondary,
+    lineHeight: 18,
+    marginBottom: 6,
+  },
+  sourceAttributionLinkContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    marginBottom: 4,
+  },
+  sourceAttributionLink: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: colors.primary,
+  },
+  sourceAttributionYear: {
+    fontSize: 11,
+    color: colors.textSecondary,
+  },
+  sourceAttributionFootnote: {
+    fontSize: 12,
+    color: colors.textSecondary,
+    fontStyle: 'italic',
+    marginTop: 8,
+    textAlign: 'center',
+  },
+  globalFooterContainer: {
+    marginTop: 20,
+    paddingTop: 20,
+    borderTopWidth: 2,
+    borderTopColor: '#F39C12',
+    backgroundColor: '#FFF9E6',
+    padding: 16,
+    borderRadius: 12,
+  },
+  globalFooterHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 12,
+  },
+  globalFooterTitle: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: '#F39C12',
+  },
+  globalFooterText: {
+    fontSize: 13,
+    color: colors.text,
+    lineHeight: 20,
     fontStyle: 'italic',
   },
   synthesizerMetadata: {
