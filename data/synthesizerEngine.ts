@@ -83,6 +83,7 @@
  * - CRITICAL FIX: Quality metric properly calculated and preserved throughout the entire flow
  * - CRITICAL FIX: Consistency Check metric properly calculated and flows through to UI ✓✓✓
  * - CRITICAL FIX: Validation penalties only applied for SEVERE failures, not minor issues
+ * - NEW: Guideline organization website links included in source attributions
  */
 
 import { searchMerckManualKnowledge, type MerckManualEntry } from './merckManualKnowledge';
@@ -146,6 +147,36 @@ import {
   validateOpenAIResponse,
   type OpenAILanguageGenerationResult,
 } from './openAIIntegration';
+
+// ============================================================================
+// GUIDELINE ORGANIZATION WEBSITE URLS
+// ============================================================================
+
+/**
+ * Official guideline organization website URLs
+ * These are displayed to users so they can access the original guideline sources
+ */
+export const GUIDELINE_ORGANIZATION_URLS: { [key: string]: string } = {
+  'ACC': 'https://www.acc.org/guidelines',
+  'AHA': 'https://www.heart.org/en/health-topics/consumer-healthcare/what-is-cardiovascular-disease/aha-esc-guidelines',
+  'ESC': 'https://www.escardio.org/Guidelines',
+  'HFSA': 'https://www.hfsa.org/guidelines',
+  'HRS': 'https://www.hrsonline.org/guidance/clinical-resources/guidelines-standards',
+  'SCAI': 'https://scai.org/clinical-resources/guidelines',
+  'EACTS': 'https://www.eacts.org/guidelines/',
+  'ATS': 'https://www.thoracic.org/statements/index.php',
+  'CHEST': 'https://www.chestnet.org/Guidelines-and-Resources',
+  'SCCM': 'https://www.sccm.org/Clinical-Resources/Guidelines',
+  'KDIGO': 'https://kdigo.org/guidelines/',
+  'NIDDK': 'https://www.niddk.nih.gov/health-information',
+  'ACG': 'https://gi.org/clinical-guidelines/',
+  'ADA': 'https://professional.diabetes.org/content-page/practice-guidelines-resources',
+  'Endocrine Society': 'https://www.endocrine.org/clinical-practice-guidelines',
+  'NCCN': 'https://www.nccn.org/guidelines/category_1',
+  'IDSA': 'https://www.idsociety.org/practice-guideline/practice-guidelines/',
+  'ASA': 'https://www.stroke.org/en/professionals/stroke-guidelines',
+  'ACS': 'https://www.facs.org/quality-programs/trauma/tqp/center-programs/vrc/resources/',
+};
 
 // ============================================================================
 // GUARDRAIL #3: GUIDELINE USAGE RULES
@@ -1245,6 +1276,7 @@ export interface SynthesizedResponse {
  * CRITICAL FIX: Quality properly preserved through validation steps
  * CRITICAL FIX: Consistency metrics properly calculated and stored
  * CRITICAL FIX: Only apply penalties for SEVERE validation failures (score < 40)
+ * NEW: Generate guideline organization website links in source attributions
  */
 export function synthesizeResponse(synthesizedData: SynthesizedData): SynthesizedResponse {
   console.log('[VALVE 3] Synthesizing response');
@@ -1575,6 +1607,7 @@ function hasGuidelines(knowledge: CoreKnowledge): boolean {
 
 /**
  * Generate response from guidelines - WITH GUARDRAIL #3, #4, & #6
+ * NEW: Includes guideline organization website links in attributions
  */
 function generateGuidelineResponse(knowledge: CoreKnowledge, query: ProcessedQuery): { text: string; attributions: SourceAttribution[] } {
   let response = '**Clinical Practice Guidelines**\n\n';
@@ -1585,13 +1618,14 @@ function generateGuidelineResponse(knowledge: CoreKnowledge, query: ProcessedQue
   
   // GUARDRAIL #4: Summarize at educational level (no direct copying)
   // GUARDRAIL #6: Add proper source attribution
+  // NEW: Add guideline organization website links
   if (knowledge.accGuidelines.length > 0) {
     const guideline = knowledge.accGuidelines[0];
     response += `**${guideline.topic}** (ACC Guidelines)\n\n`;
     response += `According to current practice guidelines, the approach to ${guideline.topic.toLowerCase()} emphasizes evidence-based management strategies. `;
     response += `The key recommendations focus on optimizing patient outcomes through systematic evaluation and treatment.\n\n`;
     
-    attributions.push(generateGuidelineAttribution('ACC', guideline.topic, 'https://www.acc.org/guidelines'));
+    attributions.push(generateGuidelineAttribution('ACC', guideline.topic, GUIDELINE_ORGANIZATION_URLS['ACC'], guideline.year));
   }
   
   if (knowledge.ahaGuidelines.length > 0) {
@@ -1600,7 +1634,143 @@ function generateGuidelineResponse(knowledge: CoreKnowledge, query: ProcessedQue
     response += `Current guidelines suggest that management of ${guideline.topic.toLowerCase()} should be individualized based on patient characteristics and risk factors. `;
     response += `The recommendations emphasize a comprehensive approach to care.\n\n`;
     
-    attributions.push(generateGuidelineAttribution('AHA', guideline.topic, 'https://www.heart.org/guidelines'));
+    attributions.push(generateGuidelineAttribution('AHA', guideline.topic, GUIDELINE_ORGANIZATION_URLS['AHA'], guideline.year));
+  }
+  
+  if (knowledge.escGuidelines.length > 0) {
+    const guideline = knowledge.escGuidelines[0];
+    response += `**${guideline.topic}** (ESC Guidelines)\n\n`;
+    response += `European guidelines recommend a structured approach to ${guideline.topic.toLowerCase()} with emphasis on evidence-based interventions.\n\n`;
+    
+    attributions.push(generateGuidelineAttribution('ESC', guideline.topic, GUIDELINE_ORGANIZATION_URLS['ESC'], guideline.year));
+  }
+  
+  if (knowledge.hfsaGuidelines.length > 0) {
+    const guideline = knowledge.hfsaGuidelines[0];
+    response += `**${guideline.topic}** (HFSA Guidelines)\n\n`;
+    response += `Heart Failure Society guidelines emphasize comprehensive management strategies for ${guideline.topic.toLowerCase()}.\n\n`;
+    
+    attributions.push(generateGuidelineAttribution('HFSA', guideline.topic, GUIDELINE_ORGANIZATION_URLS['HFSA'], guideline.year));
+  }
+  
+  if (knowledge.hrsGuidelines.length > 0) {
+    const guideline = knowledge.hrsGuidelines[0];
+    response += `**${guideline.topic}** (HRS Guidelines)\n\n`;
+    response += `Heart Rhythm Society guidelines provide evidence-based recommendations for ${guideline.topic.toLowerCase()}.\n\n`;
+    
+    attributions.push(generateGuidelineAttribution('HRS', guideline.topic, GUIDELINE_ORGANIZATION_URLS['HRS'], guideline.year));
+  }
+  
+  if (knowledge.scaiGuidelines.length > 0) {
+    const guideline = knowledge.scaiGuidelines[0];
+    response += `**${guideline.topic}** (SCAI Guidelines)\n\n`;
+    response += `Society for Cardiovascular Angiography and Interventions guidelines recommend systematic approaches to ${guideline.topic.toLowerCase()}.\n\n`;
+    
+    attributions.push(generateGuidelineAttribution('SCAI', guideline.topic, GUIDELINE_ORGANIZATION_URLS['SCAI'], guideline.year));
+  }
+  
+  if (knowledge.eactsGuidelines.length > 0) {
+    const guideline = knowledge.eactsGuidelines[0];
+    response += `**${guideline.topic}** (EACTS Guidelines)\n\n`;
+    response += `European Association for Cardio-Thoracic Surgery guidelines provide comprehensive recommendations for ${guideline.topic.toLowerCase()}.\n\n`;
+    
+    attributions.push(generateGuidelineAttribution('EACTS', guideline.topic, GUIDELINE_ORGANIZATION_URLS['EACTS'], guideline.year));
+  }
+  
+  if (knowledge.atsGuidelines.length > 0) {
+    const guideline = knowledge.atsGuidelines[0];
+    response += `**${guideline.topic}** (ATS Guidelines)\n\n`;
+    response += `American Thoracic Society guidelines recommend evidence-based approaches to ${guideline.topic.toLowerCase()}.\n\n`;
+    
+    attributions.push(generateGuidelineAttribution('ATS', guideline.topic, GUIDELINE_ORGANIZATION_URLS['ATS'], guideline.year));
+  }
+  
+  if (knowledge.chestGuidelines.length > 0) {
+    const guideline = knowledge.chestGuidelines[0];
+    response += `**${guideline.topic}** (CHEST Guidelines)\n\n`;
+    response += `CHEST guidelines provide comprehensive recommendations for ${guideline.topic.toLowerCase()}.\n\n`;
+    
+    attributions.push(generateGuidelineAttribution('CHEST', guideline.topic, GUIDELINE_ORGANIZATION_URLS['CHEST'], guideline.year));
+  }
+  
+  if (knowledge.sccmGuidelines.length > 0) {
+    const guideline = knowledge.sccmGuidelines[0];
+    response += `**${guideline.topic}** (SCCM Guidelines)\n\n`;
+    response += `Society of Critical Care Medicine guidelines emphasize evidence-based management of ${guideline.topic.toLowerCase()}.\n\n`;
+    
+    attributions.push(generateGuidelineAttribution('SCCM', guideline.topic, GUIDELINE_ORGANIZATION_URLS['SCCM'], guideline.year));
+  }
+  
+  if (knowledge.kdigoGuidelines.length > 0) {
+    const guideline = knowledge.kdigoGuidelines[0];
+    response += `**${guideline.topic}** (KDIGO Guidelines)\n\n`;
+    response += `Kidney Disease: Improving Global Outcomes guidelines provide comprehensive recommendations for ${guideline.topic.toLowerCase()}.\n\n`;
+    
+    attributions.push(generateGuidelineAttribution('KDIGO', guideline.topic, GUIDELINE_ORGANIZATION_URLS['KDIGO'], guideline.year));
+  }
+  
+  if (knowledge.niddkGuidelines.length > 0) {
+    const guideline = knowledge.niddkGuidelines[0];
+    response += `**${guideline.topic}** (NIDDK Guidelines)\n\n`;
+    response += `National Institute of Diabetes and Digestive and Kidney Diseases guidelines recommend evidence-based approaches to ${guideline.topic.toLowerCase()}.\n\n`;
+    
+    attributions.push(generateGuidelineAttribution('NIDDK', guideline.topic, GUIDELINE_ORGANIZATION_URLS['NIDDK'], guideline.year));
+  }
+  
+  if (knowledge.acgGuidelines.length > 0) {
+    const guideline = knowledge.acgGuidelines[0];
+    response += `**${guideline.topic}** (ACG Guidelines)\n\n`;
+    response += `American College of Gastroenterology guidelines provide comprehensive recommendations for ${guideline.topic.toLowerCase()}.\n\n`;
+    
+    attributions.push(generateGuidelineAttribution('ACG', guideline.topic, GUIDELINE_ORGANIZATION_URLS['ACG'], guideline.year));
+  }
+  
+  if (knowledge.adaGuidelines.length > 0) {
+    const guideline = knowledge.adaGuidelines[0];
+    response += `**${guideline.topic}** (ADA Guidelines)\n\n`;
+    response += `American Diabetes Association guidelines recommend evidence-based management strategies for ${guideline.topic.toLowerCase()}.\n\n`;
+    
+    attributions.push(generateGuidelineAttribution('ADA', guideline.topic, GUIDELINE_ORGANIZATION_URLS['ADA'], guideline.year));
+  }
+  
+  if (knowledge.endocrineGuidelines.length > 0) {
+    const guideline = knowledge.endocrineGuidelines[0];
+    response += `**${guideline.topic}** (Endocrine Society Guidelines)\n\n`;
+    response += `Endocrine Society guidelines provide comprehensive recommendations for ${guideline.topic.toLowerCase()}.\n\n`;
+    
+    attributions.push(generateGuidelineAttribution('Endocrine Society', guideline.topic, GUIDELINE_ORGANIZATION_URLS['Endocrine Society'], guideline.year));
+  }
+  
+  if (knowledge.nccnGuidelines.length > 0) {
+    const guideline = knowledge.nccnGuidelines[0];
+    response += `**${guideline.topic}** (NCCN Guidelines)\n\n`;
+    response += `National Comprehensive Cancer Network guidelines recommend evidence-based approaches to ${guideline.topic.toLowerCase()}.\n\n`;
+    
+    attributions.push(generateGuidelineAttribution('NCCN', guideline.topic, GUIDELINE_ORGANIZATION_URLS['NCCN'], guideline.year));
+  }
+  
+  if (knowledge.idsaGuidelines.length > 0) {
+    const guideline = knowledge.idsaGuidelines[0];
+    response += `**${guideline.topic}** (IDSA Guidelines)\n\n`;
+    response += `Infectious Diseases Society of America guidelines provide comprehensive recommendations for ${guideline.topic.toLowerCase()}.\n\n`;
+    
+    attributions.push(generateGuidelineAttribution('IDSA', guideline.topic, GUIDELINE_ORGANIZATION_URLS['IDSA'], guideline.year));
+  }
+  
+  if (knowledge.asaGuidelines.length > 0) {
+    const guideline = knowledge.asaGuidelines[0];
+    response += `**${guideline.topic}** (ASA Guidelines)\n\n`;
+    response += `American Stroke Association guidelines recommend evidence-based management strategies for ${guideline.topic.toLowerCase()}.\n\n`;
+    
+    attributions.push(generateGuidelineAttribution('ASA', guideline.topic, GUIDELINE_ORGANIZATION_URLS['ASA'], guideline.year));
+  }
+  
+  if (knowledge.acsTraumaGuidelines.length > 0) {
+    const guideline = knowledge.acsTraumaGuidelines[0];
+    response += `**${guideline.topic}** (ACS Trauma Guidelines)\n\n`;
+    response += `American College of Surgeons Trauma guidelines provide comprehensive recommendations for ${guideline.topic.toLowerCase()}.\n\n`;
+    
+    attributions.push(generateGuidelineAttribution('ACS', guideline.topic, GUIDELINE_ORGANIZATION_URLS['ACS'], guideline.year));
   }
   
   // GUARDRAIL #3: Add note about guideline contextualization
@@ -1871,6 +2041,8 @@ export interface FinalOutput {
       validationScore?: number;
       validationWarnings?: string[];
       fallbackReason?: string;
+      semanticIconsUsed?: boolean;
+      semanticIconCount?: number;
     };
   };
   timestamp: Date;
@@ -2028,6 +2200,8 @@ export async function generateFinalOutput(
     validationScore?: number;
     validationWarnings?: string[];
     fallbackReason?: string;
+    semanticIconsUsed?: boolean;
+    semanticIconCount?: number;
   } = {
     usedOpenAI: false,
   };
@@ -2064,6 +2238,8 @@ export async function generateFinalOutput(
           tokens: openAIResult.tokens,
           validationScore: validation.score,
           validationWarnings: validation.warnings,
+          semanticIconsUsed: openAIResult.semanticIconsUsed,
+          semanticIconCount: openAIResult.semanticIconCount,
         };
       } else {
         console.log('[VALVE 4] OpenAI response validation failed - using original content');
@@ -2139,6 +2315,7 @@ export async function generateFinalOutput(
     failSafeMode: output.metadata.failSafeDecision?.mode,
     usedOpenAI: output.metadata.openAI?.usedOpenAI,
     openAIModel: output.metadata.openAI?.model,
+    semanticIconsUsed: output.metadata.openAI?.semanticIconsUsed,
   });
   
   return output;
@@ -2160,6 +2337,7 @@ export class SynthesizerEngine {
     console.log('[SYNTHESIZER ENGINE] CRITICAL FIX: Quality metric calculation and preservation enabled - FIXED');
     console.log('[SYNTHESIZER ENGINE] CRITICAL FIX: Consistency Check metric calculation and flow enabled - FIXED ✓✓✓');
     console.log('[SYNTHESIZER ENGINE] CRITICAL FIX: Validation penalties only for SEVERE failures (score < 40) - FIXED');
+    console.log('[SYNTHESIZER ENGINE] NEW: Guideline organization website links included in source attributions');
   }
   
   static getInstance(): SynthesizerEngine {
@@ -2176,6 +2354,7 @@ export class SynthesizerEngine {
    * OPENAI INTEGRATION: Added OpenAI as language generator
    * CRITICAL FIX: Quality metric properly calculated and preserved
    * CRITICAL FIX: Consistency Check metric properly calculated and flows to UI ✓✓✓
+   * NEW: Guideline organization website links included in source attributions
    */
   async processQuery(
     rawQuery: string,
@@ -2200,7 +2379,7 @@ export class SynthesizerEngine {
       // INTERSECTION: Synthesize at intersection point (CONSISTENCY CHECK CALCULATED HERE ✓✓✓)
       const synthesizedData = synthesizeAtIntersection(processedQuery, coreKnowledge);
       
-      // VALVE 3: Synthesize response (with guardrails)
+      // VALVE 3: Synthesize response (with guardrails) - INCLUDES GUIDELINE WEBSITE LINKS
       const synthesizedResponse = synthesizeResponse(synthesizedData);
       
       // REFINEMENT LOOP: Refine response
@@ -2220,6 +2399,7 @@ export class SynthesizerEngine {
       console.log('[SYNTHESIZER ENGINE] ✓✓✓ Consistency score:', finalOutput.metadata.consistencyScore);
       console.log('[SYNTHESIZER ENGINE] ✓✓✓ Consistency valid:', finalOutput.metadata.consistencyValid);
       console.log('[SYNTHESIZER ENGINE] ✓✓✓ Has consistency check:', finalOutput.metadata.hasConsistencyCheck);
+      console.log('[SYNTHESIZER ENGINE] Guideline website links:', finalOutput.metadata.attributions.filter(a => a.sourceType === 'guideline').length);
       
       return finalOutput;
     } catch (error) {
