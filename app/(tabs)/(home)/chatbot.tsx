@@ -153,107 +153,68 @@ export default function ChatbotScreen() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: `Hello! I'm your Medical Expert Chatbot powered by the **Synthesizer Engine** with **OpenAI Language Generation** and **Semantic Icon System** 🎯
+      text: `Hello. I'm Dr. Elias Reed, Adjunct Faculty in Evidence Synthesis and Clinical Guidelines.
 
-**🔄 Synthesizer Engine Architecture with OpenAI:**
+I support medical learners by synthesizing authoritative clinical references into clear, academically sound explanations. My role is to anchor discussions in verifiable evidence, professional consensus, and current standards of care, while leaving teaching style and learning strategies to instructional faculty.
 
-I use a sophisticated figure-eight data flow with one-way valves to ensure accurate, focused responses:
+**What I Do**
 
-• **Valve 1** - Your question flows into the query processor
-• **Valve 2** - Core medical knowledge flows into the knowledge retriever
-• **Intersection Point** - Your query meets the knowledge base for synthesis
-• **Valve 3** - Synthesized information flows to response generation
-• **Refinement Loop** - Response is refined for quality and accuracy
-• **Valve 4** - OpenAI generates conversational presentation (no medical facts added)
-• **Final Output** - Clear, conversational response flows to you (no backflow)
+I help learners understand what the medical literature and guidelines actually say by providing:
 
-**🤖 OpenAI Role Definition:**
+- Clear definitions and clinical framing of medical conditions
+- Pathophysiology and disease mechanisms
+- Typical clinical presentation and diagnostic considerations
+- Guideline-aligned management principles (educational context only)
+- High-yield clinical insights and academic pearls
+- Transparent citation of authoritative sources
 
-OpenAI functions as:
-• ✅ The **language generator** - Makes responses clear and conversational
-• ✅ The **reasoning surface** - Explains medical concepts effectively
-• ✅ The **conversational interface** - Provides warm, professional tone
+**My Knowledge Sources**
 
-OpenAI does NOT function as:
-• ❌ The source of medical truth (that's the Core Knowledge Engine)
-• ❌ A replacement for the knowledge engine
-• ❌ A decision-maker for guidelines
-• ❌ A memory store
+I synthesize information from approved medical references, including:
 
-**🎯 Semantic Icon System:**
+- Professional medical reference texts (e.g., Merck Manual – Professional Edition)
+- Peer-reviewed academic literature and review articles
+- Clinical practice guidelines from recognized professional organizations
+- Curated high-yield clinical flashcard databases
 
-I use visual icons to structure responses and enhance clarity. The LMM (OpenAI) can use these icons naturally AFTER passing guardrails:
+**How I Work (In Simple Terms)**
 
-${getIconLegend()}
+1. Understand the question (definition, mechanism, guideline approach, etc.)
+2. Consult trusted sources only from approved references
+3. Reason and synthesize— key facts, apply medical reasoning, and explain in an original academic language
+4. Deliver an educational response with evidence-aligned context and references
 
-**Example Usage:**
-"💊 Treatment for asthma includes beta-agonists and corticosteroids"
-"🧠 Asthma involves airway inflammation and bronchospasm"
-"⚠️ Watch for signs of respiratory distress"
+When evidence is limited or evolving, I state that clearly.
 
-These icons help you quickly identify information types and improve retention!
+**What I Do Not Do**
 
-**🔐 Guardrails:**
+For transparency, I:
 
-OpenAI responses are validated to ensure:
-• No medical facts are added beyond the core knowledge
-• All key medical terms are preserved
-• Response length is appropriate
-• Medical accuracy is maintained 100%
-• Semantic icons are used appropriately
+- Do not store or reproduce proprietary textbooks or articles
+- Do not replace primary medical references
+- Do not provide personal medical advice
+- Do not invent, alter, or guess at medical knowledge
+- Do not make clinical decisions
 
-This architecture prevents content bleeding and ensures you get precise, relevant information presented in a clear, conversational manner with visual structure.
+I support learning—I do not practice medicine.
 
-**📚 Complete Knowledge Base:**
+**Example Questions You Can Ask**
 
-• **Cardiology** - Arrhythmias, heart failure, ischemic heart disease, valvular disorders
-• **Pulmonary** - Asthma, COPD, pneumonia, interstitial lung diseases
-• **Gastroenterology** - GI disorders, liver disease, IBD, pancreatic conditions
-• **Endocrine** - Diabetes, thyroid disorders, adrenal disorders
-• **Hematology** - Anemias, bleeding disorders, thrombotic disorders, malignancies
-• **Renal** - AKI, CKD, glomerular diseases, electrolyte disorders
-• **Neurology** - Stroke, seizures, movement disorders, dementia, MS
-• **Infectious Disease** - Bacterial, viral, fungal, parasitic infections
-• **Emergency Medicine** - Shock, trauma, cardiovascular emergencies, toxicology
-• **Urology** - Urinary tract disorders, prostate conditions, kidney stones
+"What is atrial fibrillation?"
+"Explain the pathophysiology of pheochromocytoma."
+"How do current guidelines approach sepsis management?"
+"What are the key clinical features of COPD?"
+"How is acute kidney injury classified and evaluated?"
 
-**📋 Clinical Practice Guidelines:**
+**What "ELIAS REED" Means**
 
-• ACC, AHA, ESC, HFSA, HRS, SCAI, EACTS (Cardiology)
-• ATS, CHEST, SCCM (Pulmonary/Critical Care)
-• KDIGO, NIDDK (Renal/Nephrology)
-• ACG (Gastroenterology)
-• ADA, Endocrine Society (Endocrine)
-• NCCN (Hematology/Oncology)
-• IDSA (Infectious Disease)
-• ASA (Stroke/Neurology)
-• ACS Trauma Programs (Emergency Medicine)
+E.L.I.A.S. — Evidence-Linked Instructional Academic Synthesizer
+R.E.E.D. — Referenced Evidence & Educational Distillation
 
-**🎯 Ask Specific Questions:**
+In short: I look to trusted sources, synthesize responsibly, explain clearly with an original response, and always point back to the evidence.
 
-• "What is the **pathophysiology** of..."
-• "What are the **clinical findings** of..."
-• "How do you **diagnose**..."
-• "What is the **treatment** for..."
-• "What are the **guidelines** for..."
-
-**💡 Natural Conversation:**
-
-I can also engage in normal conversation! Feel free to say hello, ask follow-up questions, or thank me. The synthesizer engine understands context and intent.
-
-**🔐 Feedback Guardrails:**
-
-Your feedback (thumbs up/down) is stored securely in Supabase and used ONLY to personalize HOW responses are delivered (length, depth, style), NOT to change medical facts. You can reverse feedback within 30 seconds.
-
-**✅ Enhanced Quality Controls:**
-
-• Improved keyword specificity to prevent condition confusion
-• Enhanced error handling for robust performance
-• Better distinction between similar conditions (e.g., COPD vs Asthma)
-• Comprehensive validation at every step
-• Semantic icons enabled after guardrail validation
-
-Let's begin your medical learning journey!`,
+**Academic Notice**
+Responses are educational summaries synthesized from authoritative medical sources. Referenced materials remain the property of their respective publishers and organizations.`,
       isBot: true,
       timestamp: new Date(),
     },
@@ -1429,7 +1390,7 @@ Let's begin your medical learning journey!`,
     <>
       <Stack.Screen
         options={{
-          title: 'Medical Expert Chatbot',
+          title: 'Dr. Elias Reed - Medical Expert',
           headerLargeTitle: false,
           headerRight: () => (
             <View style={{ flexDirection: 'row', gap: 8 }}>
@@ -1478,7 +1439,7 @@ Let's begin your medical learning journey!`,
             <View style={[styles.messageContainer, styles.botMessageContainer]}>
               <View style={[styles.messageBubble, styles.botBubble]}>
                 <ActivityIndicator size="small" color={colors.text} />
-                <Text style={styles.typingText}>Synthesizing response with semantic icons...</Text>
+                <Text style={styles.typingText}>Dr. Reed is synthesizing your response...</Text>
               </View>
             </View>
           )}
@@ -1489,7 +1450,7 @@ Let's begin your medical learning journey!`,
             style={styles.input}
             value={inputText}
             onChangeText={setInputText}
-            placeholder="Ask about any medical topic..."
+            placeholder="Ask Dr. Reed a medical question..."
             placeholderTextColor={colors.textSecondary}
             multiline
             maxLength={500}
