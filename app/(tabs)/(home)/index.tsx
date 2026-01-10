@@ -8,7 +8,7 @@ import {
   Pressable,
   Platform,
 } from 'react-native';
-import { useRouter } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
 import { colors } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
 import { quickActions, medicalSystems } from '@/components/homeData';
@@ -32,75 +32,82 @@ export default function HomeScreen() {
   };
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-      {/* Header */}
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>MedAtlas Scholar</Text>
-        <Text style={styles.headerSubtitle}>Master medical knowledge</Text>
-      </View>
+    <>
+      <Stack.Screen
+        options={{
+          title: "Home",
+        }}
+      />
+      <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+        {/* Header */}
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>MedAtlas Scholar</Text>
+          <Text style={styles.headerSubtitle}>Master medical knowledge</Text>
+        </View>
 
-      {/* Quick Actions */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Quick Actions</Text>
-        <View style={styles.quickActionsGrid}>
-          {quickActions.map((action) => (
+        {/* Quick Actions */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Quick Actions</Text>
+          <View style={styles.quickActionsGrid}>
+            {quickActions.map((action) => (
+              <Pressable
+                key={action.route}
+                style={({ pressed }) => [
+                  styles.quickActionCard,
+                  { backgroundColor: action.color },
+                  pressed && styles.pressed,
+                ]}
+                onPress={() => handleQuickActionPress(action.route)}
+              >
+                <IconSymbol
+                  ios_icon_name={action.icon}
+                  android_material_icon_name="circle"
+                  color="#FFFFFF"
+                  size={32}
+                />
+                <Text style={styles.quickActionTitle}>{action.title}</Text>
+                <Text style={styles.quickActionSubtitle}>{action.subtitle}</Text>
+              </Pressable>
+            ))}
+          </View>
+        </View>
+
+        {/* Medical Systems */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Medical Systems</Text>
+          {medicalSystems.map((system) => (
             <Pressable
-              key={action.route}
+              key={system.system}
               style={({ pressed }) => [
-                styles.quickActionCard,
-                { backgroundColor: action.color },
+                styles.systemCard,
+                { borderLeftColor: system.color },
                 pressed && styles.pressed,
               ]}
-              onPress={() => handleQuickActionPress(action.route)}
+              onPress={() => handleSystemPress(system.route)}
             >
+              <View style={[styles.systemIconContainer, { backgroundColor: system.color }]}>
+                <IconSymbol
+                  ios_icon_name={system.icon}
+                  android_material_icon_name="circle"
+                  color="#FFFFFF"
+                  size={24}
+                />
+              </View>
+              <View style={styles.systemContent}>
+                <Text style={styles.systemTitle}>{system.system}</Text>
+                <Text style={styles.systemDescription}>{system.description}</Text>
+              </View>
               <IconSymbol
-                ios_icon_name={action.icon}
-                android_material_icon_name="circle"
-                color="#FFFFFF"
-                size={32}
+                ios_icon_name="chevron.right"
+                android_material_icon_name="chevron_right"
+                color={colors.grey}
+                size={20}
               />
-              <Text style={styles.quickActionTitle}>{action.title}</Text>
-              <Text style={styles.quickActionSubtitle}>{action.subtitle}</Text>
             </Pressable>
           ))}
         </View>
-      </View>
-
-      {/* Medical Systems */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Medical Systems</Text>
-        {medicalSystems.map((system) => (
-          <Pressable
-            key={system.system}
-            style={({ pressed }) => [
-              styles.systemCard,
-              { borderLeftColor: system.color },
-              pressed && styles.pressed,
-            ]}
-            onPress={() => handleSystemPress(system.route)}
-          >
-            <View style={[styles.systemIconContainer, { backgroundColor: system.color }]}>
-              <IconSymbol
-                ios_icon_name={system.icon}
-                android_material_icon_name="circle"
-                color="#FFFFFF"
-                size={24}
-              />
-            </View>
-            <View style={styles.systemContent}>
-              <Text style={styles.systemTitle}>{system.system}</Text>
-              <Text style={styles.systemDescription}>{system.description}</Text>
-            </View>
-            <IconSymbol
-              ios_icon_name="chevron.right"
-              android_material_icon_name="chevron_right"
-              color={colors.grey}
-              size={20}
-            />
-          </Pressable>
-        ))}
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </>
   );
 }
 

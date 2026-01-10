@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { Stack } from 'expo-router';
 import {
   View,
   Text,
@@ -9,7 +8,7 @@ import {
   Pressable,
   Platform,
 } from 'react-native';
-import { useRouter } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
 import { colors } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
 import { quickActions, medicalSystems } from '@/components/homeData';
@@ -36,8 +35,7 @@ export default function HomeScreen() {
     <>
       <Stack.Screen
         options={{
-          title: 'Home',
-          headerLargeTitle: true,
+          title: "Home",
         }}
       />
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
@@ -101,7 +99,7 @@ export default function HomeScreen() {
               </View>
               <IconSymbol
                 ios_icon_name="chevron.right"
-                android_material_icon_name="chevron_right"
+                android_material_icon_name="chevron-right"
                 color={colors.grey}
                 size={20}
               />
