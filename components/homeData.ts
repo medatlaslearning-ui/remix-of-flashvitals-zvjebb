@@ -1,35 +1,72 @@
 
-export const modalDemos = [
+export interface MedicalSystem {
+  title: string;
+  emoji: string;
+  description: string;
+  color: string;
+}
+
+export const medicalSystems: MedicalSystem[] = [
   {
-    title: "Ask Dr. Elias Reed",
-    description: "Medical Guideline Chatbot - Evidence-based clinical guidance",
-    route: "/chatbot",
-    color: "#007AFF",
+    title: 'Cardiology',
+    emoji: '❤️',
+    description: 'Heart & vascular system',
+    color: '#FFE5E5',
   },
   {
-    title: "Flashcards",
-    description: "Study with high-yield medical flashcards",
-    route: "/flashcards",
-    color: "#34C759",
+    title: 'Pulmonary',
+    emoji: '🫁',
+    description: 'Respiratory system',
+    color: '#E5F3FF',
   },
   {
-    title: "Quiz Master",
-    description: "Test your knowledge with practice questions",
-    route: "/quiz",
-    color: "#FF9500",
+    title: 'Neurology',
+    emoji: '🧠',
+    description: 'Nervous system',
+    color: '#F0E5FF',
   },
   {
-    title: "Progress Report",
-    description: "Track your learning progress",
-    route: "/progress",
-    color: "#AF52DE",
+    title: 'Renal',
+    emoji: '🩺',
+    description: 'Kidney & urinary system',
+    color: '#FFF5E5',
   },
   {
-    title: "Admin Panel",
-    description: "Manage flashcards and system settings",
-    route: "/admin",
-    color: "#FF3B30",
-  }
+    title: 'Endocrine',
+    emoji: '⚡',
+    description: 'Hormonal system',
+    color: '#E5FFF0',
+  },
+  {
+    title: 'Hematology',
+    emoji: '🩸',
+    description: 'Blood & coagulation',
+    color: '#FFE5F0',
+  },
+  {
+    title: 'Gastroenterology',
+    emoji: '🫃',
+    description: 'Digestive system',
+    color: '#F5FFE5',
+  },
+  {
+    title: 'Infectious Disease',
+    emoji: '🦠',
+    description: 'Infections & immunity',
+    color: '#E5FFFF',
+  },
+  {
+    title: 'Emergency Medicine',
+    emoji: '🚨',
+    description: 'Acute care & trauma',
+    color: '#FFE5E5',
+  },
+  {
+    title: 'Urology',
+    emoji: '💧',
+    description: 'Urinary & reproductive',
+    color: '#E5F0FF',
+  },
 ];
 
-export type ModalDemo = typeof modalDemos[0];
+export type MedicalSystemType = typeof medicalSystems[0];

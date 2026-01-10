@@ -5,7 +5,7 @@ import { Stack, useRouter, useFocusEffect } from 'expo-router';
 import { colors, commonStyles } from '@/styles/commonStyles';
 import { useFlashcards } from '@/hooks/useFlashcards';
 import { IconSymbol } from '@/components/IconSymbol';
-import { modalDemos } from '@/components/homeData';
+import { medicalSystems } from '@/components/homeData';
 import * as Haptics from 'expo-haptics';
 
 export default function HomeScreen() {
@@ -174,22 +174,21 @@ export default function HomeScreen() {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Medical Systems</Text>
           
-          {modalDemos.map((system, index) => {
-            const stats = getSystemStats(system.title.replace(/^[^\s]+\s/, '')); // Remove emoji from title
-            const systemName = system.title.replace(/^[^\s]+\s/, ''); // Remove emoji from title
+          {medicalSystems.map((system, index) => {
+            const stats = getSystemStats(system.title);
             
             return (
               <Pressable 
                 key={index}
                 style={[styles.systemCard, { backgroundColor: system.color }]}
-                onPress={() => handleSystemPress(systemName)}
+                onPress={() => handleSystemPress(system.title)}
               >
                 <View style={styles.systemHeader}>
                   <View style={styles.systemEmojiContainer}>
                     <Text style={styles.systemEmoji}>{system.emoji}</Text>
                   </View>
                   <View style={styles.systemInfo}>
-                    <Text style={styles.systemTitle}>{systemName}</Text>
+                    <Text style={styles.systemTitle}>{system.title}</Text>
                     <Text style={styles.systemDescription}>{system.description}</Text>
                     <Text style={styles.systemSubtitle}>
                       {stats.cardCount} cards • {stats.topicCount} topics
