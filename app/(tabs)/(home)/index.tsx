@@ -146,8 +146,8 @@ export default function HomeScreen() {
 
             <Pressable style={styles.quickActionCard} onPress={handleChatbot}>
               <Text style={styles.quickActionEmoji}>💬</Text>
-              <Text style={styles.quickActionTitle}>Medical Guidelines Chatbot</Text>
-              <Text style={styles.quickActionSubtitle}>Ask guidelines</Text>
+              <Text style={styles.quickActionTitle}>Ask Dr. Elias Reed</Text>
+              <Text style={styles.quickActionSubtitle}>Medical guidelines</Text>
             </Pressable>
 
             <Pressable style={styles.quickActionCard} onPress={handleBookmarkedPress}>
