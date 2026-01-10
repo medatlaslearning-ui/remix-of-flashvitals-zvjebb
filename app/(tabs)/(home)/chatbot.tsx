@@ -153,67 +153,67 @@ export default function ChatbotScreen() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: `Hello. I'm Dr. Elias Reed, Adjunct Faculty in Evidence Synthesis and Clinical Guidelines.
+      text: `👋 Hello. I'm Dr. Elias Reed, Adjunct Faculty in Evidence Synthesis and Clinical Guidelines.
 
-I support medical learners by synthesizing authoritative clinical references into clear, academically sound explanations. My role is to anchor discussions in verifiable evidence, professional consensus, and current standards of care, while leaving teaching style and learning strategies to instructional faculty.
+🩺 I support medical learners by synthesizing authoritative clinical references into clear, academically sound explanations. My role is to anchor discussions in verifiable evidence, professional consensus, and current standards of care, while leaving teaching style and learning strategies to instructional faculty.
 
-**What I Do**
+**🎯 What I Do**
 
 I help learners understand what the medical literature and guidelines actually say by providing:
 
-- Clear definitions and clinical framing of medical conditions
-- Pathophysiology and disease mechanisms
-- Typical clinical presentation and diagnostic considerations
-- Guideline-aligned management principles (educational context only)
-- High-yield clinical insights and academic pearls
-- Transparent citation of authoritative sources
+- 📖 Clear definitions and clinical framing of medical conditions
+- 🔬 Pathophysiology and disease mechanisms
+- 🩺 Typical clinical presentation and diagnostic considerations
+- 📋 Guideline-aligned management principles (educational context only)
+- 💡 High-yield clinical insights and academic pearls
+- ✅ Transparent citation of authoritative sources
 
-**My Knowledge Sources**
+**📚 My Knowledge Sources**
 
 I synthesize information from approved medical references, including:
 
-- Professional medical reference texts (e.g., Merck Manual – Professional Edition)
-- Peer-reviewed academic literature and review articles
-- Clinical practice guidelines from recognized professional organizations
-- Curated high-yield clinical flashcard databases
+- 📘 Professional medical reference texts (e.g., Merck Manual – Professional Edition)
+- 🔬 Peer-reviewed academic literature and review articles
+- 📋 Clinical practice guidelines from recognized professional organizations
+- 🎓 Curated high-yield clinical flashcard databases
 
-**How I Work (In Simple Terms)**
+**⚙️ How I Work (In Simple Terms)**
 
-1. Understand the question (definition, mechanism, guideline approach, etc.)
-2. Consult trusted sources only from approved references
-3. Reason and synthesize— key facts, apply medical reasoning, and explain in an original academic language
-4. Deliver an educational response with evidence-aligned context and references
+1. 🔍 Understand the question (definition, mechanism, guideline approach, etc.)
+2. 📚 Consult trusted sources only from approved references
+3. 🧠 Reason and synthesize— key facts, apply medical reasoning, and explain in an original academic language
+4. 💬 Deliver an educational response with evidence-aligned context and references
 
-When evidence is limited or evolving, I state that clearly.
+When evidence is limited or evolving, I state that clearly. 🤔
 
-**What I Do Not Do**
+**🚫 What I Do Not Do**
 
 For transparency, I:
 
-- Do not store or reproduce proprietary textbooks or articles
-- Do not replace primary medical references
-- Do not provide personal medical advice
-- Do not invent, alter, or guess at medical knowledge
-- Do not make clinical decisions
+- ❌ Do not store or reproduce proprietary textbooks or articles
+- ❌ Do not replace primary medical references
+- ❌ Do not provide personal medical advice
+- ❌ Do not invent, alter, or guess at medical knowledge
+- ❌ Do not make clinical decisions
 
-I support learning—I do not practice medicine.
+💙 I support learning—I do not practice medicine.
 
-**Example Questions You Can Ask**
+**💭 Example Questions You Can Ask**
 
-"What is atrial fibrillation?"
-"Explain the pathophysiology of pheochromocytoma."
-"How do current guidelines approach sepsis management?"
-"What are the key clinical features of COPD?"
-"How is acute kidney injury classified and evaluated?"
+"What is atrial fibrillation?" ❤️
+"Explain the pathophysiology of pheochromocytoma." 🧬
+"How do current guidelines approach sepsis management?" 🦠
+"What are the key clinical features of COPD?" 🫁
+"How is acute kidney injury classified and evaluated?" 🩺
 
-**What "ELIAS REED" Means**
+**🔤 What "ELIAS REED" Means**
 
 E.L.I.A.S. — Evidence-Linked Instructional Academic Synthesizer
 R.E.E.D. — Referenced Evidence & Educational Distillation
 
-In short: I look to trusted sources, synthesize responsibly, explain clearly with an original response, and always point back to the evidence.
+In short: I look to trusted sources, synthesize responsibly, explain clearly with an original response, and always point back to the evidence. 📖✨
 
-**Academic Notice**
+**📌 Academic Notice**
 Responses are educational summaries synthesized from authoritative medical sources. Referenced materials remain the property of their respective publishers and organizations.`,
       isBot: true,
       timestamp: new Date(),
@@ -1439,7 +1439,7 @@ Responses are educational summaries synthesized from authoritative medical sourc
             <View style={[styles.messageContainer, styles.botMessageContainer]}>
               <View style={[styles.messageBubble, styles.botBubble]}>
                 <ActivityIndicator size="small" color={colors.text} />
-                <Text style={styles.typingText}>Dr. Reed is synthesizing your response...</Text>
+                <Text style={styles.typingText}>🩺 Dr. Reed is synthesizing your response...</Text>
               </View>
             </View>
           )}
@@ -1450,7 +1450,7 @@ Responses are educational summaries synthesized from authoritative medical sourc
             style={styles.input}
             value={inputText}
             onChangeText={setInputText}
-            placeholder="Ask Dr. Reed a medical question..."
+            placeholder="💬 Ask Dr. Reed a medical question..."
             placeholderTextColor={colors.textSecondary}
             multiline
             maxLength={500}
