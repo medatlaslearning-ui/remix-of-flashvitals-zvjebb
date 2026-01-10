@@ -60,6 +60,7 @@ import { useAuth } from '@/app/integrations/supabase/hooks/useAuth';
 import { validateFeedback, type UserFeedback } from '@/data/supabaseUsageRules';
 import { getIconLegend } from '@/data/semanticIconSystem';
 import type { SourceAttribution } from '@/data/sourceAttributionRules';
+import { GuidelineLinksBox } from './chatbot-guideline-links';
 
 interface Message {
   id: string;
@@ -1060,7 +1061,53 @@ Let's begin your medical learning journey!`,
             {message.text}
           </Text>
           
-          {/* Source Attributions Section - PROMINENTLY DISPLAYED WITH CLICKABLE LINKS */}
+          {/* Merck Manual Links Section - LIGHT BLUE BACKGROUND */}
+          {message.isBot && message.merckManualLinks && message.merckManualLinks.length > 0 && (
+            <View style={styles.merckManualContainer}>
+              <View style={styles.merckManualHeader}>
+                <IconSymbol
+                  ios_icon_name="book.fill"
+                  android_material_icon_name="menu-book"
+                  size={16}
+                  color="#1976D2"
+                />
+                <Text style={styles.merckManualHeaderText}>Merck Manual References</Text>
+              </View>
+              {message.merckManualLinks.map((link, index) => (
+                <Pressable
+                  key={index}
+                  style={styles.merckManualLinkButton}
+                  onPress={() => handleMerckLinkPress(link.url)}
+                >
+                  <View style={styles.merckManualLinkContent}>
+                    <Text style={styles.merckManualLinkTitle} numberOfLines={2}>
+                      {link.title}
+                    </Text>
+                    <Text style={styles.merckManualLinkDescription} numberOfLines={1}>
+                      {link.description}
+                    </Text>
+                  </View>
+                  <IconSymbol
+                    ios_icon_name="arrow.right.circle.fill"
+                    android_material_icon_name="arrow-forward"
+                    size={20}
+                    color="#1976D2"
+                  />
+                </Pressable>
+              ))}
+              <Text style={styles.merckManualFootnote}>
+                💡 Tap any link above to view in Merck Manual
+              </Text>
+            </View>
+          )}
+
+          {/* Guideline Website Links Section - LIGHT RED BACKGROUND */}
+          <GuidelineLinksBox
+            sourceAttributions={message.sourceAttributions}
+            onPress={handleWebsitePress}
+          />
+          
+          {/* Source Attributions Section - ORIGINAL GREEN BOX */}
           {message.isBot && message.sourceAttributions && message.sourceAttributions.length > 0 && (
             <View style={styles.sourceAttributionsContainer}>
               <View style={styles.sourceAttributionsHeader}>
@@ -1071,7 +1118,7 @@ Let's begin your medical learning journey!`,
                   color={colors.primary}
                 />
                 <Text style={styles.sourceAttributionsTitle}>
-                  📖 Click Links Below to Access Original Guidelines
+                  📖 Source Attributions
                 </Text>
               </View>
               {message.sourceAttributions.map((attribution, index) => (
@@ -1090,19 +1137,6 @@ Let's begin your medical learning journey!`,
                   <View style={styles.sourceAttributionContent}>
                     <Text style={styles.sourceAttributionName}>{attribution.sourceName}</Text>
                     <Text style={styles.sourceAttributionPhrase}>{attribution.attributionPhrase}</Text>
-                    {attribution.url && (
-                      <View style={styles.sourceAttributionLinkContainer}>
-                        <IconSymbol
-                          ios_icon_name="link"
-                          android_material_icon_name="link"
-                          size={16}
-                          color="#FFFFFF"
-                        />
-                        <Text style={styles.sourceAttributionLinkText}>
-                          {attribution.linkText || 'View Source'}
-                        </Text>
-                      </View>
-                    )}
                     {attribution.year && (
                       <Text style={styles.sourceAttributionYear}>📅 Year: {attribution.year}</Text>
                     )}
@@ -1117,9 +1151,6 @@ Let's begin your medical learning journey!`,
                   )}
                 </Pressable>
               ))}
-              <Text style={styles.sourceAttributionFootnote}>
-                💡 Tap any link above to open the official guideline website
-              </Text>
             </View>
           )}
 
@@ -1608,10 +1639,64 @@ const styles = StyleSheet.create({
     marginTop: 8,
     fontStyle: 'italic',
   },
+  merckManualContainer: {
+    backgroundColor: '#E3F2FD', // Light blue background
+    borderRadius: 12,
+    padding: 12,
+    marginTop: 12,
+    borderWidth: 1,
+    borderColor: '#90CAF9',
+  },
+  merckManualHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+    gap: 6,
+  },
+  merckManualHeaderText: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#0D47A1',
+  },
+  merckManualLinkButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 8,
+    marginTop: 8,
+    borderWidth: 1,
+    borderColor: '#90CAF9',
+  },
+  merckManualLinkContent: {
+    flex: 1,
+    marginRight: 8,
+  },
+  merckManualLinkTitle: {
+    fontSize: 14,
+    color: '#1976D2',
+    fontWeight: '600',
+    marginBottom: 4,
+  },
+  merckManualLinkDescription: {
+    fontSize: 12,
+    color: '#0D47A1',
+    fontWeight: '400',
+  },
+  merckManualFootnote: {
+    fontSize: 12,
+    color: '#0D47A1',
+    fontWeight: '600',
+    marginTop: 10,
+    textAlign: 'center',
+    fontStyle: 'italic',
+  },
   sourceAttributionsContainer: {
-    marginTop: 20,
-    paddingTop: 20,
-    borderTopWidth: 3,
+    marginTop: 12,
+    paddingTop: 16,
+    borderTopWidth: 2,
     borderTopColor: colors.primary,
     backgroundColor: '#E8F5E9',
     padding: 16,
@@ -1674,34 +1759,10 @@ const styles = StyleSheet.create({
     lineHeight: 18,
     marginBottom: 8,
   },
-  sourceAttributionLinkContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 6,
-    backgroundColor: '#4CAF50',
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 8,
-    alignSelf: 'flex-start',
-    marginBottom: 6,
-  },
-  sourceAttributionLinkText: {
-    fontSize: 13,
-    fontWeight: '700',
-    color: '#FFFFFF',
-  },
   sourceAttributionYear: {
     fontSize: 12,
     color: colors.textSecondary,
     fontWeight: '600',
-  },
-  sourceAttributionFootnote: {
-    fontSize: 13,
-    color: '#2E7D32',
-    fontWeight: '600',
-    marginTop: 12,
-    textAlign: 'center',
-    fontStyle: 'italic',
   },
   globalFooterContainer: {
     marginTop: 20,
