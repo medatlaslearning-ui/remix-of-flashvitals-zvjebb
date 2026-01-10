@@ -5,7 +5,6 @@ import { FlatList, StyleSheet, View } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { modalDemos } from "@/components/homeData";
 import { DemoCard } from "@/components/DemoCard";
-import { HeaderRightButton, HeaderLeftButton } from "@/components/HeaderButtons";
 
 export default function HomeScreen() {
   const theme = useTheme();
@@ -15,8 +14,6 @@ export default function HomeScreen() {
       <Stack.Screen
         options={{
           title: "MedAtlas Scholar",
-          headerRight: () => <HeaderRightButton />,
-          headerLeft: () => <HeaderLeftButton />,
         }}
       />
       <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
