@@ -1107,51 +1107,62 @@ Let's begin your medical learning journey!`,
             onPress={handleWebsitePress}
           />
           
-          {/* Source Attributions Section - ORIGINAL GREEN BOX */}
+          {/* Source Attributions Section - ONLY NON-MERCK, NON-GUIDELINE SOURCES */}
           {message.isBot && message.sourceAttributions && message.sourceAttributions.length > 0 && (
-            <View style={styles.sourceAttributionsContainer}>
-              <View style={styles.sourceAttributionsHeader}>
-                <IconSymbol
-                  ios_icon_name="book.fill"
-                  android_material_icon_name="menu-book"
-                  size={20}
-                  color={colors.primary}
-                />
-                <Text style={styles.sourceAttributionsTitle}>
-                  📖 Source Attributions
-                </Text>
-              </View>
-              {message.sourceAttributions.map((attribution, index) => (
-                <Pressable
-                  key={index}
-                  style={[
-                    styles.sourceAttributionItem,
-                    attribution.url && styles.sourceAttributionItemClickable
-                  ]}
-                  onPress={() => attribution.url && handleSourceAttributionPress(attribution.url)}
-                  disabled={!attribution.url}
-                >
-                  <View style={styles.sourceAttributionNumber}>
-                    <Text style={styles.sourceAttributionNumberText}>{index + 1}</Text>
-                  </View>
-                  <View style={styles.sourceAttributionContent}>
-                    <Text style={styles.sourceAttributionName}>{attribution.sourceName}</Text>
-                    <Text style={styles.sourceAttributionPhrase}>{attribution.attributionPhrase}</Text>
-                    {attribution.year && (
-                      <Text style={styles.sourceAttributionYear}>📅 Year: {attribution.year}</Text>
-                    )}
-                  </View>
-                  {attribution.url && (
+            (() => {
+              // Filter out Merck Manual and guideline entries
+              const otherSources = message.sourceAttributions.filter(
+                attr => attr.sourceType !== 'merck_manual' && attr.sourceType !== 'guideline'
+              );
+              
+              if (otherSources.length === 0) return null;
+              
+              return (
+                <View style={styles.sourceAttributionsContainer}>
+                  <View style={styles.sourceAttributionsHeader}>
                     <IconSymbol
-                      ios_icon_name="arrow.right.circle.fill"
-                      android_material_icon_name="arrow-forward"
-                      size={24}
+                      ios_icon_name="book.fill"
+                      android_material_icon_name="menu-book"
+                      size={20}
                       color={colors.primary}
                     />
-                  )}
-                </Pressable>
-              ))}
-            </View>
+                    <Text style={styles.sourceAttributionsTitle}>
+                      📖 Source Attributions
+                    </Text>
+                  </View>
+                  {otherSources.map((attribution, index) => (
+                    <Pressable
+                      key={index}
+                      style={[
+                        styles.sourceAttributionItem,
+                        attribution.url && styles.sourceAttributionItemClickable
+                      ]}
+                      onPress={() => attribution.url && handleSourceAttributionPress(attribution.url)}
+                      disabled={!attribution.url}
+                    >
+                      <View style={styles.sourceAttributionNumber}>
+                        <Text style={styles.sourceAttributionNumberText}>{index + 1}</Text>
+                      </View>
+                      <View style={styles.sourceAttributionContent}>
+                        <Text style={styles.sourceAttributionName}>{attribution.sourceName}</Text>
+                        <Text style={styles.sourceAttributionPhrase}>{attribution.attributionPhrase}</Text>
+                        {attribution.year && (
+                          <Text style={styles.sourceAttributionYear}>📅 Year: {attribution.year}</Text>
+                        )}
+                      </View>
+                      {attribution.url && (
+                        <IconSymbol
+                          ios_icon_name="arrow.right.circle.fill"
+                          android_material_icon_name="arrow-forward"
+                          size={24}
+                          color={colors.primary}
+                        />
+                      )}
+                    </Pressable>
+                  ))}
+                </View>
+              );
+            })()
           )}
 
           {/* Global Footer - PROMINENTLY DISPLAYED */}

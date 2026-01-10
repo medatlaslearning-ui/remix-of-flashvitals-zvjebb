@@ -1,112 +1,114 @@
 
 import React from 'react';
-import { View, Text, Pressable, StyleSheet, Linking } from 'react-native';
+import { View, Text, Pressable, StyleSheet } from 'react-native';
 import { IconSymbol } from '@/components/IconSymbol';
 import type { SourceAttribution } from '@/data/sourceAttributionRules';
 
-interface GuidelineLinksBoxProps {
+interface Props {
   sourceAttributions?: SourceAttribution[];
   onPress: (url: string) => void;
 }
 
-export function GuidelineLinksBox({ sourceAttributions, onPress }: GuidelineLinksBoxProps) {
-  // Filter for guideline attributions that have URLs
-  const guidelineLinks = sourceAttributions?.filter(attr => 
-    attr.type === 'guideline' && attr.url && attr.url.trim() !== ''
+export const GuidelineLinksBox: React.FC<Props> = ({ sourceAttributions, onPress }) => {
+  // Filter out Merck Manual entries and only show guideline website links
+  const guidelineLinks = sourceAttributions?.filter(
+    attr => attr.sourceType === 'guideline' && attr.url
   ) || [];
 
   if (guidelineLinks.length === 0) return null;
 
   return (
-    <View style={styles.guidelineContainer}>
-      <View style={styles.guidelineHeader}>
+    <View style={styles.container}>
+      <View style={styles.header}>
         <IconSymbol
           ios_icon_name="link"
           android_material_icon_name="link"
           size={16}
-          color="#DC2626"
+          color="#8B0000"
         />
-        <Text style={styles.guidelineHeaderText}>Clinical Guideline References</Text>
+        <Text style={styles.title}>Guideline Websites</Text>
       </View>
       {guidelineLinks.map((link, index) => (
         <Pressable
           key={index}
-          style={styles.guidelineLinkButton}
-          onPress={() => onPress(link.url!)}
+          style={styles.linkButton}
+          onPress={() => link.url && onPress(link.url)}
         >
-          <View style={styles.guidelineLinkContent}>
-            <Text style={styles.guidelineLinkTitle} numberOfLines={2}>
-              {link.sourceName || link.organization || 'Clinical Guideline'}
-            </Text>
+          <View style={styles.linkContent}>
+            <Text style={styles.linkText}>{link.sourceName}</Text>
+            <Text style={styles.descriptionText}>{link.attributionPhrase}</Text>
             {link.year && (
-              <Text style={styles.guidelineLinkYear}>Year: {link.year}</Text>
+              <Text style={styles.yearText}>📅 {link.year}</Text>
             )}
           </View>
           <IconSymbol
             ios_icon_name="arrow.right.circle.fill"
             android_material_icon_name="arrow-forward"
             size={20}
-            color="#DC2626"
+            color="#8B0000"
           />
         </Pressable>
       ))}
-      <Text style={styles.guidelineFootnote}>
-        💡 Tap any link above to access the official guideline website
+      <Text style={styles.footnote}>
+        💡 Tap any link above to view guideline website
       </Text>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  guidelineContainer: {
-    backgroundColor: '#FEE2E2', // Light red background
+  container: {
+    backgroundColor: '#FFE4E1', // Light red/pink background
     borderRadius: 12,
     padding: 12,
     marginTop: 12,
     borderWidth: 1,
-    borderColor: '#FCA5A5',
+    borderColor: '#FFB6C1',
   },
-  guidelineHeader: {
+  header: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 10,
     gap: 6,
   },
-  guidelineHeaderText: {
+  title: {
     fontSize: 14,
     fontWeight: '700',
-    color: '#991B1B',
+    color: '#8B0000',
   },
-  guidelineLinkButton: {
+  linkButton: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingVertical: 10,
     paddingHorizontal: 12,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
     borderRadius: 8,
     marginTop: 8,
-    borderWidth: 1,
-    borderColor: '#FCA5A5',
   },
-  guidelineLinkContent: {
+  linkContent: {
     flex: 1,
     marginRight: 8,
   },
-  guidelineLinkTitle: {
+  linkText: {
     fontSize: 14,
-    color: '#DC2626',
+    color: '#8B0000',
     fontWeight: '600',
     marginBottom: 4,
   },
-  guidelineLinkYear: {
+  descriptionText: {
     fontSize: 12,
-    color: '#991B1B',
-    fontWeight: '500',
+    color: '#666',
+    marginBottom: 2,
   },
-  guidelineFootnote: {
+  yearText: {
+    fontSize: 11,
+    color: '#666',
+    fontWeight: '600',
+  },
+  footnote: {
     fontSize: 12,
-    color: '#991B1B',
+    color: '#8B0000',
     fontWeight: '600',
     marginTop: 10,
     textAlign: 'center',
