@@ -123,7 +123,7 @@ export default function HomeScreen() {
     <>
       <Stack.Screen
         options={{
-          title: 'MedCards',
+          title: 'MedAtlas Scholar',
           headerLargeTitle: true,
         }}
       />
