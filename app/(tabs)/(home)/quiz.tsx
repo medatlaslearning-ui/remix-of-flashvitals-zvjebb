@@ -19,16 +19,76 @@ import { urologyFlashcards } from '@/data/urologyFlashcards';
 import { getAllGuidelineWebsites } from '@/data/allGuidelineWebsites';
 
 const MEDICAL_SYSTEMS = [
-  { name: 'Cardiology', icon: 'favorite', color: colors.error },
-  { name: 'Pulmonary', icon: 'air', color: colors.info },
-  { name: 'Neurology', icon: 'psychology', color: colors.warning },
-  { name: 'Renal', icon: 'water-drop', color: colors.primary },
-  { name: 'Gastroenterology', icon: 'restaurant', color: colors.success },
-  { name: 'Endocrine', icon: 'science', color: colors.secondary },
-  { name: 'Hematology', icon: 'bloodtype', color: colors.error },
-  { name: 'Infectious Disease', icon: 'coronavirus', color: colors.warning },
-  { name: 'Emergency Medicine', icon: 'local-hospital', color: colors.error },
-  { name: 'Urology', icon: 'medical-services', color: colors.info },
+  { 
+    name: 'Cardiology', 
+    icon: 'favorite', 
+    color: '#FF5252', 
+    emoji: '❤️',
+    description: 'Heart & Circulation'
+  },
+  { 
+    name: 'Pulmonary', 
+    icon: 'air', 
+    color: '#42A5F5', 
+    emoji: '🫁',
+    description: 'Lungs & Breathing'
+  },
+  { 
+    name: 'Neurology', 
+    icon: 'psychology', 
+    color: '#AB47BC', 
+    emoji: '🧠',
+    description: 'Brain & Nerves'
+  },
+  { 
+    name: 'Renal', 
+    icon: 'water-drop', 
+    color: '#26C6DA', 
+    emoji: '🩺',
+    description: 'Kidneys & Fluids'
+  },
+  { 
+    name: 'Gastroenterology', 
+    icon: 'restaurant', 
+    color: '#66BB6A', 
+    emoji: '🍽️',
+    description: 'Digestive System'
+  },
+  { 
+    name: 'Endocrine', 
+    icon: 'science', 
+    color: '#FFA726', 
+    emoji: '⚗️',
+    description: 'Hormones & Glands'
+  },
+  { 
+    name: 'Hematology', 
+    icon: 'bloodtype', 
+    color: '#EF5350', 
+    emoji: '🩸',
+    description: 'Blood & Disorders'
+  },
+  { 
+    name: 'Infectious Disease', 
+    icon: 'coronavirus', 
+    color: '#FFCA28', 
+    emoji: '🦠',
+    description: 'Infections & Immunity'
+  },
+  { 
+    name: 'Emergency Medicine', 
+    icon: 'local-hospital', 
+    color: '#FF7043', 
+    emoji: '🚑',
+    description: 'Acute Care & Trauma'
+  },
+  { 
+    name: 'Urology', 
+    icon: 'medical-services', 
+    color: '#5C6BC0', 
+    emoji: '💧',
+    description: 'Urinary & Reproductive'
+  },
 ];
 
 const QUESTION_COUNTS = [5, 10];
@@ -194,39 +254,46 @@ export default function QuizCreatorScreen() {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Select Medical System</Text>
           <View style={styles.systemGrid}>
-            {MEDICAL_SYSTEMS.map((system, index) => (
-              <Pressable
-                key={index}
-                style={[
-                  styles.systemCard,
-                  selectedSystem === system.name && styles.systemCardSelected
-                ]}
-                onPress={() => handleSystemSelect(system.name)}
-              >
-                <IconSymbol 
-                  ios_icon_name={system.icon as any}
-                  android_material_icon_name={system.icon}
-                  size={32} 
-                  color={selectedSystem === system.name ? colors.background : system.color} 
-                />
-                <Text style={[
-                  styles.systemName,
-                  selectedSystem === system.name && styles.systemNameSelected
-                ]}>
-                  {system.name}
-                </Text>
-                {selectedSystem === system.name && (
-                  <View style={styles.selectedBadge}>
-                    <IconSymbol 
-                      ios_icon_name="checkmark" 
-                      android_material_icon_name="check" 
-                      size={16} 
-                      color={colors.background} 
-                    />
+            {MEDICAL_SYSTEMS.map((system, index) => {
+              const isSelected = selectedSystem === system.name;
+              return (
+                <Pressable
+                  key={index}
+                  style={[
+                    styles.systemCard,
+                    { backgroundColor: isSelected ? system.color : colors.card },
+                    isSelected && styles.systemCardSelected
+                  ]}
+                  onPress={() => handleSystemSelect(system.name)}
+                >
+                  <View style={styles.emojiContainer}>
+                    <Text style={styles.emoji}>{system.emoji}</Text>
                   </View>
-                )}
-              </Pressable>
-            ))}
+                  <Text style={[
+                    styles.systemName,
+                    { color: isSelected ? '#FFFFFF' : colors.text }
+                  ]}>
+                    {system.name}
+                  </Text>
+                  <Text style={[
+                    styles.systemDescription,
+                    { color: isSelected ? '#FFFFFF' : colors.textSecondary }
+                  ]}>
+                    {system.description}
+                  </Text>
+                  {isSelected && (
+                    <View style={styles.selectedBadge}>
+                      <IconSymbol 
+                        ios_icon_name="checkmark" 
+                        android_material_icon_name="check" 
+                        size={16} 
+                        color="#FFFFFF" 
+                      />
+                    </View>
+                  )}
+                </Pressable>
+              );
+            })}
           </View>
         </View>
 
@@ -380,35 +447,47 @@ const styles = StyleSheet.create({
   systemCard: {
     flex: 1,
     minWidth: '45%',
-    backgroundColor: colors.card,
-    borderRadius: 12,
+    borderRadius: 16,
     padding: 16,
     alignItems: 'center',
-    boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
-    elevation: 3,
-    borderWidth: 2,
+    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+    elevation: 4,
+    borderWidth: 3,
     borderColor: 'transparent',
     position: 'relative',
+    minHeight: 140,
+    justifyContent: 'center',
   },
   systemCardSelected: {
-    borderColor: colors.primary,
-    backgroundColor: colors.primary,
+    borderColor: '#FFFFFF',
+    boxShadow: '0px 6px 16px rgba(0, 0, 0, 0.25)',
+    elevation: 6,
   },
-  systemName: {
-    fontSize: 13,
-    fontWeight: '600',
-    color: colors.text,
-    marginTop: 8,
+  emojiContainer: {
+    marginBottom: 8,
+  },
+  emoji: {
+    fontSize: 40,
     textAlign: 'center',
   },
-  systemNameSelected: {
-    color: colors.background,
+  systemName: {
+    fontSize: 14,
+    fontWeight: '700',
+    marginTop: 4,
+    textAlign: 'center',
+  },
+  systemDescription: {
+    fontSize: 11,
+    fontWeight: '500',
+    marginTop: 4,
+    textAlign: 'center',
+    opacity: 0.9,
   },
   selectedBadge: {
     position: 'absolute',
     top: 8,
     right: 8,
-    backgroundColor: colors.success,
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
     borderRadius: 12,
     width: 24,
     height: 24,
