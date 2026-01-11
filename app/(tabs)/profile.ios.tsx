@@ -39,33 +39,38 @@ export default function ProfileScreen() {
       emoji: "❤️",
       route: "/(tabs)/(home)/flashcards",
       params: { filter: 'favorites' },
-      count: favoritesCount
+      count: favoritesCount,
+      color: '#E91E63'
     },
     { 
       title: "Bookmarked", 
       emoji: "🔖",
       route: "/(tabs)/(home)/flashcards",
       params: { filter: 'bookmarked' },
-      count: bookmarkedCount
+      count: bookmarkedCount,
+      color: '#FF9800'
     },
     { 
       title: "Difficult", 
       emoji: "⚠️",
       route: "/(tabs)/(home)/flashcards",
       params: { filter: 'difficult' },
-      count: difficultCount
+      count: difficultCount,
+      color: '#F44336'
     },
     { 
       title: "Ask Expert", 
       emoji: "💬",
       route: "/(tabs)/(home)/chatbot", 
-      params: {}
+      params: {},
+      color: '#9C27B0'
     },
     { 
       title: "Progress Report", 
       emoji: "📊",
       route: "/progress-report", 
-      params: {}
+      params: {},
+      color: '#2196F3'
     }
   ];
 
@@ -122,15 +127,18 @@ export default function ProfileScreen() {
                 onPress={() => handleQuickAction(action.route, action.params)}
                 style={({ pressed }) => [
                   styles.tile,
-                  { opacity: pressed ? 0.7 : 1 }
+                  { 
+                    opacity: pressed ? 0.7 : 1,
+                    backgroundColor: action.color
+                  }
                 ]}
               >
                 <Text style={styles.tileEmoji}>{action.emoji}</Text>
-                <Text style={[styles.tileTitle, { color: theme.colors.text }]}>
+                <Text style={styles.tileTitle}>
                   {action.title}
                 </Text>
                 {action.count !== undefined && (
-                  <Text style={[styles.tileCount, { color: theme.colors.primary }]}>
+                  <Text style={styles.tileCount}>
                     {action.count}
                   </Text>
                 )}
@@ -237,7 +245,6 @@ const styles = StyleSheet.create({
   },
   tile: {
     width: '48%',
-    backgroundColor: '#E3F2FD',
     borderRadius: 12,
     padding: 16,
     alignItems: 'center',
@@ -250,10 +257,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     textAlign: 'center',
+    color: '#FFFFFF',
   },
   tileCount: {
     fontSize: 18,
     fontWeight: '700',
+    color: '#FFFFFF',
   },
   modalOverlay: {
     flex: 1,
