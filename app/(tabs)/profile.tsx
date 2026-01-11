@@ -45,7 +45,7 @@ export default function ProfileScreen() {
       color: '#F44336'
     },
     { 
-      title: "Ask Expert", 
+      title: "Ask Dr. Elias Reed", 
       emoji: "💬",
       route: "/(tabs)/(home)/chatbot", 
       params: {},
