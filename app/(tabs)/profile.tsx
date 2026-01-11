@@ -125,24 +125,38 @@ export default function ProfileScreen() {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
 
     try {
-      const { error } = await supabase
+      console.log('Saving specialty for user:', user.id);
+      console.log('Primary specialty:', primarySpecialty);
+      console.log('Sub specialty:', subSpecialty);
+
+      const { data, error } = await supabase
         .from('profiles')
-        .upsert({
-          user_id: user.id,
-          primary_specialty: primarySpecialty,
-          sub_specialty: subSpecialty,
-          email: user.email,
-          updated_at: new Date().toISOString(),
-        });
+        .upsert(
+          {
+            user_id: user.id,
+            primary_specialty: primarySpecialty,
+            sub_specialty: subSpecialty,
+            email: user.email,
+            updated_at: new Date().toISOString(),
+          },
+          {
+            onConflict: 'user_id',
+          }
+        )
+        .select();
 
-      if (error) throw error;
+      if (error) {
+        console.error('Supabase error:', error);
+        throw error;
+      }
 
+      console.log('Specialty saved successfully:', data);
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       Alert.alert('Success', 'Your specialty has been saved');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error saving specialty:', error);
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
-      Alert.alert('Error', 'Failed to save specialty. Please try again.');
+      Alert.alert('Error', `Failed to save specialty: ${error.message || 'Please try again.'}`);
     } finally {
       setSavingSpecialty(false);
     }
