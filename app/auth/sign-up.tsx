@@ -52,8 +52,8 @@ export default function SignUpScreen() {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       
       Alert.alert(
-        'Success!',
-        'Your account has been created. Please check your email to verify your account.',
+        'Account Created! 🎉',
+        'Please check your email and click the confirmation link to activate your account. You must confirm your email before you can sign in.\n\nCheck your spam folder if you don\'t see the email.',
         [
           {
             text: 'OK',
@@ -65,10 +65,23 @@ export default function SignUpScreen() {
       console.error('Sign up error:', error);
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
       
-      Alert.alert(
-        'Sign Up Failed',
-        error.message || 'Unable to create account. Please try again.'
-      );
+      let errorMessage = 'Unable to create account. Please try again.';
+      
+      if (error.message) {
+        const errorMsg = error.message.toLowerCase();
+        
+        if (errorMsg.includes('already registered') || errorMsg.includes('already exists')) {
+          errorMessage = 'An account with this email already exists. Please sign in instead.';
+        } else if (errorMsg.includes('invalid email')) {
+          errorMessage = 'Please enter a valid email address.';
+        } else if (errorMsg.includes('weak password')) {
+          errorMessage = 'Password is too weak. Please use a stronger password.';
+        } else {
+          errorMessage = error.message;
+        }
+      }
+      
+      Alert.alert('Sign Up Failed', errorMessage);
     } finally {
       setLoading(false);
     }
@@ -226,6 +239,18 @@ export default function SignUpScreen() {
             </Pressable>
           </View>
 
+          <View style={styles.emailNotice}>
+            <IconSymbol
+              ios_icon_name="envelope.badge.fill"
+              android_material_icon_name="email"
+              size={24}
+              color={colors.primary}
+            />
+            <Text style={styles.emailNoticeText}>
+              <Text style={styles.emailNoticeBold}>Important:</Text> After signing up, you&apos;ll receive a confirmation email. You must click the link in that email before you can sign in.
+            </Text>
+          </View>
+
           <View style={styles.benefits}>
             <Text style={styles.benefitsTitle}>✨ Benefits of Creating an Account:</Text>
             <View style={styles.benefitItem}>
@@ -349,6 +374,26 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: '600',
     color: '#FFFFFF',
+  },
+  emailNotice: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    backgroundColor: '#E3F2FD',
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 24,
+    gap: 12,
+    borderWidth: 1,
+    borderColor: colors.primary,
+  },
+  emailNoticeText: {
+    flex: 1,
+    fontSize: 14,
+    color: '#1565C0',
+    lineHeight: 20,
+  },
+  emailNoticeBold: {
+    fontWeight: '700',
   },
   benefits: {
     backgroundColor: colors.card,

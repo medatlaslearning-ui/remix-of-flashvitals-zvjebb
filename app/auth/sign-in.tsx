@@ -44,10 +44,31 @@ export default function SignInScreen() {
       console.error('Sign in error:', error);
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
       
-      Alert.alert(
-        'Sign In Failed',
-        error.message || 'Invalid email or password. Please try again.'
-      );
+      // Provide specific error messages based on the error
+      let errorTitle = 'Sign In Failed';
+      let errorMessage = 'An error occurred. Please try again.';
+      
+      if (error.message) {
+        const errorMsg = error.message.toLowerCase();
+        
+        if (errorMsg.includes('email not confirmed') || errorMsg.includes('email_not_confirmed')) {
+          errorTitle = 'Email Not Confirmed';
+          errorMessage = 'Please check your email and click the confirmation link before signing in. Check your spam folder if you don\'t see it.';
+        } else if (errorMsg.includes('invalid login credentials') || errorMsg.includes('invalid_credentials')) {
+          errorTitle = 'Invalid Credentials';
+          errorMessage = 'The email or password you entered is incorrect. Please try again.';
+        } else if (errorMsg.includes('user not found')) {
+          errorTitle = 'Account Not Found';
+          errorMessage = 'No account exists with this email. Please sign up first.';
+        } else if (errorMsg.includes('too many requests')) {
+          errorTitle = 'Too Many Attempts';
+          errorMessage = 'Too many sign-in attempts. Please wait a few minutes and try again.';
+        } else {
+          errorMessage = error.message;
+        }
+      }
+      
+      Alert.alert(errorTitle, errorMessage);
     } finally {
       setLoading(false);
     }
@@ -197,12 +218,12 @@ export default function SignInScreen() {
               color={colors.textSecondary}
             />
             <Text style={styles.guestInfoText}>
-              Guest mode: You can use the app, but your feedback and preferences won't be saved
+              Guest mode: You can use the app, but your feedback and preferences won&apos;t be saved
             </Text>
           </View>
 
           <View style={styles.footer}>
-            <Text style={styles.footerText}>Don't have an account?</Text>
+            <Text style={styles.footerText}>Don&apos;t have an account?</Text>
             <Pressable
               onPress={() => router.push('/auth/sign-up')}
               disabled={loading}
