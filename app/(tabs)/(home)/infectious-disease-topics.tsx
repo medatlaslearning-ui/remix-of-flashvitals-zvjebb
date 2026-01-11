@@ -67,10 +67,7 @@ export default function InfectiousDiseaseTopicsScreen() {
     // If it's the "Infectious Disease References" section, navigate to references
     if (topicName === 'Infectious Disease References') {
       console.log('Navigating to Infectious Disease References');
-      router.push({
-        pathname: '/(tabs)/(home)/references',
-        params: { topic: 'All References', system: 'Infectious Disease' }
-      });
+      router.push('/(tabs)/(home)/infectious-disease-references');
       return;
     }
     
@@ -110,7 +107,12 @@ export default function InfectiousDiseaseTopicsScreen() {
       <ScrollView style={commonStyles.container} contentContainerStyle={styles.content}>
         {/* Header */}
         <View style={styles.header}>
-          <IconSymbol name="cross.case.fill" size={48} color={colors.accent} />
+          <IconSymbol 
+            ios_icon_name="cross.case.fill" 
+            android_material_icon_name="medical_services"
+            size={48} 
+            color={colors.accent} 
+          />
           <Text style={styles.headerTitle}>Infectious Disease</Text>
           <Text style={styles.headerSubtitle}>
             Select a subtopic to begin studying
@@ -145,7 +147,12 @@ export default function InfectiousDiseaseTopicsScreen() {
                           {stats.remaining} remaining • {stats.reviewed} reviewed
                         </Text>
                       </View>
-                      <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
+                      <IconSymbol 
+                        ios_icon_name="chevron.right" 
+                        android_material_icon_name="chevron_right"
+                        size={20} 
+                        color={colors.textSecondary} 
+                      />
                     </View>
                     {stats.total > 0 && (
                       <View style={styles.progressBarContainer}>
@@ -181,10 +188,20 @@ export default function InfectiousDiseaseTopicsScreen() {
                       )}
                     </View>
                     {topic.name === 'Infectious Disease References' && (
-                      <IconSymbol name="book.fill" size={20} color={colors.accent} />
+                      <IconSymbol 
+                        ios_icon_name="book.fill" 
+                        android_material_icon_name="book"
+                        size={20} 
+                        color={colors.accent} 
+                      />
                     )}
                     {topic.name === 'Guideline & Authority Websites' && (
-                      <IconSymbol name="globe" size={20} color={colors.accent} />
+                      <IconSymbol 
+                        ios_icon_name="globe" 
+                        android_material_icon_name="language"
+                        size={20} 
+                        color={colors.accent} 
+                      />
                     )}
                   </View>
                 </View>
@@ -196,7 +213,12 @@ export default function InfectiousDiseaseTopicsScreen() {
         {/* Back Button */}
         <View style={styles.section}>
           <Pressable style={styles.backButton} onPress={handleBackPress}>
-            <IconSymbol name="arrow.left" size={20} color={colors.primary} />
+            <IconSymbol 
+              ios_icon_name="arrow.left" 
+              android_material_icon_name="arrow_back"
+              size={20} 
+              color={colors.primary} 
+            />
             <Text style={styles.backButtonText}>Back to Main Menu</Text>
           </Pressable>
         </View>

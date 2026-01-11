@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Pressable, Platform, Linking } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Pressable, Platform } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
 import { colors, commonStyles } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
@@ -13,20 +13,6 @@ export default function UrologyReferencesScreen() {
   const handleBackPress = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     router.back();
-  };
-
-  const handleLinkPress = async (url: string) => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    try {
-      const supported = await Linking.canOpenURL(url);
-      if (supported) {
-        await Linking.openURL(url);
-      } else {
-        console.log('Cannot open URL:', url);
-      }
-    } catch (error) {
-      console.error('Error opening URL:', error);
-    }
   };
 
   // Get all subcategories
@@ -82,28 +68,6 @@ export default function UrologyReferencesScreen() {
 
                   {/* Applies To */}
                   <Text style={styles.appliesTo}>Applies to: {reference.appliesTo}</Text>
-
-                  {/* Link Button */}
-                  {reference.link && (
-                    <Pressable
-                      style={styles.linkButton}
-                      onPress={() => handleLinkPress(reference.link)}
-                    >
-                      <IconSymbol 
-                        ios_icon_name="link" 
-                        android_material_icon_name="link"
-                        size={16} 
-                        color={colors.primary} 
-                      />
-                      <Text style={styles.linkButtonText}>View Source</Text>
-                      <IconSymbol 
-                        ios_icon_name="arrow.up.right" 
-                        android_material_icon_name="open_in_new"
-                        size={14} 
-                        color={colors.primary} 
-                      />
-                    </Pressable>
-                  )}
                 </View>
               ))}
             </View>
@@ -205,21 +169,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: colors.textSecondary,
     fontStyle: 'italic',
-    marginBottom: 12,
-  },
-  linkButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.highlight,
-    padding: 12,
-    borderRadius: 8,
-    gap: 8,
-  },
-  linkButtonText: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: colors.primary,
   },
   backButton: {
     flexDirection: 'row',

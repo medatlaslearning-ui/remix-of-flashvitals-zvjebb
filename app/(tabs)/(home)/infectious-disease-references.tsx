@@ -5,9 +5,9 @@ import { Stack, useRouter } from 'expo-router';
 import { colors, commonStyles } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
 import * as Haptics from 'expo-haptics';
-import { neurologyReferences, getSubcategories } from '@/data/neurologyReferences';
+import { infectiousDiseaseReferences, getSubcategories } from '@/data/infectiousDiseaseReferences';
 
-export default function NeurologyReferencesScreen() {
+export default function InfectiousDiseaseReferencesScreen() {
   const router = useRouter();
 
   const handleBackPress = () => {
@@ -16,21 +16,26 @@ export default function NeurologyReferencesScreen() {
   };
 
   // Get all subcategories
-  const subcategories = getSubcategories('Neurology References');
+  const subcategories = getSubcategories('Infectious Disease References');
 
   return (
     <>
       <Stack.Screen
         options={{
-          title: 'Neurology References',
+          title: 'Infectious Disease References',
           headerLargeTitle: true,
         }}
       />
       <ScrollView style={commonStyles.container} contentContainerStyle={styles.content}>
         {/* Header */}
         <View style={styles.header}>
-          <IconSymbol name="book.fill" size={48} color={colors.primary} />
-          <Text style={styles.headerTitle}>Neurology References</Text>
+          <IconSymbol 
+            ios_icon_name="book.fill" 
+            android_material_icon_name="book"
+            size={48} 
+            color={colors.accent} 
+          />
+          <Text style={styles.headerTitle}>Infectious Disease References</Text>
           <Text style={styles.headerSubtitle}>
             All scholarly and guideline-based references
           </Text>
@@ -41,8 +46,8 @@ export default function NeurologyReferencesScreen() {
 
         {/* References by Subcategory */}
         {subcategories.map((subcategory, subIndex) => {
-          const refs = neurologyReferences.filter(
-            ref => ref.category === 'Neurology References' && ref.subcategory === subcategory
+          const refs = infectiousDiseaseReferences.filter(
+            ref => ref.category === 'Infectious Disease References' && ref.subcategory === subcategory
           );
 
           return (
@@ -60,6 +65,9 @@ export default function NeurologyReferencesScreen() {
                 <View key={reference.id} style={styles.referenceCard}>
                   {/* Citation */}
                   <Text style={styles.citation}>{reference.citation}</Text>
+
+                  {/* Applies To */}
+                  <Text style={styles.appliesTo}>Applies to: {reference.appliesTo}</Text>
                 </View>
               ))}
             </View>
@@ -69,7 +77,12 @@ export default function NeurologyReferencesScreen() {
         {/* Back Button */}
         <View style={styles.section}>
           <Pressable style={styles.backButton} onPress={handleBackPress}>
-            <IconSymbol name="arrow.left" size={20} color={colors.primary} />
+            <IconSymbol 
+              ios_icon_name="arrow.left" 
+              android_material_icon_name="arrow_back"
+              size={20} 
+              color={colors.accent} 
+            />
             <Text style={styles.backButtonText}>Back to Topics</Text>
           </Pressable>
         </View>
@@ -120,7 +133,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     paddingBottom: 12,
     borderBottomWidth: 2,
-    borderBottomColor: colors.primary,
+    borderBottomColor: colors.accent,
   },
   subcategoryTitle: {
     fontSize: 20,
@@ -128,7 +141,7 @@ const styles = StyleSheet.create({
     color: colors.text,
   },
   countBadge: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.accent,
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 12,
@@ -150,6 +163,12 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: colors.text,
     lineHeight: 22,
+    marginBottom: 8,
+  },
+  appliesTo: {
+    fontSize: 13,
+    color: colors.textSecondary,
+    fontStyle: 'italic',
   },
   backButton: {
     flexDirection: 'row',
@@ -163,6 +182,6 @@ const styles = StyleSheet.create({
   backButtonText: {
     fontSize: 16,
     fontWeight: '600',
-    color: colors.primary,
+    color: colors.accent,
   },
 });
