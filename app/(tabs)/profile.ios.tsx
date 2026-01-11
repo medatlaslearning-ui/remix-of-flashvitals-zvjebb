@@ -1,6 +1,6 @@
 
-import React, { useState, useMemo } from "react";
-import { View, Text, StyleSheet, ScrollView, Platform, Pressable, Modal } from "react-native";
+import React, { useState, useMemo, useEffect } from "react";
+import { View, Text, StyleSheet, ScrollView, Pressable, Modal } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { IconSymbol } from "@/components/IconSymbol";
 import { GlassView } from "expo-glass-effect";
@@ -8,25 +8,72 @@ import { useTheme } from "@react-navigation/native";
 import { useRouter } from "expo-router";
 import { useFlashcards } from "@/hooks/useFlashcards";
 import * as Haptics from "expo-haptics";
+import { supabase } from "@/lib/supabase";
 
-const PROFESSIONS = [
-  "Nurse Practitioner",
-  "Physician",
-  "Physician Assistant",
-  "Registered Nurse",
-  "NP Student",
-  "Medical Student",
-  "PA Student",
-  "Nursing Student"
+// Specialty options with nested sub-specialties
+const SPECIALTY_OPTIONS = [
+  {
+    primary: "Advanced Practice Registered Nurse",
+    subOptions: [
+      "Nurse Practitioner",
+      "CRNA",
+      "Clinical Nurse Specialist",
+      "Certified Nurse Midwife"
+    ]
+  },
+  {
+    primary: "Physician",
+    subOptions: [
+      "Neurology",
+      "Cardiology",
+      "Pulmonary",
+      "Gastroenterology",
+      "Nephrology",
+      "Hem/Onc",
+      "Urology",
+      "Critical Care",
+      "Trauma",
+      "Emergency"
+    ]
+  },
+  {
+    primary: "Physician Associate",
+    subOptions: []
+  },
+  {
+    primary: "Registered Nurse",
+    subOptions: []
+  },
+  {
+    primary: "Local Vocational Nursing",
+    subOptions: []
+  },
+  {
+    primary: "Student",
+    subOptions: [
+      "APRN Student",
+      "Medical Student",
+      "PA Student",
+      "Nursing Student"
+    ]
+  },
+  {
+    primary: "Other",
+    subOptions: []
+  }
 ];
 
 export default function ProfileScreen() {
   const theme = useTheme();
   const router = useRouter();
   const { getBookmarkedFlashcards, getFavoriteFlashcards, getDifficultFlashcards } = useFlashcards();
-  const [name, setName] = useState("John Doe");
-  const [profession, setProfession] = useState("Nurse Practitioner");
-  const [showProfessionPicker, setShowProfessionPicker] = useState(false);
+  
+  const [primarySpecialty, setPrimarySpecialty] = useState<string | null>(null);
+  const [subSpecialty, setSubSpecialty] = useState<string | null>(null);
+  const [showPrimaryPicker, setShowPrimaryPicker] = useState(false);
+  const [showSubPicker, setShowSubPicker] = useState(false);
+  const [selectedPrimaryForSub, setSelectedPrimaryForSub] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
   // Calculate counts
   const bookmarkedCount = useMemo(() => getBookmarkedFlashcards().length, [getBookmarkedFlashcards]);
@@ -74,6 +121,68 @@ export default function ProfileScreen() {
     }
   ];
 
+  // Load user profile data
+  useEffect(() => {
+    loadProfile();
+  }, []);
+
+  const loadProfile = async () => {
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
+        console.log('No user found');
+        setLoading(false);
+        return;
+      }
+
+      const { data: profile, error } = await supabase
+        .from('profiles')
+        .select('primary_specialty, sub_specialty')
+        .eq('user_id', user.id)
+        .single();
+
+      if (error) {
+        console.log('Error loading profile:', error);
+      } else if (profile) {
+        setPrimarySpecialty(profile.primary_specialty);
+        setSubSpecialty(profile.sub_specialty);
+      }
+    } catch (error) {
+      console.error('Error in loadProfile:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const saveSpecialty = async (primary: string, sub: string | null) => {
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
+        console.log('No user to save specialty for');
+        return;
+      }
+
+      const { error } = await supabase
+        .from('profiles')
+        .upsert({
+          user_id: user.id,
+          primary_specialty: primary,
+          sub_specialty: sub,
+          updated_at: new Date().toISOString()
+        }, {
+          onConflict: 'user_id'
+        });
+
+      if (error) {
+        console.error('Error saving specialty:', error);
+      } else {
+        console.log('Specialty saved successfully');
+      }
+    } catch (error) {
+      console.error('Error in saveSpecialty:', error);
+    }
+  };
+
   const handleQuickAction = (route: string, params?: any) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     if (params && Object.keys(params).length > 0) {
@@ -83,17 +192,64 @@ export default function ProfileScreen() {
     }
   };
 
-  const handleProfessionPress = () => {
+  const handlePrimarySpecialtyPress = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    setShowProfessionPicker(true);
+    setShowPrimaryPicker(true);
   };
 
-  const handleSelectProfession = (selectedProfession: string) => {
+  const handleSelectPrimarySpecialty = (primary: string) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    setProfession(selectedProfession);
-    setShowProfessionPicker(false);
-    console.log('Selected profession:', selectedProfession);
-    // TODO: Backend Integration - Save profession to user profile
+    
+    const selectedOption = SPECIALTY_OPTIONS.find(opt => opt.primary === primary);
+    
+    if (selectedOption && selectedOption.subOptions.length > 0) {
+      // Has sub-options, show sub-picker
+      setSelectedPrimaryForSub(primary);
+      setShowPrimaryPicker(false);
+      setShowSubPicker(true);
+    } else {
+      // No sub-options, save directly
+      setPrimarySpecialty(primary);
+      setSubSpecialty(null);
+      saveSpecialty(primary, null);
+      setShowPrimaryPicker(false);
+    }
+  };
+
+  const handleSelectSubSpecialty = (sub: string) => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    
+    if (selectedPrimaryForSub) {
+      setPrimarySpecialty(selectedPrimaryForSub);
+      setSubSpecialty(sub);
+      saveSpecialty(selectedPrimaryForSub, sub);
+    }
+    
+    setShowSubPicker(false);
+    setSelectedPrimaryForSub(null);
+  };
+
+  const handleBackToPrimary = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    setShowSubPicker(false);
+    setSelectedPrimaryForSub(null);
+    setShowPrimaryPicker(true);
+  };
+
+  const getDisplayText = () => {
+    if (subSpecialty) {
+      return subSpecialty;
+    }
+    if (primarySpecialty) {
+      return primarySpecialty;
+    }
+    return "Select Specialty";
+  };
+
+  const getSubOptions = () => {
+    if (!selectedPrimaryForSub) return [];
+    const option = SPECIALTY_OPTIONS.find(opt => opt.primary === selectedPrimaryForSub);
+    return option?.subOptions || [];
   };
 
   return (
@@ -104,16 +260,32 @@ export default function ProfileScreen() {
       >
         {/* User Information Section */}
         <GlassView style={styles.profileHeader} glassEffectStyle="regular">
-          <IconSymbol ios_icon_name="person.circle.fill" android_material_icon_name="person" size={80} color={theme.colors.primary} />
-          <Text style={[styles.name, { color: theme.colors.text }]}>{name}</Text>
+          <Text style={styles.headerEmoji}>🎓</Text>
+          <Text style={[styles.badge, { color: theme.colors.primary }]}>MedAtlas Scholar</Text>
           
-          {/* Profession Dropdown */}
+          {/* Specialty Dropdown */}
           <Pressable 
-            style={styles.professionButton}
-            onPress={handleProfessionPress}
+            style={[
+              styles.specialtyButton,
+              { 
+                backgroundColor: theme.dark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
+                borderColor: theme.dark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.1)'
+              }
+            ]}
+            onPress={handlePrimarySpecialtyPress}
           >
-            <Text style={[styles.profession, { color: theme.dark ? '#98989D' : '#666' }]}>{profession}</Text>
-            <IconSymbol ios_icon_name="chevron.down" android_material_icon_name="arrow-drop-down" size={20} color={theme.dark ? '#98989D' : '#666'} />
+            <Text style={[
+              styles.specialtyText, 
+              { color: primarySpecialty ? theme.colors.text : (theme.dark ? '#98989D' : '#666') }
+            ]}>
+              {getDisplayText()}
+            </Text>
+            <IconSymbol 
+              ios_icon_name="chevron.down" 
+              android_material_icon_name="arrow-drop-down" 
+              size={20} 
+              color={theme.dark ? '#98989D' : '#666'} 
+            />
           </Pressable>
         </GlassView>
 
@@ -148,49 +320,141 @@ export default function ProfileScreen() {
         </View>
       </ScrollView>
 
-      {/* Profession Picker Modal */}
+      {/* Primary Specialty Picker Modal */}
       <Modal
-        visible={showProfessionPicker}
+        visible={showPrimaryPicker}
         transparent
-        animationType="fade"
-        onRequestClose={() => setShowProfessionPicker(false)}
+        animationType="slide"
+        onRequestClose={() => setShowPrimaryPicker(false)}
       >
         <Pressable 
           style={styles.modalOverlay}
-          onPress={() => setShowProfessionPicker(false)}
+          onPress={() => setShowPrimaryPicker(false)}
         >
-          <View style={[styles.modalContent, { backgroundColor: theme.colors.card }]}>
-            <View style={styles.modalHeader}>
-              <Text style={[styles.modalTitle, { color: theme.colors.text }]}>Select Profession</Text>
-              <Pressable onPress={() => setShowProfessionPicker(false)}>
-                <IconSymbol ios_icon_name="xmark.circle.fill" android_material_icon_name="close" size={28} color={theme.dark ? '#98989D' : '#666'} />
+          <Pressable style={[styles.modalContent, { backgroundColor: theme.colors.card }]}>
+            <View style={[styles.modalHeader, { borderBottomColor: theme.dark ? '#333' : '#E5E5EA' }]}>
+              <Text style={[styles.modalTitle, { color: theme.colors.text }]}>Select Specialty</Text>
+              <Pressable onPress={() => setShowPrimaryPicker(false)}>
+                <IconSymbol 
+                  ios_icon_name="xmark.circle.fill" 
+                  android_material_icon_name="close" 
+                  size={28} 
+                  color={theme.dark ? '#98989D' : '#666'} 
+                />
               </Pressable>
             </View>
-            <ScrollView style={styles.professionList}>
-              {PROFESSIONS.map((prof, index) => (
+            <ScrollView style={styles.optionsList}>
+              {SPECIALTY_OPTIONS.map((option, index) => (
                 <Pressable
                   key={index}
                   style={[
-                    styles.professionItem,
-                    profession === prof && { backgroundColor: theme.colors.primary + '20' },
-                    index < PROFESSIONS.length - 1 && { borderBottomWidth: 1, borderBottomColor: theme.dark ? '#333' : '#E5E5EA' }
+                    styles.optionItem,
+                    primarySpecialty === option.primary && { backgroundColor: theme.colors.primary + '20' },
+                    index < SPECIALTY_OPTIONS.length - 1 && { 
+                      borderBottomWidth: 1, 
+                      borderBottomColor: theme.dark ? '#333' : '#E5E5EA' 
+                    }
                   ]}
-                  onPress={() => handleSelectProfession(prof)}
+                  onPress={() => handleSelectPrimarySpecialty(option.primary)}
                 >
                   <Text style={[
-                    styles.professionItemText, 
+                    styles.optionItemText, 
                     { color: theme.colors.text },
-                    profession === prof && { fontWeight: '600', color: theme.colors.primary }
+                    primarySpecialty === option.primary && { fontWeight: '600', color: theme.colors.primary }
                   ]}>
-                    {prof}
+                    {option.primary}
                   </Text>
-                  {profession === prof && (
-                    <IconSymbol ios_icon_name="checkmark" android_material_icon_name="check" size={20} color={theme.colors.primary} />
+                  <View style={styles.optionItemRight}>
+                    {primarySpecialty === option.primary && (
+                      <IconSymbol 
+                        ios_icon_name="checkmark" 
+                        android_material_icon_name="check" 
+                        size={20} 
+                        color={theme.colors.primary} 
+                      />
+                    )}
+                    {option.subOptions.length > 0 && (
+                      <IconSymbol 
+                        ios_icon_name="chevron.right" 
+                        android_material_icon_name="arrow-forward" 
+                        size={20} 
+                        color={theme.dark ? '#98989D' : '#666'} 
+                      />
+                    )}
+                  </View>
+                </Pressable>
+              ))}
+            </ScrollView>
+          </Pressable>
+        </Pressable>
+      </Modal>
+
+      {/* Sub-Specialty Picker Modal */}
+      <Modal
+        visible={showSubPicker}
+        transparent
+        animationType="slide"
+        onRequestClose={handleBackToPrimary}
+      >
+        <Pressable 
+          style={styles.modalOverlay}
+          onPress={handleBackToPrimary}
+        >
+          <Pressable style={[styles.modalContent, { backgroundColor: theme.colors.card }]}>
+            <View style={[styles.modalHeader, { borderBottomColor: theme.dark ? '#333' : '#E5E5EA' }]}>
+              <Pressable onPress={handleBackToPrimary} style={styles.backButton}>
+                <IconSymbol 
+                  ios_icon_name="chevron.left" 
+                  android_material_icon_name="arrow-back" 
+                  size={24} 
+                  color={theme.colors.primary} 
+                />
+              </Pressable>
+              <Text style={[styles.modalTitle, { color: theme.colors.text }]}>
+                {selectedPrimaryForSub}
+              </Text>
+              <Pressable onPress={handleBackToPrimary}>
+                <IconSymbol 
+                  ios_icon_name="xmark.circle.fill" 
+                  android_material_icon_name="close" 
+                  size={28} 
+                  color={theme.dark ? '#98989D' : '#666'} 
+                />
+              </Pressable>
+            </View>
+            <ScrollView style={styles.optionsList}>
+              {getSubOptions().map((subOption, index) => (
+                <Pressable
+                  key={index}
+                  style={[
+                    styles.optionItem,
+                    subSpecialty === subOption && { backgroundColor: theme.colors.primary + '20' },
+                    index < getSubOptions().length - 1 && { 
+                      borderBottomWidth: 1, 
+                      borderBottomColor: theme.dark ? '#333' : '#E5E5EA' 
+                    }
+                  ]}
+                  onPress={() => handleSelectSubSpecialty(subOption)}
+                >
+                  <Text style={[
+                    styles.optionItemText, 
+                    { color: theme.colors.text },
+                    subSpecialty === subOption && { fontWeight: '600', color: theme.colors.primary }
+                  ]}>
+                    {subOption}
+                  </Text>
+                  {subSpecialty === subOption && (
+                    <IconSymbol 
+                      ios_icon_name="checkmark" 
+                      android_material_icon_name="check" 
+                      size={20} 
+                      color={theme.colors.primary} 
+                    />
                   )}
                 </Pressable>
               ))}
             </ScrollView>
-          </View>
+          </Pressable>
         </Pressable>
       </Modal>
     </SafeAreaView>
@@ -215,20 +479,28 @@ const styles = StyleSheet.create({
     marginBottom: 24,
     gap: 12,
   },
-  name: {
-    fontSize: 24,
+  headerEmoji: {
+    fontSize: 64,
+  },
+  badge: {
+    fontSize: 20,
     fontWeight: 'bold',
   },
-  professionButton: {
+  specialtyButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    paddingVertical: 12,
     borderRadius: 8,
-    gap: 8,
+    borderWidth: 1,
+    minWidth: 250,
+    gap: 12,
   },
-  profession: {
+  specialtyText: {
     fontSize: 16,
+    flex: 1,
+    textAlign: 'center',
   },
   quickActionsContainer: {
     marginTop: 8,
@@ -267,15 +539,13 @@ const styles = StyleSheet.create({
   modalOverlay: {
     flex: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
+    justifyContent: 'flex-end',
   },
   modalContent: {
     width: '100%',
-    maxWidth: 400,
     maxHeight: '70%',
-    borderRadius: 16,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
     overflow: 'hidden',
   },
   modalHeader: {
@@ -284,22 +554,32 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
     borderBottomWidth: 1,
-    borderBottomColor: '#E5E5EA',
   },
   modalTitle: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
+    flex: 1,
+    textAlign: 'center',
   },
-  professionList: {
+  backButton: {
+    padding: 4,
+  },
+  optionsList: {
     maxHeight: 400,
   },
-  professionItem: {
+  optionItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 16,
   },
-  professionItemText: {
+  optionItemText: {
     fontSize: 16,
+    flex: 1,
+  },
+  optionItemRight: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
   },
 });
