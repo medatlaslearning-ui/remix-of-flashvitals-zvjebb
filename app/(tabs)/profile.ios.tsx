@@ -1,624 +1,701 @@
 
-import React, { useState, useMemo, useEffect } from "react";
-import { View, Text, StyleSheet, ScrollView, Pressable, Modal } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { IconSymbol } from "@/components/IconSymbol";
-import { GlassView } from "expo-glass-effect";
-import { useTheme } from "@react-navigation/native";
-import { useRouter } from "expo-router";
-import { useFlashcards } from "@/hooks/useFlashcards";
-import * as Haptics from "expo-haptics";
-import { supabase } from "@/app/integrations/supabase/client";
-
-// Specialty options with nested sub-specialties
-const SPECIALTY_OPTIONS = [
-  {
-    primary: "Advanced Practice Registered Nurse",
-    subOptions: [
-      "Nurse Practitioner",
-      "CRNA",
-      "Clinical Nurse Specialist",
-      "Certified Nurse Midwife"
-    ]
-  },
-  {
-    primary: "Physician",
-    subOptions: [
-      "Neurology",
-      "Cardiology",
-      "Pulmonary",
-      "Gastroenterology",
-      "Nephrology",
-      "Hem/Onc",
-      "Urology",
-      "Critical Care",
-      "Trauma",
-      "Emergency",
-      "Family Medicine",
-      "Internal Medicine",
-      "Hospitalist"
-    ]
-  },
-  {
-    primary: "Physician Associate",
-    subOptions: []
-  },
-  {
-    primary: "Registered Nurse",
-    subOptions: []
-  },
-  {
-    primary: "Local Vocational Nursing",
-    subOptions: []
-  },
-  {
-    primary: "Student",
-    subOptions: [
-      "APRN Student",
-      "Medical Student",
-      "PA Student",
-      "Nursing Student"
-    ]
-  },
-  {
-    primary: "Other",
-    subOptions: []
-  }
-];
+import React, { useState, useEffect, useMemo } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Pressable,
+  Alert,
+  ActivityIndicator,
+} from 'react-native';
+import { Stack, router } from 'expo-router';
+import { colors } from '@/styles/commonStyles';
+import { IconSymbol } from '@/components/IconSymbol.ios';
+import { useFlashcards } from '@/hooks/useFlashcards';
+import { useAuth } from '@/app/integrations/supabase/hooks/useAuth';
+import { supabase } from '@/app/integrations/supabase/client';
+import * as Haptics from 'expo-haptics';
 
 export default function ProfileScreen() {
-  const theme = useTheme();
-  const router = useRouter();
+  const { user, profile, loading: authLoading, signOut } = useAuth();
   const { getBookmarkedFlashcards, getFavoriteFlashcards, getDifficultFlashcards, updateTrigger } = useFlashcards();
-  
   const [primarySpecialty, setPrimarySpecialty] = useState<string | null>(null);
   const [subSpecialty, setSubSpecialty] = useState<string | null>(null);
-  const [showPrimaryPicker, setShowPrimaryPicker] = useState(false);
-  const [showSubPicker, setShowSubPicker] = useState(false);
-  const [selectedPrimaryForSub, setSelectedPrimaryForSub] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [showPrimaryDropdown, setShowPrimaryDropdown] = useState(false);
+  const [showSubDropdown, setShowSubDropdown] = useState(false);
+  const [savingSpecialty, setSavingSpecialty] = useState(false);
 
-  // Calculate counts - now properly reacts to flashcard changes via updateTrigger
-  const bookmarkedCount = useMemo(() => {
-    const count = getBookmarkedFlashcards().length;
-    console.log('[Profile] Bookmarked count updated:', count);
-    return count;
-  }, [getBookmarkedFlashcards, updateTrigger]);
+  const bookmarkedCount = useMemo(() => getBookmarkedFlashcards().length, [getBookmarkedFlashcards, updateTrigger]);
+  const favoritesCount = useMemo(() => getFavoriteFlashcards().length, [getFavoriteFlashcards, updateTrigger]);
+  const difficultCount = useMemo(() => getDifficultFlashcards().length, [getDifficultFlashcards, updateTrigger]);
 
-  const favoritesCount = useMemo(() => {
-    const count = getFavoriteFlashcards().length;
-    console.log('[Profile] Favorites count updated:', count);
-    return count;
-  }, [getFavoriteFlashcards, updateTrigger]);
-
-  const difficultCount = useMemo(() => {
-    const count = getDifficultFlashcards().length;
-    console.log('[Profile] Difficult count updated:', count);
-    return count;
-  }, [getDifficultFlashcards, updateTrigger]);
-
-  const quickActions = [
-    { 
-      title: "Favorites", 
-      emoji: "❤️",
-      route: "/(tabs)/(home)/flashcards",
-      params: { filter: 'favorites' },
-      count: favoritesCount,
-      color: '#E91E63',
-      functional: true
-    },
-    { 
-      title: "Bookmarked", 
-      emoji: "🔖",
-      route: "/(tabs)/(home)/flashcards",
-      params: { filter: 'bookmarked' },
-      count: bookmarkedCount,
-      color: '#FF9800',
-      functional: true
-    },
-    { 
-      title: "Difficult", 
-      emoji: "⚠️",
-      route: "/(tabs)/(home)/flashcards",
-      params: { filter: 'difficult' },
-      count: difficultCount,
-      color: '#F44336',
-      functional: true
-    },
-    { 
-      title: "Ask Dr. Elias Reed", 
-      emoji: "💬",
-      route: "/(tabs)/(home)/chatbot", 
-      params: {},
-      color: '#9C27B0',
-      functional: true
-    },
-    { 
-      title: "Progress Report", 
-      emoji: "📊",
-      route: "/progress-report", 
-      params: {},
-      color: '#2196F3',
-      functional: true
-    },
-    { 
-      title: "Future CE Activity", 
-      emoji: "🎯",
-      route: "", 
-      params: {},
-      color: '#00BCD4',
-      functional: false
+  useEffect(() => {
+    if (profile) {
+      setPrimarySpecialty(profile.primary_specialty || null);
+      setSubSpecialty(profile.sub_specialty || null);
     }
+  }, [profile]);
+
+  const primarySpecialties = [
+    'Advanced Practice Registered Nurse',
+    'Physician',
+    'Physician Associate',
+    'Registered Nurse',
+    'Local Vocational Nursing',
+    'Student',
+    'Other',
   ];
 
-  // Load user profile data
-  useEffect(() => {
-    loadProfile();
-  }, []);
-
-  const loadProfile = async () => {
-    try {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) {
-        console.log('No user found');
-        setLoading(false);
-        return;
-      }
-
-      const { data: profile, error } = await supabase
-        .from('profiles')
-        .select('primary_specialty, sub_specialty')
-        .eq('user_id', user.id)
-        .single();
-
-      if (error) {
-        console.log('Error loading profile:', error);
-      } else if (profile) {
-        setPrimarySpecialty(profile.primary_specialty);
-        setSubSpecialty(profile.sub_specialty);
-      }
-    } catch (error) {
-      console.error('Error in loadProfile:', error);
-    } finally {
-      setLoading(false);
-    }
+  const subSpecialties: { [key: string]: string[] } = {
+    'Advanced Practice Registered Nurse': [
+      'Acute Care Nurse Practitioner',
+      'Adult-Gerontology Nurse Practitioner',
+      'Family Nurse Practitioner',
+      'Pediatric Nurse Practitioner',
+      'Psychiatric Mental Health Nurse Practitioner',
+      'Women\'s Health Nurse Practitioner',
+      'Certified Nurse Midwife',
+      'Certified Registered Nurse Anesthetist',
+    ],
+    'Physician': [
+      'Family Medicine',
+      'Internal Medicine',
+      'Hospitalist',
+      'Emergency Medicine',
+      'Pediatrics',
+      'Obstetrics and Gynecology',
+      'Surgery',
+      'Psychiatry',
+      'Anesthesiology',
+      'Radiology',
+      'Pathology',
+      'Other Specialty',
+    ],
+    'Physician Associate': [
+      'Family Medicine',
+      'Internal Medicine',
+      'Emergency Medicine',
+      'Surgery',
+      'Pediatrics',
+      'Orthopedics',
+      'Dermatology',
+      'Psychiatry',
+      'Other Specialty',
+    ],
+    'Registered Nurse': [
+      'Medical-Surgical',
+      'Critical Care',
+      'Emergency',
+      'Pediatrics',
+      'Labor and Delivery',
+      'Operating Room',
+      'Oncology',
+      'Psychiatric',
+      'Other Specialty',
+    ],
+    'Student': [
+      'Medical Student',
+      'Nursing Student',
+      'PA Student',
+      'NP Student',
+      'Other Healthcare Student',
+    ],
   };
 
-  const saveSpecialty = async (primary: string, sub: string | null) => {
-    try {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) {
-        console.log('No user to save specialty for');
-        return;
-      }
+  const saveSpecialty = async () => {
+    if (!user) {
+      Alert.alert(
+        'Authentication Required',
+        'Please sign in to save your specialty selection.',
+        [
+          { text: 'Cancel', style: 'cancel' },
+          { text: 'Sign In', onPress: () => router.push('/auth/sign-in') },
+        ]
+      );
+      return;
+    }
 
+    if (!primarySpecialty) {
+      Alert.alert('Error', 'Please select a primary specialty');
+      return;
+    }
+
+    setSavingSpecialty(true);
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+
+    try {
       const { error } = await supabase
         .from('profiles')
         .upsert({
           user_id: user.id,
-          primary_specialty: primary,
-          sub_specialty: sub,
-          updated_at: new Date().toISOString()
-        }, {
-          onConflict: 'user_id'
+          primary_specialty: primarySpecialty,
+          sub_specialty: subSpecialty,
+          email: user.email,
+          updated_at: new Date().toISOString(),
         });
 
-      if (error) {
-        console.error('Error saving specialty:', error);
-      } else {
-        console.log('Specialty saved successfully');
-      }
+      if (error) throw error;
+
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      Alert.alert('Success', 'Your specialty has been saved');
     } catch (error) {
-      console.error('Error in saveSpecialty:', error);
+      console.error('Error saving specialty:', error);
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+      Alert.alert('Error', 'Failed to save specialty. Please try again.');
+    } finally {
+      setSavingSpecialty(false);
     }
   };
 
-  const handleQuickAction = (route: string, params?: any, functional?: boolean) => {
-    // Only navigate if the tile is functional
-    if (functional === false) {
-      console.log('Non-functional tile pressed - no action taken');
-      return;
-    }
-    
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    if (params && Object.keys(params).length > 0) {
-      router.push({ pathname: route as any, params });
-    } else {
-      router.push(route as any);
-    }
+  const handleSignOut = async () => {
+    Alert.alert(
+      'Sign Out',
+      'Are you sure you want to sign out?',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Sign Out',
+          style: 'destructive',
+          onPress: async () => {
+            try {
+              await signOut();
+              Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+              Alert.alert('Signed Out', 'You have been signed out successfully');
+            } catch (error) {
+              console.error('Sign out error:', error);
+              Alert.alert('Error', 'Failed to sign out. Please try again.');
+            }
+          },
+        },
+      ]
+    );
   };
 
-  const handlePrimarySpecialtyPress = () => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    setShowPrimaryPicker(true);
-  };
-
-  const handleSelectPrimarySpecialty = (primary: string) => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    
-    const selectedOption = SPECIALTY_OPTIONS.find(opt => opt.primary === primary);
-    
-    if (selectedOption && selectedOption.subOptions.length > 0) {
-      // Has sub-options, show sub-picker
-      setSelectedPrimaryForSub(primary);
-      setShowPrimaryPicker(false);
-      setShowSubPicker(true);
-    } else {
-      // No sub-options, save directly
-      setPrimarySpecialty(primary);
-      setSubSpecialty(null);
-      saveSpecialty(primary, null);
-      setShowPrimaryPicker(false);
-    }
-  };
-
-  const handleSelectSubSpecialty = (sub: string) => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    
-    if (selectedPrimaryForSub) {
-      setPrimarySpecialty(selectedPrimaryForSub);
-      setSubSpecialty(sub);
-      saveSpecialty(selectedPrimaryForSub, sub);
-    }
-    
-    setShowSubPicker(false);
-    setSelectedPrimaryForSub(null);
-  };
-
-  const handleBackToPrimary = () => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    setShowSubPicker(false);
-    setSelectedPrimaryForSub(null);
-    setShowPrimaryPicker(true);
-  };
-
-  const getDisplayText = () => {
-    if (subSpecialty) {
-      return subSpecialty;
-    }
-    if (primarySpecialty) {
-      return primarySpecialty;
-    }
-    return "Select Specialty";
-  };
-
-  const getSubOptions = () => {
-    if (!selectedPrimaryForSub) return [];
-    const option = SPECIALTY_OPTIONS.find(opt => opt.primary === selectedPrimaryForSub);
-    return option?.subOptions || [];
-  };
+  if (authLoading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color={colors.primary} />
+        <Text style={styles.loadingText}>Loading profile...</Text>
+      </View>
+    );
+  }
 
   return (
-    <SafeAreaView style={[styles.safeArea, { backgroundColor: theme.colors.background }]} edges={['top']}>
-      <ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}
-      >
-        {/* User Information Section */}
-        <GlassView style={[
-          styles.profileHeader,
-          { backgroundColor: theme.dark ? 'rgba(66, 133, 244, 0.3)' : '#1976D2' }
-        ]} glassEffectStyle="regular">
-          <Text style={styles.headerEmoji}>🎓</Text>
-          <Text style={[styles.badge, { color: '#FFFFFF' }]}>MedAtlas Scholar</Text>
+    <>
+      <Stack.Screen
+        options={{
+          title: 'Profile',
+          headerLargeTitle: true,
+        }}
+      />
+      <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+        {/* Authentication Status Card */}
+        <View style={styles.authCard}>
+          {user ? (
+            <>
+              <View style={styles.authHeader}>
+                <IconSymbol
+                  ios_icon_name="person.circle.fill"
+                  android_material_icon_name="account-circle"
+                  size={60}
+                  color={colors.primary}
+                />
+                <View style={styles.authInfo}>
+                  <Text style={styles.authName}>{profile?.full_name || 'User'}</Text>
+                  <Text style={styles.authEmail}>{user.email}</Text>
+                  <View style={styles.authBadge}>
+                    <IconSymbol
+                      ios_icon_name="checkmark.seal.fill"
+                      android_material_icon_name="check-circle"
+                      size={16}
+                      color="#27AE60"
+                    />
+                    <Text style={styles.authBadgeText}>Authenticated</Text>
+                  </View>
+                </View>
+              </View>
+              <Pressable style={styles.signOutButton} onPress={handleSignOut}>
+                <IconSymbol
+                  ios_icon_name="arrow.right.square.fill"
+                  android_material_icon_name="logout"
+                  size={20}
+                  color={colors.primary}
+                />
+                <Text style={styles.signOutButtonText}>Sign Out</Text>
+              </Pressable>
+            </>
+          ) : (
+            <>
+              <View style={styles.guestHeader}>
+                <IconSymbol
+                  ios_icon_name="person.fill.questionmark"
+                  android_material_icon_name="person"
+                  size={60}
+                  color={colors.textSecondary}
+                />
+                <View style={styles.guestInfo}>
+                  <Text style={styles.guestTitle}>Guest Mode</Text>
+                  <Text style={styles.guestSubtitle}>
+                    Sign in to save your progress and preferences
+                  </Text>
+                </View>
+              </View>
+              <Pressable
+                style={styles.signInButton}
+                onPress={() => router.push('/auth/sign-in')}
+              >
+                <IconSymbol
+                  ios_icon_name="arrow.right.circle.fill"
+                  android_material_icon_name="login"
+                  size={20}
+                  color="#FFFFFF"
+                />
+                <Text style={styles.signInButtonText}>Sign In</Text>
+              </Pressable>
+              <View style={styles.guestWarning}>
+                <IconSymbol
+                  ios_icon_name="exclamationmark.triangle.fill"
+                  android_material_icon_name="warning"
+                  size={16}
+                  color="#F39C12"
+                />
+                <Text style={styles.guestWarningText}>
+                  In guest mode, your feedback and preferences are not saved
+                </Text>
+              </View>
+            </>
+          )}
+        </View>
+
+        {/* MedAtlas Scholar Badge */}
+        <View style={styles.scholarBadge}>
+          <IconSymbol
+            ios_icon_name="graduationcap.fill"
+            android_material_icon_name="school"
+            size={32}
+            color="#FFFFFF"
+          />
+          <Text style={styles.scholarText}>MedAtlas Scholar</Text>
+        </View>
+
+        {/* Specialty Selection */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Select Specialty</Text>
           
-          {/* Specialty Dropdown */}
-          <Pressable 
-            style={[
-              styles.specialtyButton,
-              { 
-                backgroundColor: theme.dark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(255, 255, 255, 0.2)',
-                borderColor: theme.dark ? 'rgba(255, 255, 255, 0.3)' : 'rgba(255, 255, 255, 0.4)'
-              }
-            ]}
-            onPress={handlePrimarySpecialtyPress}
+          <Pressable
+            style={styles.dropdown}
+            onPress={() => setShowPrimaryDropdown(!showPrimaryDropdown)}
           >
-            <Text style={[
-              styles.specialtyText, 
-              { color: primarySpecialty ? '#FFFFFF' : 'rgba(255, 255, 255, 0.7)' }
-            ]}>
-              {getDisplayText()}
+            <Text style={primarySpecialty ? styles.dropdownTextSelected : styles.dropdownTextPlaceholder}>
+              {primarySpecialty || 'Select Primary Specialty'}
             </Text>
-            <IconSymbol 
-              ios_icon_name="chevron.down" 
-              android_material_icon_name="arrow-drop-down" 
-              size={20} 
-              color="rgba(255, 255, 255, 0.7)" 
+            <IconSymbol
+              ios_icon_name="chevron.down"
+              android_material_icon_name="arrow-drop-down"
+              size={24}
+              color={colors.text}
             />
           </Pressable>
-        </GlassView>
 
-        {/* Quick Actions Section */}
-        <View style={styles.quickActionsContainer}>
-          <Text style={[styles.sectionTitle, { color: theme.colors.text }]}>Quick Actions</Text>
-          <View style={styles.tilesGrid}>
-            {quickActions.map((action, index) => (
+          {showPrimaryDropdown && (
+            <View style={styles.dropdownMenu}>
+              {primarySpecialties.map((specialty) => (
+                <Pressable
+                  key={specialty}
+                  style={styles.dropdownItem}
+                  onPress={() => {
+                    setPrimarySpecialty(specialty);
+                    setSubSpecialty(null);
+                    setShowPrimaryDropdown(false);
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                  }}
+                >
+                  <Text style={styles.dropdownItemText}>{specialty}</Text>
+                </Pressable>
+              ))}
+            </View>
+          )}
+
+          {primarySpecialty && subSpecialties[primarySpecialty] && (
+            <>
               <Pressable
-                key={index}
-                onPress={() => handleQuickAction(action.route, action.params, action.functional)}
-                style={({ pressed }) => [
-                  styles.tile,
-                  { 
-                    opacity: pressed ? 0.7 : 1,
-                    backgroundColor: action.color
-                  }
-                ]}
+                style={[styles.dropdown, { marginTop: 12 }]}
+                onPress={() => setShowSubDropdown(!showSubDropdown)}
               >
-                <Text style={styles.tileEmoji}>{action.emoji}</Text>
-                <Text style={styles.tileTitle}>
-                  {action.title}
+                <Text style={subSpecialty ? styles.dropdownTextSelected : styles.dropdownTextPlaceholder}>
+                  {subSpecialty || 'Select Sub-Specialty'}
                 </Text>
-                {action.count !== undefined && (
-                  <Text style={styles.tileCount}>
-                    {action.count}
-                  </Text>
-                )}
+                <IconSymbol
+                  ios_icon_name="chevron.down"
+                  android_material_icon_name="arrow-drop-down"
+                  size={24}
+                  color={colors.text}
+                />
               </Pressable>
-            ))}
+
+              {showSubDropdown && (
+                <View style={styles.dropdownMenu}>
+                  {subSpecialties[primarySpecialty].map((specialty) => (
+                    <Pressable
+                      key={specialty}
+                      style={styles.dropdownItem}
+                      onPress={() => {
+                        setSubSpecialty(specialty);
+                        setShowSubDropdown(false);
+                        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                      }}
+                    >
+                      <Text style={styles.dropdownItemText}>{specialty}</Text>
+                    </Pressable>
+                  ))}
+                </View>
+              )}
+            </>
+          )}
+
+          <Pressable
+            style={[styles.saveButton, savingSpecialty && styles.saveButtonDisabled]}
+            onPress={saveSpecialty}
+            disabled={savingSpecialty || !primarySpecialty}
+          >
+            {savingSpecialty ? (
+              <ActivityIndicator color="#FFFFFF" />
+            ) : (
+              <>
+                <IconSymbol
+                  ios_icon_name="checkmark.circle.fill"
+                  android_material_icon_name="check-circle"
+                  size={20}
+                  color="#FFFFFF"
+                />
+                <Text style={styles.saveButtonText}>Save Specialty</Text>
+              </>
+            )}
+          </Pressable>
+        </View>
+
+        {/* Quick Actions */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Quick Actions</Text>
+          <View style={styles.grid}>
+            <Pressable
+              style={styles.tile}
+              onPress={() => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                router.push('/progress-report');
+              }}
+            >
+              <IconSymbol
+                ios_icon_name="chart.bar.fill"
+                android_material_icon_name="bar-chart"
+                size={32}
+                color={colors.primary}
+              />
+              <Text style={styles.tileTitle}>Progress Report</Text>
+            </Pressable>
+
+            <Pressable
+              style={styles.tile}
+              onPress={() => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                router.push('/(tabs)/(home)/ask-expert');
+              }}
+            >
+              <IconSymbol
+                ios_icon_name="person.fill.questionmark"
+                android_material_icon_name="help"
+                size={32}
+                color="#9B59B6"
+              />
+              <Text style={styles.tileTitle}>Ask Dr. Elias Reed</Text>
+            </Pressable>
+
+            <Pressable style={styles.tile}>
+              <IconSymbol
+                ios_icon_name="star.fill"
+                android_material_icon_name="star"
+                size={32}
+                color="#F39C12"
+              />
+              <Text style={styles.tileTitle}>Favorites</Text>
+              <Text style={styles.tileCount}>{favoritesCount}</Text>
+            </Pressable>
+
+            <Pressable style={styles.tile}>
+              <IconSymbol
+                ios_icon_name="bookmark.fill"
+                android_material_icon_name="bookmark"
+                size={32}
+                color="#3498DB"
+              />
+              <Text style={styles.tileTitle}>Bookmarked</Text>
+              <Text style={styles.tileCount}>{bookmarkedCount}</Text>
+            </Pressable>
+
+            <Pressable style={styles.tile}>
+              <IconSymbol
+                ios_icon_name="exclamationmark.triangle.fill"
+                android_material_icon_name="warning"
+                size={32}
+                color="#E74C3C"
+              />
+              <Text style={styles.tileTitle}>Difficult</Text>
+              <Text style={styles.tileCount}>{difficultCount}</Text>
+            </Pressable>
+
+            <Pressable style={[styles.tile, styles.tileDisabled]}>
+              <Text style={styles.tileEmoji}>🎯</Text>
+              <Text style={styles.tileTitle}>Future CE Activity</Text>
+            </Pressable>
           </View>
         </View>
       </ScrollView>
-
-      {/* Primary Specialty Picker Modal */}
-      <Modal
-        visible={showPrimaryPicker}
-        transparent
-        animationType="slide"
-        onRequestClose={() => setShowPrimaryPicker(false)}
-      >
-        <Pressable 
-          style={styles.modalOverlay}
-          onPress={() => setShowPrimaryPicker(false)}
-        >
-          <Pressable style={[styles.modalContent, { backgroundColor: theme.colors.card }]}>
-            <View style={[styles.modalHeader, { borderBottomColor: theme.dark ? '#333' : '#E5E5EA' }]}>
-              <Text style={[styles.modalTitle, { color: theme.colors.text }]}>Select Specialty</Text>
-              <Pressable onPress={() => setShowPrimaryPicker(false)}>
-                <IconSymbol 
-                  ios_icon_name="xmark.circle.fill" 
-                  android_material_icon_name="close" 
-                  size={28} 
-                  color={theme.dark ? '#98989D' : '#666'} 
-                />
-              </Pressable>
-            </View>
-            <ScrollView style={styles.optionsList}>
-              {SPECIALTY_OPTIONS.map((option, index) => (
-                <Pressable
-                  key={index}
-                  style={[
-                    styles.optionItem,
-                    primarySpecialty === option.primary && { backgroundColor: theme.colors.primary + '20' },
-                    index < SPECIALTY_OPTIONS.length - 1 && { 
-                      borderBottomWidth: 1, 
-                      borderBottomColor: theme.dark ? '#333' : '#E5E5EA' 
-                    }
-                  ]}
-                  onPress={() => handleSelectPrimarySpecialty(option.primary)}
-                >
-                  <Text style={[
-                    styles.optionItemText, 
-                    { color: theme.colors.text },
-                    primarySpecialty === option.primary && { fontWeight: '600', color: theme.colors.primary }
-                  ]}>
-                    {option.primary}
-                  </Text>
-                  <View style={styles.optionItemRight}>
-                    {primarySpecialty === option.primary && (
-                      <IconSymbol 
-                        ios_icon_name="checkmark" 
-                        android_material_icon_name="check" 
-                        size={20} 
-                        color={theme.colors.primary} 
-                      />
-                    )}
-                    {option.subOptions.length > 0 && (
-                      <IconSymbol 
-                        ios_icon_name="chevron.right" 
-                        android_material_icon_name="arrow-forward" 
-                        size={20} 
-                        color={theme.dark ? '#98989D' : '#666'} 
-                      />
-                    )}
-                  </View>
-                </Pressable>
-              ))}
-            </ScrollView>
-          </Pressable>
-        </Pressable>
-      </Modal>
-
-      {/* Sub-Specialty Picker Modal */}
-      <Modal
-        visible={showSubPicker}
-        transparent
-        animationType="slide"
-        onRequestClose={handleBackToPrimary}
-      >
-        <Pressable 
-          style={styles.modalOverlay}
-          onPress={handleBackToPrimary}
-        >
-          <Pressable style={[styles.modalContent, { backgroundColor: theme.colors.card }]}>
-            <View style={[styles.modalHeader, { borderBottomColor: theme.dark ? '#333' : '#E5E5EA' }]}>
-              <Pressable onPress={handleBackToPrimary} style={styles.backButton}>
-                <IconSymbol 
-                  ios_icon_name="chevron.left" 
-                  android_material_icon_name="arrow-back" 
-                  size={24} 
-                  color={theme.colors.primary} 
-                />
-              </Pressable>
-              <Text style={[styles.modalTitle, { color: theme.colors.text }]}>
-                {selectedPrimaryForSub}
-              </Text>
-              <Pressable onPress={handleBackToPrimary}>
-                <IconSymbol 
-                  ios_icon_name="xmark.circle.fill" 
-                  android_material_icon_name="close" 
-                  size={28} 
-                  color={theme.dark ? '#98989D' : '#666'} 
-                />
-              </Pressable>
-            </View>
-            <ScrollView style={styles.optionsList}>
-              {getSubOptions().map((subOption, index) => (
-                <Pressable
-                  key={index}
-                  style={[
-                    styles.optionItem,
-                    subSpecialty === subOption && { backgroundColor: theme.colors.primary + '20' },
-                    index < getSubOptions().length - 1 && { 
-                      borderBottomWidth: 1, 
-                      borderBottomColor: theme.dark ? '#333' : '#E5E5EA' 
-                    }
-                  ]}
-                  onPress={() => handleSelectSubSpecialty(subOption)}
-                >
-                  <Text style={[
-                    styles.optionItemText, 
-                    { color: theme.colors.text },
-                    subSpecialty === subOption && { fontWeight: '600', color: theme.colors.primary }
-                  ]}>
-                    {subOption}
-                  </Text>
-                  {subSpecialty === subOption && (
-                    <IconSymbol 
-                      ios_icon_name="checkmark" 
-                      android_material_icon_name="check" 
-                      size={20} 
-                      color={theme.colors.primary} 
-                    />
-                  )}
-                </Pressable>
-              ))}
-            </ScrollView>
-          </Pressable>
-        </Pressable>
-      </Modal>
-    </SafeAreaView>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-  },
   container: {
     flex: 1,
+    backgroundColor: colors.background,
   },
-  contentContainer: {
-    padding: 20,
+  content: {
+    padding: 16,
     paddingBottom: 100,
   },
-  profileHeader: {
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 12,
-    padding: 32,
-    marginBottom: 24,
-    gap: 12,
+    backgroundColor: colors.background,
   },
-  headerEmoji: {
-    fontSize: 64,
+  loadingText: {
+    marginTop: 12,
+    fontSize: 16,
+    color: colors.textSecondary,
   },
-  badge: {
-    fontSize: 20,
-    fontWeight: 'bold',
+  authCard: {
+    backgroundColor: colors.card,
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: colors.border,
   },
-  specialtyButton: {
+  authHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    paddingVertical: 12,
-    borderRadius: 8,
-    borderWidth: 1,
-    minWidth: 250,
-    gap: 12,
+    gap: 16,
+    marginBottom: 16,
   },
-  specialtyText: {
-    fontSize: 16,
+  authInfo: {
     flex: 1,
-    textAlign: 'center',
   },
-  quickActionsContainer: {
-    marginTop: 8,
+  authName: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: colors.text,
+    marginBottom: 4,
+  },
+  authEmail: {
+    fontSize: 14,
+    color: colors.textSecondary,
+    marginBottom: 8,
+  },
+  authBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    backgroundColor: '#E8F5E9',
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 12,
+    alignSelf: 'flex-start',
+  },
+  authBadgeText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#27AE60',
+  },
+  signOutButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    backgroundColor: colors.background,
+    borderRadius: 12,
+    paddingVertical: 12,
+    borderWidth: 2,
+    borderColor: colors.primary,
+  },
+  signOutButtonText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: colors.primary,
+  },
+  guestHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 16,
+    marginBottom: 16,
+  },
+  guestInfo: {
+    flex: 1,
+  },
+  guestTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: colors.text,
+    marginBottom: 4,
+  },
+  guestSubtitle: {
+    fontSize: 14,
+    color: colors.textSecondary,
+    lineHeight: 20,
+  },
+  signInButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    backgroundColor: colors.primary,
+    borderRadius: 12,
+    paddingVertical: 14,
+    marginBottom: 12,
+  },
+  signInButtonText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#FFFFFF',
+  },
+  guestWarning: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 8,
+    backgroundColor: '#FFF9E6',
+    borderRadius: 8,
+    padding: 12,
+    borderWidth: 1,
+    borderColor: '#F39C12',
+  },
+  guestWarningText: {
+    flex: 1,
+    fontSize: 12,
+    color: colors.text,
+    lineHeight: 18,
+  },
+  scholarBadge: {
+    backgroundColor: '#2563EB',
+    borderRadius: 16,
+    padding: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 12,
+    marginBottom: 16,
+  },
+  scholarText: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#FFFFFF',
+  },
+  section: {
+    marginBottom: 24,
   },
   sectionTitle: {
     fontSize: 20,
-    fontWeight: '600',
-    marginBottom: 16,
+    fontWeight: '700',
+    color: colors.text,
+    marginBottom: 12,
   },
-  tilesGrid: {
+  dropdown: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: colors.card,
+    borderRadius: 12,
+    padding: 16,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  dropdownTextPlaceholder: {
+    fontSize: 16,
+    color: colors.textSecondary,
+  },
+  dropdownTextSelected: {
+    fontSize: 16,
+    color: colors.text,
+    fontWeight: '600',
+  },
+  dropdownMenu: {
+    backgroundColor: colors.card,
+    borderRadius: 12,
+    marginTop: 8,
+    borderWidth: 1,
+    borderColor: colors.border,
+    maxHeight: 300,
+  },
+  dropdownItem: {
+    padding: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border,
+  },
+  dropdownItemText: {
+    fontSize: 16,
+    color: colors.text,
+  },
+  saveButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    backgroundColor: colors.primary,
+    borderRadius: 12,
+    paddingVertical: 14,
+    marginTop: 16,
+  },
+  saveButtonDisabled: {
+    opacity: 0.6,
+  },
+  saveButtonText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#FFFFFF',
+  },
+  grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 12,
   },
   tile: {
-    width: '48%',
-    borderRadius: 12,
+    backgroundColor: colors.card,
+    borderRadius: 16,
     padding: 16,
     alignItems: 'center',
-    gap: 8,
+    justifyContent: 'center',
+    width: '48%',
+    minHeight: 120,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  tileDisabled: {
+    opacity: 0.6,
+  },
+  tileTitle: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: colors.text,
+    marginTop: 8,
+    textAlign: 'center',
+  },
+  tileCount: {
+    fontSize: 24,
+    fontWeight: '700',
+    color: colors.primary,
+    marginTop: 4,
   },
   tileEmoji: {
     fontSize: 32,
-  },
-  tileTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    textAlign: 'center',
-    color: '#FFFFFF',
-  },
-  tileCount: {
-    fontSize: 18,
-    fontWeight: '700',
-    color: '#FFFFFF',
-  },
-  modalOverlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    justifyContent: 'flex-end',
-  },
-  modalContent: {
-    width: '100%',
-    maxHeight: '70%',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    overflow: 'hidden',
-  },
-  modalHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 20,
-    borderBottomWidth: 1,
-  },
-  modalTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    flex: 1,
-    textAlign: 'center',
-  },
-  backButton: {
-    padding: 4,
-  },
-  optionsList: {
-    maxHeight: 400,
-  },
-  optionItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 16,
-  },
-  optionItemText: {
-    fontSize: 16,
-    flex: 1,
-  },
-  optionItemRight: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
   },
 });

@@ -1,3 +1,4 @@
+
 import "react-native-reanimated";
 import React, { useEffect } from "react";
 import { useFonts } from "expo-font";
@@ -14,7 +15,6 @@ import {
   ThemeProvider,
 } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
-import { Button } from "@/components/button";
 import { WidgetProvider } from "@/contexts/WidgetContext";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -88,6 +88,29 @@ export default function RootLayout() {
             <Stack>
               {/* Main app with tabs */}
               <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+
+              {/* Authentication Screens */}
+              <Stack.Screen
+                name="auth/sign-in"
+                options={{
+                  presentation: "modal",
+                  title: "Sign In",
+                }}
+              />
+              <Stack.Screen
+                name="auth/sign-up"
+                options={{
+                  presentation: "modal",
+                  title: "Sign Up",
+                }}
+              />
+              <Stack.Screen
+                name="auth/reset-password"
+                options={{
+                  presentation: "modal",
+                  title: "Reset Password",
+                }}
+              />
 
               {/* Modal Demo Screens */}
               <Stack.Screen
