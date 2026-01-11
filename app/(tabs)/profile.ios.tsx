@@ -104,7 +104,8 @@ export default function ProfileScreen() {
       route: "/(tabs)/(home)/flashcards",
       params: { filter: 'favorites' },
       count: favoritesCount,
-      color: '#E91E63'
+      color: '#E91E63',
+      functional: true
     },
     { 
       title: "Bookmarked", 
@@ -112,7 +113,8 @@ export default function ProfileScreen() {
       route: "/(tabs)/(home)/flashcards",
       params: { filter: 'bookmarked' },
       count: bookmarkedCount,
-      color: '#FF9800'
+      color: '#FF9800',
+      functional: true
     },
     { 
       title: "Difficult", 
@@ -120,21 +122,32 @@ export default function ProfileScreen() {
       route: "/(tabs)/(home)/flashcards",
       params: { filter: 'difficult' },
       count: difficultCount,
-      color: '#F44336'
+      color: '#F44336',
+      functional: true
     },
     { 
       title: "Ask Dr. Elias Reed", 
       emoji: "💬",
       route: "/(tabs)/(home)/chatbot", 
       params: {},
-      color: '#9C27B0'
+      color: '#9C27B0',
+      functional: true
     },
     { 
       title: "Progress Report", 
       emoji: "📊",
       route: "/progress-report", 
       params: {},
-      color: '#2196F3'
+      color: '#2196F3',
+      functional: true
+    },
+    { 
+      title: "Future CE Activity", 
+      emoji: "🎯",
+      route: "", 
+      params: {},
+      color: '#00BCD4',
+      functional: false
     }
   ];
 
@@ -200,7 +213,13 @@ export default function ProfileScreen() {
     }
   };
 
-  const handleQuickAction = (route: string, params?: any) => {
+  const handleQuickAction = (route: string, params?: any, functional?: boolean) => {
+    // Only navigate if the tile is functional
+    if (functional === false) {
+      console.log('Non-functional tile pressed - no action taken');
+      return;
+    }
+    
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     if (params && Object.keys(params).length > 0) {
       router.push({ pathname: route as any, params });
@@ -316,7 +335,7 @@ export default function ProfileScreen() {
             {quickActions.map((action, index) => (
               <Pressable
                 key={index}
-                onPress={() => handleQuickAction(action.route, action.params)}
+                onPress={() => handleQuickAction(action.route, action.params, action.functional)}
                 style={({ pressed }) => [
                   styles.tile,
                   { 
