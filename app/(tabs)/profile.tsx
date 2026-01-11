@@ -33,7 +33,10 @@ const SPECIALTY_OPTIONS = [
       "Urology",
       "Critical Care",
       "Trauma",
-      "Emergency"
+      "Emergency",
+      "Family Medicine",
+      "Internal Medicine",
+      "Hospitalist"
     ]
   },
   {
