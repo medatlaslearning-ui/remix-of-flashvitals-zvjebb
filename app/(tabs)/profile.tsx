@@ -8,7 +8,7 @@ import { useTheme } from "@react-navigation/native";
 import { useRouter } from "expo-router";
 import { useFlashcards } from "@/hooks/useFlashcards";
 import * as Haptics from "expo-haptics";
-import { supabase } from "@/lib/supabase";
+import { supabase } from "@/app/integrations/supabase/client";
 
 // Specialty options with nested sub-specialties
 const SPECIALTY_OPTIONS = [
