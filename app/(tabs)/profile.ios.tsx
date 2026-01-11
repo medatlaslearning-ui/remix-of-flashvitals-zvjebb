@@ -276,24 +276,27 @@ export default function ProfileScreen() {
         contentContainerStyle={styles.contentContainer}
       >
         {/* User Information Section */}
-        <GlassView style={styles.profileHeader} glassEffectStyle="regular">
+        <GlassView style={[
+          styles.profileHeader,
+          { backgroundColor: theme.dark ? 'rgba(66, 133, 244, 0.3)' : '#1976D2' }
+        ]} glassEffectStyle="regular">
           <Text style={styles.headerEmoji}>🎓</Text>
-          <Text style={[styles.badge, { color: theme.colors.primary }]}>MedAtlas Scholar</Text>
+          <Text style={[styles.badge, { color: '#FFFFFF' }]}>MedAtlas Scholar</Text>
           
           {/* Specialty Dropdown */}
           <Pressable 
             style={[
               styles.specialtyButton,
               { 
-                backgroundColor: theme.dark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
-                borderColor: theme.dark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.1)'
+                backgroundColor: theme.dark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(255, 255, 255, 0.2)',
+                borderColor: theme.dark ? 'rgba(255, 255, 255, 0.3)' : 'rgba(255, 255, 255, 0.4)'
               }
             ]}
             onPress={handlePrimarySpecialtyPress}
           >
             <Text style={[
               styles.specialtyText, 
-              { color: primarySpecialty ? theme.colors.text : (theme.dark ? '#98989D' : '#666') }
+              { color: primarySpecialty ? '#FFFFFF' : 'rgba(255, 255, 255, 0.7)' }
             ]}>
               {getDisplayText()}
             </Text>
@@ -301,7 +304,7 @@ export default function ProfileScreen() {
               ios_icon_name="chevron.down" 
               android_material_icon_name="arrow-drop-down" 
               size={20} 
-              color={theme.dark ? '#98989D' : '#666'} 
+              color="rgba(255, 255, 255, 0.7)" 
             />
           </Pressable>
         </GlassView>
