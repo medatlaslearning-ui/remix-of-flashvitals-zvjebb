@@ -59,12 +59,7 @@ export default function HomeScreen() {
                 ]}
                 onPress={() => handleQuickActionPress(action.route)}
               >
-                <IconSymbol
-                  ios_icon_name={action.icon}
-                  android_material_icon_name="circle"
-                  color="#FFFFFF"
-                  size={32}
-                />
+                <Text style={styles.emoji}>{action.emoji}</Text>
                 <Text style={styles.quickActionTitle}>{action.title}</Text>
                 <Text style={styles.quickActionSubtitle}>{action.subtitle}</Text>
               </Pressable>
@@ -86,12 +81,7 @@ export default function HomeScreen() {
               onPress={() => handleSystemPress(system.route)}
             >
               <View style={[styles.systemIconContainer, { backgroundColor: system.color }]}>
-                <IconSymbol
-                  ios_icon_name={system.icon}
-                  android_material_icon_name="circle"
-                  color="#FFFFFF"
-                  size={24}
-                />
+                <Text style={styles.systemEmoji}>{system.emoji}</Text>
               </View>
               <View style={styles.systemContent}>
                 <Text style={styles.systemTitle}>{system.system}</Text>
@@ -99,7 +89,7 @@ export default function HomeScreen() {
               </View>
               <IconSymbol
                 ios_icon_name="chevron.right"
-                android_material_icon_name="chevron-right"
+                android_material_icon_name="chevron_right"
                 color={colors.grey}
                 size={20}
               />
@@ -162,11 +152,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     minHeight: 120,
   },
+  emoji: {
+    fontSize: 40,
+    marginBottom: 8,
+  },
   quickActionTitle: {
     fontSize: 16,
     fontWeight: '700',
     color: '#FFFFFF',
-    marginTop: 12,
+    marginTop: 4,
     textAlign: 'center',
   },
   quickActionSubtitle: {
@@ -192,6 +186,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 16,
+  },
+  systemEmoji: {
+    fontSize: 24,
   },
   systemContent: {
     flex: 1,
