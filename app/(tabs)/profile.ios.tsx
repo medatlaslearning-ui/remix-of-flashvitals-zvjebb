@@ -69,7 +69,7 @@ const SPECIALTY_OPTIONS = [
 export default function ProfileScreen() {
   const theme = useTheme();
   const router = useRouter();
-  const { getBookmarkedFlashcards, getFavoriteFlashcards, getDifficultFlashcards } = useFlashcards();
+  const { getBookmarkedFlashcards, getFavoriteFlashcards, getDifficultFlashcards, updateTrigger } = useFlashcards();
   
   const [primarySpecialty, setPrimarySpecialty] = useState<string | null>(null);
   const [subSpecialty, setSubSpecialty] = useState<string | null>(null);
@@ -78,10 +78,24 @@ export default function ProfileScreen() {
   const [selectedPrimaryForSub, setSelectedPrimaryForSub] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Calculate counts
-  const bookmarkedCount = useMemo(() => getBookmarkedFlashcards().length, [getBookmarkedFlashcards]);
-  const favoritesCount = useMemo(() => getFavoriteFlashcards().length, [getFavoriteFlashcards]);
-  const difficultCount = useMemo(() => getDifficultFlashcards().length, [getDifficultFlashcards]);
+  // Calculate counts - now properly reacts to flashcard changes via updateTrigger
+  const bookmarkedCount = useMemo(() => {
+    const count = getBookmarkedFlashcards().length;
+    console.log('[Profile] Bookmarked count updated:', count);
+    return count;
+  }, [getBookmarkedFlashcards, updateTrigger]);
+
+  const favoritesCount = useMemo(() => {
+    const count = getFavoriteFlashcards().length;
+    console.log('[Profile] Favorites count updated:', count);
+    return count;
+  }, [getFavoriteFlashcards, updateTrigger]);
+
+  const difficultCount = useMemo(() => {
+    const count = getDifficultFlashcards().length;
+    console.log('[Profile] Difficult count updated:', count);
+    return count;
+  }, [getDifficultFlashcards, updateTrigger]);
 
   const quickActions = [
     { 
