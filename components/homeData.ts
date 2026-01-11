@@ -102,6 +102,14 @@ export const medicalSystems: MedicalSystem[] = [
     emoji: '💧',
   },
   {
+    system: 'Urology',
+    description: 'Urinary tract & male reproductive',
+    route: '/(tabs)/(home)/urology-topics',
+    color: '#5C6BC0',
+    icon: 'stethoscope',
+    emoji: '🩺',
+  },
+  {
     system: 'Gastroenterology',
     description: 'Digestive system',
     route: '/(tabs)/(home)/gastroenterology-topics',
