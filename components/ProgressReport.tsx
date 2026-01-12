@@ -1,6 +1,6 @@
 
-import React, { useState, Platform } from 'react';
-import { View, Text, StyleSheet, ScrollView, Pressable, ActivityIndicator, RefreshControl } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, Pressable, ActivityIndicator, RefreshControl, Platform } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { useRouter } from 'expo-router';
 import { GlassView } from 'expo-glass-effect';
@@ -90,8 +90,13 @@ export function ProgressReport() {
   }
 
   const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    try {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    } catch (e) {
+      console.error('[ProgressReport] Error formatting date:', e);
+      return 'Invalid date';
+    }
   };
 
   const getScoreColor = (score: number, total: number) => {
@@ -101,9 +106,9 @@ export function ProgressReport() {
     return '#FF3B30';
   };
 
-  const totalQuizzes = stats.totalQuizzesTaken;
-  const averageScore = stats.averageScore;
-  const perfectScores = quizResults.filter(q => q.score === q.total_questions).length;
+  const totalQuizzes = stats?.totalQuizzesTaken || 0;
+  const averageScore = stats?.averageScore || 0;
+  const perfectScores = quizResults?.filter(q => q.score === q.total_questions).length || 0;
 
   return (
     <ScrollView
@@ -115,21 +120,42 @@ export function ProgressReport() {
     >
       {/* Overview Stats */}
       <View style={styles.statsGrid}>
-        <GlassView style={[styles.statTile, { backgroundColor: 'rgba(0, 122, 255, 0.15)' }]} glassEffectStyle="regular">
+        <GlassView 
+          style={[
+            styles.statTile, 
+            { backgroundColor: 'rgba(0, 122, 255, 0.15)' },
+            Platform.OS !== 'ios' && { backgroundColor: theme.dark ? 'rgba(0, 122, 255, 0.2)' : 'rgba(0, 122, 255, 0.1)' }
+          ]} 
+          glassEffectStyle="regular"
+        >
           <IconSymbol ios_icon_name="chart.bar.fill" android_material_icon_name="bar-chart" size={32} color="#007AFF" />
-          <Text style={[styles.statValue, { color: theme.colors.text }]}>{stats.totalQuizzesTaken}</Text>
+          <Text style={[styles.statValue, { color: theme.colors.text }]}>{totalQuizzes}</Text>
           <Text style={[styles.statLabel, { color: theme.dark ? '#98989D' : '#666' }]}>Quizzes</Text>
         </GlassView>
 
-        <GlassView style={[styles.statTile, { backgroundColor: 'rgba(52, 199, 89, 0.15)' }]} glassEffectStyle="regular">
+        <GlassView 
+          style={[
+            styles.statTile, 
+            { backgroundColor: 'rgba(52, 199, 89, 0.15)' },
+            Platform.OS !== 'ios' && { backgroundColor: theme.dark ? 'rgba(52, 199, 89, 0.2)' : 'rgba(52, 199, 89, 0.1)' }
+          ]} 
+          glassEffectStyle="regular"
+        >
           <IconSymbol ios_icon_name="star.fill" android_material_icon_name="star" size={32} color="#34C759" />
-          <Text style={[styles.statValue, { color: theme.colors.text }]}>{stats.averageScore.toFixed(0)}%</Text>
+          <Text style={[styles.statValue, { color: theme.colors.text }]}>{averageScore.toFixed(0)}%</Text>
           <Text style={[styles.statLabel, { color: theme.dark ? '#98989D' : '#666' }]}>Avg Score</Text>
         </GlassView>
 
-        <GlassView style={[styles.statTile, { backgroundColor: 'rgba(255, 149, 0, 0.15)' }]} glassEffectStyle="regular">
+        <GlassView 
+          style={[
+            styles.statTile, 
+            { backgroundColor: 'rgba(255, 149, 0, 0.15)' },
+            Platform.OS !== 'ios' && { backgroundColor: theme.dark ? 'rgba(255, 149, 0, 0.2)' : 'rgba(255, 149, 0, 0.1)' }
+          ]} 
+          glassEffectStyle="regular"
+        >
           <IconSymbol ios_icon_name="book.fill" android_material_icon_name="book" size={32} color="#FF9500" />
-          <Text style={[styles.statValue, { color: theme.colors.text }]}>{stats.totalFlashcardsViewed}</Text>
+          <Text style={[styles.statValue, { color: theme.colors.text }]}>{stats?.totalFlashcardsViewed || 0}</Text>
           <Text style={[styles.statLabel, { color: theme.dark ? '#98989D' : '#666' }]}>Cards</Text>
         </GlassView>
       </View>
@@ -210,7 +236,7 @@ export function ProgressReport() {
       </GlassView>
 
       {/* Topic Breakdown */}
-      {stats.topicBreakdown.length > 0 && (
+      {stats?.topicBreakdown && stats.topicBreakdown.length > 0 && (
         <GlassView 
           style={[
             styles.section,
@@ -273,7 +299,7 @@ export function ProgressReport() {
       )}
 
       {/* Recent Quiz Results */}
-      {quizResults.length > 0 && (
+      {quizResults && quizResults.length > 0 && (
         <GlassView 
           style={[
             styles.section,
@@ -293,7 +319,7 @@ export function ProgressReport() {
             
             return (
               <View 
-                key={index} 
+                key={quiz.id || index} 
                 style={[
                   styles.quizItem,
                   index < Math.min(5, quizResults.length) - 1 && { borderBottomWidth: 1, borderBottomColor: theme.dark ? '#333' : '#E5E5EA' }
