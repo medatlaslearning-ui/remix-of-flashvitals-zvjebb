@@ -393,9 +393,9 @@ export default function ProfileScreen() {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Quick Actions</Text>
           <View style={styles.grid}>
-            {/* Favorites */}
+            {/* Favorites - Using vibrant color from Home page */}
             <Pressable
-              style={[styles.tile, { backgroundColor: '#FFE8F0' }]}
+              style={[styles.tile, { backgroundColor: '#E91E63' }]}
               onPress={() => {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                 router.push('/(tabs)/(home)/flashcards?filter=favorites');
@@ -403,12 +403,12 @@ export default function ProfileScreen() {
             >
               <Text style={styles.tileEmoji}>❤️</Text>
               <Text style={styles.tileTitle}>Favorites</Text>
-              <Text style={[styles.tileCount, { color: '#E91E63' }]}>{favoritesCount}</Text>
+              <Text style={[styles.tileCount, { color: '#FFFFFF' }]}>{favoritesCount}</Text>
             </Pressable>
 
-            {/* Bookmarked */}
+            {/* Bookmarked - Using vibrant color from Home page */}
             <Pressable
-              style={[styles.tile, { backgroundColor: '#FFF3E0' }]}
+              style={[styles.tile, { backgroundColor: '#FF9800' }]}
               onPress={() => {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                 router.push('/(tabs)/(home)/flashcards?filter=bookmarked');
@@ -416,12 +416,12 @@ export default function ProfileScreen() {
             >
               <Text style={styles.tileEmoji}>🔖</Text>
               <Text style={styles.tileTitle}>Bookmarked</Text>
-              <Text style={[styles.tileCount, { color: '#FF9800' }]}>{bookmarkedCount}</Text>
+              <Text style={[styles.tileCount, { color: '#FFFFFF' }]}>{bookmarkedCount}</Text>
             </Pressable>
 
-            {/* Difficult */}
+            {/* Difficult - Using vibrant color from Home page */}
             <Pressable
-              style={[styles.tile, { backgroundColor: '#FFEBEE' }]}
+              style={[styles.tile, { backgroundColor: '#F44336' }]}
               onPress={() => {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                 router.push('/(tabs)/(home)/flashcards?filter=difficult');
@@ -429,12 +429,12 @@ export default function ProfileScreen() {
             >
               <Text style={styles.tileEmoji}>⚠️</Text>
               <Text style={styles.tileTitle}>Difficult</Text>
-              <Text style={[styles.tileCount, { color: '#F44336' }]}>{difficultCount}</Text>
+              <Text style={[styles.tileCount, { color: '#FFFFFF' }]}>{difficultCount}</Text>
             </Pressable>
 
-            {/* Ask Dr. Elias Reed - FIXED ROUTE */}
+            {/* Ask Dr. Elias Reed - Using vibrant color from Home page */}
             <Pressable
-              style={[styles.tile, { backgroundColor: '#F3E5F5' }]}
+              style={[styles.tile, { backgroundColor: '#9C27B0' }]}
               onPress={() => {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                 router.push('/(tabs)/(home)/chatbot');
@@ -444,9 +444,9 @@ export default function ProfileScreen() {
               <Text style={styles.tileTitle}>Ask Dr. Elias Reed</Text>
             </Pressable>
 
-            {/* Progress Report */}
+            {/* Progress Report - Using vibrant color from Home page */}
             <Pressable
-              style={[styles.tile, { backgroundColor: '#E3F2FD' }]}
+              style={[styles.tile, { backgroundColor: '#2196F3' }]}
               onPress={() => {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                 router.push('/progress-report');
@@ -456,8 +456,8 @@ export default function ProfileScreen() {
               <Text style={styles.tileTitle}>Progress Report</Text>
             </Pressable>
 
-            {/* Future CE Activity */}
-            <Pressable style={[styles.tile, styles.tileDisabled, { backgroundColor: '#F5F5F5' }]}>
+            {/* Future CE Activity - Using vibrant color from Home page */}
+            <Pressable style={[styles.tile, styles.tileDisabled, { backgroundColor: '#4CAF50' }]}>
               <Text style={styles.tileEmoji}>🎯</Text>
               <Text style={styles.tileTitle}>Future CE Activity</Text>
             </Pressable>
@@ -697,7 +697,7 @@ const styles = StyleSheet.create({
   tileTitle: {
     fontSize: 14,
     fontWeight: '600',
-    color: colors.text,
+    color: '#FFFFFF',
     marginTop: 8,
     textAlign: 'center',
   },
