@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Platform } from 'react-native';
 import { Stack } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '@react-navigation/native';
@@ -16,7 +16,6 @@ export default function ProgressReportScreen() {
           title: 'Progress Report',
           headerShown: true,
           headerBackTitle: 'Back',
-          headerLargeTitle: false,
         }}
       />
       <SafeAreaView 

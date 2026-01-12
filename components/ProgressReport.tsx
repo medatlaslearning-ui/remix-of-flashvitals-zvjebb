@@ -2,6 +2,7 @@
 import React, { useState, Platform } from 'react';
 import { View, Text, StyleSheet, ScrollView, Pressable, ActivityIndicator, RefreshControl } from 'react-native';
 import { useTheme } from '@react-navigation/native';
+import { useRouter } from 'expo-router';
 import { GlassView } from 'expo-glass-effect';
 import { IconSymbol } from './IconSymbol';
 import { useProgressReport } from '@/hooks/useProgressReport';
@@ -10,6 +11,7 @@ import * as Haptics from 'expo-haptics';
 
 export function ProgressReport() {
   const theme = useTheme();
+  const router = useRouter();
   const { user } = useAuth();
   const { stats, quizResults, loading, error, refresh } = useProgressReport(user?.id || null);
   const [expandedTopic, setExpandedTopic] = useState<string | null>(null);
@@ -29,6 +31,13 @@ export function ProgressReport() {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
     setExpandedTopic(expandedTopic === topic ? null : topic);
+  };
+
+  const handleAchievementsPress = () => {
+    if (Platform.OS !== 'web') {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    }
+    router.push('/achievements');
   };
 
   if (loading && !refreshing) {
@@ -120,6 +129,40 @@ export function ProgressReport() {
           <Text style={[styles.statLabel, { color: theme.dark ? '#98989D' : '#666' }]}>Cards</Text>
         </GlassView>
       </View>
+
+      {/* Achievements Section */}
+      <Pressable onPress={handleAchievementsPress}>
+        <GlassView 
+          style={[
+            styles.section,
+            Platform.OS !== 'ios' && { backgroundColor: theme.dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }
+          ]} 
+          glassEffectStyle="regular"
+        >
+          <View style={styles.achievementsHeader}>
+            <View style={styles.achievementsTitleRow}>
+              <IconSymbol 
+                ios_icon_name="trophy.fill" 
+                android_material_icon_name="emoji-events" 
+                size={24} 
+                color="#FFD700" 
+              />
+              <Text style={[styles.sectionTitle, { color: theme.colors.text, marginBottom: 0 }]}>
+                Achievements
+              </Text>
+            </View>
+            <IconSymbol 
+              ios_icon_name="chevron.right" 
+              android_material_icon_name="chevron-right" 
+              size={20} 
+              color={theme.dark ? '#98989D' : '#666'} 
+            />
+          </View>
+          <Text style={[styles.achievementsSubtitle, { color: theme.dark ? '#98989D' : '#666' }]}>
+            View your learning milestones and quiz achievements
+          </Text>
+        </GlassView>
+      </Pressable>
 
       {/* Topic Breakdown */}
       {stats.topicBreakdown.length > 0 && (
@@ -334,6 +377,21 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 16,
     marginBottom: 16,
+  },
+  achievementsHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  achievementsTitleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  achievementsSubtitle: {
+    fontSize: 14,
+    lineHeight: 20,
   },
   sectionHeader: {
     flexDirection: 'row',
