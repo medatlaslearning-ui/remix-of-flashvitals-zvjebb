@@ -26,9 +26,9 @@ export default function ProfileScreen() {
   const [showSubDropdown, setShowSubDropdown] = useState(false);
   const [savingSpecialty, setSavingSpecialty] = useState(false);
 
-  const bookmarkedCount = useMemo(() => getBookmarkedFlashcards().length, [getBookmarkedFlashcards, updateTrigger]);
-  const favoritesCount = useMemo(() => getFavoriteFlashcards().length, [getFavoriteFlashcards, updateTrigger]);
-  const difficultCount = useMemo(() => getDifficultFlashcards().length, [getDifficultFlashcards, updateTrigger]);
+  const bookmarkedCount = useMemo(() => getBookmarkedFlashcards().length, [getBookmarkedFlashcards]);
+  const favoritesCount = useMemo(() => getFavoriteFlashcards().length, [getFavoriteFlashcards]);
+  const difficultCount = useMemo(() => getDifficultFlashcards().length, [getDifficultFlashcards]);
 
   useEffect(() => {
     if (profile) {
@@ -36,6 +36,11 @@ export default function ProfileScreen() {
       setSubSpecialty(profile.sub_specialty || null);
     }
   }, [profile]);
+
+  // Force re-render when updateTrigger changes
+  useEffect(() => {
+    console.log('Update trigger changed:', updateTrigger);
+  }, [updateTrigger]);
 
   const primarySpecialties = [
     'Advanced Practice Registered Nurse',
