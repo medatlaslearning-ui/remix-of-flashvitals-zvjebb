@@ -393,72 +393,71 @@ export default function ProfileScreen() {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Quick Actions</Text>
           <View style={styles.grid}>
+            {/* Favorites */}
             <Pressable
-              style={styles.tile}
+              style={[styles.tile, { backgroundColor: '#FFE8F0' }]}
               onPress={() => {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                router.push('/progress-report');
+                router.push('/(tabs)/(home)/flashcards?filter=favorites');
               }}
             >
-              <IconSymbol
-                ios_icon_name="chart.bar.fill"
-                android_material_icon_name="bar-chart"
-                size={32}
-                color={colors.primary}
-              />
-              <Text style={styles.tileTitle}>Progress Report</Text>
+              <Text style={styles.tileEmoji}>❤️</Text>
+              <Text style={styles.tileTitle}>Favorites</Text>
+              <Text style={[styles.tileCount, { color: '#E91E63' }]}>{favoritesCount}</Text>
             </Pressable>
 
+            {/* Bookmarked */}
             <Pressable
-              style={styles.tile}
+              style={[styles.tile, { backgroundColor: '#FFF3E0' }]}
+              onPress={() => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                router.push('/(tabs)/(home)/flashcards?filter=bookmarked');
+              }}
+            >
+              <Text style={styles.tileEmoji}>🔖</Text>
+              <Text style={styles.tileTitle}>Bookmarked</Text>
+              <Text style={[styles.tileCount, { color: '#FF9800' }]}>{bookmarkedCount}</Text>
+            </Pressable>
+
+            {/* Difficult */}
+            <Pressable
+              style={[styles.tile, { backgroundColor: '#FFEBEE' }]}
+              onPress={() => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                router.push('/(tabs)/(home)/flashcards?filter=difficult');
+              }}
+            >
+              <Text style={styles.tileEmoji}>⚠️</Text>
+              <Text style={styles.tileTitle}>Difficult</Text>
+              <Text style={[styles.tileCount, { color: '#F44336' }]}>{difficultCount}</Text>
+            </Pressable>
+
+            {/* Ask Dr. Elias Reed */}
+            <Pressable
+              style={[styles.tile, { backgroundColor: '#F3E5F5' }]}
               onPress={() => {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                 router.push('/(tabs)/(home)/ask-expert');
               }}
             >
-              <IconSymbol
-                ios_icon_name="person.fill.questionmark"
-                android_material_icon_name="help"
-                size={32}
-                color="#9B59B6"
-              />
+              <Text style={styles.tileEmoji}>💬</Text>
               <Text style={styles.tileTitle}>Ask Dr. Elias Reed</Text>
             </Pressable>
 
-            <Pressable style={styles.tile}>
-              <IconSymbol
-                ios_icon_name="star.fill"
-                android_material_icon_name="star"
-                size={32}
-                color="#F39C12"
-              />
-              <Text style={styles.tileTitle}>Favorites</Text>
-              <Text style={styles.tileCount}>{favoritesCount}</Text>
+            {/* Progress Report */}
+            <Pressable
+              style={[styles.tile, { backgroundColor: '#E3F2FD' }]}
+              onPress={() => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                router.push('/progress-report');
+              }}
+            >
+              <Text style={styles.tileEmoji}>📊</Text>
+              <Text style={styles.tileTitle}>Progress Report</Text>
             </Pressable>
 
-            <Pressable style={styles.tile}>
-              <IconSymbol
-                ios_icon_name="bookmark.fill"
-                android_material_icon_name="bookmark"
-                size={32}
-                color="#3498DB"
-              />
-              <Text style={styles.tileTitle}>Bookmarked</Text>
-              <Text style={styles.tileCount}>{bookmarkedCount}</Text>
-            </Pressable>
-
-            <Pressable style={styles.tile}>
-              <IconSymbol
-                ios_icon_name="exclamationmark.triangle.fill"
-                android_material_icon_name="warning"
-                size={32}
-                color="#E74C3C"
-              />
-              <Text style={styles.tileTitle}>Difficult</Text>
-              <Text style={styles.tileCount}>{difficultCount}</Text>
-            </Pressable>
-
-            <Pressable style={[styles.tile, styles.tileDisabled]}>
+            {/* Future CE Activity */}
+            <Pressable style={[styles.tile, styles.tileDisabled, { backgroundColor: '#F5F5F5' }]}>
               <Text style={styles.tileEmoji}>🎯</Text>
               <Text style={styles.tileTitle}>Future CE Activity</Text>
             </Pressable>
@@ -683,7 +682,6 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   tile: {
-    backgroundColor: colors.card,
     borderRadius: 16,
     padding: 16,
     alignItems: 'center',
@@ -706,7 +704,6 @@ const styles = StyleSheet.create({
   tileCount: {
     fontSize: 24,
     fontWeight: '700',
-    color: colors.primary,
     marginTop: 4,
   },
   tileEmoji: {
