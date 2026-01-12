@@ -432,12 +432,12 @@ export default function ProfileScreen() {
               <Text style={[styles.tileCount, { color: '#F44336' }]}>{difficultCount}</Text>
             </Pressable>
 
-            {/* Ask Dr. Elias Reed */}
+            {/* Ask Dr. Elias Reed - FIXED ROUTE */}
             <Pressable
               style={[styles.tile, { backgroundColor: '#F3E5F5' }]}
               onPress={() => {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                router.push('/(tabs)/(home)/ask-expert');
+                router.push('/(tabs)/(home)/chatbot');
               }}
             >
               <Text style={styles.tileEmoji}>💬</Text>
