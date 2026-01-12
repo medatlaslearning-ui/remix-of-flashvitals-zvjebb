@@ -73,14 +73,23 @@ export const authService = {
    * Get the current user session
    */
   async getSession() {
-    const { data, error } = await supabase.auth.getSession();
+    try {
+      console.log('Getting session...');
+      const { data, error } = await supabase.auth.getSession();
 
-    if (error) {
-      console.error('Get session error:', error);
-      throw error;
+      if (error) {
+        console.error('Get session error:', error);
+        // Return null instead of throwing to prevent app from hanging
+        return null;
+      }
+
+      console.log('Session data:', data.session ? 'exists' : 'null');
+      return data.session;
+    } catch (error) {
+      console.error('Unexpected error getting session:', error);
+      // Return null on any error to prevent app from hanging
+      return null;
     }
-
-    return data.session;
   },
 
   /**
@@ -101,18 +110,25 @@ export const authService = {
    * Get the current user's profile
    */
   async getProfile(userId: string): Promise<Profile | null> {
-    const { data, error } = await supabase
-      .from('profiles')
-      .select('*')
-      .eq('user_id', userId)
-      .single();
+    try {
+      console.log('Getting profile for user:', userId);
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('user_id', userId)
+        .single();
 
-    if (error) {
-      console.error('Get profile error:', error);
+      if (error) {
+        console.error('Get profile error:', error);
+        return null;
+      }
+
+      console.log('Profile data:', data ? 'exists' : 'null');
+      return data;
+    } catch (error) {
+      console.error('Unexpected error getting profile:', error);
       return null;
     }
-
-    return data;
   },
 
   /**

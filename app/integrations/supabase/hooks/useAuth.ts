@@ -16,15 +16,34 @@ export function useAuth() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Get initial session
-    authService.getSession().then((session) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      if (session?.user) {
-        authService.getProfile(session.user.id).then(setProfile);
+    // Get initial session with error handling
+    const initializeAuth = async () => {
+      try {
+        console.log('Initializing auth...');
+        const session = await authService.getSession();
+        console.log('Session retrieved:', session ? 'exists' : 'null');
+        setSession(session);
+        setUser(session?.user ?? null);
+        if (session?.user) {
+          console.log('Fetching profile for user:', session.user.id);
+          const profile = await authService.getProfile(session.user.id);
+          console.log('Profile retrieved:', profile ? 'exists' : 'null');
+          setProfile(profile);
+        }
+      } catch (error) {
+        console.error('Error initializing auth:', error);
+        // Set to null on error so the app can still render
+        setSession(null);
+        setUser(null);
+        setProfile(null);
+      } finally {
+        // Always set loading to false, even if there's an error
+        console.log('Auth initialization complete');
+        setLoading(false);
       }
-      setLoading(false);
-    });
+    };
+
+    initializeAuth();
 
     // Listen for auth changes
     const {
@@ -34,8 +53,13 @@ export function useAuth() {
       setSession(session);
       setUser(session?.user ?? null);
       if (session?.user) {
-        const profile = await authService.getProfile(session.user.id);
-        setProfile(profile);
+        try {
+          const profile = await authService.getProfile(session.user.id);
+          setProfile(profile);
+        } catch (error) {
+          console.error('Error fetching profile on auth change:', error);
+          setProfile(null);
+        }
       } else {
         setProfile(null);
       }
