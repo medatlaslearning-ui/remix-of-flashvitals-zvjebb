@@ -33,11 +33,11 @@ export function ProgressReport() {
     setExpandedTopic(expandedTopic === topic ? null : topic);
   };
 
-  const handleAchievementsPress = () => {
+  const handleQuizMasterPress = () => {
     if (Platform.OS !== 'web') {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
-    router.push('/achievements');
+    router.push('/quiz-master');
   };
 
   if (loading && !refreshing) {
@@ -101,6 +101,10 @@ export function ProgressReport() {
     return '#FF3B30';
   };
 
+  const totalQuizzes = stats.totalQuizzesTaken;
+  const averageScore = stats.averageScore;
+  const perfectScores = quizResults.filter(q => q.score === q.total_questions).length;
+
   return (
     <ScrollView
       style={styles.container}
@@ -131,38 +135,79 @@ export function ProgressReport() {
       </View>
 
       {/* Achievements Section */}
-      <Pressable onPress={handleAchievementsPress}>
-        <GlassView 
-          style={[
-            styles.section,
-            Platform.OS !== 'ios' && { backgroundColor: theme.dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }
-          ]} 
-          glassEffectStyle="regular"
-        >
-          <View style={styles.achievementsHeader}>
-            <View style={styles.achievementsTitleRow}>
-              <IconSymbol 
-                ios_icon_name="trophy.fill" 
-                android_material_icon_name="emoji-events" 
-                size={24} 
-                color="#FFD700" 
-              />
-              <Text style={[styles.sectionTitle, { color: theme.colors.text, marginBottom: 0 }]}>
-                Achievements
-              </Text>
-            </View>
+      <GlassView 
+        style={[
+          styles.section,
+          Platform.OS !== 'ios' && { backgroundColor: theme.dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }
+        ]} 
+        glassEffectStyle="regular"
+      >
+        <View style={styles.sectionHeader}>
+          <View style={styles.achievementsTitleRow}>
             <IconSymbol 
-              ios_icon_name="chevron.right" 
-              android_material_icon_name="chevron-right" 
-              size={20} 
-              color={theme.dark ? '#98989D' : '#666'} 
+              ios_icon_name="trophy.fill" 
+              android_material_icon_name="emoji-events" 
+              size={24} 
+              color="#FFD700" 
             />
+            <Text style={[styles.sectionTitle, { color: theme.colors.text, marginBottom: 0 }]}>
+              Achievements
+            </Text>
           </View>
-          <Text style={[styles.achievementsSubtitle, { color: theme.dark ? '#98989D' : '#666' }]}>
-            View your learning milestones and quiz achievements
-          </Text>
-        </GlassView>
-      </Pressable>
+        </View>
+
+        {/* Quiz Master Tile */}
+        <Pressable onPress={handleQuizMasterPress} style={styles.quizMasterTile}>
+          <GlassView 
+            style={[
+              styles.achievementTile,
+              { backgroundColor: 'rgba(255, 215, 0, 0.15)' },
+              Platform.OS !== 'ios' && { backgroundColor: theme.dark ? 'rgba(255, 215, 0, 0.2)' : 'rgba(255, 215, 0, 0.1)' }
+            ]} 
+            glassEffectStyle="regular"
+          >
+            <View style={styles.tileHeader}>
+              <View style={styles.tileIconContainer}>
+                <IconSymbol 
+                  ios_icon_name="trophy.fill" 
+                  android_material_icon_name="emoji-events" 
+                  size={40} 
+                  color="#FFD700" 
+                />
+              </View>
+              <View style={styles.tileContent}>
+                <Text style={[styles.tileTitleText, { color: theme.colors.text }]}>Quiz Master</Text>
+                <Text style={[styles.tileSubtitle, { color: theme.dark ? '#98989D' : '#666' }]}>
+                  View all quiz results and statistics
+                </Text>
+              </View>
+              <IconSymbol 
+                ios_icon_name="chevron.right" 
+                android_material_icon_name="chevron-right" 
+                size={24} 
+                color={theme.dark ? '#98989D' : '#666'} 
+              />
+            </View>
+
+            <View style={styles.statsRow}>
+              <View style={styles.statItem}>
+                <Text style={[styles.statItemValue, { color: theme.colors.text }]}>{totalQuizzes}</Text>
+                <Text style={[styles.statItemLabel, { color: theme.dark ? '#98989D' : '#666' }]}>Quizzes</Text>
+              </View>
+              <View style={styles.statDivider} />
+              <View style={styles.statItem}>
+                <Text style={[styles.statItemValue, { color: '#34C759' }]}>{averageScore.toFixed(0)}%</Text>
+                <Text style={[styles.statItemLabel, { color: theme.dark ? '#98989D' : '#666' }]}>Avg Score</Text>
+              </View>
+              <View style={styles.statDivider} />
+              <View style={styles.statItem}>
+                <Text style={[styles.statItemValue, { color: '#FFD700' }]}>{perfectScores}</Text>
+                <Text style={[styles.statItemLabel, { color: theme.dark ? '#98989D' : '#666' }]}>Perfect</Text>
+              </View>
+            </View>
+          </GlassView>
+        </Pressable>
+      </GlassView>
 
       {/* Topic Breakdown */}
       {stats.topicBreakdown.length > 0 && (
@@ -378,26 +423,16 @@ const styles = StyleSheet.create({
     padding: 16,
     marginBottom: 16,
   },
-  achievementsHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 8,
-  },
-  achievementsTitleRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-  },
-  achievementsSubtitle: {
-    fontSize: 14,
-    lineHeight: 20,
-  },
   sectionHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 12,
+  },
+  achievementsTitleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
   },
   sectionTitle: {
     fontSize: 18,
@@ -406,6 +441,63 @@ const styles = StyleSheet.create({
   sectionSubtitle: {
     fontSize: 12,
     fontWeight: '600',
+  },
+  quizMasterTile: {
+    marginTop: 8,
+  },
+  achievementTile: {
+    borderRadius: 12,
+    padding: 16,
+  },
+  tileHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  tileIconContainer: {
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    backgroundColor: 'rgba(255, 215, 0, 0.2)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 12,
+  },
+  tileContent: {
+    flex: 1,
+  },
+  tileTitleText: {
+    fontSize: 18,
+    fontWeight: '700',
+    marginBottom: 4,
+  },
+  tileSubtitle: {
+    fontSize: 13,
+    lineHeight: 18,
+  },
+  statsRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    paddingTop: 12,
+    borderTopWidth: 1,
+    borderTopColor: 'rgba(128, 128, 128, 0.2)',
+  },
+  statItem: {
+    alignItems: 'center',
+  },
+  statItemValue: {
+    fontSize: 20,
+    fontWeight: '700',
+    marginBottom: 4,
+  },
+  statItemLabel: {
+    fontSize: 11,
+  },
+  statDivider: {
+    width: 1,
+    height: 32,
+    backgroundColor: 'rgba(128, 128, 128, 0.2)',
   },
   topicItem: {
     paddingVertical: 12,
