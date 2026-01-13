@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Remix of FlashVitals",
-    "slug": "Remix of FlashVitals",
+    "name": "MedAtlas Scholar",
+    "slug": "MedAtlas Scholar",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/natively-dark.png",
@@ -44,5 +44,5 @@
       "router": {}
     }
   },
-  "scheme": "Remix of FlashVitals"
+  "scheme": "MedAtlas Scholar"
 }

@@ -1390,7 +1390,7 @@ Responses are educational summaries synthesized from authoritative medical sourc
             multiline
             maxLength={500}
             returnKeyType="send"
-            enablesReturnKeyAutomatically={true}
+            blurOnSubmit={false}
             onSubmitEditing={() => {
               console.log('[CHATBOT] onSubmitEditing triggered');
               handleSend();
