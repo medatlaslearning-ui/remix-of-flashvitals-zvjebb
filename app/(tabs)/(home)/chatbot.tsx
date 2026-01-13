@@ -523,6 +523,7 @@ Responses are educational summaries synthesized from authoritative medical sourc
 
   const handleSend = async () => {
     if (!inputText.trim()) {
+      console.log('[CHATBOT] handleSend called but input is empty');
       return;
     }
 
@@ -1392,7 +1393,7 @@ Responses are educational summaries synthesized from authoritative medical sourc
             returnKeyType="send"
             blurOnSubmit={false}
             onSubmitEditing={() => {
-              console.log('[CHATBOT] onSubmitEditing triggered');
+              console.log('[CHATBOT] Keyboard send key pressed (onSubmitEditing)');
               handleSend();
             }}
           />
@@ -1404,12 +1405,14 @@ Responses are educational summaries synthesized from authoritative medical sourc
             }}
             disabled={!inputText.trim()}
           >
-            <IconSymbol
-              ios_icon_name="arrow.up.circle.fill"
-              android_material_icon_name="send"
-              size={36}
-              color={inputText.trim() ? colors.primary : colors.textSecondary}
-            />
+            <View style={styles.sendButtonCircle}>
+              <IconSymbol
+                ios_icon_name="arrow.up"
+                android_material_icon_name="arrow-upward"
+                size={24}
+                color="#FFFFFF"
+              />
+            </View>
           </Pressable>
         </View>
       </KeyboardAvoidingView>
@@ -1884,6 +1887,16 @@ const styles = StyleSheet.create({
   },
   sendButtonDisabled: {
     opacity: 0.5,
+  },
+  sendButtonCircle: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: colors.primary,
+    justifyContent: 'center',
+    alignItems: 'center',
+    boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.2)',
+    elevation: 4,
   },
   modalOverlay: {
     flex: 1,
