@@ -1146,10 +1146,12 @@ Responses are educational summaries synthesized from authoritative medical sourc
             </View>
           )}
           
-          {/* Synthesizer Metadata */}
+          {/* Synthesizer Metadata - ONLY 4 METRICS */}
           {message.isBot && message.synthesizerMetadata && (
             <View style={styles.synthesizerMetadata}>
               <Text style={styles.metadataTitle}>⚙️ Synthesizer Engine Metrics:</Text>
+              
+              {/* Quality */}
               <View style={styles.metadataRow}>
                 <Text style={styles.metadataLabel}>Quality:</Text>
                 <Text style={[
@@ -1161,12 +1163,8 @@ Responses are educational summaries synthesized from authoritative medical sourc
                   {Math.round(message.synthesizerMetadata.quality)}%
                 </Text>
               </View>
-              <View style={styles.metadataRow}>
-                <Text style={styles.metadataLabel}>Processing Time:</Text>
-                <Text style={styles.metadataValue}>
-                  {message.synthesizerMetadata.processingTime}ms
-                </Text>
-              </View>
+              
+              {/* Content Bleeding Risk */}
               <View style={styles.metadataRow}>
                 <Text style={styles.metadataLabel}>Content Bleeding Risk:</Text>
                 <Text style={[
@@ -1178,6 +1176,8 @@ Responses are educational summaries synthesized from authoritative medical sourc
                   {Math.round(message.synthesizerMetadata.contentBleedingRisk)}%
                 </Text>
               </View>
+              
+              {/* Consistency Score */}
               {message.synthesizerMetadata.consistencyScore !== undefined && (
                 <View style={styles.metadataRow}>
                   <Text style={styles.metadataLabel}>Consistency Score:</Text>
@@ -1191,85 +1191,20 @@ Responses are educational summaries synthesized from authoritative medical sourc
                   </Text>
                 </View>
               )}
-              <View style={styles.metadataRow}>
-                <Text style={styles.metadataLabel}>Consistency Check:</Text>
-                <Text style={[
-                  styles.metadataValue,
-                  message.synthesizerMetadata.hasConsistencyCheck ? styles.metadataGood : styles.metadataBad
-                ]}>
-                  {message.synthesizerMetadata.hasConsistencyCheck ? '✓ Performed' : '✗ Not Performed'}
-                </Text>
-              </View>
-              {message.synthesizerMetadata.openAI && (
-                <>
-                  <View style={styles.metadataRow}>
-                    <Text style={styles.metadataLabel}>OpenAI Language Generation:</Text>
-                    <Text style={[
-                      styles.metadataValue,
-                      message.synthesizerMetadata.openAI.usedOpenAI ? styles.metadataGood : styles.metadataWarning
-                    ]}>
-                      {message.synthesizerMetadata.openAI.usedOpenAI ? '✓ Active' : '✗ Fallback'}
-                    </Text>
-                  </View>
-                  {message.synthesizerMetadata.openAI.usedOpenAI && (
-                    <>
-                      <View style={styles.metadataRow}>
-                        <Text style={styles.metadataLabel}>Model:</Text>
-                        <Text style={styles.metadataValue}>
-                          {message.synthesizerMetadata.openAI.model}
-                        </Text>
-                      </View>
-                      <View style={styles.metadataRow}>
-                        <Text style={styles.metadataLabel}>OpenAI Duration:</Text>
-                        <Text style={styles.metadataValue}>
-                          {message.synthesizerMetadata.openAI.duration_ms}ms
-                        </Text>
-                      </View>
-                      {message.synthesizerMetadata.openAI.tokens && (
-                        <View style={styles.metadataRow}>
-                          <Text style={styles.metadataLabel}>Tokens:</Text>
-                          <Text style={styles.metadataValue}>
-                            {message.synthesizerMetadata.openAI.tokens.total}
-                          </Text>
-                        </View>
-                      )}
-                      {message.synthesizerMetadata.openAI.validationScore !== undefined && (
-                        <View style={styles.metadataRow}>
-                          <Text style={styles.metadataLabel}>Validation Score:</Text>
-                          <Text style={[
-                            styles.metadataValue,
-                            message.synthesizerMetadata.openAI.validationScore >= 80 ? styles.metadataGood :
-                            message.synthesizerMetadata.openAI.validationScore >= 60 ? styles.metadataWarning :
-                            styles.metadataBad
-                          ]}>
-                            {Math.round(message.synthesizerMetadata.openAI.validationScore)}%
-                          </Text>
-                        </View>
-                      )}
-                      {message.synthesizerMetadata.openAI.semanticIconsUsed !== undefined && (
-                        <View style={styles.metadataRow}>
-                          <Text style={styles.metadataLabel}>Semantic Icons:</Text>
-                          <Text style={[
-                            styles.metadataValue,
-                            message.synthesizerMetadata.openAI.semanticIconsUsed ? styles.metadataGood : styles.metadataWarning
-                          ]}>
-                            {message.synthesizerMetadata.openAI.semanticIconsUsed 
-                              ? `✓ Used (${message.synthesizerMetadata.openAI.semanticIconCount})` 
-                              : '✗ Not Used'}
-                          </Text>
-                        </View>
-                      )}
-                    </>
-                  )}
-                  {!message.synthesizerMetadata.openAI.usedOpenAI && message.synthesizerMetadata.openAI.fallbackReason && (
-                    <View style={styles.metadataRow}>
-                      <Text style={styles.metadataLabel}>Fallback Reason:</Text>
-                      <Text style={[styles.metadataValue, styles.metadataWarning]}>
-                        {message.synthesizerMetadata.openAI.fallbackReason}
-                      </Text>
-                    </View>
-                  )}
-                </>
+              
+              {/* Validation Score */}
+              {message.synthesizerMetadata.openAI?.validationScore !== undefined && (
+                <View style={styles.metadataRow}>
+                  <Text style={styles.metadataLabel}>Validation Score:</Text>
+                  <Text style={[
+                    styles.metadataValue,
+                    message.synthesizerMetadata.openAI.validationScore >= 80 ? styles.metadataGood :
+                    message.synthesizerMetadata.openAI.validationScore >= 60 ? styles.metadataWarning :
+                    styles.metadataBad
+                  ]}>
+                    {Math.round(message.synthesizerMetadata.openAI.validationScore)}%
+                  </Text>
+                </View>
               )}
             </View>
           )}
@@ -1612,7 +1547,7 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
   },
   merckManualContainer: {
-    backgroundColor: '#E3F2FD', // Light blue background
+    backgroundColor: '#E3F2FD',
     borderRadius: 12,
     padding: 12,
     marginTop: 12,
