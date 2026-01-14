@@ -25,7 +25,7 @@ interface GeneratedQuestion {
 export default function QuizSessionScreen() {
   const params = useLocalSearchParams();
   const router = useRouter();
-  const { user } = useAuth();
+  const { authState, user } = useAuth();
   const { completeQuiz, loading: quizLoading } = useQuiz();
   const { saveQuizResult } = useProgressReport(user?.id || null);
   
@@ -134,7 +134,8 @@ export default function QuizSessionScreen() {
       setShowResults(true);
 
       // Save quiz result to Progress Report (Supabase) - CRITICAL BRIDGE
-      if (user) {
+      // Only save if authState === "authenticated"
+      if (authState === 'authenticated' && user) {
         console.log('[QuizSession] 🌉 BRIDGE: Saving quiz result to Progress Report...');
         try {
           const quizType = totalQuestions === 5 ? '5-question' : '10-question';
@@ -160,7 +161,7 @@ export default function QuizSessionScreen() {
       }
 
       // If user is authenticated and we have a quizId, save to database
-      if (user && params.quizId && params.quizId !== 'anonymous') {
+      if (authState === 'authenticated' && user && params.quizId && params.quizId !== 'anonymous') {
         console.log('[QuizSession] Saving quiz results to database...');
         try {
           await completeQuiz(params.quizId as string, answers);
@@ -170,7 +171,7 @@ export default function QuizSessionScreen() {
           // Don't show error to user - local results are already calculated
         }
       } else {
-        console.log('[QuizSession] Skipping database save (anonymous or no quizId)');
+        console.log('[QuizSession] Skipping database save (not authenticated or no quizId)');
       }
     } catch (error) {
       console.error('[QuizSession] Error finishing quiz:', error);
@@ -398,7 +399,7 @@ export default function QuizSessionScreen() {
                   : 'Keep studying! You&apos;ll improve! 📚'}
               </Text>
               
-              {user && (
+              {authState === 'authenticated' && user && (
                 <Text style={styles.savedMessage}>
                   ✅ Results saved to Progress Report
                 </Text>

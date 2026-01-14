@@ -18,7 +18,7 @@ import { supabase } from '@/app/integrations/supabase/client';
 import * as Haptics from 'expo-haptics';
 
 export default function ProfileScreen() {
-  const { user, profile, loading: authLoading, signOut } = useAuth();
+  const { authState, user, profile, signOut, error: authError } = useAuth();
   const { getBookmarkedFlashcards, getFavoriteFlashcards, getDifficultFlashcards, updateTrigger } = useFlashcards();
   const [primarySpecialty, setPrimarySpecialty] = useState<string | null>(null);
   const [subSpecialty, setSubSpecialty] = useState<string | null>(null);
@@ -39,7 +39,7 @@ export default function ProfileScreen() {
 
   // Force re-render when updateTrigger changes
   useEffect(() => {
-    console.log('Update trigger changed:', updateTrigger);
+    console.log('[Profile] Update trigger changed:', updateTrigger);
   }, [updateTrigger]);
 
   const primarySpecialties = [
@@ -109,7 +109,7 @@ export default function ProfileScreen() {
   };
 
   const saveSpecialty = async () => {
-    if (!user) {
+    if (authState !== 'authenticated' || !user) {
       Alert.alert(
         'Authentication Required',
         'Please sign in to save your specialty selection.',
@@ -130,9 +130,9 @@ export default function ProfileScreen() {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
 
     try {
-      console.log('Saving specialty for user:', user.id);
-      console.log('Primary specialty:', primarySpecialty);
-      console.log('Sub specialty:', subSpecialty);
+      console.log('[Profile] Saving specialty for user:', user.id);
+      console.log('[Profile] Primary specialty:', primarySpecialty);
+      console.log('[Profile] Sub specialty:', subSpecialty);
 
       const { data, error } = await supabase
         .from('profiles')
@@ -151,15 +151,15 @@ export default function ProfileScreen() {
         .select();
 
       if (error) {
-        console.error('Supabase error:', error);
+        console.error('[Profile] Supabase error:', error);
         throw error;
       }
 
-      console.log('Specialty saved successfully:', data);
+      console.log('[Profile] Specialty saved successfully:', data);
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       Alert.alert('Success', 'Your specialty has been saved');
     } catch (error: any) {
-      console.error('Error saving specialty:', error);
+      console.error('[Profile] Error saving specialty:', error);
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
       Alert.alert('Error', `Failed to save specialty: ${error.message || 'Please try again.'}`);
     } finally {
@@ -182,7 +182,7 @@ export default function ProfileScreen() {
               Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
               Alert.alert('Signed Out', 'You have been signed out successfully');
             } catch (error) {
-              console.error('Sign out error:', error);
+              console.error('[Profile] Sign out error:', error);
               Alert.alert('Error', 'Failed to sign out. Please try again.');
             }
           },
@@ -191,11 +191,35 @@ export default function ProfileScreen() {
     );
   };
 
-  if (authLoading) {
+  // Handle loading state (max 8 seconds via AuthContext timeout)
+  if (authState === 'loading') {
     return (
       <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color={colors.primary} />
         <Text style={styles.loadingText}>Loading profile...</Text>
+        <Text style={styles.loadingSubtext}>This should only take a moment</Text>
+      </View>
+    );
+  }
+
+  // Handle auth error (timeout or other error)
+  if (authError) {
+    return (
+      <View style={styles.errorContainer}>
+        <IconSymbol
+          ios_icon_name="exclamationmark.triangle.fill"
+          android_material_icon_name="warning"
+          size={64}
+          color={colors.warning}
+        />
+        <Text style={styles.errorTitle}>Session Timeout</Text>
+        <Text style={styles.errorMessage}>{authError}</Text>
+        <Pressable
+          style={styles.retryButton}
+          onPress={() => router.push('/auth/sign-in')}
+        >
+          <Text style={styles.retryButtonText}>Sign In Again</Text>
+        </Pressable>
       </View>
     );
   }
@@ -211,7 +235,7 @@ export default function ProfileScreen() {
       <ScrollView style={styles.container} contentContainerStyle={styles.content}>
         {/* Authentication Status Card */}
         <View style={styles.authCard}>
-          {user ? (
+          {authState === 'authenticated' && user ? (
             <>
               <View style={styles.authHeader}>
                 <IconSymbol
@@ -487,11 +511,51 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: colors.background,
+    padding: 20,
   },
   loadingText: {
     marginTop: 12,
     fontSize: 16,
+    color: colors.text,
+    fontWeight: '600',
+  },
+  loadingSubtext: {
+    marginTop: 8,
+    fontSize: 14,
     color: colors.textSecondary,
+    textAlign: 'center',
+  },
+  errorContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.background,
+    padding: 20,
+  },
+  errorTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: colors.text,
+    marginTop: 16,
+    marginBottom: 8,
+  },
+  errorMessage: {
+    fontSize: 14,
+    color: colors.textSecondary,
+    textAlign: 'center',
+    marginBottom: 24,
+    lineHeight: 20,
+  },
+  retryButton: {
+    backgroundColor: colors.primary,
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 12,
+  },
+  retryButtonText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: '600',
   },
   authCard: {
     backgroundColor: colors.card,

@@ -5,6 +5,7 @@ import { Stack, useRouter } from 'expo-router';
 import { colors, commonStyles } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
 import { useQuiz } from '@/hooks/useQuiz';
+import { useAuth } from '@/app/integrations/supabase/hooks/useAuth';
 import * as Haptics from 'expo-haptics';
 import { cardiologyFlashcards } from '@/data/cardiologyFlashcards';
 import { pulmonaryFlashcards } from '@/data/pulmonaryFlashcards';
@@ -96,6 +97,7 @@ const QUESTION_COUNTS = [5, 10];
 export default function QuizCreatorScreen() {
   const router = useRouter();
   const { generateQuiz, loading } = useQuiz();
+  const { authState } = useAuth();
   const [selectedSystem, setSelectedSystem] = useState<string | null>(null);
   const [questionCount, setQuestionCount] = useState<number>(10);
 
@@ -155,6 +157,19 @@ export default function QuizCreatorScreen() {
   const handleGenerateQuiz = async () => {
     if (!selectedSystem) {
       Alert.alert('Select a System', 'Please select a medical system to generate quiz questions.');
+      return;
+    }
+
+    // Check auth state before making request (require authenticated)
+    if (authState !== 'authenticated') {
+      Alert.alert(
+        'Authentication Required',
+        'Please sign in to generate AI-powered quizzes. This feature requires authentication to track your progress and personalize your learning.',
+        [
+          { text: 'Cancel', style: 'cancel' },
+          { text: 'Sign In', onPress: () => router.push('/auth/sign-in') },
+        ]
+      );
       return;
     }
 

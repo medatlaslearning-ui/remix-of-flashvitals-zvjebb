@@ -148,7 +148,7 @@ const getAllFlashcards = (): Flashcard[] => {
 const FEEDBACK_REVERSAL_WINDOW_MS = 30000;
 
 export default function ChatbotScreen() {
-  const { user } = useAuth();
+  const { authState, user } = useAuth();
   const { submitFeedback, recordFollowUpSelection, submitting } = useFeedback();
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -721,8 +721,8 @@ Responses are educational summaries synthesized from authoritative medical sourc
       return;
     }
 
-    // Check if user is authenticated
-    if (!user) {
+    // Check if user is authenticated (require authState === "authenticated")
+    if (authState !== 'authenticated' || !user) {
       Alert.alert(
         'Authentication Required',
         'Please sign in to provide feedback. Your feedback helps us personalize your learning experience.',

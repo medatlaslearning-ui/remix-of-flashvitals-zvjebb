@@ -1,6 +1,7 @@
 
 import { useState, useCallback } from 'react';
 import { supabase } from '@/app/integrations/supabase/client';
+import { invokeQuizGeneration } from '@/app/integrations/supabase/utils/timeoutWrapper';
 import type { Quiz, QuizQuestion, QuizGenerationParams, QuizGenerationResult, QuizStats } from '@/types/quiz';
 
 export interface QuizAnswer {
@@ -51,7 +52,7 @@ export const useQuiz = () => {
         },
       });
 
-      // TODO: Backend Integration - Call the generate-quiz Edge Function
+      // TODO: Backend Integration - Call the generate-quiz Edge Function with timeout protection
       // This Edge Function uses OpenAI GPT-4o to generate quiz questions
       // It follows the figure-8 architecture with guardrails:
       // 1. Retrieves core knowledge from Supabase (guideline_sources table)
@@ -60,74 +61,66 @@ export const useQuiz = () => {
       // 4. Validates medical accuracy
       // 5. Stores quiz in Supabase (quizzes and quiz_questions tables)
       
-      // Create AbortController for timeout protection (90 seconds)
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => {
-        console.log('[useQuiz] Request timeout after 90 seconds');
-        controller.abort();
-      }, 90000);
-
-      try {
-        // Call the Edge Function to generate quiz
-        const { data, error: functionError } = await supabase.functions.invoke('generate-quiz', {
-          body: requestBody,
-        });
-
-        clearTimeout(timeoutId);
-
-        if (functionError) {
-          console.log('[useQuiz] Edge Function error:', functionError);
-          throw new Error(functionError.message || 'Failed to generate quiz');
+      // Use timeout wrapper for robust error handling (90 seconds max)
+      const { data, error: functionError, timedOut } = await invokeQuizGeneration(
+        requestBody,
+        {
+          onStart: () => console.log('[useQuiz] Starting quiz generation...'),
+          onFinish: () => console.log('[useQuiz] Quiz generation request completed'),
+          onError: (err) => console.error('[useQuiz] Quiz generation error:', err),
         }
+      );
 
-        if (!data) {
-          console.log('[useQuiz] No data returned from Edge Function');
-          throw new Error('No data returned from quiz generation service');
-        }
-
-        console.log('[useQuiz] Edge Function response:', {
-          quizId: data.quizId,
-          questionCount: data.questionCount,
-          hasQuestions: !!data.questions,
-          questionsLength: data.questions?.length,
-          guardrails: data.guardrails,
-        });
-
-        // Validate the response
-        if (!data.questions || !Array.isArray(data.questions) || data.questions.length === 0) {
-          console.log('[useQuiz] Invalid response - no questions:', data);
-          throw new Error('No questions generated. Please try again.');
-        }
-
-        console.log('[useQuiz] Quiz generated successfully:', {
-          quizId: data.quizId,
-          questionCount: data.questions.length,
-          duration: data.duration_ms,
-          model: data.model,
-          guardrails: data.guardrails,
-        });
-
-        // Return the result in the expected format
-        const result: QuizGenerationResult = {
-          quizId: data.quizId,
-          questionCount: data.questions.length,
-          medicalSystem: data.medicalSystem,
-          topic: data.topic,
-          duration_ms: data.duration_ms,
-          model: data.model,
-          tokens: data.tokens,
-          questions: data.questions,
-        };
-
-        return result;
-      } catch (abortError: any) {
-        clearTimeout(timeoutId);
-        if (abortError.name === 'AbortError') {
-          console.log('[useQuiz] Request aborted due to timeout');
-          throw new Error('Quiz generation timed out. Please try with fewer questions (5 instead of 10).');
-        }
-        throw abortError;
+      if (timedOut) {
+        console.log('[useQuiz] ⏱️ Quiz generation timed out after 90 seconds');
+        throw new Error('Quiz generation timed out. Please try with fewer questions (5 instead of 10).');
       }
+
+      if (functionError) {
+        console.log('[useQuiz] Edge Function error:', functionError);
+        throw functionError;
+      }
+
+      if (!data) {
+        console.log('[useQuiz] No data returned from Edge Function');
+        throw new Error('No data returned from quiz generation service');
+      }
+
+      console.log('[useQuiz] Edge Function response:', {
+        quizId: data.quizId,
+        questionCount: data.questionCount,
+        hasQuestions: !!data.questions,
+        questionsLength: data.questions?.length,
+        guardrails: data.guardrails,
+      });
+
+      // Validate the response
+      if (!data.questions || !Array.isArray(data.questions) || data.questions.length === 0) {
+        console.log('[useQuiz] Invalid response - no questions:', data);
+        throw new Error('No questions generated. Please try again.');
+      }
+
+      console.log('[useQuiz] Quiz generated successfully:', {
+        quizId: data.quizId,
+        questionCount: data.questions.length,
+        duration: data.duration_ms,
+        model: data.model,
+        guardrails: data.guardrails,
+      });
+
+      // Return the result in the expected format
+      const result: QuizGenerationResult = {
+        quizId: data.quizId,
+        questionCount: data.questions.length,
+        medicalSystem: data.medicalSystem,
+        topic: data.topic,
+        duration_ms: data.duration_ms,
+        model: data.model,
+        tokens: data.tokens,
+        questions: data.questions,
+      };
+
+      return result;
     } catch (err) {
       const errorMsg = err instanceof Error ? err.message : 'Failed to generate quiz';
       console.log('[useQuiz] Error generating quiz:', errorMsg, err);
