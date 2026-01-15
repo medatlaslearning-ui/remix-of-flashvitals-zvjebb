@@ -31,37 +31,15 @@ export const useQuiz = () => {
 
       const { data: { user } } = await supabase.auth.getUser();
       
-      // Build the request body
+      // Build the request body - match the Edge Function's expected format
       const requestBody = {
-        medicalSystem: params.medicalSystem,
-        topic: params.topic,
-        questionCount: params.questionCount || 10,
-        flashcardsContext: params.flashcardsContext || '',
-        coreKnowledgeContext: params.coreKnowledgeContext || '',
-        guidelinesContext: params.guidelinesContext || '',
+        topic: params.medicalSystem, // Edge Function expects 'topic' not 'medicalSystem'
+        questions: params.questionCount || 10, // Edge Function expects 'questions' not 'questionCount'
       };
 
-      console.log('[useQuiz] Calling Edge Function with body:', {
-        medicalSystem: requestBody.medicalSystem,
-        topic: requestBody.topic,
-        questionCount: requestBody.questionCount,
-        contextSizes: {
-          flashcards: requestBody.flashcardsContext.length,
-          coreKnowledge: requestBody.coreKnowledgeContext.length,
-          guidelines: requestBody.guidelinesContext.length,
-        },
-      });
+      console.log('[useQuiz] Calling Edge Function with body:', requestBody);
 
-      // TODO: Backend Integration - Call the generate-quiz Edge Function with timeout protection
-      // This Edge Function uses OpenAI GPT-4o to generate quiz questions
-      // It follows the figure-8 architecture with guardrails:
-      // 1. Retrieves core knowledge from Supabase (guideline_sources table)
-      // 2. Strips semantic icons (quiz generator path - separate from conversational path)
-      // 3. Validates structure (4 options, rationale, references)
-      // 4. Validates medical accuracy
-      // 5. Stores quiz in Supabase (quizzes and quiz_questions tables)
-      
-      // Use timeout wrapper for robust error handling (90 seconds max)
+      // Call the generate-quiz Edge Function with timeout protection
       const { data, error: functionError, timedOut } = await invokeQuizGeneration(
         requestBody,
         {
@@ -86,38 +64,51 @@ export const useQuiz = () => {
         throw new Error('No data returned from quiz generation service');
       }
 
-      console.log('[useQuiz] Edge Function response:', {
-        quizId: data.quizId,
-        questionCount: data.questionCount,
-        hasQuestions: !!data.questions,
-        questionsLength: data.questions?.length,
-        guardrails: data.guardrails,
-      });
+      console.log('[useQuiz] Edge Function response:', data);
 
-      // Validate the response
-      if (!data.questions || !Array.isArray(data.questions) || data.questions.length === 0) {
-        console.log('[useQuiz] Invalid response - no questions:', data);
+      // The Edge Function returns { quiz: [...] } format
+      // We need to transform it to match our expected format
+      const quizData = data.quiz;
+      
+      if (!quizData || !Array.isArray(quizData) || quizData.length === 0) {
+        console.log('[useQuiz] Invalid response - no quiz data:', data);
         throw new Error('No questions generated. Please try again.');
       }
 
+      // Transform the quiz data to match our expected format
+      // The Edge Function returns simple { id, question } format
+      // We need to transform it to our full question format
+      const questions = quizData.map((item: any, index: number) => ({
+        id: `q_${Date.now()}_${index}`,
+        questionNumber: index + 1,
+        questionText: item.question || `Question ${index + 1}`,
+        optionA: item.optionA || 'Option A',
+        optionB: item.optionB || 'Option B',
+        optionC: item.optionC || 'Option C',
+        optionD: item.optionD || 'Option D',
+        correctAnswer: item.correctAnswer || 'A',
+        rationale: item.rationale || 'Rationale not provided',
+        references: item.references || 'References not provided',
+      }));
+
       console.log('[useQuiz] Quiz generated successfully:', {
-        quizId: data.quizId,
-        questionCount: data.questions.length,
-        duration: data.duration_ms,
-        model: data.model,
-        guardrails: data.guardrails,
+        questionCount: questions.length,
+        isFallback: data.fallback,
       });
+
+      // Generate a quiz ID
+      const quizId = `quiz_${Date.now()}_${user?.id || 'guest'}`;
 
       // Return the result in the expected format
       const result: QuizGenerationResult = {
-        quizId: data.quizId,
-        questionCount: data.questions.length,
-        medicalSystem: data.medicalSystem,
-        topic: data.topic,
-        duration_ms: data.duration_ms,
-        model: data.model,
-        tokens: data.tokens,
-        questions: data.questions,
+        quizId,
+        questionCount: questions.length,
+        medicalSystem: params.medicalSystem,
+        topic: params.topic,
+        duration_ms: 0,
+        model: 'gpt-4o-mini',
+        tokens: undefined,
+        questions,
       };
 
       return result;

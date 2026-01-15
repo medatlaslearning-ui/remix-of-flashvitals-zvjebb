@@ -136,14 +136,12 @@ export async function invokeLMMChat(
 
 /**
  * Helper function specifically for quiz generation requests
+ * Updated to match the Edge Function's expected payload format
  */
 export async function invokeQuizGeneration(
   params: {
-    medicalSystem: string;
-    questionCount: number;
-    flashcardsContext?: string;
-    coreKnowledgeContext?: string;
-    guidelinesContext?: string;
+    topic: string; // Edge Function expects 'topic' not 'medicalSystem'
+    questions: number; // Edge Function expects 'questions' not 'questionCount'
   },
   options?: Partial<TimeoutWrapperOptions>
 ): Promise<TimeoutWrapperResult<any>> {
