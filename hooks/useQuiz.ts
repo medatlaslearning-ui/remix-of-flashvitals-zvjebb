@@ -127,6 +127,12 @@ export const useQuiz = () => {
 
       if (functionError) {
         console.log('[useQuiz] Edge Function error:', functionError);
+        
+        // Check for specific error messages
+        if (functionError.message?.includes('OPENAI_API_KEY')) {
+          throw new Error('OpenAI API key not configured. Please contact support or check the setup guide.');
+        }
+        
         throw functionError;
       }
 
@@ -148,7 +154,16 @@ export const useQuiz = () => {
       // Check if this is a fallback response
       if (data.fallback) {
         console.warn('[useQuiz] ⚠️ Received fallback questions:', data.error);
-        // Still return the fallback questions, but log the warning
+        
+        // Show a more helpful error message to the user
+        if (data.error?.includes('OPENAI_API_KEY')) {
+          throw new Error('⚠️ OpenAI API key not configured in Supabase.\n\nPlease set the OPENAI_API_KEY environment variable in your Supabase project settings (Edge Functions → Manage secrets).\n\nSee OPENAI_API_KEY_SETUP_GUIDE.md for detailed instructions.');
+        } else if (data.error?.includes('timeout')) {
+          throw new Error('Quiz generation timed out. Please try with fewer questions (5 instead of 10).');
+        } else {
+          // Still return the fallback questions, but warn the user
+          console.warn('[useQuiz] Using fallback questions due to:', data.error);
+        }
       }
 
       // Transform the questions to ensure they have IDs
@@ -190,7 +205,7 @@ export const useQuiz = () => {
       return result;
     } catch (err) {
       const errorMsg = err instanceof Error ? err.message : 'Failed to generate quiz';
-      console.log('[useQuiz] Error generating quiz:', errorMsg, err);
+      console.error('[useQuiz] Error generating quiz:', errorMsg, err);
       setError(errorMsg);
       return null;
     } finally {

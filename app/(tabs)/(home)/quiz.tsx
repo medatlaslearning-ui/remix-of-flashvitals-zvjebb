@@ -161,12 +161,17 @@ export default function QuizCreatorScreen() {
         );
       }
     } catch (error: any) {
-      console.log('[QuizCreator] Error during quiz generation:', error);
+      console.error('[QuizCreator] Error during quiz generation:', error);
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
       
       // Provide helpful error message
       let errorMessage = 'Failed to generate quiz. Please try again.';
-      if (error.message?.includes('timeout') || error.message?.includes('timed out')) {
+      let errorTitle = 'Error';
+      
+      if (error.message?.includes('OPENAI_API_KEY')) {
+        errorTitle = 'OpenAI API Key Not Configured';
+        errorMessage = 'The OpenAI API key is not set up in Supabase.\n\nTo fix this:\n1. Go to Supabase Dashboard\n2. Navigate to Edge Functions → Manage secrets\n3. Add OPENAI_API_KEY with your OpenAI API key\n4. Wait 1-2 minutes and try again\n\nSee OPENAI_API_KEY_SETUP_GUIDE.md for detailed instructions.';
+      } else if (error.message?.includes('timeout') || error.message?.includes('timed out')) {
         errorMessage = 'Quiz generation timed out. Try generating 5 questions instead of 10, or try again in a moment.';
       } else if (error.message?.includes('network')) {
         errorMessage = 'Network error. Please check your connection and try again.';
@@ -174,7 +179,7 @@ export default function QuizCreatorScreen() {
         errorMessage = error.message;
       }
       
-      Alert.alert('Error', errorMessage);
+      Alert.alert(errorTitle, errorMessage);
     }
   };
 
@@ -340,6 +345,18 @@ export default function QuizCreatorScreen() {
           />
           <Text style={styles.infoText}>
             Your quiz scores will be tracked in your Profile under Achievements → Quiz Master
+          </Text>
+        </View>
+
+        <View style={[styles.infoCard, { backgroundColor: colors.highlight, borderColor: colors.warning }]}>
+          <IconSymbol 
+            ios_icon_name="exclamationmark.triangle.fill" 
+            android_material_icon_name="warning" 
+            size={24} 
+            color={colors.warning} 
+          />
+          <Text style={styles.infoText}>
+            <Text style={{ fontWeight: '700' }}>Setup Required:</Text> If you see sample/fallback questions, the OpenAI API key needs to be configured in Supabase. See OPENAI_API_KEY_SETUP_GUIDE.md for instructions.
           </Text>
         </View>
       </ScrollView>
@@ -516,6 +533,7 @@ const styles = StyleSheet.create({
     padding: 16,
     borderWidth: 1,
     borderColor: colors.info,
+    marginBottom: 16,
   },
   infoText: {
     fontSize: 14,
