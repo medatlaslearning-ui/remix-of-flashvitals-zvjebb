@@ -3,6 +3,17 @@ import { useState, useCallback } from 'react';
 import { supabase } from '@/app/integrations/supabase/client';
 import { invokeQuizGeneration } from '@/app/integrations/supabase/utils/timeoutWrapper';
 import type { Quiz, QuizQuestion, QuizGenerationParams, QuizGenerationResult, QuizStats } from '@/types/quiz';
+import { cardiologyFlashcards } from '@/data/cardiologyFlashcards';
+import { pulmonaryFlashcards } from '@/data/pulmonaryFlashcards';
+import { neurologyFlashcards } from '@/data/neurologyFlashcards';
+import { renalFlashcards } from '@/data/renalFlashcards';
+import { gastroenterologyFlashcards } from '@/data/gastroenterologyFlashcards';
+import { endocrineFlashcards } from '@/data/endocrineFlashcards';
+import { hematologyFlashcards } from '@/data/hematologyFlashcards';
+import { infectiousDiseaseFlashcards } from '@/data/infectiousDiseaseFlashcards';
+import { emergencyMedicineFlashcards } from '@/data/emergencyMedicineFlashcards';
+import { urologyFlashcards } from '@/data/urologyFlashcards';
+import { Flashcard } from '@/types/flashcard';
 
 export interface QuizAnswer {
   questionId: string;
@@ -19,6 +30,50 @@ export interface QuizResult {
   answers: QuizAnswer[];
 }
 
+// Get flashcards for a medical system
+function getFlashcardsForSystem(medicalSystem: string): Flashcard[] {
+  const systemMap: { [key: string]: Flashcard[] } = {
+    'Cardiology': cardiologyFlashcards,
+    'Pulmonary': pulmonaryFlashcards,
+    'Neurology': neurologyFlashcards,
+    'Renal': renalFlashcards,
+    'Gastroenterology': gastroenterologyFlashcards,
+    'Endocrine': endocrineFlashcards,
+    'Hematology': hematologyFlashcards,
+    'Infectious Disease': infectiousDiseaseFlashcards,
+    'Emergency Medicine': emergencyMedicineFlashcards,
+    'Urology': urologyFlashcards,
+  };
+
+  return systemMap[medicalSystem] || [];
+}
+
+// Build context from flashcards
+function buildFlashcardsContext(flashcards: Flashcard[]): string {
+  if (flashcards.length === 0) return '';
+
+  return flashcards
+    .slice(0, 20) // Limit to 20 flashcards to avoid token limits
+    .map(card => {
+      let context = `Topic: ${card.topic}\n`;
+      context += `Question: ${card.front}\n`;
+      if (card.back.definition) {
+        context += `Definition: ${card.back.definition}\n`;
+      }
+      if (card.back.high_yield) {
+        context += `High-Yield: ${card.back.high_yield}\n`;
+      }
+      if (card.back.clinical_pearl) {
+        context += `Clinical Pearl: ${card.back.clinical_pearl}\n`;
+      }
+      if (card.back.treatment) {
+        context += `Treatment: ${card.back.treatment}\n`;
+      }
+      return context;
+    })
+    .join('\n---\n\n');
+}
+
 export const useQuiz = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -31,13 +86,29 @@ export const useQuiz = () => {
 
       const { data: { user } } = await supabase.auth.getUser();
       
+      // Get flashcards for the medical system
+      const flashcards = getFlashcardsForSystem(params.medicalSystem);
+      console.log('[useQuiz] Found', flashcards.length, 'flashcards for', params.medicalSystem);
+
+      // Build context from flashcards
+      const flashcardsContext = buildFlashcardsContext(flashcards);
+      console.log('[useQuiz] Flashcards context length:', flashcardsContext.length, 'characters');
+
       // Build the request body - match the Edge Function's expected format
       const requestBody = {
-        topic: params.medicalSystem, // Edge Function expects 'topic' not 'medicalSystem'
-        questions: params.questionCount || 10, // Edge Function expects 'questions' not 'questionCount'
+        topic: params.medicalSystem,
+        questions: params.questionCount || 10,
+        medicalSystem: params.medicalSystem,
+        flashcardsContext,
+        maxTokens: params.questionCount === 10 ? 4000 : 2500,
       };
 
-      console.log('[useQuiz] Calling Edge Function with body:', requestBody);
+      console.log('[useQuiz] Calling Edge Function with body:', {
+        topic: requestBody.topic,
+        questions: requestBody.questions,
+        flashcardsContextLength: requestBody.flashcardsContext.length,
+        maxTokens: requestBody.maxTokens,
+      });
 
       // Call the generate-quiz Edge Function with timeout protection
       const { data, error: functionError, timedOut } = await invokeQuizGeneration(
@@ -66,22 +137,25 @@ export const useQuiz = () => {
 
       console.log('[useQuiz] Edge Function response:', data);
 
-      // The Edge Function returns { quiz: [...] } format
-      // We need to transform it to match our expected format
-      const quizData = data.quiz;
+      // The Edge Function now returns { questions: [...] } format
+      const questions = data.questions;
       
-      if (!quizData || !Array.isArray(quizData) || quizData.length === 0) {
-        console.log('[useQuiz] Invalid response - no quiz data:', data);
+      if (!questions || !Array.isArray(questions) || questions.length === 0) {
+        console.log('[useQuiz] Invalid response - no questions:', data);
         throw new Error('No questions generated. Please try again.');
       }
 
-      // Transform the quiz data to match our expected format
-      // The Edge Function returns simple { id, question } format
-      // We need to transform it to our full question format
-      const questions = quizData.map((item: any, index: number) => ({
+      // Check if this is a fallback response
+      if (data.fallback) {
+        console.warn('[useQuiz] ⚠️ Received fallback questions:', data.error);
+        // Still return the fallback questions, but log the warning
+      }
+
+      // Transform the questions to ensure they have IDs
+      const transformedQuestions = questions.map((item: any, index: number) => ({
         id: `q_${Date.now()}_${index}`,
-        questionNumber: index + 1,
-        questionText: item.question || `Question ${index + 1}`,
+        questionNumber: item.questionNumber || index + 1,
+        questionText: item.questionText || `Question ${index + 1}`,
         optionA: item.optionA || 'Option A',
         optionB: item.optionB || 'Option B',
         optionC: item.optionC || 'Option C',
@@ -92,8 +166,10 @@ export const useQuiz = () => {
       }));
 
       console.log('[useQuiz] Quiz generated successfully:', {
-        questionCount: questions.length,
+        questionCount: transformedQuestions.length,
         isFallback: data.fallback,
+        model: data.model,
+        duration_ms: data.duration_ms,
       });
 
       // Generate a quiz ID
@@ -102,13 +178,13 @@ export const useQuiz = () => {
       // Return the result in the expected format
       const result: QuizGenerationResult = {
         quizId,
-        questionCount: questions.length,
+        questionCount: transformedQuestions.length,
         medicalSystem: params.medicalSystem,
         topic: params.topic,
-        duration_ms: 0,
-        model: 'gpt-4o-mini',
-        tokens: undefined,
-        questions,
+        duration_ms: data.duration_ms || 0,
+        model: data.model || 'gpt-4o-mini',
+        tokens: data.tokens,
+        questions: transformedQuestions,
       };
 
       return result;
