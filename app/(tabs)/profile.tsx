@@ -197,12 +197,12 @@ export default function ProfileScreen() {
       <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color={colors.primary} />
         <Text style={styles.loadingText}>Loading profile...</Text>
-        <Text style={styles.loadingSubtext}>This should only take a moment</Text>
+        <Text style={styles.loadingSubtext}>Checking authentication status</Text>
       </View>
     );
   }
 
-  // Handle auth error (timeout or other error)
+  // Handle auth error (timeout or other error) - IMPROVED
   if (authError) {
     return (
       <View style={styles.errorContainer}>
@@ -212,14 +212,39 @@ export default function ProfileScreen() {
           size={64}
           color={colors.warning}
         />
-        <Text style={styles.errorTitle}>Session Timeout</Text>
-        <Text style={styles.errorMessage}>{authError}</Text>
-        <Pressable
-          style={styles.retryButton}
-          onPress={() => router.push('/auth/sign-in')}
-        >
-          <Text style={styles.retryButtonText}>Sign In Again</Text>
-        </Pressable>
+        <Text style={styles.errorTitle}>Authentication Timeout</Text>
+        <Text style={styles.errorMessage}>
+          Unable to verify authentication status. This may be due to a slow connection or server issue.
+        </Text>
+        <Text style={styles.errorHint}>
+          You can continue using the app in guest mode, but some features (like saving progress) will be unavailable.
+        </Text>
+        <View style={styles.errorButtons}>
+          <Pressable
+            style={styles.retryButton}
+            onPress={() => router.replace('/(tabs)/profile')}
+          >
+            <IconSymbol
+              ios_icon_name="arrow.clockwise"
+              android_material_icon_name="refresh"
+              size={20}
+              color="#FFFFFF"
+            />
+            <Text style={styles.retryButtonText}>Retry</Text>
+          </Pressable>
+          <Pressable
+            style={styles.signInButton}
+            onPress={() => router.push('/auth/sign-in')}
+          >
+            <IconSymbol
+              ios_icon_name="person.circle.fill"
+              android_material_icon_name="login"
+              size={20}
+              color="#FFFFFF"
+            />
+            <Text style={styles.signInButtonText}>Sign In</Text>
+          </Pressable>
+        </View>
       </View>
     );
   }
@@ -543,12 +568,27 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: colors.textSecondary,
     textAlign: 'center',
-    marginBottom: 24,
+    marginBottom: 12,
     lineHeight: 20,
   },
+  errorHint: {
+    fontSize: 13,
+    color: colors.textSecondary,
+    textAlign: 'center',
+    marginBottom: 24,
+    lineHeight: 18,
+    fontStyle: 'italic',
+  },
+  errorButtons: {
+    flexDirection: 'row',
+    gap: 12,
+  },
   retryButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
     backgroundColor: colors.primary,
-    paddingHorizontal: 24,
+    paddingHorizontal: 20,
     paddingVertical: 12,
     borderRadius: 12,
   },
