@@ -26,9 +26,21 @@ export default function ProfileScreen() {
   const [showSubDropdown, setShowSubDropdown] = useState(false);
   const [savingSpecialty, setSavingSpecialty] = useState(false);
 
-  const bookmarkedCount = useMemo(() => getBookmarkedFlashcards().length, [getBookmarkedFlashcards]);
-  const favoritesCount = useMemo(() => getFavoriteFlashcards().length, [getFavoriteFlashcards]);
-  const difficultCount = useMemo(() => getDifficultFlashcards().length, [getDifficultFlashcards]);
+  // FIX: Use updateTrigger as dependency instead of the function itself
+  const bookmarkedCount = useMemo(() => {
+    console.log('[Profile] Calculating bookmarked count, updateTrigger:', updateTrigger);
+    return getBookmarkedFlashcards().length;
+  }, [updateTrigger]);
+
+  const favoritesCount = useMemo(() => {
+    console.log('[Profile] Calculating favorites count, updateTrigger:', updateTrigger);
+    return getFavoriteFlashcards().length;
+  }, [updateTrigger]);
+
+  const difficultCount = useMemo(() => {
+    console.log('[Profile] Calculating difficult count, updateTrigger:', updateTrigger);
+    return getDifficultFlashcards().length;
+  }, [updateTrigger]);
 
   useEffect(() => {
     if (profile) {
@@ -451,6 +463,7 @@ export default function ProfileScreen() {
             <Pressable
               style={[styles.tile, { backgroundColor: '#E91E63' }]}
               onPress={() => {
+                console.log('[Profile] Navigating to favorites, count:', favoritesCount);
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                 router.push('/(tabs)/(home)/flashcards?filter=favorites');
               }}
@@ -464,6 +477,7 @@ export default function ProfileScreen() {
             <Pressable
               style={[styles.tile, { backgroundColor: '#FF9800' }]}
               onPress={() => {
+                console.log('[Profile] Navigating to bookmarked, count:', bookmarkedCount);
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                 router.push('/(tabs)/(home)/flashcards?filter=bookmarked');
               }}
@@ -477,6 +491,7 @@ export default function ProfileScreen() {
             <Pressable
               style={[styles.tile, { backgroundColor: '#F44336' }]}
               onPress={() => {
+                console.log('[Profile] Navigating to difficult, count:', difficultCount);
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                 router.push('/(tabs)/(home)/flashcards?filter=difficult');
               }}

@@ -26,9 +26,21 @@ export default function ProfileScreen() {
   const [showSubDropdown, setShowSubDropdown] = useState(false);
   const [savingSpecialty, setSavingSpecialty] = useState(false);
 
-  const bookmarkedCount = useMemo(() => getBookmarkedFlashcards().length, [getBookmarkedFlashcards]);
-  const favoritesCount = useMemo(() => getFavoriteFlashcards().length, [getFavoriteFlashcards]);
-  const difficultCount = useMemo(() => getDifficultFlashcards().length, [getDifficultFlashcards]);
+  // FIX: Use updateTrigger as dependency instead of the function itself
+  const bookmarkedCount = useMemo(() => {
+    console.log('[Profile iOS] Calculating bookmarked count, updateTrigger:', updateTrigger);
+    return getBookmarkedFlashcards().length;
+  }, [updateTrigger]);
+
+  const favoritesCount = useMemo(() => {
+    console.log('[Profile iOS] Calculating favorites count, updateTrigger:', updateTrigger);
+    return getFavoriteFlashcards().length;
+  }, [updateTrigger]);
+
+  const difficultCount = useMemo(() => {
+    console.log('[Profile iOS] Calculating difficult count, updateTrigger:', updateTrigger);
+    return getDifficultFlashcards().length;
+  }, [updateTrigger]);
 
   useEffect(() => {
     if (profile) {
@@ -39,7 +51,7 @@ export default function ProfileScreen() {
 
   // Force re-render when updateTrigger changes
   useEffect(() => {
-    console.log('Update trigger changed:', updateTrigger);
+    console.log('[Profile iOS] Update trigger changed:', updateTrigger);
   }, [updateTrigger]);
 
   const primarySpecialties = [
@@ -130,9 +142,9 @@ export default function ProfileScreen() {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
 
     try {
-      console.log('Saving specialty for user:', user.id);
-      console.log('Primary specialty:', primarySpecialty);
-      console.log('Sub specialty:', subSpecialty);
+      console.log('[Profile iOS] Saving specialty for user:', user.id);
+      console.log('[Profile iOS] Primary specialty:', primarySpecialty);
+      console.log('[Profile iOS] Sub specialty:', subSpecialty);
 
       const { data, error } = await supabase
         .from('profiles')
@@ -151,15 +163,15 @@ export default function ProfileScreen() {
         .select();
 
       if (error) {
-        console.error('Supabase error:', error);
+        console.error('[Profile iOS] Supabase error:', error);
         throw error;
       }
 
-      console.log('Specialty saved successfully:', data);
+      console.log('[Profile iOS] Specialty saved successfully:', data);
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       Alert.alert('Success', 'Your specialty has been saved');
     } catch (error: any) {
-      console.error('Error saving specialty:', error);
+      console.error('[Profile iOS] Error saving specialty:', error);
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
       Alert.alert('Error', `Failed to save specialty: ${error.message || 'Please try again.'}`);
     } finally {
@@ -182,7 +194,7 @@ export default function ProfileScreen() {
               Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
               Alert.alert('Signed Out', 'You have been signed out successfully');
             } catch (error) {
-              console.error('Sign out error:', error);
+              console.error('[Profile iOS] Sign out error:', error);
               Alert.alert('Error', 'Failed to sign out. Please try again.');
             }
           },
@@ -402,6 +414,7 @@ export default function ProfileScreen() {
             <Pressable
               style={[styles.tile, { backgroundColor: '#E91E63' }]}
               onPress={() => {
+                console.log('[Profile iOS] Navigating to favorites, count:', favoritesCount);
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                 router.push('/(tabs)/(home)/flashcards?filter=favorites');
               }}
@@ -415,6 +428,7 @@ export default function ProfileScreen() {
             <Pressable
               style={[styles.tile, { backgroundColor: '#FF9800' }]}
               onPress={() => {
+                console.log('[Profile iOS] Navigating to bookmarked, count:', bookmarkedCount);
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                 router.push('/(tabs)/(home)/flashcards?filter=bookmarked');
               }}
@@ -428,6 +442,7 @@ export default function ProfileScreen() {
             <Pressable
               style={[styles.tile, { backgroundColor: '#F44336' }]}
               onPress={() => {
+                console.log('[Profile iOS] Navigating to difficult, count:', difficultCount);
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                 router.push('/(tabs)/(home)/flashcards?filter=difficult');
               }}
