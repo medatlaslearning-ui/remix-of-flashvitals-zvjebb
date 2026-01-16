@@ -287,7 +287,7 @@ export default function QuizCreatorScreen() {
                 size={20} 
                 color={colors.success} 
               />
-              <Text style={styles.featureText}>AI-powered question generation</Text>
+              <Text style={styles.featureText}>Medical Accuracy</Text>
             </View>
             <View style={styles.featureItem}>
               <IconSymbol 
@@ -296,7 +296,16 @@ export default function QuizCreatorScreen() {
                 size={20} 
                 color={colors.primary} 
               />
-              <Text style={styles.featureText}>Medical education focused</Text>
+              <Text style={styles.featureText}>Linked to Clinical Guidelines</Text>
+            </View>
+            <View style={styles.featureItem}>
+              <IconSymbol 
+                ios_icon_name="description" 
+                android_material_icon_name="description" 
+                size={20} 
+                color={colors.info} 
+              />
+              <Text style={styles.featureText}>Detailed Rationale & References</Text>
             </View>
             <View style={styles.featureItem}>
               <IconSymbol 
@@ -305,7 +314,7 @@ export default function QuizCreatorScreen() {
                 size={20} 
                 color={colors.warning} 
               />
-              <Text style={styles.featureText}>Board-style format</Text>
+              <Text style={styles.featureText}>Board Style Format</Text>
             </View>
           </View>
         </View>
@@ -335,30 +344,6 @@ export default function QuizCreatorScreen() {
             </>
           )}
         </Pressable>
-
-        <View style={styles.infoCard}>
-          <IconSymbol 
-            ios_icon_name="info.circle.fill" 
-            android_material_icon_name="info" 
-            size={24} 
-            color={colors.info} 
-          />
-          <Text style={styles.infoText}>
-            Your quiz scores will be tracked in your Profile under Achievements → Quiz Master
-          </Text>
-        </View>
-
-        <View style={[styles.infoCard, { backgroundColor: colors.highlight, borderColor: colors.warning }]}>
-          <IconSymbol 
-            ios_icon_name="exclamationmark.triangle.fill" 
-            android_material_icon_name="warning" 
-            size={24} 
-            color={colors.warning} 
-          />
-          <Text style={styles.infoText}>
-            <Text style={{ fontWeight: '700' }}>Setup Required:</Text> If you see sample/fallback questions, the OpenAI API key needs to be configured in Supabase. See OPENAI_API_KEY_SETUP_GUIDE.md for instructions.
-          </Text>
-        </View>
       </ScrollView>
     </>
   );
