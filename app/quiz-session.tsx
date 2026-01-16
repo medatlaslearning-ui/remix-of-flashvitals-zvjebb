@@ -396,7 +396,7 @@ export default function QuizSessionScreen() {
                   ? 'Excellent work! 🎉' 
                   : quizResult?.percentage >= 60 
                   ? 'Good job! Keep practicing! 💪' 
-                  : 'Keep studying! You&apos;ll improve! 📚'}
+                  : 'Keep studying! You will improve! 📚'}
               </Text>
               
               {authState === 'authenticated' && user && (
