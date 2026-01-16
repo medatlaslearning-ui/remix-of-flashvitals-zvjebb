@@ -26,21 +26,27 @@ export default function ProfileScreen() {
   const [showSubDropdown, setShowSubDropdown] = useState(false);
   const [savingSpecialty, setSavingSpecialty] = useState(false);
 
-  // FIX: Use updateTrigger as dependency instead of the function itself
+  // FIX: Include getter functions in dependency array
   const bookmarkedCount = useMemo(() => {
     console.log('[Profile iOS] Calculating bookmarked count, updateTrigger:', updateTrigger);
-    return getBookmarkedFlashcards().length;
-  }, [updateTrigger]);
+    const count = getBookmarkedFlashcards().length;
+    console.log('[Profile iOS] Bookmarked count:', count);
+    return count;
+  }, [updateTrigger, getBookmarkedFlashcards]);
 
   const favoritesCount = useMemo(() => {
     console.log('[Profile iOS] Calculating favorites count, updateTrigger:', updateTrigger);
-    return getFavoriteFlashcards().length;
-  }, [updateTrigger]);
+    const count = getFavoriteFlashcards().length;
+    console.log('[Profile iOS] Favorites count:', count);
+    return count;
+  }, [updateTrigger, getFavoriteFlashcards]);
 
   const difficultCount = useMemo(() => {
     console.log('[Profile iOS] Calculating difficult count, updateTrigger:', updateTrigger);
-    return getDifficultFlashcards().length;
-  }, [updateTrigger]);
+    const count = getDifficultFlashcards().length;
+    console.log('[Profile iOS] Difficult count:', count);
+    return count;
+  }, [updateTrigger, getDifficultFlashcards]);
 
   useEffect(() => {
     if (profile) {
@@ -52,7 +58,8 @@ export default function ProfileScreen() {
   // Force re-render when updateTrigger changes
   useEffect(() => {
     console.log('[Profile iOS] Update trigger changed:', updateTrigger);
-  }, [updateTrigger]);
+    console.log('[Profile iOS] Current counts - Bookmarked:', bookmarkedCount, 'Favorites:', favoritesCount, 'Difficult:', difficultCount);
+  }, [updateTrigger, bookmarkedCount, favoritesCount, difficultCount]);
 
   const primarySpecialties = [
     'Advanced Practice Registered Nurse',
