@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -12,41 +12,17 @@ import {
 import { Stack, router } from 'expo-router';
 import { colors } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
-import { useFlashcards } from '@/hooks/useFlashcards';
 import { useAuth } from '@/app/integrations/supabase/hooks/useAuth';
 import { supabase } from '@/app/integrations/supabase/client';
 import * as Haptics from 'expo-haptics';
 
 export default function ProfileScreen() {
   const { authState, user, profile, signOut, error: authError } = useAuth();
-  const { getBookmarkedFlashcards, getFavoriteFlashcards, getDifficultFlashcards, updateTrigger } = useFlashcards();
   const [primarySpecialty, setPrimarySpecialty] = useState<string | null>(null);
   const [subSpecialty, setSubSpecialty] = useState<string | null>(null);
   const [showPrimaryDropdown, setShowPrimaryDropdown] = useState(false);
   const [showSubDropdown, setShowSubDropdown] = useState(false);
   const [savingSpecialty, setSavingSpecialty] = useState(false);
-
-  // FIX: Include getter functions in dependency array
-  const bookmarkedCount = useMemo(() => {
-    console.log('[Profile] Calculating bookmarked count, updateTrigger:', updateTrigger);
-    const count = getBookmarkedFlashcards().length;
-    console.log('[Profile] Bookmarked count:', count);
-    return count;
-  }, [updateTrigger, getBookmarkedFlashcards]);
-
-  const favoritesCount = useMemo(() => {
-    console.log('[Profile] Calculating favorites count, updateTrigger:', updateTrigger);
-    const count = getFavoriteFlashcards().length;
-    console.log('[Profile] Favorites count:', count);
-    return count;
-  }, [updateTrigger, getFavoriteFlashcards]);
-
-  const difficultCount = useMemo(() => {
-    console.log('[Profile] Calculating difficult count, updateTrigger:', updateTrigger);
-    const count = getDifficultFlashcards().length;
-    console.log('[Profile] Difficult count:', count);
-    return count;
-  }, [updateTrigger, getDifficultFlashcards]);
 
   useEffect(() => {
     if (profile) {
@@ -54,12 +30,6 @@ export default function ProfileScreen() {
       setSubSpecialty(profile.sub_specialty || null);
     }
   }, [profile]);
-
-  // Force re-render when updateTrigger changes
-  useEffect(() => {
-    console.log('[Profile] Update trigger changed:', updateTrigger);
-    console.log('[Profile] Current counts - Bookmarked:', bookmarkedCount, 'Favorites:', favoritesCount, 'Difficult:', difficultCount);
-  }, [updateTrigger, bookmarkedCount, favoritesCount, difficultCount]);
 
   const primarySpecialties = [
     'Advanced Practice Registered Nurse',
@@ -466,49 +436,49 @@ export default function ProfileScreen() {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Quick Actions</Text>
           <View style={styles.grid}>
-            {/* Favorites - Using vibrant color from Home page */}
+            {/* Favorites - Matching Home page style (no count) */}
             <Pressable
               style={[styles.tile, { backgroundColor: '#E91E63' }]}
               onPress={() => {
-                console.log('[Profile] Navigating to favorites, count:', favoritesCount);
+                console.log('[Profile] Navigating to favorites');
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                 router.push('/(tabs)/(home)/flashcards?filter=favorites');
               }}
             >
               <Text style={styles.tileEmoji}>❤️</Text>
               <Text style={styles.tileTitle}>Favorites</Text>
-              <Text style={[styles.tileCount, { color: '#FFFFFF' }]}>{favoritesCount}</Text>
+              <Text style={styles.tileSubtitle}>Favorite cards</Text>
             </Pressable>
 
-            {/* Bookmarked - Using vibrant color from Home page */}
+            {/* Bookmarked - Matching Home page style (no count) */}
             <Pressable
               style={[styles.tile, { backgroundColor: '#FF9800' }]}
               onPress={() => {
-                console.log('[Profile] Navigating to bookmarked, count:', bookmarkedCount);
+                console.log('[Profile] Navigating to bookmarked');
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                 router.push('/(tabs)/(home)/flashcards?filter=bookmarked');
               }}
             >
               <Text style={styles.tileEmoji}>🔖</Text>
               <Text style={styles.tileTitle}>Bookmarked</Text>
-              <Text style={[styles.tileCount, { color: '#FFFFFF' }]}>{bookmarkedCount}</Text>
+              <Text style={styles.tileSubtitle}>Saved cards</Text>
             </Pressable>
 
-            {/* Difficult - Using vibrant color from Home page */}
+            {/* Difficult - Matching Home page style (no count) */}
             <Pressable
               style={[styles.tile, { backgroundColor: '#F44336' }]}
               onPress={() => {
-                console.log('[Profile] Navigating to difficult, count:', difficultCount);
+                console.log('[Profile] Navigating to difficult');
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                 router.push('/(tabs)/(home)/flashcards?filter=difficult');
               }}
             >
               <Text style={styles.tileEmoji}>⚠️</Text>
               <Text style={styles.tileTitle}>Difficult</Text>
-              <Text style={[styles.tileCount, { color: '#FFFFFF' }]}>{difficultCount}</Text>
+              <Text style={styles.tileSubtitle}>Review again</Text>
             </Pressable>
 
-            {/* Ask Dr. Elias Reed - Using vibrant color from Home page */}
+            {/* Ask Dr. Elias Reed */}
             <Pressable
               style={[styles.tile, { backgroundColor: '#9C27B0' }]}
               onPress={() => {
@@ -518,9 +488,10 @@ export default function ProfileScreen() {
             >
               <Text style={styles.tileEmoji}>💬</Text>
               <Text style={styles.tileTitle}>Ask Dr. Elias Reed</Text>
+              <Text style={styles.tileSubtitle}>Medical guidelines</Text>
             </Pressable>
 
-            {/* Progress Report - Using vibrant color from Home page */}
+            {/* Progress Report */}
             <Pressable
               style={[styles.tile, { backgroundColor: '#2196F3' }]}
               onPress={() => {
@@ -530,12 +501,14 @@ export default function ProfileScreen() {
             >
               <Text style={styles.tileEmoji}>📊</Text>
               <Text style={styles.tileTitle}>Progress Report</Text>
+              <Text style={styles.tileSubtitle}>View stats</Text>
             </Pressable>
 
-            {/* Future CE Activity - Using vibrant color from Home page */}
+            {/* Future CE Activity */}
             <Pressable style={[styles.tile, styles.tileDisabled, { backgroundColor: '#4CAF50' }]}>
               <Text style={styles.tileEmoji}>🎯</Text>
               <Text style={styles.tileTitle}>Future CE Activity</Text>
+              <Text style={styles.tileSubtitle}>Coming soon</Text>
             </Pressable>
           </View>
         </View>
@@ -832,10 +805,12 @@ const styles = StyleSheet.create({
     marginTop: 8,
     textAlign: 'center',
   },
-  tileCount: {
-    fontSize: 24,
-    fontWeight: '700',
+  tileSubtitle: {
+    fontSize: 12,
+    color: '#FFFFFF',
+    opacity: 0.9,
     marginTop: 4,
+    textAlign: 'center',
   },
   tileEmoji: {
     fontSize: 32,
