@@ -274,12 +274,7 @@ export default function ProfileScreen() {
                 style={styles.signInButton}
                 onPress={() => router.push('/auth/sign-in')}
               >
-                <IconSymbol
-                  ios_icon_name="arrow.right.circle.fill"
-                  android_material_icon_name="login"
-                  size={20}
-                  color="#FFFFFF"
-                />
+                <Text style={styles.signInButtonEmoji}>🔐</Text>
                 <Text style={styles.signInButtonText}>Sign In</Text>
               </Pressable>
               <View style={styles.guestWarning}>
@@ -299,12 +294,7 @@ export default function ProfileScreen() {
 
         {/* MedAtlas Scholar Badge */}
         <View style={styles.scholarBadge}>
-          <IconSymbol
-            ios_icon_name="graduationcap.fill"
-            android_material_icon_name="school"
-            size={32}
-            color="#FFFFFF"
-          />
+          <Text style={styles.scholarEmoji}>🎓</Text>
           <Text style={styles.scholarText}>MedAtlas Scholar</Text>
         </View>
 
@@ -410,12 +400,7 @@ export default function ProfileScreen() {
               <ActivityIndicator color="#FFFFFF" />
             ) : (
               <>
-                <IconSymbol
-                  ios_icon_name="checkmark.circle.fill"
-                  android_material_icon_name="check-circle"
-                  size={20}
-                  color="#FFFFFF"
-                />
+                <Text style={styles.saveButtonEmoji}>💾</Text>
                 <Text style={styles.saveButtonText}>Save Specialty</Text>
               </>
             )}
@@ -604,6 +589,9 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     marginBottom: 12,
   },
+  signInButtonEmoji: {
+    fontSize: 20,
+  },
   signInButtonText: {
     fontSize: 16,
     fontWeight: '600',
@@ -634,6 +622,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 12,
     marginBottom: 16,
+  },
+  scholarEmoji: {
+    fontSize: 32,
   },
   scholarText: {
     fontSize: 20,
@@ -704,6 +695,9 @@ const styles = StyleSheet.create({
   },
   saveButtonDisabled: {
     opacity: 0.6,
+  },
+  saveButtonEmoji: {
+    fontSize: 20,
   },
   saveButtonText: {
     fontSize: 16,
