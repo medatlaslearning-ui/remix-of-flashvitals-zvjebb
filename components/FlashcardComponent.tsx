@@ -75,24 +75,18 @@ export function FlashcardComponent({
               style={styles.actionButton}
               hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
             >
-              <IconSymbol
-                ios_icon_name={flashcard.bookmarked ? 'bookmark.fill' : 'bookmark'}
-                android_material_icon_name={flashcard.bookmarked ? 'bookmark' : 'bookmark-border'}
-                size={28}
-                color={flashcard.bookmarked ? colors.primary : colors.textSecondary}
-              />
+              <Text style={styles.emojiIcon}>
+                {flashcard.bookmarked ? '🔖' : '🏷️'}
+              </Text>
             </Pressable>
             <Pressable 
               onPress={handleFavoritePress} 
               style={styles.actionButton}
               hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
             >
-              <IconSymbol
-                ios_icon_name={flashcard.favorite ? 'heart.fill' : 'heart'}
-                android_material_icon_name={flashcard.favorite ? 'favorite' : 'favorite-border'}
-                size={28}
-                color={flashcard.favorite ? colors.error : colors.textSecondary}
-              />
+              <Text style={styles.emojiIcon}>
+                {flashcard.favorite ? '❤️' : '🤍'}
+              </Text>
             </Pressable>
           </View>
         )}
@@ -265,13 +259,19 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   actionButton: {
-    padding: 10,
+    padding: 8,
     borderRadius: 12,
     backgroundColor: colors.card,
     boxShadow: '0px 3px 8px rgba(0, 0, 0, 0.15)',
     elevation: 5,
     borderWidth: 1,
     borderColor: colors.highlight,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  emojiIcon: {
+    fontSize: 28,
+    lineHeight: 32,
   },
   card: {
     backgroundColor: colors.card,
