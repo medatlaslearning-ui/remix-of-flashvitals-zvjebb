@@ -342,7 +342,10 @@ export default function ProfileScreen() {
           
           <Pressable
             style={styles.dropdown}
-            onPress={() => setShowPrimaryDropdown(!showPrimaryDropdown)}
+            onPress={() => {
+              console.log('[Profile] Toggling primary specialty dropdown');
+              setShowPrimaryDropdown(!showPrimaryDropdown);
+            }}
           >
             <Text style={primarySpecialty ? styles.dropdownTextSelected : styles.dropdownTextPlaceholder}>
               {primarySpecialty || 'Select Primary Specialty'}
@@ -357,20 +360,26 @@ export default function ProfileScreen() {
 
           {showPrimaryDropdown && (
             <View style={styles.dropdownMenu}>
-              {primarySpecialties.map((specialty) => (
-                <Pressable
-                  key={specialty}
-                  style={styles.dropdownItem}
-                  onPress={() => {
-                    setPrimarySpecialty(specialty);
-                    setSubSpecialty(null);
-                    setShowPrimaryDropdown(false);
-                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                  }}
-                >
-                  <Text style={styles.dropdownItemText}>{specialty}</Text>
-                </Pressable>
-              ))}
+              <ScrollView style={styles.dropdownScrollView} nestedScrollEnabled={true}>
+                {primarySpecialties.map((specialty, index) => (
+                  <Pressable
+                    key={index}
+                    style={[
+                      styles.dropdownItem,
+                      index === primarySpecialties.length - 1 && styles.dropdownItemLast
+                    ]}
+                    onPress={() => {
+                      console.log('[Profile] Selected primary specialty:', specialty);
+                      setPrimarySpecialty(specialty);
+                      setSubSpecialty(null);
+                      setShowPrimaryDropdown(false);
+                      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                    }}
+                  >
+                    <Text style={styles.dropdownItemText}>{specialty}</Text>
+                  </Pressable>
+                ))}
+              </ScrollView>
             </View>
           )}
 
@@ -378,7 +387,10 @@ export default function ProfileScreen() {
             <>
               <Pressable
                 style={[styles.dropdown, { marginTop: 12 }]}
-                onPress={() => setShowSubDropdown(!showSubDropdown)}
+                onPress={() => {
+                  console.log('[Profile] Toggling sub-specialty dropdown');
+                  setShowSubDropdown(!showSubDropdown);
+                }}
               >
                 <Text style={subSpecialty ? styles.dropdownTextSelected : styles.dropdownTextPlaceholder}>
                   {subSpecialty || 'Select Sub-Specialty'}
@@ -393,19 +405,25 @@ export default function ProfileScreen() {
 
               {showSubDropdown && (
                 <View style={styles.dropdownMenu}>
-                  {subSpecialties[primarySpecialty].map((specialty) => (
-                    <Pressable
-                      key={specialty}
-                      style={styles.dropdownItem}
-                      onPress={() => {
-                        setSubSpecialty(specialty);
-                        setShowSubDropdown(false);
-                        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                      }}
-                    >
-                      <Text style={styles.dropdownItemText}>{specialty}</Text>
-                    </Pressable>
-                  ))}
+                  <ScrollView style={styles.dropdownScrollView} nestedScrollEnabled={true}>
+                    {subSpecialties[primarySpecialty].map((specialty, index) => (
+                      <Pressable
+                        key={index}
+                        style={[
+                          styles.dropdownItem,
+                          index === subSpecialties[primarySpecialty].length - 1 && styles.dropdownItemLast
+                        ]}
+                        onPress={() => {
+                          console.log('[Profile] Selected sub-specialty:', specialty);
+                          setSubSpecialty(specialty);
+                          setShowSubDropdown(false);
+                          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                        }}
+                      >
+                        <Text style={styles.dropdownItemText}>{specialty}</Text>
+                      </Pressable>
+                    ))}
+                  </ScrollView>
                 </View>
               )}
             </>
@@ -752,11 +770,18 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.border,
     maxHeight: 300,
+    overflow: 'hidden',
+  },
+  dropdownScrollView: {
+    maxHeight: 300,
   },
   dropdownItem: {
     padding: 16,
     borderBottomWidth: 1,
     borderBottomColor: colors.border,
+  },
+  dropdownItemLast: {
+    borderBottomWidth: 0,
   },
   dropdownItemText: {
     fontSize: 16,
