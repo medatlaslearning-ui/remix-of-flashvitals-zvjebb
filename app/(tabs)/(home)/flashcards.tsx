@@ -246,9 +246,9 @@ export default function FlashcardsScreen() {
           <IconSymbol ios_icon_name="tray" android_material_icon_name="inbox" size={64} color={colors.textSecondary} />
           <Text style={styles.emptyText}>No flashcards available</Text>
           <Text style={styles.emptySubtext}>
-            {filter === 'bookmarked' && 'You haven&apos;t bookmarked any cards yet.'}
-            {filter === 'favorites' && 'You haven&apos;t favorited any cards yet.'}
-            {filter === 'difficult' && 'You haven&apos;t marked any cards as difficult yet.'}
+            {filter === 'bookmarked' && 'You have not bookmarked any cards yet.'}
+            {filter === 'favorites' && 'You have not favorited any cards yet.'}
+            {filter === 'difficult' && 'You have not marked any cards as difficult yet.'}
             {!filter && 'No flashcards found for this topic.'}
           </Text>
           <Pressable style={styles.backButton} onPress={() => router.back()}>
