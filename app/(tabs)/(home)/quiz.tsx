@@ -83,6 +83,33 @@ const MEDICAL_SYSTEMS = [
 
 const QUESTION_COUNTS = [5, 10];
 
+const FEATURES = [
+  {
+    emoji: '✅',
+    text: 'Medical Accuracy',
+    color: colors.success,
+    backgroundColor: '#E8F5E9',
+  },
+  {
+    emoji: '📚',
+    text: 'Linked to Clinical Guidelines',
+    color: colors.primary,
+    backgroundColor: '#E3F2FD',
+  },
+  {
+    emoji: '📝',
+    text: 'Detailed Rationale & References',
+    color: '#1976D2',
+    backgroundColor: '#E1F5FE',
+  },
+  {
+    emoji: '🎓',
+    text: 'Board Style Format',
+    color: colors.warning,
+    backgroundColor: '#FFF3E0',
+  },
+];
+
 export default function QuizCreatorScreen() {
   const router = useRouter();
   const { generateQuiz, loading } = useQuiz();
@@ -280,42 +307,20 @@ export default function QuizCreatorScreen() {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Features</Text>
           <View style={styles.featuresList}>
-            <View style={styles.featureItem}>
-              <IconSymbol 
-                ios_icon_name="checkmark.shield.fill" 
-                android_material_icon_name="verified-user" 
-                size={20} 
-                color={colors.success} 
-              />
-              <Text style={styles.featureText}>Medical Accuracy</Text>
-            </View>
-            <View style={styles.featureItem}>
-              <IconSymbol 
-                ios_icon_name="book.fill" 
-                android_material_icon_name="menu-book" 
-                size={20} 
-                color={colors.primary} 
-              />
-              <Text style={styles.featureText}>Linked to Clinical Guidelines</Text>
-            </View>
-            <View style={styles.featureItem}>
-              <IconSymbol 
-                ios_icon_name="description" 
-                android_material_icon_name="description" 
-                size={20} 
-                color={colors.info} 
-              />
-              <Text style={styles.featureText}>Detailed Rationale & References</Text>
-            </View>
-            <View style={styles.featureItem}>
-              <IconSymbol 
-                ios_icon_name="graduationcap.fill" 
-                android_material_icon_name="school" 
-                size={20} 
-                color={colors.warning} 
-              />
-              <Text style={styles.featureText}>Board Style Format</Text>
-            </View>
+            {FEATURES.map((feature, index) => (
+              <View 
+                key={index}
+                style={[
+                  styles.featureItem,
+                  { backgroundColor: feature.backgroundColor }
+                ]}
+              >
+                <Text style={styles.featureEmoji}>{feature.emoji}</Text>
+                <Text style={[styles.featureText, { color: feature.color }]}>
+                  {feature.text}
+                </Text>
+              </View>
+            ))}
           </View>
         </View>
 
@@ -476,16 +481,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
-    backgroundColor: colors.card,
     borderRadius: 12,
     padding: 16,
     boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
     elevation: 3,
   },
+  featureEmoji: {
+    fontSize: 24,
+  },
   featureText: {
     fontSize: 15,
-    color: colors.text,
-    fontWeight: '500',
+    fontWeight: '600',
     flex: 1,
   },
   generateButton: {
