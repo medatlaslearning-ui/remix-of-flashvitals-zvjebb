@@ -34,7 +34,8 @@ export function FlashcardComponent({
     isFlipped,
     bookmarked: flashcard.bookmarked,
     favorite: flashcard.favorite,
-    hasTags: !!flashcard.tags
+    hasTags: !!flashcard.tags,
+    showActions
   });
 
   const handleFlip = () => {
@@ -64,123 +65,126 @@ export function FlashcardComponent({
 
   return (
     <View style={styles.container}>
-      {/* Action Buttons */}
-      {showActions && (
-        <View style={styles.actionButtons}>
-          <Pressable 
-            onPress={handleBookmarkPress} 
-            style={styles.actionButton}
-            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-          >
-            <IconSymbol
-              ios_icon_name={flashcard.bookmarked ? 'bookmark.fill' : 'bookmark'}
-              android_material_icon_name={flashcard.bookmarked ? 'bookmark' : 'bookmark-border'}
-              size={24}
-              color={flashcard.bookmarked ? colors.primary : colors.textSecondary}
-            />
-          </Pressable>
-          <Pressable 
-            onPress={handleFavoritePress} 
-            style={styles.actionButton}
-            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-          >
-            <IconSymbol
-              ios_icon_name={flashcard.favorite ? 'heart.fill' : 'heart'}
-              android_material_icon_name={flashcard.favorite ? 'favorite' : 'favorite-border'}
-              size={24}
-              color={flashcard.favorite ? colors.error : colors.textSecondary}
-            />
-          </Pressable>
-        </View>
-      )}
+      {/* Card with action buttons positioned absolutely in top right */}
+      <View style={styles.cardWrapper}>
+        {/* Action Buttons - Positioned absolutely in top right corner */}
+        {showActions && (
+          <View style={styles.actionButtons}>
+            <Pressable 
+              onPress={handleBookmarkPress} 
+              style={styles.actionButton}
+              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+            >
+              <IconSymbol
+                ios_icon_name={flashcard.bookmarked ? 'bookmark.fill' : 'bookmark'}
+                android_material_icon_name={flashcard.bookmarked ? 'bookmark' : 'bookmark-border'}
+                size={28}
+                color={flashcard.bookmarked ? colors.primary : colors.textSecondary}
+              />
+            </Pressable>
+            <Pressable 
+              onPress={handleFavoritePress} 
+              style={styles.actionButton}
+              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+            >
+              <IconSymbol
+                ios_icon_name={flashcard.favorite ? 'heart.fill' : 'heart'}
+                android_material_icon_name={flashcard.favorite ? 'favorite' : 'favorite-border'}
+                size={28}
+                color={flashcard.favorite ? colors.error : colors.textSecondary}
+              />
+            </Pressable>
+          </View>
+        )}
 
-      {/* Card */}
-      <Pressable 
-        onPress={handleFlip} 
-        style={[
-          styles.card,
-          isFlipped && flashcard.color && getColorStyle(flashcard.color)
-        ]}
-      >
-        <ScrollView 
-          style={styles.cardScroll}
-          contentContainerStyle={styles.cardContent}
-          showsVerticalScrollIndicator={false}
+        {/* Card */}
+        <Pressable 
+          onPress={handleFlip} 
+          style={[
+            styles.card,
+            isFlipped && flashcard.color && getColorStyle(flashcard.color)
+          ]}
         >
-          {!isFlipped ? (
-            // Front of card
-            <View style={styles.cardFace}>
-              <Text style={styles.label}>Question</Text>
-              <Text style={styles.frontText}>{flashcard.front}</Text>
-              {flashcard.tags && flashcard.tags.length > 0 && (
-                <View style={styles.tags}>
-                  {flashcard.tags.map((tag, index) => (
-                    <View key={index} style={styles.tag}>
-                      <Text style={styles.tagText}>{tag}</Text>
-                    </View>
-                  ))}
-                </View>
-              )}
-            </View>
-          ) : (
-            // Back of card
-            <View style={styles.cardFace}>
-              {flashcard.color && (
-                <View style={styles.colorIndicator}>
-                  <View style={[styles.colorBadge, getColorBadgeStyle(flashcard.color)]}>
-                    <Text style={styles.colorBadgeText}>
-                      {flashcard.color === 'blue' ? 'Gram Positive' : 'Gram Negative'}
-                    </Text>
+          <ScrollView 
+            style={styles.cardScroll}
+            contentContainerStyle={styles.cardContent}
+            showsVerticalScrollIndicator={false}
+          >
+            {!isFlipped ? (
+              // Front of card
+              <View style={styles.cardFace}>
+                <Text style={styles.label}>Question</Text>
+                <Text style={styles.frontText}>{flashcard.front}</Text>
+                {flashcard.tags && flashcard.tags.length > 0 && (
+                  <View style={styles.tags}>
+                    {flashcard.tags.map((tag, index) => (
+                      <View key={index} style={styles.tag}>
+                        <Text style={styles.tagText}>{tag}</Text>
+                      </View>
+                    ))}
                   </View>
-                </View>
-              )}
-
-              <View style={styles.backSection}>
-                <Text style={styles.backLabel}>Definition</Text>
-                <Text style={styles.backText}>{flashcard.back.definition}</Text>
+                )}
               </View>
-              
-              <View style={styles.backSection}>
-                <Text style={styles.backLabel}>High-Yield</Text>
-                <Text style={styles.backText}>{flashcard.back.high_yield}</Text>
-              </View>
-              
-              <View style={styles.backSection}>
-                <Text style={styles.backLabel}>Clinical Pearl</Text>
-                <Text style={styles.backText}>{flashcard.back.clinical_pearl}</Text>
-              </View>
-
-              {flashcard.back.treatment && (
-                <View style={styles.backSection}>
-                  <Text style={styles.backLabel}>Treatment</Text>
-                  <Text style={styles.backText}>{flashcard.back.treatment}</Text>
-                </View>
-              )}
-
-              {flashcard.tags && flashcard.tags.length > 0 && (
-                <View style={styles.tags}>
-                  {flashcard.tags.map((tag, index) => (
-                    <View key={index} style={styles.tag}>
-                      <Text style={styles.tagText}>{tag}</Text>
+            ) : (
+              // Back of card
+              <View style={styles.cardFace}>
+                {flashcard.color && (
+                  <View style={styles.colorIndicator}>
+                    <View style={[styles.colorBadge, getColorBadgeStyle(flashcard.color)]}>
+                      <Text style={styles.colorBadgeText}>
+                        {flashcard.color === 'blue' ? 'Gram Positive' : 'Gram Negative'}
+                      </Text>
                     </View>
-                  ))}
-                </View>
-              )}
-            </View>
-          )}
-        </ScrollView>
+                  </View>
+                )}
 
-        {/* Flip indicator */}
-        <View style={styles.flipIndicator}>
-          <IconSymbol 
-            ios_icon_name="arrow.triangle.2.circlepath" 
-            android_material_icon_name="refresh"
-            size={16} 
-            color={colors.textSecondary} 
-          />
-          <Text style={styles.flipText}>Tap to flip</Text>
-        </View>
-      </Pressable>
+                <View style={styles.backSection}>
+                  <Text style={styles.backLabel}>Definition</Text>
+                  <Text style={styles.backText}>{flashcard.back.definition}</Text>
+                </View>
+                
+                <View style={styles.backSection}>
+                  <Text style={styles.backLabel}>High-Yield</Text>
+                  <Text style={styles.backText}>{flashcard.back.high_yield}</Text>
+                </View>
+                
+                <View style={styles.backSection}>
+                  <Text style={styles.backLabel}>Clinical Pearl</Text>
+                  <Text style={styles.backText}>{flashcard.back.clinical_pearl}</Text>
+                </View>
+
+                {flashcard.back.treatment && (
+                  <View style={styles.backSection}>
+                    <Text style={styles.backLabel}>Treatment</Text>
+                    <Text style={styles.backText}>{flashcard.back.treatment}</Text>
+                  </View>
+                )}
+
+                {flashcard.tags && flashcard.tags.length > 0 && (
+                  <View style={styles.tags}>
+                    {flashcard.tags.map((tag, index) => (
+                      <View key={index} style={styles.tag}>
+                        <Text style={styles.tagText}>{tag}</Text>
+                      </View>
+                    ))}
+                  </View>
+                )}
+              </View>
+            )}
+          </ScrollView>
+
+          {/* Flip indicator */}
+          <View style={styles.flipIndicator}>
+            <IconSymbol 
+              ios_icon_name="arrow.triangle.2.circlepath" 
+              android_material_icon_name="refresh"
+              size={16} 
+              color={colors.textSecondary} 
+            />
+            <Text style={styles.flipText}>Tap to flip</Text>
+          </View>
+        </Pressable>
+      </View>
 
       {/* Metadata */}
       <View style={styles.metadata}>
@@ -247,23 +251,33 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
   },
+  cardWrapper: {
+    position: 'relative',
+    width: '100%',
+  },
   actionButtons: {
+    position: 'absolute',
+    top: 12,
+    right: 12,
     flexDirection: 'row',
-    justifyContent: 'flex-end',
-    gap: 16,
-    marginBottom: 12,
+    gap: 12,
+    zIndex: 10,
+    elevation: 10,
   },
   actionButton: {
-    padding: 8,
-    borderRadius: 8,
+    padding: 10,
+    borderRadius: 12,
     backgroundColor: colors.card,
-    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
-    elevation: 2,
+    boxShadow: '0px 3px 8px rgba(0, 0, 0, 0.15)',
+    elevation: 5,
+    borderWidth: 1,
+    borderColor: colors.highlight,
   },
   card: {
     backgroundColor: colors.card,
     borderRadius: 16,
     padding: 24,
+    paddingTop: 60,
     minHeight: 300,
     boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
     elevation: 4,
