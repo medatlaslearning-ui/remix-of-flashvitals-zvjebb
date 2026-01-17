@@ -25,6 +25,7 @@ export default function FlashcardsScreen() {
     getBookmarkedFlashcards,
     getFavoriteFlashcards,
     getDifficultFlashcards,
+    updateTrigger,
   } = useFlashcards();
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -38,8 +39,9 @@ export default function FlashcardsScreen() {
   console.log('=== FlashcardsScreen Render ===');
   console.log('Params:', { topic, filter, system });
   console.log('All flashcards count:', allFlashcards.length);
+  console.log('Update trigger:', updateTrigger);
 
-  // Filter flashcards based on params
+  // Filter flashcards based on params - CRITICAL: Include updateTrigger in dependencies
   const flashcards = useMemo(() => {
     console.log('Filtering flashcards with params:', { topic, filter, system });
     console.log('Total flashcards available:', allFlashcards.length);
@@ -86,7 +88,7 @@ export default function FlashcardsScreen() {
     
     console.log('Returning all flashcards:', allFlashcards.length);
     return allFlashcards;
-  }, [topic, filter, system, allFlashcards, getBookmarkedFlashcards, getFavoriteFlashcards, getDifficultFlashcards]);
+  }, [topic, filter, system, allFlashcards, getBookmarkedFlashcards, getFavoriteFlashcards, getDifficultFlashcards, updateTrigger]);
 
   console.log('Filtered flashcards count:', flashcards.length);
   console.log('Current index:', currentIndex);
@@ -99,11 +101,12 @@ export default function FlashcardsScreen() {
     setReviewedInSession(new Set());
   }, [flashcards.length, topic, filter]);
 
-  // CRITICAL FIX: Ensure currentIndex is always valid
+  // CRITICAL FIX: Ensure currentIndex is always valid when flashcards array changes
   useEffect(() => {
     if (flashcards.length > 0 && currentIndex >= flashcards.length) {
-      console.log('⚠️ Current index out of bounds, resetting to 0');
-      setCurrentIndex(0);
+      console.log('⚠️ Current index out of bounds, resetting to last valid index');
+      const newIndex = Math.max(0, flashcards.length - 1);
+      setCurrentIndex(newIndex);
       setIsFlipped(false);
     }
   }, [flashcards.length, currentIndex]);
@@ -220,16 +223,58 @@ export default function FlashcardsScreen() {
     );
   };
 
-  const handleBookmark = (id: string) => {
+  const handleBookmark = async (id: string) => {
+    console.log('[Bookmark] User tapped bookmark button for card:', id);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    console.log('Toggling bookmark for card:', id);
-    toggleBookmark(id);
+    
+    // CRITICAL FIX: Store current card ID before toggling
+    const currentCardId = flashcards[currentIndex]?.id;
+    
+    await toggleBookmark(id);
+    console.log('[Bookmark] Bookmark toggled successfully');
+    
+    // CRITICAL FIX: After toggling, check if we're in a filter view and the card was removed
+    if (filter === 'bookmarked') {
+      // Wait a tick for state to update
+      setTimeout(() => {
+        const updatedFlashcards = getBookmarkedFlashcards();
+        console.log('[Bookmark] Updated bookmarked flashcards count:', updatedFlashcards.length);
+        
+        // If the current card was removed and we're at the end, move back
+        if (updatedFlashcards.length > 0 && currentIndex >= updatedFlashcards.length) {
+          console.log('[Bookmark] Adjusting index after removal');
+          setCurrentIndex(Math.max(0, updatedFlashcards.length - 1));
+          setIsFlipped(false);
+        }
+      }, 50);
+    }
   };
 
-  const handleFavorite = (id: string) => {
+  const handleFavorite = async (id: string) => {
+    console.log('[Favorite] User tapped favorite button for card:', id);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    console.log('Toggling favorite for card:', id);
-    toggleFavorite(id);
+    
+    // CRITICAL FIX: Store current card ID before toggling
+    const currentCardId = flashcards[currentIndex]?.id;
+    
+    await toggleFavorite(id);
+    console.log('[Favorite] Favorite toggled successfully');
+    
+    // CRITICAL FIX: After toggling, check if we're in a filter view and the card was removed
+    if (filter === 'favorites') {
+      // Wait a tick for state to update
+      setTimeout(() => {
+        const updatedFlashcards = getFavoriteFlashcards();
+        console.log('[Favorite] Updated favorite flashcards count:', updatedFlashcards.length);
+        
+        // If the current card was removed and we're at the end, move back
+        if (updatedFlashcards.length > 0 && currentIndex >= updatedFlashcards.length) {
+          console.log('[Favorite] Adjusting index after removal');
+          setCurrentIndex(Math.max(0, updatedFlashcards.length - 1));
+          setIsFlipped(false);
+        }
+      }, 50);
+    }
   };
 
   if (flashcards.length === 0) {
@@ -259,12 +304,15 @@ export default function FlashcardsScreen() {
     );
   }
 
-  // CRITICAL FIX: Guard against invalid currentIndex
+  // CRITICAL FIX: Guard against invalid currentIndex before rendering
   const currentCard = flashcards[currentIndex];
   if (!currentCard) {
     console.error('❌ RENDER ERROR: No card at index', currentIndex, 'of', flashcards.length);
-    // Reset to first card
-    setCurrentIndex(0);
+    // Force reset to first card on next render
+    setTimeout(() => {
+      setCurrentIndex(0);
+      setIsFlipped(false);
+    }, 0);
     return null;
   }
 

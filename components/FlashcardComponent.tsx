@@ -73,7 +73,8 @@ export function FlashcardComponent({
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
             <IconSymbol
-              name={flashcard.bookmarked ? 'bookmark.fill' : 'bookmark'}
+              ios_icon_name={flashcard.bookmarked ? 'bookmark.fill' : 'bookmark'}
+              android_material_icon_name={flashcard.bookmarked ? 'bookmark' : 'bookmark-border'}
               size={24}
               color={flashcard.bookmarked ? colors.primary : colors.textSecondary}
             />
@@ -84,7 +85,8 @@ export function FlashcardComponent({
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
             <IconSymbol
-              name={flashcard.favorite ? 'heart.fill' : 'heart'}
+              ios_icon_name={flashcard.favorite ? 'heart.fill' : 'heart'}
+              android_material_icon_name={flashcard.favorite ? 'favorite' : 'favorite-border'}
               size={24}
               color={flashcard.favorite ? colors.error : colors.textSecondary}
             />
@@ -171,7 +173,8 @@ export function FlashcardComponent({
         {/* Flip indicator */}
         <View style={styles.flipIndicator}>
           <IconSymbol 
-            name="arrow.triangle.2.circlepath" 
+            ios_icon_name="arrow.triangle.2.circlepath" 
+            android_material_icon_name="refresh"
             size={16} 
             color={colors.textSecondary} 
           />
@@ -182,7 +185,12 @@ export function FlashcardComponent({
       {/* Metadata */}
       <View style={styles.metadata}>
         <View style={styles.metadataItem}>
-          <IconSymbol name="eye" size={16} color={colors.textSecondary} />
+          <IconSymbol 
+            ios_icon_name="eye" 
+            android_material_icon_name="visibility"
+            size={16} 
+            color={colors.textSecondary} 
+          />
           <Text style={styles.metadataText}>Reviewed {flashcard.reviewCount} times</Text>
         </View>
         <View style={[styles.difficultyBadge, getDifficultyStyle(flashcard.difficulty)]}>
