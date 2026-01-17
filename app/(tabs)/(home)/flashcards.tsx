@@ -20,11 +20,11 @@ export default function FlashcardsScreen() {
     allFlashcards, 
     toggleBookmark, 
     toggleFavorite, 
-    toggleDifficult, // NEW: Get toggleDifficult function
+    toggleDifficult,
     incrementReviewCount,
     getBookmarkedFlashcards,
     getFavoriteFlashcards,
-    getDifficultFlashcards, // NEW: Get getDifficultFlashcards function
+    getDifficultFlashcards,
   } = useFlashcards();
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -56,7 +56,6 @@ export default function FlashcardsScreen() {
       return favorites;
     }
     
-    // NEW: Filter for difficult cards
     if (filter === 'difficult') {
       const difficult = getDifficultFlashcards();
       console.log('Difficult flashcards:', difficult.length);
@@ -67,13 +66,11 @@ export default function FlashcardsScreen() {
       let filtered = allFlashcards.filter(card => card.topic === topic);
       console.log(`Cards matching topic "${topic}":`, filtered.length);
       
-      // If system is specified, also filter by system
       if (system) {
         filtered = filtered.filter(card => card.system === system);
         console.log(`Cards matching topic "${topic}" and system "${system}":`, filtered.length);
       }
       
-      // Log first few cards for debugging
       if (filtered.length > 0) {
         console.log('First card:', {
           id: filtered[0].id,
@@ -102,14 +99,27 @@ export default function FlashcardsScreen() {
     setReviewedInSession(new Set());
   }, [flashcards.length, topic, filter]);
 
+  // CRITICAL FIX: Ensure currentIndex is always valid
+  useEffect(() => {
+    if (flashcards.length > 0 && currentIndex >= flashcards.length) {
+      console.log('⚠️ Current index out of bounds, resetting to 0');
+      setCurrentIndex(0);
+      setIsFlipped(false);
+    }
+  }, [flashcards.length, currentIndex]);
+
   // Handle card flip - increment review count and save to Progress Report when card is flipped to show answer
   const handleFlip = async () => {
+    // GUARD: Ensure we have a valid card
+    if (!flashcards[currentIndex]) {
+      console.error('❌ No card at current index:', currentIndex);
+      return;
+    }
+
     const currentCard = flashcards[currentIndex];
     const newFlipState = !isFlipped;
     setIsFlipped(newFlipState);
     
-    // Only increment review count when flipping to the back (showing answer)
-    // and only once per card in this session
     if (newFlipState && !reviewedInSession.has(currentCard.id)) {
       console.log('[Flashcard] 🔄 Card flipped to back - triggering review count and Progress Report save');
       console.log('[Flashcard] Card ID:', currentCard.id);
@@ -117,14 +127,11 @@ export default function FlashcardsScreen() {
       console.log('[Flashcard] System:', currentCard.system);
       console.log('[Flashcard] Current review count:', currentCard.reviewCount);
       
-      // Mark as reviewed in this session
       setReviewedInSession(prev => new Set(prev).add(currentCard.id));
       
-      // Increment the review count
       await incrementReviewCount(currentCard.id);
       console.log('[Flashcard] ✅ Review count incremented');
       
-      // Save flashcard view to Progress Report (Supabase) - CRITICAL BRIDGE
       if (user) {
         console.log('[Flashcard] 🌉 BRIDGE: Saving flashcard view to Progress Report...');
         try {
@@ -141,7 +148,6 @@ export default function FlashcardsScreen() {
           }
         } catch (error) {
           console.error('[Flashcard] ❌ BRIDGE ERROR: Failed to save flashcard view:', error);
-          // Don't show error to user - this is background tracking
         }
       } else {
         console.log('[Flashcard] ⚠️ BRIDGE SKIPPED: User not authenticated - cannot save to Progress Report');
@@ -152,7 +158,7 @@ export default function FlashcardsScreen() {
   const getScreenTitle = () => {
     if (filter === 'bookmarked') return 'Bookmarked Cards';
     if (filter === 'favorites') return 'Favorite Cards';
-    if (filter === 'difficult') return 'Difficult Cards'; // NEW: Title for difficult cards
+    if (filter === 'difficult') return 'Difficult Cards';
     if (topic) return topic;
     return 'All Flashcards';
   };
@@ -185,8 +191,13 @@ export default function FlashcardsScreen() {
     }
   };
 
-  // NEW: Handle marking card as difficult
   const handleMarkDifficult = async () => {
+    // GUARD: Ensure we have a valid card
+    if (!flashcards[currentIndex]) {
+      console.error('❌ No card at current index:', currentIndex);
+      return;
+    }
+
     const currentCard = flashcards[currentIndex];
     const newDifficultState = !currentCard.difficult;
     
@@ -200,7 +211,6 @@ export default function FlashcardsScreen() {
     
     await toggleDifficult(currentCard.id);
     
-    // Show feedback to user
     Alert.alert(
       newDifficultState ? 'Marked as Difficult' : 'Removed from Difficult',
       newDifficultState 
@@ -249,7 +259,15 @@ export default function FlashcardsScreen() {
     );
   }
 
+  // CRITICAL FIX: Guard against invalid currentIndex
   const currentCard = flashcards[currentIndex];
+  if (!currentCard) {
+    console.error('❌ RENDER ERROR: No card at index', currentIndex, 'of', flashcards.length);
+    // Reset to first card
+    setCurrentIndex(0);
+    return null;
+  }
+
   console.log('Rendering card:', {
     index: currentIndex,
     id: currentCard.id,

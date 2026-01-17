@@ -180,6 +180,18 @@ export default function ProfileScreen() {
     );
   };
 
+  // SAFE NAVIGATION: Wrap navigation in try-catch to prevent render errors
+  const handleNavigateToFilter = (filterType: string) => {
+    try {
+      console.log(`[Profile iOS] Navigating to ${filterType}`);
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      router.push(`/(tabs)/(home)/flashcards?filter=${filterType}`);
+    } catch (error) {
+      console.error(`[Profile iOS] Navigation error for ${filterType}:`, error);
+      Alert.alert('Navigation Error', 'Unable to navigate. Please try again.');
+    }
+  };
+
   if (authLoading) {
     return (
       <View style={styles.loadingContainer}>
@@ -405,42 +417,30 @@ export default function ProfileScreen() {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Quick Actions</Text>
           <View style={styles.grid}>
-            {/* Favorites - Matching Home page style (no count) */}
+            {/* Favorites - FIXED: Safe navigation */}
             <Pressable
               style={[styles.tile, { backgroundColor: '#E91E63' }]}
-              onPress={() => {
-                console.log('[Profile iOS] Navigating to favorites');
-                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                router.push('/(tabs)/(home)/flashcards?filter=favorites');
-              }}
+              onPress={() => handleNavigateToFilter('favorites')}
             >
               <Text style={styles.tileEmoji}>❤️</Text>
               <Text style={styles.tileTitle}>Favorites</Text>
               <Text style={styles.tileSubtitle}>Favorite cards</Text>
             </Pressable>
 
-            {/* Bookmarked - Matching Home page style (no count) */}
+            {/* Bookmarked - FIXED: Safe navigation */}
             <Pressable
               style={[styles.tile, { backgroundColor: '#FF9800' }]}
-              onPress={() => {
-                console.log('[Profile iOS] Navigating to bookmarked');
-                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                router.push('/(tabs)/(home)/flashcards?filter=bookmarked');
-              }}
+              onPress={() => handleNavigateToFilter('bookmarked')}
             >
               <Text style={styles.tileEmoji}>🔖</Text>
               <Text style={styles.tileTitle}>Bookmarked</Text>
               <Text style={styles.tileSubtitle}>Saved cards</Text>
             </Pressable>
 
-            {/* Difficult - Matching Home page style (no count) */}
+            {/* Difficult - FIXED: Safe navigation */}
             <Pressable
               style={[styles.tile, { backgroundColor: '#F44336' }]}
-              onPress={() => {
-                console.log('[Profile iOS] Navigating to difficult');
-                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                router.push('/(tabs)/(home)/flashcards?filter=difficult');
-              }}
+              onPress={() => handleNavigateToFilter('difficult')}
             >
               <Text style={styles.tileEmoji}>⚠️</Text>
               <Text style={styles.tileTitle}>Difficult</Text>
