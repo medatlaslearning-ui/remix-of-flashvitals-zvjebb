@@ -152,17 +152,20 @@ async function callEdgeFunctionWithRetry(
     
     return data;
   } catch (error: any) {
-    console.error(`[OPENAI INTEGRATION] Exception on attempt ${attempt + 1}:`, error);
+    // Extract error message for better logging on iOS
+    const errorMessage = error?.message || error?.toString() || 'Unknown error';
+    const errorName = error?.name || 'Error';
+    console.error(`[OPENAI INTEGRATION] Exception on attempt ${attempt + 1}:`, errorMessage);
     
     // Check if we should retry
     if (attempt < MAX_RETRIES) {
       const isRetryableError = 
-        error.message?.includes('timeout') ||
-        error.message?.includes('network') ||
-        error.message?.includes('Failed to send') ||
-        error.message?.includes('fetch') ||
-        error.name === 'TypeError' ||
-        error.name === 'NetworkError';
+        errorMessage.includes('timeout') ||
+        errorMessage.includes('network') ||
+        errorMessage.includes('Failed to send') ||
+        errorMessage.includes('fetch') ||
+        errorName === 'TypeError' ||
+        errorName === 'NetworkError';
       
       if (isRetryableError) {
         const delay = getRetryDelay(attempt);
@@ -311,28 +314,31 @@ export async function generateConversationalResponse(
   } catch (error: any) {
     const totalDuration = Math.round(performance.now() - startTime);
     
-    console.error('[OPENAI INTEGRATION] All retry attempts failed:', error);
-    console.error('[OPENAI INTEGRATION] Error details:', JSON.stringify(error, null, 2));
+    // Extract error message for better logging on iOS
+    const errorMessage = error?.message || error?.toString() || 'Unknown error';
+    const errorStatus = error?.status;
+    
+    console.error('[OPENAI INTEGRATION] All retry attempts failed:', errorMessage);
     
     // Provide detailed fallback reason
     let fallbackReason = 'Unknown error';
     
-    if (error.message?.includes('timeout')) {
+    if (errorMessage.includes('timeout')) {
       fallbackReason = `Request timeout after ${REQUEST_TIMEOUT_MS / 1000}s`;
-    } else if (error.message?.includes('Failed to send')) {
+    } else if (errorMessage.includes('Failed to send')) {
       fallbackReason = 'Network error: Failed to send request to Edge Function';
-    } else if (error.message?.includes('network')) {
+    } else if (errorMessage.includes('network')) {
       fallbackReason = 'Network error: Unable to reach Edge Function';
-    } else if (error.message?.includes('OPENAI_API_KEY')) {
+    } else if (errorMessage.includes('OPENAI_API_KEY')) {
       fallbackReason = 'OpenAI API key not configured in Supabase';
-    } else if (error.status === 401) {
+    } else if (errorStatus === 401) {
       fallbackReason = 'Authentication error with OpenAI API';
-    } else if (error.status === 429) {
+    } else if (errorStatus === 429) {
       fallbackReason = 'OpenAI API rate limit exceeded';
-    } else if (error.status === 500 || error.status === 502 || error.status === 503) {
-      fallbackReason = `Edge Function server error (${error.status})`;
-    } else if (error.message) {
-      fallbackReason = `Error: ${error.message}`;
+    } else if (errorStatus === 500 || errorStatus === 502 || errorStatus === 503) {
+      fallbackReason = `Edge Function server error (${errorStatus})`;
+    } else {
+      fallbackReason = `Error: ${errorMessage}`;
     }
     
     console.log('[OPENAI INTEGRATION] Falling back to original content');

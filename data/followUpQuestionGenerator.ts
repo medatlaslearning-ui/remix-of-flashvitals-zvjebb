@@ -156,14 +156,16 @@ export async function generateFollowUpQuestionsWithLMM(
       generationTime,
     };
   } catch (error: any) {
-    console.error('[FOLLOW-UP GENERATOR] Error generating follow-up questions:', error);
+    // Extract error message for better logging on iOS
+    const errorMessage = error?.message || error?.toString() || 'Unknown error';
+    console.error('[FOLLOW-UP GENERATOR] Error generating follow-up questions:', errorMessage);
     
     if (FALLBACK_TO_RULE_BASED) {
       console.log('[FOLLOW-UP GENERATOR] Falling back to rule-based generation');
       return generateFallbackQuestions(
         params,
         startTime,
-        error.message || 'Unknown error'
+        errorMessage
       );
     }
     
@@ -171,7 +173,7 @@ export async function generateFollowUpQuestionsWithLMM(
       questions: [],
       usedLMM: false,
       generationTime: Math.round(performance.now() - startTime),
-      fallbackReason: error.message || 'Unknown error',
+      fallbackReason: errorMessage,
     };
   }
 }
